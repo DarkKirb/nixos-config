@@ -113,7 +113,7 @@
     enable = true;
     networks."enp0s3".extraConfig = ''
       [Match]
-      OriginalName = enp0s3
+      Name = ens3
       [Network]
       Address = 2a01:4f8:1c17:d953:1658:15a2:2755:360e/64
       Gateway = fe80::1
