@@ -4,13 +4,13 @@
     email = "lotte@chir.rs";
     certs."darkkirb.de" = {
       domain = "*.darkkirb.de";
-      extraDomains = [ "darkkirb.de" ];
+      extraDomainNames = [ "darkkirb.de" ];
       dnsProvider = "rfc2136";
       credentialsFile = "/run/secrets/security/acme/dns";
     };
     certs."chir.rs" = {
       domain = "*.chir.rs";
-      extraDomains = [ "chir.rs" ];
+      extraDomainNames = [ "chir.rs" ];
       dnsProvider = "rfc2136";
       credentialsFile = "/run/secrets/security/acme/dns";
     };
