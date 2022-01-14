@@ -4,12 +4,34 @@
     config = {
       services.bind = {
         enable = true;
-        forwarders = [
-          "2a01:4f8:c17:14df::1"
-        ];
-        cacheNetworks = [ "0.0.0.0/0" "::/0" ];
       };
       system.stateVersion = "21.11";
+      zones = {
+        "darkkirb.de" = {
+          master = false;
+          masters = [
+            "fd00:e621:e621::1"
+          ];
+        };
+        "chir.rs" = {
+          master = false;
+          masters = [
+            "fd00:e621:e621::1"
+          ];
+        };
+        "int.chir.rs" = {
+          master = false;
+          masters = [
+            "fd00:e621:e621::1"
+          ];
+        };
+        "rpz.int.chir.rs" = {
+          master = false;
+          masters = [
+            "fd00:e621:e621::1"
+          ];
+        };
+      };
     };
   };
   networking.firewall.allowedTCPPorts = [ 53 ];
