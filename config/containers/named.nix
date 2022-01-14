@@ -1,5 +1,6 @@
 { ... }: {
   containers."named" = {
+    autoStart = true;
     config = {
       services.bind = {
         enable = true;
