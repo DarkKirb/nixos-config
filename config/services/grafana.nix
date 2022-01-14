@@ -17,6 +17,8 @@ in
     http2 = true;
     http3 = true;
     listenAddresses = listenIPs;
+    sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
+    sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
       proxyWebsockets = true;
