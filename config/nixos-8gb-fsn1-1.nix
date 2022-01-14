@@ -13,7 +13,8 @@
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "zfs" ];
   boot.kernelParams = ["zfs_force=1"]; # Remove after next boot
-  boot.loader.grub.devices = [ "/dev/disk/by-partuuid/2b59a132-a2ca-5049-bf54-9bd372cea2e8" ];
+  boot.loader.grub.devices = [ "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-0-0-0" ];
+  boot.loader.timeout = 5;
 
   fileSystems."/" =
     { device = "tank/nixos";
