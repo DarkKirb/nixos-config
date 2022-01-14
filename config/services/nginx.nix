@@ -17,7 +17,7 @@
                 text/plain
                 text/xml;
     '';
-    package = pkgs.nginxQuic;
+    # package = pkgs.nginxQuic;
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
     recommendedProxySettings = true;
