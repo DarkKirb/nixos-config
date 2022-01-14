@@ -8,5 +8,6 @@
     group = "users";
     home = "/home/alice";
     shell = "/bin/sh";
+    isNormalUser = true;
   };
 }
