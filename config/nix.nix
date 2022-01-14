@@ -18,4 +18,15 @@
       dates = [ "weekly" ];
     };
   };
+  system.autoUpgrade = {
+    enable = true;
+    allowReboot = true;
+    flake = "github:DarkKirb/nixos-config";
+    flags = [
+      "--recreate-lock-file"
+      "--no-write-lock-file"
+      "-L" # print build logs
+    ];
+    dates = "daily";
+  };
 }
