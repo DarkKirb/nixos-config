@@ -2,5 +2,6 @@
 { ... }: {
   imports = [
     ./services/nginx.nix
+    ./services/acme.nix
   ];
 }

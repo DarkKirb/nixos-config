@@ -7,7 +7,7 @@
     ./grub.nix
     ./server.nix
     ./services/named.nix
-    ./services/acme.nix
+    ./services/grafana.nix
   ];
 
   boot.initrd.availableKernelModules = [ "ata_piix" "virtio_pci" "virtio_scsi" "xhci_pci" "sd_mod" "sr_mod" ];
