@@ -24,4 +24,6 @@
     resolver.addresses = [ "127.0.0.1" "[::1]" ];
     sslProtocols = "TLSv1.3";
   };
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedUDPPorts = [ 443 ];
 }
