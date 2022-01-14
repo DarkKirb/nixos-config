@@ -5,6 +5,7 @@
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     ./grub.nix
+    ./server.nix
   ];
 
   boot.initrd.availableKernelModules = [ "ata_piix" "virtio_pci" "virtio_scsi" "xhci_pci" "sd_mod" "sr_mod" ];
@@ -115,7 +116,7 @@
       [Match]
       Name = ens3
       [Network]
-      Address = 2a01:4f8:1c17:d953:1658:15a2:2755:360e/64
+      Address = 2a01:4f8:1c17:d953:b4e1:08ff:e658:6f49/64
       Gateway = fe80::1
     '';
   };
