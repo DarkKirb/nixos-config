@@ -15,7 +15,7 @@ in
   services.nginx.virtualHosts.${config.services.grafana.domain} = {
     forceSSL = true;
     http2 = true;
-    http3 = true;
+    # http3 = true;
     listenAddresses = listenIPs;
     sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
