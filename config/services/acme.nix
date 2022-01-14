@@ -18,4 +18,5 @@
       domain = "*.int.chir.rs";
     };
   };
+  services.nginx.group = "acme";
 }
