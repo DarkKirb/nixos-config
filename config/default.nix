@@ -11,4 +11,5 @@
   };
   services.openssh.enable = true;
   environment.systemPackages = [ pkgs.git ];
+  networking.firewall.allowedTCPPorts = [ 22 ];
 }
