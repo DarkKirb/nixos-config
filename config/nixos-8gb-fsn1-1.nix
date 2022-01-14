@@ -115,9 +115,19 @@
         address = "138.201.155.128";
         prefixLength = 32;
       }];
+      ipv4.routes = [{
+        address = "0.0.0.0";
+        prefixLength = 0;
+        via = "172.31.1.1";
+      }];
       ipv6.addresses = [{
         address = "2a01:4f8:1c17:d953:1658:15a2:2755:360e";
         prefixLength = 64;
+      }];
+      ipv6.routes = [{
+        address = "::";
+        prefixLength = 0;
+        via = "fe80::1";
       }];
     };
     defaultGateway6 = {
