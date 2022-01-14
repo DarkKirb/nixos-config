@@ -14,6 +14,12 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.kernelParams = ["zfs_force=1"]; # Remove after next boot
 
+  fileSystems."/" =
+    { device = "tank/nixos";
+      fsType = "zfs";
+      options = [ "zfsutil" ];
+    };
+
   fileSystems."/nix" =
     { device = "tank/nixos/nix";
       fsType = "zfs";
