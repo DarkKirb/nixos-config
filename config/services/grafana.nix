@@ -5,6 +5,9 @@ let
   listenIPs = filterIPs config.networking.wireguard.interfaces."wg0".ips;
 in
 {
+  imports = [
+    ./prometheus.nix
+  ];
   services.grafana = {
     enable = true;
     domain = "grafana.int.chir.rs";
