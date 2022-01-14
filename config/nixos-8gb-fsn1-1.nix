@@ -6,7 +6,7 @@
     (modulesPath + "/profiles/qemu-guest.nix")
     ./grub.nix
     ./server.nix
-    ./containers/named.nix
+    ./services/named.nix
     ./services/acme.nix
   ];
 
