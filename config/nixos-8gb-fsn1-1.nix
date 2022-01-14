@@ -7,6 +7,7 @@
     ./grub.nix
     ./server.nix
     ./containers/named.nix
+    ./services/acme.nix
   ];
 
   boot.initrd.availableKernelModules = [ "ata_piix" "virtio_pci" "virtio_scsi" "xhci_pci" "sd_mod" "sr_mod" ];
@@ -14,7 +15,6 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "zfs" ];
-  boot.kernelParams = [ "zfs_force=1" ]; # Remove after next boot
   boot.loader.grub.devices = [ "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-0-0-0" ];
   boot.loader.timeout = 5;
   boot.initrd.luks.devices = {
