@@ -20,7 +20,6 @@
   };
   system.autoUpgrade = {
     enable = true;
-    allowReboot = true;
     flake = "github:DarkKirb/nixos-config";
     flags = [
       "--recreate-lock-file"
