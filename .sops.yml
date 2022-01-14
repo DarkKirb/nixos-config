@@ -1,0 +1,9 @@
+keys:
+  - &lotte age1k5emdjljm5amrquky2tn3khqt38wq62s797nujxuhp8j6x7k5p0sedv0q2
+  - &nixos-8gb-fsn1-1 age1273ps5thcy70ckdt0270s2nysqgu48t38pq3wq975v3y7mf4eavsw38wsl
+creation_rules:
+  - path_regex: secrets/nixos-8gb-fsn1-1/[^/]+$
+    key_groups:
+      - age:
+          - *lotte
+          - *nixos-8gb-fsn1-1
