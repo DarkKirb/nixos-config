@@ -15,6 +15,12 @@
   boot.kernelParams = ["zfs_force=1"]; # Remove after next boot
   boot.loader.grub.devices = [ "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-0-0-0" ];
   boot.loader.timeout = 5;
+  boot.initrd.luks.enable = true;
+  boot.initrd.luks.devices = {
+    disk0 = {
+      device = "/dev/disk/by-partuuid/29ccd4c9-5ef5-a146-8e42-9244f712baca";
+    };
+  };
 
   fileSystems."/" =
     { device = "tank/nixos";
