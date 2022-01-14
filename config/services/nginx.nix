@@ -3,7 +3,7 @@
     additionalModules = [ pkgs.nginxModules.brotli ];
     clientMaxBodySize = "100m";
     enable = true;
-    httpConfig = ''
+    appendHttpConfig = ''
       brotli on;
       brotli_types
                 application/atom+xml
