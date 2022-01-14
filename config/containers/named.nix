@@ -12,4 +12,6 @@
       system.stateVersion = "21.11";
     };
   };
+  networking.firewall.allowedTCPPorts = [ 53 ];
+  networking.firewall.allowedUDPPorts = [ 53 ];
 }
