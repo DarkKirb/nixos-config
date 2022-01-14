@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  removeCIDR = cidr: builtins.elemAt 0 (builtins.split "/" cidr);
+  removeCIDR = cidr: builtins.elemAt (builtins.split "/" cidr) 0;
   filterIPs = cidrs: builtins.map removeCIDR cidrs;
   listenIPs = filterIPs config.networking.wireguard.interfaces."wg0".ips;
 in
