@@ -12,7 +12,7 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "zfs" ];
-  boot.kernelParams = ["zfs_force=1"]; # Remove after next boot
+  boot.kernelParams = [ "zfs_force=1" ]; # Remove after next boot
   boot.loader.grub.devices = [ "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-0-0-0" ];
   boot.loader.timeout = 5;
   boot.initrd.luks.devices = {
@@ -22,73 +22,85 @@
   };
 
   fileSystems."/" =
-    { device = "tank/nixos";
+    {
+      device = "tank/nixos";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/nix" =
-    { device = "tank/nixos/nix";
+    {
+      device = "tank/nixos/nix";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/etc" =
-    { device = "tank/nixos/etc";
+    {
+      device = "tank/nixos/etc";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/var" =
-    { device = "tank/nixos/var";
+    {
+      device = "tank/nixos/var";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/var/lib" =
-    { device = "tank/nixos/var/lib";
+    {
+      device = "tank/nixos/var/lib";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/var/log" =
-    { device = "tank/nixos/var/log";
+    {
+      device = "tank/nixos/var/log";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/var/spool" =
-    { device = "tank/nixos/var/spool";
+    {
+      device = "tank/nixos/var/spool";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/home" =
-    { device = "tank/userdata/home";
+    {
+      device = "tank/userdata/home";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/root" =
-    { device = "tank/userdata/home/root";
+    {
+      device = "tank/userdata/home/root";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/home/darkkirb" =
-    { device = "tank/userdata/home/darkkirb";
+    {
+      device = "tank/userdata/home/darkkirb";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/home/miifox" =
-    { device = "tank/userdata/home/miifox";
+    {
+      device = "tank/userdata/home/miifox";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/8E14-4366";
+    {
+      device = "/dev/disk/by-uuid/8E14-4366";
       fsType = "vfat";
       options = [ "X-mount.mkdir" ];
     };
@@ -96,4 +108,22 @@
   swapDevices = [ ];
 
   system.stateVersion = "21.11";
+
+  networking = {
+    interfaces."ens3" = {
+      ipv4.addresses = [{
+        address = "138.201.155.128";
+        prefixLength = 32;
+      }];
+      ipv6.addresses = [{
+        address = "2a01:4f8:1c17:d953:1658:15a2:2755:360e";
+        prefixLength = 64;
+      }];
+    };
+    defaultGateway6 = {
+      address = "fe80::1";
+      interface = "ens3";
+    };
+    defaultGateway = "172.31.1.1";
+  };
 }
