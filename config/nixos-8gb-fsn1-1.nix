@@ -110,7 +110,7 @@
   system.stateVersion = "21.11";
 
   networking = {
-    interfaces."ens3" = {
+    interfaces."enp0s3" = {
       ipv4.addresses = [{
         address = "138.201.155.128";
         prefixLength = 32;
@@ -132,7 +132,7 @@
     };
     defaultGateway6 = {
       address = "fe80::1";
-      interface = "ens3";
+      interface = "enp0s3";
     };
     defaultGateway = "172.31.1.1";
   };
