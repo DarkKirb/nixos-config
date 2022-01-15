@@ -16,7 +16,7 @@
         }
         # Old infra: nas
         {
-          publicKey = "X6IOz4q4zfPy34bRhAjsureLc6lLFOSwvyGDfxgp8n4";
+          publicKey = "X6IOz4q4zfPy34bRhAjsureLc6lLFOSwvyGDfxgp8n4=";
           allowedIPs = [
             "fd00:e621:e621:2::/64"
           ];
