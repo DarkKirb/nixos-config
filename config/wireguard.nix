@@ -12,6 +12,7 @@
           endpoint = "23.88.44.119:51820";
           allowedIPs = [
             "fd00:e621:e621::/64"
+            "fd00:e621:e621:1::/64"
           ];
         }
         # Old infra: nas
