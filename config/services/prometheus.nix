@@ -19,6 +19,14 @@
           ];
         }];
       }
+      {
+        job_name = "postgres_exporter";
+        static_configs = [{
+          targets = [
+            "${config.services.prometheus.exporters.postgres.listenAddress}:${toString config.services.prometheus.exporters.postgres.port}"
+          ];
+        }];
+      }
     ];
   };
 }
