@@ -23,7 +23,7 @@
       "mountstats"
       "network_route"
       "ntp"
-      "perf"
+      #      "perf"
       "processes"
       "qdisc"
       "systemd"
@@ -31,5 +31,5 @@
     ];
     listenAddress = (import ../utils/getInternalIP.nix config).listenIP;
   };
-  boot.kernel.sysctl."kernel.perf_event_paranoid" = 0; # for the perf exporter
+  #  boot.kernel.sysctl."kernel.perf_event_paranoid" = 0; # for the perf exporter
 }
