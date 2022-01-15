@@ -40,7 +40,7 @@ in
     extraConfig = ''
       statistics-channels {
         ${toString listenEntries}
-      }
+      };
     '';
   };
   networking.firewall.allowedTCPPorts = [ 53 ];
