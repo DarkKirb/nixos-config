@@ -9,7 +9,7 @@
 
     serviceConfig = {
       ExecStart = ''
-        ${pkgs.grafana-loki}/bin/promtail --config.file ${./promtail.yaml}
+        ${pkgs.grafana-loki}/bin/promtail --config.file ${./promtrail.yaml}
       '';
     };
   };
