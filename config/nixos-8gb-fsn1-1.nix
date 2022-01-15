@@ -128,4 +128,5 @@
   ];
   networking.resolvconf.enable = false;
   networking.dhcpcd.extraConfig = "nohook resolv.conf";
+  home-manager.users.darkkirb = import ./home-manager/darkkirb.nix false;
 }
