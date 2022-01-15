@@ -11,6 +11,14 @@
           ];
         }];
       }
+      {
+        job_name = "bind_exporter";
+        static_configs = [{
+          targets = [
+            "${config.services.prometheus.exporters.bind.listenAddress}:${toString config.services.prometheus.exporters.bind.port}"
+          ];
+        }];
+      }
     ];
   };
 }
