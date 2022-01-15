@@ -13,4 +13,9 @@
     MemoryHigh = "1G";
     MemoryMax = "1.1G";
   };
+  services.postgres.ensureDatabases = [ "miifox" ];
+  services.postgres.ensureUsers = [{
+    name = "miifox";
+    ensurePermissions = { "DATABASE miifox" = "ALL PRIVILEGES"; };
+  }];
 }
