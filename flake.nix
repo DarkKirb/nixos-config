@@ -8,7 +8,7 @@ rec {
   inputs.sops-nix.url = github:Mic92/sops-nix;
   inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = { self, nixpkgs, sops-nix, ... } @ args: {
+  outputs = { self, nixpkgs, sops-nix, home-manager, ... } @ args: {
     nixosConfigurations =
       let
         systems = [
@@ -25,6 +25,7 @@ rec {
                 (./config + "/${name}.nix")
                 ./config/default.nix
                 sops-nix.nixosModules.sops
+                home-manager.nixosModules.home-manager
               ];
             };
         })
