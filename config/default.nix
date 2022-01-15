@@ -7,6 +7,7 @@
     ./wireguard.nix
     ./services/loki.nix
     ./home.nix
+    ./services/restic.nix
   ];
   services.openssh.enable = true;
   environment.systemPackages = [ pkgs.git ];
