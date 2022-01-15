@@ -6,6 +6,7 @@
   };
   services.prometheus.exporters.postgres = {
     enable = true;
+    user = "postgres";
     listenAddress = (import ../../utils/getInternalIP.nix config).listenIP;
   };
 }
