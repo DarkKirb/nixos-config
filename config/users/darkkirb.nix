@@ -6,7 +6,8 @@
       "wheel"
     ];
     group = "users";
-    home = "/home/alice";
+    home = "/home/darkkirb";
     isNormalUser = true;
+    uid = 1000;
   };
 }
