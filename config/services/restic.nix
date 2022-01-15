@@ -5,6 +5,6 @@
       "/var"
       "/home"
     ];
-    repository = "sftp:darkkirb@[fd00:e621:e621:2::2]:/backup";
+    repository = "sftp:darkkirb@backup.int.chir.rs:/backup";
   };
 }
