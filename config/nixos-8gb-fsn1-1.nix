@@ -123,4 +123,9 @@
   };
 
   networking.wireguard.interfaces."wg0".ips = [ "fd0d:a262:1fa6:e621:b4e1:08ff:e658:6f49/64" ];
+  networking.nameservers = [
+    "fd0d:a262:1fa6:e621:b4e1:08ff:e658:6f49"
+  ];
+  networking.resolvconf.enable = false;
+  networking.dhcpcd.extraConfig = "nohook resolv.conf";
 }

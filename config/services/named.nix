@@ -42,6 +42,18 @@ in
         ${toString listenEntries}
       };
     '';
+    extraOptions = ''
+      allow-recursion {
+        127.0.0.1;
+        ::1;
+        fc00::/7;
+      };
+      recursion yes;
+      response-policy {
+        zone "rpz.int.chir.rs";
+      };
+      dnssec-validation yes;
+    '';
   };
   networking.firewall.allowedTCPPorts = [ 53 ];
   networking.firewall.allowedUDPPorts = [ 53 ];
