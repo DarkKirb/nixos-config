@@ -33,4 +33,6 @@
     listenAddress = (import ../utils/getInternalIP.nix config).listenIP;
   };
   #  boot.kernel.sysctl."kernel.perf_event_paranoid" = 0; # for the perf exporter
+
+  nix.buildCores = 0;
 }

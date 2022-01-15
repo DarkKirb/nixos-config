@@ -3,5 +3,6 @@
   imports = [
     ./services/nginx.nix
     ./services/acme.nix
+    ./services/fail2ban.nix
   ];
 }
