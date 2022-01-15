@@ -11,7 +11,14 @@
           publicKey = "ZtU2iWwVYeGyXC1ak+wFdTuisQNq7gMthYQZaw6InDU=";
           endpoint = "23.88.44.119:51820";
           allowedIPs = [
-            "fd00:e621:e621::/48"
+            "fd00:e621:e621::/64"
+          ];
+        }
+        # Old infra: nas
+        {
+          publicKey = "X6IOz4q4zfPy34bRhAjsureLc6lLFOSwvyGDfxgp8n4";
+          allowedIPs = [
+            "fd00:e621:e621:2::/64"
           ];
         }
       ];
