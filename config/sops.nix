@@ -4,4 +4,5 @@
   sops.defaultSopsFile = ../secrets + "/${config.networking.hostName}/secrets.yaml";
   sops.secrets."network/wireguard/privkey" = { };
   sops.secrets."security/acme/dns" = { };
+  sops.secrets."security/restic/password" = { };
 }
