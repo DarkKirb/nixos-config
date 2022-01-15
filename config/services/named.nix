@@ -1,7 +1,7 @@
 { config, ... }:
 let
   internalIP = import ../../utils/getInternalIP.nix config;
-  createListenEntry = ip: "inet ${ip} port 8653 allow { ${ip} };";
+  createListenEntry = ip: "inet ${ip} port 8653 allow { any; };";
   listenEntries = builtins.map createListenEntry internalIP.listenIPsBare;
 in
 {
