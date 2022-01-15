@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 let
-  removeCIDR = cidr: builtins.elemAt (builtins.split "/" cidr) 0;
-  filterIPs = cidrs: builtins.map (f: "[${removeCIDR f}]") cidrs;
-  listenIPs = filterIPs config.networking.wireguard.interfaces."wg0".ips;
+  listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
 in
 {
   imports = [
