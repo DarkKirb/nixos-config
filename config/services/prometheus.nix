@@ -1,7 +1,7 @@
 { config, ... }: {
   services.prometheus = {
     enable = true;
-    port = 9001;
+    port = 9002;
     scrapeConfigs = [
       {
         job_name = "node_exporter";
