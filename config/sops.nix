@@ -5,4 +5,5 @@
   sops.secrets."network/wireguard/privkey" = { };
   sops.secrets."security/acme/dns" = { };
   sops.secrets."security/restic/password" = { };
+  sops.secrets."security/minio/credentials_file" = { };
 }
