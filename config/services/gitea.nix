@@ -33,9 +33,9 @@
         ENABLE_OPENID_SIGNUP = true;
       };
       cache = {
-        ENABLED = config.services.redis.gitea.enable;
+        ENABLED = config.services.redis.servers.gitea.enable;
         ADAPTER = "redis";
-        HOST = "redis://${config.services.redis.gitea.host}:${config.services.redis.gitea.port}/0";
+        HOST = "redis://${config.services.redis.servers.gitea.host}:${config.services.redis.servers.gitea.port}/0";
       };
       "storage.default" = storage;
     };
@@ -61,7 +61,7 @@
 
   systemd.services.gitea.serviceConfig.EnvironmentFile = "/run/secrets/services/gitea";
 
-  services.redis.gitea = {
+  services.redis.servers.gitea = {
     enable = true;
     bind = "127.0.0.1";
     databases = 1;
