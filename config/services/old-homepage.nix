@@ -3,7 +3,7 @@ let
   homepage-old = import ../../packages/old-homepage.nix { };
 in
 {
-  system.services.homepage-old = {
+  systemd.services.homepage-old = {
     enable = true;
     description = "darkkirb.de";
     script = "${homepage-old.homepage-old}/homepage";
