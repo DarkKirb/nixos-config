@@ -9,7 +9,7 @@ in
     script = "${homepage-old.homepage-old}/homepage";
     serviceConfig = {
       WorkingDirectory = homepage-old.homepage-old;
-      EnvFile = "/run/secrets/services/old-homepage";
+      EnvironmentFile = "/run/secrets/services/old-homepage";
     };
     wantedBy = [ "multi-user.target" ];
   };
