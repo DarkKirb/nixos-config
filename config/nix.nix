@@ -20,7 +20,7 @@
   };
   system.autoUpgrade = {
     enable = true;
-    flake = "github:DarkKirb/nixos-config";
+    flake = "git+https://git.chir.rs/darkkirb/nixos-config.git";
     flags = [
       "--recreate-lock-file"
       "--no-write-lock-file"
