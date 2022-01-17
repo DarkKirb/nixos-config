@@ -3,9 +3,11 @@ let
   listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
 in
 {
+  imports = [
+    /run/secrets/services/minio.nix
+  ];
   services.minio = {
     enable = true;
-    rootCredentialsFile = "/run/secrets/security/minio/credentials_file";
     dataDir = [
       "/var/lib/minio/disk0"
       "/var/lib/minio/disk1"
@@ -14,7 +16,6 @@ in
     ];
   };
   services.prometheus.exporters.minio = {
-    # TODO: doesn't work
     enable = true;
   };
   services.nginx.virtualHosts."minio.int.chir.rs" = {
