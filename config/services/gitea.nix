@@ -28,6 +28,15 @@
         MINIO_BUCKET = "gitea";
         MINIO_USE_SSL = "true";
       };
+      openid = {
+        ENABLE_OPENID_SIGNIN = true;
+        ENABLE_OPENID_SIGNUP = true;
+      };
+      cache = {
+        ENABLED = config.services.redis.gitea.enable;
+        ADAPTER = "redis";
+        HOST = "redis://${services.redis.gitea.host}:${services.redis.gitea.port}/0";
+      };
       "storage.default" = storage;
     };
   };
@@ -51,4 +60,10 @@
   }];
 
   systemd.services.gitea.serviceConfig.EnvironmentFile = "/run/secrets/services/gitea";
+
+  services.redis.gitea = {
+    enable = true;
+    bind = "127.0.0.1";
+    databases = 1;
+  };
 }
