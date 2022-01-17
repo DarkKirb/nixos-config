@@ -1,4 +1,7 @@
 { config, ... }: {
+  imports = [
+    ../../impure-secrets.nix
+  ];
   services.gitea = {
     enable = true;
     appName = "Lotte's Git";
@@ -20,7 +23,7 @@
       storage = {
         STORAGE_TYPE = "minio";
         MINIO_ENDPOINT = "minio.int.chir.rs:443";
-        # minio credentials are exported in the environment
+        MINIO_ACCESS_KEY_ID = "gitea";
         MINIO_BUCKET = "gitea";
         MINIO_USE_SSL = "true";
       };
