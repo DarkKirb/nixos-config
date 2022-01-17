@@ -1,6 +1,6 @@
 { ... }:
 let
-  homepage-old = import ../../package/old-homepage.nix { };
+  homepage-old = import ../../packages/old-homepage.nix { };
 in
 {
   system.services.homepage-old = {
