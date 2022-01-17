@@ -6,5 +6,5 @@
   sops.secrets."security/acme/dns" = { };
   sops.secrets."security/restic/password" = { };
   sops.secrets."security/minio/credentials_file" = { };
-  sops.secrets."services/gitea" = { };
+  sops.secrets."services/gitea.nix" = { };
 }
