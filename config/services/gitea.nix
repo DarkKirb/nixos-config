@@ -1,6 +1,6 @@
 { config, ... }: {
   imports = [
-    ../../impure-secrets.nix
+    /run/secrets/services/gitea.nix
   ];
   services.gitea = {
     enable = true;
