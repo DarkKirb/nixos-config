@@ -59,8 +59,6 @@
     ensurePermissions = { "DATABASE gitea" = "ALL PRIVILEGES"; };
   }];
 
-  systemd.services.gitea.serviceConfig.EnvironmentFile = "/run/secrets/services/gitea";
-
   services.redis.servers.gitea = {
     enable = true;
     bind = "127.0.0.1";
