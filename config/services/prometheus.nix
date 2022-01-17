@@ -28,14 +28,6 @@
         }];
       }
       {
-        job_name = "minio_exporter";
-        static_configs = [{
-          targets = [
-            "${config.services.prometheus.exporters.minio.listenAddress}:${toString config.services.prometheus.exporters.minio.port}"
-          ];
-        }];
-      }
-      {
         job_name = "gitea_exporter";
         static_configs = [{
           targets = [
