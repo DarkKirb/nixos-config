@@ -19,7 +19,7 @@
       };
       storage = {
         STORAGE_TYPE = "minio";
-        MINIO_ENDPOINT = "https://minio.int.chir.rs/";
+        MINIO_ENDPOINT = "minio.int.chir.rs:443";
         # minio credentials are exported in the environment
         MINIO_BUCKET = "gitea";
         MINIO_USE_SSL = "true";
