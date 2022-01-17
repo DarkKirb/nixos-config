@@ -1,6 +1,6 @@
 { ... }: {
   services.nginx.virtualHosts."static.darkkirb.de" = {
-    allowSSL = true;
+    addSSL = true;
     http2 = true;
     listenAddresses = [ "0.0.0.0" "[::]" ];
     sslCertificate = "/var/lib/acme/darkkirb.de/cert.pem";
