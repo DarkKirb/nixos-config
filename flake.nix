@@ -7,8 +7,10 @@ rec {
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
   inputs.sops-nix.url = github:Mic92/sops-nix;
   inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.chir-rs.url = "git+https://git.chir.rs/darkkirb/chir.rs.git?ref=main";
+  inputs.chir-rs.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = { self, nixpkgs, sops-nix, home-manager, ... } @ args: {
+  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, ... } @ args: {
     nixosConfigurations =
       let
         systems = [
@@ -27,6 +29,7 @@ rec {
                 sops-nix.nixosModules.sops
                 home-manager.nixosModules.home-manager
               ];
+              inherit chir-rs;
             };
         })
         systems);
