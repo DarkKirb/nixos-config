@@ -35,7 +35,7 @@
       cache = {
         ENABLED = config.services.redis.servers.gitea.enable;
         ADAPTER = "redis";
-        HOST = "redis://${config.services.redis.servers.gitea.host}:${config.services.redis.servers.gitea.port}/0";
+        HOST = "redis://${config.services.redis.servers.gitea.bind}:${config.services.redis.servers.gitea.port}/0";
       };
       "storage.default" = storage;
     };
