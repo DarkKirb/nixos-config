@@ -11,6 +11,7 @@
     ./users/miifox.nix
     ./services/postgres.nix
     ./services/gitea.nix
+    ./services/old-homepage.nix
   ];
 
   boot.initrd.availableKernelModules = [ "ata_piix" "virtio_pci" "virtio_scsi" "xhci_pci" "sd_mod" "sr_mod" ];
