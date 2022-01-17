@@ -10,6 +10,7 @@
       host = "localhost";
       name = "gitea";
       user = "gitea";
+      type = "postgres";
     };
     domain = "git.chir.rs";
     dump.enable = true;
@@ -18,7 +19,7 @@
     rootUrl = "https://git.chir.rs/";
     settings = {
       lfs = {
-        STORAGE_TYPE = "";
+        STORAGE_TYPE = "default";
       };
       storage = {
         STORAGE_TYPE = "minio";
