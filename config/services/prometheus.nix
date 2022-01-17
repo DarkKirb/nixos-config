@@ -39,7 +39,7 @@
         job_name = "gitea_exporter";
         static_configs = [{
           targets = [
-            "https://git.chir.rs"
+            "${config.services.gitea.httpAddress}:${toString config.services.gitea.httpPort}"
           ];
         }];
       }
