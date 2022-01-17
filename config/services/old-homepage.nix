@@ -6,7 +6,7 @@
     sslCertificate = "/var/lib/acme/darkkirb.de/cert.pem";
     sslCertificateKey = "/var/lib/acme/darkkirb.de/key.pem";
     locations."/" = {
-      proxyPass = "https://minio.int.chir.rs/darkkirb.de/";
+      proxyPass = "http://127.0.0.1:9000/darkkirb.de/";
     };
   };
 }
