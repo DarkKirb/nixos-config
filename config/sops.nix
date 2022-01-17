@@ -11,4 +11,5 @@
     owner = "prometheus";
   };
   sops.secrets."services/old-homepage" = { };
+  sops.secrets."services/chir.rs" = { };
 }

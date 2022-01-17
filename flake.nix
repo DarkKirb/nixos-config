@@ -28,8 +28,14 @@ rec {
                 ./config/default.nix
                 sops-nix.nixosModules.sops
                 home-manager.nixosModules.home-manager
+                ({ pkgs, ... }: {
+                  nixpkgs.overlays = [
+                    (self: super: {
+                      chir-rs = chir-rs.outputs.defaultPackage.x86_64-linux;
+                    })
+                  ];
+                })
               ];
-              inherit chir-rs;
             };
         })
         systems);
