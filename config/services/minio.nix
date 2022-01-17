@@ -6,6 +6,12 @@ in
   services.minio = {
     enable = true;
     rootCredentialsFile = "/run/secrets/security/minio/credentials_file";
+    dataDir = [
+      "/var/lib/minio/disk0"
+      "/var/lib/minio/disk1"
+      "/var/lib/minio/disk2"
+      "/var/lib/minio/disk3"
+    ];
   };
   services.prometheus.exporters.minio = {
     # TODO: doesn't work

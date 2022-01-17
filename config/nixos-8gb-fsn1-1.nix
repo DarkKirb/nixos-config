@@ -60,6 +60,36 @@
       options = [ "zfsutil" ];
     };
 
+  fileSystems."/var/lib/minio" = {
+    device = "tank/nixos/var/lib/minio";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+
+  fileSystems."/var/lib/minio/disk0" = {
+    device = "tank/nixos/var/lib/minio/disk0";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+
+  fileSystems."/var/lib/minio/disk1" = {
+    device = "tank/nixos/var/lib/minio/disk1";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+
+  fileSystems."/var/lib/minio/disk2" = {
+    device = "tank/nixos/var/lib/minio/disk2";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+
+  fileSystems."/var/lib/minio/disk3" = {
+    device = "tank/nixos/var/lib/minio/disk3";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+
   fileSystems."/var/log" =
     {
       device = "tank/nixos/var/log";
