@@ -43,6 +43,19 @@
           ];
         }];
       }
+      {
+        job_name = "minio_exporter";
+        bearer_token_file = "/run/secrets/services/minio_scrape";
+        metrics_path = "/minio/v0/metrics/cluster";
+        scheme = "https";
+        static_configs = [
+          {
+            targets = [
+              "minio.int.chir.rs"
+            ];
+          }
+        ];
+      }
     ];
   };
 }

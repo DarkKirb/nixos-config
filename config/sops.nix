@@ -7,4 +7,5 @@
   sops.secrets."security/restic/password" = { };
   sops.secrets."security/minio/credentials_file" = { };
   sops.secrets."services/gitea.nix" = { };
+  sops.secrets."services/minio_scrape" = { };
 }

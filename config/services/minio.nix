@@ -13,10 +13,6 @@ in
       "/var/lib/minio/disk3"
     ];
   };
-  services.prometheus.exporters.minio = {
-    # TODO: doesn't work
-    enable = true;
-  };
   services.nginx.virtualHosts."minio.int.chir.rs" = {
     forceSSL = true;
     http2 = true;
