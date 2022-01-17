@@ -10,4 +10,5 @@
   sops.secrets."services/minio_scrape" = {
     owner = "prometheus";
   };
+  sops.secrets."services/old-homepage" = { };
 }
