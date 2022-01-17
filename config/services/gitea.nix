@@ -1,8 +1,8 @@
-{ ... }: {
+{ config, ... }: {
   services.gitea = {
     enable = true;
     appName = "Lotte's Git";
-    cookiesSecure = true;
+    cookieSecure = true;
     database = {
       host = "localhost";
       name = "gitea";
@@ -24,6 +24,18 @@
         MINIO_BUCKET = "gitea";
         MINIO_USE_SSL = "true";
       };
+    };
+  };
+
+  services.nginx.virtualHosts."git.chir.rs" = {
+    forceSSL = true;
+    http2 = true;
+    listenAddresses = [ "0.0.0.0" "[::]" ];
+    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
+    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
+    locations."/" = {
+      proxyPass = "http://${config.services.gitea.httpAddress}:${toString config.services.gitea.httpPort}/";
+      proxyWebsockets = true;
     };
   };
 
