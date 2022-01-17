@@ -17,7 +17,7 @@
     httpAddress = "127.0.0.1";
     lfs.enable = true;
     rootUrl = "https://git.chir.rs/";
-    settings = {
+    settings = rec {
       lfs = {
         STORAGE_TYPE = "default";
       };
@@ -28,6 +28,7 @@
         MINIO_BUCKET = "gitea";
         MINIO_USE_SSL = "true";
       };
+      "storage.default" = storage;
     };
   };
 
