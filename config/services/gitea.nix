@@ -37,6 +37,19 @@
         ADAPTER = "redis";
         HOST = "redis://${config.services.redis.servers.gitea.bind}:${toString config.services.redis.servers.gitea.port}/0";
       };
+      session = {
+        PROVIDER = "redis";
+        PROVIDER_CONFIG = "redis://${config.services.redis.servers.gitea.bind}:${toString config.services.redis.servers.gitea.port}/1";
+      };
+      metrics = {
+        ENABLED = true;
+        ENABLED_ISSUE_BY_LABEL = true;
+        ENABLED_ISSUE_BY_REPOSITORY = true;
+      };
+      queue = {
+        TYPE = "redis";
+        CONN_STRING = "redis://${config.services.redis.servers.gitea.bind}:${toString config.services.redis.servers.gitea.port}/2";
+      };
       "storage.default" = storage;
     };
   };
@@ -62,6 +75,6 @@
   services.redis.servers.gitea = {
     enable = true;
     bind = "127.0.0.1";
-    databases = 1;
+    databases = 3;
   };
 }
