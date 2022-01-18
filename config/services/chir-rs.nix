@@ -19,4 +19,9 @@
       proxyPass = "http://localhost:8621/api.chir.rs/";
     };
   };
+  services.postgresql.ensureDatabases = [ "homepage" ];
+  services.postgresql.ensureUsers = [{
+    name = "homepage";
+    ensurePermissions = { "DATABASE homepage" = "ALL PRIVILEGES"; };
+  }];
 }
