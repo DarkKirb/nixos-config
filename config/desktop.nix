@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./services/sway.nix
+    ./services/pipewire.nix
   ];
   fonts.fonts = with pkgs; [
     noto-fonts
