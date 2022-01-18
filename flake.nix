@@ -8,7 +8,7 @@ rec {
   inputs.sops-nix.url = github:Mic92/sops-nix;
   inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   inputs.chir-rs.url = "git+https://git.chir.rs/darkkirb/chir.rs.git?ref=main";
-  inputs.chir-rs.inputs.nixpkgs.follows = "nixpkgs";
+  #inputs.chir-rs.inputs.nixpkgs.follows = "nixpkgs"; # nixpkgs regression?
 
   outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, ... } @ args: {
     nixosConfigurations =

@@ -25,9 +25,7 @@
       "inputs": {
         "cargo2nix": "cargo2nix",
         "flake-utils": "flake-utils_3",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_3",
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
@@ -159,6 +157,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1642441790,
+        "narHash": "sha256-YK9nvLDaN3CumMy+D6JdIZmu8Pf3pX6izXLY4K0wZtE=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2b0847ed35374d9420a9471c4544a955ba3c6f7b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "release-21.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1642130244,
         "narHash": "sha256-/5FhZkZFQCRQIRFosUQW1zmDrsNHVOJIB/+XgRPHiPU=",
         "owner": "NixOS",
@@ -173,7 +187,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1642486822,
         "narHash": "sha256-CEsxW6RF1yElz1rqf0pS7T4fyDW9r/rBpMSUeIFVIqY=",
@@ -192,7 +206,7 @@
       "inputs": {
         "chir-rs": "chir-rs",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "sops-nix": "sops-nix"
       }
     },
@@ -218,7 +232,7 @@
     "rust-overlay_2": {
       "inputs": {
         "flake-utils": "flake-utils_4",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1642387353,
