@@ -9,5 +9,6 @@ desktop: { pkgs, ... }: {
     ../programs/theming.nix
     ../programs/waybar.nix
     ../programs/ims.nix
+    ../programs/syncthing.nix
   ] else []);
 }
