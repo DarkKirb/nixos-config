@@ -10,5 +10,6 @@ desktop: { pkgs, ... }: {
     ../programs/waybar.nix
     ../programs/ims.nix
     ../programs/syncthing.nix
+    ../programs/mpd.nix
   ] else []);
 }
