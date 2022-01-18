@@ -5,7 +5,7 @@
     mutableTrust = false;
     publicKeys = [
       {
-        source = ../../keys/darkkirb_darkkirb.de.pgp
+        source = ../../keys/darkkirb_darkkirb.de.pgp;
         trust = 5;
       }
       {
