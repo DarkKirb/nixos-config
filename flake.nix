@@ -9,8 +9,9 @@ rec {
   inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   inputs.chir-rs.url = "git+https://git.chir.rs/darkkirb/chir.rs.git?ref=main";
   #inputs.chir-rs.inputs.nixpkgs.follows = "nixpkgs"; # nixpkgs regression?
+  inputs.nur.url = github:nix-community/NUR;
 
-  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, ... } @ args: {
+  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, ... } @ args: {
     nixosConfigurations =
       let
         systems = [
@@ -34,6 +35,7 @@ rec {
                     (self: super: {
                       chir-rs = chir-rs.outputs.defaultPackage.x86_64-linux;
                     })
+                    nur.overlay
                   ];
                 })
               ];
