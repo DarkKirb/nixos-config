@@ -15,6 +15,7 @@ rec {
       let
         systems = [
           "nixos-8gb-fsn1-1" # Hetzner Server
+          "nutty-noon" # PC
         ];
       in
       builtins.listToAttrs (map
