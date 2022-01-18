@@ -36,4 +36,6 @@
   environment.pathsToLink = [ "/share/zsh" ];
 
   console.keyMap = "neo";
+
+  programs.gnupg.agent.enable = true;
 }
