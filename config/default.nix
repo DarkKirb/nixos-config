@@ -34,4 +34,6 @@
   nix.buildCores = 0;
 
   environment.pathsToLink = [ "/share/zsh" ];
+
+  console.keyMap = "neo";
 }
