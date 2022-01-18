@@ -10,7 +10,7 @@
           xkb_options = "grp:ctrls_toggle";
         };
       };
-      outputs = {
+      output = {
         "DP-1" = {
           mode = "2560x1440@74.971Hz";
           position = "0 0";
