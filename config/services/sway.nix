@@ -20,7 +20,6 @@
       wl-clipboard
       wf-recorder
       (python38.withPackages(ps: with ps; [ i3pystatus keyring ]))
-      alacritty
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland

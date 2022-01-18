@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, lib, ... }: {
   wayland.windowManager.sway = {
     enable = true;
     config = {
@@ -23,6 +23,11 @@
           subpixel = "rgb";
         };
       };
+    };
+    keybindings = let
+      modifier = config.wayland.windowManager.sway.config.modifier;
+    in lib.mkOptionDefault {
+      "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
     };
   };
 }
