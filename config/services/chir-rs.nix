@@ -24,4 +24,5 @@
     name = "homepage";
     ensurePermissions = { "DATABASE homepage" = "ALL PRIVILEGES"; };
   }];
+  sops.secrets."services/chir.rs" = { };
 }

@@ -35,4 +35,5 @@ in
       proxyWebsockets = true;
     };
   };
+  sops.secrets."security/minio/credentials_file" = { };
 }

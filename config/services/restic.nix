@@ -7,4 +7,5 @@
     ];
     repository = "sftp:darkkirb@backup.int.chir.rs:/backup";
   };
+  sops.secrets."security/restic/password" = { };
 }

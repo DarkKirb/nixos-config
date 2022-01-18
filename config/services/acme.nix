@@ -19,4 +19,5 @@
     };
   };
   services.nginx.group = "acme";
+  sops.secrets."security/acme/dns" = { };
 }

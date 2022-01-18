@@ -77,4 +77,5 @@
     bind = "127.0.0.1";
     databases = 3;
   };
+  sops.secrets."services/gitea.nix" = { };
 }

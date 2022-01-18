@@ -38,4 +38,5 @@ in
       proxyPass = "http://127.0.0.1:9000/darkkirb.de/";
     };
   };
+  sops.secrets."services/old-homepage" = { };
 }

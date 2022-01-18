@@ -27,4 +27,5 @@
     };
   };
   networking.firewall.allowedUDPPorts = [ 51820 ];
+  sops.secrets."network/wireguard/privkey" = { };
 }
