@@ -1,6 +1,8 @@
 keys:
   - &lotte age1k5emdjljm5amrquky2tn3khqt38wq62s797nujxuhp8j6x7k5p0sedv0q2
+  - &lotte-pgp 206DA5E1DA0904B6EE4916BA3CEF5DDA915AECB0
   - &nixos-8gb-fsn1-1 age1273ps5thcy70ckdt0270s2nysqgu48t38pq3wq975v3y7mf4eavsw38wsl
+  - &nutty-noon age1zgxkntdp99dkvw7z29jjmgrzlla2ha542zrs3262dwat27a34asqckfkrl
 creation_rules:
   - path_regex: secrets/nixos-8gb-fsn1-1/[^/]+$
     key_groups:
@@ -10,4 +12,6 @@ creation_rules:
   - path_regex: secrets/nutty-noon/[^/]+$
     key_groups:
       - age:
-          - *lotte
+          - *nutty-noon
+        pgp:
+          - *lotte-pgp

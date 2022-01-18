@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   networking.wireguard = {
     enable = true;
@@ -6,6 +6,19 @@
       listenPort = 51820;
       privateKeyFile = "/run/secrets/network/wireguard/privkey";
       peers = [
+        {
+          publicKey = "zQY9cAzbRO/FgV92pda7yk0NJFSXzHfi6+tgRq3g/SY=";
+          allowedIps = [
+            "fd0d:a262:1fa6:e621:b4e1:08ff:e658:6f49/64"
+          ];
+          endpoint = "138.201.155.128:51820";
+        }
+        {
+          publicKey = "YYQmSJwipRkZJUsPV5DxhfyRBMdj/O1XzN+cGYtUi1s=";
+          allowedIps = [
+            "fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437/128"
+          ];
+        }
         # Old infra: ubuntu-4gb-fsn1-1
         {
           publicKey = "ZtU2iWwVYeGyXC1ak+wFdTuisQNq7gMthYQZaw6InDU=";
