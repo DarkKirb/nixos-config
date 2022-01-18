@@ -1,4 +1,4 @@
-{ ... }: {
+{ modulesPath, ... }: {
   networking.hostName = "nutty-noon";
   networking.hostId = "e77e1829";
 
