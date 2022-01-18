@@ -30,5 +30,6 @@
         "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";
       };
     };
+    wrapperFeatures.gtk = true;
   };
 }

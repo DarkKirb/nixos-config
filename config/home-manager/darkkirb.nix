@@ -7,5 +7,6 @@ desktop: { pkgs, ... }: {
     ../programs/sway.nix
     ../programs/firefox.nix
     ../programs/theming.nix
+    ../programs/waybar.nix
   ] else []);
 }
