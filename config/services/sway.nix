@@ -10,7 +10,6 @@
   programs.sway = {
     enable = true;
     extraPackages = with pkgs; [
-      dmenu
       swaylock
       swayidle
       xwayland

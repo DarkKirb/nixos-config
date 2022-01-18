@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }: {
   wayland.windowManager.sway = {
     enable = true;
     config = {
@@ -28,6 +28,7 @@
       modifier = config.wayland.windowManager.sway.config.modifier;
     in lib.mkOptionDefault {
       "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+      "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";
     };
   };
 }
