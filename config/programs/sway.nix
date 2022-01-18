@@ -1,5 +1,6 @@
 { ... }: {
   wayland.windowManager.sway = {
+    enable = true;
     config = {
       input = {
         "*" = {
