@@ -5,6 +5,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./systemd-boot.nix
+    ./services/sway.nix
   ];
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
@@ -119,6 +120,5 @@
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix true;
   networking.nameservers = ["192.168.2.1"];
 
-  services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
 }
