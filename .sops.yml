@@ -7,3 +7,7 @@ creation_rules:
       - age:
           - *lotte
           - *nixos-8gb-fsn1-1
+  - path_regex: secrets/nutty-noon/[^/]+$
+    key_groups:
+      - age:
+          - *lotte
