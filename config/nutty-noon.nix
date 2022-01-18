@@ -27,7 +27,13 @@
     };
   };
 
-    fileSystems."/nix" =
+  fileSystems."/" =
+    { device = "ssd/nixos";
+      fsType = "zfs";
+      options = [ "zfsutil" ];
+    };
+
+  fileSystems."/nix" =
     { device = "ssd/nixos/nix";
       fsType = "zfs";
       options = [ "zfsutil" ];
