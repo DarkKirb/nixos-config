@@ -17,6 +17,5 @@
 
   zramSwap = {
     enable = true;
-    numDevices = 16;
   };
 }
