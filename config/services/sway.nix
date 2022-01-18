@@ -15,12 +15,12 @@
       swayidle
       xwayland
       mako
-      kanshi
       grim
       slurp
       wl-clipboard
       wf-recorder
       (python38.withPackages(ps: with ps; [ i3pystatus keyring ]))
+      alacritty
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
@@ -30,25 +30,13 @@
       export MOZ_ENABLE_WAYLAND=1
     '';
   };
-  # configuring kanshi
-  systemd.user.services.kanshi = {
-    description = "Kanshi output autoconfig ";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    environment = { XDG_CONFIG_HOME="/home/mschwaig/.config"; };
-    serviceConfig = {
-      # kanshi doesn't have an option to specifiy config file yet, so it looks
-      # at .config/kanshi/config
-      ExecStart = ''
-      ${pkgs.kanshi}/bin/kanshi
-      '';
-      RestartSec = 5;
-      Restart = "always";
-    };
-  };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.defaultSession = "sway";
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.libinput.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.defaultSession = "sway";
+    displayManager.sddm.enable = true;
+    libinput.enable = true;
+    layout = "de";
+    xkbVariant = "neo";
+  };
 }
