@@ -18,4 +18,7 @@
   zramSwap = {
     enable = true;
   };
+  
+
+  time.timeZone = "Etc/GMT-1"; # Confusing naming, it's 1 hour east of GMT
 }
