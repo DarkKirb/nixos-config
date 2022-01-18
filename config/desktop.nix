@@ -14,4 +14,9 @@
     proggyfonts
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
+
+  zramSwap = {
+    enable = true;
+    numDevices = 16;
+  };
 }
