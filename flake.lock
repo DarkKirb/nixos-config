@@ -29,11 +29,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1642488235,
-        "narHash": "sha256-niGcwri+L+1qKnUA++nHCSn2QBl138Cd286VGIsjjj4=",
+        "lastModified": 1642492323,
+        "narHash": "sha256-4el9yvmm9HXuoonJsuLWBCgsDQra4OCD7meD8Fv+AKI=",
         "ref": "main",
-        "rev": "7e408c29c817becbdc883afbde92c7c0c5e9e764",
-        "revCount": 45,
+        "rev": "0b2a77781a018c60d212dcbe26d35671ebd975ac",
+        "revCount": 46,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/chir.rs.git"
       },
@@ -189,11 +189,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1642486822,
-        "narHash": "sha256-CEsxW6RF1yElz1rqf0pS7T4fyDW9r/rBpMSUeIFVIqY=",
+        "lastModified": 1642492175,
+        "narHash": "sha256-lo5hxiY8U4eREChAR7JD94zns92hQqmp3wg3qTFolPA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "908929e1de2425d268a00e1684371676a7cc197a",
+        "rev": "9789ed45b759c8f770bcba4b06c1a1c5ec386664",
         "type": "github"
       },
       "original": {
