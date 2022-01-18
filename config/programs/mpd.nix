@@ -1,7 +1,7 @@
 { ... }: {
   services.mpd = {
     enable = true;
-    musicDirectory = "$HOME/music";
+    musicDirectory = /home/darkkirb/Music;
   };
   programs.ncmpcpp.enable = true;
 }
