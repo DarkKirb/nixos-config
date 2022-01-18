@@ -7,7 +7,7 @@
     ./systemd-boot.nix
   ];
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
@@ -118,4 +118,7 @@
   networking.wireguard.interfaces."wg0".ips = [ "fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437/64" ];
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix true;
   networking.nameservers = ["192.168.2.1"];
+
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
 }
