@@ -8,14 +8,14 @@
       peers = [
         {
           publicKey = "zQY9cAzbRO/FgV92pda7yk0NJFSXzHfi6+tgRq3g/SY=";
-          allowedIps = [
+          allowedIPs = [
             "fd0d:a262:1fa6:e621:b4e1:08ff:e658:6f49/64"
           ];
           endpoint = "138.201.155.128:51820";
         }
         {
           publicKey = "YYQmSJwipRkZJUsPV5DxhfyRBMdj/O1XzN+cGYtUi1s=";
-          allowedIps = [
+          allowedIPs = [
             "fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437/128"
           ];
         }
