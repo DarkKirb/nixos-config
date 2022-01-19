@@ -2,6 +2,7 @@
   imports = [
     ../programs/zsh.nix
     ../programs/vim.nix
+    ../programs/mail.nix
   ];
   programs = {
     zsh = {
@@ -52,7 +53,7 @@
         This message was sent from an old email address. My new email address is lotte@chir.rs.
         Please update your contacts accordingly
       '';
-      signature.method = "append";
+      signature.showSignature = "append";
       smtp.host = "mail.darkkirb.de";
       userName = "darkkirb@darkkirb.de";
     };
@@ -67,7 +68,7 @@
 
         https://darkkirb.de • GPG Key 3CEF 5DDA 915A ECB0 • https://keybase.io/darkkirb
       '';
-      signature.method = "append";
+      signature.showSignature = "append";
       userName = "lotte@chir.rs";
     };
     mdelenk = darkkirb // {
@@ -83,13 +84,21 @@
         --
         Morten
       '';
-      signature.method = "append";
+      signature.showSignature = "append";
       smtp = {
         host = "xc.hs-mittweida.de";
         port = 587;
         tls.useStartTls = true;
       };
       userName = "mdelenk@hs-mittweida.de";
+    };
+  };
+  home = {
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+    shellAliases = {
+      vim = "nvim";
     };
   };
 }
