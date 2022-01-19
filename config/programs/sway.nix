@@ -39,16 +39,16 @@
       ];
       modes = {
         screenshot = {
-          Print = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp - d) " - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
-          Space = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
-          f = ''exec ${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
+          Print = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp - d) " - | ${pkgs.wl-clipboard}/bin/wl-copy'';
+          Space = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | ${pkgs.wl-clipboard}/bin/wl-copy'';
+          f = ''exec ${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard}/bin/wl-copy'';
           Escape = ''mode "default"'';
           Return = ''mode "default"'';
         };
       };
       startup = [
         {
-          command = "${pkgs.wl-clipboard} --watch ${pkgs.clipman}/bin/clipman store --no-persist";
+          command = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.clipman}/bin/clipman store --no-persist";
         }
       ];
     };
