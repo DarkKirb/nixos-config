@@ -50,6 +50,9 @@
         {
           command = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.clipman}/bin/clipman store --no-persist";
         }
+        {
+          commands = "${pkgs.mako}/bin/mako";
+        }
       ];
     };
     wrapperFeatures.gtk = true;
