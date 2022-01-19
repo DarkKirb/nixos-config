@@ -51,7 +51,7 @@
           command = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.clipman}/bin/clipman store --no-persist";
         }
         {
-          commands = "${pkgs.mako}/bin/mako";
+          command = "${pkgs.mako}/bin/mako";
         }
       ];
     };
