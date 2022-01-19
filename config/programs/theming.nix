@@ -48,7 +48,11 @@
     * {
       border: none;
       border-radius: 0;
-      font-family: "FuraCode Nerd Font Mono";
+      font-family: "NotoSansDisplay Nerd Font", "Noto Sans Mono CJK JP";
+    }
+
+    window.HDMI-A-1 * {
+      font-size: 12px;
     }
 
     window#waybar {
@@ -84,6 +88,18 @@
 
     .urgent {
       background: #ef6155;
+    }
+
+    #workspaces button {
+      background: transparent;
+    }
+
+    #workspaces button.focused {
+      background: #815ba4;
+    }
+
+    label {
+      color: #fff;
     }
   '';
 }
