@@ -183,5 +183,8 @@
       tagbar
       coc-nvim
     ];
+    extraPackages = with pkgs; [
+      nodejs-17_x
+    ];
   };
 }
