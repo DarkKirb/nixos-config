@@ -148,4 +148,5 @@
 
     HWMON_MODULES="nct6775"
   '';
+  services.thermald.enable = true;
 }
