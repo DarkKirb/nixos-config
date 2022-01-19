@@ -42,6 +42,8 @@
           Print = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp - d) " - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
           Space = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
           f = ''exec ${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
+          Escape = ''mode "default"'';
+          Return = ''mode "default"'';
         };
       };
     };
