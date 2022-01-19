@@ -30,7 +30,7 @@
     ];
     listenAddress = (import ../utils/getInternalIP.nix config).listenIP;
   };
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [ config.service.prometheus.exporters.node.port ];
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [ config.services.prometheus.exporters.node.port ];
 
   nix.buildCores = 0;
 
