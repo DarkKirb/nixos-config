@@ -28,7 +28,7 @@
       imapnotify = {
         enable = true;
         boxes = [ "Inbox" ];
-        onNotify = "${pkgs.isync}/bin/mbsync %s";
+        onNotify = "${pkgs.isync}/bin/mbsync -a";
         onNotifyPost = "${pkgs.notmuch}/bin/notmuch new && ${pkgs.libnotify}/bin/notify-send 'New mail arrived'";
       };
       mbsync = {
