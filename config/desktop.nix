@@ -13,7 +13,7 @@
     mplus-outline-fonts
     dina-font
     proggyfonts
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Noto" ]; })
   ];
 
   zramSwap = {

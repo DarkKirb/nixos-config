@@ -43,4 +43,47 @@
       };
     };
   };
+
+  programs.waybar.style = ''
+    * {
+      border: none;
+      border-radius: 0;
+      font-family: "FuraCode Nerd Font Mono";
+    }
+
+    window#waybar {
+      background: #2f1e2e;
+    }
+
+    #mpd, #cpu {
+      background: #48b685;
+      color: #2f1e2e;
+    }
+
+    #pulseaudio {
+      background: #fec418;
+      color: #2f1e2e;
+    }
+
+    #network, #tray {
+      background: #06b6ef;
+      color: #2f1e2e;
+    }
+
+    #memory {
+      background: #815ba4;
+    }
+
+    #language {
+      background: #5bc4bf;
+    }
+
+    #clock {
+      background: #776e71;
+    }
+
+    .urgent {
+      background: #ef6155;
+    }
+  '';
 }
