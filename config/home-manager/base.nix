@@ -16,7 +16,7 @@
 
   accounts.email.accounts = rec {
     darkkirb = {
-      email = "darkkirb@darkkirb.de";
+      address = "darkkirb@darkkirb.de";
       aliases = [ "postmaster@darkkirb.de" ];
       gpg = {
         encryptByDefault = true;
@@ -57,7 +57,7 @@
       userName = "darkkirb@darkkirb.de";
     };
     lotte = darkkirb // {
-      email = "lotte@chir.rs";
+      address = "lotte@chir.rs";
       aliases = [ "postmaster@chir.rs" ];
       passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/email/lotte@chir.rs";
       primary = true;
@@ -71,7 +71,7 @@
       userName = "lotte@chir.rs";
     };
     mdelenk = darkkirb // {
-      email = "mdelenk@hs-mittweida.de";
+      address = "mdelenk@hs-mittweida.de";
       aliases = [ ];
       gpg = darkkirb.gpg // {
         key = "5130416C797067B6";
