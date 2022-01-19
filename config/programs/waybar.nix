@@ -5,9 +5,7 @@
       spacing = 4;
       modules-left = [
         "sway/workspaces"
-        "sawy/mode"
-      ];
-      modules-center = [
+        "sway/mode"
         "sway/window"
       ];
       modules-right = [
