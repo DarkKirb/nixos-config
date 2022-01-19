@@ -187,6 +187,10 @@ let dsquotes = "''"; in
       " Resume latest coc list.
       nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+      autocmd BufWrite * call CocAction('format')
+
+      " ctags path
+      g:tagbar_ctags_bin = "${pkgs.universal-ctags}/bin/ctags";
     '';
     plugins = with pkgs.vimPlugins; [
       nerdtree
