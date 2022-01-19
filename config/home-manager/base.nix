@@ -76,6 +76,11 @@
         key = "5130416C797067B6";
       };
       imap.host = "xc.hs-mittweida.de";
+      mbsync = darkkirb.mbsync // {
+        extraConfig.account = {
+          AuthMechs = "LOGIN";
+        };
+      };
       passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/email/mdelenk@hs-mittweida.de";
       realName = "Morten Delenk";
       signature.text = ''
