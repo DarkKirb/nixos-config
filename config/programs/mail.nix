@@ -14,14 +14,17 @@
       {
         key = "\\CA";
         action = "sidebar-next";
+        map = [ "index" "pager" ];
       }
       {
         key = "\\CL";
         action = "sidebar-prev";
+        map = [ "index" "pager" ];
       }
       {
         key = "\\CP";
         action = "sidebar-open";
+        map = [ "index" "pager" ];
       }
     ];
   };
