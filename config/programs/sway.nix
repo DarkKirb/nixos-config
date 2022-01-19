@@ -46,6 +46,11 @@
           Return = ''mode "default"'';
         };
       };
+      startup = [
+        {
+          command = "${pkgs.wl-clipboard} --watch ${pkgs.clipman}/bin/clipman store --no-persist";
+        }
+      ];
     };
     wrapperFeatures.gtk = true;
   };
