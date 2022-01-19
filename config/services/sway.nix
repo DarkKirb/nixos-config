@@ -18,7 +18,7 @@
       slurp
       wl-clipboard
       wf-recorder
-      (python38.withPackages(ps: with ps; [ i3pystatus keyring ]))
+      (python38.withPackages (ps: with ps; [ i3pystatus keyring ]))
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland

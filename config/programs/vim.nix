@@ -1,4 +1,6 @@
-{ pkgs, ... }: let dsquotes = "''"; in {
+{ pkgs, ... }:
+let dsquotes = "''"; in
+{
   programs.neovim = {
     enable = true;
     coc = {
@@ -187,7 +189,9 @@
 
     '';
     plugins = with pkgs.vimPlugins; [
-      nerdtree nerdtree-git-plugin vim-devicons
+      nerdtree
+      nerdtree-git-plugin
+      vim-devicons
       ctrlp-vim
       vim-nix
       tagbar

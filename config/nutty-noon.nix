@@ -30,79 +30,92 @@
   };
 
   fileSystems."/" =
-    { device = "ssd/nixos";
+    {
+      device = "ssd/nixos";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/nix" =
-    { device = "ssd/nixos/nix";
+    {
+      device = "ssd/nixos/nix";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/etc" =
-    { device = "ssd/nixos/etc";
+    {
+      device = "ssd/nixos/etc";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/var" =
-    { device = "ssd/nixos/var";
+    {
+      device = "ssd/nixos/var";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/var/lib" =
-    { device = "ssd/nixos/var/lib";
+    {
+      device = "ssd/nixos/var/lib";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/var/log" =
-    { device = "ssd/nixos/var/log";
+    {
+      device = "ssd/nixos/var/log";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/var/spool" =
-    { device = "ssd/nixos/var/spool";
+    {
+      device = "ssd/nixos/var/spool";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/home" =
-    { device = "ssd/userdata/home";
+    {
+      device = "ssd/userdata/home";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/root" =
-    { device = "ssd/userdata/home/root";
+    {
+      device = "ssd/userdata/home/root";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/home/tank" =
-    { device = "ssd/userdata/home/tank";
+    {
+      device = "ssd/userdata/home/tank";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/home/darkkirb/hdd" =
-    { device = "hdd/userdata/home/darkkirb/hdd";
+    {
+      device = "hdd/userdata/home/darkkirb/hdd";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/root/hdd" =
-    { device = "hdd/userdata/home/root/hdd";
+    {
+      device = "hdd/userdata/home/root/hdd";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/CA0B-E049";
+    {
+      device = "/dev/disk/by-uuid/CA0B-E049";
       fsType = "vfat";
     };
 
@@ -119,7 +132,7 @@
 
   networking.wireguard.interfaces."wg0".ips = [ "fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437/64" ];
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix true;
-  networking.nameservers = ["192.168.2.1"];
+  networking.nameservers = [ "192.168.2.1" ];
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 }

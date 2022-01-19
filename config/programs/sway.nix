@@ -23,12 +23,14 @@
           subpixel = "rgb";
         };
       };
-      keybindings = let
-        modifier = config.wayland.windowManager.sway.config.modifier;
-      in lib.mkOptionDefault {
-        "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
-        "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";
-      };
+      keybindings =
+        let
+          modifier = config.wayland.windowManager.sway.config.modifier;
+        in
+        lib.mkOptionDefault {
+          "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+          "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";
+        };
       bars = [
         {
           command = "${pkgs.waybar}/bin/waybar";

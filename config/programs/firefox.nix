@@ -1,6 +1,6 @@
 { ... }: {
   programs.firefox = {
     enable = true;
-    
+
   };
 }
