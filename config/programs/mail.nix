@@ -12,15 +12,15 @@
     };
     binds = [
       {
-        key = "^A";
+        key = "\\CA";
         action = "sidebar-next";
       }
       {
-        key = "^L";
+        key = "\\CL";
         action = "sidebar-prev";
       }
       {
-        key = "^P";
+        key = "\\CP";
         action = "sidebar-open";
       }
     ];
