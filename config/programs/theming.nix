@@ -8,6 +8,7 @@
   # Paraiso (dark) by Chris Kempson
   # Alacritty colors
   programs.alacritty.settings = {
+    enable = true;
     colors = {
       # Default Colors
       primary = {
