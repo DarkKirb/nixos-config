@@ -29,7 +29,12 @@
       {
         key = "<Return>"; # what the fuck is this mapping
         action = "display-message";
-        map = [ "index" ];
+        map = [ "index" "pager" ];
+      }
+      {
+        key = "\\CV";
+        action = "display-message"; # i give up
+        map = [ "index" "pager" ];
       }
     ];
   };
