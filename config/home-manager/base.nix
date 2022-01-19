@@ -43,7 +43,6 @@
       passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/email/darkkirb@darkkirb.de";
       realName = "Charlotte 🦝 Delenk";
       signature.text = ''
-        --
         Charlotte
 
         https://darkkirb.de • GPG Key 3CEF 5DDA 915A ECB0 • https://keybase.io/darkkirb
@@ -61,7 +60,6 @@
       passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/email/lotte@chir.rs";
       primary = true;
       signature.text = ''
-        --
         Charlotte
 
         https://darkkirb.de • GPG Key 3CEF 5DDA 915A ECB0 • https://keybase.io/darkkirb
@@ -84,7 +82,6 @@
       passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/email/mdelenk@hs-mittweida.de";
       realName = "Morten Delenk";
       signature.text = ''
-        --
         Morten
       '';
       signature.showSignature = "append";

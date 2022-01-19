@@ -10,6 +10,20 @@
     sidebar = {
       enable = true;
     };
+    binds = [
+      {
+        key = "^A";
+        action = "sidebar-next";
+      }
+      {
+        key = "^L";
+        action = "sidebar-prev";
+      }
+      {
+        key = "^P";
+        action = "sidebar-open";
+      }
+    ];
   };
   programs.msmtp.enable = true;
 }
