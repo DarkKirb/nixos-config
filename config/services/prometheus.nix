@@ -2,6 +2,10 @@
   services.prometheus = {
     enable = true;
     port = 9002;
+    globalConfig = {
+      scrape_interval = "10s";
+      scrape_timeout = "2s";
+    };
     scrapeConfigs = [
       {
         job_name = "node_exporter";
