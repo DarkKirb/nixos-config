@@ -5,8 +5,12 @@
       enable = true;
     };
     extraConfig = ''
+      set tabstop=4
+      set shiftwidth=4
+      set expandtab
       set nocompatible
       set number relativenumber
+      set mouse=a
 
       " NerdTree config
       " Automatically open NERDTree and move to the previous window
