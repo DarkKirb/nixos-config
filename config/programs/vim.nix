@@ -190,7 +190,7 @@ let dsquotes = "''"; in
       autocmd BufWrite * call CocAction('format')
 
       " ctags path
-      let g:tagbar_ctags_bin = '${pkgs.universal-ctags}/bin/ctags';
+      set g:tagbar_ctags_bin = '${pkgs.universal-ctags}/bin/ctags';
     '';
     plugins = with pkgs.vimPlugins; [
       nerdtree
