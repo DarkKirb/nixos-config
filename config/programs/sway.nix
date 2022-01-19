@@ -54,6 +54,8 @@
     };
     wrapperFeatures.gtk = true;
   };
+
+  home.files.".XCompose".source = ../../extra/.XCompose;
 }
 
 
