@@ -3,6 +3,16 @@
     enable = true;
     coc = {
       enable = true;
+      settings = {
+        languageserver = {
+          nix = {
+            command = "${pkgs.rnix-lsp}/bin/rnix-lsp";
+            filetypes = [
+              "nix"
+            ];
+          };
+        };
+      };
     };
     extraConfig = ''
       set tabstop=4
