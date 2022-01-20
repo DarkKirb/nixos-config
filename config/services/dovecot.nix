@@ -37,7 +37,7 @@ in
           "sieve"
         ];
         lmtp.enable = [
-          "lmtp_sieve"
+          "sieve"
         ];
       };
     };
