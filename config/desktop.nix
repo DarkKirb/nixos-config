@@ -14,6 +14,7 @@
     dina-font
     proggyfonts
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Noto" ]; })
+    (import ../packages/linja-sike.nix pkgs)
   ];
 
   zramSwap = {
