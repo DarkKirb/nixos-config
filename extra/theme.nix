@@ -1,16 +1,15 @@
 rec {
   authors = [
     "Chris Kempson"
-    "Charlotte 🦝 Delenk"
   ];
-  name = "Paraiso (dark) 16 colors";
+  name = "Paraiso (dark)";
   black = "2f1e2e";
-  dark-red = "9e3f3f";
-  dark-green = "307860";
-  dark-yellow = "a8860c";
-  dark-blue = "007e9e";
-  dark-magenta = "56406b";
-  dark-cyan = "3c8278";
+  dark-red = red;
+  dark-green = green;
+  dark-yellow = yellow;
+  dark-blue = blue;
+  dark-magenta = magenta;
+  dark-cyan = cyan;
   light-grey = "998299";
   dark-grey = "737373";
   red = "ef6155";
