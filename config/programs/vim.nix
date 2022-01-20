@@ -192,6 +192,10 @@ let dsquotes = "''"; in
 
       " ctags path
       let g:tagbar_ctags_bin = '${pkgs.universal-ctags}/bin/ctags'
+
+      " use poweernline fonts
+      let g:airline_powerline_fonts = 1
+      let g:airline_highlighting_cache = 1
     '';
     plugins = with pkgs.vimPlugins; [
       nerdtree
