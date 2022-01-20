@@ -2,7 +2,7 @@
 let
   listenIP = (import ../../utils/getInternalIP.nix config).listenIP;
   sieves = import ../../packages/sieves.nix pkgs;
-  dovecot-sql = pkgs.writeFile "dovecot-sql.conf.ext" ''
+  dovecot-sql = pkgs.writeText "dovecot-sql.conf.ext" ''
     driver = "pgsql";
     connect = host=localhost dbname=postfix user=dovecot
     default_pass_scheme = ARGON2ID
