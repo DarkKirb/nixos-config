@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let theme = import ../../extra/theme.nix; in
+{
   gtk.enable = true;
   gtk.iconTheme.package = pkgs.numix-icon-theme;
   gtk.iconTheme.name = "Numix Dark";
@@ -10,41 +12,41 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      colors = {
+      colors = with theme; {
         # Default Colors
         primary = {
-          background = "0x2f1e2e";
-          foreground = "0xa39e9b";
+          background = alacrittyColor bg;
+          foreground = alacrittyColor fg;
         };
 
         # Normal Colors
         normal = {
-          black = "0x2f1e2e";
-          red = "0xef6155";
-          green = "0x48b685";
-          yellow = "0xfec418";
-          blue = "0x06b6ef";
-          magenta = "0x815ba4";
-          cyan = "0x5bc4bf";
-          white = "0xa39e9b";
+          black = alacrittyColor black;
+          red = alacrittyColor dark-red;
+          green = alacrittyColor dark-green;
+          yellow = alacrittyColor dark-yellow;
+          blue = alacrittyColor dark-blue;
+          magenta = alacrittyColor dark-magenta;
+          cyan = alacrittyColor dark-cyan;
+          white = alacrittyColor light-grey;
         };
 
         # Bright Colors
         bright = {
-          black = "0x776e71";
-          red = "0xef6155";
-          green = "0x48b685";
-          yellow = "0xfec418";
-          blue = "0x06b6ef";
-          magenta = "0x815ba4";
-          cyan = "0x5bc4bf";
-          white = "0xe7e9db";
+          black = alacrittyColor dark-grey;
+          red = alacrittyColor red;
+          green = alacrittyColor green;
+          yellow = alacrittyColor yellow;
+          blue = alacrittyColor blue;
+          magenta = alacrittyColor magenta;
+          cyan = alacrittyColor cyan;
+          white = alacrittyColor white;
         };
       };
     };
   };
 
-  programs.waybar.style = ''
+  programs.waybar.style = with theme; ''
     * {
       border: none;
       border-radius: 0;
@@ -56,46 +58,42 @@
     }
 
     window#waybar {
-      background: #2f1e2e;
+      background: ${cssColor bg};
     }
 
     #mpd, #cpu {
-      background: #48b685;
-      color: #2f1e2e;
+      background: ${cssColor green};
+      color: ${cssColor bg};
     }
 
     #pulseaudio {
-      background: #fec418;
-      color: #2f1e2e;
+      background: ${cssColor yellow};
+      color: ${cssColor bg};
     }
 
     #network, #tray {
-      background: #06b6ef;
-      color: #2f1e2e;
+      background: ${cssColor blue};
+      color: ${cssColor bg};
     }
 
-    #memory {
-      background: #815ba4;
+    #memory, #workspaces button.focused {
+      background: ${cssColor magenta};
     }
 
     #language {
-      background: #5bc4bf;
+      background: ${cssColor cyan};
     }
 
     #clock {
-      background: #776e71;
+      background: ${cssColor light-grey};
     }
 
     .urgent {
-      background: #ef6155;
+      background: ${cssColor red};
     }
 
     #workspaces button {
       background: transparent;
-    }
-
-    #workspaces button.focused {
-      background: #815ba4;
     }
 
     label {
