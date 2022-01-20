@@ -102,6 +102,7 @@ in
 
     '';
     user = "dovecot";
+    group = "dovecot";
   };
   services.prometheus.exporters.dovecot = {
     enable = true;
