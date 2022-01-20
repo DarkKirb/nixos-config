@@ -11,8 +11,8 @@ in
     enableLmtp = true;
     enablePop3 = true;
     enableQuota = true;
-    mailGroup = "vmail";
-    mailUser = "vmail";
+    mailGroup = "dovecot";
+    mailUser = "dovecot";
     mailLocation = "maildir:/var/vmail/%h/%n";
     mailPlugins = {
       globally.enable = [
@@ -108,7 +108,7 @@ in
     enable = true;
     listenAddress = listenIP;
   };
-  sops.secrets."services/dovecot/rspamd_password" = { owner = "dovecot"; group = "dovecot"; };
+  sops.secrets."services/dovecot/rspamd_password" = { owner = "dovecot"; };
   services.postgresql.ensureUsers = [{
     name = "dovecot";
     ensurePermissions = {
