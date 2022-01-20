@@ -33,5 +33,5 @@
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
   };
-  services.phpfpm.pools.postfixadmin.group = "acme"; # there is no nginx group
+  services.phpfpm.pools.postfixadmin.settings."listen.group" = "acme"; # there is no nginx group
 }
