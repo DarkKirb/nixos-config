@@ -12,10 +12,10 @@
     setupPasswordFile = "/run/secrets/services/postfixadmin/setupPassword";
   };
   sops.secrets."services/postfixadmin/dbpassword" = {
-    owner = "nginx";
+    owner = "postfixadmin";
   };
   sops.secrets."services/postfixadmin/setupPassword" = {
-    owner = "nginx";
+    owner = "postfixadmin";
   };
   services.postgresql.ensureDatabases = [ "postfix" ];
   services.postgresql.ensureUsers = [
