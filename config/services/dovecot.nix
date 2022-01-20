@@ -108,7 +108,7 @@ in
     enable = true;
     listenAddress = listenIP;
   };
-  sops.secrets."services/dovecot/rspamd_password" = { owner = "dovecot"; };
+  sops.secrets."services/dovecot/rspamd_password" = { owner = "dovecot"; group = "dovecot"; };
   services.postgresql.ensureUsers = [{
     name = "dovecot";
     ensurePermissions = {
