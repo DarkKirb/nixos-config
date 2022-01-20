@@ -21,7 +21,7 @@
           "temperature"
           "backlight"
           "keyboard-state"
-          "sway/language"
+          #          "sway/language"
           "battery"
           "battery#bat2"
           "clock"
