@@ -206,6 +206,7 @@ let dsquotes = "''"; in
       tagbar
       coc-nvim
       vim-airline
+      copilot-vim
     ];
     extraPackages = with pkgs; [
       nodejs-17_x
