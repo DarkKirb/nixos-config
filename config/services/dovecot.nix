@@ -2,7 +2,18 @@
 let
   listenIP = (import ../../utils/getInternalIP.nix config).listenIP;
   sieves = import ../../packages/sieves.nix pkgs;
-
+  dovecot-sql = pkgs.writeFile "dovecot-sql.conf.ext" ''
+    driver = "pgsql";
+    connect = host=localhost dbname=postfix user=dovecot
+    default_pass_scheme = ARGON2ID
+    password_query = \
+      SELECT local_part as username, domain, password, CONCAT('/var/vmail', maildir) AS userdb_home, 76 AS userdb_uid, 76 AS userdb_gid, CONCAT('*:bytes=', quota) AS userdb_quota_rule \
+      FROM mailbox WHERE local_part = '%n' AND domain = '%d' AND active = '1'
+    user_query = \
+      SELECT CONCAT('/var/vmail', maildir) AS home, 76 AS uid, 76 AS gid, CONCAT('*:bytes=', quota) AS quota_rule \
+      FROM mailbox WHERE local_part = '%n' AND domain = '%d' AND active = '1'
+    iterate_query = SELECT CONCAT(local_part, '@', domain) AS user FROM mailbox
+  '';
 in
 {
   services.dovecot2 = {
@@ -100,6 +111,17 @@ in
       disable_plaintext_auth = yes
       auth_mechanisms = plain login
 
+      passdb {
+        driver = sql
+        args = ${dovecot-sql}
+      }
+      userdb {
+        driver = prefetch
+      }
+      userdb {
+        driver = sql
+        args = ${dovecot-sql}
+      }
     '';
     user = "dovecot";
     group = "dovecot";
