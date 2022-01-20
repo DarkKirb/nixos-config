@@ -13,6 +13,7 @@
       swaylock
       swayidle
       xwayland
+      wl-clipboard
       (python38.withPackages (ps: with ps; [ i3pystatus keyring ]))
     ];
     extraSessionCommands = ''
