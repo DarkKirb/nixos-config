@@ -113,7 +113,6 @@ in
     name = "dovecot";
     ensurePermissions = {
       "DATABASE \"postfix\"" = "CONNECT";
-      "ALL TABLES IN DATABASE \"postfix\"" = "SELECT"; # can't select more granular permissions
     };
   }];
 }
