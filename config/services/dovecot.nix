@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  listenIPs = (import ../../utils/getInternalIP.nix config).listenIP;
+  listenIP = (import ../../utils/getInternalIP.nix config).listenIP;
   sieves = import ../../packages/sieves.nix pkgs;
 
 in
