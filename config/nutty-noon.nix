@@ -155,5 +155,5 @@
 
   hardware.opengl.driSupport32Bit = true;
 
-  sops.secrets."services/gitea.nix" = { }; # for dev testiing
+  sops.secrets."services/gitea.nix" = { owner = "darkkirb"; }; # for dev testiing
 }
