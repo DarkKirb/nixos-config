@@ -8,6 +8,7 @@
     ./services/loki.nix
     ./home.nix
     ./services/restic.nix
+    ./services/nix-cache-upload.nix
   ];
   services.openssh.enable = true;
   environment.systemPackages = [ pkgs.git ];
