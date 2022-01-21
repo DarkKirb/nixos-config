@@ -15,7 +15,7 @@
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
         if [[ ! $TMUX ]]; then
-          ${pkgs.tmux} attach-session -t $USER || ${pkgs.tmux} new-session -s $USER
+          ${pkgs.tmux}/bin/tmux attach-session -t $USER || ${pkgs.tmux}/bin/tmux new-session -s $USER
         fi
       '';
     };
