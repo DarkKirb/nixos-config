@@ -18,7 +18,7 @@
       dates = [ "weekly" ];
     };
     binaryCaches = [
-      "s3://cache.int.chir.rs?scheme=https&endpoint=minio.int.chir.rs"
+      "https://minio.int.chir.rs/cache.int.chir.rs/"
       "https://cache.nixos.org/"
     ];
     requireSignedBinaryCaches = false; # internal binary cache is unsigned
