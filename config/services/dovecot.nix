@@ -16,6 +16,13 @@ let
   '';
 in
 {
+  nixpkgs.overlays = [
+    (curr: prev: {
+      dovecot = prev.dovecot.override {
+        withPgSQL = true;
+      };
+    })
+  ];
   services.dovecot2 = {
     enable = true;
     enableImap = true;
