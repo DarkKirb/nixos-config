@@ -15,7 +15,14 @@
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
         if [[ ! $TMUX ]]; then
-          ${pkgs.tmux}/bin/tmux attach-session -t $USER || ${pkgs.tmux}/bin/tmux new-session -s $USER
+          # figure out the session to use
+          SESSION_NAME="$USER"
+          if [[ $SSH_CLIENT ]]; then
+            SESSION_NAME="$SESSION_NAME-$(echo $SSH_CLIENT | ${pkgs.gawk}/bin/awk '{print $1}')"
+          elif [[ $WAYLAND_DISPLAY ]]; then
+            SESSION_NAME="$SESSION_NAME-$(${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '.. | select(.focused?) | .rect | "\(.width)x\(.height)"')"
+          fi
+          ${pkgs.tmux}/bin/tmux attach-session -t ${SESSION_NAME} || ${pkgs.tmux}/bin/tmux new-session -s ${SESSION_NAME}
         fi
       '';
     };
