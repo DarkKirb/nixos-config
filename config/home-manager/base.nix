@@ -22,7 +22,7 @@
           elif [[ $WAYLAND_DISPLAY ]]; then
             SESSION_NAME="$SESSION_NAME-$(${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '.. | select(.focused?) | .rect | "\(.width)x\(.height)"')"
           fi
-          ${pkgs.tmux}/bin/tmux attach-session -t ${SESSION_NAME} || ${pkgs.tmux}/bin/tmux new-session -s ${SESSION_NAME}
+          ${pkgs.tmux}/bin/tmux attach-session -t "$SESSION_NAME" || ${pkgs.tmux}/bin/tmux new-session -s "$SESSION_NAME"
         fi
       '';
     };
