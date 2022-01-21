@@ -33,6 +33,8 @@
       bind -n S-Right next-window
 
       set -sg escape-time 0
+
+      set -g mouse on
     '';
   };
 }
