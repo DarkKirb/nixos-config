@@ -17,6 +17,10 @@
       automatic = true;
       dates = [ "weekly" ];
     };
+    binaryCaches = [
+      "s3://cache.int.chir.rs?scheme=https&endpoint=minio.int.chir.rs"
+      "https://cache.nixos.org/"
+    ];
   };
   system.autoUpgrade = {
     enable = true;

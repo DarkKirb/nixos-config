@@ -18,7 +18,7 @@
           # figure out the session to use
           SESSION_NAME="$USER"
           if [[ $SSH_CLIENT ]]; then
-            SESSION_NAME="$SESSION_NAME-$(echo $SSH_CLIENT | ${pkgs.gawk}/bin/awk '{print $1}')"
+            SESSION_NAME="$SESSION_NAME-$(echo $SSH_CLIENT | ${pkgs.gawk}/bin/awk '{print $1}' | sed 's/[\.\:]/_/g')"
           elif [[ $WAYLAND_DISPLAY ]]; then
             SESSION_NAME="$SESSION_NAME-$(${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '.. | select(.focused?) | .rect | "\(.width)x\(.height)"')"
           fi
