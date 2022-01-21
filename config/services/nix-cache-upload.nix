@@ -20,8 +20,8 @@ in
     requires = [ "copy-to-cache.service" ];
     wantedBy = [ "multi-user.target" ];
     timerConfig = {
-      onUnitActiveSec = 3600;
-      onBootSec = 3600;
+      OnUnitActiveSec = 3600;
+      OnBootSec = 3600;
     };
   };
 }
