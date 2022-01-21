@@ -10,8 +10,8 @@ in
       ${pkgs.nix}/bin/nix copy --to 's3://cache.int.chir.rs?scheme=https&endpoint=minio.int.chir.rs' --all
     '';
     unitConfig = {
-      user = "darkkirb";
-      group = "users";
+      User = "darkkirb";
+      Group = "users";
     };
   };
   systemd.timers.copy-to-cache = {
