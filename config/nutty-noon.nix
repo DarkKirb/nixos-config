@@ -1,4 +1,4 @@
-{ modulesPath, ... }: {
+{ config, pkgs, modulesPath, ... }: {
   networking.hostName = "nutty-noon";
   networking.hostId = "e77e1829";
 
@@ -11,7 +11,10 @@
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "k10temp" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.zenpower
+  ];
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
 
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.devNodes = "/dev/";
@@ -149,4 +152,6 @@
     HWMON_MODULES="nct6775"
   '';
   services.thermald.enable = true;
+
+  hardware.opengl.driSupport32Bit = true;
 }
