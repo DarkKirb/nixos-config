@@ -7,6 +7,17 @@
     sensibleOnTop = true;
     plugins = with pkgs.tmuxPlugins; [
       power-theme
+      cpu
+      {
+        plugin = tmuxPlugins.resurrect;
+        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+      }
+      {
+        plugin = tmuxPlugins.continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on'
+        '';
+      }
     ];
 
     extraConfig = ''

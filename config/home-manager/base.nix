@@ -11,7 +11,13 @@
         enable = true;
       };
       initExtraBeforeCompInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      initExtra = "[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh";
+      initExtra = ''
+        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+        if [[ ! $TMUX ]]; then
+          ${pkgs.tmux} attach-session -t $USER || ${pkgs.tmux} new-session -s $USER
+        fi
+      '';
     };
   };
   home.file.".p10k.zsh".source = ./.p10k.zsh;
