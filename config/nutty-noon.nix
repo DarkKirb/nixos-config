@@ -154,4 +154,6 @@
   services.thermald.enable = true;
 
   hardware.opengl.driSupport32Bit = true;
+
+  sops.secrets."services/gitea.nix" = { }; # for dev testiing
 }
