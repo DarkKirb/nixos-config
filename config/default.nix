@@ -39,4 +39,8 @@
   console.keyMap = "neo";
 
   programs.gnupg.agent.enable = true;
+
+  security.sudo.extraConfig = ''
+    Defaults env_keep += "TMUX"
+  '';
 }
