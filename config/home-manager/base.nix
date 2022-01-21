@@ -99,6 +99,22 @@
     };
     shellAliases = {
       vim = "nvim";
+      cat = "bat";
+      less = "bat";
     };
+  };
+
+  programs.exa = {
+    enable = true;
+    enableAliases = true;
+  };
+
+  programs.bat = {
+    enable = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    tmux.enableShellIntegration = true;
   };
 }
