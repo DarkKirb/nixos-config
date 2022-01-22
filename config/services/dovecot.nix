@@ -4,7 +4,7 @@ let
   sieves = import ../../packages/sieves.nix pkgs;
   dovecot-sql = pkgs.writeText "dovecot-sql.conf.ext" ''
     driver = pgsql
-    connect = host=localhost dbname=postfix user=dovecot
+    connect = dbname=postfix user=dovecot
     default_pass_scheme = ARGON2ID
     password_query = \
       SELECT local_part as username, domain, password, CONCAT('/var/vmail', maildir) AS userdb_home, 76 AS userdb_uid, 76 AS userdb_gid, CONCAT('*:bytes=', quota) AS userdb_quota_rule \
