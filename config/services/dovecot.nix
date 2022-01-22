@@ -135,4 +135,10 @@ in
       "DATABASE \"postfix\"" = "CONNECT";
     };
   }];
+  networking.firewall.allowedTCPPorts = [
+    110 # POP3
+    143 # IMAP
+    993 # IMAPS
+    995 # POP3S
+  ];
 }
