@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   services.nginx = {
     additionalModules = [ pkgs.nginxModules.brotli ];
-    clientMaxBodySize = "1g";
+    clientMaxBodySize = "10g";
     enable = true;
     appendHttpConfig = ''
       brotli on;
