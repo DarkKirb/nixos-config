@@ -11,7 +11,7 @@
     hostName = "mail.chir.rs";
     setupPasswordFile = "/run/secrets/services/postfixadmin/setupPassword";
     extraConfig = ''
-      $CONF['encrypt'] = 'dovecot:argon2id';
+      $CONF['encrypt'] = 'dovecot:ARGON2ID';
       $CONF['dovecotpw'] = '${pkgs.dovecot}/bin/doveadm pw';
     '';
   };
