@@ -3,7 +3,7 @@ let
   listenIP = (import ../../utils/getInternalIP.nix config).listenIP;
   sieves = import ../../packages/sieves.nix pkgs;
   dovecot-sql = pkgs.writeText "dovecot-sql.conf.ext" ''
-    driver = "pgsql";
+    driver = pgsql
     connect = host=localhost dbname=postfix user=dovecot
     default_pass_scheme = ARGON2ID
     password_query = \
@@ -17,11 +17,13 @@ let
 in
 {
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    dovecot = pkgs.dovecot.override {
-      withPgSQL = true;
-    };
-  };
+  nixpkgs.overlays = [
+    (curr: prev: {
+      dovecot = prev.dovecot.override {
+        withPgSQL = true;
+      };
+    })
+  ];
   services.dovecot2 = {
     enable = true;
     enableImap = true;
