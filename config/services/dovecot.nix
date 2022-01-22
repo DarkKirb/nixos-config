@@ -129,6 +129,7 @@ in
         driver = sql
         args = ${dovecot-sql}
       }
+      auth_debug=yes
     '';
     user = "dovecot";
     group = "dovecot";
