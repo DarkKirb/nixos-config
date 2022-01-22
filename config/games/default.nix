@@ -14,5 +14,7 @@ in
   home.packages = [
     wine-tkg-patched
     pkgs.grapejuice
+    pkgs.polymc
+    pkgs.factorio # downloaded from an internal cache server
   ];
 }

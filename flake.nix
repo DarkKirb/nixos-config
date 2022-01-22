@@ -12,8 +12,10 @@ rec {
   inputs.nur.url = "github:nix-community/NUR";
   inputs.nix-gaming.url = github:fufexan/nix-gaming;
   inputs.nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.polymc.url = "github:PolyMC/PolyMC";
+  inputs.polymc.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, ... } @ args: {
+  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, polymc, ... } @ args: {
     nixosConfigurations =
       let
         systems = [
@@ -39,6 +41,7 @@ rec {
                       nix-gaming = nix-gaming.outputs.packages.x86_64-linux;
                     })
                     nur.overlay
+                    polymc.overlay
                   ];
                 })
               ];
