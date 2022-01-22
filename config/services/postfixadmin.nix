@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   services.postfixadmin = {
     enable = true;
     adminEmail = "lotte@chir.rs";
@@ -10,6 +10,10 @@
     };
     hostName = "mail.chir.rs";
     setupPasswordFile = "/run/secrets/services/postfixadmin/setupPassword";
+    extraConfig = ''
+      $CONF['encrypt'] = 'dovecot:argon2id';
+      $CONF['dovecotpw'] = '${pkgs.dovecot}/bin/doveadm pw';
+    '';
   };
   sops.secrets."services/postfixadmin/dbpassword" = {
     owner = "postfixadmin";
