@@ -11,5 +11,6 @@ desktop: { pkgs, ... }: {
     ../programs/ims.nix
     ../programs/syncthing.nix
     ../programs/mpd.nix
+    ../games/default.nix
   ] else [ ]);
 }

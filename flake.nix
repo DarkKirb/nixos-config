@@ -10,8 +10,10 @@ rec {
   inputs.chir-rs.url = "git+https://git.chir.rs/darkkirb/chir.rs.git?ref=main";
   #inputs.chir-rs.inputs.nixpkgs.follows = "nixpkgs"; # nixpkgs regression?
   inputs.nur.url = "github:nix-community/NUR";
+  inputs.nix-gaming.url = github:fufexan/nix-gaming;
+  inputs.nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, ... } @ args: {
+  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, ... } @ args: {
     nixosConfigurations =
       let
         systems = [
@@ -34,6 +36,7 @@ rec {
                   nixpkgs.overlays = [
                     (self: super: {
                       chir-rs = chir-rs.outputs.defaultPackage.x86_64-linux;
+                      nix-gaming = nix-gaming.outputs.packages.x86_64-linux;
                     })
                     nur.overlay
                   ];
