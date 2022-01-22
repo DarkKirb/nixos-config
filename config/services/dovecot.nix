@@ -2,18 +2,6 @@
 let
   listenIP = (import ../../utils/getInternalIP.nix config).listenIP;
   sieves = import ../../packages/sieves.nix pkgs;
-  dovecot-sql = pkgs.writeText "dovecot-sql.conf.ext" ''
-    driver = pgsql
-    connect = dbname=postfix user=dovecot
-    default_pass_scheme = ARGON2ID
-    password_query = \
-      SELECT local_part as username, domain, password, CONCAT('/var/vmail', maildir) AS userdb_home, 76 AS userdb_uid, 76 AS userdb_gid, CONCAT('*:bytes=', quota) AS userdb_quota_rule \
-      FROM mailbox WHERE local_part = '%n' AND domain = '%d' AND active = '1'
-    user_query = \
-      SELECT CONCAT('/var/vmail', maildir) AS home, 76 AS uid, 76 AS gid, CONCAT('*:bytes=', quota) AS quota_rule \
-      FROM mailbox WHERE local_part = '%n' AND domain = '%d' AND active = '1'
-    iterate_query = SELECT CONCAT(local_part, '@', domain) AS user FROM mailbox
-  '';
 in
 {
 
@@ -121,14 +109,14 @@ in
 
       passdb {
         driver = sql
-        args = ${dovecot-sql}
+        args = /run/secrets/services/dovecot/dovecot-sql.conf.ext
       }
       userdb {
         driver = prefetch
       }
       userdb {
         driver = sql
-        args = ${dovecot-sql}
+        args = /run/secrets/services/dovecot/dovecot-sql.conf.ext
       }
       auth_debug=yes
     '';
@@ -140,6 +128,7 @@ in
     listenAddress = listenIP;
   };
   sops.secrets."services/dovecot/rspamd_password" = { owner = "dovecot"; };
+  sops.secrets."services/dovecot/dovecot-sql.conf.ext" = { owner = "dovecot"; };
   services.postgresql.ensureUsers = [{
     name = "dovecot";
     ensurePermissions = {
