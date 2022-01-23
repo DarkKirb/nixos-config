@@ -1,21 +1,4 @@
 { pkgs, ... }:
-let
-  virtual_alias_domains = pkgs.writeText "virtual_alias_domains.cf" ''
-    user = postfix
-    dbname = postfix
-    query = SELECT target_domain FROM alias_domain WHERE alias_domain = '%s' AND active='t';
-  '';
-  virtual_alias_maps = pkgs.writeText "virtual_alias_maps.cf" ''
-    user = postfix
-    dbname = postfix
-    query = SELECT goto FROM alias WHERE address='%s' AND active='t';
-  '';
-  virtual_mailbox_domains = pkgs.writeText "virtual_mailbox_domains.cf" ''
-    user = postfix
-    dbname = postfix
-    query = SELECT domain FROM domain WHERE domain = '%s' AND active='t';
-  '';
-in
 {
   nixpkgs.overlays = [
     (curr: prev: {
@@ -48,9 +31,9 @@ in
     config = {
       smtp_tls_security_level = "encrypt";
 
-      virtual_alias_domains = "pgsql:${virtual_mailbox_domains}";
-      virtual_alias_maps = "pgsql:${virtual_alias_maps}";
-      virtual_mailbox_domains = "pgsql:${virtual_mailbox_domains}";
+      virtual_alias_domains = "pgsql:/run/secrets/postfix/virtual_alias_domains.cf";
+      virtual_alias_maps = "pgsql:/run/secrets/postfix/virtual_alias_maps.cf";
+      virtual_mailbox_domains = "pgsql:/run/secrets/postfix/virtual_mailbox_domains.cf";
       virtual_transport = "lmtp:unix:/run/dovecot/lmtp";
       smtpd_milters = "[fd00:e621:e621:2::2]:11332";
       non_smtpd_milters = "[fd00:e621:e621:2::2]:11332";
@@ -75,5 +58,7 @@ in
       "DATABASE \"postfix\"" = "CONNECT";
     };
   }];
-
+  sops.secrets."services/postfix/virtual_alias_domains.cf" = { owner = "postfix"; };
+  sops.secrets."services/postfix/virtual_alias_maps.cf" = { owner = "postfix"; };
+  sops.secrets."services/postfix/virtual_mailbox_domains.cf" = { owner = "postfix"; };
 }
