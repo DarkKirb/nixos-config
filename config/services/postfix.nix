@@ -35,8 +35,8 @@
       virtual_alias_maps = "pgsql:/run/secrets/services/postfix/virtual_alias_maps.cf";
       virtual_mailbox_domains = "pgsql:/run/secrets/services/postfix/virtual_mailbox_domains.cf";
       virtual_transport = "lmtp:unix:/run/dovecot/lmtp";
-      smtpd_milters = "[fd00:e621:e621:2::2]:11332";
-      non_smtpd_milters = "[fd00:e621:e621:2::2]:11332";
+      smtpd_milters = "inet:[fd00:e621:e621:2::2]:11332";
+      non_smtpd_milters = "inet:[fd00:e621:e621:2::2]:11332";
       disable_vrfy_command = "yes";
       smtpd_banner = "mail.chir.rs ESMTP NO UCE NO UBE NO RELAYCLIENT=yes YES OwO";
       message_size_limit = "20971520";
