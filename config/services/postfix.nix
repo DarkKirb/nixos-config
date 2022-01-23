@@ -31,9 +31,9 @@
     config = {
       smtp_tls_security_level = "encrypt";
 
-      virtual_alias_domains = "pgsql:/run/secrets/postfix/virtual_alias_domains.cf";
-      virtual_alias_maps = "pgsql:/run/secrets/postfix/virtual_alias_maps.cf";
-      virtual_mailbox_domains = "pgsql:/run/secrets/postfix/virtual_mailbox_domains.cf";
+      virtual_alias_domains = "pgsql:/run/secrets/services/postfix/virtual_alias_domains.cf";
+      virtual_alias_maps = "pgsql:/run/secrets/services/postfix/virtual_alias_maps.cf";
+      virtual_mailbox_domains = "pgsql:/run/secrets/services/postfix/virtual_mailbox_domains.cf";
       virtual_transport = "lmtp:unix:/run/dovecot/lmtp";
       smtpd_milters = "[fd00:e621:e621:2::2]:11332";
       non_smtpd_milters = "[fd00:e621:e621:2::2]:11332";
