@@ -118,7 +118,13 @@ in
         driver = sql
         args = /run/secrets/services/dovecot/dovecot-sql.conf.ext
       }
-      auth_debug=yes
+      service auth {
+        unix_listener /run/dovecot2/auth {
+          mode = 0660
+          user = postfix
+          group = postfix
+        }
+      }
     '';
     user = "dovecot";
     group = "dovecot";

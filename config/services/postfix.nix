@@ -41,7 +41,7 @@
       smtpd_helo_restrictions = "permit_mynetworks, permit_sasl_authenticated";
       smtpd_helo_required = "yes";
       smtpd_sasl_type = "dovecot";
-      smtpd_sasl_path = "/run/dovecot2/auth-login";
+      smtpd_sasl_path = "/run/dovecot2/auth";
       smtpd_sasl_auth_enable = "yes";
       smtpd_tls_auth_only = "yes";
       smtpd_tls_mandatory_protocols = "!SSLv2, !SSLv3, !TLSv1, !TLSv1.1";
