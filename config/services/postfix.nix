@@ -13,9 +13,6 @@
     enableSubmissions = true;
     destination = [
       "localhost"
-      "darkkirb.de"
-      "miifox.net"
-      "chir.rs"
     ];
     domain = "chir.rs";
     hostname = "mail.chir.rs";
