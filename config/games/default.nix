@@ -11,6 +11,14 @@ let wine-tkg-patched = pkgs.nix-gaming.wine-tkg.override {
 };
 in
 {
+  nixpkgs.overlays = [
+    (curr: prev: {
+      factorio = prev.factorio.override
+        {
+          version = "1.1.53";
+        };
+    })
+  ];
   home.packages = [
     wine-tkg-patched
     pkgs.grapejuice

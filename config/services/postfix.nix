@@ -69,4 +69,11 @@ in
       tls_preempt_cipherlist = "no";
     };
   };
+  services.postgresql.ensureUsers = [{
+    name = "postfix";
+    ensurePermissions = {
+      "DATABASE \"postfix\"" = "CONNECT";
+    };
+  }];
+
 }

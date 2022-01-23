@@ -2,7 +2,8 @@ rec {
   description = "Lotte's NixOS installation";
 
   # Use NixOS unstable
-  inputs.nixpkgs.url = "github:nixos/nixpkgs";
+  #inputs.nixpkgs.url = "github:nixos/nixpkgs";
+  inputs.nixpkgs.url = "github:darkkirb/nixpkgs?ref=factorio-1.1.53";
   inputs.home-manager.url = "github:nix-community/home-manager";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
   inputs.sops-nix.url = github:Mic92/sops-nix;
