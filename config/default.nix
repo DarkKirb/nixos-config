@@ -13,6 +13,12 @@
   services.openssh.enable = true;
   environment.systemPackages = [ pkgs.git ];
   networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedUDPPortRanges = [
+    {
+      from = 60000;
+      to = 61000;
+    }
+  ];
 
   users.defaultUserShell = pkgs.zsh;
 
