@@ -11,6 +11,7 @@ desktop: { pkgs, ... }: {
     ../programs/ims.nix
     ../programs/syncthing.nix
     ../programs/mpd.nix
+    ../programs/zoom.nix
     ../games/default.nix
   ] else [ ]);
 }

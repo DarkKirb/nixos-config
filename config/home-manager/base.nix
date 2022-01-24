@@ -116,6 +116,9 @@
       cat = "bat";
       less = "bat";
     };
+    packages = with pkgs; [
+      mosh
+    ];
   };
 
   programs.exa = {

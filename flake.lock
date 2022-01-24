@@ -292,11 +292,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1642880071,
-        "narHash": "sha256-NZW5BczhluZVkKblxrFqJbawUPxuC2HdKQ1t/+vKA34=",
+        "lastModified": 1642940213,
+        "narHash": "sha256-LXGwfPrtbhix9IRUT2phtbJsur41lkTsrKcTcS0lzIc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "30daa988f107bc4c910c398a77b2b89864049932",
+        "rev": "8ca77a63599ed951d6a2d244c1d62092776a3fe1",
         "type": "github"
       },
       "original": {
@@ -308,27 +308,26 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1642926511,
-        "narHash": "sha256-VOGQYVSp29EFQSlkwDvOkL6hvjaXT9C7rwTvgQsJ3ac=",
-        "owner": "darkkirb",
+        "lastModified": 1643003439,
+        "narHash": "sha256-UnH9ymNdS0IfkG3utPUCNc1PMcuS6oXWuAdFRbrxBPU=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5cfcd0b5b28d3f62c0e6a0a59878613b9f03c4dc",
+        "rev": "0285ef2f742163913ce8c6cee2ba635bc17e1e5c",
         "type": "github"
       },
       "original": {
-        "owner": "darkkirb",
-        "ref": "factorio-1.1.53",
+        "owner": "nixos",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "nur": {
       "locked": {
-        "lastModified": 1642960952,
-        "narHash": "sha256-BPx2cLEz4enKRlUIDVFl9v921YZm9SMbQM88noMloUI=",
+        "lastModified": 1642997357,
+        "narHash": "sha256-NSVAUag8k3Kfkmd+XsJjnXExXVgVRQiClNQRcWNt+74=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "be8a18b906158763750f0d48d551f6ef0f05e809",
+        "rev": "3c43a5096b0fc211031b455ac0166b5abbdaf77f",
         "type": "github"
       },
       "original": {
@@ -348,11 +347,11 @@
         "quazip": "quazip"
       },
       "locked": {
-        "lastModified": 1642957539,
-        "narHash": "sha256-GubPIwCqS9t5UhwXOW/Gh30YmEo8oHp2ZiNJtlQUaEo=",
+        "lastModified": 1642968026,
+        "narHash": "sha256-/q1/KsTuxkkb7jF60IUwXr/YzkqsCj9VgY33H/DtbnA=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "a1b779da15ac2753ce501fa8ac02cc0cc67c9e41",
+        "rev": "019c77f9f7be792952fc7a6da54285e76d592e3e",
         "type": "github"
       },
       "original": {
@@ -434,11 +433,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1641374494,
-        "narHash": "sha256-a56G6Um43+0+n+yNYhRCh/mSvDdRVzQHSKcFaDEB9/8=",
+        "lastModified": 1643003126,
+        "narHash": "sha256-JO5WrnP6+5qN3isdmm9VmjzvCM64UElgGnql7vEGjKU=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "7edb4b080023ef12f39262a3aa7aab31015a7a0e",
+        "rev": "c86068ac9a317f235be24a468206f874ba00f8d0",
         "type": "github"
       },
       "original": {
