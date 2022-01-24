@@ -12,6 +12,7 @@ desktop: { pkgs, ... }: {
     ../programs/syncthing.nix
     ../programs/mpd.nix
     ../programs/zoom.nix
+    ../programs/plover.nix
     ../games/default.nix
   ] else [ ]);
 }
