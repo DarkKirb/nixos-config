@@ -14,6 +14,8 @@
       initExtra = ''
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+        export TERM=xterm-256color # for mosh
+
         if [[ ! $TMUX ]]; then
           # figure out the session to use
           SESSION_NAME="$USER"
