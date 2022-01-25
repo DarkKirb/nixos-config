@@ -13,6 +13,7 @@ desktop: { pkgs, ... }: {
     ../programs/mpd.nix
     ../programs/zoom.nix
     ../programs/plover.nix
+    ../programs/texlive.nix
     ../games/default.nix
   ] else [ ]);
 }
