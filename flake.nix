@@ -10,7 +10,7 @@ rec {
   inputs.chir-rs.url = "git+https://git.chir.rs/darkkirb/chir.rs.git?ref=main";
   #inputs.chir-rs.inputs.nixpkgs.follows = "nixpkgs"; # nixpkgs regression?
   inputs.nur.url = "github:nix-community/NUR";
-  inputs.nix-gaming.url = github:fufexan/nix-gaming;
+  inputs.nix-gaming.url = github:DarkKirb/nix-gaming;
   inputs.nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
   inputs.polymc.url = "github:PolyMC/PolyMC";
   inputs.polymc.inputs.nixpkgs.follows = "nixpkgs";
