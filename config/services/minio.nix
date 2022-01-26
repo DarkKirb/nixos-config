@@ -31,4 +31,11 @@ in
   };
   sops.secrets."security/minio/credentials_file" = { };
   systemd.services.minio.serviceConfig.ExecStart = "${pkgs.minio}/bin/minio gateway s3 --json --address :9000 --console-address :9001 --config-dir=/var/lib/minio/config  http://[fd00:e621:e621:2::2]:9000";
+  systemd.services.minio.environment = {
+    MINIO_CACHE = "on";
+    MINIO_CACHE_DRIVES = "/var/cache/minio";
+    MINIO_CACHE_QUOTA = "80";
+    MINIO_CACHE_WATERMARK_LOW = "70";
+    MINIO_CACHE_WATERMARK_HIGH = "90";
+  };
 }
