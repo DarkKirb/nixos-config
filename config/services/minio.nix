@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 let
   listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
 in
@@ -6,12 +6,6 @@ in
   services.minio = {
     enable = true;
     rootCredentialsFile = "/run/secrets/security/minio/credentials_file";
-    dataDir = [
-      "/var/lib/minio/disk0"
-      "/var/lib/minio/disk1"
-      "/var/lib/minio/disk2"
-      "/var/lib/minio/disk3"
-    ];
   };
   services.nginx.virtualHosts."minio.int.chir.rs" = {
     forceSSL = true;
@@ -36,4 +30,5 @@ in
     };
   };
   sops.secrets."security/minio/credentials_file" = { };
+  systemd.services.minio.serviceConfig.ExecStart = "${pkgs.minio}/bin/minio gateway s3 --json --address :9000 --console-address :9001 --config-dir=/var/lib/minio/config  http://[fd00:e621:e621:2::2]:9000";
 }
