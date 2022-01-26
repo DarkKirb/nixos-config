@@ -44,9 +44,18 @@ in
       MINIO_CACHE_WATERMARK_HIGH = "90";
     };
     serviceConfig = {
+      Type = "simple";
+      User = "minio";
+      Group = "minio";
+      LimitNOFILE = 65536;
       EnvironmentFile = "/run/secrets/security/minio/credentials_file";
       ExecStart = "${pkgs.minio}/bin/minio gateway s3 --json --address :9000 --console-address :9001 --config-dir=/var/lib/minio/config  http://[fd00:e621:e621:2::2]:9000";
     };
     wantedBy = [ "multi-user.target" ];
   };
+  users.users.minio = {
+    group = "minio";
+    uid = config.ids.uids.minio;
+  };
+  users.groups.minio.gid = config.ids.gids.minio;
 }
