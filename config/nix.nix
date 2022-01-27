@@ -1,4 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
+  imports = [
+    ./workarounds
+  ];
   nixpkgs.config.allowUnfree = true;
   nix = {
     package = pkgs.nixUnstable;
@@ -17,21 +20,18 @@
       automatic = true;
       dates = [ "weekly" ];
     };
-    binaryCaches = [
-      "https://minio.int.chir.rs/cache.int.chir.rs/"
-      "https://cache.nixos.org/"
-    ];
     requireSignedBinaryCaches = false; # internal binary cache is unsigned
   };
   system.autoUpgrade = {
     enable = true;
     flake = "git+https://git.chir.rs/darkkirb/nixos-config.git?ref=main";
     flags = [
-      "--recreate-lock-file"
       "--no-write-lock-file"
       "-L" # print build logs
       "--impure" # unfortunately...
     ];
     dates = "daily";
+    randomizedDelaySec = "86400";
   };
+  systemd.services.nix-daemon.environment.TMPDIR = "/build";
 }
