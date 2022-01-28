@@ -39,8 +39,6 @@
   };
   networking.firewall.interfaces."wg0".allowedTCPPorts = [ config.services.prometheus.exporters.node.port ];
 
-  nix.buildCores = 0;
-
   environment.pathsToLink = [ "/share/zsh" ];
 
   console.keyMap = "neo";

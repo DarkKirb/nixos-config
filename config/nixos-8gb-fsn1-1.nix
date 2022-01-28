@@ -165,4 +165,5 @@
   nix.binaryCaches = lib.mkForce [
     "https://minio.int.chir.rs/cache.int.chir.rs/"
   ];
+  nix.buildCores = 2;
 }

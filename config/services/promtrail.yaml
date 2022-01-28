@@ -6,7 +6,12 @@ positions:
   filename: /tmp/positions.yaml
 
 clients:
-  - url: http://127.0.0.1:3100/loki/api/v1/push
+  - url: http://[fd0d:a262:1fa6:e621:b4e1:08ff:e658:6f49]:3100/loki/api/v1/push
+    external_labels:
+      host: nixos-8gb-fsn1-1
+  - url: http://[fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437]:3100/loki/api/v1/push
+    external_labels:
+      host: nutty-noon
 
 scrape_configs:
   - job_name: journal
@@ -14,7 +19,6 @@ scrape_configs:
       max_age: 12h
       labels:
         job: systemd-journal
-        host: chrysalis
     relabel_configs:
       - source_labels: ["__journal__systemd_unit"]
         target_label: "unit"

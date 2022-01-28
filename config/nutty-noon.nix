@@ -159,4 +159,5 @@
   nix.binaryCaches = lib.mkForce [
     "http://192.168.2.1:9000/cache.int.chir.rs/"
   ];
+  nix.buildCores = 16;
 }
