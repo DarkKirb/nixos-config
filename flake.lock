@@ -277,15 +277,16 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1643349201,
-        "narHash": "sha256-BbWQnuJBqV+nN8GhfmRDMYEpptNRZs6e/wFwRXUR/cI=",
-        "owner": "nixos",
+        "lastModified": 1643388593,
+        "narHash": "sha256-ARKH3ICvFsQduFQ+nL4mIS88PQy0Oe/DvultqBo4ZoQ=",
+        "owner": "DarkKirb",
         "repo": "nixpkgs",
-        "rev": "02f296c273823608af2a19522a290512d48b0f0d",
+        "rev": "6c51e64b0137169142652cb692c4a365936d5fae",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "DarkKirb",
+        "ref": "soundtouch-2.3.1",
         "repo": "nixpkgs",
         "type": "github"
       }

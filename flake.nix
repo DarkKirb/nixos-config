@@ -2,7 +2,7 @@ rec {
   description = "Lotte's NixOS installation";
 
   # Use NixOS unstable
-  inputs.nixpkgs.url = "github:nixos/nixpkgs";
+  inputs.nixpkgs.url = "github:DarkKirb/nixpkgs?ref=soundtouch-2.3.1";
   inputs.home-manager.url = "github:nix-community/home-manager";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
   inputs.sops-nix.url = github:Mic92/sops-nix;
