@@ -214,15 +214,15 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1643181842,
-        "narHash": "sha256-/NxMii5wEL7ZcE3bg1CT5xKuyGDtrSYP+j2qCKmZEEA=",
-        "owner": "DarkKirb",
+        "lastModified": 1643301896,
+        "narHash": "sha256-w0MISQZXB287rlrXg5bjy1UjfxVAaGl87+xWRfeEQgc=",
+        "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "0e8db70a6873d705efd13580391324477216d3f3",
+        "rev": "8ff6455f064337326ffc8bb69ab93f184d3fad3d",
         "type": "github"
       },
       "original": {
-        "owner": "DarkKirb",
+        "owner": "fufexan",
         "repo": "nix-gaming",
         "type": "github"
       }

@@ -13,3 +13,7 @@ creation_rules:
       - age:
           - *nutty-noon
           - *lotte
+  - path_regex: secrets/thinkrac/[^/]+$
+    key_groups:
+      - age:
+          - *lotte
