@@ -13,6 +13,7 @@
           targets = [
             "[fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49]:${toString config.services.prometheus.exporters.node.port}"
             "[fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437]:${toString config.services.prometheus.exporters.node.port}"
+            "[fd0d:a262:1fa6:e621:f45a:db9f:eb7c:1a3f]:${toString config.services.prometheus.exporters.node.port}"
           ];
         }];
       }

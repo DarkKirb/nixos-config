@@ -20,6 +20,12 @@
             "fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437/128"
           ];
         }
+        {
+          publicKey = "iKW9nomLyLY2f90UY66POzY8CfDhQrqOLqchERlR3TY=";
+          allowedIPs = [
+            "fd0d:a262:1fa6:e621:f45a:db9f:eb7c:1a3f/128"
+          ];
+        }
         # Old infra: ubuntu-4gb-fsn1-1
         {
           publicKey = "ZtU2iWwVYeGyXC1ak+wFdTuisQNq7gMthYQZaw6InDU=";
