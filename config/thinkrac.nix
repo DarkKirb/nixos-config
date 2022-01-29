@@ -116,4 +116,14 @@
     "http://192.168.2.1:9000/cache.int.chir.rs/"
   ];
   nix.buildCores = 4;
+
+  # Disable kernel mitigations
+  # 
+  # Rationale:
+  # - device has a limited workload, consisting mostly of running trusted code and visiting trusted websites with an advertisement blocker
+  # - device is battery powered (we want to spend more time in an idle state, as opposed to running user code or mitigating cpu bugs)
+  # - device is also not involved in any sort of virtualization
+  boot.kernelParams = [ "mitigations=off" ];
+  # use the lowest frequency possible, to save power
+  powerManagement.cpuFreqGovernor = "powersave";
 }

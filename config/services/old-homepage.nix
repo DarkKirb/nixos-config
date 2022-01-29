@@ -35,7 +35,7 @@ in
     sslCertificate = "/var/lib/acme/darkkirb.de/cert.pem";
     sslCertificateKey = "/var/lib/acme/darkkirb.de/key.pem";
     locations."/" = {
-      proxyPass = "http://127.0.0.1:9000/darkkirb.de/";
+      proxyPass = "http://127.0.0.1:9000/static.darkkirb.de/";
     };
   };
   sops.secrets."services/old-homepage" = { };

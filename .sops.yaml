@@ -2,6 +2,7 @@ keys:
   - &lotte age14vup3vfvsw2m68425x5mqwaxwkv82cdvgz50cft6xfpdhuucc98sfggs0y
   - &nixos-8gb-fsn1-1 age1273ps5thcy70ckdt0270s2nysqgu48t38pq3wq975v3y7mf4eavsw38wsl
   - &nutty-noon age1zgxkntdp99dkvw7z29jjmgrzlla2ha542zrs3262dwat27a34asqckfkrl
+  - &thinkrac age1azy4hfse3x9tzhjn0htelx8qeannscr7mydmuphp2qu73v72tp3qdxt7my
 creation_rules:
   - path_regex: secrets/nixos-8gb-fsn1-1/[^/]+$
     key_groups:
@@ -17,3 +18,4 @@ creation_rules:
     key_groups:
       - age:
           - *lotte
+          - *thinkrac
