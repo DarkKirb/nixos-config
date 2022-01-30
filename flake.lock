@@ -277,27 +277,27 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1643388593,
-        "narHash": "sha256-ARKH3ICvFsQduFQ+nL4mIS88PQy0Oe/DvultqBo4ZoQ=",
-        "owner": "DarkKirb",
-        "repo": "nixpkgs",
-        "rev": "6c51e64b0137169142652cb692c4a365936d5fae",
-        "type": "github"
+        "lastModified": 1643538740,
+        "narHash": "sha256-Ji4CLeXulIwca0qKeoo5YNcPf6yVAB0ZGQXF5m4hbGk=",
+        "ref": "main",
+        "rev": "aabc76e849be29418a155f04b12ea9a05f988ccf",
+        "revCount": 350029,
+        "type": "git",
+        "url": "https://git.chir.rs/darkkirb/nixpkgs"
       },
       "original": {
-        "owner": "DarkKirb",
-        "ref": "soundtouch-2.3.1",
-        "repo": "nixpkgs",
-        "type": "github"
+        "ref": "main",
+        "type": "git",
+        "url": "https://git.chir.rs/darkkirb/nixpkgs"
       }
     },
     "nur": {
       "locked": {
-        "lastModified": 1643466833,
-        "narHash": "sha256-k+KHPjLvSc3xBnPDY3F/QhN4AEx3gm7s5CVdX57VzLE=",
+        "lastModified": 1643530893,
+        "narHash": "sha256-cGPuqpoMpBk0szsRmG3W6YylUWl1xNzD32S/DfFXEZM=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "4a6dfe3cbf28f83114de8b7aa46ce4bf6722c99d",
+        "rev": "a10af0f53947336a4c06aae34a64b4c6a20b9584",
         "type": "github"
       },
       "original": {

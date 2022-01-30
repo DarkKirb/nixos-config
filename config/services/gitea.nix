@@ -1,7 +1,4 @@
 { config, ... }: {
-  imports = [
-    /run/secrets/services/gitea.nix
-  ];
   services.gitea = {
     enable = true;
     appName = "Lotte's Git";
@@ -17,14 +14,13 @@
     httpAddress = "127.0.0.1";
     lfs.enable = true;
     rootUrl = "https://git.chir.rs/";
+    storageSecretFile = "/var/secrets/services/gitea";
     settings = rec {
-      lfs = {
-        STORAGE_TYPE = "default";
-      };
       storage = {
         STORAGE_TYPE = "minio";
         MINIO_ENDPOINT = "minio.int.chir.rs:443";
         MINIO_ACCESS_KEY_ID = "gitea";
+        MINIO_SECRET_ACCESS_KEY = "#storageSecret#";
         MINIO_BUCKET = "gitea";
         MINIO_USE_SSL = "true";
       };
@@ -50,7 +46,6 @@
         TYPE = "redis";
         CONN_STRING = "redis://${config.services.redis.servers.gitea.bind}:${toString config.services.redis.servers.gitea.port}/2";
       };
-      "storage.default" = storage;
     };
   };
 
@@ -78,5 +73,5 @@
     databases = 3;
     port = 6379;
   };
-  sops.secrets."services/gitea.nix" = { };
+  sops.secrets."services/gitea" = { };
 }

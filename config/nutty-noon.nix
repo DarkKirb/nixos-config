@@ -155,7 +155,6 @@
 
   hardware.opengl.driSupport32Bit = true;
 
-  sops.secrets."services/gitea.nix" = { owner = "darkkirb"; }; # for dev testiing
   nix.binaryCaches = lib.mkForce [
     "http://192.168.2.1:9000/cache.int.chir.rs/"
   ];

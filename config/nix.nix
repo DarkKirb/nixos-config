@@ -28,7 +28,6 @@
     flags = [
       "--no-write-lock-file"
       "-L" # print build logs
-      "--impure" # unfortunately...
     ];
     dates = "daily";
     randomizedDelaySec = "86400";
