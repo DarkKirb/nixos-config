@@ -14,7 +14,7 @@
     httpAddress = "127.0.0.1";
     lfs.enable = true;
     rootUrl = "https://git.chir.rs/";
-    storageSecretFile = "/var/secrets/services/gitea";
+    storageSecretFile = "/run/secrets/services/gitea";
     settings = rec {
       storage = {
         STORAGE_TYPE = "minio";
