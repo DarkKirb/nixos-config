@@ -73,5 +73,5 @@
     databases = 3;
     port = 6379;
   };
-  sops.secrets."services/gitea" = { };
+  sops.secrets."services/gitea" = { owner = "gitea"; };
 }
