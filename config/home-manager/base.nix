@@ -27,6 +27,18 @@
           ${pkgs.tmux}/bin/tmux attach-session -t "$SESSION_NAME" || ${pkgs.tmux}/bin/tmux new-session -s "$SESSION_NAME"
         fi
       '';
+      plugins = [
+        {
+          name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = pkgs.fetchFromGitHub {
+            owner = "chisui";
+            repo = "zsh-nix-shell";
+            rev = "v0.4.0";
+            sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
+          };
+        }
+      ];
     };
   };
   home.file.".p10k.zsh".source = ./.p10k.zsh;
