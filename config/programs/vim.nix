@@ -13,6 +13,12 @@ let dsquotes = "''"; in
               "nix"
             ];
           };
+          rust = {
+            command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+            filetypes = [
+              "rs"
+            ];
+          };
         };
       };
     };
