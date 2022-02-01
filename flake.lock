@@ -177,11 +177,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1643567433,
-        "narHash": "sha256-tyFgodcZRlt0ZshbgyLf4m/Sd/ys9p0AHfeVZQ50WKU=",
+        "lastModified": 1643579427,
+        "narHash": "sha256-tV4M4+Aqd/3ZjEz1Q07j89KIlkt1oFH34RzpBkUeO/0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "95d39e13a4a7a818c87f2701b59820d3ac0e674c",
+        "rev": "a52aed72c84a2a10102a92397339fa01fc0fe9cf",
         "type": "github"
       },
       "original": {
@@ -277,11 +277,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1643616453,
-        "narHash": "sha256-6rssEKtlAo2ov9XwwYPZ46AE3z9vXSXDtQfwXyuxGYI=",
+        "lastModified": 1643696480,
+        "narHash": "sha256-8eL/JQYYTw/RQRqhekoqKS0LV6JxRQyBlQ41A63cSiA=",
         "ref": "main",
-        "rev": "3bf0c11504d03dc8d506fe048528890834d39444",
-        "revCount": 350206,
+        "rev": "5587e01521d1c2993cfb7c619c4c1570fefb6ed4",
+        "revCount": 350508,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/nixpkgs"
       },
@@ -293,11 +293,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1643638090,
-        "narHash": "sha256-WsKb6tu/53JPasUstCoE4DsJH51DwpbqkAfuEhnSOPI=",
+        "lastModified": 1643703986,
+        "narHash": "sha256-VXsfBndO9S9O9r4BtZJRV3WK9iGyLE6e+rm0Z9kXlmM=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "fa5a03dc64c3123b5723ef16b1097909f42991c4",
+        "rev": "cb3bb2e8389fe54fc7dcaa56af8e22a0d46ab391",
         "type": "github"
       },
       "original": {
