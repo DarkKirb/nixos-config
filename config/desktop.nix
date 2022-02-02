@@ -1,4 +1,14 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  lockscreen-all = pkgs.writeScript "lockscreen-all" ''
+    #!${pkgs.bash}/bin/bash
+
+    if ${pkgs.coreutils}/bin/[ -z "$(${pkgs.usbutils}/bin/lsusb | grep Yubico)" ]; then
+      ${pkgs.systemd}/bin/loginctl list-sessions | ${pkgs.gnugrep}/bin/grep '^\ ' | ${pkgs.gawk}/bin/awk '{print $1}' | ${pkgs.findutils}/bin/xargs -i ${pkgs.systemd}/bin/loginctl lock-session {}
+    fi
+  '';
+in
+{
   imports = [
     ./services/sway.nix
     ./services/pipewire.nix
@@ -24,4 +34,17 @@
 
   time.timeZone = "Etc/GMT-1"; # Confusing naming, it's 1 hour east of GMT
   services.pcscd.enable = true;
+
+  security.pam = {
+    services.login.u2fAuth = true;
+    services.sddm.u2fAuth = true;
+    services.swaylock.u2fAuth = true;
+    u2f = {
+      enable = true;
+      control = "sufficient";
+    };
+  };
+  services.udev.extraRules = ''
+    ACTION=="remove", ENV{ID_VENDOR_ID}=="1050", ENV{ID_MODEL_ID}=="0407", RUN+="${lockscreen-all}"
+  '';
 }
