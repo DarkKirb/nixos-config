@@ -132,6 +132,7 @@
     };
     packages = with pkgs; [
       mosh
+      yubikey-manager
     ];
   };
 
