@@ -11,7 +11,7 @@
     ./services/nix-cache-upload.nix
   ];
   services.openssh.enable = true;
-  environment.systemPackages = [ pkgs.git ];
+  environment.systemPackages = with pkgs; [ git pinentry-curses ];
   networking.firewall.allowedTCPPorts = [ 22 ];
   networking.firewall.allowedUDPPortRanges = [
     {
@@ -43,12 +43,16 @@
 
   console.keyMap = "neo";
 
-  programs.gnupg.agent.enable = true;
-
   security.sudo.extraConfig = ''
     Defaults env_keep += "TMUX"
   '';
 
   security.tpm2.enable = true;
   security.tpm2.abrmd.enable = true;
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryFlavor = "curses";
+  };
 }
