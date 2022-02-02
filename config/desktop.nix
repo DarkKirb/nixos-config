@@ -41,7 +41,7 @@ in
     services.swaylock.u2fAuth = true;
     u2f = {
       enable = true;
-      control = "sufficient";
+      control = "required";
     };
   };
   services.udev.extraRules = ''
