@@ -10,8 +10,6 @@
   programs.sway = {
     enable = true;
     extraPackages = with pkgs; [
-      swaylock
-      swayidle
       xwayland
       wl-clipboard
       (python38.withPackages (ps: with ps; [ i3pystatus keyring ]))

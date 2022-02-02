@@ -53,12 +53,16 @@
         {
           command = "${pkgs.mako}/bin/mako";
         }
+        {
+          command = "${pkgs.swayidle}/bin/swayidle -w timeout 300 '${pkgs.swaylock}/bin/swaylock' timeout 305 '${pkgs.sway}/bin/swaymsg \"output * dpms off\"' resume '${pkgs.sway}/bin/swaymsg \"output * dpms on\"' lock '${pkgs.swaylock}/bin/swaylock' unlock '${pkgs.procps}/bin/pkill swayidle'";
+        }
       ];
     };
     wrapperFeatures.gtk = true;
   };
 
-  home.file.".XCompose".source = ../../extra/.XCompose;
+  home.file.".XCompose ".source = ../../extra/.XCompose;
 }
+
 
 
