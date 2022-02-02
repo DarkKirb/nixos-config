@@ -15,5 +15,6 @@ desktop: { pkgs, ... }: {
     ../programs/plover.nix
     ../programs/texlive.nix
     ../games/default.nix
+    ../programs/yubikey.nix
   ] else [ ]);
 }
