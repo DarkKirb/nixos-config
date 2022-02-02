@@ -133,6 +133,7 @@
     packages = with pkgs; [
       mosh
       yubikey-manager
+      yubico-piv-tool
     ];
   };
 
