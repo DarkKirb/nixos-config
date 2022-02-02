@@ -16,5 +16,6 @@ desktop: { pkgs, ... }: {
     ../programs/texlive.nix
     ../games/default.nix
     ../programs/yubikey.nix
+    ../programs/keybase.nix
   ] else [ ]);
 }

@@ -49,7 +49,7 @@
       aliases = [ "postmaster@darkkirb.de" ];
       gpg = {
         encryptByDefault = true;
-        key = "3CEF5DDA915AECB0";
+        key = "B4E3D4801C49EC5E";
         signByDefault = true;
       };
       imap.host = "mail.darkkirb.de";
