@@ -19,7 +19,7 @@
     ];
     scdaemonSettings = {
       disable-ccid = true;
-      pcsc-driver = "${pkgs.pcsclite}/lib/libpcsclite.so.1";
+      pcsc-driver = "${pkgs.pcsclite.out}/lib/libpcsclite.so.1";
       reader-port = "Yubico YubiKey";
     };
     settings = {
