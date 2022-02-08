@@ -1,10 +1,21 @@
-{ config, ... }:
+{ config, dns, ... }:
 let
   internalIP = import ../../utils/getInternalIP.nix config;
   createListenEntry = ip: "inet ${ip} port 8653 allow { any; };";
   listenEntries = builtins.map createListenEntry internalIP.listenIPsBare;
+  chir-rs = import ../../zones/chir.rs.nix { inherit dns; };
+  signzone = import ../../zones/signzone.nix;
 in
 {
+  imports = [
+    (signzone {
+      inherit dns;
+      keyname = "services/dns/rs/chir/51207";
+      zone = chir-rs;
+      zonename = "staging.chir.rs";
+    })
+  ];
+
   services.bind = {
     enable = true;
     zones = {
@@ -21,6 +32,10 @@ in
           "fd00:e621:e621::1"
         ];
         file = "chir.rs.zone";
+      };
+      "staging.chir.rs" = {
+        master = true;
+        file = "/var/lib/named/staging.chir.rs";
       };
       "int.chir.rs" = {
         master = false;

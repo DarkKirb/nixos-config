@@ -90,12 +90,11 @@ let
   createZone = merge zoneBase;
   zone = createZone {
     SOA = {
-      nameServer = "ns1.darkkirb.de.";
+      nameServer = "ns2.darkkirb.de.";
       adminEmail = "lotte@chir.rs";
       serial = 1;
     };
     NS = [
-      "ns1.darkkirb.de."
       "ns2.darkkirb.de."
     ];
     MX = [
@@ -136,6 +135,20 @@ let
     TXT = [
       (ttl zoneTTL (txt "v=spf1 ip4:138.201.155.128 ip6:2a01:4f8:1c17:d953/64 -all"))
     ];
+    DNSKEY = [
+      {
+        flags.zoneSigningKey = true;
+        flags.secureEntryPoint = true;
+        algorithm = "ecdsap256sha256";
+        publicKey = "5biiUR5bWhxr+PzyniLJp+FKln03EvQTWw+fg88NxwThgvSDL56zEhqkHqh8mObDkEqQ3LdM5LaOxwdDhWVJ9A==";
+        ttl = zoneTTL;
+      }
+      {
+        flags.zoneSigningKey = true;
+        algorithm = "ecdsap256sha256";
+        publicKey = "EuNM0AynEfbLZf5Hn5eMi31X0jW/NxpayoSQpnRuoko9JWQRBg3nPbqTWSPKHaCKrfs6zVRMoHtSq2Hql1Z+dw==";
+      }
+    ];
     subdomains = {
       _openpgpkey.subdomains."54b3cc365051676b4d96f469a59f31d12776c4891502822dfbe8a6b2" = {
         OPENPGPKEY = [
@@ -170,7 +183,10 @@ aDQoPCCpuWEYyqKIEaKGXNFPvlsO6y551biM3raNjq5kEpb3wIDAQAB"))
           digest = "668D4621260ADD9CE5B272A84ADE20E92FC43CBC59893A5843FA8ED8A356DB2B";
         }];
       };
+      _acme-challenge = delegateTo [
+        "ns2.darkkirb.de"
+      ];
     };
   };
 in
-dns.lib.toString "chir.rs" zone
+zone

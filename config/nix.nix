@@ -30,7 +30,7 @@
         systems = [ "x86_64-linux" ];
         maxJobs = 12;
         speedFactor = 1;
-        supportedFeatures = [ "big-parallel" "gccarch-znver1" ];
+        supportedFeatures = [ "gccarch-znver1" ];
       }
       #{
       #  hostName = "build-pc";

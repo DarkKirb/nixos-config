@@ -30,8 +30,11 @@ rec {
         (name: {
           name = name;
           value = nixpkgs.lib.nixosSystem
-            {
+            rec {
               system = "x86_64-linux";
+              specialArgs = args // {
+                inherit system;
+              };
               modules = [
                 (./config + "/${name}.nix")
                 ./config/default.nix
