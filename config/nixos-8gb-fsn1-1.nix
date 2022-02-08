@@ -162,8 +162,8 @@
 
   networking.wireguard.interfaces."wg0".ips = [ "fd0d:a262:1fa6:e621:b4e1:08ff:e658:6f49/64" ];
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix false;
-  nix.binaryCaches = lib.mkForce [
+  nix.settings.substituters = lib.mkForce [
     "https://minio.int.chir.rs/cache.int.chir.rs/"
   ];
-  nix.buildCores = 2;
+  nix.settings.cores = 2;
 }

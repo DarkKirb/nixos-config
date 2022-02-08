@@ -4,13 +4,16 @@
   ];
   nixpkgs.config.allowUnfree = true;
   nix = {
+    settings = {
+      sandbox = true;
+      trusted-users = [ "@wheel" ];
+      require-sigs = false;
+      auto-optimise-store = true;
+    };
     package = pkgs.nixUnstable;
-    useSandbox = true;
-    autoOptimiseStore = true;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    trustedUsers = [ "@wheel" ];
     gc = {
       automatic = true;
       dates = "weekly";
@@ -20,7 +23,6 @@
       automatic = true;
       dates = [ "weekly" ];
     };
-    requireSignedBinaryCaches = false; # internal binary cache is unsigned
   };
   system.autoUpgrade = {
     enable = true;
