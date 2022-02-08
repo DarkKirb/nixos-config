@@ -27,14 +27,14 @@
     buildMachines = [
       {
         hostName = "build-nas";
-        system = "x86_64-linux";
+        systems = [ "x86_64-linux" "i686-linux" ];
         maxJobs = 12;
         speedFactor = 1;
         supportedFeatures = [ "big-parallel" "gccarch-znver1" ];
       }
       {
         hostName = "build-pc";
-        system = "x86_64-linux";
+        systems = [ "x86_64-linux" "i686-linux" ];
         maxJobs = 16;
         speedFactor = 1;
         supportedFeatures = [ "big-parallel" "gccarch-znver2" ];
