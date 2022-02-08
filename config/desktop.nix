@@ -48,4 +48,13 @@ in
     ACTION=="remove", ENV{ID_VENDOR_ID}=="1050", ENV{ID_MODEL_ID}=="0407", RUN+="${lockscreen-all}"
   '';
   programs.steam.enable = true;
+  nixpkgs.overlays = [
+    (curr: prev: {
+      steam = prev.steam.override {
+        extraPkgs = pkgs: with pkgs; [
+          mono
+        ];
+      };
+    })
+  ];
 }
