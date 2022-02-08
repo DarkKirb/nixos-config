@@ -10,7 +10,6 @@
       type = "postgres";
     };
     domain = "git.chir.rs";
-    dump.enable = true;
     httpAddress = "127.0.0.1";
     lfs.enable = true;
     rootUrl = "https://git.chir.rs/";
