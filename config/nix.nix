@@ -32,13 +32,13 @@
         speedFactor = 1;
         supportedFeatures = [ "big-parallel" "gccarch-znver1" ];
       }
-      {
-        hostName = "build-pc";
-        systems = [ "x86_64-linux" "i686-linux" ];
-        maxJobs = 16;
-        speedFactor = 1;
-        supportedFeatures = [ "big-parallel" "gccarch-znver2" ];
-      }
+      #{
+      #  hostName = "build-pc";
+      #  systems = [ "x86_64-linux" "i686-linux" ];
+      #  maxJobs = 16;
+      #  speedFactor = 1;
+      #  supportedFeatures = [ "big-parallel" "gccarch-znver2" ];
+      #}
     ];
     distributedBuilds = true;
   };
