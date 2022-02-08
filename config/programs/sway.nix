@@ -54,7 +54,7 @@
           command = "${pkgs.mako}/bin/mako";
         }
         {
-          command = "${pkgs.swayidle}/bin/swayidle -w timeout 300 '${pkgs.swaylock}/bin/swaylock' timeout 305 '${pkgs.sway}/bin/swaymsg \"output * dpms off\"' resume '${pkgs.sway}/bin/swaymsg \"output * dpms on\"' lock '${pkgs.swaylock}/bin/swaylock' unlock '${pkgs.procps}/bin/pkill swayidle'";
+          command = "${pkgs.swayidle}/bin/swayidle -w timeout 300 '${pkgs.swaylock}/bin/swaylock' timeout 305 '${pkgs.sway}/bin/swaymsg \"output * dpms off\"' resume '${pkgs.sway}/bin/swaymsg \"output * dpms on\"' lock '${pkgs.swaylock}/bin/swaylock' unlock '${pkgs.procps}/bin/pkill swaylock'";
         }
       ];
     };
