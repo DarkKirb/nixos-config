@@ -27,7 +27,7 @@
     buildMachines = [
       {
         hostName = "build-nas";
-        systems = [ "x86_64-linux" "i686-linux" ];
+        systems = [ "x86_64-linux" ];
         maxJobs = 12;
         speedFactor = 1;
         supportedFeatures = [ "big-parallel" "gccarch-znver1" ];
