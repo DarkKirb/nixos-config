@@ -9,6 +9,7 @@
       trusted-users = [ "@wheel" ];
       require-sigs = false;
       auto-optimise-store = true;
+      builders-use-substitutes = true;
     };
     package = pkgs.nixUnstable;
     extraOptions = ''
@@ -23,6 +24,16 @@
       automatic = true;
       dates = [ "weekly" ];
     };
+    buildMachines = [
+      {
+        hostName = "build-nas";
+        system = "x86_64-linux";
+        maxJobs = 12;
+        speedFactor = 1;
+        supportedFeatures = [ "big-parallel" ];
+      }
+    ];
+    distributedBuilds = true;
   };
   system.autoUpgrade = {
     enable = true;
