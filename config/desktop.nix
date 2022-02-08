@@ -47,4 +47,5 @@ in
   services.udev.extraRules = ''
     ACTION=="remove", ENV{ID_VENDOR_ID}=="1050", ENV{ID_MODEL_ID}=="0407", RUN+="${lockscreen-all}"
   '';
+  programs.steam.enable = true;
 }

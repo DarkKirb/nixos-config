@@ -1,5 +1,9 @@
 { ... }: {
   nixpkgs.overlays = [
-    (self: prev: { })
+    (self: prev: {
+      coreutils = prev.coreutils.overrideAttrs (old: {
+        checkPhase = "true";
+      });
+    })
   ];
 }
