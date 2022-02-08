@@ -54,9 +54,7 @@ in
         extraPkgs = pkgs: with pkgs; [
           mono
         ];
-        nativeOnly = true;
       };
     })
   ];
-  nixpkgs.config.allowBroken = true;
 }
