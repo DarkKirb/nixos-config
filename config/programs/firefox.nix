@@ -187,6 +187,8 @@
           "browser.ssl_override_behavior" = 1;
           # use ESNI 
           "network.security.esni.enabled" = true;
+          # Enable Userchrome
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         };
 
         userChrome = ''
