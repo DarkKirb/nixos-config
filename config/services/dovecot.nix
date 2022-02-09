@@ -127,7 +127,7 @@ in
         }
       }
       first_valid_uid = 76
-      last_valid_uid = 76
+      last_valid_uid = 987
     '';
     user = "dovecot";
     group = "dovecot";
