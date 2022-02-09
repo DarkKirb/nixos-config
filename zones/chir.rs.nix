@@ -92,7 +92,7 @@ let
     SOA = {
       nameServer = "ns2.darkkirb.de.";
       adminEmail = "lotte@chir.rs";
-      serial = 1;
+      serial = 2;
     };
     NS = [
       "ns2.darkkirb.de."
@@ -134,6 +134,7 @@ let
     ];
     TXT = [
       (ttl zoneTTL (txt "v=spf1 ip4:138.201.155.128 ip6:2a01:4f8:1c17:d953/64 -all"))
+      (ttl zoneTTL (txt "google-site-verification=qXjyR8La2S_BMayWYxan-9PB16aChjgKMRI2NGSTAds"))
     ];
     DNSKEY = [
       {

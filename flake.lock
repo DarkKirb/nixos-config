@@ -51,11 +51,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1644393236,
-        "narHash": "sha256-YbcVXwu23Bbw5icGhkPxEFBluK92OFwxWRgZXE6JvQk=",
+        "lastModified": 1644390195,
+        "narHash": "sha256-eU6y5oYs8HUS7Mmo6h8qsl+gLa4zLlhIl0Ryk4e4r2M=",
         "owner": "DarkKirb",
         "repo": "dns.nix",
-        "rev": "3d51f7061e958fa4f0dd74401c4187d1fb11286b",
+        "rev": "4d3d32b0fd221895bf3da0e348056260c3a77636",
         "type": "github"
       },
       "original": {
