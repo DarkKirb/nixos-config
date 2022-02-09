@@ -49,9 +49,6 @@
   };
 
   services.nginx.virtualHosts."git.chir.rs" = {
-    forceSSL = true;
-    http2 = true;
-    listenAddresses = [ "0.0.0.0" "[::]" ];
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
     locations."/" = {

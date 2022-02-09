@@ -14,9 +14,6 @@ in
     wantedBy = [ "multi-user.target" ];
   };
   services.nginx.virtualHosts."darkkirb.de" = {
-    forceSSL = true;
-    http2 = true;
-    listenAddresses = [ "0.0.0.0" "[::]" ];
     sslCertificate = "/var/lib/acme/darkkirb.de/cert.pem";
     sslCertificateKey = "/var/lib/acme/darkkirb.de/key.pem";
     serverAliases = [ "www.darkkirb.de" ];
@@ -29,9 +26,8 @@ in
     };
   };
   services.nginx.virtualHosts."static.darkkirb.de" = {
+    forceSSL = false;
     addSSL = true;
-    http2 = true;
-    listenAddresses = [ "0.0.0.0" "[::]" ];
     sslCertificate = "/var/lib/acme/darkkirb.de/cert.pem";
     sslCertificateKey = "/var/lib/acme/darkkirb.de/key.pem";
     locations."/" = {

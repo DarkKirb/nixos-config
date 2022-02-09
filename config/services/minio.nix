@@ -8,8 +8,6 @@ in
     rootCredentialsFile = "/run/secrets/security/minio/credentials_file";
   };
   services.nginx.virtualHosts."minio.int.chir.rs" = {
-    forceSSL = true;
-    http2 = true;
     listenAddresses = listenIPs;
     sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
@@ -19,8 +17,6 @@ in
     };
   };
   services.nginx.virtualHosts."minio-console.int.chir.rs" = {
-    forceSSL = true;
-    http2 = true;
     listenAddresses = listenIPs;
     sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
