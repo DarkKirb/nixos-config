@@ -20,7 +20,7 @@ in
     enableQuota = true;
     mailGroup = "dovecot";
     mailUser = "dovecot";
-    mailLocation = "maildir:/var/vmail/%h/%n";
+    mailLocation = "maildir:/var/vmail/%d/%n";
     mailPlugins = {
       globally.enable = [
         "old_stats"
