@@ -126,6 +126,8 @@ in
           group = postfix
         }
       }
+      first_valid_uid = 76
+      last_valid_uid = 76
     '';
     user = "dovecot";
     group = "dovecot";
