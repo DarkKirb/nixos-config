@@ -37,7 +37,7 @@ in
         extraConfig = ''
           update-policy {
             grant certbot. name _acme-challenge.chir.rs. txt;
-          }
+          };
         '';
       };
       "int.chir.rs" = {
