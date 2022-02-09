@@ -1,6 +1,7 @@
-{ pkgs, config, ... }:
+{ pkgs, lib, config, ... }:
 let
   listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
+  listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3") listenIPs);
 in
 {
   services.minio = {
@@ -15,6 +16,7 @@ in
       proxyPass = "http://127.0.0.1:9000";
       proxyWebsockets = true;
     };
+    extraConfig = listenStatements;
   };
   services.nginx.virtualHosts."minio-console.int.chir.rs" = {
     listenAddresses = listenIPs;
@@ -24,6 +26,7 @@ in
       proxyPass = "http://127.0.0.1:9001";
       proxyWebsockets = true;
     };
+    extraConfig = listenStatements;
   };
   sops.secrets."security/minio/credentials_file" = { };
   systemd.services.minio = {

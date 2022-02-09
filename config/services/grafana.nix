@@ -1,6 +1,7 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 let
   listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
+  listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3") listenIPs);
 in
 {
   imports = [
@@ -21,5 +22,6 @@ in
       proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
       proxyWebsockets = true;
     };
+    extraConfig = listenStatements;
   };
 }

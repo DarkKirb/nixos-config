@@ -38,7 +38,10 @@
       ];
       config.forceSSL = lib.mkDefault true;
       config.http2 = lib.mkDefault true;
-      config.http3 = lib.mkDefault true;
+      config.extraConfig = lib.mkDefault ''
+        listen 0.0.0.0:443 http3;
+        listen [::]:443 http3;
+      '';
     });
   };
 }
