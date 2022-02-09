@@ -1,7 +1,10 @@
 { pkgs, lib, config, ... }:
 let
   listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
-  listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3") listenIPs);
+  listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
+    add_header Alt-Svc 'h3=":443"';
+    add_header QUIC-Status $quic;
+  '';
 in
 {
   services.minio = {

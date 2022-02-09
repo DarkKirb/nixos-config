@@ -41,6 +41,8 @@
       config.extraConfig = lib.mkDefault ''
         listen 0.0.0.0:443 http3;
         listen [::]:443 http3;
+        add_header Alt-Svc 'h3=":443"';
+        add_header QUIC-Status $quic;
       '';
     });
   };
