@@ -10,7 +10,8 @@ in
   imports = [
     (signzone {
       inherit dns;
-      keyname = "services/dns/rs/chir/51207";
+      ksk = "services/dns/rs/chir/32969";
+      zsk = "services/dns/rs/chir/51207";
       zone = chir-rs;
       zonename = "staging.chir.rs";
     })
