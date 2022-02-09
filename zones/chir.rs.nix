@@ -60,7 +60,7 @@ let
       {
         svcPriority = 1;
         targetName = ".";
-        alpn = [ "http/1.1" "h2" ];
+        alpn = [ "http/1.1" "h2" "h3" ];
         ipv4hint = [ "138.201.155.128" ];
         ipv6hint = [ "2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49" ];
         ttl = zoneTTL;
@@ -92,7 +92,7 @@ let
     SOA = {
       nameServer = "ns2.darkkirb.de.";
       adminEmail = "lotte@chir.rs";
-      serial = 2;
+      serial = 3;
     };
     NS = [
       "ns2.darkkirb.de."
