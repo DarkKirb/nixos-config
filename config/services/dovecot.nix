@@ -131,17 +131,6 @@ in
     '';
     user = "dovecot";
     group = "dovecot";
-    sieveScripts = {
-      after = builtins.toFile "spam.sieve" ''
-        require "fileinto";
-
-        if header :is "X-Spam" "Yes" {
-            fileinto "Junk";
-            stop;
-        }
-      '';
-    };
-
   };
   services.prometheus.exporters.dovecot = {
     enable = true;
