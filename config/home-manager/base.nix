@@ -73,7 +73,7 @@
       signature.text = ''
         Charlotte
 
-        https://darkkirb.de • GPG Key 3CEF 5DDA 915A ECB0 • https://keybase.io/darkkirb
+        https://darkkirb.de • GPG Key EF5F 367A 95E0 BFA6 • https://keybase.io/darkkirb
 
         This message was sent from an old email address. My new email address is lotte@chir.rs.
         Please update your contacts accordingly
@@ -83,6 +83,8 @@
       userName = "darkkirb@darkkirb.de";
     };
     lotte = darkkirb // {
+      imap.host = "mail.chir.rs";
+      smtp.host = "mail.chir.rs";
       address = "lotte@chir.rs";
       aliases = [ "postmaster@chir.rs" ];
       passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/email/lotte@chir.rs";
@@ -90,7 +92,7 @@
       signature.text = ''
         Charlotte
 
-        https://darkkirb.de • GPG Key 3CEF 5DDA 915A ECB0 • https://keybase.io/darkkirb
+        https://darkkirb.de • GPG Key EF5F 367A 95E0 BFA6 • https://keybase.io/darkkirb
       '';
       signature.showSignature = "append";
       userName = "lotte@chir.rs";
