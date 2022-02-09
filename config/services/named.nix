@@ -13,7 +13,7 @@ in
       ksk = "services/dns/rs/chir/32969";
       zsk = "services/dns/rs/chir/51207";
       zone = chir-rs;
-      zonename = "staging.chir.rs";
+      zonename = "chir.rs";
     })
   ];
 
@@ -28,15 +28,17 @@ in
         file = "darkkirb.de.zone";
       };
       "chir.rs" = {
-        master = false;
-        masters = [
-          "fd00:e621:e621::1"
-        ];
-        file = "chir.rs.zone";
-      };
-      "staging.chir.rs" = {
         master = true;
-        file = "/var/lib/named/staging.chir.rs";
+        file = "/var/lib/named/chir.rs";
+      };
+      "_acme-challenge.chir.rs" = {
+        master = true;
+        file = "_acme-challenge.chir.rs";
+        extraConfig = ''
+          update-policy {
+            grant certbot. name _acme-challenge.chir.rs. txt;
+          }
+        '';
       };
       "int.chir.rs" = {
         master = false;
@@ -57,6 +59,7 @@ in
       statistics-channels {
         ${toString listenEntries}
       };
+      include "/run/secrets/services/dns/named-keys";
     '';
     extraOptions = ''
       allow-recursion {
@@ -79,4 +82,5 @@ in
     bindURI = "http://${internalIP.listenIP}:8653/";
     listenAddress = internalIP.listenIP;
   };
+  sops.secrets."services/dns/named-keys" = { };
 }

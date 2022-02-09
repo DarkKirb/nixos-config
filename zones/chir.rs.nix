@@ -166,7 +166,6 @@ let
       mail = createZone { };
 
       int = delegateTo [
-        "ns1.darkkirb.de."
         "ns2.darkkirb.de."
       ] // {
         DS = [{
