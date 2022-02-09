@@ -15,7 +15,7 @@ in
       ${pkgs.coreutils}/bin/mkdir -pv /var/lib/named
 
       # Sign the zone and write it to /var/lib/named
-      ${pkgs.bind}/bin/dnssec-signzone -k /run/secrets/${ksk} -a -3 $(${pkgs.coreutils}/bin/head -c 16 /dev/urandom | ${pkgs.coreutils}/bin/sha256sum | ${pkgs.coreutils}/bin/cut -b 1-32) -f /var/lib/named/${zonename} ${zoneFile} /run/secrets/${zsk}
+      ${pkgs.bind}/bin/dnssec-signzone -o ${zonename} -k /run/secrets/${ksk} -a -3 $(${pkgs.coreutils}/bin/head -c 16 /dev/urandom | ${pkgs.coreutils}/bin/sha256sum | ${pkgs.coreutils}/bin/cut -b 1-32) -f /var/lib/named/${zonename} ${zoneFile} /run/secrets/${zsk}
       ${pkgs.bind}/bin/rndc reload ${zonename} || true
     '';
   };
