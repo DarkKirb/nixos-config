@@ -30,10 +30,16 @@ in
       "chir.rs" = {
         master = true;
         file = "/var/lib/named/chir.rs";
+        slaves = [
+          "fd00:e621:e621::1"
+        ];
       };
       "_acme-challenge.chir.rs" = {
         master = true;
         file = "_acme-challenge.chir.rs";
+        slaves = [
+          "fd00:e621:e621::1"
+        ];
         extraConfig = ''
           update-policy {
             grant certbot. name _acme-challenge.chir.rs. txt;
