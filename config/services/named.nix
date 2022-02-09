@@ -82,5 +82,5 @@ in
     bindURI = "http://${internalIP.listenIP}:8653/";
     listenAddress = internalIP.listenIP;
   };
-  sops.secrets."services/dns/named-keys" = { };
+  sops.secrets."services/dns/named-keys" = { owner = "named"; };
 }
