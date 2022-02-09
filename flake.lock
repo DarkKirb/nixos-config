@@ -51,15 +51,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1642952832,
-        "narHash": "sha256-eU6y5oYs8HUS7Mmo6h8qsl+gLa4zLlhIl0Ryk4e4r2M=",
+        "lastModified": 1644390205,
+        "narHash": "sha256-pRGotaC+jwriPr1SFX1jmzm5g1KDbq1FWnW473yf2jE=",
         "owner": "DarkKirb",
         "repo": "dns.nix",
-        "rev": "3fa62dfd5050ab363d1f3cdf2d1cf4c5bd91fe99",
+        "rev": "81ecd05eae0710e9f76f43e9d1e5d6434be68be6",
         "type": "github"
       },
       "original": {
         "owner": "DarkKirb",
+        "ref": "master",
         "repo": "dns.nix",
         "type": "github"
       }
@@ -277,11 +278,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1644297296,
-        "narHash": "sha256-SSew5KCJ33jnlDzgTFp8NIIlP5N81AEGc+D0VAumSyQ=",
+        "lastModified": 1644390308,
+        "narHash": "sha256-8xW6+x2xmGlPQawNF68AVP2GbzwQY8Y2bU0fUVwia08=",
         "ref": "main",
-        "rev": "aefc19d2d557a333963723047ca07ccdad75aa17",
-        "revCount": 352093,
+        "rev": "ef8e90c9f72331fc22b240e5afb91f49020a62be",
+        "revCount": 352308,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/nixpkgs"
       },
@@ -293,11 +294,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1644347272,
-        "narHash": "sha256-cg6bIlXgaQCDrbLb6/xi5WctGlLJmUUIjyQ+Dr386q8=",
+        "lastModified": 1644379669,
+        "narHash": "sha256-w6/mDLvfG6YeiGsHy2r6gXBBozKJwjpkChIAk3gyR1I=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "1f06ab35d792fa2ed902ac3b3f6cbeed2ae14436",
+        "rev": "925ae10cc7bbeaba05f0a0da14a001265233dc2e",
         "type": "github"
       },
       "original": {
@@ -317,11 +318,11 @@
         "quazip": "quazip"
       },
       "locked": {
-        "lastModified": 1643978409,
-        "narHash": "sha256-7qV0J4czd2nNfuBDMRJiwuMB0Obs/DIJDyJoEuLt06U=",
+        "lastModified": 1644364971,
+        "narHash": "sha256-EDEPVbY3fq6OESaQfeDfIBeyNxft7Ilq1Q8U8JR1me0=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "00e12b776bbdc3db5bc8456b046117218ad12b83",
+        "rev": "5284d604ef1c56df6cbc9f70d109a35bb459fae2",
         "type": "github"
       },
       "original": {

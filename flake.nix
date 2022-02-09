@@ -14,7 +14,7 @@ rec {
   inputs.nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
   inputs.polymc.url = "github:PolyMC/PolyMC";
   inputs.polymc.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.dns.url = "github:DarkKirb/dns.nix";
+  inputs.dns.url = "github:DarkKirb/dns.nix?ref=master";
   inputs.dns.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, polymc, ... } @ args: {
