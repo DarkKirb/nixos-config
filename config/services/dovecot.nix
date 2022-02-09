@@ -18,6 +18,7 @@ in
     enableLmtp = true;
     enablePop3 = true;
     enableQuota = true;
+    modules = [ pkgs.dovecot_pigeonhole ];
     mailGroup = "dovecot";
     mailUser = "dovecot";
     mailLocation = "maildir:/var/vmail/%d/%n";
