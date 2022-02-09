@@ -9,8 +9,8 @@
         trust = 5;
       }
       {
-        source = ../../keys/darkkirb_darkkirb.de.pgp;
-        trust = 5;
+        source = ../../keys/miifox_miifox.net.pgp;
+        trust = 3;
       }
       {
         source = ../../keys/mdelenk_hs-mittweida.de.pgp;
