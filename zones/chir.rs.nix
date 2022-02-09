@@ -166,8 +166,8 @@ let
       mail = createZone { };
 
       int = delegateTo [
-        "ns1.darkkirb.de"
-        "ns2.darkkirb.de"
+        "ns1.darkkirb.de."
+        "ns2.darkkirb.de."
       ] // {
         DS = [{
           keyTag = 35133;
@@ -177,7 +177,7 @@ let
         }];
       };
       _acme-challenge = delegateTo [
-        "ns2.darkkirb.de"
+        "ns2.darkkirb.de."
       ];
     };
   };
