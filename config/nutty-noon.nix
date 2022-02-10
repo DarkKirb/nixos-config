@@ -155,7 +155,7 @@
 
   hardware.opengl.driSupport32Bit = true;
 
-  nix.settings.substituters = lib.mkForce [
+  nix.settings.substituters = [
     "http://192.168.2.1:9000/cache.int.chir.rs/"
   ];
   nix.settings.cores = 16;
