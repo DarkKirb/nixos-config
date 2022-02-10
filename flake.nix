@@ -3,6 +3,7 @@ rec {
 
   # Use NixOS unstable
   inputs.nixpkgs.url = "git+https://git.chir.rs/darkkirb/nixpkgs?ref=main";
+  inputs.cargo2nix.url = "github:cargo2nix/cargo2nix/master"; # dummy
   inputs.home-manager.url = "github:nix-community/home-manager";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
   inputs.sops-nix.url = github:Mic92/sops-nix;
