@@ -158,4 +158,6 @@
     # tunable expresses the interval between those wakeups, in 100'ths of a second (Default is 500).
     "vm.dirty_writeback_centisecs" = "1500";
   };
+  networking.networkmanager.enable = true;
+  users.users.darkkirb.extraGroups = [ "networkmanager" ];
 }
