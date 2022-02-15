@@ -213,6 +213,7 @@ let dsquotes = "''"; in
       coc-nvim
       vim-airline
       copilot-vim
+      rust-vim # for proper syntax highlighting
     ];
     extraPackages = with pkgs; [
       nodejs-17_x

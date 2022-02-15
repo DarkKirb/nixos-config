@@ -169,4 +169,15 @@
     "riscv64-linux"
     "wasm32-wasi"
   ];
+  # Allow high-res audio on PC
+  services.pipewire.config.client.context.properties.default.clock.allowed-rates = [
+    44100
+    48000
+    88200
+    96000
+    176400
+    192000
+    352800
+    384000
+  ];
 }
