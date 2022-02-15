@@ -170,8 +170,8 @@
     "wasm32-wasi"
   ];
   # Allow high-res audio on PC
-  services.pipewire.config.client."context.properties"."default.clock.rate" = 384000;
-  services.pipewire.config.client."context.properties"."default.clock.allowed-rates" = [
+  services.pipewire.config.pipewire."context.properties"."default.clock.rate" = 384000;
+  services.pipewire.config.pipewire."context.properties"."default.clock.allowed-rates" = [
     44100
     48000
     88200
