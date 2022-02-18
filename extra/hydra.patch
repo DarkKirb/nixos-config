@@ -1,5 +1,5 @@
 diff --git a/src/lib/Hydra/Plugin/GiteaStatus.pm b/src/lib/Hydra/Plugin/GiteaStatus.pm
-index 426c93f5..0ffc7cf6 100644
+index 426c93f5..c1f609eb 100644
 --- a/src/lib/Hydra/Plugin/GiteaStatus.pm
 +++ b/src/lib/Hydra/Plugin/GiteaStatus.pm
 @@ -52,34 +52,51 @@ sub common {
@@ -24,8 +24,8 @@ index 426c93f5..0ffc7cf6 100644
 +            my $sendStatus = sub {
 +                my ($input, $host, $owner, $repo, $rev) = @_;
 +
-+                my $accessToken = $self->{config}->{gitea_authorization}->{$repoOwner};
-+                my $url = "$host/api/v1/repos/$repoOwner/$repoName/statuses/$rev";
++                my $accessToken = $self->{config}->{gitea_authorization}->{$owner};
++                my $url = "$host/api/v1/repos/$owner/$repo/statuses/$rev";
 +                
 +                print STDERR "GiteaStatus POSTing $state to $url\n";
 +                my $req = HTTP::Request->new('POST', $url);
