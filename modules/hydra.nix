@@ -46,7 +46,7 @@ in
             GITEA_TOKEN="$(head -n 1 ${cfg.giteaTokenFile})"
           ''}
 
-          sed -i -e "s|#gitea_token#|$(GITEA_TOKEN)|" ${baseDir}/hydra.conf
+          sed -i -e "s|#gitea_token#|$GITEA_TOKEN|" ${baseDir}/hydra.conf
 
           mkdir -m 0700 -p ${baseDir}/www
           chown hydra-www.hydra ${baseDir}/www
