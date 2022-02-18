@@ -49,8 +49,8 @@
       "--no-write-lock-file"
       "-L" # print build logs
     ];
-    dates = "daily";
-    randomizedDelaySec = "86400";
+    dates = "hourly";
+    randomizedDelaySec = "3600";
   };
   systemd.services.nix-daemon.environment.TMPDIR = "/build";
 }
