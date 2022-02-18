@@ -14,7 +14,7 @@ rec {
   #inputs.chir-rs.inputs.nixpkgs.follows = "nixpkgs"; # nixpkgs regression?
   inputs.nur.url = "github:nix-community/NUR";
   inputs.nix-gaming.url = "github:darkkirb/nix-gaming?ref=fix-wine-deriv-path";
-  inputs.nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
+  #inputs.nix-gaming.inputs.nixpkgs.follows = "nixpkgs"; # rebuilds wine-tkg literally every goddamn time
   inputs.polymc.url = "github:PolyMC/PolyMC";
   inputs.polymc.inputs.nixpkgs.follows = "nixpkgs";
   inputs.dns.url = "github:DarkKirb/dns.nix?ref=master";
