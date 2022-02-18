@@ -2,6 +2,7 @@
   imports = [
     ./postgres.nix
     ../../modules/hydra.nix
+    ./copy-to-cache.nix
   ];
   services.hydra = {
     enable = true;

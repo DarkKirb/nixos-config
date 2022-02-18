@@ -230,9 +230,7 @@
     },
     "nix-gaming": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_4",
         "utils": "utils"
       },
       "locked": {
@@ -332,11 +330,26 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1645212424,
-        "narHash": "sha256-LCWNcC7OgDVwcFW/RAFhqC8DzOTdZf9bHPV/ZyX6pMA=",
+        "lastModified": 1645162597,
+        "narHash": "sha256-S4sRtJBqVlBg4H7EPAv0NFofGNCayHEMpLnUzGNCCKM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "78164ce55599edd236fc095da6430b3b4c4acb08",
+        "rev": "b715fcd9d9e26b99182d902c6b5694be0daae6d5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1645212446,
+        "narHash": "sha256-WIUmLELXjBJJjoob0jHAagP6C3tTpJ7qaJdau8A5YF8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "03b52fe38897fc5705a9045ab04be68d6d49f702",
         "type": "github"
       },
       "original": {
@@ -407,7 +420,7 @@
         "dns": "dns",
         "home-manager": "home-manager",
         "nix-gaming": "nix-gaming",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "nixpkgs-soundtouch": "nixpkgs-soundtouch",
         "nixpkgs-tdesktop": "nixpkgs-tdesktop",
         "nur": "nur",

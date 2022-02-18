@@ -7,7 +7,7 @@ in
     description = "Copy nix cache to cache.int.chir.rs";
     script = ''
       #!${pkgs.bash}/bin/bash
-      ${pkgs.nix}/bin/nix copy --to 's3://cache.int.chir.rs?scheme=https&endpoint=minio.int.chir.rs' --all
+      ${pkgs.nix}/bin/nix copy --to 's3://cache.int.chir.rs?scheme=http&endpoint=192.168.2.1' --all
     '';
     unitConfig = {
       User = "darkkirb";
@@ -20,8 +20,8 @@ in
     requires = [ "copy-to-cache.service" ];
     wantedBy = [ "multi-user.target" ];
     timerConfig = {
-      OnUnitActiveSec = 3600;
-      OnBootSec = 3600;
+      OnUnitActiveSec = 300;
+      OnBootSec = 300;
     };
   };
 }
