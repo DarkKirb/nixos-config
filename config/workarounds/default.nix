@@ -7,6 +7,11 @@
       });
       soundtouch = nixpkgs-soundtouch.legacyPackages.${system}.soundtouch;
       tdesktop = nixpkgs-tdesktop.legacyPackages.${system}.tdesktop;
+      hydra = prev.hydra.overrideAttrs (old: {
+        patches = [
+          ../../extra/hydra.patch
+        ];
+      });
     })
   ];
 }
