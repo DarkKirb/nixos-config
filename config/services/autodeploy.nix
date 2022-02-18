@@ -10,10 +10,10 @@ let script = ''
 
   deploy_finished() {
     MAIN_SHA=$(${pkgs.curl}/bin/curl -X GET \
-      "https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/branches/main?token=$TOKEN"
+      "https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/branches/main?token=$TOKEN" \
       -H "accept: application/json" | ${pkgs.jq}/bin/jq -r '.commit.id')
     STAGING_SHA=$(${pkgs.curl}/bin/curl -X GET \
-      "https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/branches/staging?token=$TOKEN"
+      "https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/branches/staging?token=$TOKEN" \
       -H "accept: application/json" | ${pkgs.jq}/bin/jq -r '.commit.id')
 
     if [[ "$MAIN_SHA" == "$STAGING_SHA" ]]; then
