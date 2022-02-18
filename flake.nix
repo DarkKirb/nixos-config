@@ -20,7 +20,7 @@ rec {
   inputs.dns.url = "github:DarkKirb/dns.nix?ref=master";
   inputs.dns.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, polymc, ... } @ args: {
+  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, polymc, ... } @ args: rec {
     nixosConfigurations =
       let
         systems = [
@@ -57,6 +57,11 @@ rec {
             };
         })
         systems);
+    hydraJobs = builtins.mapAttrs
+      (name: value: {
+        x86_64-linux = value.config.system.build.toplevel;
+      })
+      nixosConfigurations;
   };
 }
 

@@ -185,6 +185,8 @@
   ];
   nix.buildMachines = [
     {
+      maxJobs = 16;
+      speedFactor = 2;
       hostName = "localhost";
       systems = [
         "armv7l-linux"
