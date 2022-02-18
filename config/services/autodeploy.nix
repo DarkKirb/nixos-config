@@ -30,7 +30,10 @@ let script = ''
       return 0
     fi
 
+    ${pkgs.gitMinimal}/bin/git checkout staging
+    ${pkgs.gitMinimal}/bin/git reset --hard $MAIN_SHA
     ${pkgs.gitMinimal}/bin/git push origin staging
+    ${pkgs.gitMinimal}/bin/git checkout main
   }
 
   deploy_finished
