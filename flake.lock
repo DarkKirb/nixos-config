@@ -199,11 +199,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1644706973,
-        "narHash": "sha256-xOyxrhc5V79u0ZNmnPmJbY3ngtp43dNISEmrb8Ie6wQ=",
+        "lastModified": 1645140957,
+        "narHash": "sha256-WTJzLSCDLBI537o2L/3kRyqEV5YRT7+1QSGryeKReHE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7c2ae0bdd20ddcaafe41ef669226a1df67f8aa06",
+        "rev": "4f4165a8b9108818ab0193bbd1a252106870b2a2",
         "type": "github"
       },
       "original": {
@@ -236,15 +236,16 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1644776878,
-        "narHash": "sha256-FW/kd7wOz8ifeOGjDcBaDpz4G89yrozBpTxTezkijoY=",
-        "owner": "fufexan",
+        "lastModified": 1645164356,
+        "narHash": "sha256-GBLIjTR5t9BSdS0bIAZa4ER4NUzYKFvbr6p+7yEQ6O8=",
+        "owner": "darkkirb",
         "repo": "nix-gaming",
-        "rev": "7149742fc7230380cfd612f1a73be47b88ee8958",
+        "rev": "895e21feec4d0fe3912957d9e75d6f3cf9722853",
         "type": "github"
       },
       "original": {
-        "owner": "fufexan",
+        "owner": "darkkirb",
+        "ref": "fix-wine-deriv-path",
         "repo": "nix-gaming",
         "type": "github"
       }
@@ -261,6 +262,38 @@
       "original": {
         "owner": "nixos",
         "ref": "release-21.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-soundtouch": {
+      "locked": {
+        "lastModified": 1643388593,
+        "narHash": "sha256-ARKH3ICvFsQduFQ+nL4mIS88PQy0Oe/DvultqBo4ZoQ=",
+        "owner": "darkkirb",
+        "repo": "nixpkgs",
+        "rev": "6c51e64b0137169142652cb692c4a365936d5fae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "darkkirb",
+        "ref": "soundtouch-2.3.1",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-tdesktop": {
+      "locked": {
+        "lastModified": 1644616378,
+        "narHash": "sha256-CCvzYugjwMqELTCl/IuguJoGs/gH6FECD3Al5BdKgZc=",
+        "owner": "yshym",
+        "repo": "nixpkgs",
+        "rev": "6a5f3d0a4e1724f70b0d1ee1506fa5391f471941",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yshym",
+        "ref": "tdesktop-3.5.1",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -299,27 +332,26 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1644927249,
-        "narHash": "sha256-iGCP03dPz1c9AOyzd0XXaZt9gUj9HZZemNuu7+FkPe4=",
-        "ref": "main",
-        "rev": "69c3165e1d7722d6796d703a532e495134510bba",
-        "revCount": 354930,
-        "type": "git",
-        "url": "https://git.chir.rs/darkkirb/nixpkgs"
+        "lastModified": 1645185725,
+        "narHash": "sha256-dI58jOZ2ny+UUrrA7yyIcMa90zY61+1izvbNx7eZJvI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "997d3f8fcc3dcfaa92082e21a064aa596b55ee5c",
+        "type": "github"
       },
       "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "https://git.chir.rs/darkkirb/nixpkgs"
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nur": {
       "locked": {
-        "lastModified": 1644954787,
-        "narHash": "sha256-UBlXGc5TUyH291u1SDaVAGMCRKMP2u9DGuw3r6gYpkg=",
+        "lastModified": 1645182018,
+        "narHash": "sha256-esXJXkK70fvlztdhqE+tYJtQliwOfvZvvT/ZiwRGW6A=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "1e132490fc59d22d4a24bbafa713c8183eec59b6",
+        "rev": "9bfbaf7fcf989f4fe5ac3818f4e3d740d4d90143",
         "type": "github"
       },
       "original": {
@@ -339,11 +371,11 @@
         "quazip": "quazip"
       },
       "locked": {
-        "lastModified": 1644854213,
-        "narHash": "sha256-YtZCMjfjGOjyMkxkqmBkSbnEVjp+PrSg8lJGDIC145Y=",
+        "lastModified": 1645141439,
+        "narHash": "sha256-Vc+IQ4YwfnC1CgDKyjOa6DedLWp2tvpQqW81MsixbXw=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "2cd837896dc66344b53141325d76bcb045036abf",
+        "rev": "12c8a044584019302137de41ae5e437eafefa7bf",
         "type": "github"
       },
       "original": {
@@ -376,6 +408,8 @@
         "home-manager": "home-manager",
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-soundtouch": "nixpkgs-soundtouch",
+        "nixpkgs-tdesktop": "nixpkgs-tdesktop",
         "nur": "nur",
         "polymc": "polymc",
         "sops-nix": "sops-nix"

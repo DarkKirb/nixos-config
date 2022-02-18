@@ -2,7 +2,9 @@ rec {
   description = "Lotte's NixOS installation";
 
   # Use NixOS unstable
-  inputs.nixpkgs.url = "git+https://git.chir.rs/darkkirb/nixpkgs?ref=main";
+  inputs.nixpkgs.url = github:NixOS/nixpkgs;
+  inputs.nixpkgs-soundtouch.url = "github:darkkirb/nixpkgs?ref=soundtouch-2.3.1";
+  inputs.nixpkgs-tdesktop.url = "github:yshym/nixpkgs?ref=tdesktop-3.5.1";
   inputs.cargo2nix.url = "github:cargo2nix/cargo2nix/master"; # dummy
   inputs.home-manager.url = "github:nix-community/home-manager";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -11,7 +13,7 @@ rec {
   inputs.chir-rs.url = "git+https://git.chir.rs/darkkirb/chir.rs.git?ref=main";
   #inputs.chir-rs.inputs.nixpkgs.follows = "nixpkgs"; # nixpkgs regression?
   inputs.nur.url = "github:nix-community/NUR";
-  inputs.nix-gaming.url = github:fufexan/nix-gaming;
+  inputs.nix-gaming.url = "github:darkkirb/nix-gaming?ref=fix-wine-deriv-path";
   inputs.nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
   inputs.polymc.url = "github:PolyMC/PolyMC";
   inputs.polymc.inputs.nixpkgs.follows = "nixpkgs";

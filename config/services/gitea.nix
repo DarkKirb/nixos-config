@@ -1,4 +1,7 @@
 { config, ... }: {
+  imports = [
+    ../../modules/gitea.nix
+  ];
   services.gitea = {
     enable = true;
     appName = "Lotte's Git";
