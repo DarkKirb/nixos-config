@@ -35,7 +35,7 @@ let script = ''
 
   deploy_finished
 
-  ${pkgs.nixUnstable}/bin/nix flake update
+  PATH="${pkgs.gitMinimal}/bin:$PATH" ${pkgs.nixUnstable}/bin/nix flake update
 
   ${pkgs.gitMinimal}/bin/git commit -am "Automatic nixpkgs update"
   ${pkgs.gitMinimal}/bin/git push origin main
