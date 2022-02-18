@@ -7,7 +7,7 @@
       });
       soundtouch = nixpkgs-soundtouch.legacyPackages.${system}.soundtouch;
       tdesktop = nixpkgs-tdesktop.legacyPackages.${system}.tdesktop;
-      hydra = prev.hydra.overrideAttrs (old: {
+      hydra-unstable = prev.hydra-unstable.overrideAttrs (old: {
         patches = [
           ../../extra/hydra.patch
         ];
