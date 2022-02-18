@@ -17,5 +17,5 @@
       };
     }
   ];
-  nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" ];
+  nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" "https://minio.int.chir.rs/" ];
 }
