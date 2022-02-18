@@ -25,4 +25,5 @@
     }
   ];
   nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" "https://minio.int.chir.rs/" ];
+  sops.secrets."services/hydra/gitea_token" = { };
 }
