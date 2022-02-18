@@ -6,7 +6,7 @@ let script = ''
   ${pkgs.gitMinimal}/bin/git fetch origin
   ${pkgs.gitMinimal}/bin/git reset --hard origin/main
 
-  TOKEN="$(${pkgs.coreutils}/bin/cat /run/secrets/hydra/gitea_token)"
+  TOKEN="$(${pkgs.coreutils}/bin/cat /run/secrets/services/hydra/gitea_token)"
 
   deploy_finished() {
     MAIN_SHA=$(${pkgs.curl}/bin/curl -X GET \
@@ -56,4 +56,5 @@ let script = ''
       OnBootSec = 3600;
     };
   };
+  sops.secrets."services/hydra/gitea_token" = { };
 }
