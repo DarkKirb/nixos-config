@@ -6,6 +6,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./systemd-boot.nix
     ./desktop.nix
+    ./services/tpm2.nix
   ];
   hardware.cpu.intel.updateMicrocode = true;
 

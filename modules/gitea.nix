@@ -4,12 +4,7 @@ with lib;
 
 let
   cfg = config.services.gitea;
-  opt = options.services.gitea;
   gitea = cfg.package;
-  pg = config.services.postgresql;
-  useMysql = cfg.database.type == "mysql";
-  usePostgresql = cfg.database.type == "postgres";
-  useSqlite = cfg.database.type == "sqlite3";
   configFile = pkgs.writeText "app.ini" ''
     APP_NAME = ${cfg.appName}
     RUN_USER = ${cfg.user}

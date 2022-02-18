@@ -6,6 +6,8 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./systemd-boot.nix
     ./desktop.nix
+    ./services/tpm2.nix
+    ./services/hydra.nix
   ];
   hardware.cpu.amd.updateMicrocode = true;
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "k10temp" ];

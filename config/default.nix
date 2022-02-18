@@ -47,9 +47,6 @@
     Defaults env_keep += "TMUX"
   '';
 
-  security.tpm2.enable = true;
-  security.tpm2.abrmd.enable = true;
-
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
