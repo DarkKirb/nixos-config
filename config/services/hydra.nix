@@ -1,12 +1,19 @@
 { ... }: {
   imports = [
     ./postgres.nix
+    ../../modules/hydra.nix
   ];
   services.hydra = {
     enable = true;
     hydraURL = "http://localhost:3000";
     notificationSender = "hydra@chir.rs";
     useSubstitutes = true;
+    extraConfig = ''
+      <gitea_authorization>
+        darkkirb = #gitea_token#
+      </gitea_authorization>
+    '';
+    giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
   };
   services.postgresql.ensureDatabases = [ "hydra" ];
   services.postgresql.ensureUsers = [
