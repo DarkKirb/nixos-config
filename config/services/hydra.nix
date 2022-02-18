@@ -6,6 +6,7 @@
     enable = true;
     hydraURL = "http://localhost:3000";
     notificationSender = "hydra@chir.rs";
+    useSubstitutes = true;
   };
   services.postgresql.ensureDatabases = [ "hydra" ];
   services.postgresql.ensureUsers = [
