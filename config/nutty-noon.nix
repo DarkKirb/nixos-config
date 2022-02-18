@@ -197,6 +197,8 @@
         "riscv32-linux"
         "riscv64-linux"
         "wasm32-wasi"
+        "x86_64-linux"
+        "i686-linux"
       ];
       supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" ];
     }
