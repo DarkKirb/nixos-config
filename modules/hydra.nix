@@ -34,7 +34,7 @@ in
 
     systemd.services.hydra-init =
       {
-        preStart = ''
+        preStart = lib.mkForce ''
           mkdir -p ${baseDir}
           chown hydra.hydra ${baseDir}
           chmod 0750 ${baseDir}
