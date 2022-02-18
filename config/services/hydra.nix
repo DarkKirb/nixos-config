@@ -17,4 +17,5 @@
       };
     }
   ];
+  nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" ];
 }
