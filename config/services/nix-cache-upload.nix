@@ -7,7 +7,7 @@ in
     description = "Copy nix cache to cache.int.chir.rs";
     script = ''
       #!${pkgs.bash}/bin/bash
-      ${pkgs.nix}/bin/nix copy --to 's3://cache.int.chir.rs?scheme=http&endpoint=192.168.2.1' --all
+      ${pkgs.nix}/bin/nix copy --to 's3://cache.int.chir.rs?scheme=http&endpoint=192.168.2.1:9000' --all
     '';
     unitConfig = {
       User = "darkkirb";
