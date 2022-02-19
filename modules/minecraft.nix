@@ -105,5 +105,8 @@ in
       isSystemUser = true;
     };
     users.groups.minecraft = { };
+    systemd.tmpfiles.rules = [
+      "d '${cfg.stateDir}' 0750 minecraft minecraft - -"
+    ];
   };
 }
