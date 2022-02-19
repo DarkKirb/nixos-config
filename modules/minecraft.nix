@@ -8,7 +8,7 @@ let
     ${cfg.properties.extraConfig}
   '';
   whitelistJson = pkgs.writeText "whitelist.json" ''
-    ${builtins.toJSON cfg.properties.whitelist}
+    ${builtins.toJSON cfg.whitelist}
   '';
 in
 {
