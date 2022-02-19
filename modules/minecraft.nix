@@ -20,13 +20,13 @@ in
     };
     stateDir = mkOption {
       default = "/var/lib/minecraft";
-      type = types.string;
+      type = types.str;
       description = "Path to the minecraft server state directory";
     };
     properties = {
       extraConfig = mkOption {
         default = "";
-        type = types.string;
+        type = types.lines;
         description = "Extra configuration to be added to the minecraft server properties file";
       };
     };
@@ -35,11 +35,11 @@ in
       type = types.listOf (types.submodule {
         options = {
           uuid = mkOption {
-            type = types.string;
+            type = types.str;
             description = "UUID of the whitelist entry";
           };
           name = mkOption {
-            type = types.string;
+            type = types.str;
             description = "Name of the whitelist entry";
           };
         };
@@ -53,6 +53,7 @@ in
       wantedBy = [ "multi-user.target" ];
       path = [ papermc ];
       preStart = ''
+        cd $HOME
         # Agree to the EULA
         echo "eula=true" > eula.txt
         # Update the server properties
