@@ -17,6 +17,7 @@
     ./services/dovecot.nix
     ./services/postfix.nix
     ./services/autodeploy.nix
+    ./services/minecraft.nix
   ];
 
   boot.initrd.availableKernelModules = [ "ata_piix" "virtio_pci" "virtio_scsi" "xhci_pci" "sd_mod" "sr_mod" ];
