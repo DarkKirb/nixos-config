@@ -4,7 +4,7 @@
     (self: prev: {
       custom_xanmod = pkgs.linuxPackagesFor (pkgs.linuxKernel.kernels.linux_xanmod.override {
         ignoreConfigErrors = true;
-        autoModules = false;
+        autoModules = true;
         kernelPreferBuiltin = true;
         enableParallelBuilding = true;
         extraConfig = import (../extra/linux/config- + "${config.networking.hostName}.nix");
