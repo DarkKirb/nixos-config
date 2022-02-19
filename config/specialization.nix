@@ -1,12 +1,14 @@
 # Configuration file configuring specialization
-{ config, ... }: {
+{ pkgs, config, lib, ... }: {
   nixpkgs.overlays = [
     (self: prev: {
-      linuxKernel.kernels.linux_xanmod = prev.linuxKernel.manualConfig {
-        inherit (prev) stdenv hostPlatform;
-        inherit (prev.linuxKernel.kernels.linux_xanmod) src version;
-        configfile = ../extra/linux/config-${config.networking.hostName};
-      };
+      custom_xanmod = pkgs.linuxPackagesFor (pkgs.linuxKernel.kernels.linux_xanmod.override {
+        ignoreConfigErrors = true;
+        autoModules = false;
+        kernelPreferBuiltin = true;
+        enableParallelBuilding = true;
+        extraConfig = import (../extra/linux/config- + "${config.networking.hostName}.nix");
+      });
     })
   ];
 }
