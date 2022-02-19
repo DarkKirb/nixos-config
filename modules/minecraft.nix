@@ -65,7 +65,7 @@ in
         User = "minecraft";
         Group = "minecraft";
         WorkingDirectory = cfg.stateDir;
-        ExecStart = "${minecraft}/bin/minecraft-server";
+        ExecStart = "${papermc}/bin/minecraft-server";
         Restart = "always";
         RuntimeDirectory = "minecraft";
         RuntimeDirectoryMode = "0755";
