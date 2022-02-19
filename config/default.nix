@@ -8,6 +8,7 @@
     ./services/loki.nix
     ./home.nix
     ./services/restic.nix
+    ./specialization.nix
   ];
   services.openssh.enable = true;
   environment.systemPackages = with pkgs; [ git pinentry-curses ];
