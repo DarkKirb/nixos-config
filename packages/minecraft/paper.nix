@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, bash, jre }:
+{ lib, stdenv, fetchurl, bash, openjdk17_headless }:
 let
   mcVersion = "1.18.1";
   buildNum = "204";
@@ -19,7 +19,7 @@ stdenv.mkDerivation {
   buildPhase = ''
     cat > minecraft-server << EOF
     #!${bash}/bin/sh
-    exec ${jre}/bin/java \$@ -jar $out/share/papermc/papermc.jar nogui
+    exec ${openjdk17_headless}/bin/java \$@ -jar $out/share/papermc/papermc.jar nogui
   '';
 
   installPhase = ''
