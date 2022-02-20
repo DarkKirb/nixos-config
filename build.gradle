@@ -1,0 +1,18 @@
+task resolveDependencies {
+  doLast {
+    project.rootProject.allprojects.each { subProject ->
+      subProject.buildscript.configurations.each { configuration ->
+        resolveConfiguration(subProject, configuration, "buildscript config ${configuration.name}")
+      }
+      subProject.configurations.each { configuration ->
+        resolveConfiguration(subProject, configuration, "config ${configuration.name}")
+      }
+    }
+  }
+}
+void resolveConfiguration(subProject, configuration, name) {
+  if (configuration.canBeResolved) {
+    logger.info("Resolving project {} {}", subProject.name, name)
+    configuration.resolve()
+  }
+}

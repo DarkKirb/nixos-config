@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
-    ../../modules/minecraft.nix
+    ../../modules/minecraft/server.nix
+    ../../modules/minecraft/luckperms.nix
   ];
 
   services.minecraft = {
@@ -50,6 +51,9 @@
         armor-stands-tick = false;
         per-player-mob-spawns = true;
       };
+    };
+    luckperms = {
+      enable = true;
     };
   };
 }
