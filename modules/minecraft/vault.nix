@@ -14,6 +14,7 @@ in
   config = mkIf cfg.enable {
     services.minecraft.plugins = [{
       package = vault;
+      startScript = pkgs.writeScript "dummy" "";
     }];
   };
 }
