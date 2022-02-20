@@ -451,7 +451,7 @@ in
       inherit difficulty enable-command-block enable-jmx-monitoring enable-rcon sync-chunk-writes;
       inherit enable-status enable-query entity-broadcast-range-percentage force-gamemode;
       inherit function-permission-level gamemode generate-structures generator-settings hardcore;
-      inherit level-name level-seed levelttype max-players max-tick-time motd;
+      inherit level-name level-seed level-type max-players max-tick-time motd;
       inherit network-compression-threshold online-mode permission-level player-idle-timeout;
       inherit prevent-proxy-connections pvp rate-limit resource-pack resource-pack-prompt;
       inherit resource-pack-sha1 require-resource-pack server-ip server-port;
