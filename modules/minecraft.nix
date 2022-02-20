@@ -447,7 +447,7 @@ in
   };
   config = mkIf cfg.enable {
     services.minecraft.properties.extraConfig = with cfg.properties; lib.mkDefault {
-      inherit allow-flight allow-nethor broadcast-console-to-ops broadcast-rcon-to-ops;
+      inherit allow-flight allow-nether broadcast-console-to-ops broadcast-rcon-to-ops;
       inherit difficulty enable-command-block enable-jmx-monitoring enable-rcon sync-chunk-writes;
       inherit enable-status enable-query entity-broadcast-range-percentage force-gamemode;
       inherit function-permission-level gamemode generate-structures generator-settings hardcore;
