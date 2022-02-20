@@ -1455,7 +1455,7 @@ in
                 description = "Packet-limiter.limits.all.max-packet-rate";
               };
             };
-            PcketPlayInAutoRecipe = {
+            PacketPlayInAutoRecipe = {
               interval = mkOption {
                 default = 4.0;
                 type = types.float;
