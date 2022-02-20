@@ -25,18 +25,7 @@ let
   # Adds a gradle step that downloads all the dependencies to the gradle cache.
   addResolveStep = ''
     git tag v5.4 # thanks build script
-    ${gnused}/bin/sed -i "s#'bukkit-legacy',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'bukkit-legacy:loader',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'bungee',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'bungee:loader',##" settings.gradle
     ${gnused}/bin/sed -i "s#'fabric',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'nukkit',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'nukkit:loader',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'sponge',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'sponge:loader',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'sponge:sponge-service',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'sponge:sponge-service-api8',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'velocity'##" settings.gradle
     cat >>build.gradle <<HERE
     task resolveDependencies {
       doLast {
@@ -78,7 +67,7 @@ let
     '';
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
-    outputHash = "sha256-2yX2YI6eT4MGxWYhsqKcDDrHuw/UFolU3lAZ1BWtTXc=";
+    outputHash = "sha256-p+qnXBSJIZWVA8NJsKCZhdZhATD4MC/BU4TZMPSRUJo=";
   };
 
 in
@@ -92,6 +81,17 @@ stdenv.mkDerivation {
   postPatch = addResolveStep;
 
   buildPhase = ''
+    ${gnused}/bin/sed -i "s#'bukkit-legacy',##" settings.gradle
+    ${gnused}/bin/sed -i "s#'bukkit-legacy:loader',##" settings.gradle
+    ${gnused}/bin/sed -i "s#'bungee',##" settings.gradle
+    ${gnused}/bin/sed -i "s#'bungee:loader',##" settings.gradle
+    ${gnused}/bin/sed -i "s#'nukkit',##" settings.gradle
+    ${gnused}/bin/sed -i "s#'nukkit:loader',##" settings.gradle
+    ${gnused}/bin/sed -i "s#'sponge',##" settings.gradle
+    ${gnused}/bin/sed -i "s#'sponge:loader',##" settings.gradle
+    ${gnused}/bin/sed -i "s#'sponge:sponge-service',##" settings.gradle
+    ${gnused}/bin/sed -i "s#'sponge:sponge-service-api8',##" settings.gradle
+    ${gnused}/bin/sed -i "s#'velocity'##" settings.gradle
     export GRADLE_USER_HOME=$(${coreutils}/bin/mktemp -d)
 
     # add local maven repo

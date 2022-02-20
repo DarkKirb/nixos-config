@@ -2441,7 +2441,18 @@ in
     };
     plugins = mkOption {
       default = [ ];
-      type = types.listOf types.package;
+      type = types.listOf (types.submodule {
+        options = {
+          package = mkOption {
+            type = types.package;
+            description = "Package name of the plugin";
+          };
+          startScript = mkOption {
+            type = types.nullOr (types.oneOf [ types.str types.package ]);
+            description = "Start script of the plugin";
+          };
+        };
+      });
       description = "List of plugins to load";
     };
   };
@@ -2466,32 +2477,39 @@ in
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
       path = [ papermc ];
-      preStart = ''
-        cd $HOME
-        # Agree to the EULA
-        echo "eula=true" > eula.txt
-        # Update the server properties
-        cat ${serverProperties} > server.properties
-        ${if cfg.properties.rcon-password-file != null then ''
-          echo "rcon.password=$(cat ${builtins.toString cfg.properties.rcon-password-file})" >> server.properties
-        '' else "" }
-        # Update the whitelist
-        cat ${whitelistJson} > whitelist.json
-        # Update the bukkit yml
-        cat ${bukkitYaml} > bukkit.yml
-        # Update the spigot yml
-        cat ${spigotYaml} > spigot.yml
-        # Update the paper yml
-        cat ${paperYaml} > paper.yml
-        # Update the plugins
-        mkdir -p plugins
-        rm -rf plugins/*.jar
-        ${if cfg.plugins == [] then "" else ''
-          for f in ${builtins.toString cfg.plugins}; do
-            cp $f plugins
-          done
-        ''}
-      '';
+      preStart =
+        let
+          plugins = builtins.map
+            (plugin: ''
+              cp ${plugin.package} plugins
+                  ${if plugin.startScript != null then ''
+                    ${plugin.startScript}
+                '' else ""}
+            '')
+            cfg.plugins;
+        in
+        ''
+          cd $HOME
+          # Agree to the EULA
+          echo "eula=true" > eula.txt
+          # Update the server properties
+          cat ${serverProperties} > server.properties
+          ${if cfg.properties.rcon-password-file != null then ''
+            echo "rcon.password=$(cat ${builtins.toString cfg.properties.rcon-password-file})" >> server.properties
+          '' else "" }
+          # Update the whitelist
+          cat ${whitelistJson} > whitelist.json
+          # Update the bukkit yml
+          cat ${bukkitYaml} > bukkit.yml
+          # Update the spigot yml
+          cat ${spigotYaml} > spigot.yml
+          # Update the paper yml
+          cat ${paperYaml} > paper.yml
+          # Update the plugins
+          mkdir -p plugins
+          rm -rf plugins/*.jar
+          ${builtins.toString plugins}
+        '';
       serviceConfig = {
         Type = "simple";
         User = "minecraft";
