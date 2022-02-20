@@ -1773,7 +1773,7 @@ in
               type = types.float;
               description = "World-settings.type.options.max-leash-distance";
             };
-            armor-stand-tick = mkOption {
+            armor-stands-tick = mkOption {
               default = true;
               type = types.bool;
               description = "World-settings.type.options.armor-stand-tick";
@@ -1783,7 +1783,7 @@ in
               type = types.int;
               description = "World-settings.type.options.non-player-arrow-despawn-rate";
             };
-            create-arrow-despawn-rate = mkOption {
+            creative-arrow-despawn-rate = mkOption {
               default = -1;
               type = types.int;
               description = "World-settings.type.options.create-arrow-despawn-rate";
