@@ -54,6 +54,9 @@
     };
     luckperms = {
       enable = true;
+      config = {
+        enable-ops = false;
+      };
     };
   };
 }
