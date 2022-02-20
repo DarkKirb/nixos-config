@@ -89,7 +89,6 @@ in
         ProtectControlGroups = true;
         RestrictAddressFamilies = [ "AF_UNIX AF_INET AF_INET6" ];
         LockPersonality = true;
-        MemoryDenyWriteExecute = true;
         RestrictRealtime = true;
         RestrictSUIDSGID = true;
         PrivateMounts = true;
