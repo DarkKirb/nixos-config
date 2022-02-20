@@ -458,8 +458,8 @@ in
       inherit simulation-distance snooper-enabled spawn-animals spawn-monsters spawn-npcs;
       inherit spawn-protection use-native-transport view-distance white-list enforce-whitelist;
 
-      "query.port" = queryPort;
-      "rcon.port" = rconPort;
+      "query.port" = query-port;
+      "rcon.port" = rcon-port;
     };
     systemd.services.minecraft = {
       description = "Minecraft Server";
