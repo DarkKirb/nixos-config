@@ -16,6 +16,7 @@
         name = "DarkKirb";
       }
     ];
+    properties.server-ip = "138.201.155.128"; # death
     paper-yml = {
       world-settings.default = {
         max-auto-save-chunks-per-tick = 8;
