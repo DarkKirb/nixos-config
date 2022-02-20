@@ -57,9 +57,9 @@ in
         # Agree to the EULA
         echo "eula=true" > eula.txt
         # Update the server properties
-        cp ${serverProperties} server.properties
+        cat ${serverProperties} > server.properties
         # Update the whitelist
-        cp ${whitelistJson} whitelist.json
+        cat ${whitelistJson} > whitelist.json
       '';
       serviceConfig = {
         Type = "simple";
