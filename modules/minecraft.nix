@@ -71,6 +71,7 @@ in
         RuntimeDirectory = "minecraft";
         RuntimeDirectoryMode = "0755";
         UMask = "0027";
+        ReadWritePaths = [ cfg.stateDir ]; # Grant access to the state directory
         CapabilityBoundingSet = "";
         # Security
         NoNewPrivileges = true;
