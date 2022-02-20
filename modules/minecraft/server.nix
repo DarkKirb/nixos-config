@@ -28,8 +28,8 @@ in
       description = "Enable minecraft server";
     };
     stateDir = mkOption {
-      default = /var/lib/minecraft;
-      type = types.path;
+      default = "/var/lib/minecraft";
+      type = types.str;
       description = "Path to the minecraft server state directory";
     };
     properties = {
