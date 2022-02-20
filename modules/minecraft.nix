@@ -289,143 +289,118 @@ in
         description = "Extra configuration to be added to the minecraft server properties file";
       };
     };
-    bukkit-yml = mkOption {
-      description = "Bukkit configuration file";
-      type = types.submodule {
-        options = {
-          settings = mkOption {
-            descriptions = "General CraftBukkit settings";
-            type = types.submodule {
-              options = {
-                allow-end = mkOption {
-                  default = true;
-                  type = types.bool;
-                  description = "Allow end";
-                };
-                warn-on-overload = mkOption {
-                  default = true;
-                  type = types.bool;
-                  description = "Warn on overload";
-                };
-                permissions-file = mkOption {
-                  default = "permissions.yml";
-                  type = types.str;
-                  description = "Permissions file";
-                };
-                update-folder = mkOption {
-                  default = "update";
-                  type = types.str;
-                  description = "Update folder";
-                };
-                ping-packet-limit = mkOption {
-                  default = 100;
-                  type = types.ints.between 0 1000;
-                  description = "Ping packet limit";
-                };
-                use-exact-login-location = mkOption {
-                  default = false;
-                  type = types.bool;
-                  description = "Use exact login location";
-                };
-                world-container = mkOption {
-                  default = "world";
-                  type = types.str;
-                  description = "World container";
-                };
-                plugin-profiling = mkOption {
-                  default = false;
-                  type = types.bool;
-                  description = "Plugin profiling";
-                };
-                connection-throttle = mkOption {
-                  default = 0;
-                  type = types.ints.unsigned;
-                  description = "Connection throttle";
-                };
-                query-plugins = mkOption {
-                  default = true;
-                  type = types.bool;
-                  description = "Query plugins";
-                };
-                deprecated-verbose = mkOption {
-                  default = "default";
-                  type = types.enum [ true false "default" ];
-                  description = "Deprecated verbose";
-                };
-                shutdown-message = mkOption {
-                  default = "Server closed";
-                  type = types.str;
-                  description = "Shutdown message";
-                };
-              };
-            };
-          };
-          spawn-limits = mkOption {
-            description = "Spawn limits";
-            type = types.submodule {
-              options = {
-                monsters = mkOption {
-                  default = 70;
-                  type = types.ints.unsigned;
-                  description = "Max monsters";
-                };
-                animals = mkOption {
-                  default = 15;
-                  type = types.ints.unsigned;
-                  description = "Max animals";
-                };
-                water-animals = mkOption {
-                  default = 5;
-                  type = types.ints.unsigned;
-                  description = "Max water animals";
-                };
-                ambient = mkOption {
-                  default = 15;
-                  type = types.ints.unsigned;
-                  description = "Max ambient";
-                };
-              };
-            };
-          };
-          chunk-gc = mkOption {
-            description = "Chunk garbage collection";
-            type = types.submodule {
-              options = {
-                period-in-ticks = mkOption {
-                  default = 600;
-                  type = types.ints.unsigned;
-                  description = "Period in ticks";
-                };
-                load-threshold = mkOption {
-                  default = 0;
-                  type = types.ints.unsigned;
-                  description = "Load threshold";
-                };
-              };
-            };
-          };
-          ticks-per = mkOption {
-            description = "Tick delays";
-            type = types.submodule {
-              options = {
-                animal-spawns = mkOption {
-                  default = 400;
-                  type = types.ints.unsigned;
-                  description = "Animal spawns";
-                };
-                monster-spawns = mkOption {
-                  default = 1;
-                  type = types.ints.unsigned;
-                  description = "Monster spawns";
-                };
-                autosave = mkOption {
-                  default = 6000;
-                  type = types.ints.unsigned;
-                  description = "Autosave";
-                };
-              };
-            };
-          };
+    bukkit-yml = {
+      settings = {
+        allow-end = mkOption {
+          default = true;
+          type = types.bool;
+          description = "Allow end";
+        };
+        warn-on-overload = mkOption {
+          default = true;
+          type = types.bool;
+          description = "Warn on overload";
+        };
+        permissions-file = mkOption {
+          default = "permissions.yml";
+          type = types.str;
+          description = "Permissions file";
+        };
+        update-folder = mkOption {
+          default = "update";
+          type = types.str;
+          description = "Update folder";
+        };
+        ping-packet-limit = mkOption {
+          default = 100;
+          type = types.ints.between 0 1000;
+          description = "Ping packet limit";
+        };
+        use-exact-login-location = mkOption {
+          default = false;
+          type = types.bool;
+          description = "Use exact login location";
+        };
+        world-container = mkOption {
+          default = "world";
+          type = types.str;
+          description = "World container";
+        };
+        plugin-profiling = mkOption {
+          default = false;
+          type = types.bool;
+          description = "Plugin profiling";
+        };
+        connection-throttle = mkOption {
+          default = 0;
+          type = types.ints.unsigned;
+          description = "Connection throttle";
+        };
+        query-plugins = mkOption {
+          default = true;
+          type = types.bool;
+          description = "Query plugins";
+        };
+        deprecated-verbose = mkOption {
+          default = "default";
+          type = types.enum [ true false "default" ];
+          description = "Deprecated verbose";
+        };
+        shutdown-message = mkOption {
+          default = "Server closed";
+          type = types.str;
+          description = "Shutdown message";
+        };
+      };
+      spawn-limits = {
+        monsters = mkOption {
+          default = 70;
+          type = types.ints.unsigned;
+          description = "Max monsters";
+        };
+        animals = mkOption {
+          default = 15;
+          type = types.ints.unsigned;
+          description = "Max animals";
+        };
+        water-animals = mkOption {
+          default = 5;
+          type = types.ints.unsigned;
+          description = "Max water animals";
+        };
+        ambient = mkOption {
+          default = 15;
+          type = types.ints.unsigned;
+          description = "Max ambient";
+        };
+      };
+      chunk-gc = {
+        period-in-ticks = mkOption {
+          default = 600;
+          type = types.ints.unsigned;
+          description = "Period in ticks";
+        };
+        load-threshold = mkOption {
+          default = 0;
+          type = types.ints.unsigned;
+          description = "Load threshold";
+        };
+      };
+      ticks-per = {
+        animal-spawns = mkOption {
+          default = 400;
+          type = types.ints.unsigned;
+          description = "Animal spawns";
+        };
+        monster-spawns = mkOption {
+          default = 1;
+          type = types.ints.unsigned;
+          description = "Monster spawns";
+        };
+        autosave = mkOption {
+          default = 6000;
+          type = types.ints.unsigned;
+          description = "Autosave";
         };
       };
     };
