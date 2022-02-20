@@ -28,8 +28,8 @@ in
       description = "Enable minecraft server";
     };
     stateDir = mkOption {
-      default = "/var/lib/minecraft";
-      type = types.str;
+      default = /var/lib/minecraft;
+      type = types.path;
       description = "Path to the minecraft server state directory";
     };
     properties = {
@@ -2439,6 +2439,11 @@ in
         };
       });
     };
+
+    plugins = mkOption {
+      default = [ ];
+      types = types.listOf types.package;
+    };
   };
   config = mkIf cfg.enable {
     services.minecraft.properties.extraConfig = with cfg.properties; lib.mkDefault {
@@ -2478,6 +2483,12 @@ in
         cat ${spigotYaml} > spigot.yml
         # Update the paper yml
         cat ${paperYaml} > paper.yml
+        # Update the plugins
+        mkdir -p plugins
+        rm -rf plugins/*.jar
+        for f in ${builtins.toString cfg.plugins}; do
+          cp $f plugins
+        done
       '';
       serviceConfig = {
         Type = "simple";
