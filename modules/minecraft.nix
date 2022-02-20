@@ -2439,10 +2439,10 @@ in
         };
       });
     };
-
     plugins = mkOption {
       default = [ ];
-      types = types.listOf types.package;
+      type = types.listOf types.package;
+      description = "List of plugins to load";
     };
   };
   config = mkIf cfg.enable {
