@@ -129,7 +129,7 @@ in
         description = "Level seed";
       };
       level-type = mkOption {
-        default = "defaulte";
+        default = "default";
         type = types.enum [ "default" "flat" "largeBiomes" "amplified" ];
         description = "Level type";
       };
