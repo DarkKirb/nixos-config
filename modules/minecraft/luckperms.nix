@@ -1,7 +1,7 @@
 { config, lib, options, pkgs, ... }:
 with lib;
 let
-  luckperms = pkgs.callPackage ../packages/minecraft/luckperms.nix { };
+  luckperms = pkgs.callPackage ../../packages/minecraft/luckperms.nix { };
   cfg = config.services.minecraft.luckperms;
   opt = options.services.minecraft.luckperms;
 in
