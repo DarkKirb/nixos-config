@@ -77,6 +77,7 @@
         a6578f9a-288d-44af-8f43-e6402b126bb6 = {
           uuid = "a6578f9a-288d-44af-8f43-e6402b126bb6";
           name = "DarkKirb";
+          primary-group = "admin";
           parents = [
             "admin"
             "default"

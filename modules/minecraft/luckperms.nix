@@ -381,6 +381,7 @@ in
       package = luckperms;
       startScript = startScript;
     }];
+    services.minecraft.vault.enable = true;
   };
 }
 
