@@ -614,12 +614,12 @@ in
             };
             view-distance = mkOption {
               default = "default";
-              type = type.oneOf [ types.int "default" ];
+              type = type.oneOf [ types.int types.str ];
               description = "View distance";
             };
             simulation-distance = mkOption {
               default = "default";
-              type = type.oneOf [ types.int "default" ];
+              type = type.oneOf [ types.int types.str ];
               description = "Simulation distance";
             };
             thunder-chance = mkOption {
@@ -920,7 +920,7 @@ in
             };
             seed-stronghold = mkOption {
               default = "default";
-              type = types.oneOf [ types.int "default" ];
+              type = types.oneOf [ types.int types.str ];
               description = "Seed stronghold";
             };
             hunger = {
@@ -1093,28 +1093,28 @@ in
         kick = {
           authentication-servers-shut-down = mkOption {
             default = "";
-            type = types.string;
+            type = types.str;
             description = "Kick.authentication-servers-shut-down";
           };
           connection-throttle = mkOption {
             default = "Connection throttled! Please wait before reconnecting.";
-            type = types.string;
+            type = types.str;
             description = "Kick.connection-throttle";
           };
           flying-player = mkOption {
             default = "Flying is not enabled on this server.";
-            type = types.string;
+            type = types.str;
             description = "Kick.flying-player";
           };
           flying-vehicle = mkOption {
             default = "Flying is not enabled on this server.";
-            type = types.string;
+            type = types.str;
             description = "Kick.flying-vehicle";
           };
         };
         no-permission = mkOption {
           default = "&cI'm sorry, but you do not have permission to perform this command.\nPlease contact the server administrators if you believe this is in error.";
-          type = types.string;
+          type = types.str;
           description = "No-permission";
         };
       };
@@ -1131,7 +1131,7 @@ in
         };
         url = mkOption {
           default = "https://timings.aikar.co/";
-          type = types.string;
+          type = types.str;
           description = "Url";
         };
         server-name-privacy = mkOption {
@@ -1141,7 +1141,7 @@ in
         };
         hidden-config-entries = mkOption {
           default = [ "database" "settings.bungeecord-addresses" "setitngs.velocity-support.secret" ];
-          types = types.listOf types.str;
+          type = types.listOf types.str;
           description = "Hidden-config-entries";
         };
         history-interval = mkOption {
@@ -1156,7 +1156,7 @@ in
         };
         server-name = mkOption {
           default = "Unknown Server";
-          type = types.string;
+          type = types.str;
           description = "Server-name";
         };
       };
@@ -1219,7 +1219,7 @@ in
           };
           secret = mkOption {
             default = "";
-            type = types.string;
+            type = types.str;
             description = "Velocity-support.secret";
           };
         };
@@ -1439,7 +1439,7 @@ in
         packet-limiter = {
           kick-message = mkOption {
             default = "&cSent too many packets";
-            type = types.string;
+            type = types.str;
             description = "Packet-limiter.kick-message";
           };
           limits = {
@@ -1468,7 +1468,7 @@ in
               };
               action = mkOption {
                 default = "DROP";
-                type = types.string;
+                type = types.str;
                 description = "Packet-limiter.limits.PcketPlayInAutoRecipe.action";
               };
             };
@@ -1702,7 +1702,7 @@ in
                 type = types.listOf types.str;
                 description = "World-settings.type.options.anti-xray.hidden-blocks";
               };
-              replacement-blocks = {
+              replacement-blocks = mkOption {
                 default = [ "stone" "oak_planks" "deepslate" ];
                 type = types.listOf types.str;
                 description = "World-settings.type.options.anti-xray.replacement-blocks";
@@ -1801,12 +1801,12 @@ in
             wateranimal-spawn-height = {
               maximum = mkOption {
                 default = "default";
-                type = types.oneOf [ types.int "default" ];
+                type = types.oneOf [ types.int types.str ];
                 description = "World-settings.type.options.wateranimal-spawn-height.maximum";
               };
               minimum = mkOption {
                 default = "default";
-                type = types.oneOf [ types.int "default" ];
+                type = types.oneOf [ types.int types.str ];
                 description = "World-settings.type.options.wateranimal-spawn-height.minimum";
               };
             };
