@@ -7,7 +7,7 @@ let
   luckperms-yml = pkgs.writeText "luckperms.yml" (generators.toYAML { } cfg.config);
   startScript = pkgs.writeScript "luckperms" ''
     mkdir -p plugins/LuckPerms
-    cat ${luckperms-yml} > plugins/LuckPerms/luckperms.yml
+    cat ${luckperms-yml} > plugins/LuckPerms/config.yml
   '';
 in
 {
