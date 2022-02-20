@@ -16,7 +16,7 @@ let
     (user: ''
       cat ${users.${user}} > plugins/LuckPerms/yaml-storage/users/${user}.yml
     '')
-    (builtins.attrNames groups);
+    (builtins.attrNames users);
   startScript = pkgs.writeScript "luckperms" ''
     mkdir -p plugins/LuckPerms
     cat ${luckperms-yml} > plugins/LuckPerms/config.yml
