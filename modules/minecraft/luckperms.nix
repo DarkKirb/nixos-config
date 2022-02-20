@@ -5,9 +5,17 @@ let
   cfg = config.services.minecraft.luckperms;
   opt = options.services.minecraft.luckperms;
   luckperms-yml = pkgs.writeText "luckperms.yml" (generators.toYAML { } cfg.config);
+  groups = builtins.mapAttrs (name: value: pkgs.writeText "${name}.yml" (generators.toYAML { } value)) cfg.groups;
+  permCopy = builtins.map
+    (group: ''
+      cat ${groups.${group}} > plugins/LuckPerms/yaml-storage/groups/${group}.yml
+    '')
+    (builtins.attrNames groups);
   startScript = pkgs.writeScript "luckperms" ''
     mkdir -p plugins/LuckPerms
     cat ${luckperms-yml} > plugins/LuckPerms/config.yml
+    mkdir -p plugins/LuckPerms/yaml-storage/groups/
+    ${builtins.toString permCopy}
   '';
 in
 {
@@ -294,6 +302,29 @@ in
         type = types.bool;
         description = "Resolve command selectors";
       };
+    };
+    groups = mkOption {
+      default = {
+        default = {
+          name = "default";
+        };
+      };
+      type = types.attrsOf (types.submodule {
+        options = {
+          name = mkOption {
+            type = types.str;
+          };
+          permissions = mkOption {
+            default = [ ];
+            type = types.listOf types.str;
+          };
+          prefixes = mkOption {
+            default = [ ];
+            type = types.listOf (types.attrsOf types.anything);
+          };
+        };
+      });
+      description = "Group configuration";
     };
   };
   config = mkIf cfg.enable {

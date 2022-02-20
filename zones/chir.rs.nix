@@ -92,7 +92,7 @@ let
     SOA = {
       nameServer = "ns2.darkkirb.de.";
       adminEmail = "lotte@chir.rs";
-      serial = 3;
+      serial = 4;
     };
     NS = [
       "ns2.darkkirb.de."
@@ -165,6 +165,7 @@ let
       api = createZone { };
       git = createZone { };
       mail = createZone { };
+      mc = createZone { };
 
       int = delegateTo [
         "ns2.darkkirb.de."

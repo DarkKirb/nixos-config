@@ -1,4 +1,4 @@
-{ ... }: {
+{ config, ... }: {
   imports = [
     ../../modules/minecraft/server.nix
     ../../modules/minecraft/luckperms.nix
@@ -57,6 +57,24 @@
       config = {
         enable-ops = false;
       };
+      groups = {
+        admin = {
+          name = "admin";
+          permissions = [
+            "*"
+          ];
+          prefixes = [
+            {
+              "&d@" = {
+                priority = 0;
+              };
+            }
+          ];
+        };
+      };
     };
   };
+  networking.firewall.allowedTCPPorts = [
+    config.services.minecraft.properties.server-port
+  ];
 }
