@@ -27,6 +27,9 @@ let
   '';
 in
 {
+  imports = [
+    ./vault.nix
+  ];
   options.services.minecraft.luckperms = {
     enable = mkOption {
       default = false;
