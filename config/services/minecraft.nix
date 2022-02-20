@@ -2,6 +2,7 @@
   imports = [
     ../../modules/minecraft/server.nix
     ../../modules/minecraft/luckperms.nix
+    ../../modules/minecraft/essentialsx.nix
   ];
 
   services.minecraft = {
@@ -84,6 +85,9 @@
           ];
         };
       };
+    };
+    essentialsx = {
+      enable = true;
     };
   };
   networking.firewall.allowedTCPPorts = [
