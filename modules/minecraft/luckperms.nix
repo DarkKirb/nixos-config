@@ -6,16 +6,24 @@ let
   opt = options.services.minecraft.luckperms;
   luckperms-yml = pkgs.writeText "luckperms.yml" (generators.toYAML { } cfg.config);
   groups = builtins.mapAttrs (name: value: pkgs.writeText "${name}.yml" (generators.toYAML { } value)) cfg.groups;
-  permCopy = builtins.map
+  users = builtins.mapAttrs (name: value: pkgs.writeText "${name}.yml" (generators.toYAML { } value)) cfg.users;
+  groupPermCopy = builtins.map
     (group: ''
       cat ${groups.${group}} > plugins/LuckPerms/yaml-storage/groups/${group}.yml
+    '')
+    (builtins.attrNames groups);
+  userPermCopy = builtins.map
+    (user: ''
+      cat ${users.${user}} > plugins/LuckPerms/yaml-storage/users/${user}.yml
     '')
     (builtins.attrNames groups);
   startScript = pkgs.writeScript "luckperms" ''
     mkdir -p plugins/LuckPerms
     cat ${luckperms-yml} > plugins/LuckPerms/config.yml
     mkdir -p plugins/LuckPerms/yaml-storage/groups/
-    ${builtins.toString permCopy}
+    ${builtins.toString groupPermCopy}
+    mkdir -p plugins/LuckPerms/yaml-storage/users/
+    ${builtins.toString userPermCopy}
   '';
 in
 {
@@ -314,6 +322,10 @@ in
           name = mkOption {
             type = types.str;
           };
+          parents = mkOption {
+            default = [ ];
+            type = types.listOf types.str;
+          };
           permissions = mkOption {
             default = [ ];
             type = types.listOf types.str;
@@ -322,9 +334,46 @@ in
             default = [ ];
             type = types.listOf (types.attrsOf types.anything);
           };
+          meta = mkOption {
+            default = { };
+            type = types.attrsOf types.anything;
+          };
         };
       });
       description = "Group configuration";
+    };
+    users = mkOption {
+      default = { };
+      type = types.attrsOf (types.submodule {
+        options = {
+          uuid = mkOption {
+            type = types.str;
+          };
+          name = mkOption {
+            type = types.str;
+          };
+          primary-group = mkOption {
+            type = types.str;
+            default = "default";
+          };
+          parents = mkOption {
+            default = [ "default" ];
+            type = types.listOf types.str;
+          };
+          permissions = mkOption {
+            default = [ ];
+            type = types.listOf types.str;
+          };
+          prefixes = mkOption {
+            default = [ ];
+            type = types.listOf (types.attrsOf types.anything);
+          };
+          meta = mkOption {
+            default = { };
+            type = types.attrsOf types.anything;
+          };
+        };
+      });
     };
   };
   config = mkIf cfg.enable {
