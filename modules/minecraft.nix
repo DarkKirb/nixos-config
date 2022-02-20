@@ -2486,9 +2486,11 @@ in
         # Update the plugins
         mkdir -p plugins
         rm -rf plugins/*.jar
-        for f in ${builtins.toString cfg.plugins}; do
-          cp $f plugins
-        done
+        ${if cfg.plugins == [] then "" else ''
+          for f in ${builtins.toString cfg.plugins}; do
+            cp $f plugins
+          done
+        ''}
       '';
       serviceConfig = {
         Type = "simple";
