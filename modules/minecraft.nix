@@ -472,8 +472,8 @@ in
         echo "eula=true" > eula.txt
         # Update the server properties
         cat ${serverProperties} > server.properties
-        ${if cfg.rcon-password-file != "" then ''
-          echo "rcon.password=$(cat ${cfg.rcon-password-file})" >> server.properties
+        ${if cfg.properties.rcon-password-file != "" then ''
+          echo "rcon.password=$(cat ${cfg.properties.rcon-password-file})" >> server.properties
         '' else "" }
         # Update the whitelist
         cat ${whitelistJson} > whitelist.json
