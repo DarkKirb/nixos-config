@@ -285,7 +285,7 @@ in
       };
       extraConfig = mkOption {
         default = { };
-        type = types.attrsOf types.str;
+        type = types.attrsOf types.anything;
         description = "Extra configuration to be added to the minecraft server properties file";
       };
     };
