@@ -331,7 +331,21 @@ in
           };
           permissions = mkOption {
             default = [ ];
-            type = types.listOf types.str;
+            type = types.listOf (types.oneOf [
+              types.str
+              (types.attrsOf (types.submodule {
+                options = {
+                  value = mkOption {
+                    type = types.bool;
+                    default = true;
+                  };
+                  context = mkOption {
+                    default = { };
+                    type = types.attrsOf types.str;
+                  };
+                };
+              }))
+            ]);
           };
           prefixes = mkOption {
             default = [ ];

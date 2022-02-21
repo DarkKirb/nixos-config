@@ -64,6 +64,11 @@
           name = "admin";
           permissions = [
             "*"
+            {
+              "essentials.hat.prevent-type.*" = {
+                value = false;
+              };
+            }
           ];
           prefixes = [
             {
@@ -71,6 +76,71 @@
                 priority = 1;
               };
             }
+          ];
+        };
+        default = {
+          name = "default";
+          permissions = [
+            "bukkit.command.help"
+            "bukkit.commit.mspt"
+            "bukkit.command.plugins"
+            "bukkit.command.version"
+
+            "essentials.balance"
+            "essentials.book"
+            "essentials.compass"
+            "essentials.delhome"
+            "essentials.depth"
+            "essentials.editsign"
+            "essentials.gc"
+            "essentials.getpos"
+            "essentials.help"
+            "essentials.helpop"
+            "essentials.ignore"
+            "essentials.info"
+            "essentials.itemdb"
+            "essentials.itemlore"
+            "essentials.keepinv"
+            "essentials.keepxp"
+            "essentials.list"
+            "essentials.mail"
+            "essentials.me"
+            "essentials.motd"
+            "essentials.msgtoggle"
+            "essentials.pay"
+            "essentials.payconfirmtoggle"
+            "essentials.paytoggle"
+            "essentials.ping"
+            "essentials.playtime"
+            "essentials.realname"
+            "essentials.recipe"
+            "essentials.rtoggle"
+            "essentials.rules"
+            "essentials.sell"
+            "essentials.skull"
+            "essentials.sleepingignored"
+            "essentials.tpa"
+            "essentials.tpacancel"
+            "essentials.tpaccept"
+            "essentials.tpahere"
+            "essentials.tpauto"
+            "essentials.tpdeny"
+            "essentials.warp"
+            "essentials.warpinfo"
+            "essentials.world"
+            "essentials.whois"
+            "essentials.worth"
+            "essentials.afk"
+            "essentials.afk.auto"
+            "essentials.balancetop"
+            "essentials.hat"
+            "essentials.home"
+            "essentials.near"
+            "essentials.nick"
+            "essentials.seen"
+            "essentials.seen.extra"
+            "essentials.sethome"
+            "essentials.sethome.bed"
           ];
         };
       };
@@ -96,6 +166,7 @@
         respawn-at-home = true;
         currency-symbol = "€";
         currency-symbol-suffix = true;
+        chat.format = "{DISPLAYNAME}&r: {MESSAGE}";
       };
       worth-yml = ../../extra/worth.yml;
     };
