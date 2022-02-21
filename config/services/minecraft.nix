@@ -97,6 +97,7 @@
         currency-symbol = "€";
         currency-symbol-suffix = true;
       };
+      worth-yml = ../../extra/worth.yml;
     };
   };
   networking.firewall.allowedTCPPorts = [

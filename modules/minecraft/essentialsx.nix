@@ -792,6 +792,12 @@ in
         type = types.oneOf [ types.bool types.str (types.listOf types.str) ];
       };
     };
+    worth-yml = mkOption
+      {
+        default = null;
+        description = "Worth YML Path";
+        type = types.path;
+      };
   };
 
   config = mkIf cfg.enable
@@ -824,6 +830,9 @@ in
           startScript = pkgs.writeScript "essentialsx" ''
             mkdir -pv plugins/Essentials
             cat ${config-yml} > plugins/Essentials/config.yml
+            ${if cfg.worth-yml != null then ''
+              cat ${cfg.worth-yml} > plugins/Essentials/worth.yml
+            '' else ""}
           '';
         }]
         (
