@@ -16,6 +16,10 @@
         uuid = "a6578f9a-288d-44af-8f43-e6402b126bb6";
         name = "DarkKirb";
       }
+      {
+        uuid = "5c29f08d-bc6f-4e3f-a83f-9454c5543d49";
+        name = "Hrothiwulfus";
+      }
     ];
     properties.server-ip = "138.201.155.128"; # death
     paper-yml = {
