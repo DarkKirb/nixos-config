@@ -68,7 +68,7 @@
           prefixes = [
             {
               "&d@" = {
-                priority = 0;
+                priority = 1;
               };
             }
           ];
@@ -88,6 +88,15 @@
     };
     essentialsx = {
       enable = true;
+      config = {
+        change-playerlist = true;
+        change-tab-complete-name = true;
+        add-prefix-in-playerlist = true;
+        add-suffix-in-playerlist = true;
+        respawn-at-home = true;
+        currency-symbol = "€";
+        currency-symbol-suffix = true;
+      };
     };
   };
   networking.firewall.allowedTCPPorts = [
