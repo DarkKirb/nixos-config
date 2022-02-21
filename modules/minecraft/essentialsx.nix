@@ -136,9 +136,9 @@ in
         type = types.int;
       };
       item-spawn-blacklist = mkOption {
-        default = [ ];
+        default = "";
         description = "Item spawn blacklist";
-        type = types.listOf types.str;
+        type = types.str;
       };
       permission-based-item-spawn = mkOption {
         default = false;
