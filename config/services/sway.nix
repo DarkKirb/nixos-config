@@ -14,14 +14,6 @@
       wl-clipboard
       (python38.withPackages (ps: with ps; [ i3pystatus keyring ]))
     ];
-    extraSessionCommands = ''
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      export _JAVA_AWT_WM_NONREPARENTING=1
-      export MOZ_ENABLE_WAYLAND=1
-      export GTK_IM_MODULE=xim # fuck you GTK for not reading my ~/.XCompose file :(
-    '';
   };
 
   services.xserver = {
