@@ -57,4 +57,5 @@ in
       };
     })
   ];
+  programs.java.enable = true;
 }
