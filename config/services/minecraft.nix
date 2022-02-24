@@ -3,6 +3,7 @@
     ../../modules/minecraft/server.nix
     ../../modules/minecraft/luckperms.nix
     ../../modules/minecraft/essentialsx.nix
+    ../../modules/minecraft/multiverse.nix
   ];
 
   services.minecraft = {
@@ -173,6 +174,9 @@
         chat.format = "{DISPLAYNAME}&r: {MESSAGE}";
       };
       worth-yml = ../../extra/worth.yml;
+    };
+    multiverse = {
+      enable = true;
     };
   };
   networking.firewall.allowedTCPPorts = [
