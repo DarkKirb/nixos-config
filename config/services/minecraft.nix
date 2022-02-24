@@ -126,7 +126,14 @@
             "essentials.recipe"
             "essentials.rtoggle"
             "essentials.rules"
-            "essentials.sell"
+            {
+              "essentials.sell" = {
+                value = true;
+                context = {
+                  gamemode = "survival";
+                };
+              };
+            }
             "essentials.skull"
             "essentials.sleepingignored"
             "essentials.tpa"
