@@ -177,6 +177,9 @@
     };
     multiverse = {
       enable = true;
+      netherportals = true;
+      signportals = true;
+      inventories = true;
     };
   };
   networking.firewall.allowedTCPPorts = [
