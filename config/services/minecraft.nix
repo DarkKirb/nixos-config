@@ -74,6 +74,11 @@
                 value = false;
               };
             }
+            {
+              "mv.bypass.gamemode.*" = {
+                value = false;
+              };
+            }
           ];
           prefixes = [
             {
@@ -146,6 +151,8 @@
             "essentials.seen.extra"
             "essentials.sethome"
             "essentials.sethome.bed"
+
+            "multiverse.access.*"
           ];
         };
       };
