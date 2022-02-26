@@ -134,6 +134,7 @@
                 };
               };
             }
+            "essentials.sell.hand"
             "essentials.skull"
             "essentials.sleepingignored"
             "essentials.tpa"
