@@ -20,60 +20,61 @@ rec {
   inputs.dns.url = "github:DarkKirb/dns.nix?ref=master";
   inputs.dns.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, polymc, ... } @ args: rec {
-    nixosConfigurations =
-      let
-        systems = [
-          {
-            name = "nixos-8gb-fsn1-1"; # Hetzner Server
-            system = "x86_64-linux";
-          }
-          {
-            name = "nutty-noon"; # PC
-            system = "x86_64-linux";
-          }
-          {
-            name = "thinkrac"; # Thinkpad T470
-            system = "x86_64-linux";
-          }
-        ];
-      in
-      builtins.listToAttrs (map
+  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, polymc, ... } @ args:
+    let
+      systems = [
+        {
+          name = "nixos-8gb-fsn1-1"; # Hetzner Server
+          system = "x86_64-linux";
+        }
+        {
+          name = "nutty-noon"; # PC
+          system = "x86_64-linux";
+        }
+        {
+          name = "thinkrac"; # Thinkpad T470
+          system = "x86_64-linux";
+        }
+      ];
+    in
+    rec {
+      nixosConfigurations =
+        builtins.listToAttrs (map
+          ({ name, system }: {
+            inherit name;
+            value = nixpkgs.lib.nixosSystem
+              {
+                inherit system;
+                specialArgs = args // {
+                  inherit system;
+                };
+                modules = [
+                  (./config + "/${name}.nix")
+                  ./config/default.nix
+                  sops-nix.nixosModules.sops
+                  home-manager.nixosModules.home-manager
+                  ({ pkgs, ... }: {
+                    nixpkgs.overlays = [
+                      (self: super: {
+                        chir-rs = chir-rs.outputs.defaultPackage.${system};
+                        nix-gaming = nix-gaming.outputs.packages.${system};
+                      })
+                      nur.overlay
+                      polymc.overlay
+                    ];
+                  })
+                ];
+              };
+          })
+          systems);
+      hydraJobs = builtins.listToAttrs (map
         ({ name, system }: {
           inherit name;
-          value = nixpkgs.lib.nixosSystem
-            {
-              inherit system;
-              specialArgs = args // {
-                inherit system;
-              };
-              modules = [
-                (./config + "/${name}.nix")
-                ./config/default.nix
-                sops-nix.nixosModules.sops
-                home-manager.nixosModules.home-manager
-                ({ pkgs, ... }: {
-                  nixpkgs.overlays = [
-                    (self: super: {
-                      chir-rs = chir-rs.outputs.defaultPackage.${system};
-                      nix-gaming = nix-gaming.outputs.packages.${system};
-                    })
-                    nur.overlay
-                    polymc.overlay
-                  ];
-                })
-              ];
-            };
+          value = {
+            ${system} = nixosConfigurations.${name};
+          };
         })
         systems);
-    hydraJobs = builtins.listToAttrs (map
-      ({ name, system }: {
-        inherit name;
-        value = {
-          ${system} = nixosConfigurations.${name};
-        };
-      })
-      systems);
-  };
+    };
 }
 
