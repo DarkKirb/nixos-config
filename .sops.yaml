@@ -22,3 +22,7 @@ creation_rules:
           - *thinkrac
         pgp:
           - *lotte
+  - path_regex: secrets/rpi2/[^/]+$
+    key_groups:
+      - pgp:
+          - *lotte
