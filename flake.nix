@@ -75,7 +75,7 @@ rec {
         ({ name, system }: {
           inherit name;
           value = {
-            ${system} = nixosConfigurations.${name};
+            ${system} = nixosConfigurations.${name}.config.system.build.toplevel;
           };
         })
         systems);
