@@ -24,17 +24,26 @@ rec {
     nixosConfigurations =
       let
         systems = [
-          "nixos-8gb-fsn1-1" # Hetzner Server
-          "nutty-noon" # PC
-          "thinkrac" # Thinkpad T470
+          {
+            name = "nixos-8gb-fsn1-1"; # Hetzner Server
+            system = "x86_64-linux";
+          }
+          {
+            name = "nutty-noon"; # PC
+            system = "x86_64-linux";
+          }
+          {
+            name = "thinkrac"; # Thinkpad T470
+            system = "x86_64-linux";
+          }
         ];
       in
       builtins.listToAttrs (map
-        (name: {
-          name = name;
+        ({ name, system }: {
+          inherit name;
           value = nixpkgs.lib.nixosSystem
-            rec {
-              system = "x86_64-linux";
+            {
+              inherit system;
               specialArgs = args // {
                 inherit system;
               };
@@ -46,8 +55,8 @@ rec {
                 ({ pkgs, ... }: {
                   nixpkgs.overlays = [
                     (self: super: {
-                      chir-rs = chir-rs.outputs.defaultPackage.x86_64-linux;
-                      nix-gaming = nix-gaming.outputs.packages.x86_64-linux;
+                      chir-rs = chir-rs.outputs.defaultPackage.${system};
+                      nix-gaming = nix-gaming.outputs.packages.${system};
                     })
                     nur.overlay
                     polymc.overlay
@@ -57,11 +66,14 @@ rec {
             };
         })
         systems);
-    hydraJobs = builtins.mapAttrs
-      (name: value: {
-        x86_64-linux = value.config.system.build.toplevel;
+    hydraJobs = builtins.listToAttrs (map
+      ({ name, system }: {
+        inherit name;
+        value = {
+          ${system} = nixosConfigurations.${name};
+        };
       })
-      nixosConfigurations;
+      systems);
   };
 }
 
