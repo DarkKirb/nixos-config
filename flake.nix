@@ -35,6 +35,10 @@ rec {
           name = "thinkrac"; # Thinkpad T470
           system = "x86_64-linux";
         }
+        {
+          name = "rpi2"; # Raspberry Pi 2
+          system = "armv7l-linux";
+        }
       ];
     in
     rec {
