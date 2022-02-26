@@ -186,6 +186,17 @@
         currency-symbol = "€";
         currency-symbol-suffix = true;
         chat.format = "{DISPLAYNAME}&r: {MESSAGE}";
+        enabled-signs = [
+          "color"
+          "balance"
+          "buy"
+          "sell"
+          "trade"
+          "free"
+          "disposal"
+          "warp"
+          "mail"
+        ];
       };
       worth-yml = ../../extra/worth.yml;
     };
