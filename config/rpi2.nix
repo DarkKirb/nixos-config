@@ -15,4 +15,7 @@
     "https://192.168.2.1/cache.int.chir.rs/"
   ];
   nix.settings.cores = 4;
+  networking.wireguard.interfaces."wg0".ips = [
+    "fd0d:a262:1fa6:e621:6a74:93b8:e164:cd7c/64"
+  ];
 }
