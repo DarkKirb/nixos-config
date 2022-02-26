@@ -1,5 +1,5 @@
 { pkgs, ... }: {
   imports = [
-    ./base.nix
+    (import ./base.nix false)
   ];
 }

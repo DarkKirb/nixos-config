@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+desktop: { pkgs, ... }: {
   imports = [
     ../programs/zsh.nix
     ../programs/vim.nix
@@ -21,8 +21,8 @@
           SESSION_NAME="$USER"
           if [[ $SSH_CLIENT ]]; then
             SESSION_NAME="$SESSION_NAME-$(echo $SSH_CLIENT | ${pkgs.gawk}/bin/awk '{print $1}' | sed 's/[\.\:]/_/g')"
-          elif [[ $WAYLAND_DISPLAY ]]; then
-            SESSION_NAME="$SESSION_NAME-$(${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '.. | select(.focused?) | .rect | "\(.width)x\(.height)"')"
+            ${if desktop then ''elif [[ $WAYLAND_DISPLAY ]]; then
+            SESSION_NAME="$SESSION_NAME-$(${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '.. | select(.focused?) | .rect | "\(.width)x\(.height)"')"'' else ""}
           fi
           ${pkgs.tmux}/bin/tmux attach-session -t "$SESSION_NAME" || ${pkgs.tmux}/bin/tmux new-session -s "$SESSION_NAME"
         fi
@@ -63,7 +63,7 @@
         enable = true;
         boxes = [ "Inbox" ];
         onNotify = "${pkgs.isync}/bin/mbsync -a";
-        onNotifyPost = "${pkgs.notmuch}/bin/notmuch new && ${pkgs.libnotify}/bin/notify-send 'New mail arrived'";
+        onNotifyPost = if desktop then "${pkgs.notmuch}/bin/notmuch new && ${pkgs.libnotify}/bin/notify-send 'New mail arrived'" else "${pkgs.notmuch}/bin/notmuch new";
       };
       mbsync = {
         enable = true;

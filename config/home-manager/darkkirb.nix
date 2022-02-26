@@ -1,6 +1,6 @@
 desktop: { pkgs, ... }: {
   imports = [
-    ./base.nix
+    (import ./base.nix desktop)
     ../programs/gpg.nix
     ../programs/git.nix
   ] ++ (if desktop then [
