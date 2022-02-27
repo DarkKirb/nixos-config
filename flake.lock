@@ -344,11 +344,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1645987581,
-        "narHash": "sha256-ygGY7yOqmirC5YFPyFGYLo78slPzDxPup1uK8FKiKjo=",
+        "lastModified": 1645991407,
+        "narHash": "sha256-jRwXvTZhQ6an2NxkRmyCAjyP1sjKBSiJeGNM4e52tM4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "81133977bd0204758e8cbafacf4852873b0f8828",
+        "rev": "10c0ea6970ab1aa904289256844989548b0d46f7",
         "type": "github"
       },
       "original": {
@@ -383,11 +383,11 @@
         "quazip": "quazip"
       },
       "locked": {
-        "lastModified": 1645952036,
-        "narHash": "sha256-tTXqnyXK/w+Ecr6xl1oRw2h604A9MyWhKze+cahPcWQ=",
+        "lastModified": 1645990852,
+        "narHash": "sha256-jNRStFOzqeyGuAJkOU4NpHWwTM++pxcNakfYIn4EIkc=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "84e9ce71b06f7f123eb0a600ccd9fa0700bae647",
+        "rev": "148775b3e97f67547af88e0ced643c042bbe28fc",
         "type": "github"
       },
       "original": {
