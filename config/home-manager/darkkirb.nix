@@ -17,5 +17,6 @@ desktop: { pkgs, ... }: {
     ../games/default.nix
     ../programs/yubikey.nix
     ../programs/keybase.nix
+    ../programs/keepass.nix
   ] else [ ]);
 }
