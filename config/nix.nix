@@ -11,7 +11,7 @@
       auto-optimise-store = true;
       builders-use-substitutes = true;
     };
-    package = pkgs.nixUnstable;
+    package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
