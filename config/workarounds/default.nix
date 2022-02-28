@@ -12,7 +12,7 @@ let
       rev = "a2546121f0c737b9fa5e6d311561ce57e7d0318a";
       sha256 = "092akmayvfwnqk17kl6jlzn5adi574xib9alw0w35rmavxp701zz";
     };
-    nix = pkgs.nixVersions.unstable;
+    nix = (import nixpkgs-soundtouch { inherit system; }).nixVersions.unstable;
     tests = {
       basic = pkgs.nixosTests.hydra.hydra-unstable;
     };
