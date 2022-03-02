@@ -26,7 +26,7 @@ in
       User = "storj";
       Group = "storj";
       WorkingDirectory = "/var/lib/storj";
-      ExecStart = "${gateway}/bin/gateway run --config-dir /var/lib/storj/${name} --server.address 127.0.0.1:${cfg.port}";
+      ExecStart = "${gateway}/bin/gateway run --config-dir /var/lib/storj/${name} --server.address 127.0.0.1:${port}";
       Restart = "always";
       RuntimeDirectory = "storj";
       RuntimeDirectoryMode = "0700";
