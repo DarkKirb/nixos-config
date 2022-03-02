@@ -1,7 +1,7 @@
 { config, ... }: {
   imports = [
     ../../modules/gitea.nix
-    ../../modules/gateway-st.nix
+    (import ../../modules/gateway-st.nix { name = "gitea"; })
   ];
   services.gitea = {
     enable = true;
@@ -51,15 +51,6 @@
       };
     };
   };
-
-  services.storj-gateway.gitea = {
-    accessGrantFile = "/run/secrets/services/storj/gitea/accessGrant";
-    accessKeyFile = "/run/secrets/services/storj/gitea/accessKey";
-    secretKeyFile = "/run/secrets/services/storj/gitea/secretKey";
-  };
-  sops.secrets."services/storj/gitea/accessGrant".owner = "storj";
-  sops.secrets."services/storj/gitea/accessKey".owner = "storj";
-  sops.secrets."services/storj/gitea/secretKey".owner = "storj";
 
   services.nginx.virtualHosts."git.chir.rs" = {
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
