@@ -5,12 +5,12 @@ let
     buildPerl = pkgs.perl;
   };
   hydra = pkgs.callPackage "${nixpkgs}/pkgs/development/tools/misc/hydra/common.nix" {
-    version = "2022-02-22";
+    version = "2021-08-11";
     src = pkgs.fetchFromGitHub {
-      owner = "nixos";
+      owner = "NixOS";
       repo = "hydra";
-      rev = "a2546121f0c737b9fa5e6d311561ce57e7d0318a";
-      sha256 = "092akmayvfwnqk17kl6jlzn5adi574xib9alw0w35rmavxp701zz";
+      rev = "9bce425c3304173548d8e822029644bb51d35263";
+      sha256 = "sha256-tGzwKNW/odtAYcazWA9bPVSmVXMGKfXsqCA1UYaaxmU=";
     };
     nix = (import nixpkgs-soundtouch { inherit system; }).nixVersions.unstable;
     tests = {
