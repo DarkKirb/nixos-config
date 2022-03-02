@@ -1,6 +1,7 @@
 { config, ... }: {
   imports = [
     ../../modules/gitea.nix
+    ../../modules/gateway-st.nix
   ];
   services.gitea = {
     enable = true;
@@ -20,11 +21,11 @@
     settings = rec {
       storage = {
         STORAGE_TYPE = "minio";
-        MINIO_ENDPOINT = "minio.int.chir.rs:443";
+        MINIO_ENDPOINT = "localhost:7777";
         MINIO_ACCESS_KEY_ID = "gitea";
         MINIO_SECRET_ACCESS_KEY = "#storageSecret#";
         MINIO_BUCKET = "gitea";
-        MINIO_USE_SSL = "true";
+        MINIO_USE_SSL = "false";
       };
       openid = {
         ENABLE_OPENID_SIGNIN = true;
@@ -50,6 +51,15 @@
       };
     };
   };
+
+  services.storj-gateway.gitea = {
+    accessGrantFile = "/run/secrets/services/storj/gitea/accessGrant";
+    accessKeyFile = "/run/secrets/services/storj/gitea/accessKey";
+    secretKeyFile = "/run/secrets/services/storj/gitea/secretKey";
+  };
+  sops.secrets."services/storj/gitea/accessGrant".owner = "storj";
+  sops.secrets."services/storj/gitea/accessKey".owner = "storj";
+  sops.secrets."services/storj/gitea/secretKey".owner = "storj";
 
   services.nginx.virtualHosts."git.chir.rs" = {
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
