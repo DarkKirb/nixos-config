@@ -153,7 +153,6 @@
 
     HWMON_MODULES="nct6775"
   '';
-  services.thermald.enable = true;
 
   hardware.opengl.driSupport32Bit = true;
 

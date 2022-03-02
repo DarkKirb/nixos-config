@@ -140,7 +140,7 @@
 
     HWMON_MODULES="coretemp"
   '';
-  services.thermald.enable = true;
+  #services.thermald.enable = true;
   boot.initrd.extraModprobeConfig = ''
     # enable power savings mode of snd_hda_intel
     options snd-hda-intel power_save=1 power_save_controller=y
