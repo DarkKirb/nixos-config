@@ -279,22 +279,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-tdesktop": {
-      "locked": {
-        "lastModified": 1645811750,
-        "narHash": "sha256-W1PW2mQ2bKiAqTOhps9vs8owOplgQuwmoO8RX9f/qi4=",
-        "owner": "yshym",
-        "repo": "nixpkgs",
-        "rev": "c3010a9971571a3cf53994e62443df3b1c69d1b3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "yshym",
-        "ref": "tdesktop-3.5.1",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1638109994,
@@ -421,7 +405,6 @@
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-soundtouch": "nixpkgs-soundtouch",
-        "nixpkgs-tdesktop": "nixpkgs-tdesktop",
         "nur": "nur",
         "polymc": "polymc",
         "sops-nix": "sops-nix"
