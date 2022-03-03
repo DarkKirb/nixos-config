@@ -113,10 +113,6 @@
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix true;
   networking.nameservers = [ "fd00:e621:e621:2::2" ];
   services.xserver.videoDrivers = [ "intel" ];
-  nix.settings.substituters = [
-    "http://192.168.2.1:9000/cache.int.chir.rs/"
-    "https://minio.int.chir.rs/cache.int.chir.rs/"
-  ];
   nix.settings.cores = 4;
 
   # Disable kernel mitigations

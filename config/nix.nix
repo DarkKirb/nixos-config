@@ -10,6 +10,9 @@
       require-sigs = false;
       auto-optimise-store = true;
       builders-use-substitutes = true;
+      substituters = [
+        "s3://nix-cache?scheme=https&endpoint=cache.int.chir.rs"
+      ];
     };
     package = pkgs.nixFlakes;
     extraOptions = ''
