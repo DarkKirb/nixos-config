@@ -37,6 +37,14 @@
         map = [ "index" ];
       }
     ];
+    extraConfig = ''
+      virtual-mailboxes "To Do" "notmuch://?query=tag:todo"
+      virtual-mailboxes "To Read" "notmuch://?query=tag:toread"
+      virtual-mailboxes "Blocked" "notmuch://?query=tag:blocked"
+      virtual-mailboxes "Archive" "notmuch://?query=tag:archive"
+      macro index,pager A "<modify-labels>+archive -unread -inbox\\n"
+      bind index,pager y modify-labels
+    '';
   };
   programs.msmtp.enable = true;
 }
