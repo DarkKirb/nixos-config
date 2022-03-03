@@ -67,6 +67,7 @@ desktop: { pkgs, ... }: {
         onNotifyPost = if desktop then "${pkgs.notmuch}/bin/notmuch new && ${pkgs.libnotify}/bin/notify-send 'New mail arrived'" else "${pkgs.notmuch}/bin/notmuch new";
       };
       mbsync = {
+        flatten = "__";
         enable = true;
         create = "both";
         expunge = "both";
