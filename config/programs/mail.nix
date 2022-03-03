@@ -1,4 +1,11 @@
-{ ... }: {
+{ pkgs, ... }:
+let
+  mailcap = pkgs.writeText "mailcap" ''
+    text/html; ${pkgs.w3m}/bin/w3m -I %{charset} -T text/html; copiousoutput;
+    image/*; ${pkgs.imv}/bin/imv %s
+  '';
+in
+{
   services.imapnotify.enable = true;
   programs.mbsync.enable = true;
   programs.notmuch = {
@@ -44,6 +51,7 @@
       virtual-mailboxes "Archive" "notmuch://?query=tag:archive"
       macro index,pager A "<modify-labels-then-hide>+archive -unread -inbox\n"
       bind index,pager y modify-labels
+      set mailcap_path = ${mailcap}
     '';
   };
   programs.msmtp.enable = true;
