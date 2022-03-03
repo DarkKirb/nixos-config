@@ -49,7 +49,7 @@ desktop: { pkgs, ... }: {
   };
   home.file.".p10k.zsh".source = ./.p10k.zsh;
 
-  accounts.email.maildirBasePath = "$HOME/Data/Maildir";
+  accounts.email.maildirBasePath = "Data/Maildir";
   accounts.email.accounts = rec {
     darkkirb = {
       address = "darkkirb@darkkirb.de";
