@@ -42,7 +42,7 @@
       virtual-mailboxes "To Read" "notmuch://?query=tag:toread"
       virtual-mailboxes "Blocked" "notmuch://?query=tag:blocked"
       virtual-mailboxes "Archive" "notmuch://?query=tag:archive"
-      macro index,pager A "<modify-labels>+archive -unread -inbox\\n"
+      macro index,pager A "<modify-labels-then-hide>+archive -unread -inbox\n"
       bind index,pager y modify-labels
     '';
   };
