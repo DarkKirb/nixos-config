@@ -4,7 +4,6 @@ rec {
   # Use NixOS unstable
   inputs.nixpkgs.url = github:NixOS/nixpkgs;
   inputs.nixpkgs-soundtouch.url = "github:darkkirb/nixpkgs?ref=soundtouch-2.3.1";
-  inputs.nixpkgs-tdesktop.url = "github:yshym/nixpkgs?ref=tdesktop-3.5.1";
   inputs.cargo2nix.url = "github:cargo2nix/cargo2nix/master"; # dummy
   inputs.home-manager.url = "github:nix-community/home-manager";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";

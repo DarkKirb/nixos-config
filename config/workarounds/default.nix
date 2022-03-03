@@ -1,4 +1,4 @@
-{ nixpkgs-soundtouch, nixpkgs-tdesktop, system, pkgs, nixpkgs, ... }:
+{ nixpkgs-soundtouch, system, pkgs, nixpkgs, ... }:
 let
   rawPerlPackages = pkgs.callPackage "${nixpkgs}/pkgs/top-level/perl-packages.nix" {
     overrides = pkgs: { };
@@ -25,7 +25,6 @@ in
         checkPhase = "true";
       });
       soundtouch = nixpkgs-soundtouch.legacyPackages.${system}.soundtouch;
-      tdesktop = nixpkgs-tdesktop.legacyPackages.${system}.tdesktop;
       hydra-unstable = hydra.overrideAttrs (old: {
         patches = [
           ../../extra/hydra.patch
