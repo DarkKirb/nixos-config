@@ -198,4 +198,5 @@
       supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" ];
     }
   ];
+  hardware.enableRedistributableFirmware = true;
 }
