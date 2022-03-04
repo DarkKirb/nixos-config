@@ -17,7 +17,7 @@ let
       basic = nixosTests.hydra.hydra-unstable;
     };
   };
-  plover = with python3Packages; libsForQt5.mkDerivationWith buildPythonPackages rec {
+  plover = with python3Packages; libsForQt5.mkDerivationWith buildPythonPackage rec {
     pname = "plover-wayland";
     version = " 2022-01-14";
     src = fetchFromGitHub {
