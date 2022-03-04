@@ -88,6 +88,21 @@ in
         ];
       });
       plover.dev = plover;
+      mosh = prev.mosh.overrideAttrs (old: {
+        patches = [
+          "${nixpkgs}/pkgs/tools/networking/mosh/ssh_path.patch"
+          "${nixpkgs}/pkgs/tools/networking/mosh/mosh-client_path.patch"
+          "${nixpkgs}/pkgs/tools/networking/mosh/utempter_path.patch"
+          "${nixpkgs}/pkgs/tools/networking/mosh/bash_completion_datadir.patch"
+        ];
+        version = "2022-02-04";
+        src = pkgs.fetchFromGitHub {
+          owner = "mobile-shell";
+          repo = "mosh";
+          rev = "dbe419d0e069df3fedc212d456449f64d0280c76";
+          sha256 = "09mvk9zxclkf4wrkkfzg0p2hx1f74gpymr0a0l3pckmk6za2n3d1";
+        };
+      });
     })
   ];
 }
