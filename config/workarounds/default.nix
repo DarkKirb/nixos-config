@@ -95,6 +95,11 @@ in
           "${nixpkgs}/pkgs/tools/networking/mosh/utempter_path.patch"
           "${nixpkgs}/pkgs/tools/networking/mosh/bash_completion_datadir.patch"
         ];
+        postPatch = ''  
+        substituteInPlace scripts/mosh.pl \
+          --subst-var-by ssh "${openssh}/bin/ssh" \
+          --subst-var-by mosh-client "$out/bin/mosh-client"
+        '';
         version = "2022-02-04";
         src = pkgs.fetchFromGitHub {
           owner = "mobile-shell";
