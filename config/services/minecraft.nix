@@ -202,7 +202,7 @@
       worth-yml = ../../extra/worth.yml;
     };
     multiverse = {
-      #enable = true;
+      enable = true;
       netherportals = true;
       signportals = true;
       inventories = true;
