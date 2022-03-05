@@ -75,6 +75,7 @@ rec {
                       (self: super: {
                         chir-rs = chir-rs.outputs.defaultPackage.${system};
                         nix-gaming = nix-gaming.outputs.packages.${system};
+                        rust-binaries = args.rust-binaries.packages.${system};
                       })
                       nur.overlay
                       polymc.overlay
