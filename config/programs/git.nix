@@ -17,6 +17,6 @@
     mit-commit-msg
     mit-hook-test-helper
     mit-pre-commit
-    mit-prepare-message-commit
+    mit-prepare-commit-msg
   ];
 }
