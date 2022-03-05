@@ -12,6 +12,7 @@ in
     ".config/plover/user.json".text = builtins.toJSON {
       "SER/TKPWAL" = "Sergal";
       "SERLG" = "Sergal";
+      "SER/WAL" = "serval";
     };
   };
 }
