@@ -110,7 +110,6 @@
   networking.wireguard.interfaces."wg0".ips = [
     "fd0d:a262:1fa6:e621:f45a:db9f:eb7c:1a3f/64"
   ];
-  home-manager.users.darkkirb = import ./home-manager/darkkirb.nix true;
   networking.nameservers = [ "fd00:e621:e621:2::2" ];
   services.xserver.videoDrivers = [ "intel" ];
   nix.settings.cores = 4;

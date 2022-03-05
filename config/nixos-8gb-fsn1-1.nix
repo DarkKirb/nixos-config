@@ -1,4 +1,4 @@
-{ config, pkgs, lib, modulesPath, ... }: {
+{ config, pkgs, lib, modulesPath, ... } @ args: {
   networking.hostName = "nixos-8gb-fsn1-1";
   networking.hostId = "73561e1f";
 
@@ -165,7 +165,7 @@
   };
 
   networking.wireguard.interfaces."wg0".ips = [ "fd0d:a262:1fa6:e621:b4e1:08ff:e658:6f49/64" ];
-  home-manager.users.darkkirb = import ./home-manager/darkkirb.nix false;
+  home-manager.users.darkkirb = import ./home-manager/darkkirb.nix { desktop = false; inherit args; };
   nix.settings.cores = 2;
   nix.settings.max-jobs = 0;
 }

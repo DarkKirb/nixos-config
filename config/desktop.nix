@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... } @ args:
 let
   lockscreen-all = pkgs.writeScript "lockscreen-all" ''
     #!${pkgs.bash}/bin/bash
@@ -60,4 +60,5 @@ in
   programs.java.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
+  home-manager.users.darkkirb = import ./home-manager/darkkirb.nix { desktop = true; inherit args; };
 }

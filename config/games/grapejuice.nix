@@ -1,4 +1,4 @@
-{ config, pkgs, system, nix-gaming, ... }:
+{ system, nix-gaming, ... } @ args: { config, pkgs, ... }:
 let
   wine-tkg = nix-gaming.outputs.packages.${system}.wine-tkg;
   hardware-profiles = {
@@ -19,7 +19,7 @@ let
   };
   grapejuice_config = {
     __version__ = 2;
-    __hardware_profiles__ = hardware-profiles.${config.networking.hostName};
+    __hardware_profiles__ = hardware-profiles.${args.config.networking.hostName};
     show_fast_flag_warning = true;
     no_daemon_mode = true;
     release_channel = "master";

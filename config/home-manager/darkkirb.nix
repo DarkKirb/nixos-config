@@ -1,4 +1,4 @@
-desktop: { pkgs, ... }: {
+{ desktop, args }: { pkgs, ... }: {
   imports = [
     (import ./base.nix desktop)
     ../programs/gpg.nix
@@ -14,7 +14,7 @@ desktop: { pkgs, ... }: {
     ../programs/zoom.nix
     ../programs/plover.nix
     ../programs/texlive.nix
-    ../games/default.nix
+    (import ../games/default.nix args)
     ../programs/yubikey.nix
     ../programs/keybase.nix
     ../programs/keepass.nix

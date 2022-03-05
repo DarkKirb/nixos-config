@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ system, nix-gaming, ... } @ args: { pkgs, ... }:
 let
-  wine-tkg = pkgs.nix-gaming.wine-tkg;
+  wine-tkg = nix-gaming.outputs.packages.${system}.wine-tkg;
 in
 {
   imports = [
-    ./grapejuice.nix
+    (import ./grapejuice.nix args)
   ];
   home.packages = [
     wine-tkg
