@@ -419,11 +419,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1646513288,
-        "narHash": "sha256-Dxwie5LjMw/29hEqaHtmge+LWXijh9sR8bS/ejj93QU=",
+        "lastModified": 1646513470,
+        "narHash": "sha256-wXj2MBFiVE+K+UO10bsW9EbyIhZNgNrw2hHpejQRrKI=",
         "ref": "main",
-        "rev": "ca73ee39cd5d120707fab2d5bb69e4d3a85c9db7",
-        "revCount": 2,
+        "rev": "1996739f3680bcb9eeb8faa2d5ff7fa43847d544",
+        "revCount": 3,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/rust-binaries"
       },
