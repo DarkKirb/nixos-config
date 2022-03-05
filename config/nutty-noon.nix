@@ -154,7 +154,6 @@
     HWMON_MODULES="nct6775"
   '';
 
-  hardware.opengl.driSupport32Bit = true;
   nix.settings.cores = 16;
   boot.binfmt.emulatedSystems = [
     "armv7l-linux"
