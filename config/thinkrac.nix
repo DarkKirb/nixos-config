@@ -157,4 +157,5 @@
   };
   networking.networkmanager.enable = true;
   users.users.darkkirb.extraGroups = [ "networkmanager" ];
+  nix.settings.max-jobs = 0;
 }
