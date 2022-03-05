@@ -1,6 +1,6 @@
 { lib, stdenv, fetchurl, bash, openjdk17_headless }:
 let
-  mcVersion = "1.18.1";
+  mcVersion = "1.18.2";
   buildNum = "225";
   jar = fetchurl {
     url = "https://papermc.io/api/v2/projects/paper/versions/${mcVersion}/builds/${buildNum}/downloads/paper-${mcVersion}-${buildNum}.jar";
