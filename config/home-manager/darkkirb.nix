@@ -18,5 +18,6 @@ desktop: { pkgs, ... }: {
     ../programs/yubikey.nix
     ../programs/keybase.nix
     ../programs/keepass.nix
+    ../programs/alacritty.nix
   ] else [ ]);
 }
