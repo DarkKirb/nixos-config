@@ -8,7 +8,7 @@ let
     ${pkgs.sway}/bin/swaymsg "output * dpms off"
   '';
   suspend-script = pkgs.writeScript "suspend" ''
-    ${pkgs.systemctl}/bin/systemctl suspend
+    ${pkgs.systemd}/bin/systemctl suspend
   '';
   resume-script = pkgs.writeScript "resume" ''
     ${pkgs.sway}/bin/swaymsg "output * dpms on"
