@@ -29,7 +29,20 @@ in
     userEmail = "lotte@chir.rs";
     userName = "Charlotte 🦝 Delenk";
     extraConfig = {
-      init.templatedir = "${gitTemplate}";
+      init.templateDir = "${gitTemplate}";
+      "mit.lint" = {
+        body-wider-than-72-characters = true;
+        duplicated-trailers = true;
+        github-id-missing = true;
+        jira-issue-key-missing = false;
+        not-conventional-commit = true;
+        not-emoji-log = false;
+        pivotal-tracker-id-missing = false;
+        subject-line-ends-with-period = true;
+        subject-line-not-capitalized = false;
+        subject-longer-than-72-characters = true;
+        subject-not-separated-from-body = true;
+      };
     };
   };
   home.packages = with pkgs.rust-binaries; [
@@ -43,4 +56,9 @@ in
     mit-pre-commit
     mit-prepare-commit-msg
   ];
+  xdg.configFile."git-mit/mit.toml".text = ''
+    [cd]
+    name = "Charlotte 🦝 Delenk"
+    email = "lotte@chir.rs"
+  '';
 }
