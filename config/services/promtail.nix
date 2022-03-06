@@ -35,7 +35,7 @@ in
 
     serviceConfig = {
       ExecStart = ''
-        ${pkgs.grafana-loki}/bin/promtail --config.file ${lib.generators.toYAML ./promtrail.yaml}
+        ${pkgs.grafana-loki}/bin/promtail --config.file ${lib.generators.toYAML promtail_config}
       '';
     };
   };
