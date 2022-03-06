@@ -13,7 +13,6 @@
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIDXQlfvRUm/z6eP1EjsajIbMibkq9n+ymlbBi7NFiOuaAAAABHNzaDo= ssh:"
     ];
   };
-  sops.secrets."email/darkkirb@darkkirb.de" = { owner = "darkkirb"; };
   sops.secrets."email/lotte@chir.rs" = { owner = "darkkirb"; };
   sops.secrets."email/mdelenk@hs-mittweida.de" = { owner = "darkkirb"; };
 }

@@ -49,21 +49,22 @@ desktop: { pkgs, ... }: {
 
   accounts.email.maildirBasePath = "Data/Maildir";
   accounts.email.accounts = rec {
-    darkkirb = {
-      address = "darkkirb@darkkirb.de";
-      aliases = [ "postmaster@darkkirb.de" ];
+    lotte = {
+      aliases = [ "darkkirb@darkkirb.de" "postmaster@darkkirb.de" "postmaster@chir.rs" "postmaster@miifox.net" ];
       gpg = {
         encryptByDefault = true;
         key = "B4E3D4801C49EC5E";
         signByDefault = true;
       };
-      imap.host = "mail.darkkirb.de";
+      imap.host = "mail.chir.rs";
       imapnotify = {
         enable = true;
         boxes = [ "Inbox" ];
         onNotify = "${pkgs.isync}/bin/mbsync -a || true";
         onNotifyPost = if desktop then "${pkgs.notmuch}/bin/notmuch new && ${pkgs.libnotify}/bin/notify-send 'New mail arrived'" else "${pkgs.notmuch}/bin/notmuch new";
       };
+      smtp.host = "mail.chir.rs";
+      address = "lotte@chir.rs";
       mbsync = {
         enable = true;
         create = "both";
@@ -73,25 +74,7 @@ desktop: { pkgs, ... }: {
       msmtp.enable = true;
       neomutt.enable = true;
       notmuch.enable = true;
-      passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/email/darkkirb@darkkirb.de";
       realName = "Charlotte 🦝 Delenk";
-      signature.text = ''
-        Charlotte
-
-        https://darkkirb.de • GPG Key EF5F 367A 95E0 BFA6 • https://keybase.io/darkkirb
-
-        This message was sent from an old email address. My new email address is lotte@chir.rs.
-        Please update your contacts accordingly
-      '';
-      signature.showSignature = "append";
-      smtp.host = "mail.darkkirb.de";
-      userName = "darkkirb@darkkirb.de";
-    };
-    lotte = darkkirb // {
-      imap.host = "mail.chir.rs";
-      smtp.host = "mail.chir.rs";
-      address = "lotte@chir.rs";
-      aliases = [ "postmaster@chir.rs" ];
       passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/email/lotte@chir.rs";
       primary = true;
       signature.text = ''
@@ -102,14 +85,14 @@ desktop: { pkgs, ... }: {
       signature.showSignature = "append";
       userName = "lotte@chir.rs";
     };
-    mdelenk = darkkirb // {
+    mdelenk = lotte // {
       address = "mdelenk@hs-mittweida.de";
       aliases = [ ];
-      gpg = darkkirb.gpg // {
+      gpg = lotte.gpg // {
         key = "5130416C797067B6";
       };
       imap.host = "xc.hs-mittweida.de";
-      mbsync = darkkirb.mbsync // {
+      mbsync = lotte.mbsync // {
         extraConfig.account = {
           AuthMechs = "LOGIN";
         };
@@ -126,6 +109,7 @@ desktop: { pkgs, ... }: {
         tls.useStartTls = true;
       };
       userName = "mdelenk@hs-mittweida.de";
+      primary = false;
     };
   };
   home = {
