@@ -17,7 +17,13 @@
     certs."int.chir.rs" = {
       domain = "*.int.chir.rs";
     };
+    certs."miifox.net" = {
+      dnsProvider = "cloudflare";
+      credentialsFile = "/run/secrets/security/acme/cloudflare";
+      dnsResolver = "1.1.1.1:53";
+    };
   };
   services.nginx.group = "acme";
   sops.secrets."security/acme/dns" = { };
+  sops.secrets."security/acme/cloudflare" = { };
 }
