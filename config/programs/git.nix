@@ -10,10 +10,12 @@ let gitTemplate = pkgs.stdenv.mkDerivation {
   ];
   buildPhase = "true";
   installPhase = with pkgs; with rust-binaries; ''
-    git init $out
-    ln -s $out/.git/hooks/commit-msg ${mit-commit-msg}/bin/mit-commit-msg
-    ln -s $out/.git/hooks/pre-commit ${mit-pre-commit}/bin/mit-pre-commit
-    ln -s $out/.git/hooks/prepare-commit-msg ${mit-prepare-commit-msg}/bin/mit-prepare-commit-msg
+    git init $out --bare
+    cd $out
+    git branch -m main
+    ln -s ${mit-commit-msg}/bin/mit-commit-msg $out/hooks/commit-msg
+    ln -s ${mit-pre-commit}/bin/mit-pre-commit $out/hooks/pre-commit
+    ln -s ${mit-prepare-commit-msg}/bin/mit-prepare-commit-msg $out/hooks/prepare-commit-msg
   '';
 };
 in
