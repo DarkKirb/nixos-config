@@ -2,6 +2,7 @@
   imports = [
     ./wl-clipboard.nix
     ./mako.nix
+    ./swayidle.nix
   ];
   wayland.windowManager.sway = {
     enable = true;
