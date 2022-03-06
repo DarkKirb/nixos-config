@@ -61,7 +61,7 @@ desktop: { pkgs, ... }: {
       imapnotify = {
         enable = true;
         boxes = [ "Inbox" ];
-        onNotify = "${pkgs.isync}/bin/mbsync -a";
+        onNotify = "${pkgs.isync}/bin/mbsync -a || true";
         onNotifyPost = if desktop then "${pkgs.notmuch}/bin/notmuch new && ${pkgs.libnotify}/bin/notify-send 'New mail arrived'" else "${pkgs.notmuch}/bin/notmuch new";
       };
       mbsync = {
