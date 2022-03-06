@@ -9,7 +9,7 @@ let gitTemplate = pkgs.stdenv.mkDerivation {
     mit-prepare-commit-msg
   ];
   buildPhase = "true";
-  installPhase = ''
+  installPhase = with pkgs; with rust-binaries; ''
     git init $out
     ln -s $out/.git/hooks/commit-msg ${mit-commit-msg}/bin/mit-commit-msg
     ln -s $out/.git/hooks/pre-commit ${mit-pre-commit}/bin/mit-pre-commit
