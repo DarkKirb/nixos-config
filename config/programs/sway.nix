@@ -1,4 +1,7 @@
 { config, pkgs, lib, ... }: {
+  imports = [
+    ./wl-clipboard.nix
+  ];
   wayland.windowManager.sway = {
     enable = true;
     config = {
@@ -47,9 +50,6 @@
         };
       };
       startup = [
-        {
-          command = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.clipman}/bin/clipman store --no-persist";
-        }
         {
           command = "${pkgs.mako}/bin/mako";
         }
