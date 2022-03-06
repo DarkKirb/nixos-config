@@ -1,14 +1,14 @@
 { pkgs, ... }:
 let gitTemplate = pkgs.stdenv.mkDerivation {
   name = "git-template";
-  src = pkgs.writeText "dummy" "";
+  src = ./.;
   nativeBuildInputs = with pkgs; with rust-binaries; [
     git
     mit-commit-msg
     mit-pre-commit
     mit-prepare-commit-msg
   ];
-  buildPhase = ./.;
+  buildPhase = "true";
   installPhase = with pkgs; with rust-binaries; ''
     git init $out
     ln -s $out/.git/hooks/commit-msg ${mit-commit-msg}/bin/mit-commit-msg
