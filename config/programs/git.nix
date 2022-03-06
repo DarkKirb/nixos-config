@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let gitTemplate = pkgs.stdenv.mkDerivation {
   name = "git-template";
-  src = pkgs.writeFile "dummy" "";
+  src = pkgs.writeText "dummy" "";
   nativeBuildInputs = with pkgs; with rust-binaries; [
     git
     mit-commit-msg
