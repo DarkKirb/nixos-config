@@ -18,4 +18,12 @@
     name = "miifox";
     ensurePermissions = { "DATABASE miifox" = "ALL PRIVILEGES"; };
   }];
+  services.nginx.virtualHosts."miifox.net" = {
+    acmeRoot = "/home/miifox/miifox.net";
+    sslCertificate = "/var/lib/acme/miifox.net/cert.pem";
+    sslCertificateKey = "/var/lib/acme/miifox.net/key.pem";
+    locations."/" = {
+      root = "/home/miifox/miifox.net";
+    };
+  };
 }
