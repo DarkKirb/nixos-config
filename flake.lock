@@ -318,11 +318,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1646544530,
-        "narHash": "sha256-B5R6pIA+PPYn8etxTqnXwh3RXKPTVpy2mBD95uxP9YA=",
+        "lastModified": 1646552976,
+        "narHash": "sha256-/rplVX/KpCt7F2r2Mr8DYVlI3r7VReR08V94OveJaSw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "cf7e4cac05889d9326de15c5d72afb389ddafb17",
+        "rev": "6f24db2d94f2e4175643bea45740c91ed0682bf1",
         "type": "github"
       },
       "original": {
@@ -419,11 +419,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1646513470,
-        "narHash": "sha256-wXj2MBFiVE+K+UO10bsW9EbyIhZNgNrw2hHpejQRrKI=",
+        "lastModified": 1646551034,
+        "narHash": "sha256-04bIgAdkR0YyRe1gpPwMS8tM77/EbO6xdE6txsdHNic=",
         "ref": "main",
-        "rev": "1996739f3680bcb9eeb8faa2d5ff7fa43847d544",
-        "revCount": 3,
+        "rev": "4a37c8d2a2e5332959bb2679bf2a2ceed3b372d8",
+        "revCount": 5,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/rust-binaries"
       },
