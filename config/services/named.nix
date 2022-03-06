@@ -4,6 +4,7 @@ let
   createListenEntry = ip: "inet ${ip} port 8653 allow { any; };";
   listenEntries = builtins.map createListenEntry internalIP.listenIPsBare;
   chir-rs = import ../../zones/chir.rs.nix { inherit dns; };
+  int-chir-rs = import ../../zones/int.chir.rs.nix { inherit dns; };
   signzone = import ../../zones/signzone.nix;
 in
 {
@@ -14,6 +15,13 @@ in
       zsk = "services/dns/rs/chir/51207";
       zone = chir-rs;
       zonename = "chir.rs";
+    })
+    (signzone {
+      inherit dns;
+      ksk = "services/dns/rs/chir/int/35133";
+      zsk = "services/dns/rs/chir/int/19631";
+      zone = int-chir-rs;
+      zonename = "int.chir.rs";
     })
   ];
 
@@ -47,11 +55,23 @@ in
         '';
       };
       "int.chir.rs" = {
-        master = false;
-        masters = [
+        master = true;
+        file = "/var/lib/named/int.chir.rs";
+        slaves = [
           "fd00:e621:e621::1"
         ];
-        file = "int.chir.rs.zone";
+      };
+      "_acme-challenge.int.chir.rs" = {
+        master = true;
+        file = "_acme-challenge.int.chir.rs";
+        slaves = [
+          "fd00:e621:e621::1"
+        ];
+        extraConfig = ''
+          update-policy {
+            grant certbot. name _acme-challenge.int.chir.rs. txt;
+          };
+        '';
       };
       "rpz.int.chir.rs" = {
         master = false;
