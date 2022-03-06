@@ -51,14 +51,6 @@
           Return = ''mode "default"'';
         };
       };
-      startup = [
-        {
-          command = "${pkgs.swayidle}/bin/swayidle -w timeout 300 '${pkgs.swaylock}/bin/swaylock -f -c 000000' timeout 305 '${pkgs.sway}/bin/swaymsg \"output * dpms off\"' resume '${pkgs.sway}/bin/swaymsg \"output * dpms on\"' lock '${pkgs.swaylock}/bin/swaylock -f -c 000000' unlock '${pkgs.procps}/bin/pkill swaylock'";
-        }
-        {
-          command = "${pkgs.plover.dev}/bin/plover";
-        }
-      ];
     };
     wrapperFeatures.gtk = true;
   };
