@@ -35,6 +35,7 @@
       set -sg escape-time 0
 
       set -g mouse on
+      set -g default-terminal "screen-256color"
     '';
   };
 }
