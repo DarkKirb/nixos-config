@@ -19,5 +19,6 @@
     ../programs/keybase.nix
     ../programs/keepass.nix
     ../programs/alacritty.nix
+    ../programs/kicad.nix
   ] else [ ]);
 }

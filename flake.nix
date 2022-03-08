@@ -5,6 +5,7 @@ rec {
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs;
     nixpkgs-soundtouch.url = "github:darkkirb/nixpkgs?ref=soundtouch-2.3.1";
+    nixpkgs-wxwidgets.url = "github:knl/nixpkgs?ref=wxwidgets-3.1-update";
     flake-utils.url = github:numtide/flake-utils;
     rust-overlay.url = github:oxalica/rust-overlay;
     cargo2nix.url = "github:cargo2nix/cargo2nix/be-friendly-to-users"; # dummy
