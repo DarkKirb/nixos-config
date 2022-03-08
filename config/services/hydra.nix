@@ -13,7 +13,6 @@
       <gitea_authorization>
         darkkirb = #gitea_token#
       </gitea_authorization>
-      max_output_size = 68719476736
     '';
     giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
   };

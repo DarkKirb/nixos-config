@@ -4,7 +4,7 @@ let
     overrides = pkgs: { };
     buildPerl = perl;
   };
-  hydra = callPackage "${nixpkgs}/pkgs/development/tools/misc/hydra/common.nix" {
+  hydra = (callPackage "${nixpkgs}/pkgs/development/tools/misc/hydra/common.nix" {
     version = "2021-08-11";
     src = fetchFromGitHub {
       owner = "NixOS";
@@ -16,7 +16,11 @@ let
     tests = {
       basic = nixosTests.hydra.hydra-unstable;
     };
-  };
+  }).overrideAttrs (old: {
+    postPatch = ''
+      sed -i 's/totalNarSize > maxOutputSize/false/g' src/hydra-queue-runner/build-remote.cc
+    '';
+  });
   rtf-tokenize = with python3Packages; buildPythonPackage rec {
     pname = "rtf_tokenize";
     version = "1.0.0";
