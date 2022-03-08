@@ -92,7 +92,7 @@ in
         checkPhase = "true";
       });
       soundtouch = nixpkgs-soundtouch.legacyPackages.${system}.soundtouch;
-      wxGTK31 = nixpkgs-wxwidgets.legacyPackages.${system}.wxGTK31;
+      wxGTK31-gtk3 = nixpkgs-wxwidgets.legacyPackages.${system}.wxGTK31-gtk3;
       hydra-unstable = hydra.overrideAttrs (old: {
         patches = [
           ../../extra/hydra.patch
