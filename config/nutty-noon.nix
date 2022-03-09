@@ -196,4 +196,7 @@
     }
   ];
   hardware.enableRedistributableFirmware = true;
+  nix.settings.substituters = lib.mkForce [
+    "https://cache.nixos.org/"
+  ];
 }
