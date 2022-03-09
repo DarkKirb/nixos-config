@@ -16,7 +16,6 @@
   boot.extraModulePackages = [
     config.boot.kernelPackages.zenpower
   ];
-  boot.kernelPackages = pkgs.custom_xanmod;
 
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.devNodes = "/dev/";
