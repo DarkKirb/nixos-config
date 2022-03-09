@@ -4,25 +4,21 @@ keys:
   - &nutty-noon age1zgxkntdp99dkvw7z29jjmgrzlla2ha542zrs3262dwat27a34asqckfkrl
   - &thinkrac age1azy4hfse3x9tzhjn0htelx8qeannscr7mydmuphp2qu73v72tp3qdxt7my
 creation_rules:
-  - path_regex: secrets/nixos-8gb-fsn1-1/[^/]+$
+  - path_regex: secrets/nixos-8gb-fsn1-1\.yaml$
     key_groups:
       - age:
           - *nixos-8gb-fsn1-1
         pgp:
           - *lotte
-  - path_regex: secrets/nutty-noon/[^/]+$
+  - path_regex: secrets/nutty-noon\.yaml$
     key_groups:
       - age:
           - *nutty-noon
         pgp:
           - *lotte
-  - path_regex: secrets/thinkrac/[^/]+$
+  - path_regex: secrets/thinkrac\.yaml$
     key_groups:
       - age:
           - *thinkrac
         pgp:
-          - *lotte
-  - path_regex: secrets/rpi2/[^/]+$
-    key_groups:
-      - pgp:
           - *lotte
