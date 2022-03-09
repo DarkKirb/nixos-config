@@ -218,6 +218,27 @@
         "type": "github"
       }
     },
+    "hydra": {
+      "inputs": {
+        "nix": "nix",
+        "nixpkgs": [
+          "nixpkgs-hydra"
+        ]
+      },
+      "locked": {
+        "lastModified": 1645494162,
+        "narHash": "sha256-/wdwbt+q5jI44FSlFTs5JTZV7KfS0HnCxJa77VWdSiQ=",
+        "owner": "NixOS",
+        "repo": "hydra",
+        "rev": "a2546121f0c737b9fa5e6d311561ce57e7d0318a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "hydra",
+        "type": "github"
+      }
+    },
     "libnbtplusplus": {
       "flake": false,
       "locked": {
@@ -234,9 +255,46 @@
         "type": "github"
       }
     },
+    "lowdown-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1633514407,
+        "narHash": "sha256-Dw32tiMjdK9t3ETl5fzGrutQTzh2rufgZV4A/BbxuD4=",
+        "owner": "kristapsdz",
+        "repo": "lowdown",
+        "rev": "d2c2b44ff6c27b936ec27358a2653caaef8f73b8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kristapsdz",
+        "repo": "lowdown",
+        "type": "github"
+      }
+    },
+    "nix": {
+      "inputs": {
+        "lowdown-src": "lowdown-src",
+        "nixpkgs": "nixpkgs_3",
+        "nixpkgs-regression": "nixpkgs-regression"
+      },
+      "locked": {
+        "lastModified": 1643066034,
+        "narHash": "sha256-xEPeMcNJVOeZtoN+d+aRwolpW8mFSEQx76HTRdlhPhg=",
+        "owner": "NixOS",
+        "repo": "nix",
+        "rev": "a1cd7e58606a41fcf62bf8637804cf8306f17f62",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "2.6.0",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "nix-gaming": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "utils": "utils"
       },
       "locked": {
@@ -267,6 +325,37 @@
         "ref": "release-21.05",
         "repo": "nixpkgs",
         "type": "github"
+      }
+    },
+    "nixpkgs-hydra": {
+      "locked": {
+        "lastModified": 1645296114,
+        "narHash": "sha256-y53N7TyIkXsjMpOG7RhvqJFGDacLs9HlyHeSTBioqYU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "530a53dcbc9437363471167a5e4762c5fcfa34a1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-21.05-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-regression": {
+      "locked": {
+        "lastModified": 1643052045,
+        "narHash": "sha256-uGJ0VXIhWKGXxkeNnq4TvV3CIOkUJ3PAoLZ3HMzNVMw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "215d4d0fd80ca5163643b03a33fde804a29cc1e2",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "rev": "215d4d0fd80ca5163643b03a33fde804a29cc1e2",
+        "type": "indirect"
       }
     },
     "nixpkgs-soundtouch": {
@@ -319,6 +408,21 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1632864508,
+        "narHash": "sha256-d127FIvGR41XbVRDPVvozUPQ/uRHbHwvfyKHwEt5xFM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "82891b5e2c2359d7e58d08849e4c89511ab94234",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-21.05-small",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1645162597,
         "narHash": "sha256-S4sRtJBqVlBg4H7EPAv0NFofGNCayHEMpLnUzGNCCKM=",
         "owner": "NixOS",
@@ -332,13 +436,13 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
-        "lastModified": 1646813110,
-        "narHash": "sha256-Nfv4FBLPIZ80gVU31sk7eTaAHjycsqXmFy4Scl9EflU=",
+        "lastModified": 1646833723,
+        "narHash": "sha256-8p0swO8BoN9WsmdzzKrUoBBG5CclgOUD0asSj561vCo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c3b435cf1c3647512ce2e00f63d554b481ab38c3",
+        "rev": "15598910e4c7e299a5ff94261e9b165ea19c546c",
         "type": "github"
       },
       "original": {
@@ -349,11 +453,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1646798858,
-        "narHash": "sha256-16HNEkAzf4F/DgPeIUHxql1WKuz33ut5avZ6OG9WOIA=",
+        "lastModified": 1646821226,
+        "narHash": "sha256-CjeiKHCqwWGJ1hec4Z5GsUTKOswEIDWdpJZq5lbX0FU=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "94da5e72a447a3131cef722a027841905e82cf96",
+        "rev": "000ff96f578e82c8c0357157fcecf359acc4798e",
         "type": "github"
       },
       "original": {
@@ -409,8 +513,10 @@
         "dns": "dns",
         "flake-utils": "flake-utils_4",
         "home-manager": "home-manager",
+        "hydra": "hydra",
         "nix-gaming": "nix-gaming",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
+        "nixpkgs-hydra": "nixpkgs-hydra",
         "nixpkgs-soundtouch": "nixpkgs-soundtouch",
         "nixpkgs-wxwidgets": "nixpkgs-wxwidgets",
         "nur": "nur",

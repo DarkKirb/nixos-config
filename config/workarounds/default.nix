@@ -1,26 +1,10 @@
-{ nixpkgs-soundtouch, system, pkgs, nixpkgs, nixpkgs-wxwidgets, ... }: with pkgs;
+{ nixpkgs-soundtouch, system, pkgs, nixpkgs, nixpkgs-wxwidgets, hydra, ... }: with pkgs;
 let
   rawPerlPackages = callPackage "${nixpkgs}/pkgs/top-level/perl-packages.nix" {
     overrides = pkgs: { };
     buildPerl = perl;
   };
-  hydra = (callPackage "${nixpkgs}/pkgs/development/tools/misc/hydra/common.nix" {
-    version = "2021-08-11";
-    src = fetchFromGitHub {
-      owner = "NixOS";
-      repo = "hydra";
-      rev = "9bce425c3304173548d8e822029644bb51d35263";
-      sha256 = "sha256-tGzwKNW/odtAYcazWA9bPVSmVXMGKfXsqCA1UYaaxmU=";
-    };
-    nix = (import nixpkgs-soundtouch { inherit system; }).nixVersions.unstable;
-    tests = {
-      basic = nixosTests.hydra.hydra-unstable;
-    };
-  }).overrideAttrs (old: {
-    postPatch = ''
-      sed -i 's/totalNarSize > maxOutputSize/false/g' src/hydra-queue-runner/build-remote.cc
-    '';
-  });
+  hydra-pkg = hydra.defaultPackage.${system};
   rtf-tokenize = with python3Packages; buildPythonPackage rec {
     pname = "rtf_tokenize";
     version = "1.0.0";
@@ -93,7 +77,10 @@ in
       });
       soundtouch = nixpkgs-soundtouch.legacyPackages.${system}.soundtouch;
       wxGTK31-gtk3 = nixpkgs-wxwidgets.legacyPackages.${system}.wxGTK31-gtk3;
-      hydra-unstable = hydra.overrideAttrs (old: {
+      hydra-unstable = hydra-pkg.overrideAttrs (old: {
+        postPatch = ''
+          sed -i 's/totalNarSize > maxOutputSize/false/g' src/hydra-queue-runner/build-remote.cc
+        '';
         patches = [
           ../../extra/hydra.patch
         ];

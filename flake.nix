@@ -32,6 +32,9 @@ rec {
     cargo2nix.inputs.rust-overlay.follows = "rust-overlay";
     cargo2nix.inputs.nixpkgs.follows = "nixpkgs";
     cargo2nix.inputs.flake-utils.follows = "flake-utils";
+    hydra.url = github:NixOS/hydra;
+    nixpkgs-hydra.url = "github:NixOS/nixpkgs/nixos-21.05-small";
+    hydra.inputs.nixpkgs.follows = "nixpkgs-hydra";
   };
 
   outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, polymc, ... } @ args:
