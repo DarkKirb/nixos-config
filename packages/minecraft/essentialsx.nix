@@ -93,15 +93,15 @@ rec {
     '';
   };
   essentialsx = fetchurl {
-    url = "https://ci.ender.zone/job/EssentialsX/lastSuccessfulBuild/artifact/jars/EssentialsX-2.19.3.jar";
+    url = "https://github.com/EssentialsX/Essentials/releases/download/2.19.3/EssentialsX-2.19.3.jar";
     sha256 = "b98b05e47bf7910f8da6834ccd510de327ce9a73edb06416b41620923ca65028";
   };
   essentialsx-chat = fetchurl {
-    url = "https://ci.ender.zone/job/EssentialsX/lastSuccessfulBuild/artifact/jars/EssentialsXChat-2.19.3.jar";
+    url = "https://github.com/EssentialsX/Essentials/releases/download/2.19.3/EssentialsXChat-2.19.3.jar";
     sha256 = "aa30545d19009028201582ce83d4df2cf12c07ed9013c8eabf9642c2d00ff7ca";
   };
   essentialsx-spawn = fetchurl {
-    url = "https://ci.ender.zone/job/EssentialsX/lastSuccessfulBuild/artifact/jars/EssentialsXSpawn-2.19.3.jar";
+    url = "https://github.com/EssentialsX/Essentials/releases/download/2.19.3/EssentialsXSpawn-2.19.3.jar";
     sha256 = "9af76e0f98174dd55bc7eadaf4fd01c5a9642b5d8dad962c74c5cc7bdde07556";
   };
 }
