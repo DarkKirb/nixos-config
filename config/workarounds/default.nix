@@ -37,7 +37,7 @@ let
     patches = [
       (fetchpatch {
         url = "https://github.com/openstenoproject/plover/files/8059650/cache-kb-mapping.txt";
-        sha256 = "0rahn1fxa6i2rhpz5dk4pamggn7jjlpx0ksjzvj4w1q1mpngyblx";
+        sha256 = "9d2effecad01074ee4fe524fd02f95f2d8f7aaba64b6f22fcc221ad55db05065";
       })
     ];
     postPatch = ''
