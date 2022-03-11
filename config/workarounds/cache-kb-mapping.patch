@@ -1,0 +1,87 @@
+Index: plover-git/plover/oslayer/waykeyboardcontrol.py
+===================================================================
+--- plover-git.orig/plover/oslayer/waykeyboardcontrol.py
++++ plover-git/plover/oslayer/waykeyboardcontrol.py
+@@ -323,6 +323,20 @@ Wayland compositor does not support the
+ 
+         self._virtual_keyboard = \
+             self._virtual_keyboard_manager.create_virtual_keyboard(self._seat)
++
++        default_letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*(){}[].,:;/?\'"-_`~\\|+=<>\t\n\r'
++        special_chars = ['BackSpace', 'Return']
++        self._default_keysyms = special_chars + [f'U{ord(letter):04X}' for letter in default_letters]
++        self._default_bs_index = self._default_keysyms.index('BackSpace')
++        self._default_return_index = self._default_keysyms.index('Return')
++        lettertopos = {}
++        for letter in default_letters:
++            lettertopos[letter] = default_letters.index(letter) + len(special_chars)
++        self._default_letter_indices = lettertopos
++
++        self._default_keymap_set = False
++        self._send_default_keymap()
++
+         self._ready = True
+ 
+     def close(self, type, value, traceback):
+@@ -355,6 +369,12 @@ Wayland compositor does not support the
+         self._virtual_keyboard.keymap(1, fd, size)
+         self._display.flush()
+         os.close(fd)
++        self._default_keymap_set = False
++
++    def _send_default_keymap(self):
++        if not self._default_keymap_set:
++            self._send_keymap(self._default_keysyms)
++            self._default_keymap_set = True
+ 
+     def _send_key(self, keycode, state):
+         """Emulate a single keypress."""
+@@ -377,12 +397,29 @@ Wayland compositor does not support the
+ is not available')
+ 
+         letterset = list(set(string))
+-        keysyms = [f'U{ord(letter):04X}' for letter in letterset]
+-        self._send_keymap(keysyms)
++        all_default = True
++        for letter in string:
++            if letter not in self._default_letter_indices:
++                all_default = False
++                break
++
++        if all_default:
++            self._send_default_keymap()
++        else:
++            keysyms = [f'U{ord(letter):04X}' for letter in letterset]
++            self._send_keymap(keysyms)
+ 
+         for letter in string:
+-            self._send_key(letterset.index(letter), 1)
+-            self._send_key(letterset.index(letter), 0)
++            if all_default:
++                if letter in ('\n', '\r'):
++                    idx = self._default_return_index
++                else:
++                    idx = self._default_letter_indices[letter]
++            else:
++                idx = letterset.index(letter)
++
++            self._send_key(idx, 1)
++            self._send_key(idx, 0)
+ 
+         self._display.flush()
+ 
+@@ -392,11 +429,11 @@ is not available')
+             raise RuntimeError('Cannot send backspaces: keyboard emulation \
+ is not available')
+ 
+-        self._send_keymap(['BackSpace'])
++        self._send_default_keymap()
+ 
+         for _ in range(count):
+-            self._send_key(0, 1)
+-            self._send_key(0, 0)
++            self._send_key(self._default_bs_index, 1)
++            self._send_key(self._default_bs_index, 0)
+ 
+         self._display.flush()
+ 

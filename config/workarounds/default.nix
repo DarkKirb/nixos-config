@@ -35,10 +35,7 @@ let
       sha256 = "0y3mdfqjv3vmv5c0cpvfa2mqdylan44iw1js480sxvklq8sxq6yv";
     };
     patches = [
-      (fetchpatch {
-        url = "https://github.com/openstenoproject/plover/files/8059650/cache-kb-mapping.txt";
-        sha256 = "9d2effecad01074ee4fe524fd02f95f2d8f7aaba64b6f22fcc221ad55db05065";
-      })
+      ./cache-kb-mapping.patch
     ];
     postPatch = ''
       sed -i /PyQt5/d setup.cfg
