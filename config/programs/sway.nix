@@ -36,6 +36,16 @@
           "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
           "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";
           "Print" = "mode screenshot";
+          "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86MicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+          "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+          "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
+          "XF86AudioPlay" = "exec ${pkgs.mpc-cli}/bin/mpc toggle";
+          "XF86AudioNext" = "exec ${pkgs.mpc-cli}/bin/mpc next";
+          "XF86AudioPrev" = "exec ${pkgs.mpc-cli}/bin/mpc prev";
+          "XF86AudioStop" = "exec ${pkgs.mpc-cli}/bin/mpc stop";
         };
       bars = [
         {
