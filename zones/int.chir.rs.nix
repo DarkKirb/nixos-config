@@ -8,7 +8,7 @@ in
   SOA = {
     nameServer = "ns2.darkkirb.de.";
     adminEmail = "lotte@chir.rs";
-    serial = 3;
+    serial = 4;
   };
   NS = [
     "ns2.darkkirb.de."
@@ -161,7 +161,7 @@ in
           svcPriority = 1;
           targetName = ".";
           alpn = [ "http/1.1" "h2" "h3" ];
-          ipv4hint = [ "fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437" ];
+          ipv6hint = [ "fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437" ];
           ttl = zoneTTL;
         }
       ];
