@@ -1,4 +1,4 @@
-{ system, nix-gaming, ... } @ args: { config, pkgs, ... }:
+{ system, nix-gaming, ... } @ args: { lib, config, pkgs, ... }:
 let
   wine-tkg = nix-gaming.outputs.packages.${system}.wine-tkg;
   hardware-profiles = {
@@ -84,11 +84,16 @@ let
       }
     ];
   };
+  grapejuiceJson = pkgs.writeText "grapejuice.json" (builtins.toJSON grapejuice_config);
 in
 {
 
   home.packages = [
     pkgs.grapejuice
   ];
-  home.file.".config/brinkervii/grapejuice/user_settings.json".text = builtins.toJSON grapejuice_config;
+  home.activation.grapejuiceSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD rm $VERBOSE_ARG -f $HOME/.config/brinkervii/grapejuice/user_settings.json
+    $DRY_RUN_CMD cp $VERBOSE_ARG ${grapejuiceJson} $HOME/.config/brinkervii/grapejuice/user_settings.json
+    $DRY_RUN_CMD chmod +w $VERBOSE_ARG $HOME/.config/brinkervii/grapejuice/user_settings.json
+  '';
 }
