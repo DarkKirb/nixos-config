@@ -8,7 +8,7 @@ in
   SOA = {
     nameServer = "ns2.darkkirb.de.";
     adminEmail = "lotte@chir.rs";
-    serial = 2;
+    serial = 3;
   };
   NS = [
     "ns2.darkkirb.de."
@@ -193,5 +193,8 @@ in
     backup.CNAME = [ "nas" ];
     cache.CNAME = [ "nixos-8gb-fsn1-1" ];
     hydra.CNAME = [ "nutty-noon" ];
+    _acme-challenge = delegateTo [
+      "ns2.darkkirb.de."
+    ];
   };
 }
