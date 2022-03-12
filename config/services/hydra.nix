@@ -1,4 +1,11 @@
-{ ... }: {
+{ lib, config, ... }:
+let
+  listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
+  listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
+    add_header Alt-Svc 'h3=":443"';
+  '';
+in
+{
   imports = [
     ./postgres.nix
     ../../modules/hydra.nix
@@ -6,7 +13,7 @@
   ];
   services.hydra = {
     enable = true;
-    hydraURL = "http://localhost:3000";
+    hydraURL = "https://hydra.int.chir.rs/";
     notificationSender = "hydra@chir.rs";
     useSubstitutes = true;
     extraConfig = ''
@@ -28,4 +35,14 @@
   ];
   nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" "https://minio.int.chir.rs/" ];
   sops.secrets."services/hydra/gitea_token" = { };
+  services.nginx.virtualHosts."hydra.int.chir.rs" = {
+    listenAddresses = listenIPs;
+    sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
+    sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:3000";
+      proxyWebsockets = true;
+    };
+    extraConfig = listenStatements;
+  };
 }
