@@ -33,6 +33,11 @@ in
         masters = [
           "fd00:e621:e621::1"
         ];
+        extraConfig = ''
+          update-policy {
+            grant certbot. name _acme-challenge.darkkirb.de. txt;
+          };
+        '';
         file = "darkkirb.de.zone";
       };
       "chir.rs" = {
