@@ -35,6 +35,8 @@ rec {
     hydra.url = github:NixOS/hydra;
     nixpkgs-hydra.url = "github:NixOS/nixpkgs/nixos-21.05-small";
     hydra.inputs.nixpkgs.follows = "nixpkgs-hydra";
+    hosts-list.url = github:StevenBlack/hosts;
+    hosts-list.flake = false;
   };
 
   outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, polymc, ... } @ args:

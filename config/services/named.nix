@@ -1,10 +1,11 @@
-{ config, dns, ... }:
+{ pkgs, config, dns, hosts-list, ... }:
 let
   internalIP = import ../../utils/getInternalIP.nix config;
   createListenEntry = ip: "inet ${ip} port 8653 allow { any; };";
   listenEntries = builtins.map createListenEntry internalIP.listenIPsBare;
   chir-rs = import ../../zones/chir.rs.nix { inherit dns; };
   int-chir-rs = import ../../zones/int.chir.rs.nix { inherit dns; };
+  rpz-int-chir-rs = import ../../zones/rpz.int.chir.rs.nix { inherit pkgs hosts-list; };
   signzone = import ../../zones/signzone.nix;
 in
 {
@@ -74,11 +75,8 @@ in
         '';
       };
       "rpz.int.chir.rs" = {
-        master = false;
-        masters = [
-          "fd00:e621:e621::1"
-        ];
-        file = "rpz.int.chir.rs.zone";
+        master = true;
+        file = "${rpz-int-chir-rs}";
       };
     };
     extraConfig = ''
@@ -110,3 +108,4 @@ in
   };
   sops.secrets."services/dns/named-keys" = { owner = "named"; };
 }
+

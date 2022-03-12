@@ -218,6 +218,22 @@
         "type": "github"
       }
     },
+    "hosts-list": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1647099353,
+        "narHash": "sha256-sKkKmMwD+getjUNFJjf+k8hSNwNUh3FjQXMrG4uP0gQ=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "0aa12bc001744d89a8cd9eadf20177315d6809b3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "type": "github"
+      }
+    },
     "hydra": {
       "inputs": {
         "nix": "nix",
@@ -438,11 +454,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1647088425,
-        "narHash": "sha256-6JhsqoYCTyMjAEA2ge/cXegH6Ar8Fr4oKvZz7Hkt7fg=",
+        "lastModified": 1647115457,
+        "narHash": "sha256-fmVgifpKJXE/8kPDBUCpiPJi3e7j4Tcai2GoiZLOaNU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "db725d892e6f7a90686e9f5b7dddf9f78f0c3a2f",
+        "rev": "a5ffe88f993be69359ccf8ee9076b8fa04f6817f",
         "type": "github"
       },
       "original": {
@@ -453,11 +469,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1647087388,
-        "narHash": "sha256-MBN3R5DZ/6bz5at1OwK1XGp7Kkrn69e7gSzng9bYJP0=",
+        "lastModified": 1647109490,
+        "narHash": "sha256-oZuvf0EqJ+64Dm2WeD7PnsoJkwmkApdOGZLIZZ3p0+Y=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "b89fb2f5d52f8702f16ffe0ebca6bbc37b9f28de",
+        "rev": "faec7cc7a65f74d2973169ac7e2f8cad8132422a",
         "type": "github"
       },
       "original": {
@@ -477,11 +493,11 @@
         "quazip": "quazip"
       },
       "locked": {
-        "lastModified": 1647079116,
-        "narHash": "sha256-AV2B9XZSlENmCXPU0xEirsN14s7TNKr0dVDzDmM+Lgk=",
+        "lastModified": 1647092076,
+        "narHash": "sha256-ciFV32yV+NP7KN7pch0hn9hgV2FfIh3Zx4dmRZOfl8M=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "e42c5b00a4efe4e8f6393d84f08d395ed52801ce",
+        "rev": "9f8983b570fe3ddb9f689e1223ff3d2c7fff8b53",
         "type": "github"
       },
       "original": {
@@ -513,6 +529,7 @@
         "dns": "dns",
         "flake-utils": "flake-utils_4",
         "home-manager": "home-manager",
+        "hosts-list": "hosts-list",
         "hydra": "hydra",
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_5",
