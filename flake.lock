@@ -242,15 +242,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1646878427,
-        "narHash": "sha256-KtbrofMtN8GlM7D+n90kixr7QpSlVmdN+vK5CA/aRzc=",
-        "owner": "NixOS",
+        "lastModified": 1642687475,
+        "narHash": "sha256-jdzUBckbpckHVcllLxi5fIGD0ANmUR22mAKPmgiNcoY=",
+        "owner": "thufschmitt",
         "repo": "hydra",
-        "rev": "28b682b85b7efc5cf7974065792a1f22203a5927",
+        "rev": "cdff8067285336abbe4750ae15d0a7dcdda5fcb5",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "thufschmitt",
+        "ref": "nix-ca",
         "repo": "hydra",
         "type": "github"
       }
@@ -290,22 +291,19 @@
     "nix": {
       "inputs": {
         "lowdown-src": "lowdown-src",
-        "nixpkgs": "nixpkgs_3",
-        "nixpkgs-regression": "nixpkgs-regression"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1643066034,
-        "narHash": "sha256-xEPeMcNJVOeZtoN+d+aRwolpW8mFSEQx76HTRdlhPhg=",
+        "lastModified": 1642583127,
+        "narHash": "sha256-WyCL2SDApuIjQngO0UozOBI/iDUUoDW1QEQ/MUUu/Ec=",
         "owner": "NixOS",
         "repo": "nix",
-        "rev": "a1cd7e58606a41fcf62bf8637804cf8306f17f62",
+        "rev": "bc443511eb65420b51d10708e25427fe50de37a8",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "2.6.0",
-        "repo": "nix",
-        "type": "github"
+        "id": "nix",
+        "type": "indirect"
       }
     },
     "nix-gaming": {
@@ -357,21 +355,6 @@
         "ref": "nixos-21.05-small",
         "repo": "nixpkgs",
         "type": "github"
-      }
-    },
-    "nixpkgs-regression": {
-      "locked": {
-        "lastModified": 1643052045,
-        "narHash": "sha256-uGJ0VXIhWKGXxkeNnq4TvV3CIOkUJ3PAoLZ3HMzNVMw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "215d4d0fd80ca5163643b03a33fde804a29cc1e2",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "rev": "215d4d0fd80ca5163643b03a33fde804a29cc1e2",
-        "type": "indirect"
       }
     },
     "nixpkgs-soundtouch": {

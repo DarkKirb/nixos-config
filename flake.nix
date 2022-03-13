@@ -32,7 +32,7 @@ rec {
     cargo2nix.inputs.rust-overlay.follows = "rust-overlay";
     cargo2nix.inputs.nixpkgs.follows = "nixpkgs";
     cargo2nix.inputs.flake-utils.follows = "flake-utils";
-    hydra.url = github:NixOS/hydra;
+    hydra.url = github:thufschmitt/hydra/nix-ca;
     nixpkgs-hydra.url = "github:NixOS/nixpkgs/nixos-21.05-small";
     hydra.inputs.nixpkgs.follows = "nixpkgs-hydra";
     hosts-list.url = github:StevenBlack/hosts;
