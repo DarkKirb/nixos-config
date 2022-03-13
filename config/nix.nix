@@ -3,6 +3,7 @@
     ./workarounds
   ];
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.contentAddressedByDefault = true;
   nix = {
     settings = {
       sandbox = true;
