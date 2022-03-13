@@ -16,7 +16,7 @@
     };
     package = pkgs.nixFlakes;
     extraOptions = ''
-      experimental-features = nix-command flakes
+      experimental-features = nix-command flakes ca-derivations
     '';
     gc = {
       automatic = true;
