@@ -13,24 +13,11 @@ rec {
     sops-nix.url = github:Mic92/sops-nix;
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     chir-rs.url = "git+https://git.chir.rs/darkkirb/chir.rs.git?ref=main";
-    #chir-rs.inputs.nixpkgs.follows = "nixpkgs"; # nixpkgs regression?
     nur.url = "github:nix-community/NUR";
     nix-gaming.url = github:fufexan/nix-gaming;
-    #nix-gaming.inputs.nixpkgs.follows = "nixpkgs"; # rebuilds wine-tkg literally every goddamn time
     polymc.url = "github:PolyMC/PolyMC";
-    polymc.inputs.nixpkgs.follows = "nixpkgs";
     dns.url = "github:DarkKirb/dns.nix?ref=master";
-    dns.inputs.nixpkgs.follows = "nixpkgs";
     rust-binaries.url = "git+https://git.chir.rs/darkkirb/rust-binaries?ref=main";
-    rust-binaries.inputs.nixpkgs.follows = "nixpkgs";
-    rust-binaries.inputs.flake-utils.follows = "flake-utils";
-    rust-binaries.inputs.rust-overlay.follows = "rust-overlay";
-    rust-binaries.inputs.cargo2nix.follows = "cargo2nix";
-    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    rust-overlay.inputs.flake-utils.follows = "flake-utils";
-    cargo2nix.inputs.rust-overlay.follows = "rust-overlay";
-    cargo2nix.inputs.nixpkgs.follows = "nixpkgs";
-    cargo2nix.inputs.flake-utils.follows = "flake-utils";
     hydra.url = github:thufschmitt/hydra/nix-ca;
     nixpkgs-hydra.url = "github:NixOS/nixpkgs/nixos-21.05-small";
     hydra.inputs.nixpkgs.follows = "nixpkgs-hydra";
