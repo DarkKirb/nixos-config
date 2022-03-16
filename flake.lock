@@ -373,22 +373,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-wxwidgets": {
-      "locked": {
-        "lastModified": 1646750101,
-        "narHash": "sha256-0x8ntp7PVghVoDtn8Zfl42YzGGCzoy6wX4SxVYglIhQ=",
-        "owner": "knl",
-        "repo": "nixpkgs",
-        "rev": "5226418a1841267a060cdb4fdae076d412c150d1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "knl",
-        "ref": "wxwidgets-3.1-update",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1644472683,
@@ -518,7 +502,6 @@
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-hydra": "nixpkgs-hydra",
         "nixpkgs-soundtouch": "nixpkgs-soundtouch",
-        "nixpkgs-wxwidgets": "nixpkgs-wxwidgets",
         "nur": "nur",
         "polymc": "polymc",
         "rust-binaries": "rust-binaries",

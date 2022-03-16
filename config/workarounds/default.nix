@@ -1,4 +1,4 @@
-{ nixpkgs-soundtouch, system, pkgs, nixpkgs, nixpkgs-wxwidgets, hydra, ... }: with pkgs;
+{ nixpkgs-soundtouch, system, pkgs, nixpkgs, hydra, ... }: with pkgs;
 let
   rawPerlPackages = callPackage "${nixpkgs}/pkgs/top-level/perl-packages.nix" {
     overrides = pkgs: { };
@@ -73,7 +73,6 @@ in
         checkPhase = "true";
       });
       soundtouch = nixpkgs-soundtouch.legacyPackages.${system}.soundtouch;
-      wxGTK31-gtk3 = nixpkgs-wxwidgets.legacyPackages.${system}.wxGTK31-gtk3;
       hydra-unstable = hydra-pkg.overrideAttrs (old: {
         postPatch = ''
           sed -i 's/totalNarSize > maxOutputSize/false/g' src/hydra-queue-runner/build-remote.cc
