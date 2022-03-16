@@ -15,6 +15,7 @@ stdenv.mkDerivation {
   copyPhase = ''
     mkdir $out
     cp $src $out/${name}.sieve
+    sed -i 's|/nix/store/||g' $out/${name}.sieve
     chmod 0755 $out/${name}.sieve
     set +x
   '';
