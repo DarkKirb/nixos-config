@@ -1,9 +1,10 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 let
   listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
   listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
     add_header Alt-Svc 'h3=":443"';
   '';
+  clean-cache = pkgs.callPackage ../../packages/clean-s3-cache.nix { };
 in
 {
   imports = [
@@ -44,5 +45,20 @@ in
       proxyWebsockets = true;
     };
     extraConfig = listenStatements;
+  };
+  systemd.services.clean-s3-cache = {
+    enable = true;
+    description = "Clean up S3 cache";
+    serviceConfig = {
+      ExecStart = "${clean-cache}/bin/clean-s3-cache";
+    };
+  };
+  systemd.timers.clean-s3-cache = {
+    enable = true;
+    description = "Clean up S3 cache";
+    timerConfig = {
+      OnBootSec = 300;
+      OnUnitActiveSec = 604800;
+    };
   };
 }
