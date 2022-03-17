@@ -135,8 +135,8 @@
 
     HWMON_MODULES="coretemp"
   '';
-  #services.thermald.enable = true;
-  boot.initrd.extraModprobeConfig = ''
+  services.thermald.enable = true;
+  boot.extraModprobeConfig = ''
     # enable power savings mode of snd_hda_intel
     options snd-hda-intel power_save=1 power_save_controller=y
     # enable power savings mode of igpu, enable framebuffer compression, downclock the LVDS connection
