@@ -169,4 +169,34 @@
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix { desktop = false; inherit args; };
   nix.settings.cores = 2;
   nix.settings.max-jobs = 0;
+
+  networking.wireguard.interfaces.wg0 = {
+    postSetup = ''
+      ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.0.0.0/8 -o ens3 -j MASQUERADE
+      ${pkgs.iptables}/bin/ip6tables -A FORWARD -i wg0 -j ACCEPT
+      ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -s fc00::/7 -o ens3 -j MASQUERADE
+    '';
+
+    postShutdown = ''
+      ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.0.0.0/8 -o ens3 -j MASQUERADE
+      ${pkgs.iptables}/bin/ip6tables -D FORWARD -i wg0 -j ACCEPT
+      ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s fc00::/7 -o ens3 -j MASQUERADE
+    '';
+
+    peers = [
+      {
+        publicKey = "4nwQdXTrcTPKNNtyzoWpsIXg1+QfVchCYtwIFR9RCnc=";
+        allowedIPs = [
+          "fd0d:a262:1fa6:e621:966f:16df:af3f:f063/128"
+          "10.0.0.1/32"
+        ];
+      }
+    ];
+  };
+  boot.kernel.sysctl = {
+    "net.ipv4.conf.all.forwarding" = true;
+    "net.ipv6.conf.all.forwarding" = true;
+  };
 }
