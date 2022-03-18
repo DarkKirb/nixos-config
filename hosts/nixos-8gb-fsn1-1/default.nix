@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
+    ./cpu.nix
     ./fs.nix
     ./grub.nix
     ./luks.nix
