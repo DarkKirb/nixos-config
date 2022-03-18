@@ -65,7 +65,7 @@
     wrapperFeatures.gtk = true;
   };
 
-  home.file.".XCompose ".source = ../../extra/.XCompose;
+  home.file.".XCompose".source = ../../extra/.XCompose;
 }
 
 
