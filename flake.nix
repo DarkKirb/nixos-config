@@ -16,6 +16,11 @@
       url = github:Mic92/sops-nix;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    neo2 = {
+      url = "git+https://git.neo-layout.org/neo/neo-layout";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, flake-utils-plus, nur, sops-nix, ... } @ inputs: flake-utils-plus.lib.mkFlake (
@@ -50,8 +55,8 @@
       hosts.nutty-noon.specialArgs.hostname = "nutty-noon";
       hosts.thinkrac.specialArgs.hostname = "thinkrac";
 
-      hydraJobs = lib.attrsets.recursiveUpdate
-        (lib.attrsets.mapAttrs (system: val: builtins.removeAttrs val [ "nixpkgs" ]) self.outputs.pkgs)
+      hydraJobs =
+        (builtins.removeAttrs self.packages [ "aarch64-darwin" "x86_64-darwin" ]) //
         (lib.attrsets.mapAttrs (_: val: val.config.system.build.toplevel) self.outputs.nixosConfigurations);
     }
   );

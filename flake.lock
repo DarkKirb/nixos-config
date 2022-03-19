@@ -35,6 +35,22 @@
         "type": "github"
       }
     },
+    "neo2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645947481,
+        "narHash": "sha256-GBAWLTxiHoULEUlcb+pHCGHCuMagn5MKhXGnD2tKLUo=",
+        "ref": "master",
+        "rev": "8245a63e770a4f2b022bf927381e41cb78cf6c31",
+        "revCount": 2654,
+        "type": "git",
+        "url": "https://git.neo-layout.org/neo/neo-layout"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.neo-layout.org/neo/neo-layout"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1647703831,
@@ -69,6 +85,7 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "flake-utils-plus": "flake-utils-plus",
+        "neo2": "neo2",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
         "sops-nix": "sops-nix"
