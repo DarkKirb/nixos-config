@@ -303,11 +303,11 @@
     "hosts-list": {
       "flake": false,
       "locked": {
-        "lastModified": 1647293326,
-        "narHash": "sha256-SaMBb51bRS6oWrO6EVxSdhorVy8pJz+Dpc8CHL1sGHU=",
+        "lastModified": 1647715568,
+        "narHash": "sha256-CwKWJ0YEUc5+9JkkR0KVL+WVoSFk93ACJAYxG/CUh5s=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "b3f0b8a29ab81d37c38aeed4748a56958f330165",
+        "rev": "ae38b087f3947c69649b3fe9f203042c861555b1",
         "type": "github"
       },
       "original": {
@@ -550,11 +550,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1647713228,
-        "narHash": "sha256-x2sLXT6o4WJbhhWg3M7K0c8ewfhddTpHUc2Ja1ekV7Y=",
+        "lastModified": 1647717007,
+        "narHash": "sha256-ts7Kc9ZYN0JhhsSpR0u+ujeAmp6mWDgTYMXaYSTtjrs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "819debc3575a3fae447202ecabc466eeaa826feb",
+        "rev": "fc18d54a06a28a8da550836622df83dc071089a8",
         "type": "github"
       },
       "original": {
