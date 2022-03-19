@@ -34,7 +34,7 @@
         systems = [ "x86_64-linux" ];
         maxJobs = 12;
         speedFactor = 1;
-        supportedFeatures = [ "gccarch-znver1" ];
+        supportedFeatures = [ "gccarch-znver1" "ca-derivations" ];
       }
       #{
       #  hostName = "build-pc";
