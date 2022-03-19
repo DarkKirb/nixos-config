@@ -34,7 +34,7 @@ in
       };
     }
   ];
-  nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" "https://minio.int.chir.rs/" ];
+  nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" "https://minio.int.chir.rs/" "https://git.neo-layout.org/" ];
   sops.secrets."services/hydra/gitea_token" = { };
   services.nginx.virtualHosts."hydra.int.chir.rs" = {
     listenAddresses = listenIPs;
