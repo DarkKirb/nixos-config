@@ -11,9 +11,14 @@
     };
 
     nur.url = github:nix-community/NUR;
+
+    sops-nix = {
+      url = github:Mic92/sops-nix;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils-plus, nur, ... } @ inputs: flake-utils-plus.lib.mkFlake (
+  outputs = { self, nixpkgs, flake-utils-plus, nur, sops-nix, ... } @ inputs: flake-utils-plus.lib.mkFlake (
     let
       lib = nixpkgs.lib;
     in
@@ -23,6 +28,7 @@
       channelsConfig = import ./config/nixpkgs.nix inputs;
       sharedOverlays = [
         nur.overlay
+        sops-nix.overlay
       ];
 
       hostDefaults.system = "x86_64-linux";
@@ -34,6 +40,7 @@
           ];
           networking.hostName = args.hostname;
         })
+        sops-nix.nixosModules.sops
       ];
       hostDefaults.specialArgs = inputs;
 
