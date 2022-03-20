@@ -9,15 +9,6 @@
     extraLocaleSettings = {
       LC_TIME = "de_DE.UTF-8"; # None of that nonsense american formatting thank you
     };
-    inputMethod = {
-      enabled = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [
-        mozc
-        table
-        table-others
-        uniemoji
-      ];
-    };
   };
   # I do not know who the fuck decided this was a reasonable name for the time zone, but
   # this is 1 hour east of UTC (7°30′ E to 22°30′ E). It’s marked as mkDefault because the
