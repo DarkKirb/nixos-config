@@ -14,7 +14,6 @@
       tamasfe.even-better-toml
       ritwickdey.liveserver
       vadimcn.vscode-lldb
-      vscodevim.vim
       yzhang.markdown-all-in-one
     ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
       name = "rust-doc-viewer";
@@ -53,16 +52,58 @@
       sha256 = "sha256-nli4WJ96lL3JssNuwLCsthvphI7saFT2ktWQ46VNooc=";
     }
     {
-      name = "vsc-material-theme-icons";
-      publisher = "Equinusocio";
-      version = "2.2.1";
-      sha256 = "sha256-gcAlmvtNpfmM5dhubbc8dNAvyfDCEsSm/879xFDdvQ4=";
+      name = "material-icon-theme";
+      publisher = "PKief";
+      version = "4.14.1";
+      sha256 = "sha256-OHXi0EfeyKMeFiMU5yg0aDoWds4ED0lb+l6T12XZ3LQ=";
     }
     {
-      name = "Theme-Paraisodark";
-      publisher = "gerane";
-      version = "0.0.4";
-      sha256 = "sha256-tAE69ShPzNg23KSnkYglIKhzsdrcRnMy8MlDEfBYSoI=";
+      name = "base16-themes";
+      publisher = "AndrsDC";
+      version = "1.4.5";
+      sha256 = "sha256-molx+cRKSB6os7pDr0U1v/Qbaklps+OvBkZCkSWEvWM=";
     }];
+    userSettings = {
+      "crates.listPreReleases" = true;
+      "diffEditor.codeLens" = true;
+      "editor.bracketPairColorization.enabled" = true;
+      "editor.cursorSmoothCaretAnimation" = true;
+      "editor.cursorSurroundingLines" = 3;
+      "editor.foldingImportsByDefault" = true;
+      "editor.fontFamily" = "'FiraCode Nerd Font Mono', 'Noto Sans Mono CJK', monospace";
+      "editor.formatOnPaste" = true;
+      "editor.formatOnSave" = true;
+      "editor.formatOnSaveMode" = "modificationsIfAvailable";
+      "editor.formatOnType" = true;
+      "editor.guides.bracketPairs" = true;
+      "editor.inlineSuggest.enabled" = true;
+      "editor.renderWhitespace" = "all";
+      "editor.smoothScrolling" = true;
+      "editor.suggest.localityBonus" = true;
+      "editor.suggest.preview" = true;
+      "editor.suggest.shareSuggestSelections" = true;
+      "editor.tabCompletion" = "on";
+      "editor.tabSize" = 2;
+      "editor.multiCursorModifier" = "ctrlCmd"; # Multi-Cursor won’t work otherwise
+      "explorer.experimental.fileNesting.enabled" = true;
+      "files.insertFinalNewline" = true;
+      "files.trimFinalNewlines" = true;
+      "files.trimTrailingWhitespace" = true;
+      "git.autoStash" = true;
+      "git.enableCommitSigning" = true;
+      "git.enableSmartCommit" = true;
+      "git.fetchOnPull"= true;
+      "git.rebaseWhenSync" = true;
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "${pkgs.rnix-lsp}/bin/rnix-lsp";
+      "search.smartCase" = true;
+      "telemetry.telemetryLevel" = "off";
+      "terminal.integrated.shellIntegration.enabled" = true;
+      "update.mode" = "none";
+      # TODO: workbench.colorTheme
+      "workbench.commandPalette.preserveInput" = true;
+      # TODO: workbench.iconTheme
+      "workbench.list.smoothScrolling" = true;
+    };
   };
 }
