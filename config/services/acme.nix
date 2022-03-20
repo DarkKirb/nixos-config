@@ -9,7 +9,6 @@
     certs."darkkirb.de" = {
       domain = "*.darkkirb.de";
       extraDomainNames = [ "darkkirb.de" ];
-      credentialsFile = "/run/secrets/security/acme/dns2";
     };
     certs."chir.rs" = {
       domain = "*.chir.rs";

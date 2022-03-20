@@ -3,6 +3,7 @@ let
   internalIP = import ../../utils/getInternalIP.nix config;
   createListenEntry = ip: "inet ${ip} port 8653 allow { any; };";
   listenEntries = builtins.map createListenEntry internalIP.listenIPsBare;
+  darkkirb-de = import ../../zones/darkkirb.de.nix { inherit dns; };
   chir-rs = import ../../zones/chir.rs.nix { inherit dns; };
   int-chir-rs = import ../../zones/int.chir.rs.nix { inherit dns; };
   rpz-int-chir-rs = import ../../zones/rpz.int.chir.rs.nix { inherit pkgs hosts-list; };
@@ -24,17 +25,36 @@ in
       zone = int-chir-rs;
       zonename = "int.chir.rs";
     })
+    (signzone {
+      inherit dns;
+      ksk = "services/dns/de/darkkirb/53136";
+      zsk = "services/dns/de/darkkirb/61825";
+      zone = darkkirb-de;
+      zonename = "darkkirb.de";
+    })
   ];
 
   services.bind = {
     enable = true;
     zones = {
       "darkkirb.de" = {
-        master = false;
-        masters = [
+        master = true;
+        file = "/var/lib/named/darkkirb.de";
+        slaves = [
           "fd00:e621:e621::1"
         ];
-        file = "darkkirb.de.zone";
+      };
+      "_acme-challenge.darkkirb.de" = {
+        master = true;
+        file = "_acme-challenge.darkkirb.de";
+        slaves = [
+          "fd00:e621:e621::1"
+        ];
+        extraConfig = ''
+          update-policy {
+            grant certbot. name _acme-challenge.darkkirb.de. txt;
+          };
+        '';
       };
       "chir.rs" = {
         master = true;

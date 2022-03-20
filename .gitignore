@@ -1,1 +1,3 @@
-impure-secrets.nix
+result
+*.qcow2
+*.fd
