@@ -39,6 +39,12 @@
       publisher = "icrawl";
       version = "5.8.0";
       sha256 = "sha256-IU/looiu6tluAp8u6MeSNCd7B8SSMZ6CEZ64mMsTNmU=";
+    }
+    {
+      name = "vscode-test-explorer";
+      publisher = "hbenl";
+      version = "2.21.2";
+      sha256 = "sha256-fHyePd8fYPt7zPHBGiVmd8fRx+IM3/cSBCyiI/C0VAg=";
     }];
   };
 }
