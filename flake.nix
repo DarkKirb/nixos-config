@@ -34,6 +34,9 @@
       sharedOverlays = [
         nur.overlay
         sops-nix.overlay
+        (super: _: {
+          darkkirb = self.packages.${super.system};
+        })
       ];
 
       hostDefaults.system = "x86_64-linux";
