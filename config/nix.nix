@@ -29,20 +29,31 @@
       dates = [ "weekly" ];
     };
     buildMachines = [
-      {
-        hostName = "build-nas";
-        systems = [ "x86_64-linux" ];
-        maxJobs = 12;
-        speedFactor = 1;
-        supportedFeatures = [ "gccarch-znver1" "ca-derivations" ];
-      }
       #{
-      #  hostName = "build-pc";
-      #  systems = [ "x86_64-linux" "i686-linux" ];
-      #  maxJobs = 16;
+      #  hostName = "build-nas";
+      #  systems = [ "x86_64-linux" ];
+      #  maxJobs = 12;
       #  speedFactor = 1;
-      #  supportedFeatures = [ "big-parallel" "gccarch-znver2" ];
+      #  supportedFeatures = [ "gccarch-znver1" "ca-derivations" ];
       #}
+      {
+        hostName = "build-pc";
+        systems = [
+          "armv7l-linux"
+          "aarch64-linux"
+          "powerpc-linux"
+          "powerpc64-linux"
+          "powerpc64le-linux"
+          "riscv32-linux"
+          "riscv64-linux"
+          "wasm32-wasi"
+          "x86_64-linux"
+          "i686-linux"
+        ];
+        maxJobs = 16;
+        speedFactor = 1;
+        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "ca-derivations" ];
+      }
     ];
     distributedBuilds = true;
   };

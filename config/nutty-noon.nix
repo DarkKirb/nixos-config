@@ -176,7 +176,7 @@
     352800
     384000
   ];
-  nix.buildMachines = [
+  nix.buildMachines = lib.mkForce [
     {
       maxJobs = 16;
       speedFactor = 2;
@@ -193,7 +193,7 @@
         "x86_64-linux"
         "i686-linux"
       ];
-      supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" ];
+      supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "ca-derivations" ];
     }
   ];
   hardware.enableRedistributableFirmware = true;
