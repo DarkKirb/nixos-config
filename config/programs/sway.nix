@@ -3,6 +3,7 @@
     ./wl-clipboard.nix
     ./mako.nix
     ./swayidle.nix
+    ./ibus.nix
   ];
   wayland.windowManager.sway = {
     enable = true;
