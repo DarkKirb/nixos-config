@@ -61,4 +61,14 @@ in
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix { desktop = true; inherit args; };
+
+  i18n.inputMethod = {
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [
+      mozc
+      table
+      table-others
+      uniemoji
+    ];
+  };
 }
