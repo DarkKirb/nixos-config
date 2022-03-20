@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   programs.vscode = {
     enable = true;
+    mutableExtensionsDir = false;
     extensions = (with pkgs.vscode-extensions; [
       arrterian.nix-env-selector
       bbenoist.nix
@@ -44,6 +45,24 @@
       publisher = "hbenl";
       version = "2.21.2";
       sha256 = "sha256-fHyePd8fYPt7zPHBGiVmd8fRx+IM3/cSBCyiI/C0VAg=";
+    }
+    {
+      name = "test-adapter-converter";
+      publisher = "ms-vscode";
+      version = "0.1.5";
+      sha256 = "sha256-nli4WJ96lL3JssNuwLCsthvphI7saFT2ktWQ46VNooc=";
+    }
+    {
+      name = "vsc-material-theme-icons";
+      publisher = "Equinusocio";
+      version = "2.2.1";
+      sha256 = "sha256-gcAlmvtNpfmM5dhubbc8dNAvyfDCEsSm/879xFDdvQ4=";
+    }
+    {
+      name = "Theme-Paraisodark";
+      publisher = "gerane";
+      version = "0.0.4";
+      sha256 = "sha256-tAE69ShPzNg23KSnkYglIKhzsdrcRnMy8MlDEfBYSoI=";
     }];
   };
 }
