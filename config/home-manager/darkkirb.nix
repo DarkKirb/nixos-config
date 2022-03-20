@@ -20,5 +20,6 @@
     ../programs/keepass.nix
     ../programs/alacritty.nix
     ../programs/kicad.nix
+    ../programs/vscode.nix
   ] else [ ]);
 }
