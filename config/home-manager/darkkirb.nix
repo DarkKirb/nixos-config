@@ -3,6 +3,7 @@
     (import ./base.nix desktop)
     ../programs/gpg.nix
     ../programs/git.nix
+    ../programs/direnv.nix
   ] ++ (if desktop then [
     ../programs/sway.nix
     ../programs/firefox.nix
