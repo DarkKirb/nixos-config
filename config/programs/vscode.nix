@@ -100,9 +100,9 @@
       "telemetry.telemetryLevel" = "off";
       "terminal.integrated.shellIntegration.enabled" = true;
       "update.mode" = "none";
-      # TODO: workbench.colorTheme
+      "workbench.colorTheme" = "Base16 Dark Paraiso";
       "workbench.commandPalette.preserveInput" = true;
-      # TODO: workbench.iconTheme
+      "workbench.iconTheme" = "material-icon-theme";
       "workbench.list.smoothScrolling" = true;
     };
   };
