@@ -56,12 +56,6 @@
       publisher = "PKief";
       version = "4.14.1";
       sha256 = "sha256-OHXi0EfeyKMeFiMU5yg0aDoWds4ED0lb+l6T12XZ3LQ=";
-    }
-    {
-      name = "vscode-theme-neon-night";
-      publisher = "chaseadamsio";
-      version = "0.35.0";
-      sha256 = "sha256-tnY3ZM8E9YvQZ0ebGJ2LFFYqDTmPwXqRy8Gtq4L4EwQ=";
     }];
     userSettings = {
       "crates.listPreReleases" = true;
@@ -100,7 +94,7 @@
       "telemetry.telemetryLevel" = "off";
       "terminal.integrated.shellIntegration.enabled" = true;
       "update.mode" = "none";
-      "workbench.colorTheme" = "Neon Night";
+      "workbench.colorTheme" = "Monokai";
       "workbench.commandPalette.preserveInput" = true;
       "workbench.iconTheme" = "material-icon-theme";
       "workbench.list.smoothScrolling" = true;
