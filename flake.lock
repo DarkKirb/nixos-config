@@ -130,6 +130,21 @@
         "type": "github"
       }
     },
+    "flake-ut1ils": {
+      "locked": {
+        "lastModified": 1644229661,
+        "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "3cecb5b042f7f209c56ffd8371b2711a290ec797",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1638122382,
@@ -275,9 +290,8 @@
         "type": "github"
       },
       "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
+        "id": "flake-utils",
+        "type": "indirect"
       }
     },
     "home-manager": {
@@ -550,11 +564,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1647871840,
-        "narHash": "sha256-yKQtlPTLm77wqHOpG836a1XhzTbEcI+RyEcdeY57wmg=",
+        "lastModified": 1647874234,
+        "narHash": "sha256-0nJLWzFxdoqe+77O1wmu3MZ5JSginlKbrMjpDF5dE1c=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8ce16fcf62095c4a0faab25f27dc3698214ad6c6",
+        "rev": "da333c9c8202af773365c08ab10c4f2fd0e99a9e",
         "type": "github"
       },
       "original": {
@@ -596,11 +610,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1647867324,
-        "narHash": "sha256-cEjLxwDd42oqlgSnVgmF2oSYDClKZ7AVmJx5Ij0nBto=",
+        "lastModified": 1647872909,
+        "narHash": "sha256-gZT1NQHFfQnqIJbjRiHrYIKfqfd14f8P23JblyEQa8I=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "cd28278b88369426b915450c6d14072d47e87cc1",
+        "rev": "c485399d8e1af97b7ab718c3a102343d5d92c8de",
         "type": "github"
       },
       "original": {
@@ -618,11 +632,11 @@
         "quazip": "quazip"
       },
       "locked": {
-        "lastModified": 1647868866,
-        "narHash": "sha256-hS3RXVyp4pwYmZZOtIAalitftaAvFifvk19k61uokvk=",
+        "lastModified": 1647874512,
+        "narHash": "sha256-/pX+PcShoNaYqqkj/7EHilyT8gzMSjDo/TzdK50Vzr4=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "062fc79286fd5b9350a0041f734885f8fe29de64",
+        "rev": "f2ca11688ef859cd2257105f39a07318a31c5be6",
         "type": "github"
       },
       "original": {
@@ -670,16 +684,17 @@
     "rust-binaries": {
       "inputs": {
         "cargo2nix": "cargo2nix_3",
+        "flake-ut1ils": "flake-ut1ils",
         "flake-utils": "flake-utils_9",
         "nixpkgs": "nixpkgs_9",
         "rust-overlay": "rust-overlay_4"
       },
       "locked": {
-        "lastModified": 1646551034,
-        "narHash": "sha256-04bIgAdkR0YyRe1gpPwMS8tM77/EbO6xdE6txsdHNic=",
+        "lastModified": 1647874048,
+        "narHash": "sha256-Ly9R9G1ePz3LqhtMXiiSBBhEblMjxkwbArnW/6WeVbw=",
         "ref": "main",
-        "rev": "4a37c8d2a2e5332959bb2679bf2a2ceed3b372d8",
-        "revCount": 5,
+        "rev": "50c7d32dc09275a008d13e27f0e60bbbf0cca91e",
+        "revCount": 6,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/rust-binaries"
       },
