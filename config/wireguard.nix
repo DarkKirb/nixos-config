@@ -27,6 +27,12 @@
           ];
         }
         {
+          publicKey = "exj1pQz8tTHtZH/ouf8PNYMHqFEdUnmQKUKQ79Pd+1Y=";
+          allowedIPs = [
+            "fd0d:a262:1fa6:e621:6ec2:1e4e:ce7f:d2af/64"
+          ];
+        }
+        {
           publicKey = "o9ltq7E/TRMS9d1TXs7dJTNBm8grsSQBqppr2nW4ngw=";
           allowedIPs = [
             "fd0d:a262:1fa6:e621:6a74:93b8:e164:cd7c/64"
