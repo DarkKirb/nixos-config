@@ -107,10 +107,6 @@ in
         (old: {
           testPhase = "true";
         });
-      keyutils = prev.keyutils.overrideAttrs
-        (old: {
-          preInstall = "true";
-        });
     })
   ];
 }
