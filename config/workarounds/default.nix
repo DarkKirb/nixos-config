@@ -90,7 +90,7 @@ in
           "${nixpkgs}/pkgs/tools/networking/mosh/utempter_path.patch"
           "${nixpkgs}/pkgs/tools/networking/mosh/bash_completion_datadir.patch"
         ];
-        postPatch = ''  
+        postPatch = ''
         substituteInPlace scripts/mosh.pl \
           --subst-var-by ssh "${openssh}/bin/ssh" \
           --subst-var-by mosh-client "$out/bin/mosh-client"
@@ -106,6 +106,10 @@ in
       xapian = prev.xapian.overrideAttrs
         (old: {
           testPhase = "true";
+        });
+      keyutils = prev.keyutils.overrideAttrs
+        (old: {
+          preInstall = "true";
         });
     })
   ];
