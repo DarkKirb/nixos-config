@@ -809,11 +809,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1647829973,
-        "narHash": "sha256-z3gJX54DX6v4nQS1OgggtnZ4qRcqknoS3/WpX5ksceA=",
+        "lastModified": 1647916392,
+        "narHash": "sha256-xiZ4Bzj2KLzphnBh6zMBKm/Icc7grN8CcaFepXhx8y4=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "458f4fcd4450b8bfd2e2c8ca4f7673809bfe344c",
+        "rev": "a4ba09b440c10a45124aa75667c36549ddadac4d",
         "type": "github"
       },
       "original": {
