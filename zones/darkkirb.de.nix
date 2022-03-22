@@ -167,6 +167,8 @@ let
       ];
       www = createZone { };
       static = createZone { };
+      ns1 = createZone { };
+      ns2 = createZone { };
     };
   };
 
