@@ -23,6 +23,7 @@ rec {
     hydra.inputs.nixpkgs.follows = "nixpkgs-hydra";
     hosts-list.url = github:StevenBlack/hosts;
     hosts-list.flake = false;
+    nixos-hardware.url = github:NixOS/nixos-hardware;
   };
 
   outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, polymc, ... } @ args:

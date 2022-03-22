@@ -1,4 +1,4 @@
-{ config, pkgs, modulesPath, lib, ... }: {
+{ config, pkgs, modulesPath, lib, nixos-hardware, ... }: {
   networking.hostName = "nutty-noon";
   networking.hostId = "e77e1829";
 
@@ -9,6 +9,9 @@
     ./services/tpm2.nix
     ./services/hydra.nix
     ./server.nix
+    nixos-hardware.nixosModules.common-cpu-amd
+    nixos-hardware.nixosModules.common-gpu-amd
+    nixos-hardware.nixosModules.common-pc-ssd
   ];
   hardware.cpu.amd.updateMicrocode = true;
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "k10temp" ];

@@ -1,4 +1,4 @@
-{ config, pkgs, modulesPath, lib, ... }: {
+{ config, pkgs, modulesPath, lib, nixos-hardware, ... }: {
   networking.hostName = "thinkrac";
   networking.hostId = "2bfaea87";
 
@@ -7,6 +7,9 @@
     ./systemd-boot.nix
     ./desktop.nix
     ./services/tpm2.nix
+    nixos-hardware.nixosModules.lenovo-thinkpad-t470s
+    nixos-hardware.nixosModules.common-cpu-intel-kaby-lake
+    nixos-hardware.nixosModules.common-pc-ssd
   ];
   hardware.cpu.intel.updateMicrocode = true;
 
