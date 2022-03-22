@@ -3,7 +3,6 @@
     ./workarounds
   ];
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.contentAddressedByDefault = true;
   nix = {
     settings = {
       sandbox = true;
@@ -29,13 +28,13 @@
       dates = [ "weekly" ];
     };
     buildMachines = [
-      #{
-      #  hostName = "build-nas";
-      #  systems = [ "x86_64-linux" ];
-      #  maxJobs = 12;
-      #  speedFactor = 1;
-      #  supportedFeatures = [ "gccarch-znver1" "ca-derivations" ];
-      #}
+      {
+        hostName = "build-nas";
+        systems = [ "x86_64-linux" ];
+        maxJobs = 12;
+        speedFactor = 1;
+        supportedFeatures = [ "gccarch-znver1" "ca-derivations" ];
+      }
       {
         hostName = "build-pc";
         systems = [

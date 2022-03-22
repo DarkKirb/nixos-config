@@ -178,6 +178,13 @@
   ];
   nix.buildMachines = lib.mkForce [
     {
+        hostName = "build-nas";
+        systems = [ "x86_64-linux" ];
+        maxJobs = 12;
+        speedFactor = 1;
+        supportedFeatures = [ "gccarch-znver1" "ca-derivations" ];
+    }
+    {
       maxJobs = 16;
       speedFactor = 2;
       hostName = "localhost";
