@@ -22,3 +22,7 @@ creation_rules:
           - *thinkrac
         pgp:
           - *lotte
+  - path_regex: secrets/nixos\.yaml$
+    key_groups:
+      - pgp:
+          - *lotte

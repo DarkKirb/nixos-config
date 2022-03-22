@@ -15,7 +15,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = [ "zfs" "bcachefs" ];
   boot.zfs.devNodes = "/dev/";
 
   services.zfs.trim.enable = true;
@@ -115,7 +115,7 @@
   nix.settings.cores = 4;
 
   # Disable kernel mitigations
-  # 
+  #
   # Rationale:
   # - device has a limited workload, consisting mostly of running trusted code and visiting trusted websites with an advertisement blocker
   # - device is battery powered (we want to spend more time in an idle state, as opposed to running user code or mitigating cpu bugs)

@@ -40,6 +40,10 @@ rec {
           name = "thinkrac"; # Thinkpad T470
           system = "x86_64-linux";
         }
+        {
+          name = "installer"; # The Installer DVD
+          system = "x86_64-linux";
+        }
         #{
         #  name = "rpi2"; # Raspberry Pi 2
         #  system = "armv7l-linux";
@@ -77,14 +81,15 @@ rec {
               };
           })
           systems);
-      hydraJobs = builtins.listToAttrs (map
+      hydraJobs = (builtins.listToAttrs (map
         ({ name, system }: {
           inherit name;
           value = {
             ${system} = nixosConfigurations.${name}.config.system.build.toplevel;
           };
         })
-        systems);
+        systems)) // {
+          installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
+        };
     };
 }
-
