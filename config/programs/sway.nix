@@ -37,7 +37,7 @@ in
     ./swayidle.nix
     ./ibus.nix
   ];
-  home.file.".config/wofi/config".content = ''
+  home.file.".config/wofi/config".text = ''
     allow_markup = true
     dmenu-parse_action = true
   '';
