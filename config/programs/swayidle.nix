@@ -28,7 +28,7 @@ in
       WantedBy = [ "graphical-session.target" ];
     };
     Service = {
-      ExecStart = "${pkgs.swayidle}/bin/swayidle -w timeout 300 ${lock-script} timeout 305 ${screen-off-script} timeout 900 ${suspend-script} resume ${resume-script} lock ${lock-script} unlock ${unlock-script}";
+      ExecStart = "${pkgs.swayidle}/bin/swayidle -w timeout 300 ${lock-script} timeout 305 ${screen-off-script} resume ${resume-script} before-sleep ${lock-script} timeout 900 ${suspend-script} lock ${lock-script} unlock ${unlock-script}";
     };
   };
 }
