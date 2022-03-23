@@ -107,6 +107,11 @@ in
         (old: {
           testPhase = "true";
         });
+      tracker = prev.tracker.overrideAttrs
+        (old: {
+          checkPhase = "true";
+          installCheckPhase = "true";
+        });
     })
   ];
 }
