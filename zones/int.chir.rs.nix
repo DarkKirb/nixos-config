@@ -6,12 +6,13 @@ let
 in
 {
   SOA = {
-    nameServer = "ns2.darkkirb.de.";
+    nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 5;
+    serial = 6;
   };
   NS = [
-    "ns2.darkkirb.de."
+    "ns1.chir.rs."
+    "ns2.chir.rs."
   ];
   DNSKEY = [
     {
@@ -194,7 +195,8 @@ in
     cache.CNAME = [ "nixos-8gb-fsn1-1" ];
     hydra.CNAME = [ "nutty-noon" ];
     _acme-challenge = delegateTo [
-      "ns2.darkkirb.de."
+      "ns1.chir.rs."
+      "ns2.chir.rs."
     ];
   };
 }

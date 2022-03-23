@@ -90,12 +90,13 @@ let
   createZone = merge zoneBase;
   zone = createZone {
     SOA = {
-      nameServer = "ns2.darkkirb.de.";
+      nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 5;
+      serial = 6;
     };
     NS = [
-      "ns2.darkkirb.de."
+      "ns1.chir.rs."
+      "ns2.chir.rs."
     ];
     MX = [
       (ttl zoneTTL (mx.mx 10 "mail.chir.rs."))
@@ -166,9 +167,12 @@ let
       git = createZone { };
       mail = createZone { };
       mc = createZone { };
+      ns1 = createZone { };
+      ns2 = createZone { };
 
       int = delegateTo [
-        "ns2.darkkirb.de."
+        "ns1.chir.rs."
+        "ns2.chir.rs."
       ] // {
         DS = [{
           keyTag = 35133;
@@ -178,7 +182,8 @@ let
         }];
       };
       _acme-challenge = delegateTo [
-        "ns2.darkkirb.de."
+        "ns1.chir.rs."
+        "ns2.chir.rs."
       ];
     };
   };

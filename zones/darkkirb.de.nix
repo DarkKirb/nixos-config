@@ -90,12 +90,13 @@ let
   createZone = merge zoneBase;
   zone = createZone {
     SOA = {
-      nameServer = "ns2.darkkirb.de.";
+      nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 1;
+      serial = 2;
     };
     NS = [
-      "ns2.darkkirb.de."
+      "ns1.chir.rs."
+      "ns2.chir.rs."
     ];
     MX = [
       (ttl zoneTTL (mx.mx 10 "mail.chir.rs."))
@@ -164,6 +165,10 @@ let
       };
       _keybase.TXT = [
         (ttl zoneTTL (txt "keybase-site-verification=9DC6G-moMF8zfcm7_lpjhh2cvT9gL4hHV5yQqf_RgBk"))
+      ];
+      _acme-challenge = delegateTo [
+        "ns1.chir.rs."
+        "ns2.chir.rs."
       ];
       www = createZone { };
       static = createZone { };
