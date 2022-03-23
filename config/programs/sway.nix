@@ -1,10 +1,46 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+let switch_window = pkgs.writeScript "switchWindow" ''
+  # https://www.reddit.com/r/swaywm/comments/krd0sq/comment/gib6z73/?context=3
+jq_filter='
+    # descend to workspace or scratchpad
+    .nodes[].nodes[]
+    # save workspace name as .w
+    | {"w": .name} + (
+      if (.nodes|length) > 0 then # workspace
+        [recurse(.nodes[])]
+      else # scratchpad
+        []
+      end
+      + .floating_nodes
+      | .[]
+      # select nodes with no children (windows)
+      | select(.nodes==[])
+    )
+    | [
+      "<span size=\"xx-small\">\(.id)</span>",
+      # remove markup and index from workspace name, replace scratch with "[S]"
+      "<span size=\"xx-small\">\(.w | gsub("^[^:]*:|<[^>]*>"; "") | sub("__i3_scratch"; "[S]"))</span>",
+      # get app name (or window class if xwayland)
+      "<span weight=\"bold\">\(if .app_id == null then .window_properties.class else .app_id end)</span>",
+      "<span style=\"italic\">\(.name)</span>"
+    ] | @tsv
+'
+${pkgs.sway}/bin/swaymsg -t get_tree | jq -r "$jq_filter" | ${pkgs.wofi} -m --insensitive --show dmenu --prompt='Focus a window' | {
+  read -r id name && swaymsg "[con_id=$id]" focus
+}
+'';
+in
+{
   imports = [
     ./wl-clipboard.nix
     ./mako.nix
     ./swayidle.nix
     ./ibus.nix
   ];
+  home.file.".config/wofi/config".content = ''
+    allow_markup = true
+    dmenu-parse_action = true
+  '';
   wayland.windowManager.sway = {
     enable = true;
     config = {
@@ -47,6 +83,7 @@
           "XF86AudioNext" = "exec ${pkgs.mpc-cli}/bin/mpc next";
           "XF86AudioPrev" = "exec ${pkgs.mpc-cli}/bin/mpc prev";
           "XF86AudioStop" = "exec ${pkgs.mpc-cli}/bin/mpc stop";
+          "Mod1+Tab" = "exec ${switch_window}";
         };
       bars = [
         {
@@ -68,6 +105,3 @@
 
   home.file.".XCompose".source = ../../extra/.XCompose;
 }
-
-
-
