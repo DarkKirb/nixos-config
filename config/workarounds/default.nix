@@ -1,10 +1,6 @@
 { nixpkgs-soundtouch, system, pkgs, nixpkgs, nixpkgs-bcachefs, hydra, ... }: with pkgs;
 let
   bcachefs = import nixpkgs-bcachefs { inherit system; };
-  rawPerlPackages = callPackage "${nixpkgs}/pkgs/top-level/perl-packages.nix" {
-    overrides = pkgs: { };
-    buildPerl = perl;
-  };
   hydra-pkg = hydra.defaultPackage.${system};
   rtf-tokenize = with python3Packages; buildPythonPackage rec {
     pname = "rtf_tokenize";
@@ -71,9 +67,6 @@ in
   nixpkgs.overlays = [
     (self: prev: {
       linuxPackages_testing_bcachefs = bcachefs.linuxKernel.packages.linux_testing_bcachefs;
-      coreutils = prev.coreutils.overrideAttrs (old: {
-        checkPhase = "true";
-      });
       soundtouch = nixpkgs-soundtouch.legacyPackages.${system}.soundtouch;
       hydra-unstable = hydra-pkg.overrideAttrs (old: {
         postPatch = ''
@@ -105,15 +98,6 @@ in
           sha256 = "09mvk9zxclkf4wrkkfzg0p2hx1f74gpymr0a0l3pckmk6za2n3d1";
         };
       });
-      xapian = prev.xapian.overrideAttrs
-        (old: {
-          testPhase = "true";
-        });
-      tracker = prev.tracker.overrideAttrs
-        (old: {
-          checkPhase = "true";
-          installCheckPhase = "true";
-        });
     })
   ];
 }
