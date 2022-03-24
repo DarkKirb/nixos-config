@@ -13,98 +13,28 @@
   ];
   hardware.cpu.intel.updateMicrocode = true;
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "bcache" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  boot.supportedFilesystems = [ "zfs" "bcachefs" ];
-  boot.zfs.devNodes = "/dev/";
-
-  services.zfs.trim.enable = true;
-  services.zfs.autoScrub.enable = true;
-  services.zfs.autoScrub.pools = [ "tank" ];
+  boot.supportedFilesystems = [ "bcachefs" ];
 
   boot.initrd.luks.devices = {
     disk = {
-      device = "/dev/disk/by-partuuid/7da5a9f1-abcc-ac4f-837c-806d1de2e3ce";
+      device = "/dev/disk/by-uuid/2100a2e1-d874-4aaa-a89f-0b01665445b4";
       allowDiscards = true;
     };
   };
 
-  fileSystems."/" =
-    {
-      device = "tank/nixos";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
+  fileSystems."/" = {
+      device = "/dev/mapper/disk";
+      fsType = "bcachefs";
     };
 
-  fileSystems."/nix" =
-    {
-      device = "tank/nixos/nix";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
 
-  fileSystems."/etc" =
-    {
-      device = "tank/nixos/etc";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/var" =
-    {
-      device = "tank/nixos/var";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/var/lib" =
-    {
-      device = "tank/nixos/var/lib";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/var/log" =
-    {
-      device = "tank/nixos/var/log";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/var/spool" =
-    {
-      device = "tank/nixos/var/spool";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/home" =
-    {
-      device = "tank/userdata/home";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/root" =
-    {
-      device = "tank/userdata/home/root";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/home/darkkirb" =
-    {
-      device = "tank/userdata/home/darkkirb";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/9052-28BA";
+  fileSystems."/boot" = {
+      device = "/dev/disk/by-uuid/EE61-E55F";
       fsType = "vfat";
     };
 
