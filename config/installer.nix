@@ -6,4 +6,6 @@
   networking.wireguard.interfaces."wg0".ips = [
     "fd0d:a262:1fa6:e621:6ec2:1e4e:ce7f:d2af/64"
   ];
+  boot.supportedFilesystems = [ "bcachefs" ];
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
 }

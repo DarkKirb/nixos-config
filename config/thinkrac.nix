@@ -1,4 +1,4 @@
-{ config, pkgs, modulesPath, lib, nixos-hardware, ... }: {
+{ config, pkgs, modulesPath, lib, nixos-hardware, system, ... }: {
   networking.hostName = "thinkrac";
   networking.hostId = "2bfaea87";
 
@@ -17,6 +17,8 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
 
   boot.supportedFilesystems = [ "bcachefs" ];
 

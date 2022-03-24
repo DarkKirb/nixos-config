@@ -436,6 +436,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-bcachefs": {
+      "locked": {
+        "lastModified": 1648148220,
+        "narHash": "sha256-8OnDzO1yrTZQZJ67BrfOivIGGqCsBqaLSTXziel3tVo=",
+        "owner": "darkkirb",
+        "repo": "nixpkgs",
+        "rev": "93a2fbbf9aa82eaf6ac7937a7f20dfdc09fc9387",
+        "type": "github"
+      },
+      "original": {
+        "owner": "darkkirb",
+        "ref": "update-bcachefs",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-hydra": {
       "locked": {
         "lastModified": 1645296114,
@@ -673,6 +689,7 @@
         "nix-gaming": "nix-gaming",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_7",
+        "nixpkgs-bcachefs": "nixpkgs-bcachefs",
         "nixpkgs-hydra": "nixpkgs-hydra",
         "nixpkgs-soundtouch": "nixpkgs-soundtouch",
         "nur": "nur",

@@ -1,5 +1,6 @@
-{ nixpkgs-soundtouch, system, pkgs, nixpkgs, hydra, ... }: with pkgs;
+{ nixpkgs-soundtouch, system, pkgs, nixpkgs, nixpkgs-bcachefs, hydra, ... }: with pkgs;
 let
+  bcachefs = import nixpkgs-bcachefs { inherit system; };
   rawPerlPackages = callPackage "${nixpkgs}/pkgs/top-level/perl-packages.nix" {
     overrides = pkgs: { };
     buildPerl = perl;
@@ -69,6 +70,7 @@ in
 {
   nixpkgs.overlays = [
     (self: prev: {
+      linuxPackages_testing_bcachefs = bcachefs.linuxKernel.packages.linux_testing_bcachefs;
       coreutils = prev.coreutils.overrideAttrs (old: {
         checkPhase = "true";
       });
