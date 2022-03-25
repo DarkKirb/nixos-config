@@ -18,8 +18,6 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
-
   boot.supportedFilesystems = [ "bcachefs" ];
 
   boot.initrd.luks.devices = {

@@ -1,6 +1,5 @@
-{ nixpkgs-soundtouch, nixpkgs-kicad, system, pkgs, nixpkgs, nixpkgs-bcachefs, hydra, ... }: with pkgs;
+{ nixpkgs-soundtouch, nixpkgs-kicad, system, pkgs, nixpkgs, hydra, ... }: with pkgs;
 let
-  bcachefs = import nixpkgs-bcachefs { inherit system; };
   n-kicad = import nixpkgs-kicad { inherit system; };
   hydra-pkg = hydra.defaultPackage.${system};
   rtf-tokenize = with python3Packages; buildPythonPackage rec {
