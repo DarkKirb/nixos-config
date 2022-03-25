@@ -92,7 +92,6 @@
       "nix.serverPath" = "${pkgs.rnix-lsp}/bin/rnix-lsp";
       "search.smartCase" = true;
       "telemetry.telemetryLevel" = "off";
-      "terminal.integrated.shellIntegration.enabled" = true;
       "update.mode" = "none";
       "workbench.colorTheme" = "Monokai";
       "workbench.commandPalette.preserveInput" = true;
