@@ -25,6 +25,8 @@ rec {
     hosts-list.url = github:StevenBlack/hosts;
     hosts-list.flake = false;
     nixos-hardware.url = github:NixOS/nixos-hardware;
+    miifox-net.url = "git+https://git.chir.rs/CarolineHusky/MiiFox.net";
+    miifox-net.flake = false;
   };
 
   outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, polymc, ... } @ args:
