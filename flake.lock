@@ -372,11 +372,11 @@
     "miifox-net": {
       "flake": false,
       "locked": {
-        "lastModified": 1648214398,
-        "narHash": "sha256-PiAbjk1nueVd9HPw0/H6+WAjxNllloaEp2el5BMmDRc=",
+        "lastModified": 1648214827,
+        "narHash": "sha256-3sJMLguFwefJdZvoLMAuGYU4FMp0Zq70wkf5YTQZ7u8=",
         "ref": "master",
-        "rev": "d396ae69567bac7a77f265cde3f993d03f32f693",
-        "revCount": 3,
+        "rev": "4cb2d26ccce23314cb402e85894e15e330951451",
+        "revCount": 4,
         "type": "git",
         "url": "https://git.chir.rs/CarolineHusky/MiiFox.net"
       },
