@@ -372,11 +372,11 @@
     "miifox-net": {
       "flake": false,
       "locked": {
-        "lastModified": 1648214827,
-        "narHash": "sha256-3sJMLguFwefJdZvoLMAuGYU4FMp0Zq70wkf5YTQZ7u8=",
+        "lastModified": 1648216492,
+        "narHash": "sha256-OKGPwQZjZXbXziJLSOE8K/0fCWCnvU/I2Lm3Vc8KD/o=",
         "ref": "master",
-        "rev": "4cb2d26ccce23314cb402e85894e15e330951451",
-        "revCount": 4,
+        "rev": "7826b9a3bec5dddd4b8a879c3396a1406fc37370",
+        "revCount": 5,
         "type": "git",
         "url": "https://git.chir.rs/CarolineHusky/MiiFox.net"
       },
@@ -611,11 +611,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1648217324,
-        "narHash": "sha256-HCdeNnQla3jJj6JPK7m8G4HyS2kuOe4rwASEZI0docA=",
+        "lastModified": 1648222334,
+        "narHash": "sha256-du/c2I6y3lYX3TOsBvVMLxlxbyF07cb8l0B/on4QsjM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "511e56d76cf528afcbff2e5c7930a791e5484eee",
+        "rev": "0e0bb200ff2028432d56f710213873f7dd3d345b",
         "type": "github"
       },
       "original": {
