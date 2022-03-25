@@ -484,6 +484,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-kicad": {
+      "locked": {
+        "lastModified": 1648031101,
+        "narHash": "sha256-CHNIOo6b9xmJH1DcqyvGCU+aJwusVgVl9yj7AtncdNg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f4998c542d68a8a6e3d345d5c106e5915f430a16",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f4998c542d68a8a6e3d345d5c106e5915f430a16",
+        "type": "github"
+      }
+    },
     "nixpkgs-soundtouch": {
       "locked": {
         "lastModified": 1643388593,
@@ -595,17 +611,16 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1648031101,
-        "narHash": "sha256-CHNIOo6b9xmJH1DcqyvGCU+aJwusVgVl9yj7AtncdNg=",
+        "lastModified": 1648217324,
+        "narHash": "sha256-HCdeNnQla3jJj6JPK7m8G4HyS2kuOe4rwASEZI0docA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f4998c542d68a8a6e3d345d5c106e5915f430a16",
+        "rev": "511e56d76cf528afcbff2e5c7930a791e5484eee",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f4998c542d68a8a6e3d345d5c106e5915f430a16",
         "type": "github"
       }
     },
@@ -708,6 +723,7 @@
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-bcachefs": "nixpkgs-bcachefs",
         "nixpkgs-hydra": "nixpkgs-hydra",
+        "nixpkgs-kicad": "nixpkgs-kicad",
         "nixpkgs-soundtouch": "nixpkgs-soundtouch",
         "nur": "nur",
         "polymc": "polymc",

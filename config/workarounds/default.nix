@@ -1,6 +1,7 @@
-{ nixpkgs-soundtouch, system, pkgs, nixpkgs, nixpkgs-bcachefs, hydra, ... }: with pkgs;
+{ nixpkgs-soundtouch, nixpkgs-kicad, system, pkgs, nixpkgs, nixpkgs-bcachefs, hydra, ... }: with pkgs;
 let
   bcachefs = import nixpkgs-bcachefs { inherit system; };
+  n-kicad = import nixpkgs-kicad { inherit system; };
   hydra-pkg = hydra.defaultPackage.${system};
   rtf-tokenize = with python3Packages; buildPythonPackage rec {
     pname = "rtf_tokenize";
@@ -98,6 +99,7 @@ in
           sha256 = "09mvk9zxclkf4wrkkfzg0p2hx1f74gpymr0a0l3pckmk6za2n3d1";
         };
       });
+      kicad = n-kicad.kicad; # TODO: remove when #165630 hits
     })
   ];
 }
