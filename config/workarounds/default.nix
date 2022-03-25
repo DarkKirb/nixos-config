@@ -66,7 +66,6 @@ in
 {
   nixpkgs.overlays = [
     (self: prev: {
-      linuxPackages_testing_bcachefs = bcachefs.linuxKernel.packages.linux_testing_bcachefs;
       soundtouch = nixpkgs-soundtouch.legacyPackages.${system}.soundtouch;
       hydra-unstable = hydra-pkg.overrideAttrs (old: {
         postPatch = ''
