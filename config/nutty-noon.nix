@@ -21,12 +21,7 @@
     config.boot.kernelPackages.zenpower
   ];
 
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.devNodes = "/dev/";
-
-  services.zfs.trim.enable = true;
-  services.zfs.autoScrub.enable = true;
-  services.zfs.autoScrub.pools = [ "ssd" "hdd" ];
+  boot.supportedFilesystems = [ "bcachefs" ];
 
   boot.initrd.luks.devices = {
     ssd = {
@@ -38,95 +33,15 @@
     };
   };
 
-  fileSystems."/" =
-    {
-      device = "ssd/nixos";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/mapper/ssd:/dev/mapper/hdd";
+    fsType = "bcachefs";
+  };
 
-  fileSystems."/nix" =
-    {
-      device = "ssd/nixos/nix";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/etc" =
-    {
-      device = "ssd/nixos/etc";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/var" =
-    {
-      device = "ssd/nixos/var";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/var/lib" =
-    {
-      device = "ssd/nixos/var/lib";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/var/log" =
-    {
-      device = "ssd/nixos/var/log";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/var/spool" =
-    {
-      device = "ssd/nixos/var/spool";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/home" =
-    {
-      device = "ssd/userdata/home";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/root" =
-    {
-      device = "ssd/userdata/home/root";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/home/tank" =
-    {
-      device = "ssd/userdata/home/tank";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/home/darkkirb/hdd" =
-    {
-      device = "hdd/userdata/home/darkkirb/hdd";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/root/hdd" =
-    {
-      device = "hdd/userdata/home/root/hdd";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/CA0B-E049";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/CA0B-E049";
+    fsType = "vfat";
+  };
 
   swapDevices = [
     {
@@ -181,11 +96,11 @@
   ];
   nix.buildMachines = lib.mkForce [
     {
-        hostName = "build-nas";
-        systems = [ "x86_64-linux" ];
-        maxJobs = 12;
-        speedFactor = 1;
-        supportedFeatures = [ "gccarch-znver1" "ca-derivations" ];
+      hostName = "build-nas";
+      systems = [ "x86_64-linux" ];
+      maxJobs = 12;
+      speedFactor = 1;
+      supportedFeatures = [ "gccarch-znver1" "ca-derivations" ];
     }
     {
       maxJobs = 16;
