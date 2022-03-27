@@ -1,6 +1,6 @@
 #!/bin/sh
 
-nix flake update
+#nix flake update
 nixos-rebuild build --flake '.#nutty-noon' -j16
 nixos-rebuild build --flake '.#nixos-8gb-fsn1-1' -j16
 nixos-rebuild build --flake '.#thinkrac' -j16

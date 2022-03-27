@@ -1,4 +1,4 @@
-{ system, pkgs, nixpkgs, hydra, ... }: with pkgs;
+{ nixpkgs-kicad, system, pkgs, nixpkgs, hydra, ... }: with pkgs;
 let
   n-kicad = import nixpkgs-kicad { inherit system; };
   hydra-pkg = hydra.defaultPackage.${system};
@@ -66,6 +66,7 @@ in
 {
   nixpkgs.overlays = [
     (self: prev: {
+      sane-backends = n-kicad.sane-backends;
       hydra-unstable = hydra-pkg.overrideAttrs (old: {
         postPatch = ''
           sed -i 's/totalNarSize > maxOutputSize/false/g' src/hydra-queue-runner/build-remote.cc

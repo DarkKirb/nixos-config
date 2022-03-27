@@ -18,7 +18,7 @@ let
     owner = "LuckPerms";
     repo = "LuckPerms";
     rev = "138f2c1b3e2ec7711614f79b0b920c8c58e673a1";
-    sha256 = "0w3qzbn0mik8rg1hdb23r6zpflnmbrk43i4w0k3cpbh8dd1wdvm2";
+    sha256 = "sha256-Gs3MuIxd3ODe2qRHK9MJhAxD5BSQQG8+HNLzMCRnmws=";
     leaveDotGit = true;
   };
 
@@ -67,7 +67,7 @@ let
     '';
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
-    outputHash = "sha256-Gs3MuIxd3ODe2qRHK9MJhAxD5BSQQG8+HNLzMCRnmws=";
+    outputHash = "sha256-vV3sJ5GoKJwjeWJ7LGX6Dkzr0glLZjgBWzWEn2eGW1s=";
   };
 
 in
