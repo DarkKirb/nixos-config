@@ -468,38 +468,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-kicad": {
-      "locked": {
-        "lastModified": 1648031101,
-        "narHash": "sha256-CHNIOo6b9xmJH1DcqyvGCU+aJwusVgVl9yj7AtncdNg=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "f4998c542d68a8a6e3d345d5c106e5915f430a16",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "f4998c542d68a8a6e3d345d5c106e5915f430a16",
-        "type": "github"
-      }
-    },
-    "nixpkgs-soundtouch": {
-      "locked": {
-        "lastModified": 1643388593,
-        "narHash": "sha256-ARKH3ICvFsQduFQ+nL4mIS88PQy0Oe/DvultqBo4ZoQ=",
-        "owner": "darkkirb",
-        "repo": "nixpkgs",
-        "rev": "6c51e64b0137169142652cb692c4a365936d5fae",
-        "type": "github"
-      },
-      "original": {
-        "owner": "darkkirb",
-        "ref": "soundtouch-2.3.1",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_10": {
       "locked": {
         "lastModified": 1637453606,
@@ -706,8 +674,6 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-hydra": "nixpkgs-hydra",
-        "nixpkgs-kicad": "nixpkgs-kicad",
-        "nixpkgs-soundtouch": "nixpkgs-soundtouch",
         "nur": "nur",
         "polymc": "polymc",
         "rust-binaries": "rust-binaries",

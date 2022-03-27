@@ -1,4 +1,4 @@
-{ nixpkgs-soundtouch, nixpkgs-kicad, system, pkgs, nixpkgs, hydra, ... }: with pkgs;
+{ system, pkgs, nixpkgs, hydra, ... }: with pkgs;
 let
   n-kicad = import nixpkgs-kicad { inherit system; };
   hydra-pkg = hydra.defaultPackage.${system};
@@ -66,7 +66,6 @@ in
 {
   nixpkgs.overlays = [
     (self: prev: {
-      soundtouch = nixpkgs-soundtouch.legacyPackages.${system}.soundtouch;
       hydra-unstable = hydra-pkg.overrideAttrs (old: {
         postPatch = ''
           sed -i 's/totalNarSize > maxOutputSize/false/g' src/hydra-queue-runner/build-remote.cc
@@ -85,9 +84,9 @@ in
           "${nixpkgs}/pkgs/tools/networking/mosh/bash_completion_datadir.patch"
         ];
         postPatch = ''
-        substituteInPlace scripts/mosh.pl \
-          --subst-var-by ssh "${openssh}/bin/ssh" \
-          --subst-var-by mosh-client "$out/bin/mosh-client"
+          substituteInPlace scripts/mosh.pl \
+            --subst-var-by ssh "${openssh}/bin/ssh" \
+            --subst-var-by mosh-client "$out/bin/mosh-client"
         '';
         version = "2022-02-04";
         src = pkgs.fetchFromGitHub {
@@ -97,7 +96,6 @@ in
           sha256 = "09mvk9zxclkf4wrkkfzg0p2hx1f74gpymr0a0l3pckmk6za2n3d1";
         };
       });
-      kicad = n-kicad.kicad; # TODO: remove when #165630 hits
     })
   ];
 }
