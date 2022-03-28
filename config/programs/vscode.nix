@@ -4,6 +4,8 @@
     mutableExtensionsDir = false;
     extensions = (with pkgs.vscode-extensions; [
       bbenoist.nix
+      dhall.dhall-lang
+      dhall.vscode-dhall-lsp-server
       eamodio.gitlens
       github.copilot
       jnoortheen.nix-ide
