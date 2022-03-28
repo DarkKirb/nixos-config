@@ -64,6 +64,12 @@
         version = "1.0.0";
         sha256 = "sha256-+nLH+T9v6TQCqKZw6HPN/ZevQ65FVm2SAo2V9RecM3Y=";
       }
+      {
+        name = "veriloghdl";
+        publisher = "mshr-h";
+        version = "1.5.3";
+        sha256 = "sha256-4BXSG/YllhpXa0z7TqytKyqAKLJvSEsOLt1i6gA+WcE=";
+      }
     ];
     userSettings = {
       "crates.listPreReleases" = true;
