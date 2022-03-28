@@ -20,9 +20,6 @@ in
     liberation_ttf
     fira-code
     fira-code-symbols
-    mplus-outline-fonts
-    dina-font
-    proggyfonts
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Noto" ]; })
     (import ../packages/linja-sike.nix pkgs)
   ];
