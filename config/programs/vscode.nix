@@ -10,6 +10,7 @@
       jnoortheen.nix-ide
       matklad.rust-analyzer
       ms-vscode-remote.remote-ssh
+      scala-lang.scala
       serayuzgur.crates
       tamasfe.even-better-toml
       ritwickdey.liveserver
