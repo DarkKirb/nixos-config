@@ -3,7 +3,6 @@
     enable = true;
     mutableExtensionsDir = false;
     extensions = (with pkgs.vscode-extensions; [
-      arrterian.nix-env-selector
       bbenoist.nix
       eamodio.gitlens
       github.copilot
@@ -58,6 +57,12 @@
         publisher = "PKief";
         version = "4.14.1";
         sha256 = "sha256-OHXi0EfeyKMeFiMU5yg0aDoWds4ED0lb+l6T12XZ3LQ=";
+      }
+      {
+        name = "vscode-direnv";
+        publisher = "cab404";
+        version = "1.0.0";
+        sha256 = "sha256-+nLH+T9v6TQCqKZw6HPN/ZevQ65FVm2SAo2V9RecM3Y=";
       }
     ];
     userSettings = {
