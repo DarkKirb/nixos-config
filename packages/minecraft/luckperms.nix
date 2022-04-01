@@ -12,13 +12,13 @@
 let
 
   pname = "LuckPerms";
-  version = "2022-02-28";
+  version = "2022-03-27";
 
   src = fetchFromGitHub {
     owner = "LuckPerms";
     repo = "LuckPerms";
-    rev = "138f2c1b3e2ec7711614f79b0b920c8c58e673a1";
-    sha256 = "sha256-Gs3MuIxd3ODe2qRHK9MJhAxD5BSQQG8+HNLzMCRnmws=";
+    rev = "2e0a4d71a5d442e30762a64dd854d2c05226cfdc";
+    sha256 = "1hn26iy48ahrxx59f9x6fm4qqwgd7ns7bagvq2a31mqhra6czz12";
     leaveDotGit = true;
   };
 
@@ -67,7 +67,7 @@ let
     '';
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
-    outputHash = "sha256-vV3sJ5GoKJwjeWJ7LGX6Dkzr0glLZjgBWzWEn2eGW1s=";
+    outputHash = "sha256-kuMiVIgRLCuCoGWEvW5m/m6OJCI2yYQSL7eDinZunUg=";
   };
 
 in

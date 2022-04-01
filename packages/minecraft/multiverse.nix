@@ -5,9 +5,9 @@
     name = "Multiverse-Core-4.3.2.jar";
   };
   nether-portals = fetchurl {
-    url = "https://dev.bukkit.org/projects/multiverse-netherportals/files/3074616/download";
-    sha256 = "3a9e2c847c481d017890eaf3ad79bd9abcb1fb6cc53ea4a0328c2f43de611db8";
-    name = "Multiverse-NetherPortals-4.2.1.jar";
+    url = "https://dev.bukkit.org/projects/multiverse-netherportals/files/3687506/download";
+    sha256 = "1zcjb5vih519d891mbcd6ngdy4l4c7p83j1bvqazn7x0wq013z6n";
+    name = "Multiverse-NetherPortals-4.2.2.jar";
   };
   sign-portals = fetchurl {
     url = "https://dev.bukkit.org/projects/multiverse-signportals/files/3074605/download";
@@ -15,8 +15,8 @@
     name = "Multiverse-SignPortals-4.2.0.jar";
   };
   inventories = fetchurl {
-    url = "https://dev.bukkit.org/projects/multiverse-inventories/files/3222929/download";
-    sha256 = "bf28c15b679ccb8a1aef4f0e8e78a3234632f67657a2b7fadf40d97ce7563570";
-    name = "Multiverse-Inventories-4.2.2.jar";
+    url = "https://dev.bukkit.org/projects/multiverse-inventories/files/3687469/download";
+    sha256 = "1dsnfj94rrv5g0zqvzdbxhla6p1mi53yvkd77c4sy5jmga2alxdi";
+    name = "Multiverse-Inventories-4.2.3.jar";
   };
 }
