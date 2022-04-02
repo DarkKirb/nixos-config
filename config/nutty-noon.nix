@@ -21,7 +21,8 @@
     config.boot.kernelPackages.zenpower
   ];
 
-  boot.supportedFilesystems = [ "bcachefs" ];
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.devNodes = true;
 
   boot.initrd.luks.devices = {
     ssd = {
@@ -34,8 +35,69 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/mapper/ssd:/dev/mapper/hdd";
-    fsType = "bcachefs";
+    device = "ssd/nixos";
+    fsType = "zfs";
+    options = ["zfsutil"];
+  };
+
+  fileSystems."/nix" = {
+    device = "ssd/nixos/nix";
+    fsType = "zfs";
+    options = ["zfsutil"];
+  };
+
+  fileSystems."/etc" = {
+    device = "ssd/nixos/etc";
+    fsType = "zfs";
+    options = ["zfsutil"];
+  };
+
+  fileSystems."/var" = {
+    device = "ssd/nixos/var";
+    fsType = "zfs";
+    options = ["zfsutil"];
+  };
+
+  fileSystems."/var/lib" = {
+    device = "ssd/nixos/var/lib";
+    fsType = "zfs";
+    options = ["zfsutil"];
+  };
+
+  fileSystems."/var/log" = {
+    device = "ssd/nixos/var/log";
+    fsType = "zfs";
+    options = ["zfsutil"];
+  };
+
+  fileSystems."/var/spool" = {
+    device = "ssd/nixos/var/spool";
+    fsType = "zfs";
+    options = ["zfsutil"];
+  };
+
+  fileSystems."/home" = {
+    device = "ssd/userdata/home";
+    fsType = "zfs";
+    options = ["zfsutil"];
+  };
+
+  fileSystems."/root" = {
+    device = "ssd/userdata/root";
+    fsType = "zfs";
+    options = ["zfsutil"];
+  };
+
+  fileSystems."/home/darkkirb" = {
+    device = "ssd/userdata/home/darkkirb";
+    fsType = "zfs";
+    options = ["zfsutil"];
+  };
+
+  fileSystems."/build" = {
+    device = "hdd/build";
+    fsType = "zfs";
+    options = ["zfsutil"];
   };
 
   fileSystems."/boot" = {
