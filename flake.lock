@@ -664,11 +664,11 @@
         "quazip": "quazip"
       },
       "locked": {
-        "lastModified": 1648872708,
-        "narHash": "sha256-Cwy0aj9spBho6XpvC8c6vlA/z9CC8Kwh2hgImx06JfQ=",
+        "lastModified": 1648982723,
+        "narHash": "sha256-x+JJkniWAHVky78bfep/GF/9E3Vp/enOK5d8WbmjQsI=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "d5576779b7af3ee68beec0e8fa39fd5e2c583cf8",
+        "rev": "d33d5b847dafe968b3ba05610d34b4d24ff8840b",
         "type": "github"
       },
       "original": {
