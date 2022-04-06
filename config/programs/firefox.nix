@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   programs.firefox = {
-    package = pkgs.firefox-bin;
+    package = pkgs.firefox;
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       canvasblocker
