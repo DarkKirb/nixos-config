@@ -7,7 +7,7 @@ rec {
     flake-utils.url = github:numtide/flake-utils;
     rust-overlay.url = github:oxalica/rust-overlay;
     cargo2nix.url = "github:cargo2nix/cargo2nix/be-friendly-to-users"; # dummy
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:andresilva/home-manager/fix-systemd-services";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = github:Mic92/sops-nix;
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
