@@ -143,4 +143,5 @@ desktop: { pkgs, ... }: {
     enable = true;
     tmux.enableShellIntegration = true;
   };
+  home.stateVersion = "22.05";
 }
