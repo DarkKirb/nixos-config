@@ -11,6 +11,7 @@ miifox-net: { lndir, stdenvNoCC, python3Packages, ... }: stdenvNoCC.mkDerivation
   installPhase = ''
     mkdir $out
     lndir -silent ${miifox-net} $out
+    cp index.html $out
     rm $out/index.json
   '';
 }
