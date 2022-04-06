@@ -453,6 +453,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-firefox": {
+      "locked": {
+        "lastModified": 1649196536,
+        "narHash": "sha256-Q5PxIYE/PW57LHLRCdIQ4jNbbz5L3HZKOSkNIu0rn5c=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "04ce3788d37dc3f5ab1b156f2a817c8e7630b3b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "04ce3788d37dc3f5ab1b156f2a817c8e7630b3b4",
+        "type": "github"
+      }
+    },
     "nixpkgs-hydra": {
       "locked": {
         "lastModified": 1645296114,
@@ -705,6 +721,7 @@
         "nix-gaming": "nix-gaming",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_7",
+        "nixpkgs-firefox": "nixpkgs-firefox",
         "nixpkgs-hydra": "nixpkgs-hydra",
         "nixpkgs-kicad": "nixpkgs-kicad",
         "nur": "nur",
