@@ -15,7 +15,7 @@ let
         priority = 0;
         name_on_disk = "player";
         display_name = "Player";
-        wine_home = "${pkgs.winePackages.staging}";
+        wine_home = "${pkgs.wineWowPackages.staging}";
         dll_overrides = "dxdiagn=;winemenubuilder.exe=";
         prime_offload_sink = -1;
         use_mesa_gl_override = false;
