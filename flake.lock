@@ -117,11 +117,11 @@
     "flake-compat": {
       "flake": false,
       "locked": {
-        "lastModified": 1641205782,
-        "narHash": "sha256-4jY7RCWUoZ9cKD8co0/4tFARpWB+57+r1bLLvXNJliY=",
+        "lastModified": 1648199409,
+        "narHash": "sha256-JwPKdC2PoVBkG6E+eWw3j6BMR6sL3COpYWfif7RVb8Y=",
         "owner": "edolstra",
         "repo": "flake-compat",
-        "rev": "b7547d3eed6f32d06102ead8991ec52ab0a4f1a7",
+        "rev": "64a525ee38886ab9028e6f61790de0832aa3ef03",
         "type": "github"
       },
       "original": {
@@ -237,21 +237,6 @@
     },
     "flake-utils_7": {
       "locked": {
-        "lastModified": 1642700792,
-        "narHash": "sha256-XqHrk7hFb+zBvRg6Ghl+AZDq03ov6OshJLiSWOoX5es=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "846b2ae0fc4cc943637d3d1def4454213e203cba",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_8": {
-      "locked": {
         "lastModified": 1644229661,
         "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
         "owner": "numtide",
@@ -264,7 +249,7 @@
         "type": "indirect"
       }
     },
-    "flake-utils_9": {
+    "flake-utils_8": {
       "locked": {
         "lastModified": 1637014545,
         "narHash": "sha256-26IZAc5yzlD9FlDT54io1oqG/bBoyka+FJk5guaX4x4=",
@@ -325,11 +310,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1649348853,
-        "narHash": "sha256-y16wgpjOtZ8iH370TMmN6tdBhHQAxq2qkVW7iBk/CQ4=",
+        "lastModified": 1649356652,
+        "narHash": "sha256-Tb/GIMGR/ERv6tbNWsVpzOJV24mwfFoDkO1J2vfAI0c=",
         "owner": "NixOS",
         "repo": "hydra",
-        "rev": "e1965250b5b0a368e3481a1264d8606ffe863617",
+        "rev": "05ce23aaa2e16cd1efce03f30a2dfa0f27c7cd14",
         "type": "github"
       },
       "original": {
@@ -579,11 +564,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1649353348,
-        "narHash": "sha256-bRVfxuWdvs4a+BL00tz6rbvYHEn4xheNoHob7Gyvsok=",
+        "lastModified": 1649356629,
+        "narHash": "sha256-BhAytzBI11uJD9AkwunnpslHfcVOh5Ib3EOgI0BFBYo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a782a81321bae43fbe8eded39cb75c4781af589f",
+        "rev": "05fe9b54a5782506c60d94b7eaefce7158da0d77",
         "type": "github"
       },
       "original": {
@@ -594,16 +579,16 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1643169865,
-        "narHash": "sha256-+KIpNRazbc8Gac9jdWCKQkFv9bjceaLaLhlwqUEYu8c=",
+        "lastModified": 1648219316,
+        "narHash": "sha256-Ctij+dOi0ZZIfX5eMhgwugfvB+WZSrvVNAyAuANOsnQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "945ec499041db73043f745fad3b2a3a01e826081",
+        "rev": "30d3d79b7d3607d56546dd2a6b49e156ba0ec634",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -657,17 +642,16 @@
     "polymc": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "flake-utils": "flake-utils_7",
         "libnbtplusplus": "libnbtplusplus",
         "nixpkgs": "nixpkgs_7",
         "quazip": "quazip"
       },
       "locked": {
-        "lastModified": 1649337654,
-        "narHash": "sha256-FcOPVEPvKPFDaaZ+A7gWjhKjkl0u8OKHTd4PcifG+L0=",
+        "lastModified": 1649356226,
+        "narHash": "sha256-zUNzZgKlp8yBzX7Gb2wTn0ASMwDFQOB7rOSv/Jc/Ccc=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "cc5261051fcc5ce68177065d9d56fe79c28cbf7e",
+        "rev": "c3f1c13a31ab92778ad89160dfc0e73358b29ae3",
         "type": "github"
       },
       "original": {
@@ -718,7 +702,7 @@
       "inputs": {
         "cargo2nix": "cargo2nix_3",
         "flake-ut1ils": "flake-ut1ils",
-        "flake-utils": "flake-utils_8",
+        "flake-utils": "flake-utils_7",
         "nixpkgs": "nixpkgs_8",
         "rust-overlay": "rust-overlay_4"
       },
@@ -838,7 +822,7 @@
     },
     "rust-overlay_5": {
       "inputs": {
-        "flake-utils": "flake-utils_9",
+        "flake-utils": "flake-utils_8",
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
