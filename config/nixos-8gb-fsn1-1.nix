@@ -193,6 +193,13 @@
           "10.0.0.1/32"
         ];
       }
+      {
+        publicKey = "YDh67pqmhWMPNWf1BYXeH4/GTScCWqoWuyIao3ZUcz4=";
+        allowedIPs = [
+          "fd0d:a262:1fa6:e621:480:b859:2a43:7101/128"
+          "10.0.0.2/32"
+        ];
+      }
       # nutty-noon
       {
         publicKey = "YYQmSJwipRkZJUsPV5DxhfyRBMdj/O1XzN+cGYtUi1s=";
