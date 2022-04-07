@@ -13,7 +13,6 @@ rec {
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     chir-rs.url = "git+https://git.chir.rs/darkkirb/chir.rs.git?ref=main";
     nur.url = "github:nix-community/NUR";
-    nix-gaming.url = github:fufexan/nix-gaming;
     polymc.url = "github:PolyMC/PolyMC";
     dns.url = "github:DarkKirb/dns.nix?ref=master";
     rust-binaries.url = "git+https://git.chir.rs/darkkirb/rust-binaries?ref=main";
@@ -29,7 +28,7 @@ rec {
     nixpkgs-firefox.url = github:NixOS/nixpkgs/nixos-21.11-small;
   };
 
-  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, nix-gaming, polymc, ... } @ args:
+  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, polymc, ... } @ args:
     let
       systems = [
         {
@@ -74,7 +73,6 @@ rec {
                     nixpkgs.overlays = [
                       (self: super: {
                         chir-rs = chir-rs.outputs.defaultPackage.${system};
-                        nix-gaming = nix-gaming.outputs.packages.${system};
                         rust-binaries = args.rust-binaries.packages.${system};
                       })
                       nur.overlay

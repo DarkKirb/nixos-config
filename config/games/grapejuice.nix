@@ -1,6 +1,5 @@
-{ system, nix-gaming, ... } @ args: { lib, config, pkgs, ... }:
+{ system, ... } @ args: { lib, config, pkgs, ... }:
 let
-  wine-tkg = nix-gaming.outputs.packages.${system}.wine-tkg;
   grapejuice_config = {
     __version__ = 2;
     __hardware_profiles__ = null;
@@ -16,7 +15,7 @@ let
         priority = 0;
         name_on_disk = "player";
         display_name = "Player";
-        wine_home = "${wine-tkg}";
+        wine_home = "${pkgs.winePackages.staging}";
         dll_overrides = "dxdiagn=;winemenubuilder.exe=";
         prime_offload_sink = -1;
         use_mesa_gl_override = false;
