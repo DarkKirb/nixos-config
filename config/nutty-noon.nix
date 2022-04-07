@@ -26,7 +26,7 @@
 
   services.zfs.trim.enable = true;
   services.zfs.autoScrub.enable = true;
-  services.zfs.autoScrub.pools = ["ssd" "hdd"];
+  services.zfs.autoScrub.pools = [ "ssd" "hdd" ];
 
   boot.initrd.luks.devices = {
     ssd = {
@@ -41,67 +41,67 @@
   fileSystems."/" = {
     device = "ssd/nixos";
     fsType = "zfs";
-    options = ["zfsutil"];
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/nix" = {
     device = "ssd/nixos/nix";
     fsType = "zfs";
-    options = ["zfsutil"];
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/etc" = {
     device = "ssd/nixos/etc";
     fsType = "zfs";
-    options = ["zfsutil"];
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/var" = {
     device = "ssd/nixos/var";
     fsType = "zfs";
-    options = ["zfsutil"];
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/var/lib" = {
     device = "ssd/nixos/var/lib";
     fsType = "zfs";
-    options = ["zfsutil"];
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/var/log" = {
     device = "ssd/nixos/var/log";
     fsType = "zfs";
-    options = ["zfsutil"];
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/var/spool" = {
     device = "ssd/nixos/var/spool";
     fsType = "zfs";
-    options = ["zfsutil"];
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/home" = {
     device = "ssd/userdata/home";
     fsType = "zfs";
-    options = ["zfsutil"];
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/root" = {
     device = "ssd/userdata/root";
     fsType = "zfs";
-    options = ["zfsutil"];
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/home/darkkirb" = {
     device = "ssd/userdata/home/darkkirb";
     fsType = "zfs";
-    options = ["zfsutil"];
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/build" = {
     device = "hdd/build";
     fsType = "zfs";
-    options = ["zfsutil"];
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/boot" = {
@@ -193,4 +193,14 @@
   ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
+  networking.wireguard.interfaces.wg0.peers = [
+    # Old infra: nas
+    {
+      publicKey = "X6IOz4q4zfPy34bRhAjsureLc6lLFOSwvyGDfxgp8n4=";
+      allowedIPs = [
+        "fd00:e621:e621:2::2/128"
+      ];
+      endpoint = "192.168.2.1:51820";
+    }
+  ];
 }

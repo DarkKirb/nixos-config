@@ -193,6 +193,27 @@
           "10.0.0.1/32"
         ];
       }
+      # nutty-noon
+      {
+        publicKey = "YYQmSJwipRkZJUsPV5DxhfyRBMdj/O1XzN+cGYtUi1s=";
+        allowedIPs = [
+          "fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437/128"
+        ];
+      }
+      # thinkrac
+      {
+        publicKey = "iKW9nomLyLY2f90UY66POzY8CfDhQrqOLqchERlR3TY=";
+        allowedIPs = [
+          "fd0d:a262:1fa6:e621:f45a:db9f:eb7c:1a3f/128"
+        ];
+      }
+      # Old infra: nas
+      {
+        publicKey = "X6IOz4q4zfPy34bRhAjsureLc6lLFOSwvyGDfxgp8n4=";
+        allowedIPs = [
+          "fd00:e621:e621:2::2/128"
+        ];
+      }
     ];
   };
   boot.kernel.sysctl = {
