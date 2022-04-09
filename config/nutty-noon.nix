@@ -148,18 +148,6 @@
     "riscv64-linux"
     "wasm32-wasi"
   ];
-  # Allow high-res audio on PC
-  services.pipewire.config.pipewire."context.properties"."default.clock.rate" = 384000;
-  services.pipewire.config.pipewire."context.properties"."default.clock.allowed-rates" = [
-    44100
-    48000
-    88200
-    96000
-    176400
-    192000
-    352800
-    384000
-  ];
   nix.buildMachines = lib.mkForce [
     {
       hostName = "build-nas";
