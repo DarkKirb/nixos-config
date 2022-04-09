@@ -469,22 +469,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-kicad": {
-      "locked": {
-        "lastModified": 1648031101,
-        "narHash": "sha256-CHNIOo6b9xmJH1DcqyvGCU+aJwusVgVl9yj7AtncdNg=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "f4998c542d68a8a6e3d345d5c106e5915f430a16",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "f4998c542d68a8a6e3d345d5c106e5915f430a16",
-        "type": "github"
-      }
-    },
     "nixpkgs-regression": {
       "locked": {
         "lastModified": 1643052045,
@@ -690,7 +674,6 @@
         "nixpkgs": "nixpkgs_6",
         "nixpkgs-firefox": "nixpkgs-firefox",
         "nixpkgs-hydra": "nixpkgs-hydra",
-        "nixpkgs-kicad": "nixpkgs-kicad",
         "nur": "nur",
         "polymc": "polymc",
         "rust-binaries": "rust-binaries",

@@ -24,7 +24,6 @@ rec {
     nixos-hardware.url = github:NixOS/nixos-hardware;
     miifox-net.url = "git+https://git.chir.rs/CarolineHusky/MiiFox.net";
     miifox-net.flake = false;
-    nixpkgs-kicad.url = github:NixOS/nixpkgs/f4998c542d68a8a6e3d345d5c106e5915f430a16;
     nixpkgs-firefox.url = github:NixOS/nixpkgs/nixos-21.11-small;
   };
 
