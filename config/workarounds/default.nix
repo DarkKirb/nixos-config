@@ -24,16 +24,13 @@ let
   };
   plover = with python3Packages; libsForQt5.mkDerivationWith buildPythonPackage rec {
     pname = "plover-wayland";
-    version = "2022-01-14";
+    version = "2022-04-03";
     src = fetchFromGitHub {
-      owner = "matteodelabre";
+      owner = "benoit-pierre";
       repo = "plover";
-      rev = "fd5668a3ad9bd091289dd2e5e8e2c1dec063d51f";
+      rev = "9aa7c562ba8c6cf8fdd56b0a8304865cc58bc322";
       sha256 = "0y3mdfqjv3vmv5c0cpvfa2mqdylan44iw1js480sxvklq8sxq6yv";
     };
-    patches = [
-      ./cache-kb-mapping.patch
-    ];
     postPatch = ''
       sed -i /PyQt5/d setup.cfg
       sed -i 's|/usr/share/wayland|${wayland}/share/wayland|' plover_build_utils/setup.py
