@@ -14,6 +14,7 @@ rec {
     chir-rs.url = "git+https://git.chir.rs/darkkirb/chir.rs.git?ref=main";
     nur.url = "github:nix-community/NUR";
     polymc.url = "github:PolyMC/PolyMC";
+    polymc.inputs.nixpkgs.follows = "nixpkgs";
     dns.url = "github:DarkKirb/dns.nix?ref=master";
     rust-binaries.url = "git+https://git.chir.rs/darkkirb/rust-binaries?ref=main";
     hydra.url = github:NixOS/hydra;
