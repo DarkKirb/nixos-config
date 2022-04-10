@@ -26,6 +26,14 @@ in
         '';
         example = literalExpression ''"/run/secrets/hydra/gitea-token"'';
       };
+      githubTokenFile = mkOption {
+        type = with types; str;
+        default = "";
+        description = ''
+          Path to the github token secret
+        '';
+        example = literalExpression ''"/run/secrets/hydra/github-token"'';
+      };
     };
   };
 
@@ -45,8 +53,14 @@ in
           '' else ''
             GITEA_TOKEN="$(head -n 1 ${cfg.giteaTokenFile})"
           ''}
+          ${if (cfg.githubTokenFile == "") then ''
+            GITHUB_TOKEN="#github_token#"
+          '' else ''
+            GITHUB_TOKEN="$(head -n 1 ${cfg.githubTokenFile})"
+          ''}
 
           sed -i -e "s|#gitea_token#|$GITEA_TOKEN|" ${baseDir}/hydra.conf
+          sed -i -e "s|#github_token#|$GITHUB_TOKEN|" ${baseDir}/hydra.conf
 
           mkdir -m 0700 -p ${baseDir}/www
           chown hydra-www.hydra ${baseDir}/www
