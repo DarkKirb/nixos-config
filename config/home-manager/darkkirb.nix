@@ -22,5 +22,6 @@
     ../programs/alacritty.nix
     ../programs/kicad.nix
     ../programs/vscode.nix
+    ../programs/misc.nix
   ] else [ ]);
 }
