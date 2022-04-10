@@ -45,7 +45,6 @@
           "dom.enable_performance" = false; # Disable DOM timing API
           "dom.enable_resource_timing" = false; # Disable resource timing API
           "dom.enable_user_timing" = false; # Disable user timing API
-          "dom.webaudio.enabled" = false; # Disable Web Audio API
           "geo.enabled" = false; # Disable Geolocation
           "geo.wifi.uri" = "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%"; # Use Mozilla geolocation service
           "geo.wifi.logging.enabled" = false; # Disable logging for wifi geolocation
@@ -288,6 +287,8 @@
           "security.ssl3.rsa_aes_128_sha" = false;
           "security.ssl3.ecdhe_rsa_aes_256_sha" = false;
           "security.ssl3.ecdhe_ecdsa_aes_256_sha" = false;
+
+          "security.sandbox.content.level" = 3; # Workaround for glibc regression, remove when #167785 hits
         };
         id = 0;
       };

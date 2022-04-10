@@ -25,7 +25,6 @@ rec {
     nixos-hardware.url = github:NixOS/nixos-hardware;
     miifox-net.url = "git+https://git.chir.rs/CarolineHusky/MiiFox.net";
     miifox-net.flake = false;
-    nixpkgs-firefox.url = github:NixOS/nixpkgs/nixos-21.11-small;
   };
 
   outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, polymc, ... } @ args:

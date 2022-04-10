@@ -437,22 +437,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-firefox": {
-      "locked": {
-        "lastModified": 1649537291,
-        "narHash": "sha256-V6VYIwTeI5BCfYK9f5EsMbjsjsis1rUDHMsaDbTvt+A=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "715dc137b08213aabbbe0965b78ab938e5d8d3b7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-21.11-small",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-hydra": {
       "locked": {
         "lastModified": 1645296114,
@@ -658,7 +642,6 @@
         "miifox-net": "miifox-net",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_6",
-        "nixpkgs-firefox": "nixpkgs-firefox",
         "nixpkgs-hydra": "nixpkgs-hydra",
         "nur": "nur",
         "polymc": "polymc",

@@ -1,6 +1,5 @@
-{ system, pkgs, nixpkgs, hydra, nixpkgs-firefox, ... }: with pkgs;
+{ system, pkgs, nixpkgs, hydra, ... }: with pkgs;
 let
-  n-firefox = import nixpkgs-firefox { inherit system; };
   hydra-pkg = hydra.defaultPackage.${system};
   rtf-tokenize = with python3Packages; buildPythonPackage rec {
     pname = "rtf_tokenize";
@@ -63,7 +62,6 @@ in
 {
   nixpkgs.overlays = [
     (self: prev: {
-      firefox = n-firefox.firefox;
       hydra-unstable = hydra-pkg.overrideAttrs (old: {
         postPatch = ''
           sed -i 's/totalNarSize > maxOutputSize/false/g' src/hydra-queue-runner/build-remote.cc
