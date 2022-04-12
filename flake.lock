@@ -2,11 +2,11 @@
   "nodes": {
     "flake-utils": {
       "locked": {
-        "lastModified": 1644229661,
-        "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
+        "lastModified": 1649676176,
+        "narHash": "sha256-OWKJratjt2RW151VUlJPRALb7OU2S5s+f0vLj4o1bHM=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "3cecb5b042f7f209c56ffd8371b2711a290ec797",
+        "rev": "a4b154ebbdc88c8498a5c7b01589addc9e9cb678",
         "type": "github"
       },
       "original": {
@@ -38,11 +38,11 @@
     "neo2": {
       "flake": false,
       "locked": {
-        "lastModified": 1645947481,
-        "narHash": "sha256-GBAWLTxiHoULEUlcb+pHCGHCuMagn5MKhXGnD2tKLUo=",
+        "lastModified": 1648578797,
+        "narHash": "sha256-8BlzxSUGwiG6T2q20atXbun5odtHFt9MGaXs+64qZi4=",
         "ref": "master",
-        "rev": "8245a63e770a4f2b022bf927381e41cb78cf6c31",
-        "revCount": 2654,
+        "rev": "0e1c23b1dddb89242bdecd5bc6c19f663d37575b",
+        "revCount": 2658,
         "type": "git",
         "url": "https://git.neo-layout.org/neo/neo-layout"
       },
@@ -53,11 +53,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1647703831,
-        "narHash": "sha256-6qjgWliwYtFsEUl4/SjlUaUF9hSSfVoaRZzN6MCgslg=",
+        "lastModified": 1649756689,
+        "narHash": "sha256-sFLkcDqHF4fMkU5f3ZJFEwqJTh/DE/Cpapx6zH01/10=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "35a74aa665a681b60d68e3d3400fcaa11690ee50",
+        "rev": "a12486c44212480180d188a23f79a6c126997dc6",
         "type": "github"
       },
       "original": {
@@ -68,11 +68,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1647695915,
-        "narHash": "sha256-/uQdgroWvtCK4GuKyT9K5Xg+izvIOKH2/wovmk0BFjg=",
+        "lastModified": 1649749110,
+        "narHash": "sha256-gN/BkRu93GDHGENao+G0oHrknSJB3l+sfGOZWkqG2RY=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "76f33d6bfdfd5cd30ce5fbbaa6849f4fa50b4d20",
+        "rev": "287aa9ab138e00c3a3519e437a56b7627c62c478",
         "type": "github"
       },
       "original": {
@@ -98,11 +98,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1647279403,
-        "narHash": "sha256-ZsHfMah9+TElcjaENsaOIFHBNNtSbXmyLFVbiJiAECs=",
+        "lastModified": 1649756291,
+        "narHash": "sha256-KTll8bCINAzIUGaaMrbn9wb5nfhkXRLgmFrWGR/Dku0=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "c01f48b055ac776f9831c9d4a0fff83e3b74dbe3",
+        "rev": "c2614c4fe61943b3d280ac1892fcebe6e8eaf8c8",
         "type": "github"
       },
       "original": {
