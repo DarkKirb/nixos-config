@@ -7,7 +7,7 @@
     settings = {
       sandbox = true;
       trusted-users = [ "@wheel" ];
-      require-sigs = false;
+      require-sigs = true;
       auto-optimise-store = true;
       builders-use-substitutes = true;
       substituters = [
