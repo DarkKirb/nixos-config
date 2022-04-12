@@ -1,5 +1,5 @@
 { ... }: {
-  users.users.root = {
+  users.users.darkkirb = {
     description = "Charlotte 🦝 Delenk";
     passwordFile = "/run/secrets-for-users/password/darkkirb";
   };
