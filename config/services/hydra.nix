@@ -10,7 +10,7 @@ in
   imports = [
     ./postgres.nix
     ../../modules/hydra.nix
-    #./nix-cache-upload.nix
+    ./nix-serve.nix
   ];
   services.hydra = {
     enable = true;
