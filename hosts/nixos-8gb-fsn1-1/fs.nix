@@ -1,4 +1,5 @@
 { ... }: {
+  boot.supportedFilesystems = [ "zfs" ];
   fileSystems = {
     "/" = {
       device = "tank/nixos";
