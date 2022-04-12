@@ -11,11 +11,12 @@
       auto-optimise-store = true;
       builders-use-substitutes = true;
       substituters = [
-        "s3://nix-cache?scheme=https&endpoint=cache.int.chir.rs"
+        "https://cache.int.chir.rs/"
       ];
-      #trusted-public-keys = [
-      #  "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
-      #];
+      trusted-public-keys = [
+        "nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg="
+        "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
+      ];
     };
     package = pkgs.nixFlakes;
     extraOptions = ''

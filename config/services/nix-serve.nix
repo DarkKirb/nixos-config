@@ -8,6 +8,10 @@ in {
   services.nix-serve = {
     bindAddress = "127.0.0.1";
     enable = true;
+    secretKeyFile = "/run/secrets/nix-serve/privkey";
+  };
+  sops.secrets."services/nix-serve/privkey" = {
+    owner = "nix-serve";
   };
   services.nginx.virtualHosts."cache.int.chir.rs" = {
     listenAddresses = listenIPs;
