@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
   listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
   listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
