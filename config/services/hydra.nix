@@ -24,7 +24,6 @@ in
       <github_authorization>
         darkkirb = #github_token#
       </github_authorization>
-      store_uri = s3://nix-cache?scheme=https&endpoint=cache.int.chir.rs&secret-key=/var/lib/hydra/queue-runner/cache-priv-key.pem&multipart-upload=true
     '';
     giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
     githubTokenFile = "/run/secrets/services/hydra/github_token";
