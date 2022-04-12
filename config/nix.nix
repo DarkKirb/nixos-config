@@ -67,7 +67,6 @@
       "-L" # print build logs
     ];
     dates = "hourly";
-    randomizedDelaySec = "3600";
   };
   systemd.services.nix-daemon.environment.TMPDIR = "/build";
 }
