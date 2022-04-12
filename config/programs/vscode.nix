@@ -120,7 +120,6 @@
       "editor.fontFamily" = "'FiraCode Nerd Font Mono', 'Noto Sans Mono CJK', monospace";
       "editor.formatOnPaste" = true;
       "editor.formatOnSave" = true;
-      "editor.formatOnSaveMode" = "modificationsIfAvailable";
       "editor.formatOnType" = true;
       "editor.guides.bracketPairs" = true;
       "editor.inlineSuggest.enabled" = true;
