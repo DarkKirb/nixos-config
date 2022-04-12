@@ -1,8 +1,8 @@
 keys:
   - &lotte 46C6A7E14BC7812E86C2700737FE303AAC2D06CD
   - &nixos-8gb-fsn1-1 age1273ps5thcy70ckdt0270s2nysqgu48t38pq3wq975v3y7mf4eavsw38wsl
-  - &nutty-noon age1zgxkntdp99dkvw7z29jjmgrzlla2ha542zrs3262dwat27a34asqckfkrl
-  - &thinkrac age1azy4hfse3x9tzhjn0htelx8qeannscr7mydmuphp2qu73v72tp3qdxt7my
+  - &nutty-noon age1wfftrnyngg7nxcwvt7m590fwx3w7p4kkrjn9uprjq0u3k3ym4s3qqzkmzm
+  - &thinkrac age1e7tqq7ezjtwsunt6plvstevg32p97cmqpejpj20gmrkfe0l7gv9se08zf7
 creation_rules:
   - path_regex: hosts/nixos-8gb-fsn1-1/secrets/.*$
     key_groups:
