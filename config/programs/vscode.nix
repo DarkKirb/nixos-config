@@ -149,9 +149,9 @@
       "workbench.commandPalette.preserveInput" = true;
       "workbench.iconTheme" = "material-icon-theme";
       "workbench.list.smoothScrolling" = true;
-      "C_Cpp.intelliSenseEngine" = "disabled";
-      "C_Cpp.autocomplete" = "disabled";
-      "C_Cpp.errorSquiggles" = "disabled";
+      "C_Cpp.intelliSenseEngine" = "Disabled";
+      "C_Cpp.autocomplete" = "Disabled";
+      "C_Cpp.errorSquiggles" = "Disabled";
       "clangd.path" = "${pkgs.llvmPackages_latest.clang-unwrapped}/bin/clangd";
     };
   };
