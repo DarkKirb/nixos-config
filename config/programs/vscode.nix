@@ -111,7 +111,6 @@
       }
     ];
     userSettings = {
-      "crates.listPreReleases" = true;
       "diffEditor.codeLens" = true;
       "editor.bracketPairColorization.enabled" = true;
       "editor.cursorSmoothCaretAnimation" = true;
@@ -152,7 +151,21 @@
       "C_Cpp.intelliSenseEngine" = "Disabled";
       "C_Cpp.autocomplete" = "Disabled";
       "C_Cpp.errorSquiggles" = "Disabled";
+      "clang-tidy.executable" = "${pkgs.llvmPackages_latest.clang-unwrapped}/bin/clang-tidy";
+      "cmake.cmakePath" = "${pkgs.cmake}/bin/cmake";
+      "github.copilot.enable" = ["*"];
+      "crates.listPreReleases" = true;
+      "css.format.spaceAroundSelectorSeparator" = true;
+      "less.format.spaceAroundSelectorSeparator" = true;
+      "scss.format.spaceAroundSelectorSeparator" = true;
+      "vscode-dhall-lsp-server.executable" = "${pkgs.dhall-lsp-server}/bin/dhall-lsp-server";
+      "doxdocgen.generic.useGitUserEmail" = true;
+      "doxdocgen.generic.useGitUserName" = true;
+      "git.confirmSync" = false;
       "clangd.path" = "${pkgs.llvmPackages_latest.clang-unwrapped}/bin/clangd";
+      "verilog.ctags.path" = "${pkgs.ctags}/bin/ctags";
+      "verilog.languageServer" = "${pkgs.svls}/bin/svls";
+      "verilog.linting.linter" = "${pkgs.verilator}/bin/verilator";
     };
   };
 }
