@@ -13,10 +13,13 @@
       substituters = [
         "s3://nix-cache?scheme=https&endpoint=cache.int.chir.rs"
       ];
+      #trusted-public-keys = [
+      #  "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
+      #];
     };
     package = pkgs.nixFlakes;
     extraOptions = ''
-      experimental-features = nix-command flakes ca-derivations
+      experimental-features = nix-command flakes
     '';
     gc = {
       automatic = true;
@@ -33,7 +36,7 @@
         systems = [ "x86_64-linux" ];
         maxJobs = 12;
         speedFactor = 1;
-        supportedFeatures = [ "gccarch-znver1" "ca-derivations" ];
+        supportedFeatures = [ "gccarch-znver1" ];
       }
       {
         hostName = "build-pc";
@@ -51,7 +54,7 @@
         ];
         maxJobs = 16;
         speedFactor = 1;
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "ca-derivations" ];
+        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" ];
       }
     ];
     distributedBuilds = true;
