@@ -8,6 +8,7 @@ in {
   services.nix-serve = {
     bindAddress = "127.0.0.1";
     enable = true;
+    secretKeyFile = "/var/cache-priv-key.pem";
   };
   services.nginx.virtualHosts."cache.int.chir.rs" = {
     listenAddresses = listenIPs;
