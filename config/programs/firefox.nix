@@ -287,8 +287,6 @@
           "security.ssl3.rsa_aes_128_sha" = false;
           "security.ssl3.ecdhe_rsa_aes_256_sha" = false;
           "security.ssl3.ecdhe_ecdsa_aes_256_sha" = false;
-
-          "security.sandbox.content.level" = 3; # Workaround for glibc regression, remove when #167785 hits
         };
         id = 0;
       };
