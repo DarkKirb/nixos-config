@@ -5,8 +5,6 @@ rec {
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs;
     flake-utils.url = github:numtide/flake-utils;
-    rust-overlay.url = github:oxalica/rust-overlay;
-    cargo2nix.url = "github:cargo2nix/cargo2nix/be-friendly-to-users"; # dummy
     home-manager.url = "github:andresilva/home-manager/fix-systemd-services";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = github:Mic92/sops-nix;
@@ -16,7 +14,6 @@ rec {
     polymc.url = "github:PolyMC/PolyMC";
     polymc.inputs.nixpkgs.follows = "nixpkgs";
     dns.url = "github:DarkKirb/dns.nix?ref=master";
-    rust-binaries.url = "git+https://git.chir.rs/darkkirb/rust-binaries?ref=main";
     hydra.url = github:NixOS/hydra;
     nixpkgs-hydra.url = "github:NixOS/nixpkgs/nixos-21.05-small";
     hydra.inputs.nixpkgs.follows = "nixpkgs-hydra";
@@ -72,7 +69,6 @@ rec {
                     nixpkgs.overlays = [
                       (self: super: {
                         chir-rs = chir-rs.outputs.defaultPackage.${system};
-                        rust-binaries = args.rust-binaries.packages.${system};
                       })
                       nur.overlay
                       polymc.overlay
