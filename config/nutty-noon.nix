@@ -191,4 +191,10 @@
       endpoint = "192.168.2.1:51820";
     }
   ];
+  # Build server stuff
+
+  users.users.darkkirb.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpO0Lh7eOE/EBttb/XWZ6ISiJ0RkmBYfruq3U6linEz root@nixos-8gb-fsn1-1"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKB8oH1XbuGrKn/SeguXz96sw4AjJQQvZyAdpptotzOr root@thinkrac"
+  ];
 }
