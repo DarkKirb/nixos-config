@@ -88,7 +88,7 @@
       {
         name = "better-cpp-syntax";
         publisher = "jeff-hykin";
-        version = "1.15.3";
+        version = "1.15.13";
         sha256 = "sha256-ugn7nERz/IZ37mD/WWOWHcaB7nMLkeN+cCTCGCUHpOo=";
       }
       {
