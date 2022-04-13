@@ -67,4 +67,9 @@ in
       OnUnitActiveSec = 604800;
     };
   };
+  sops.secrets."services/hydra/aws_credentials" = {
+    owner = "hydra-queue-runner";
+    path = "/var/lib/hydra/queue-runner/.aws/credentials";
+    restartUnits = [ "hydra-queue-runner.service" ];
+  };
 }
