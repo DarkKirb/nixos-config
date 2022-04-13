@@ -42,7 +42,6 @@ let
   grapejuiceJson = pkgs.writeText "grapejuice.json" (builtins.toJSON grapejuice_config);
 in
 {
-
   home.packages = [
     pkgs.grapejuice
   ];
