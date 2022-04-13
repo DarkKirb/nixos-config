@@ -11,7 +11,7 @@
       auto-optimise-store = true;
       builders-use-substitutes = true;
       substituters = [
-        "https://cache.int.chir.rs/"
+        "https://f000.backblazeb2.com/file/cache-chir-rs/"
       ];
       trusted-public-keys = [
         "nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg="
