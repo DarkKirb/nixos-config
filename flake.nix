@@ -78,6 +78,7 @@ rec {
                       polymc.overlay
                     ];
                   })
+                  (import utils/link-input.nix args)
                 ];
               };
           })
