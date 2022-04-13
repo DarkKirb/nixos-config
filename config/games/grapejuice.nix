@@ -47,6 +47,7 @@ in
     pkgs.grapejuice
   ];
   home.activation.grapejuiceSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD mkdir $VERBOSE_ARG -p $HOME/.config/brinkervii/grapejuice
     $DRY_RUN_CMD rm $VERBOSE_ARG -f $HOME/.config/brinkervii/grapejuice/user_settings.json
     $DRY_RUN_CMD cp $VERBOSE_ARG ${grapejuiceJson} $HOME/.config/brinkervii/grapejuice/user_settings.json
     $DRY_RUN_CMD chmod +w $VERBOSE_ARG $HOME/.config/brinkervii/grapejuice/user_settings.json
