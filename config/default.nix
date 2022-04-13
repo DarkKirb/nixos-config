@@ -2,6 +2,7 @@
   imports = [
     ./zfs.nix
     ./users/darkkirb.nix
+    ./users/root.nix
     ./nix.nix
     ./sops.nix
     ./wireguard.nix
@@ -52,4 +53,5 @@
     enableSSHSupport = true;
     pinentryFlavor = "curses";
   };
+  users.mutableUsers = false;
 }
