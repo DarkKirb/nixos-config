@@ -1,34 +1,39 @@
 { config, pkgs, lib, ... }:
-let switch_window = pkgs.writeScript "switchWindow" ''
-  # https://www.reddit.com/r/swaywm/comments/krd0sq/comment/gib6z73/?context=3
-jq_filter='
-    # descend to workspace or scratchpad
-    .nodes[].nodes[]
-    # save workspace name as .w
-    | {"w": .name} + (
-      if (.nodes|length) > 0 then # workspace
-        [recurse(.nodes[])]
-      else # scratchpad
-        []
-      end
-      + .floating_nodes
-      | .[]
-      # select nodes with no children (windows)
-      | select(.nodes==[])
-    )
-    | [
-      "<span size=\"xx-small\">\(.id)</span>",
-      # remove markup and index from workspace name, replace scratch with "[S]"
-      "<span size=\"xx-small\">\(.w | gsub("^[^:]*:|<[^>]*>"; "") | sub("__i3_scratch"; "[S]"))</span>",
-      # get app name (or window class if xwayland)
-      "<span weight=\"bold\">\(if .app_id == null then .window_properties.class else .app_id end)</span>",
-      "<span style=\"italic\">\(.name)</span>"
-    ] | @tsv
-'
-${pkgs.sway}/bin/swaymsg -t get_tree | jq -r "$jq_filter" | ${pkgs.wofi} -m --insensitive --show dmenu --prompt='Focus a window' | {
-  read -r id name && swaymsg "[con_id=$id]" focus
-}
-'';
+let
+  switch_window = pkgs.writeScript "switchWindow" ''
+      # https://www.reddit.com/r/swaywm/comments/krd0sq/comment/gib6z73/?context=3
+    jq_filter='
+        # descend to workspace or scratchpad
+        .nodes[].nodes[]
+        # save workspace name as .w
+        | {"w": .name} + (
+          if (.nodes|length) > 0 then # workspace
+            [recurse(.nodes[])]
+          else # scratchpad
+            []
+          end
+          + .floating_nodes
+          | .[]
+          # select nodes with no children (windows)
+          | select(.nodes==[])
+        )
+        | [
+          "<span size=\"xx-small\">\(.id)</span>",
+          # remove markup and index from workspace name, replace scratch with "[S]"
+          "<span size=\"xx-small\">\(.w | gsub("^[^:]*:|<[^>]*>"; "") | sub("__i3_scratch"; "[S]"))</span>",
+          # get app name (or window class if xwayland)
+          "<span weight=\"bold\">\(if .app_id == null then .window_properties.class else .app_id end)</span>",
+          "<span style=\"italic\">\(.name)</span>"
+        ] | @tsv
+    '
+    ${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r "$jq_filter" | ${pkgs.wofi}/bin/wofi -m --insensitive --show dmenu --prompt='Focus a window' | {
+      read -r id name && swaymsg "[con_id=$id]" focus
+    }
+  '';
+  screenshot_then_switch = pkgs.writeScript "screenshotThenSwitch" ''
+    ${pkgs.sway-contrib.grimshot}/bin/grimshot "$@"
+    ${pkgs.sway}/bin/swaymsg mode default
+  '';
 in
 {
   imports = [
@@ -92,9 +97,16 @@ in
       ];
       modes = {
         screenshot = {
-          Print = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -d)" - | ${pkgs.wl-clipboard}/bin/wl-copy'';
-          w = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | ${pkgs.wl-clipboard}/bin/wl-copy'';
-          f = ''exec ${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard}/bin/wl-copy'';
+          Print = "exec ${screenshot_then_switch} copy area";
+          "Shift+Print" = "exec ${screenshot_then_switch} save area $HOME/Pictures/grim-$(date --iso=s).png";
+          a = "exec ${screenshot_then_switch} copy active";
+          "Shift+a" = "exec ${screenshot_then_switch} save active $HOME/Pictures/grim-$(date --iso=s).png";
+          s = "exec ${screenshot_then_switch} copy screen";
+          "Shift+s" = "exec ${screenshot_then_switch} save screen $HOME/Pictures/grim-$(date --iso=s).png";
+          o = "exec ${screenshot_then_switch} copy output";
+          "Shift+o" = "exec ${screenshot_then_switch} save output $HOME/Pictures/grim-$(date --iso=s).png";
+          w = "exec ${screenshot_then_switch} copy window";
+          "Shift+w" = "exec ${screenshot_then_switch} save window $HOME/Pictures/grim-$(date --iso=s).png";
           Escape = ''mode "default"'';
           Return = ''mode "default"'';
         };
