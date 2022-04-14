@@ -8,6 +8,7 @@
 , perl
 , stdenv
 , lib
+, fetchurl
 , ...
 }:
 let
@@ -72,16 +73,16 @@ let
   };
 
 in
-stdenv.mkDerivation {
-  inherit pname version src;
+  /* stdenv.mkDerivation {
+    inherit pname version src;
 
-  name = "${pname}-${version}.jar";
+    name = "${pname}-${version}.jar";
 
-  nativeBuildInputs = [ git ];
+    nativeBuildInputs = [ git ];
 
-  postPatch = addResolveStep;
+    postPatch = addResolveStep;
 
-  buildPhase = ''
+    buildPhase = ''
     ${gnused}/bin/sed -i "s#'bukkit-legacy',##" settings.gradle
     ${gnused}/bin/sed -i "s#'bukkit-legacy:loader',##" settings.gradle
     ${gnused}/bin/sed -i "s#'bungee',##" settings.gradle
@@ -101,10 +102,14 @@ stdenv.mkDerivation {
     ${gnused}/bin/sed -i "s#'fabric',##" settings.gradle
 
     ${gradle}/bin/gradle --offline --no-daemon --info -Dorg.gradle.java.home=${openjdk17_headless} build
-  '';
+    '';
 
-  installPhase = ''
+    installPhase = ''
     cp bukkit/loader/build/libs/LuckPerms-Bukkit-5.4.0.jar $out
-  '';
+    '';
 
+    }*/
+fetchurl {
+  url = "https://ci.lucko.me/job/LuckPerms/1426/artifact/bukkit/loader/build/libs/LuckPerms-Bukkit-5.4.18.jar";
+  sha256 = "3fa8900bce939de37dc75622177ff3f9883fbc552a1fd6f7582e4fadbf2c4acb";
 }
