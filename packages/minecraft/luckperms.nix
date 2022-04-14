@@ -7,18 +7,19 @@
 , openjdk17_headless
 , perl
 , stdenv
+, lib
 , ...
 }:
 let
 
   pname = "LuckPerms";
-  version = "2022-03-27";
+  version = "2022-04-08";
 
   src = fetchFromGitHub {
     owner = "LuckPerms";
     repo = "LuckPerms";
-    rev = "2e0a4d71a5d442e30762a64dd854d2c05226cfdc";
-    sha256 = "1hn26iy48ahrxx59f9x6fm4qqwgd7ns7bagvq2a31mqhra6czz12";
+    rev = "207e4aa9f8c640ad3b17f844d79512f7b8fb2044";
+    sha256 = "00xkhma322b19h93ccand8ldj2pn3jf43jcmpcpaakaaqrk2ph0x";
     leaveDotGit = true;
   };
 
@@ -67,7 +68,7 @@ let
     '';
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
-    outputHash = "sha256-kuMiVIgRLCuCoGWEvW5m/m6OJCI2yYQSL7eDinZunUg=";
+    outputHash = "sha256-V7FlGxa+Q3ljohPldxlhi2Ak93TiEUggwFELLaR787w=";
   };
 
 in
