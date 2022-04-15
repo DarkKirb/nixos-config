@@ -80,3 +80,34 @@ index 426c93f5..9fe83c2a 100644
          }
      }
  }
+diff --git a/src/lib/Hydra/Plugin/GithubStatus.pm b/src/lib/Hydra/Plugin/GithubStatus.pm
+index fe791533..c2a522f7 100644
+--- a/src/lib/Hydra/Plugin/GithubStatus.pm
++++ b/src/lib/Hydra/Plugin/GithubStatus.pm
+@@ -92,6 +92,26 @@ sub common {
+                     } else {
+                       print STDERR "GithubStatus ratelimit $limitRemaining/$limit, resets in $diff\n";
+                     }
++
++                    if ($finished && $build->buildstatus == 0) {
++                        // Try to start the deployment
++                        my $body = json_encode({
++                                ref => $rev,
++                                inputs => {
++                                    job_name => $jobName
++                                }
++                        });
++                        my $url = "https://api.github.com/repos/$owner/$repo/actions/workflows/deploy.yml/dispatches";
++                        my $req = HTTP::Request->new('POST', $url);
++                        $req->header('Content-Type' => 'application/json');
++                        $req->header('Accept' => 'application/vnd.github.v3+json');
++                        $req->header('Authorization' => ($self->{config}->{github_authorization}->{$owner} // $conf->{authorization}));
++                        $req->content($body);
++                        print STDERR $res->status_line, ": ", $res->decoded_content, "\n" unless $res->is_success;
++                        if ($limitRemaining < 2000) {
++                            sleep $delay;
++                        }
++                    }
+                 };
+ 
+                 if (defined $eval->flake) {
