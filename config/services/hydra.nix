@@ -22,7 +22,7 @@ in
         darkkirb = #gitea_token#
       </gitea_authorization>
       <github_authorization>
-        DarkKirb = #github_token#
+        DarkKirb = Bearer #github_token#
       </github_authorization>
       <githubstatus>
         jobs = .*
