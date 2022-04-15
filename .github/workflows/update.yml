@@ -2,6 +2,7 @@ name: Update flake
 on:
   schedule:
     - cron: "35 * * * *"
+  workflow_dispatch: {}
 jobs:
   update-flake:
     name: Update flake
