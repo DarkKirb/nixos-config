@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: cachix/install-nix-action@v12
-      - run: nix flake update
+      - run: nix flake update --extra-experimental-features "nix-command flakes"
       - run: git config user.email autoupdate@chir.rs
       - run: git config user.name "Autoupdater"
       - run: git commit -am "Automatic update"
