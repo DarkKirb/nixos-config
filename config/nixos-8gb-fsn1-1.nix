@@ -18,7 +18,6 @@
     ./services/postfix.nix
     ./services/autodeploy.nix
     ./services/minecraft.nix
-    ./services/nix-cache.nix
     ./services/minio.nix
     ./services/loki.nix
     ./services/reverse-proxy.nix
