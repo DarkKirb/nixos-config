@@ -8,19 +8,21 @@ jobs:
   deploy:
     name: Deploy to staging
     runs-on: ubuntu-latest
+    timeout-minutes: 5 # Try for 5 minutes, then give up
     steps:
-
-      - name: Wait for tests to succeed
-        uses: lewagon/wait-on-check-action@v1.0.0
+      - name: 'Wait for status checks'
+        uses: "WyriHaximus/github-action-wait-for-status@v2"
+        id: waitforstatuschecks
         with:
-          ref: ${{ github.ref }}
-          running-workflow-name: Deploy to staging
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
+          ignoreActions: Deploy to staging
+          checkInterval: 10
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: git-checkout
         uses: actions/checkout@v2
       - name: Push
         uses: ad-m/github-push-action@master
+        if: steps.waitforstatuschecks.outputs.status == 'success'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: staging
