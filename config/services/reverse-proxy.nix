@@ -6,7 +6,6 @@
       proxyPass = "https://hydra.int.chir.rs";
       proxyWebsockets = true;
       extraConfig = ''
-        proxy_set_header Host $proxy_host;
         proxy_ssl_server_name on;
       '';
     };
