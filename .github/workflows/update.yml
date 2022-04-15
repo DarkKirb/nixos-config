@@ -9,13 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+          token: ${{ secrets.PUBLISH_TOKEN }}
       - uses: cachix/install-nix-action@v12
       - run: nix flake update --extra-experimental-features "nix-command flakes"
       - run: git config user.email autoupdate@chir.rs
       - run: git config user.name "Autoupdater"
       - run: git commit -am "Automatic update"
-      - name: Push
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.PUBLISH_TOKEN }}
-          branch: main
+      - run: git push
