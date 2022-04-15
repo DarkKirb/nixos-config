@@ -16,7 +16,6 @@
     ./services/postfixadmin.nix
     ./services/dovecot.nix
     ./services/postfix.nix
-    ./services/autodeploy.nix
     ./services/minecraft.nix
     ./services/minio.nix
     ./services/loki.nix
