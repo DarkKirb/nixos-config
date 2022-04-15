@@ -16,7 +16,7 @@ jobs:
         with:
           ignoreActions: Deploy to staging
           checkInterval: 10
-          waitForCheck: 1
+          waitForCheck: yes
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: git-checkout
