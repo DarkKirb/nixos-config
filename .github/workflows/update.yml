@@ -1,0 +1,20 @@
+name: Update flake
+on:
+  schedule:
+    - cron: "35 * * * *"
+jobs:
+  update-flake:
+    name: Update flake
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: cachix/install-nix-action@v12
+      - run: nix flake update
+      - run: git config user.email autoupdate@chir.rs
+      - run: git config user.name "Autoupdater"
+      - run: git commit -am "Automatic update"
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PUBLISH_TOKEN }}
+          branch: main
