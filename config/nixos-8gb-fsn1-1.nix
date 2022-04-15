@@ -21,6 +21,7 @@
     ./services/nix-cache.nix
     ./services/minio.nix
     ./services/loki.nix
+    ./services/reverse-proxy.nix
   ];
 
   boot.initrd.availableKernelModules = [ "ata_piix" "virtio_pci" "virtio_scsi" "xhci_pci" "sd_mod" "sr_mod" ];

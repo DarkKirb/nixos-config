@@ -14,7 +14,7 @@ in
   ];
   services.hydra = {
     enable = true;
-    hydraURL = "https://hydra.int.chir.rs/";
+    hydraURL = "https://hydra.chir.rs/";
     notificationSender = "hydra@chir.rs";
     useSubstitutes = true;
     extraConfig = ''

@@ -92,7 +92,7 @@ let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 6;
+      serial = 7;
     };
     NS = [
       "ns1.chir.rs."
@@ -169,6 +169,7 @@ let
       mc = createZone { };
       ns1 = createZone { };
       ns2 = createZone { };
+      hydra = createZone { };
 
       int = delegateTo [
         "ns1.chir.rs."
