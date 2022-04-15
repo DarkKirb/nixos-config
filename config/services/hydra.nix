@@ -44,10 +44,10 @@ in
   nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" "https://minio.int.chir.rs/" "https://git.neo-layout.org/" ];
   sops.secrets."services/hydra/gitea_token" = { };
   sops.secrets."services/hydra/github_token" = { };
-  services.nginx.virtualHosts."hydra.int.chir.rs" = {
+  services.nginx.virtualHosts."hydra.chir.rs" = {
     listenAddresses = listenIPs;
-    sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
+    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
+    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
     locations."/" = {
       proxyPass = "http://127.0.0.1:3000";
       proxyWebsockets = true;
