@@ -1,29 +1,18 @@
 name: Deploy to staging
 on:
-  push:
-    branches:
-      - main
+  status
 
 jobs:
   deploy:
     name: Deploy to staging
     runs-on: ubuntu-latest
-    timeout-minutes: 5 # Try for 5 minutes, then give up
     steps:
-      - name: 'Wait for status checks'
-        uses: DarkKirb/github-action-wait-for-status@master
-        id: waitforstatuschecks
-        with:
-          ignoreActions: Deploy to staging
-          checkInterval: 10
-          waitForCheck: yes
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: git-checkout
         uses: actions/checkout@v2
+        if: github.event.state == 'success'
       - name: Push
         uses: ad-m/github-push-action@master
-        if: steps.waitforstatuschecks.outputs.status == 'success'
+        if: github.event.state == 'success'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: staging
