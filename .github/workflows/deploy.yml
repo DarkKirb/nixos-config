@@ -11,11 +11,12 @@ jobs:
     timeout-minutes: 5 # Try for 5 minutes, then give up
     steps:
       - name: 'Wait for status checks'
-        uses: WyriHaximus/github-action-wait-for-status@v1.4
+        uses: DarkKirb/github-action-wait-for-status@master
         id: waitforstatuschecks
         with:
           ignoreActions: Deploy to staging
           checkInterval: 10
+          waitForCheck: 1
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: git-checkout
