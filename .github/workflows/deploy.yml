@@ -11,7 +11,7 @@ jobs:
     timeout-minutes: 5 # Try for 5 minutes, then give up
     steps:
       - name: 'Wait for status checks'
-        uses: "WyriHaximus/github-action-wait-for-status@v2"
+        uses: WyriHaximus/github-action-wait-for-status@v1.4
         id: waitforstatuschecks
         with:
           ignoreActions: Deploy to staging
