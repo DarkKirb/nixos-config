@@ -62,7 +62,7 @@
   };
   system.autoUpgrade = {
     enable = true;
-    flake = "git+https://git.chir.rs/darkkirb/nixos-config.git?ref=staging";
+    flake = "github:DarkKirb/nixos-config/staging";
     flags = [
       "--no-write-lock-file"
       "-L" # print build logs
