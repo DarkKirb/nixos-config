@@ -8,7 +8,7 @@ jobs:
     name: Update flake
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
         with:
           token: ${{ secrets.PUBLISH_TOKEN }}
       - uses: cachix/install-nix-action@v12
