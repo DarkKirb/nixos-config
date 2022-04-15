@@ -8,7 +8,7 @@ in
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 7;
+    serial = 8;
   };
   NS = [
     "ns1.chir.rs."
@@ -193,7 +193,6 @@ in
     minio-console.CNAME = [ "nixos-8gb-fsn1-1" ];
     backup.CNAME = [ "nas" ];
     cache.CNAME = [ "nutty-noon" ];
-    hydra.CNAME = [ "nutty-noon" ];
     _acme-challenge = delegateTo [
       "ns1.chir.rs."
       "ns2.chir.rs."
