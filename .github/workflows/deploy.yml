@@ -1,19 +1,16 @@
 name: Deploy to staging
 on:
-  status
-
+  workflow_dispatch:
+    inputs:
+      job_name:
+        description: "Job name that has completed"
+        required: true
+        type: string
 jobs:
   deploy:
     name: Deploy to staging
     runs-on: ubuntu-latest
     steps:
-      - name: git-checkout
-        uses: actions/checkout@v2
-        if: github.event.state == 'success'
-      - name: Push
-        uses: ad-m/github-push-action@master
-        if: github.event.state == 'success'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: staging
-          force: true
+      - uses: actions/checkout@v1
+      - run: git tag -f ${{ inputs.job_name }}
+      - run: git push --tags
