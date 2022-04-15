@@ -153,7 +153,7 @@
       "C_Cpp.errorSquiggles" = "Disabled";
       "clang-tidy.executable" = "${pkgs.llvmPackages_latest.clang-unwrapped}/bin/clang-tidy";
       "cmake.cmakePath" = "${pkgs.cmake}/bin/cmake";
-      "github.copilot.enable" = ["*"];
+      "github.copilot.enable" = { "*" = true; };
       "crates.listPreReleases" = true;
       "css.format.spaceAroundSelectorSeparator" = true;
       "less.format.spaceAroundSelectorSeparator" = true;
