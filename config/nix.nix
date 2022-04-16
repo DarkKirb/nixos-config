@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, config, system, ... }: {
   imports = [
     ./workarounds
   ];
@@ -62,7 +62,7 @@
   };
   system.autoUpgrade = {
     enable = true;
-    flake = "github:DarkKirb/nixos-config/staging";
+    flake = "github:DarkKirb/nixos-config/nixos-config/nixos-config/${config.networking.hostName}.${system}";
     flags = [
       "--no-write-lock-file"
       "-L" # print build logs
