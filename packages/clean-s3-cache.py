@@ -1,5 +1,4 @@
-#! /usr/bin/env nix-shell
-#! nix-shell -i python3 -p python -p python3Packages.boto3
+#!#SHEBANG#
 
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
@@ -91,13 +90,11 @@ async def list_old_cache_objects() -> AsyncIterable[str]:
     ) -> dict[str, Any]:
         if ContinuationToken != None:
             return s3.list_objects_v2(
-                Prefix="realisations/",
                 Bucket=BUCKET_NAME,
                 ContinuationToken=ContinuationToken
             )
         else:
             return s3.list_objects_v2(
-                Prefix="realisations/",
                 Bucket=BUCKET_NAME
             )
     cont_token = None
