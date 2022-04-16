@@ -22,7 +22,7 @@ jobs:
       - run: |
           JOB_NAME=$(echo $JOB_NAME | sed 's|:|/|g')
           git fetch --all
-          git branch | grep $JOB_NAME || (git branch $JOB_NAME && git checkout $JOB_NAME && git push -u origin $JOB_NAME)
+          git branch --remote | grep $JOB_NAME || (git branch $JOB_NAME && git checkout $JOB_NAME && git push -u origin $JOB_NAME)
           if [[ ! $(git merge-base --is-ancestor $REV $JOB_NAME) ]]; then
             git checkout $JOB_NAME
             git reset --hard $REV
