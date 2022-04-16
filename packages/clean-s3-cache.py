@@ -11,8 +11,8 @@ import json
 import boto3
 from botocore.response import StreamingBody
 
-ENDPOINT_URL: str = "https://cache.int.chir.rs"
-BUCKET_NAME: str = "nix-cache"
+ENDPOINT_URL: str = "https://s3.us-west-000.backblazeb2.com"
+BUCKET_NAME: str = "cache-chir-rs"
 
 yesterday = datetime.datetime.now().replace(
     tzinfo=datetime.timezone.utc) - datetime.timedelta(days=1)
