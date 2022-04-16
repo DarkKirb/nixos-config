@@ -94,7 +94,9 @@ rec {
         })
         systems)) // {
         devShell = devShell;
-        installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
+        # Uncomment the line to build an installer image
+        # This is EXTREMELY LARGE and will make builds take forever
+        # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
       };
     };
 }
