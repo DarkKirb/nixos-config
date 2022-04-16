@@ -21,11 +21,12 @@ jobs:
           token: ${{ secrets.PUBLISH_TOKEN }}
       - run: |
           JOB_NAME=$(echo $JOB_NAME | sed 's|:|/|g')
-          git fetch --all --tags
-          git tag --list | grep $JOB_NAME || (git tag $JOB_NAME $REV && git push --tags)
+          git fetch --all
+          git branch | grep $JOB_NAME || (git branch $JOB_NAME && git checkout $JOB_NAME && git push -u origin $JOB_NAME)
           if [[ ! $(git merge-base --is-ancestor $REV $JOB_NAME) ]]; then
-            git tag -f $JOB_NAME $REV
-            git push --tags --force
+            git checkout $JOB_NAME
+            git reset --hard $REV
+            git push --force
           fi
         env:
           JOB_NAME: ${{ github.event.inputs.job_name }}
