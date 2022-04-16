@@ -12,7 +12,11 @@ jobs:
         with:
           token: ${{ secrets.PUBLISH_TOKEN }}
       - uses: cachix/install-nix-action@v17
-      - run: nix flake update --extra-experimental-features "nix-command flakes"
+        with:
+          extra_nix_config: |
+            substituters = https://f000.backblazeb2.com/file/cache-chir-rs/ https://cache.nixos.org/
+            trusted-public-keys = nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=
+      - run: nix flake update
       - run: git config user.email autoupdate@chir.rs
       - run: git config user.name "Autoupdater"
       - run: git commit -am "Automatic update" || true
