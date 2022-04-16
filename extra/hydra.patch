@@ -81,10 +81,10 @@ index 426c93f5..9fe83c2a 100644
      }
  }
 diff --git a/src/lib/Hydra/Plugin/GithubStatus.pm b/src/lib/Hydra/Plugin/GithubStatus.pm
-index fe791533..0e8df6f1 100644
+index fe791533..fb906a78 100644
 --- a/src/lib/Hydra/Plugin/GithubStatus.pm
 +++ b/src/lib/Hydra/Plugin/GithubStatus.pm
-@@ -92,6 +92,27 @@ sub common {
+@@ -92,6 +92,28 @@ sub common {
                      } else {
                        print STDERR "GithubStatus ratelimit $limitRemaining/$limit, resets in $diff\n";
                      }
@@ -104,6 +104,7 @@ index fe791533..0e8df6f1 100644
 +                        $req->header('Accept' => 'application/vnd.github.v3+json');
 +                        $req->header('Authorization' => ($self->{config}->{github_authorization}->{$owner} // $conf->{authorization}));
 +                        $req->content($body);
++                        my $res = $ua->request($req);
 +                        print STDERR $res->status_line, ": ", $res->decoded_content, "\n" unless $res->is_success;
 +                        if ($limitRemaining < 2000) {
 +                            sleep $delay;
