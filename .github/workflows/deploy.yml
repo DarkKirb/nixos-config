@@ -17,9 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          git tag --list | grep ${{ inputs.job_name }} || (git tag ${{ inputs.job_name }} ${{ inputs.rev }} && git push --tags)
+          git tag --list | grep $JOB_NAME || (git tag $JOB_NAME $REV && git push --tags)
           git fetch --all --tags
-          if [[ ! git merge-base --is-ancestor ${{ inputs.rev }} ${{ inputs.job_name }} ]]; then
-            git tag -f ${{ inputs.job_name }} ${{ inputs.rev }}
+          if [[ ! git merge-base --is-ancestor $REV $JOB_NAME ]]; then
+            git tag -f $JOB_NAME $REV
             git push --tags --force
           fi
+        env:
+          JOB_NAME: ${{ github.event.inputs.job_name }}
+          REV: ${{ github.event.inputs.rev }}
