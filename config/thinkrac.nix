@@ -82,7 +82,7 @@
   };
 
   fileSystems."/root" = {
-    device = "tank/userdata/root";
+    device = "tank/userdata/home/root";
     fsType = "zfs";
     options = [ "zfsutil" ];
   };
