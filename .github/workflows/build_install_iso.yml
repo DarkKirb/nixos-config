@@ -19,4 +19,4 @@ jobs:
       - run: nix build '.#nixosConfigurations.installer.config.system.build.isoImage'
       - run: wget https://dl.min.io/client/mc/release/linux-amd64/mc && chmod +x mc
       - run: ./mc alias set b2 https://s3.us-west-000.backblazeb2.com ${{ secrets.B2_ACCESS_KEY_ID }} ${{ secrets.B2_SECRET_ACCESS_KEY }}
-      - run: ./mc cp result b2/cache-chir-rs/installer.iso
+      - run: ./mc cp result/iso/*.iso b2/cache-chir-rs/installer.iso
