@@ -4,6 +4,7 @@ on: pull_request
 jobs:
   build_pr:
     name: Build Pull
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         target:
