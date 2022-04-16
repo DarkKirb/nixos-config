@@ -15,5 +15,5 @@ jobs:
       - run: nix flake update --extra-experimental-features "nix-command flakes"
       - run: git config user.email autoupdate@chir.rs
       - run: git config user.name "Autoupdater"
-      - run: git commit -am "Automatic update"
+      - run: git commit -am "Automatic update" || true
       - run: git push
