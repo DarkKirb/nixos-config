@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.rev }}
       - run: |
           JOB_NAME=$(echo $JOB_NAME | sed 's|:|/|g')
           git fetch --all --tags
