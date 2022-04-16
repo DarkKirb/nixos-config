@@ -81,7 +81,7 @@ index 426c93f5..9fe83c2a 100644
      }
  }
 diff --git a/src/lib/Hydra/Plugin/GithubStatus.pm b/src/lib/Hydra/Plugin/GithubStatus.pm
-index fe791533..456029f1 100644
+index fe791533..767b64b8 100644
 --- a/src/lib/Hydra/Plugin/GithubStatus.pm
 +++ b/src/lib/Hydra/Plugin/GithubStatus.pm
 @@ -92,6 +92,26 @@ sub common {
@@ -91,7 +91,7 @@ index fe791533..456029f1 100644
 +
 +                    if ($finished and $build->buildstatus == 0) {
 +                        # Try to start the deployment
-+                        my $body = json_encode({
++                        my $body = encode_json({
 +                                ref => $rev,
 +                                inputs => {
 +                                    job_name => $jobName
