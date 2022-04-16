@@ -1,6 +1,6 @@
 { ... }: {
   programs.ssh = {
-    controlMaster = "yes";
+    controlMaster = "auto";
     controlPersist = "10m";
     enable = true;
     matchBlocks = {
