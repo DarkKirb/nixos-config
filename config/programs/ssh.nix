@@ -1,5 +1,7 @@
 { ... }: {
   programs.ssh = {
+    controlMaster = "yes";
+    controlPersist = "10m";
     enable = true;
     matchBlocks = {
       "build-nas" = {
