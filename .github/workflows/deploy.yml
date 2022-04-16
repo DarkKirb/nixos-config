@@ -18,8 +18,8 @@ jobs:
       - uses: actions/checkout@v3
       - run: |
           JOB_NAME=$(echo $JOB_NAME | sed 's|:|/|g')
-          git tag --list | grep $JOB_NAME || (git tag $JOB_NAME $REV && git push --tags)
           git fetch --all --tags
+          git tag --list | grep $JOB_NAME || (git tag $JOB_NAME $REV && git push --tags)
           if [[ ! git merge-base --is-ancestor $REV $JOB_NAME ]]; then
             git tag -f $JOB_NAME $REV
             git push --tags --force
