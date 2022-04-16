@@ -41,7 +41,7 @@ in
       };
     }
   ];
-  nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" "https://darkkirb.de/" "https://git.neo-layout.org/" ];
+  nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" "https://darkkirb.de/" "https://git.neo-layout.org/" "https://static.darkkirb.de/" ];
   sops.secrets."services/hydra/gitea_token" = { };
   sops.secrets."services/hydra/github_token" = { };
   services.nginx.virtualHosts."hydra.chir.rs" = {
