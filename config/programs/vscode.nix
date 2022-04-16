@@ -135,6 +135,7 @@
       "files.trimFinalNewlines" = true;
       "files.trimTrailingWhitespace" = true;
       "git.autoStash" = true;
+      "git.autofetch" = true;
       "git.enableCommitSigning" = true;
       "git.enableSmartCommit" = true;
       "git.fetchOnPull" = true;

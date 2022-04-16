@@ -4,7 +4,8 @@ let
   listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
     add_header Alt-Svc 'h3=":443"';
   '';
-in {
+in
+{
   services.nix-serve = {
     bindAddress = "127.0.0.1";
     enable = true;
