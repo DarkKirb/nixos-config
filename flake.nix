@@ -79,6 +79,12 @@ rec {
               };
           })
           systems);
+      devShell.x86_64-linux = let pkgs = import nixpkgs { system = "x86_64-linux"; }; in
+        pkgs.mkShell {
+          nativeBuildInputs = [
+            pkgs.sops
+          ];
+        };
       hydraJobs = (builtins.listToAttrs (map
         ({ name, system }: {
           inherit name;
@@ -86,8 +92,9 @@ rec {
             ${system} = nixosConfigurations.${name}.config.system.build.toplevel;
           };
         })
-        systems))/* // {
-        installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
-        }*/;
+        systems)) // {
+        devShell = devShell;
+        # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
+      };
     };
 }
