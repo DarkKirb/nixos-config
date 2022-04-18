@@ -20,7 +20,7 @@
     };
     package = pkgs.nixFlakes;
     extraOptions = ''
-      experimental-features = nix-command flakes
+      experimental-features = nix-command flakes ca-derivations
     '';
     gc = {
       automatic = true;
@@ -32,13 +32,13 @@
       dates = [ "weekly" ];
     };
     buildMachines = [
-      {
-        hostName = "build-nas";
-        systems = [ "x86_64-linux" ];
-        maxJobs = 12;
-        speedFactor = 1;
-        supportedFeatures = [ "gccarch-znver1" ];
-      }
+      #{
+      #  hostName = "build-nas";
+      #  systems = [ "x86_64-linux" ];
+      #  maxJobs = 12;
+      #  speedFactor = 1;
+      #  supportedFeatures = [ "gccarch-znver1" ];
+      #}
       {
         hostName = "build-pc";
         systems = [
@@ -55,7 +55,7 @@
         ];
         maxJobs = 16;
         speedFactor = 1;
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" ];
+        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "ca-derivations" ];
       }
     ];
     distributedBuilds = true;
