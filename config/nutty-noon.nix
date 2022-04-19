@@ -197,9 +197,4 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpO0Lh7eOE/EBttb/XWZ6ISiJ0RkmBYfruq3U6linEz root@nixos-8gb-fsn1-1"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKB8oH1XbuGrKn/SeguXz96sw4AjJQQvZyAdpptotzOr root@thinkrac"
   ];
-  nixpkgs.localSystem = {
-    gcc.arch = "znver2";
-    gcc.tune = "znver2";
-    system = "x86_64-linux";
-  };
 }

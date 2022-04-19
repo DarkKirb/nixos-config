@@ -3,7 +3,6 @@
     ./workarounds
   ];
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.contentAddressedByDefault = true;
   nix = {
     settings = {
       sandbox = true;
@@ -19,7 +18,7 @@
         "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
       ];
     };
-    package = pkgs.nixUnstable;
+    package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes ca-derivations
     '';
