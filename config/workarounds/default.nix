@@ -63,7 +63,13 @@ in
   nixpkgs.overlays = [
     (self: prev: {
       hydra-unstable = hydra-pkg.overrideAttrs (old: {
+        postPatch = ''
+          sed -i 's/totalNarSize > maxOutputSize/false/g' src/hydra-queue-runner/build-remote.cc
+        '';
         checkPhase = "true";
+        patches = [
+          ../../extra/hydra.patch
+        ];
       });
       plover.dev = plover;
       mosh = prev.mosh.overrideAttrs (old: {

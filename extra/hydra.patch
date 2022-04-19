@@ -1,0 +1,115 @@
+diff --git a/src/lib/Hydra/Plugin/GiteaStatus.pm b/src/lib/Hydra/Plugin/GiteaStatus.pm
+index 426c93f5..9fe83c2a 100644
+--- a/src/lib/Hydra/Plugin/GiteaStatus.pm
++++ b/src/lib/Hydra/Plugin/GiteaStatus.pm
+@@ -52,34 +52,51 @@ sub common {
+             });
+ 
+         while (my $eval = $evals->next) {
+-            my $giteastatusInput = $eval->jobsetevalinputs->find({ name => "gitea_status_repo" });
+-            next unless defined $giteastatusInput && defined $giteastatusInput->value;
+-            my $i = $eval->jobsetevalinputs->find({ name => $giteastatusInput->value, altnr => 0 });
+-            next unless defined $i;
+-            my $gitea_url = $eval->jobsetevalinputs->find({ name => "gitea_http_url" });
+-
+-            my $repoOwner = $eval->jobsetevalinputs->find({ name => "gitea_repo_owner" })->value;
+-            my $repoName = $eval->jobsetevalinputs->find({ name => "gitea_repo_name" })->value;
+-            my $accessToken = $self->{config}->{gitea_authorization}->{$repoOwner};
+-
+-            my $rev = $i->revision;
+-            my $domain = URI->new($i->uri)->host;
+-            my $host;
+-            unless (defined $gitea_url) {
+-                $host = "https://$domain";
++            my $sendStatus = sub {
++                my ($input, $host, $owner, $repo, $rev) = @_;
++
++                my $accessToken = $self->{config}->{gitea_authorization}->{$owner};
++                my $url = "$host/api/v1/repos/$owner/$repo/statuses/$rev";
++                
++                print STDERR "GiteaStatus POSTing $state to $url\n";
++                my $req = HTTP::Request->new('POST', $url);
++                $req->header('Content-Type' => 'application/json');
++                $req->header('Authorization' => "token $accessToken");
++                $req->content($body);
++                my $res = $ua->request($req);
++                print STDERR $res->status_line, ": ", $res->decoded_content, "\n" unless $res->is_success;
++
++            };
++            if (defined $eval->flake) {
++                my $fl = $eval->flake;
++                print STDERR "Flake is $fl\n";
++                if ($eval->flake =~ m!git\+https://git\.chir\.rs/([^/]+)/([^/]+)\?.*rev=([[:xdigit:]]{40})$!) {
++                    $sendStatus->("src", "https://git.chir.rs", $1, $2, $3);
++                } else {
++                    print STDERR "Can't parse flake, skipping Gitea status update\n";
++                }
+             } else {
+-                $host = $gitea_url->value;
+-            }
+-
+-            my $url = "$host/api/v1/repos/$repoOwner/$repoName/statuses/$rev";
++                my $giteastatusInput = $eval->jobsetevalinputs->find({ name => "gitea_status_repo" });
++                next unless defined $giteastatusInput && defined $giteastatusInput->value;
++                my $i = $eval->jobsetevalinputs->find({ name => $giteastatusInput->value, altnr => 0 });
++                next unless defined $i;
++                my $gitea_url = $eval->jobsetevalinputs->find({ name => "gitea_http_url" });
++
++                my $repoOwner = $eval->jobsetevalinputs->find({ name => "gitea_repo_owner" })->value;
++                my $repoName = $eval->jobsetevalinputs->find({ name => "gitea_repo_name" })->value;
++
++                my $rev = $i->revision;
++                my $domain = URI->new($i->uri)->host;
++                my $host;
++                unless (defined $gitea_url) {
++                    $host = "https://$domain";
++                } else {
++                    $host = $gitea_url->value;
++                }
++
++                $sendStatus->($giteastatusInput, $host, $repoOwner, $repoName, $rev);
+ 
+-            print STDERR "GiteaStatus POSTing $state to $url\n";
+-            my $req = HTTP::Request->new('POST', $url);
+-            $req->header('Content-Type' => 'application/json');
+-            $req->header('Authorization' => "token $accessToken");
+-            $req->content($body);
+-            my $res = $ua->request($req);
+-            print STDERR $res->status_line, ": ", $res->decoded_content, "\n" unless $res->is_success;
++            }
+         }
+     }
+ }
+diff --git a/src/lib/Hydra/Plugin/GithubStatus.pm b/src/lib/Hydra/Plugin/GithubStatus.pm
+index fe791533..fb906a78 100644
+--- a/src/lib/Hydra/Plugin/GithubStatus.pm
++++ b/src/lib/Hydra/Plugin/GithubStatus.pm
+@@ -92,6 +92,28 @@ sub common {
+                     } else {
+                       print STDERR "GithubStatus ratelimit $limitRemaining/$limit, resets in $diff\n";
+                     }
++
++                    if ($finished and ($build->buildstatus == 0)) {
++                        # Try to start the deployment
++                        my $body = encode_json({
++                                ref => "main", # Whatever
++                                inputs => {
++                                    job_name => $jobName,
++                                    rev => $rev
++                                }
++                        });
++                        my $url = "https://api.github.com/repos/$owner/$repo/actions/workflows/deploy.yml/dispatches";
++                        my $req = HTTP::Request->new('POST', $url);
++                        $req->header('Content-Type' => 'application/json');
++                        $req->header('Accept' => 'application/vnd.github.v3+json');
++                        $req->header('Authorization' => ($self->{config}->{github_authorization}->{$owner} // $conf->{authorization}));
++                        $req->content($body);
++                        my $res = $ua->request($req);
++                        print STDERR $res->status_line, ": ", $res->decoded_content, "\n" unless $res->is_success;
++                        if ($limitRemaining < 2000) {
++                            sleep $delay;
++                        }
++                    }
+                 };
+ 
+                 if (defined $eval->flake) {

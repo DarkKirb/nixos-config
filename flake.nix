@@ -14,7 +14,7 @@ rec {
     polymc.url = "github:PolyMC/PolyMC";
     polymc.inputs.nixpkgs.follows = "nixpkgs";
     dns.url = "github:DarkKirb/dns.nix?ref=master";
-    hydra.url = github:DarkKirb/hydra;
+    hydra.url = github:NixOS/hydra;
     nixpkgs-hydra.url = "github:NixOS/nixpkgs/nixos-21.05-small";
     hydra.inputs.nixpkgs.follows = "nixpkgs-hydra";
     hosts-list.url = github:StevenBlack/hosts;
