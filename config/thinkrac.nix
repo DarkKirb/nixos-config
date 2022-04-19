@@ -156,4 +156,9 @@
   networking.networkmanager.enable = true;
   users.users.darkkirb.extraGroups = [ "networkmanager" ];
   nix.settings.max-jobs = 0;
+  nixpkgs.localSystem = {
+    gcc.arch = "skylake";
+    gcc.tune = "skylake";
+    system = "x86_64-linux";
+  };
 }

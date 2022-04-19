@@ -226,4 +226,9 @@
     "net.ipv4.conf.all.forwarding" = true;
     "net.ipv6.conf.all.forwarding" = true;
   };
+  nixpkgs.localSystem = {
+    gcc.arch = "skylake";
+    gcc.tune = "skylake-avx512";
+    system = "x86_64-linux";
+  };
 }

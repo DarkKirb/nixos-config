@@ -16,6 +16,7 @@ jobs:
       - uses: cachix/install-nix-action@v17
         with:
           extra_nix_config: |
+            experimental-features = nix-command flakes ca-derivations
             substituters = https://f000.backblazeb2.com/file/cache-chir-rs/ https://cache.nixos.org/
             trusted-public-keys = nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=
       - run: nix build --no-link '.#${{ matrix.target }}'
