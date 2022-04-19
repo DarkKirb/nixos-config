@@ -55,7 +55,7 @@
         ];
         maxJobs = 16;
         speedFactor = 1;
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "ca-derivations" ];
+        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "gccarch-znver1" "gccarch-skylake" "ca-derivations" ];
       }
     ];
     distributedBuilds = true;

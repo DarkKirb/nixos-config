@@ -172,7 +172,7 @@
         "x86_64-linux"
         "i686-linux"
       ];
-      supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "ca-derivations" ];
+      supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "gccarch-znver1" "gccarch-skylake" "ca-derivations" ];
     }
   ];
   hardware.enableRedistributableFirmware = true;
