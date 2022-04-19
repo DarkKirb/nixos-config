@@ -178,22 +178,22 @@
     },
     "hydra": {
       "inputs": {
-        "newNixpkgs": "newNixpkgs",
         "nix": "nix",
         "nixpkgs": [
           "nixpkgs-hydra"
         ]
       },
       "locked": {
-        "lastModified": 1649378106,
-        "narHash": "sha256-1Raoxt3SBLrPtV414DIeCiWyBml02HuN2z8ijlDsFeY=",
-        "owner": "NixOS",
+        "lastModified": 1642687475,
+        "narHash": "sha256-jdzUBckbpckHVcllLxi5fIGD0ANmUR22mAKPmgiNcoY=",
+        "owner": "thufschmitt",
         "repo": "hydra",
-        "rev": "c44d9d9e917f8f02ddb5c01a8620c439993540b6",
+        "rev": "cdff8067285336abbe4750ae15d0a7dcdda5fcb5",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "thufschmitt",
+        "ref": "nix-ca",
         "repo": "hydra",
         "type": "github"
       }
@@ -244,22 +244,6 @@
       "original": {
         "type": "git",
         "url": "https://git.chir.rs/CarolineHusky/MiiFox.net"
-      }
-    },
-    "newNixpkgs": {
-      "locked": {
-        "lastModified": 1647380550,
-        "narHash": "sha256-909TI9poX7CIUiFx203WL29YON6m/I6k0ExbZvR7bLM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "6e3ee8957637a60f5072e33d78e05c0f65c54366",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable-small",
-        "repo": "nixpkgs",
-        "type": "github"
       }
     },
     "nix": {
