@@ -180,7 +180,9 @@
       "inputs": {
         "nix": "nix",
         "nixpkgs": [
-          "nixpkgs-hydra"
+          "hydra",
+          "nix",
+          "nixpkgs"
         ]
       },
       "locked": {
@@ -291,22 +293,6 @@
       "original": {
         "owner": "nixos",
         "ref": "release-21.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-hydra": {
-      "locked": {
-        "lastModified": 1645296114,
-        "narHash": "sha256-y53N7TyIkXsjMpOG7RhvqJFGDacLs9HlyHeSTBioqYU=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "530a53dcbc9437363471167a5e4762c5fcfa34a1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-21.05-small",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -437,7 +423,6 @@
         "miifox-net": "miifox-net",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
-        "nixpkgs-hydra": "nixpkgs-hydra",
         "nur": "nur",
         "polymc": "polymc",
         "sops-nix": "sops-nix"
