@@ -16,6 +16,8 @@ rec {
     dns.url = "github:DarkKirb/dns.nix?ref=master";
     hydra.url = github:thufschmitt/hydra/nix-ca;
     nix.url = github:NixOS/nix/2.6.1;
+    hydra.inputs.nix.follows = "nix";
+    hydra.inputs.nixpkgs.follows = "nix/nixpkgs";
     hosts-list.url = github:StevenBlack/hosts;
     hosts-list.flake = false;
     nixos-hardware.url = github:NixOS/nixos-hardware;
