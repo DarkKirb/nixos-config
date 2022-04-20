@@ -88,7 +88,7 @@
   };
 
   fileSystems."/root" = {
-    device = "ssd/userdata/root";
+    device = "ssd/userdata/home/root";
     fsType = "zfs";
     options = [ "zfsutil" ];
   };
