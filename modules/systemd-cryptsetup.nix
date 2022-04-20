@@ -284,6 +284,8 @@ in
       message = "boot.initrd.luks.devices.<name>.bypassWorkqueues is not supported for kernels older than 5.9";
     }];
 
+    boot.initrd.kernelModules = [ "tpm" ];
+
     # actually, sbp2 driver is the one enabling the DMA attack, but this needs to be tested
     boot.blacklistedKernelModules = optionals luks.mitigateDMAAttacks
       [ "firewire_ohci" "firewire_core" "firewire_sbp2" ];
