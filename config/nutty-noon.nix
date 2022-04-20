@@ -198,4 +198,14 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpO0Lh7eOE/EBttb/XWZ6ISiJ0RkmBYfruq3U6linEz root@nixos-8gb-fsn1-1"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKB8oH1XbuGrKn/SeguXz96sw4AjJQQvZyAdpptotzOr root@thinkrac"
   ];
+  nix.systemFeatures = [
+    "kvm"
+    "nixos-test"
+    "big-parallel"
+    "benchmark"
+    "gccarch-znver2"
+    "gccarch-znver1"
+    "gccarch-skylake"
+    "ca-derivations"
+  ];
 }

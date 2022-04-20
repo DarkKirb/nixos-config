@@ -167,7 +167,9 @@
   networking.wireguard.interfaces."wg0".ips = [ "fd0d:a262:1fa6:e621:b4e1:08ff:e658:6f49/64" ];
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix { desktop = false; inherit args; };
   nix.settings.cores = 2;
-  nix.settings.max-jobs = 0;
+  nix.settings.max-jobs = 2;
+  nix.daemonCPUSchedPolicy = "idle";
+  nix.daemonIOSchedClass = "idle";
 
   networking.wireguard.interfaces.wg0 = {
     postSetup = ''
@@ -226,4 +228,12 @@
     "net.ipv4.conf.all.forwarding" = true;
     "net.ipv6.conf.all.forwarding" = true;
   };
+  nix.systemFeatures = [
+    "kvm"
+    "nixos-test"
+    "big-parallel"
+    "benchmark"
+    "gccarch-skylake"
+    "ca-derivations"
+  ];
 }
