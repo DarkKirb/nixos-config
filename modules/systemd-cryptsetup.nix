@@ -95,6 +95,8 @@ let
       # commands to run right before we mount our device
       ${dev.preOpenCommands}
 
+      mkdir -pv ${pkgs.tpm2-tss}
+      ln -svf /lib ${pkgs.tpm2-tss}
       ${csopen}
 
       # commands to run right after we mounted our device
