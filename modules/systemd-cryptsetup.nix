@@ -78,7 +78,7 @@ let
 
   openCommand = name: dev: assert name == dev.name;
     let
-      csopen = "systemd-cryptsetup attach ${dev.name} ${dev.device} \"\" tpm2-device=auto"
+      csopen = "systemd-cryptsetup attach ${dev.name} ${dev.device} \"\" tpm2-device=/dev/tpmrm0"
         + optionalString dev.allowDiscards ",discard"
         + optionalString dev.bypassWorkqueues ",no-read-workqueue,no-write-workqueue"
         + optionalString (dev.header != null) ",header=${dev.header}";
@@ -303,6 +303,8 @@ in
       copy_bin_and_libs ${askPass}/bin/cryptsetup-askpass
       sed -i s,/bin/sh,$out/bin/sh, $out/bin/cryptsetup-askpass
       copy_bin_and_libs ${pkgs.systemd}/lib/systemd/systemd-cryptsetup
+      # copy tpm2 libraries manually
+      cp -rpv ${pkgs.tpm2-tss}/lib/*.so* $out/lib/
     '';
 
     boot.initrd.extraUtilsCommandsTest = ''
