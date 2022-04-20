@@ -12,4 +12,7 @@
       certPath = builtins.toString ../efi/DB.crt;
     };
   };
+  system.extraSystemBuilderCmds = ''
+    substituteAll ${../extra/switch-to-configuration.pl} $out/bin/switch-to-configuration
+  '';
 }
