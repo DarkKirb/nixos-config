@@ -7,9 +7,9 @@
   ];
   boot.supportedFilesystems = [ "zfs" ];
   # Oldest system I have is skylake-based
-  nixpkgs.localSystem = {
+  /*nixpkgs.localSystem = {
     gcc.arch = "skylake";
     gcc.tune = "skylake";
     system = "x86_64-linux";
-  };
+    };*/
 }
