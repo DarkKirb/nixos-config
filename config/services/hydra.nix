@@ -54,6 +54,16 @@ in
     };
     extraConfig = listenStatements;
   };
+  services.nginx.virtualHosts."hydra.int.chir.rs" = {
+    listenAddresses = listenIPs;
+    sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
+    sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:3000";
+      proxyWebsockets = true;
+    };
+    extraConfig = listenStatements;
+  };
   systemd.services.clean-s3-cache = {
     enable = true;
     description = "Clean up S3 cache";
