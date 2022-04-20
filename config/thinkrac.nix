@@ -6,7 +6,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./systemd-boot.nix
     ./desktop.nix
-    #./services/tpm2.nix
+    ./services/tpm2.nix
     nixos-hardware.nixosModules.lenovo-thinkpad-t470s
     nixos-hardware.nixosModules.common-cpu-intel-kaby-lake
     nixos-hardware.nixosModules.common-pc-ssd

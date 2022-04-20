@@ -6,7 +6,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./systemd-boot.nix
     ./desktop.nix
-    #./services/tpm2.nix
+    ./services/tpm2.nix
     ./services/hydra.nix
     ./server.nix
     ./secureboot.nix
