@@ -23,6 +23,7 @@ rec {
     nixos-hardware.url = github:NixOS/nixos-hardware;
     miifox-net.url = "git+https://git.chir.rs/CarolineHusky/MiiFox.net";
     miifox-net.flake = false;
+    nixpkgs-systemd-249.url = github:NixOS/nixpkgs/0423158e106ec4a838f0d8f956faecfacf4396f3;
   };
 
   outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, polymc, ... } @ args:

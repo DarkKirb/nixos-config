@@ -1,8 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, system, nixpkgs-systemd-249, ... }:
 
 with lib;
 
 let
+  systemd = nixpkgs-systemd-249.legacyPackages.${system}.systemd;
   luks = config.boot.initrd.luks;
   kernelPackages = config.boot.kernelPackages;
 
@@ -304,9 +305,7 @@ in
       copy_bin_and_libs ${pkgs.cryptsetup}/bin/cryptsetup
       copy_bin_and_libs ${askPass}/bin/cryptsetup-askpass
       sed -i s,/bin/sh,$out/bin/sh, $out/bin/cryptsetup-askpass
-      copy_bin_and_libs ${pkgs.systemd}/lib/systemd/systemd-cryptsetup
-      # copy tpm2 libraries manually
-      cp -rpv ${pkgs.tpm2-tss}/lib/*.so* $out/lib/
+      copy_bin_and_libs ${systemd}/lib/systemd/systemd-cryptsetup
     '';
 
     boot.initrd.extraUtilsCommandsTest = ''
