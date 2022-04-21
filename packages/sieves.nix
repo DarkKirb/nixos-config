@@ -1,7 +1,7 @@
 { lib, writeText, writeScript, zsh, coreutils-full, rspamd, ... } @ pkgs:
 let
   sievec = import ./sievec.nix pkgs;
-  rspamd_host = "fd00:e621:e621:2::2";
+  rspamd_host = "localhost";
   sa-learn-ham-script = writeScript "sa-learn-ham" ''
     #!${zsh}/bin/zsh
 
@@ -48,7 +48,7 @@ in
       if environment :matches "imap.mailbox" "*" {
         set "mailbox" "$${1}";
       }
-      
+
       if string "$${mailbox}" [ "Trash", "train_ham", "train_prob", "train_spam" ] {
         stop;
       }
