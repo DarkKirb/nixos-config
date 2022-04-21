@@ -1,7 +1,7 @@
 { pkgs, config, ... }: {
   imports = [
     ../modules/systemd-secure-boot
-    ../modules/systemd-cryptsetup.nix
+    #    ../modules/systemd-cryptsetup.nix # broken
   ];
 
   sops.secrets."secureboot/DB.key" = { };
