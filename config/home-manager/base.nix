@@ -8,6 +8,7 @@ desktop: { pkgs, ... }: {
   ];
   programs = {
     zsh = {
+      enable = true;
       oh-my-zsh = {
         enable = true;
       };
@@ -25,15 +26,17 @@ desktop: { pkgs, ... }: {
           fi
           ${pkgs.tmux}/bin/tmux attach-session -t "$SESSION_NAME" || ${pkgs.tmux}/bin/tmux new-session -s "$SESSION_NAME"
         fi
-        export SDL_VIDEODRIVER=wayland
-        export QT_QPA_PLATFORM=wayland
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-        export _JAVA_AWT_WM_NONREPARENTING=1
-        export MOZ_ENABLE_WAYLAND=1
-        export GTK_IM_MODULE=ibus
-        export QT_IM_MODULE=ibus
-        export XMODIFIERS=@im=ibus
       '';
+      sessionVariables = {
+        SDL_VIDEODRIVER = "wayland";
+        QT_QPA_PLATFORM = "wayland";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
+        _JAVA_AWT_WM_NONREPARENTING = 1;
+        MOZ_ENABLE_WAYLAND = 1;
+        GTK_IM_MODULE = "ibus";
+        QT_IM_MODULE = "ibus";
+        XMODIFIERS = "@im=ibus";
+      };
       plugins = [
         {
           name = "zsh-nix-shell";
