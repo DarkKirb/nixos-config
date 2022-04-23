@@ -9,6 +9,7 @@ desktop: { pkgs, ... }: {
   programs = {
     zsh = {
       enable = true;
+      enableVteIntegration = true;
       oh-my-zsh = {
         enable = true;
       };

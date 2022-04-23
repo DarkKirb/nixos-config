@@ -109,6 +109,12 @@
         version = "0.5.1";
         sha256 = "sha256-neAvG8bk8yzpbuSzvVVi8Z3lCr29FBncXx3Sv/KChHw=";
       }
+      {
+        publisher = "42crunch";
+        name = "vscode-openapi";
+        version = "4.9.4";
+        sha256 = "sha256-rY4sBGXEtMX2VsJ7LArCKPfqi0NVdg0ReKCAPUbCe0Q=";
+      }
     ];
     userSettings = {
       "diffEditor.codeLens" = true;
