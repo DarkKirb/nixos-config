@@ -4,7 +4,7 @@ import asyncio
 from concurrent.futures import ThreadPoolExecutor
 import functools
 from typing import Any, AsyncIterable, Awaitable, Callable, Optional, TypeVar, cast
-from os import path
+from os import path, listdir
 import datetime
 import json
 
@@ -133,10 +133,18 @@ async def list_old_cache_objects() -> AsyncIterable[str]:
 def delete_object(key: str) -> None:
     s3.delete_object(Bucket=BUCKET_NAME, Key=key)
 
+def get_store_hashes() -> set[str]:
+    hashes = set()
+    for obj in obj.listdir("/nix/store"):
+        hashes.add(obj.split("-")[0])
 
 async def main() -> None:
+    store_hashes = get_store_hashes()
     async for obj_key in list_old_cache_objects():
         if obj_key.endswith(".narinfo"):
+            # check if we have the hash locally
+            if obj_key.split(".")[0] in store_hashes:
+                continue # yes, don’t delete
             narinfo = await get_object(obj_key)
             narinfo = NarInfo(narinfo)
             if not await narinfo.exists_locally():
