@@ -15,6 +15,7 @@
       scala-lang.scala
       serayuzgur.crates
       tamasfe.even-better-toml
+      redhat.vscode-yaml
       ritwickdey.liveserver
       vadimcn.vscode-lldb
       yzhang.markdown-all-in-one
