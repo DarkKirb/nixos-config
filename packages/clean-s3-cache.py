@@ -140,27 +140,33 @@ def get_store_hashes() -> set[str]:
 
 async def main() -> None:
     store_hashes = get_store_hashes()
+    sem = asyncio.Semaphore(16)
+
     async for obj_key in list_old_cache_objects():
-        if obj_key.endswith(".narinfo"):
-            # check if we have the hash locally
-            if obj_key.split(".")[0] in store_hashes:
-                continue # yes, don’t delete
-            narinfo = await get_object(obj_key)
-            narinfo = NarInfo(narinfo)
-            if not await narinfo.exists_locally():
-                print(f"Found unused NAR for {narinfo.store_path}")
-                await delete_object(obj_key)
-                await delete_object(narinfo.url)
-        if obj_key.startswith("realisations/"):
-            realisation = await get_object(obj_key)
-            realisation = json.loads(realisation)
-            if not isinstance(realisation, dict):
-                continue
-            if "outPath" not in realisation:
-                continue
-            if not await exists_locally("/nix/store/" + realisation["outPath"]):
-                print(f"Found unused realisation for {realisation['outPath']}")
-                await delete_object(obj_key)
+        asyncio.create_task(handle_obj(obj_key))
+
+    async def handle_obj(obj_key: str) -> None:
+        async with sem:
+            if obj_key.endswith(".narinfo"):
+                # check if we have the hash locally
+                if obj_key.split(".")[0] in store_hashes:
+                    return # yes, don’t delete
+                narinfo = await get_object(obj_key)
+                narinfo = NarInfo(narinfo)
+                if not await narinfo.exists_locally():
+                    print(f"Found unused NAR for {narinfo.store_path}")
+                    await delete_object(obj_key)
+                    await delete_object(narinfo.url)
+            if obj_key.startswith("realisations/"):
+                realisation = await get_object(obj_key)
+                realisation = json.loads(realisation)
+                if not isinstance(realisation, dict):
+                    return
+                if "outPath" not in realisation:
+                    return
+                if not await exists_locally("/nix/store/" + realisation["outPath"]):
+                    print(f"Found unused realisation for {realisation['outPath']}")
+                    await delete_object(obj_key)
 
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(main())
