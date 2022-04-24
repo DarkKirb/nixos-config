@@ -7,6 +7,7 @@
     ./systemd-boot.nix
     ./services/tpm2.nix
     ./server.nix
+    ./services/hydra.nix
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-gpu-nvidia
     nixos-hardware.nixosModules.common-pc-hdd
