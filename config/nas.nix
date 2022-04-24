@@ -94,7 +94,15 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/569D-113A";
+    device = "/dev/disk/by-partuuid/b50f9cff-552d-4c6e-bda2-104723ee638e";
+    fsType = "vfat";
+  };
+  fileSystems."/boot2" = {
+    device = "/dev/disk/by-partuuid/6f365c6a-63a2-4fb9-976b-ec9e04c9cb13";
+    fsType = "vfat";
+  };
+  fileSystems."/boot3" = {
+    device = "/dev/disk/by-partuuid/324146ea-edb6-4f2e-b260-af8eddfb1eca";
     fsType = "vfat";
   };
 
