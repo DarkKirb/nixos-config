@@ -6,5 +6,7 @@
     openssh.authorizedKeys.keys = [
 
     ];
+    group = "backup";
   };
+  users.groups.backup = { };
 }
