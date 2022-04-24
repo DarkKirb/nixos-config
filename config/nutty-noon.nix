@@ -183,13 +183,13 @@
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
   networking.wireguard.interfaces.wg0.peers = [
-    # Old infra: nas
+    # nas
     {
-      publicKey = "X6IOz4q4zfPy34bRhAjsureLc6lLFOSwvyGDfxgp8n4=";
+      publicKey = "RuQImASPojufJMoJ+zZ4FceC+mMN5vhxNR+i+m7g9Bc=";
       allowedIPs = [
-        "fd00:e621:e621:2::2/128"
+        "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b/128"
       ];
-      endpoint = "192.168.2.1:51820";
+      endpoint = "192.168.2.2:51820";
     }
   ];
   # Build server stuff

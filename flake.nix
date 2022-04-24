@@ -45,6 +45,10 @@ rec {
           name = "installer"; # The Installer DVD
           system = "x86_64-linux";
         }
+        {
+          name = "nas"; # My nas
+          system = "x86_64-linux";
+        }
         #{
         #  name = "rpi2"; # Raspberry Pi 2
         #  system = "armv7l-linux";

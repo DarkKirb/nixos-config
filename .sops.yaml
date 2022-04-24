@@ -26,3 +26,7 @@ creation_rules:
     key_groups:
       - pgp:
           - *lotte
+  - path_regex: secrets/nas\.yaml$
+    key_groups:
+      - pgp:
+          - *lotte

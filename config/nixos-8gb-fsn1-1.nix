@@ -36,40 +36,35 @@
     };
   };
 
-  fileSystems."/" =
-    {
-      device = "tank/nixos";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/" = {
+    device = "tank/nixos";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/nix" =
-    {
-      device = "tank/nixos/nix";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/nix" = {
+    device = "tank/nixos/nix";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/etc" =
-    {
-      device = "tank/nixos/etc";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/etc" = {
+    device = "tank/nixos/etc";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/var" =
-    {
-      device = "tank/nixos/var";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/var" = {
+    device = "tank/nixos/var";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/var/lib" =
-    {
-      device = "tank/nixos/var/lib";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/var/lib" = {
+    device = "tank/nixos/var/lib";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
   fileSystems."/var/lib/minio" = {
     device = "tank/nixos/var/lib/minio";
@@ -101,54 +96,47 @@
     options = [ "zfsutil" ];
   };
 
-  fileSystems."/var/log" =
-    {
-      device = "tank/nixos/var/log";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/var/log" = {
+    device = "tank/nixos/var/log";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/var/spool" =
-    {
-      device = "tank/nixos/var/spool";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/var/spool" = {
+    device = "tank/nixos/var/spool";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/home" =
-    {
-      device = "tank/userdata/home";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/home" = {
+    device = "tank/userdata/home";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/root" =
-    {
-      device = "tank/userdata/home/root";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/root" = {
+    device = "tank/userdata/home/root";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/home/darkkirb" =
-    {
-      device = "tank/userdata/home/darkkirb";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/home/darkkirb" = {
+    device = "tank/userdata/home/darkkirb";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/home/miifox" =
-    {
-      device = "tank/userdata/home/miifox";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/home/miifox" = {
+    device = "tank/userdata/home/miifox";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/8E14-4366";
-      fsType = "vfat";
-      options = [ "X-mount.mkdir" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/8E14-4366";
+    fsType = "vfat";
+    options = [ "X-mount.mkdir" ];
+  };
 
   swapDevices = [ ];
 
@@ -216,11 +204,11 @@
           "fd0d:a262:1fa6:e621:f45a:db9f:eb7c:1a3f/128"
         ];
       }
-      # Old infra: nas
+      # nas
       {
-        publicKey = "X6IOz4q4zfPy34bRhAjsureLc6lLFOSwvyGDfxgp8n4=";
+        publicKey = "RuQImASPojufJMoJ+zZ4FceC+mMN5vhxNR+i+m7g9Bc=";
         allowedIPs = [
-          "fd00:e621:e621:2::2/128"
+          "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b/128"
         ];
       }
     ];
