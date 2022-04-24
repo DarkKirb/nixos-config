@@ -16,7 +16,7 @@
 
   hardware.cpu.amd.updateMicrocode = true;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "igb" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [
     config.boot.kernelPackages.zenpower
