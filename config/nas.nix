@@ -122,7 +122,7 @@
       randomEncryption = true;
     }
   ];
-  networking.interfaces.enp8s0 = {
+  networking.interfaces.br0 = {
     ipv4 = {
       addresses = [
         {
