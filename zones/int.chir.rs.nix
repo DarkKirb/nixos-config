@@ -8,7 +8,7 @@ in
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 9;
+    serial = 10;
   };
   NS = [
     "ns1.chir.rs."
@@ -36,14 +36,6 @@ in
       ];
       AAAA = [
         (ttl zoneTTL (aaaa "fd00:e621:e621::1"))
-      ];
-    };
-    nas = {
-      A = [
-        (ttl zoneTTL (a "10.0.2.2"))
-      ];
-      AAAA = [
-        (ttl zoneTTL (aaaa "fd00:e621:e621:2::2"))
       ];
     };
     nixos-8gb-fsn1-1 = {
@@ -187,13 +179,73 @@ in
         }
       ];
     };
+    nas = {
+      AAAA = [
+        (ttl zoneTTL (aaaa "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b"))
+      ];
+      SSHFP = [
+        {
+          algorithm = "rsa";
+          mode = "sha1";
+          fingerprint = "13e1173d96b822c98a7b3cd47be2e830f7758671";
+          ttl = zoneTTL;
+        }
+        {
+          algorithm = "rsa";
+          mode = "sha256";
+          fingerprint = "2e87a3fd00918e4f1e47d3b14b59e846ee016a0d3269cb2524c8d28b121e130e";
+          ttl = zoneTTL;
+        }
+        {
+          algorithm = "ed25519";
+          mode = "sha1";
+          fingerprint = "d1df2d244980a5e4dde37eed678b59a2239ca2ac";
+          ttl = zoneTTL;
+        }
+        {
+          algorithm = "ed25519";
+          mode = "sha256";
+          fingerprint = "33d6c993ee3789fb6a2e60c243da7095eb79ce8e522b087f8a31ea400d7b034e";
+          ttl = zoneTTL;
+        }
+      ];
+      # TODO: add TLSA
+      HTTPS = [
+        {
+          svcPriority = 1;
+          targetName = ".";
+          alpn = [ "http/1.1" "h2" "h3" ];
+          ipv6hint = [ "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b" ];
+          ttl = zoneTTL;
+        }
+      ];
+      CAA = [
+        {
+          issuerCritical = false;
+          tag = "issue";
+          value = "letsencrypt.org";
+          ttl = zoneTTL;
+        }
+        {
+          issuerCritical = false;
+          tag = "issuewild";
+          value = "letsencrypt.org";
+          ttl = zoneTTL;
+        }
+        {
+          issuerCritical = false;
+          tag = "iodef";
+          value = "mailto:lotte@chir.rs";
+          ttl = zoneTTL;
+        }
+      ];
+    };
 
     grafana.CNAME = [ "nixos-8gb-fsn1-1" ];
     minio.CNAME = [ "nixos-8gb-fsn1-1" ];
     minio-console.CNAME = [ "nixos-8gb-fsn1-1" ];
     backup.CNAME = [ "nas" ];
-    cache.CNAME = [ "nutty-noon" ];
-    hydra.CNAME = [ "nutty-noon" ];
+    hydra.CNAME = [ "nas" ];
     _acme-challenge = delegateTo [
       "ns1.chir.rs."
       "ns2.chir.rs."
