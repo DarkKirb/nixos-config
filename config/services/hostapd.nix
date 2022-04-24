@@ -9,6 +9,9 @@
     ssid = "🦝";
     wpa = true;
     wpaPassphraseFile = config.sops.secrets."services/hostapd".path;
+    extraConfig = ''
+      utf8_ssid=1
+    '';
   };
   sops.secrets."services/hostapd" = {
     restartUnits = [
