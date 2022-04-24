@@ -1,4 +1,4 @@
-{ config, pkgs, modulesPath, lib, nixos-hardware, ... }: {
+{ config, pkgs, modulesPath, lib, nixos-hardware, ... } @ args: {
   networking.hostName = "nas";
   networking.hostId = "70af00ed";
 
@@ -8,6 +8,7 @@
     ./services/tpm2.nix
     ./server.nix
     ./services/hydra.nix
+    ./services/backup.nix
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-gpu-nvidia
     nixos-hardware.nixosModules.common-pc-hdd
