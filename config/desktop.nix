@@ -24,10 +24,6 @@ in
     (import ../packages/linja-sike.nix pkgs)
   ];
 
-  zramSwap = {
-    enable = true;
-  };
-
 
   time.timeZone = "Etc/GMT-1"; # Confusing naming, it's 1 hour east of GMT
   services.pcscd.enable = true;

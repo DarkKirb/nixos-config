@@ -23,6 +23,11 @@
 
   users.defaultUserShell = pkgs.zsh;
 
+  # Enable zram swap in every case
+  zramSwap = {
+    enable = true;
+  };
+
   # Prometheus node exporter
   services.prometheus.exporters.node = {
     enable = true;
