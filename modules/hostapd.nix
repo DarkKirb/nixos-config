@@ -235,7 +235,7 @@ in
 
         preStart = mkIf (cfg.wpaPassphraseFile != null) ''
           PASSPHRASE=$(cat ${cfg.wpaPassphraseFile})
-          sed 's|#WPA_PASSPHRASE#|$PASSPHRASE|g' ${configFile} > /run/hostapd/hostapd.conf
+          sed "s|#WPA_PASSPHRASE#|$PASSPHRASE|g" ${configFile} > /run/hostapd/hostapd.conf
         '';
 
         serviceConfig =
