@@ -89,6 +89,7 @@ rec {
         pkgs.mkShell {
           nativeBuildInputs = [
             pkgs.sops
+            pkgs.ssh-to-age
           ];
         };
       hydraJobs = (builtins.listToAttrs (map

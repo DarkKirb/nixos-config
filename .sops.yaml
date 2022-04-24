@@ -3,6 +3,7 @@ keys:
   - &nixos-8gb-fsn1-1 age1273ps5thcy70ckdt0270s2nysqgu48t38pq3wq975v3y7mf4eavsw38wsl
   - &nutty-noon age1wfftrnyngg7nxcwvt7m590fwx3w7p4kkrjn9uprjq0u3k3ym4s3qqzkmzm
   - &thinkrac age15c2dquc22epmmndpmd8pa3077fdl8nyr5qehr7y0c9uvavrledsq326ak9
+  - &nas age1c7y687sxh428wk34s8ws6kemu62mggafpt40rmanevgkuj5xa59q6f7tlc
 creation_rules:
   - path_regex: secrets/nixos-8gb-fsn1-1\.yaml$
     key_groups:
@@ -28,5 +29,7 @@ creation_rules:
           - *lotte
   - path_regex: secrets/nas\.yaml$
     key_groups:
-      - pgp:
+      - age:
+          - *nas
+        pgp:
           - *lotte
