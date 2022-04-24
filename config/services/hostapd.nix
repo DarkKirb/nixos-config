@@ -3,6 +3,7 @@
     ../../modules/hostapd.nix
   ];
   services.hostapd = {
+    enable = true;
     countryCode = "DE";
     interface = "wlp6s0";
     ssid = "🦝";
