@@ -34,7 +34,7 @@ let
 
     ${optionalString cfg.wpa ''
       wpa=2
-      wpa_passphrase=${if cfg.wpaPassphrase then cfg.wpaPassphrase else "#WPA_PASSPHRASE#"}
+      wpa_passphrase=${if cfg.wpaPassphrase != null then cfg.wpaPassphrase else "#WPA_PASSPHRASE#"}
     ''}
     ${optionalString cfg.noScan "noscan=1"}
 
@@ -233,7 +233,7 @@ in
         requiredBy = [ "network-link-${cfg.interface}.service" ];
         wantedBy = [ "multi-user.target" ];
 
-        preStart = mkIf cfg.wpaPassphraseFile != null ''
+        preStart = mkIf (cfg.wpaPassphraseFile != null) ''
           PASSPHRASE=$(cat ${cfg.wpaPassphraseFile})
           sed 's|#WPA_PASSPHRASE#|$PASSPHRASE|g' ${configFile} > /run/hostapd/hostapd.conf
         '';
@@ -244,7 +244,7 @@ in
             Restart = "always";
           };
       };
-    systemd.tmpfiles.rules = mkIf cfg.wpaPassphraseFile != null [
+    systemd.tmpfiles.rules = mkIf (cfg.wpaPassphraseFile != null) [
       "d '/run/hostapd' 0700 root root - -"
     ];
   };
