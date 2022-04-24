@@ -10,7 +10,6 @@ in
   imports = [
     ./postgres.nix
     ../../modules/hydra.nix
-    ./nix-serve.nix
   ];
   services.hydra = {
     enable = true;
@@ -27,7 +26,7 @@ in
       <githubstatus>
         jobs = .*
       </githubstatus>
-      store_uri = s3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=/var/lib/hydra/queue-runner/cache-priv-key.pem&multipart-upload=true&compression=zstd&compression-level=15
+      store_uri = s3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15
     '';
     giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
     githubTokenFile = "/run/secrets/services/hydra/github_token";
@@ -44,6 +43,9 @@ in
   nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" "https://darkkirb.de/" "https://git.neo-layout.org/" "https://static.darkkirb.de/" ];
   sops.secrets."services/hydra/gitea_token" = { };
   sops.secrets."services/hydra/github_token" = { };
+  sops.secrets."services/hydra/cache-key" = {
+    owner = "hydra-queue-runner";
+  };
   services.nginx.virtualHosts."hydra.chir.rs" = {
     listenAddresses = listenIPs;
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
