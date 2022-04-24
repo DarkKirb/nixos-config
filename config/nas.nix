@@ -139,6 +139,9 @@
       ];
     };
   };
+  networking.bridges = {
+    br0.interfaces = [ "enp8s0" "wlp6s0" ];
+  };
   networking.wireguard.interfaces."wg0".ips = [ "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b/64" ];
   networking.nameservers = [ "192.168.2.1" ];
   environment.etc."sysconfig/lm_sensors".text = ''
