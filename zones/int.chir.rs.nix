@@ -241,11 +241,11 @@ in
       ];
     };
 
-    grafana.CNAME = [ "nixos-8gb-fsn1-1" ];
-    minio.CNAME = [ "nixos-8gb-fsn1-1" ];
-    minio-console.CNAME = [ "nixos-8gb-fsn1-1" ];
-    backup.CNAME = [ "nas" ];
-    hydra.CNAME = [ "nas" ];
+    grafana.CNAME = [ (ttl zoneTTL "nixos-8gb-fsn1-1") ];
+    minio.CNAME = [ (ttl zoneTTL "nixos-8gb-fsn1-1") ];
+    minio-console.CNAME = [ (ttl zoneTTL "nixos-8gb-fsn1-1") ];
+    backup.CNAME = [ (ttl zoneTTL "nas") ];
+    hydra.CNAME = [ (ttl zoneTTL "nas") ];
     _acme-challenge = delegateTo [
       "ns1.chir.rs."
       "ns2.chir.rs."
