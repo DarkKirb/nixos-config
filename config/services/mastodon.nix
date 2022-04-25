@@ -24,18 +24,18 @@ in
       REDIS_NAMESPACE = "mastodon";
       SINGLE_USER_MODE = true;
     };
-    otpSecretFile = config.secrets."services/mastodon/otpSecret".path;
-    secretKeyBaseFile = config.secrets."services/mastodon/secretKeyBase".path;
+    otpSecretFile = config.sops.secrets."services/mastodon/otpSecret".path;
+    secretKeyBaseFile = config.sops.secrets."services/mastodon/secretKeyBase".path;
     smtp = {
       authenticate = true;
       createLocally = false;
       fromAddress = "mastodon@chir.rs";
       host = "mail.chir.rs";
-      passwordFile = config.secrets."services/mastodon/smtpPassword".path;
+      passwordFile = config.sops.secrets."services/mastodon/smtpPassword".path;
       user = "mastodon@chir.rs";
     };
-    vapidPrivateKeyFile = config.secrets."services/mastodon/vapid/private".path;
-    vapidPublicKeyFile = config.secrets."services/mastodon/vapid/public".path;
+    vapidPrivateKeyFile = config.sops.secrets."services/mastodon/vapid/private".path;
+    vapidPublicKeyFile = config.sops.secrets."services/mastodon/vapid/public".path;
   };
   sops.secrets."services/mastodon/otpSecret" = sopsConfig;
   sops.secrets."services/mastodon/secretKeyBase" = sopsConfig;
