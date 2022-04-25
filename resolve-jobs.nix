@@ -207,14 +207,15 @@ let
 
 
 
-  prs = builtins.fromJSON (builtins.readFile <prs>);
+  #prs = builtins.fromJSON (builtins.readFile <prs>);
+  prs = builtins.fromJSON (builtins.readFile ./github-pulls.json);
   srcs = mapAttrs'
     (n: value: {
       name = "pr${n}";
       value = builtins.fetchGit
         {
-          url = "https://github.com/${value.base.repo.owner.login}/${value.base.repo.name}";
-          ref = "pull/${n}/head";
+          url = "https://github.com/${value.head.repo.owner.login}/${value.head.repo.name}.git";
+          ref = "${value.head.ref}";
         };
     })
     prs;
