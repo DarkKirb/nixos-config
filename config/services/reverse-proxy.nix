@@ -3,7 +3,7 @@
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
     locations."/" = {
-      proxyPass = "https://nutty-noon.int.chir.rs";
+      proxyPass = "https://nas.int.chir.rs";
       proxyWebsockets = true;
       extraConfig = ''
         proxy_ssl_server_name on;
