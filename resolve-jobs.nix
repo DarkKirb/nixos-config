@@ -208,7 +208,7 @@ let
 
 
   prs = builtins.fromJSON (builtins.readFile <prs>);
-  srcs = builtins.mapAttrs'
+  srcs = mapAttrs'
     (n: value: {
       name = "pr${n}";
       value = builtins.fetchgit
