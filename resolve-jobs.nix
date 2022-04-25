@@ -207,8 +207,7 @@ let
 
 
 
-  #prs = builtins.fromJSON (builtins.readFile <prs>);
-  prs = builtins.fromJSON (builtins.readFile ./github-pulls.json);
+  prs = builtins.fromJSON (builtins.readFile <prs>);
   srcs = mapAttrs'
     (n: value: {
       name = "pr${n}";
