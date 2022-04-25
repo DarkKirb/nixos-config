@@ -9,6 +9,11 @@
 
 let
 
+  inherit (builtins) attrNames listToAttrs;
+
+  mapAttrs' = f: set:
+    listToAttrs (map (attr: f attr set.${attr}) (attrNames set));
+
   flake_compat = src:
     let
 
@@ -203,13 +208,15 @@ let
 
 
   prs = builtins.fromJSON (builtins.readFile <prs>);
-  srcs = builtins.mapAttrs
-    (n: value:
-      builtins.fetchgit {
-        url = "https://github.com/${value.base.repo.owner}/${value.base.repo.name}";
-        ref = "pulls/${n}/head";
-      }
-    )
+  srcs = builtins.mapAttrs'
+    (n: value: {
+      name = "pr${n}";
+      value = builtins.fetchgit
+        {
+          url = "https://github.com/${value.base.repo.owner}/${value.base.repo.name}";
+          ref = "pulls/${n}/head";
+        };
+    })
     prs;
 in
 builtins.mapAttrs (_: flake_compat) srcs
