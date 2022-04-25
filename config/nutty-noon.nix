@@ -175,9 +175,6 @@
     }
   ];
   hardware.enableRedistributableFirmware = true;
-  nix.settings.substituters = lib.mkForce [
-    "https://cache.nixos.org/"
-  ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
   networking.wireguard.interfaces.wg0.peers = [
