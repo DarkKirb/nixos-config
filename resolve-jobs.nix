@@ -211,7 +211,7 @@ let
   srcs = mapAttrs'
     (n: value: {
       name = "pr${n}";
-      value = builtins.fetchgit
+      value = builtins.fetchGit
         {
           url = "https://github.com/${value.base.repo.owner}/${value.base.repo.name}";
           ref = "pulls/${n}/head";
