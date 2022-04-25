@@ -24,7 +24,7 @@ in
       REDIS_NAMESPACE = "mastodon";
       SINGLE_USER_MODE = "true";
       REDIS_HOST = "127.0.0.1";
-      REDIS_PORT = toString config.services.redis.mastodon.port;
+      REDIS_PORT = toString config.services.redis.servers.mastodon.port;
     };
     redis.createLocally = false;
     otpSecretFile = config.sops.secrets."services/mastodon/otpSecret".path;
