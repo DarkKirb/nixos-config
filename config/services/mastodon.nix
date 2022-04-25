@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   sopsConfig = {
     owner = "mastodon";
@@ -70,4 +70,5 @@ in
     databases = 1;
     port = 6379;
   };
+  users.users.mastodon.home = lib.mkForce (toString config.services.mastodon.package);
 }
