@@ -213,7 +213,7 @@ let
       name = "pr${n}";
       value = builtins.fetchGit
         {
-          url = "https://github.com/${value.base.repo.owner}/${value.base.repo.name}";
+          url = "https://github.com/${value.base.repo.owner.login}/${value.base.repo.name}";
           ref = "pulls/${n}/head";
         };
     })
