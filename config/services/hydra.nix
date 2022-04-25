@@ -5,6 +5,10 @@ let
     add_header Alt-Svc 'h3=":443"';
   '';
   clean-cache = pkgs.callPackage ../../packages/clean-s3-cache.nix { };
+  machines = pkgs.writeText "machines" ''
+    localhost armv7l-linux,aarch64-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 12 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver2,gccarch-znver1,gccarch-skylake,ca-derivations  -
+    build-pc armv7l-linux,aarch64-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 16 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver2,gccarch-znver1,gccarch-skylake,ca-derivations  -
+  '';
 in
 {
   imports = [
@@ -31,15 +35,6 @@ in
     giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
     githubTokenFile = "/run/secrets/services/hydra/github_token";
   };
-  services.postgresql.ensureDatabases = [ "hydra" ];
-  services.postgresql.ensureUsers = [
-    {
-      name = "hydra";
-      ensurePermissions = {
-        "DATABASE hydra" = "ALL PRIVILEGES";
-      };
-    }
-  ];
   nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" "https://darkkirb.de/" "https://git.neo-layout.org/" "https://static.darkkirb.de/" ];
   sops.secrets."services/hydra/gitea_token" = { };
   sops.secrets."services/hydra/github_token" = { };
