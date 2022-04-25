@@ -121,10 +121,19 @@ index 426c93f5..9fe83c2a 100644
      }
  }
 diff --git a/src/lib/Hydra/Plugin/GithubStatus.pm b/src/lib/Hydra/Plugin/GithubStatus.pm
-index 05a35ca2..1bf657e6 100644
+index 05a35ca2..251a042a 100644
 --- a/src/lib/Hydra/Plugin/GithubStatus.pm
 +++ b/src/lib/Hydra/Plugin/GithubStatus.pm
-@@ -89,6 +89,28 @@ sub common {
+@@ -26,7 +26,7 @@ sub toGithubState {
+ }
+ 
+ sub common {
+-    my ($self, $topbuild, $dependents, $finished) = @_;
++    my ($self, $topbuild, $dependents, $finished, $publish) = @_;
+     my $cfg = $self->{config}->{githubstatus};
+     my @config = defined $cfg ? ref $cfg eq "ARRAY" ? @$cfg : ($cfg) : ();
+     my $baseurl = $self->{config}->{'base_uri'} || "http://localhost:3000";
+@@ -89,13 +89,35 @@ sub common {
                      } else {
                        print STDERR "GithubStatus ratelimit $limitRemaining/$limit, resets in $diff\n";
                      }
@@ -153,3 +162,20 @@ index 05a35ca2..1bf657e6 100644
                  };
  
                  if (defined $eval->flake) {
+                     my $fl = $eval->flake;
+                     print STDERR "Flake is $fl\n";
+                     if ($eval->flake =~ m!github:([^/]+)/([^/]+)/([[:xdigit:]]{40})$! or $eval->flake =~ m!git\+ssh://git\@github.com/([^/]+)/([^/]+)\?.*rev=([[:xdigit:]]{40})$!) {
+-                        $sendStatus->("src", $1, $2, $3);
++                        $sendStatus->("src", $1, $2, $3, 1);
+                     } else {
+                         print STDERR "Can't parse flake, skipping GitHub status update\n";
+                     }
+@@ -109,7 +131,7 @@ sub common {
+                         my $uri = $i->uri;
+                         my $rev = $i->revision;
+                         $uri =~ m![:/]([^/]+)/([^/]+?)(?:.git)?$!;
+-                        $sendStatus->($input, $1, $2, $rev);
++                        $sendStatus->($input, $1, $2, $rev, 0);
+                     }
+                 }
+             }
