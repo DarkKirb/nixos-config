@@ -22,8 +22,11 @@ in
     extraConfig = {
       WEB_DOMAIN = "mastodon.darkkirb.de";
       REDIS_NAMESPACE = "mastodon";
-      SINGLE_USER_MODE = true;
+      SINGLE_USER_MODE = "true";
+      REDIS_HOST = "127.0.0.1";
+      REDIS_PORT = toString config.services.redis.mastodon.port;
     };
+    redis.createLocally = false;
     otpSecretFile = config.sops.secrets."services/mastodon/otpSecret".path;
     secretKeyBaseFile = config.sops.secrets."services/mastodon/secretKeyBase".path;
     smtp = {
@@ -60,5 +63,11 @@ in
       proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-streaming/streaming.socket" else "http://127.0.0.1:${toString(config.services.mastodon.streamingPort)}/");
       proxyWebsockets = true;
     };
+  };
+  services.redis.servers.mastodon = {
+    enable = true;
+    bind = "127.0.0.1";
+    databases = 1;
+    port = 6379;
   };
 }
