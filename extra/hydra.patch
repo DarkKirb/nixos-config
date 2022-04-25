@@ -5,27 +5,29 @@ index e7495f33..bf552eba 100644
 @@ -533,14 +533,14 @@ void State::buildRemote(ref<Store> destStore,
            for (auto & [outputId, realisation] : builtOutputs) {
                // Register the resolved drv output
-               localStore->registerDrvOutput(realisation);
+-              localStore->registerDrvOutput(realisation);
 -              destStore->registerDrvOutput(realisation);
++              //localStore->registerDrvOutput(realisation);
 +              //destStore->registerDrvOutput(realisation);
- 
+
                // Also register the unresolved one
                auto unresolvedRealisation = realisation;
                unresolvedRealisation.signatures.clear();
                unresolvedRealisation.id.drvHash = outputHashes.at(outputId.outputName);
-               localStore->registerDrvOutput(unresolvedRealisation);
+-              localStore->registerDrvOutput(unresolvedRealisation);
 -              destStore->registerDrvOutput(unresolvedRealisation);
++              //localStore->registerDrvOutput(unresolvedRealisation);
 +              //destStore->registerDrvOutput(unresolvedRealisation);
            }
          }
- 
+
 diff --git a/src/lib/Hydra/Plugin/GiteaStatus.pm b/src/lib/Hydra/Plugin/GiteaStatus.pm
 index 426c93f5..9fe83c2a 100644
 --- a/src/lib/Hydra/Plugin/GiteaStatus.pm
 +++ b/src/lib/Hydra/Plugin/GiteaStatus.pm
 @@ -52,34 +52,51 @@ sub common {
              });
- 
+
          while (my $eval = $evals->next) {
 -            my $giteastatusInput = $eval->jobsetevalinputs->find({ name => "gitea_status_repo" });
 -            next unless defined $giteastatusInput && defined $giteastatusInput->value;
@@ -47,7 +49,7 @@ index 426c93f5..9fe83c2a 100644
 +
 +                my $accessToken = $self->{config}->{gitea_authorization}->{$owner};
 +                my $url = "$host/api/v1/repos/$owner/$repo/statuses/$rev";
-+                
++
 +                print STDERR "GiteaStatus POSTing $state to $url\n";
 +                my $req = HTTP::Request->new('POST', $url);
 +                $req->header('Content-Type' => 'application/json');
@@ -89,7 +91,7 @@ index 426c93f5..9fe83c2a 100644
 +                }
 +
 +                $sendStatus->($giteastatusInput, $host, $repoOwner, $repoName, $rev);
- 
+
 -            print STDERR "GiteaStatus POSTing $state to $url\n";
 -            my $req = HTTP::Request->new('POST', $url);
 -            $req->header('Content-Type' => 'application/json');
@@ -132,5 +134,5 @@ index 05a35ca2..1bf657e6 100644
 +                        }
 +                    }
                  };
- 
+
                  if (defined $eval->flake) {
