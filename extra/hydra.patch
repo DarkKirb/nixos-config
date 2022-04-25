@@ -1,3 +1,24 @@
+diff --git a/src/hydra-queue-runner/build-remote.cc b/src/hydra-queue-runner/build-remote.cc
+index e7495f33..bf552eba 100644
+--- a/src/hydra-queue-runner/build-remote.cc
++++ b/src/hydra-queue-runner/build-remote.cc
+@@ -533,14 +533,14 @@ void State::buildRemote(ref<Store> destStore,
+           for (auto & [outputId, realisation] : builtOutputs) {
+               // Register the resolved drv output
+               localStore->registerDrvOutput(realisation);
+-              destStore->registerDrvOutput(realisation);
++              //destStore->registerDrvOutput(realisation);
+ 
+               // Also register the unresolved one
+               auto unresolvedRealisation = realisation;
+               unresolvedRealisation.signatures.clear();
+               unresolvedRealisation.id.drvHash = outputHashes.at(outputId.outputName);
+               localStore->registerDrvOutput(unresolvedRealisation);
+-              destStore->registerDrvOutput(unresolvedRealisation);
++              //destStore->registerDrvOutput(unresolvedRealisation);
+           }
+         }
+ 
 diff --git a/src/lib/Hydra/Plugin/GiteaStatus.pm b/src/lib/Hydra/Plugin/GiteaStatus.pm
 index 426c93f5..9fe83c2a 100644
 --- a/src/lib/Hydra/Plugin/GiteaStatus.pm
@@ -81,10 +102,10 @@ index 426c93f5..9fe83c2a 100644
      }
  }
 diff --git a/src/lib/Hydra/Plugin/GithubStatus.pm b/src/lib/Hydra/Plugin/GithubStatus.pm
-index fe791533..fb906a78 100644
+index 05a35ca2..1bf657e6 100644
 --- a/src/lib/Hydra/Plugin/GithubStatus.pm
 +++ b/src/lib/Hydra/Plugin/GithubStatus.pm
-@@ -92,6 +92,28 @@ sub common {
+@@ -89,6 +89,28 @@ sub common {
                      } else {
                        print STDERR "GithubStatus ratelimit $limitRemaining/$limit, resets in $diff\n";
                      }
