@@ -24,5 +24,8 @@
         proxy_ssl_server_name on;
       '';
     };
+    extraConfig = ''
+      proxy_set_header "mastodon.chir.rs";
+    '';
   };
 }
