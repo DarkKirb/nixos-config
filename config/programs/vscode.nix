@@ -174,6 +174,7 @@
       "verilog.ctags.path" = "${pkgs.ctags}/bin/ctags";
       "verilog.languageServer" = "${pkgs.svls}/bin/svls";
       "verilog.linting.linter" = "${pkgs.verilator}/bin/verilator";
+      "redhat.telemetry.enabled" = false; # FUCK OFF
     };
   };
 }
