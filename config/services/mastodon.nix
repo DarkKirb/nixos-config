@@ -42,4 +42,23 @@ in
   sops.secrets."services/mastodon/smtpPassword" = sopsConfig;
   sops.secrets."services/mastodon/vapid/private" = sopsConfig;
   sops.secrets."services/mastodon/vapid/public" = sopsConfig;
+
+  services.nginx.virtualHosts."mastodon.chir.rs" = {
+    root = "${config.services.mastodon.package}/public/";
+    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
+    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
+    locations."/system/".alias = "/var/lib/mastodon/public-system/";
+
+    locations."/" = {
+      tryFiles = "$uri @proxy";
+    };
+    locations."@proxy" = {
+      proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-web/web.socket" else "http://127.0.0.1:${toString(config.services.mastodon.webPort)}");
+      proxyWebsockets = true;
+    };
+    locations."/api/v1/streaming/" = {
+      proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-streaming/streaming.socket" else "http://127.0.0.1:${toString(config.services.mastodon.streamingPort)}/");
+      proxyWebsockets = true;
+    };
+  };
 }
