@@ -25,7 +25,7 @@
       '';
     };
     extraConfig = ''
-      proxy_set_header "mastodon.chir.rs";
+      proxy_set_header Host "mastodon.chir.rs";
     '';
   };
 }
