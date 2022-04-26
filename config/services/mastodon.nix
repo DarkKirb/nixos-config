@@ -64,7 +64,7 @@ in
       proxyWebsockets = true;
     };
   };
-  services.nginx.virtualHosts."mastodon.int.chir.rs" = config.nginx.virtualHosts."mastodon.chir.rs" // {
+  services.nginx.virtualHosts."mastodon.int.chir.rs" = config.services.nginx.virtualHosts."mastodon.chir.rs" // {
     sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
   };
