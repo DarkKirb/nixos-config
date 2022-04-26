@@ -16,7 +16,7 @@ in
 {
   imports = [
     ./elasticsearch.nix
-    ../modules/mastodon.nix
+    ../../modules/mastodon.nix
   ];
   services.mastodon = {
     enable = true;
