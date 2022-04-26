@@ -50,8 +50,6 @@ in
     let mastodon = {
       root = "${config.services.mastodon.package}/public/";
       locations."/system/".alias = "/var/lib/mastodon/public-system/";
-      forceSSL = false;
-      addSSL = true;
 
       locations."/" = {
         tryFiles = "$uri @proxy";

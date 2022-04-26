@@ -5,11 +5,11 @@
     locations."/" = {
       proxyPass = "https://hydra.int.chir.rs";
       proxyWebsockets = true;
-      extraConfig = ''
-        proxy_ssl_server_name on;
-        proxy_ssl_name $host;
-      '';
     };
+    extraConfig = ''
+      proxy_ssl_server_name on;
+      proxy_ssl_name $host;
+    '';
   };
   services.nginx.virtualHosts."mastodon.chir.rs" = {
     root = "${config.services.mastodon.package}/public/";
@@ -22,5 +22,9 @@
       proxyPass = "http://mastodon.int.chir.rs";
       proxyWebsockets = true;
     };
+    extraConfig = ''
+      proxy_ssl_server_name on;
+      proxy_ssl_name $host;
+    '';
   };
 }
