@@ -46,28 +46,34 @@ in
   sops.secrets."services/mastodon/vapid/private" = sopsConfig;
   sops.secrets."services/mastodon/vapid/public" = sopsConfig;
 
-  services.nginx.virtualHosts."mastodon.chir.rs" = {
-    root = "${config.services.mastodon.package}/public/";
-    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
-    locations."/system/".alias = "/var/lib/mastodon/public-system/";
+  services.nginx.virtualHosts =
+    let mastodon = {
+      root = "${config.services.mastodon.package}/public/";
+      locations."/system/".alias = "/var/lib/mastodon/public-system/";
 
-    locations."/" = {
-      tryFiles = "$uri @proxy";
+      locations."/" = {
+        tryFiles = "$uri @proxy";
+      };
+      locations."@proxy" = {
+        proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-web/web.socket" else "http://127.0.0.1:${toString(config.services.mastodon.webPort)}");
+        proxyWebsockets = true;
+      };
+      locations."/api/v1/streaming/" = {
+        proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-streaming/streaming.socket" else "http://127.0.0.1:${toString(config.services.mastodon.streamingPort)}/");
+        proxyWebsockets = true;
+      };
     };
-    locations."@proxy" = {
-      proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-web/web.socket" else "http://127.0.0.1:${toString(config.services.mastodon.webPort)}");
-      proxyWebsockets = true;
+    in
+    {
+      "mastodon.chir.rs" = mastodon // {
+        sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
+        sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
+      };
+      "mastodon.int.chir.rs" = mastodon // {
+        sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
+        sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
+      };
     };
-    locations."/api/v1/streaming/" = {
-      proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-streaming/streaming.socket" else "http://127.0.0.1:${toString(config.services.mastodon.streamingPort)}/");
-      proxyWebsockets = true;
-    };
-  };
-  services.nginx.virtualHosts."mastodon.int.chir.rs" = config.services.nginx.virtualHosts."mastodon.chir.rs" // {
-    sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
-  };
   services.redis.servers.mastodon = {
     enable = true;
     bind = "127.0.0.1";
