@@ -16,6 +16,7 @@ in
 {
   imports = [
     ./elasticsearch.nix
+    ../modules/mastodon.nix
   ];
   services.mastodon = {
     enable = true;
@@ -25,11 +26,17 @@ in
     };
     localDomain = "chir.rs";
     extraConfig = {
-      WEB_DOMAIN = "mastodon.darkkirb.de";
+      WEB_DOMAIN = "mastodon.chir.rs";
       REDIS_NAMESPACE = "mastodon";
       SINGLE_USER_MODE = "true";
       REDIS_HOST = "127.0.0.1";
       REDIS_PORT = toString config.services.redis.servers.mastodon.port;
+      S3_ENABLED = "true";
+      S3_BUCKET = "mastodon-chir-rs";
+      S3_REGION = "us-west-000";
+      S3_PROTOCOL = "https";
+      S3_HOSTNAME = "s3.us-west-000.backblazeb2.com";
+      S3_ALIAS_HOST = "mastodon-assets.chir.rs";
     };
     redis.createLocally = false;
     otpSecretFile = config.sops.secrets."services/mastodon/otpSecret".path;
@@ -44,12 +51,16 @@ in
     };
     vapidPrivateKeyFile = config.sops.secrets."services/mastodon/vapid/private".path;
     vapidPublicKeyFile = config.sops.secrets."services/mastodon/vapid/public".path;
+    s3AccessKeyIdFile = config.sops.secrets."services/mastodon/s3/key_id".path;
+    s3SecretKeyFile = config.sops.secrets."services/mastodon/s3/secret_key".path;
   };
   sops.secrets."services/mastodon/otpSecret" = sopsConfig;
   sops.secrets."services/mastodon/secretKeyBase" = sopsConfig;
   sops.secrets."services/mastodon/smtpPassword" = sopsConfig;
   sops.secrets."services/mastodon/vapid/private" = sopsConfig;
   sops.secrets."services/mastodon/vapid/public" = sopsConfig;
+  sops.secrets."services/mastodon/s3/key_id" = sopsConfig;
+  sops.secrets."services/mastodon/s3/secret_key" = sopsConfig;
 
   services.nginx.virtualHosts =
     let mastodon = {
