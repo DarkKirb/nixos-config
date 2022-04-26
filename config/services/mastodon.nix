@@ -1,5 +1,9 @@
 { config, lib, ... }:
 let
+  listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
+  listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
+    add_header Alt-Svc 'h3=":443"';
+  '';
   sopsConfig = {
     owner = "mastodon";
     restartUnits = [
@@ -15,7 +19,6 @@ in
   ];
   services.mastodon = {
     enable = true;
-    enableUnixSocket = false;
     elasticsearch = {
       host = "127.0.0.1";
     };
@@ -49,6 +52,7 @@ in
 
   services.nginx.virtualHosts =
     let mastodon = {
+      listenAddresses = listenIPs;
       root = "${config.services.mastodon.package}/public/";
       locations."/system/".alias = "/var/lib/mastodon/public-system/";
 
