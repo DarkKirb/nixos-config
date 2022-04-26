@@ -25,9 +25,6 @@
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
     locations."/" = {
-      tryFiles = "$uri @s3";
-    };
-    locations."@s3" = {
       extraConfig = ''
         limit_except GET {
           deny all;
