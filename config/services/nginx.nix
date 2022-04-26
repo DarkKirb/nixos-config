@@ -18,13 +18,14 @@
                   text/javascript
                   text/plain
                   text/xml;
+        proxy_ssl_protocols TLSv1.2 TLSv1.3;
       '';
       package = pkgs.nginxQuic;
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedProxySettings = true;
       resolver.addresses = [ "127.0.0.1" "[::1]" ];
-      sslProtocols = "TLSv1.2 TLSv1.3";
+      sslProtocols = "TLSv1.3";
     };
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     networking.firewall.allowedUDPPorts = [ 443 ];

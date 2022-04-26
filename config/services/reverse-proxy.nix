@@ -7,6 +7,7 @@
       proxyWebsockets = true;
       extraConfig = ''
         proxy_ssl_server_name on;
+        proxy_ssl_name $host;
       '';
     };
   };
@@ -18,6 +19,7 @@
       proxyWebsockets = true;
       extraConfig = ''
         proxy_ssl_server_name on;
+        proxy_ssl_name $host;
       '';
     };
   };
