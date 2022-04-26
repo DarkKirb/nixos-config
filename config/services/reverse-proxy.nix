@@ -32,7 +32,7 @@
         limit_except GET {
           deny all;
         }
-        proxy_set_header Host 'f000.backblazeb2.com';
+        proxy_set_header Host 'mastodon-chir-rs.s3.us-west-000.backblazeb2.com';
         proxy_set_header Connection ${"''"};
         proxy_set_header Authorization ${"''"};
         proxy_hide_header Set-Cookie;
@@ -56,7 +56,7 @@
         add_header 'Access-Control-Allow-Origin' '*';
         add_header X-Cache-Status $upstream_cache_status;
       '';
-      proxyPass = "https://f000.backblazeb2.com/file/mastodon-chir-rs/";
+      proxyPass = "https://mastodon-chir-rs.s3.us-west-000.backblazeb2.com";
     };
   };
   services.nginx.appendHttpConfig = ''
