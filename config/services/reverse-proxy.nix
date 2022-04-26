@@ -33,8 +33,8 @@
           deny all;
         }
         proxy_set_header Host 's3.us-west-000.backblazeb2.com';
-        proxy_set_header Connection \'\';
-        proxy_set_header Authorization \'\';
+        proxy_set_header Connection ${"''"};
+        proxy_set_header Authorization ${"''"};
         proxy_hide_header Set-Cookie;
         proxy_hide_header 'Access-Control-Allow-Origin';
         proxy_hide_header 'Access-Control-Allow-Methods';
@@ -46,7 +46,6 @@
         proxy_hide_header x-amz-bucket-region;
         proxy_hide_header x-amzn-requestid;
         proxy_ignore_headers Set-Cookie;
-        proxy_pass http://s3.us-west-000.backblazeb2.com/;
         proxy_intercept_errors off;
         proxy_cache CACHE;
         proxy_cache_valid 200 48h;
@@ -57,7 +56,11 @@
         add_header 'Access-Control-Allow-Origin' '*';
         add_header X-Cache-Status $upstream_cache_status;
       '';
-
+      proxyPass = "https://s3.us-west-000.backblazeb2.com";
     };
   };
+  services.nginx.appendHttpConfig = ''
+    proxy_cache_path /var/tmp/nginx levels=1:2 keys_zone=CACHE:10m max_size=10g
+                 inactive=60m use_temp_path=off;
+  '';
 }
