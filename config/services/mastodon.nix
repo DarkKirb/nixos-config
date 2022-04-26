@@ -36,7 +36,7 @@ in
       S3_REGION = "us-west-000";
       S3_PROTOCOL = "https";
       S3_HOSTNAME = "s3.us-west-000.backblazeb2.com";
-      S3_ENDPOINT = "s3.us-west-000.backblazeb2.com";
+      S3_ENDPOINT = "https://s3.us-west-000.backblazeb2.com/";
       S3_ALIAS_HOST = "mastodon-assets.chir.rs";
     };
     redis.createLocally = false;
