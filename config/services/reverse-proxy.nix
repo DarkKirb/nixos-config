@@ -29,19 +29,11 @@
         limit_except GET {
           deny all;
         }
-        proxy_set_header Host 'f000.backblazeb2.com';
-        proxy_set_header Connection ${"''"};
         proxy_set_header Authorization ${"''"};
         proxy_hide_header Set-Cookie;
         proxy_hide_header 'Access-Control-Allow-Origin';
         proxy_hide_header 'Access-Control-Allow-Methods';
         proxy_hide_header 'Access-Control-Allow-Headers';
-        proxy_hide_header x-amz-id-2;
-        proxy_hide_header x-amz-request-id;
-        proxy_hide_header x-amz-meta-server-side-encryption;
-        proxy_hide_header x-amz-server-side-encryption;
-        proxy_hide_header x-amz-bucket-region;
-        proxy_hide_header x-amzn-requestid;
         proxy_ignore_headers Set-Cookie;
         proxy_intercept_errors off;
         proxy_cache CACHE;
