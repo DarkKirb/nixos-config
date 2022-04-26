@@ -52,7 +52,7 @@ in
     vapidPrivateKeyFile = config.sops.secrets."services/mastodon/vapid/private".path;
     vapidPublicKeyFile = config.sops.secrets."services/mastodon/vapid/public".path;
     s3AccessKeyIdFile = config.sops.secrets."services/mastodon/s3/key_id".path;
-    s3SecretKeyFile = config.sops.secrets."services/mastodon/s3/secret_key".path;
+    s3SecretAccessKeyFile = config.sops.secrets."services/mastodon/s3/secret_key".path;
   };
   sops.secrets."services/mastodon/otpSecret" = sopsConfig;
   sops.secrets."services/mastodon/secretKeyBase" = sopsConfig;
