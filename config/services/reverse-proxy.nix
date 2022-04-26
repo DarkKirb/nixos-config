@@ -63,4 +63,13 @@
     proxy_cache_path /var/tmp/nginx levels=1:2 keys_zone=CACHE:10m max_size=10g
                  inactive=60m use_temp_path=off;
   '';
+  services.nginx.virtualHosts."chir.rs" = {
+    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
+    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
+    locations."/.well-known/webfinger" = {
+      extraConfig = ''
+        return 301 https://mastodon.chir.rs$request_uri;
+      '';
+    };
+  };
 }
