@@ -5,26 +5,20 @@
     locations."/" = {
       proxyPass = "https://hydra.int.chir.rs";
       proxyWebsockets = true;
+      extraConfig = ''
+        proxy_ssl_server_name on;
+      '';
     };
-    extraConfig = ''
-      proxy_ssl_server_name on;
-      proxy_ssl_name $host;
-    '';
   };
   services.nginx.virtualHosts."mastodon.chir.rs" = {
-    root = "${config.services.mastodon.package}/public/";
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
     locations."/" = {
-      tryFiles = "$uri @proxy";
-    };
-    locations."@proxy" = {
-      proxyPass = "http://mastodon.int.chir.rs";
+      proxyPass = "https://mastodon.int.chir.rs";
       proxyWebsockets = true;
+      extraConfig = ''
+        proxy_ssl_server_name on;
+      '';
     };
-    extraConfig = ''
-      proxy_ssl_server_name on;
-      proxy_ssl_name $host;
-    '';
   };
 }
