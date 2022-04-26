@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ pkgs, config, lib, ... }:
 let
   listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
   listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
@@ -105,4 +105,5 @@ in
     port = 6379;
   };
   users.users.mastodon.home = lib.mkForce (toString config.services.mastodon.package);
+  services.elasticsearch.package = pkgs.elasticsearch7;
 }
