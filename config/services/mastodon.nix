@@ -64,6 +64,10 @@ in
       proxyWebsockets = true;
     };
   };
+  services.nginx.virtualHosts."mastodon.int.chir.rs" = config.nginx.virtualHosts."mastodon.chir.rs" // {
+    sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
+    sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
+  };
   services.redis.servers.mastodon = {
     enable = true;
     bind = "127.0.0.1";
