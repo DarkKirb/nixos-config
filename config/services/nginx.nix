@@ -19,6 +19,9 @@
                   text/plain
                   text/xml;
         proxy_ssl_protocols TLSv1.2 TLSv1.3;
+        set_real_ip_from fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49/128;
+        real_ip_header    X-Forwarded-For;
+        real_ip_recursive on;
       '';
       package = pkgs.nginxQuic;
       recommendedGzipSettings = true;
