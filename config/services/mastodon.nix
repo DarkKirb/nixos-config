@@ -50,6 +50,8 @@ in
     let mastodon = {
       root = "${config.services.mastodon.package}/public/";
       locations."/system/".alias = "/var/lib/mastodon/public-system/";
+      forceSSL = false;
+      addSSL = true;
 
       locations."/" = {
         tryFiles = "$uri @proxy";
@@ -57,10 +59,16 @@ in
       locations."@proxy" = {
         proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-web/web.socket" else "http://127.0.0.1:${toString(config.services.mastodon.webPort)}");
         proxyWebsockets = true;
+        extraConfig = ''
+          proxy_set_header X-Forwarded-Proto https;
+        '';
       };
       locations."/api/v1/streaming/" = {
         proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-streaming/streaming.socket" else "http://127.0.0.1:${toString(config.services.mastodon.streamingPort)}/");
         proxyWebsockets = true;
+        extraConfig = ''
+          proxy_set_header X-Forwarded-Proto https;
+        '';
       };
     };
     in

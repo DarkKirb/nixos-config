@@ -19,7 +19,7 @@
       tryFiles = "$uri @proxy";
     };
     locations."@proxy" = {
-      proxyPass = "https://mastodon.int.chir.rs";
+      proxyPass = "http://mastodon.int.chir.rs";
       proxyWebsockets = true;
     };
     extraConfig = ''
