@@ -171,7 +171,7 @@ let
       ns2 = createZone { };
       hydra = createZone { };
       mastodon = createZone { };
-      mastodon-files = createZone { };
+      mastodon-assets = createZone { };
 
       int = delegateTo [
         "ns1.chir.rs."
