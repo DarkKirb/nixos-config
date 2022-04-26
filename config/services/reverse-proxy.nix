@@ -33,7 +33,6 @@
           deny all;
         }
         proxy_set_header Host 's3.us-west-000.backblazeb2.com';
-        set $s3_backend 'https://YOUR_BUCKET_NAME.YOUR_S3_HOSTNAME';
         proxy_set_header Connection \'\';
         proxy_set_header Authorization \'\';
         proxy_hide_header Set-Cookie;
@@ -47,7 +46,7 @@
         proxy_hide_header x-amz-bucket-region;
         proxy_hide_header x-amzn-requestid;
         proxy_ignore_headers Set-Cookie;
-        proxy_pass $s3_backend$uri;
+        proxy_pass http://s3.us-west-000.backblazeb2.com/;
         proxy_intercept_errors off;
         proxy_cache CACHE;
         proxy_cache_valid 200 48h;
