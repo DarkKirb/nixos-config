@@ -19,6 +19,7 @@ in
   ];
   services.mastodon = {
     enable = true;
+    enableUnixSocket = false;
     elasticsearch = {
       host = "127.0.0.1";
     };
