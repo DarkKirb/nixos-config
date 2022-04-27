@@ -38,6 +38,8 @@ in
       S3_HOSTNAME = "s3.us-west-000.backblazeb2.com";
       S3_ENDPOINT = "https://s3.us-west-000.backblazeb2.com/";
       S3_ALIAS_HOST = "mastodon-assets.chir.rs";
+      S3_OPEN_TIMEOUT = "120";
+      S3_READ_TIMEOUT = "120";
     };
     redis.createLocally = false;
     otpSecretFile = config.sops.secrets."services/mastodon/otpSecret".path;
