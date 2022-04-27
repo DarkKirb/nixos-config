@@ -94,4 +94,12 @@ in
       });
     })
   ];
+  system.replaceRuntimeDependencies = [{
+    original = pkgs.gtk3;
+    replacement = pkgs.gtk3.overrideAttrs (old: {
+      postPatch = old.postPatch + ''
+        sed -i 's/gtk_compose_table_save_cache (compose_table);//' gtk/gtkcomposetable.c
+      '';
+    });
+  }];
 }
