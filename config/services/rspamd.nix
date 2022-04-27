@@ -23,6 +23,12 @@
       sign_authenticated = true;
       use_esld = true;
     '';
+    workers = {
+      normal = {
+        includes = [ "$CONFDIR/worker-normal.inc" ];
+        bindSockets = [ "[::1]:11332" ];
+      };
+    };
   };
   sops.secrets."services/rspamd/dkim/darkkirb.de" = { owner = "rspamd"; };
   sops.secrets."services/rspamd/dkim/miifox.net" = { owner = "rspamd"; };
