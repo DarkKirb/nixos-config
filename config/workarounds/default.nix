@@ -92,14 +92,11 @@ in
           sha256 = "09mvk9zxclkf4wrkkfzg0p2hx1f74gpymr0a0l3pckmk6za2n3d1";
         };
       });
+      gtk3 = prev.gtk3.overrideAttrs (old: {
+        postPatch = old.postPatch + ''
+          sed -i 's/gtk_compose_table_save_cache (compose_table);//' gtk/gtkcomposetable.c
+        '';
+      });
     })
   ];
-  system.replaceRuntimeDependencies = [{
-    original = pkgs.gtk3;
-    replacement = pkgs.gtk3.overrideAttrs (old: {
-      postPatch = old.postPatch + ''
-        sed -i 's/gtk_compose_table_save_cache (compose_table);//' gtk/gtkcomposetable.c
-      '';
-    });
-  }];
 }
