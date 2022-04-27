@@ -28,6 +28,10 @@
         includes = [ "$CONFDIR/worker-normal.inc" ];
         bindSockets = [ "[::1]:11332" ];
       };
+      controller = {
+        includes = [ "$CONFDIR/worker-controller.inc" ];
+        bindSockets = [ "[::1]:11334" ];
+      };
     };
   };
   sops.secrets."services/rspamd/dkim/darkkirb.de" = { owner = "rspamd"; };
