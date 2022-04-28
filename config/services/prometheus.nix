@@ -56,6 +56,7 @@
         ];
       }
     ];
+    checkConfig = false;
   };
   sops.secrets."services/minio_scrape" = {
     owner = "prometheus";
