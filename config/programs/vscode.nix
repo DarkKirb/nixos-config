@@ -116,6 +116,12 @@
         version = "4.9.4";
         sha256 = "sha256-rY4sBGXEtMX2VsJ7LArCKPfqi0NVdg0ReKCAPUbCe0Q=";
       }
+      {
+        publisher = "signageos";
+        name = "signageos-vscode-sops";
+        version = "0.5.0";
+        sha256 = "sha256-pIxr9hqcIFlJKrZUD/Vn5249GRQOy0D/UovG63f4Myg=";
+      }
     ];
     userSettings = {
       "diffEditor.codeLens" = true;
