@@ -26,11 +26,11 @@
     workers = {
       normal = {
         includes = [ "$CONFDIR/worker-normal.inc" ];
-        bindSockets = [ "[::1]:11332" ];
+        bindSockets = [ "*:11332" ];
       };
       controller = {
         includes = [ "$CONFDIR/worker-controller.inc" ];
-        bindSockets = [ "[::1]:11334" ];
+        bindSockets = [ "*:11334" ];
       };
     };
   };
