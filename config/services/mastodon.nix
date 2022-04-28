@@ -40,6 +40,7 @@ in
       S3_ALIAS_HOST = "mastodon-assets.chir.rs";
       S3_OPEN_TIMEOUT = "120";
       S3_READ_TIMEOUT = "120";
+      S3_MULTIPART_THRESHOLD = "5242880";
     };
     redis.createLocally = false;
     otpSecretFile = config.sops.secrets."services/mastodon/otpSecret".path;
