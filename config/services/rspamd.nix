@@ -146,7 +146,7 @@
           symbol = "REPLY";
         };
         "redis.conf".text = builtins.toJSON {
-          servers = "${config.services.redis.rspamd.bind}:${toString config.services.redis.rspamd.port}";
+          servers = "${config.services.redis.servers.rspamd.bind}:${toString config.services.redis.servers.rspamd.port}";
         };
       };
       workers = {
