@@ -4,6 +4,7 @@
     description = "Charlotte 🦝 Delenk";
     extraGroups = [
       "wheel"
+      "input"
     ];
     group = "users";
     home = "/home/darkkirb";

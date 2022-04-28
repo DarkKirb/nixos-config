@@ -122,6 +122,12 @@
         version = "0.5.0";
         sha256 = "sha256-pIxr9hqcIFlJKrZUD/Vn5249GRQOy0D/UovG63f4Myg=";
       }
+      {
+        publisher = "chris-hock";
+        name = "pioasm";
+        version = "1.0.0";
+        sha256 = "sha256-OPDqDBefXQeRPqk24LoJ+wXsCvGO6bgJThRaeOZi5yY=";
+      }
     ];
     userSettings = {
       "diffEditor.codeLens" = true;
