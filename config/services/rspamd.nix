@@ -150,7 +150,7 @@
         '';
       };
       workers = {
-        proxy = {
+        rspamd_proxy = {
           includes = [ "$CONFDIR/worker-proxy.inc" ];
           bindSockets = [ "*:11332" ];
         };
