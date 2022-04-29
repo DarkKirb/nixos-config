@@ -148,6 +148,9 @@
         "redis.conf".text = ''
           servers = "${config.services.redis.servers.rspamd.bind}:${toString config.services.redis.servers.rspamd.port}";
         '';
+        "worker-controller.inc".text = ''
+          password = "$2$xkox1hi3so3y61no8ps1enx7p56nh51s$tp8fjciao1goswpcze6g9bb9sbx3mf3kbik1iznybgia36d78jnb";
+        '';
       };
       workers = {
         rspamd_proxy = {
