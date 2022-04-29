@@ -8,7 +8,7 @@ in
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 11;
+    serial = 12;
   };
   NS = [
     "ns1.chir.rs."
@@ -247,6 +247,7 @@ in
     backup.CNAME = [ (ttl zoneTTL (cname "nas")) ];
     hydra.CNAME = [ (ttl zoneTTL (cname "nas")) ];
     mastodon.CNAME = [ (ttl zoneTTL (cname "nas")) ];
+    rspamd.CNAME = [ (ttl zoneTTL (cname "nas")) ];
     _acme-challenge = delegateTo [
       "ns1.chir.rs."
       "ns2.chir.rs."
