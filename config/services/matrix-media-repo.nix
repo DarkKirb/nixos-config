@@ -38,8 +38,8 @@ in
       akid=$(cat ${config.sops.secrets."services/matrix-media-repo/access-key-id".path})
       sak=$(cat ${config.sops.secrets."services/matrix-media-repo/access-key-id".path})
       cat ${config-yml} > /var/lib/matrix-media-repo/config.yml
-      sed -i "s|#ACCESS_KEY_ID#|$akid|g' /var/lib/matrix-media-repo/config.yml
-      sed -i "s|#SECRET_ACCESS_KEY#|$sak|g' /var/lib/matrix-media-repo/config.yml
+      sed -i "s|#ACCESS_KEY_ID#|$akid|g" /var/lib/matrix-media-repo/config.yml
+      sed -i "s|#SECRET_ACCESS_KEY#|$sak|g" /var/lib/matrix-media-repo/config.yml
     '';
     serviceConfig = {
       Type = "simple";
