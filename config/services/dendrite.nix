@@ -15,22 +15,22 @@
         };
         private_key = config.sops.secrets."services/dendrite/private_key".path;
       };
-      app_service_api.database.connection_string = "postgresql:///dendrite_app_service";
+      app_service_api.database.connection_string = "postgresql:///dendrite_app_service?sslmode=disable&host=/run/postgresql";
       client_api = {
         registration_shared_secret = "$REGISTRATION_SHARED_SECRET";
       };
       federation_api = {
-        database.connection_string = "postgresql:///dendrite_federation";
+        database.connection_string = "postgresql:///dendrite_federation?sslmode=disable&host=/run/postgresql";
       };
-      key_server.database.connection_string = "postgresql:///dendrite_keyserver";
-      media_api.database.connection_string = "postgrestql:///dendrite_mediaapi";
+      key_server.database.connection_string = "postgresql:///dendrite_keyserver?sslmode=disable&host=/run/postgresql";
+      media_api.database.connection_string = "postgrestql:///dendrite_mediaapi?sslmode=disable&host=/run/postgresql";
       mscs = {
         mscs = [ "msc2836" "msc2946" ];
-        database.connection_string = "postgresql:///dendrite_mscs";
+        database.connection_string = "postgresql:///dendrite_mscs?sslmode=disable&host=/run/postgresql";
       };
-      room_server.database.connection_string = "postgresql:///dendrite_roomserver";
-      sync_api.database.connection_string = "postgresql:///dendrite_syncapi";
-      user_api.database.connection_string = "postgresql:///dendrite_userapi";
+      room_server.database.connection_string = "postgresql:///dendrite_roomserver?sslmode=disable&host=/run/postgresql";
+      sync_api.database.connection_string = "postgresql:///dendrite_syncapi?sslmode=disable&host=/run/postgresql";
+      user_api.database.connection_string = "postgresql:///dendrite_userapi?sslmode=disable&host=/run/postgresql";
     };
   };
   sops.secrets."services/dendrite/secrets" = { owner = "dendrite"; };
