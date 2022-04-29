@@ -90,6 +90,7 @@ rec {
           nativeBuildInputs = [
             pkgs.sops
             pkgs.ssh-to-age
+            pkgs.nix-prefetch-git
           ];
         };
       hydraJobs = (builtins.listToAttrs (map
