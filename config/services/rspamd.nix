@@ -150,9 +150,13 @@
         '';
       };
       workers = {
+        proxy = {
+          includes = [ "$CONFDIR/worker-proxy.inc" ];
+          bindSockets = [ "*:11332" ];
+        };
         normal = {
           includes = [ "$CONFDIR/worker-normal.inc" ];
-          bindSockets = [ "*:11332" ];
+          bindSockets = [ "*:11333" ];
         };
         controller = {
           includes = [ "$CONFDIR/worker-controller.inc" ];
@@ -194,6 +198,7 @@
   networking.nameservers = lib.mkForce [ "fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49" ];
   networking.firewall.interfaces."wg0".allowedTCPPorts = [
     11332
+    11333
     11334
   ];
 }
