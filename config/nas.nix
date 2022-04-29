@@ -15,6 +15,7 @@
     ./services/hostapd.nix
     ./services/mastodon.nix
     ./services/rspamd.nix
+    ./services/dendrite.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
