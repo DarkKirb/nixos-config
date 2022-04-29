@@ -87,26 +87,26 @@
             };
           };
         };
-        "neural_group.conf".text = builtins.toJSON {
+        /*"neural_group.conf".text = builtins.toJSON {
           symbols = {
-            NEURAL_SPAM_LONG = {
-              weight = 3.0; # sample weight
-              description = "Neural network spam (long)";
-            };
-            NEURAL_HAM_LONG = {
-              weight = -3.0; # sample weight
-              description = "Neural network ham (long)";
-            };
-            NEURAL_SPAM_SHORT = {
-              weight = 2.0; # sample weight
-              description = "Neural network spam (short)";
-            };
-            NEURAL_HAM_SHORT = {
-              weight = -1.0; # sample weight
-              description = "Neural network ham (short)";
-            };
+          NEURAL_SPAM_LONG = {
+          weight = 3.0; # sample weight
+          description = "Neural network spam (long)";
           };
-        };
+          NEURAL_HAM_LONG = {
+          weight = -3.0; # sample weight
+          description = "Neural network ham (long)";
+          };
+          NEURAL_SPAM_SHORT = {
+          weight = 2.0; # sample weight
+          description = "Neural network spam (short)";
+          };
+          NEURAL_HAM_SHORT = {
+          weight = -1.0; # sample weight
+          description = "Neural network ham (short)";
+          };
+          };
+          };*/
         "phishing.conf".text = builtins.toJSON {
           openphish_enabled = true;
         };
