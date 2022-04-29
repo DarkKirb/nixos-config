@@ -23,7 +23,7 @@
         database.connection_string = "postgresql:///dendrite_federation?sslmode=disable&host=/run/postgresql";
       };
       key_server.database.connection_string = "postgresql:///dendrite_keyserver?sslmode=disable&host=/run/postgresql";
-      media_api.database.connection_string = "postgrestql:///dendrite_mediaapi?sslmode=disable&host=/run/postgresql";
+      media_api.database.connection_string = "postgresql:///dendrite_mediaapi?sslmode=disable&host=/run/postgresql";
       mscs = {
         mscs = [ "msc2836" "msc2946" ];
         database.connection_string = "postgresql:///dendrite_mscs?sslmode=disable&host=/run/postgresql";
