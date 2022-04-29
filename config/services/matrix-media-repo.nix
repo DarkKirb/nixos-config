@@ -6,7 +6,7 @@ let
       bindAddress = "127.0.0.1";
       port = 8008;
     };
-    database.postgres = "postgresql://matrix-media-repo@localhost/matrix-media-repo?sslmode=disabled";
+    database.postgres = "postgresql://matrix-media-repo@localhost/matrix-media-repo?sslmode=disable";
     homeservers = [{
       name = "chir.rs";
       csApi = "https://matrix.chir.rs";
