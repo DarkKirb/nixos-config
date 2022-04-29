@@ -40,16 +40,10 @@ in
       "darkkirb.de" = {
         master = true;
         file = "/var/lib/named/darkkirb.de";
-        slaves = [
-          "fd00:e621:e621::1"
-        ];
       };
       "_acme-challenge.darkkirb.de" = {
         master = true;
         file = "_acme-challenge.darkkirb.de";
-        slaves = [
-          "fd00:e621:e621::1"
-        ];
         extraConfig = ''
           update-policy {
             grant certbot. name _acme-challenge.darkkirb.de. txt;
@@ -59,16 +53,10 @@ in
       "chir.rs" = {
         master = true;
         file = "/var/lib/named/chir.rs";
-        slaves = [
-          "fd00:e621:e621::1"
-        ];
       };
       "_acme-challenge.chir.rs" = {
         master = true;
         file = "_acme-challenge.chir.rs";
-        slaves = [
-          "fd00:e621:e621::1"
-        ];
         extraConfig = ''
           update-policy {
             grant certbot. name _acme-challenge.chir.rs. txt;
@@ -78,16 +66,10 @@ in
       "int.chir.rs" = {
         master = true;
         file = "/var/lib/named/int.chir.rs";
-        slaves = [
-          "fd00:e621:e621::1"
-        ];
       };
       "_acme-challenge.int.chir.rs" = {
         master = true;
         file = "_acme-challenge.int.chir.rs";
-        slaves = [
-          "fd00:e621:e621::1"
-        ];
         extraConfig = ''
           update-policy {
             grant certbot. name _acme-challenge.int.chir.rs. txt;
@@ -128,4 +110,3 @@ in
   };
   sops.secrets."services/dns/named-keys" = { owner = "named"; };
 }
-
