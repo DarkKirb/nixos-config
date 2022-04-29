@@ -14,6 +14,7 @@
     nixos-hardware.nixosModules.common-pc-hdd
     ./services/hostapd.nix
     ./services/mastodon.nix
+    ./services/rspamd.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
