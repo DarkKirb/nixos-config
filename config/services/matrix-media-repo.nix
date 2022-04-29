@@ -6,7 +6,7 @@ let
       bindAddress = "127.0.0.1";
       port = 8008;
     };
-    database.postgres = "postgresql://matrix-media-repo@localhost/matrix-media-repo?sslmode=disable";
+    database.postgres = "postgresql://matrix-media-repo@localhost/matrix_media_repo?sslmode=disable";
     homeservers = [{
       name = "chir.rs";
       csApi = "https://matrix.chir.rs";
@@ -63,12 +63,12 @@ in
     "d '/var/lib/matrix-media-repo' 0750 matrix-media-repo matrix-media-repo - -"
   ];
   services.postgresql.ensureDatabases = [
-    "matrix-media-repo"
+    "matrix_media_repo"
   ];
   services.postgresql.ensureUsers = [{
     name = "matrix-media-repo";
     ensurePermissions = {
-      "DATABASE matrix-media-repo" = "ALL_PRIVILEGES";
+      "DATABASE matrix_media_repo" = "ALL_PRIVILEGES";
     };
   }];
 }
