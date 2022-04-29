@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   matrix-media-repo = pkgs.callPackage ../../packages/matrix/matrix-media-repo.nix { };
-  config = pkgs.writeFile "matrix-media-repo.yaml" (lib.generators.toYAML { } {
+  config = pkgs.writeText "matrix-media-repo.yaml" (lib.generators.toYAML { } {
     repo = {
       bindAddress = "127.0.0.1";
       port = 8008;
