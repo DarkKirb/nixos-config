@@ -6,45 +6,45 @@
     rspamd = {
       enable = true;
       locals = {
-        "dkim_signing.conf".text = builtins.toJSON {
-          domain = {
-            "darkkirb.de" = {
+        "dkim_signing.conf".text = ''
+          domain {
+            "darkkirb.de" {
               selector = "dkim";
               path = "${config.sops.secrets."services/rspamd/dkim/darkkirb.de".path}";
-            };
-            "miifox.net" = {
+            }
+            "miifox.net" {
               selector = "dkim";
               path = "${config.sops.secrets."services/rspamd/dkim/miifox.net".path}";
-            };
-            "chir.rs" = {
+            }
+            "chir.rs" {
               selector = "dkim";
               path = "${config.sops.secrets."services/rspamd/dkim/chir.rs".path}";
-            };
-          };
-        };
-        "dmarc.conf".text = builtins.toJSON {
-          actions = {
+            }
+          }
+        '';
+        "dmarc.conf".text = ''
+          actions {
             reject = "reject";
             quarantine = "quarantine";
             softfail = "add_header";
-          };
-        };
-        "greylist.conf".text = builtins.toJSON {
+          }
+        '';
+        "greylist.conf".text = ''
           greylist_min_score = 0;
-        };
-        "hfilter.conf".text = builtins.toJSON {
+        '';
+        "hfilter.conf".text = ''
           helo_enabled = true;
           hostname_enabled = true;
           url_enabled = true;
           from_enabled = true;
           rcpt_enabled = true;
           mid_enabled = true;
-        };
-        "history.conf".text = builtins.toJSON {
+        '';
+        "history.conf".text = ''
           nrows = 1000;
           subject_privacy = true;
-        };
-        "milter.conf".text = builtins.toJSON {
+        '';
+        "milter.conf".text = ''
           use = [
             "authentication-results"
             "fuzzy-hashes"
@@ -56,98 +56,98 @@
             "x-rspamd-bar"
             "x-spam-status"
           ];
-        };
-        "mx_check.conf".text = builtins.toJSON {
+        '';
+        "mx_check.conf".text = ''
           enabled = true;
-        };
-        "neural.conf".text = builtins.toJSON {
+        '';
+        "neural.conf".text = ''
           enabled = true;
-          rules = {
-            LONG = {
-              train = {
+          rules {
+            LONG {
+              train {
                 max_trains = 5000;
                 max_usages = 200;
                 max_iterations = 25;
                 learning_rate = 0.01;
-              };
+              }
               symbol_spam = "NEURAL_SPAM_LONG";
               symbol_ham = "NEURAL_HAM_LONG";
               ann_expire = "365d";
-            };
-            SHORT = {
-              train = {
+            }
+            SHORT {
+              train {
                 max_trains = 5000;
                 max_usages = 2;
                 max_iterations = 25;
                 learning_rate = 0.01;
-              };
+              }
               symbol_spam = "NEURAL_SPAM_SHORT";
               symbol_ham = "NEURAL_HAM_SHORT";
               ann_expire = "30d";
-            };
-          };
-        };
-        /*"neural_group.conf".text = builtins.toJSON {
-          symbols = {
-          NEURAL_SPAM_LONG = {
-          weight = 3.0; # sample weight
-          description = "Neural network spam (long)";
-          };
-          NEURAL_HAM_LONG = {
-          weight = -3.0; # sample weight
-          description = "Neural network ham (long)";
-          };
-          NEURAL_SPAM_SHORT = {
-          weight = 2.0; # sample weight
-          description = "Neural network spam (short)";
-          };
-          NEURAL_HAM_SHORT = {
-          weight = -1.0; # sample weight
-          description = "Neural network ham (short)";
-          };
-          };
-          };*/
-        "phishing.conf".text = builtins.toJSON {
+            }
+          }
+        '';
+        "neural_group.conf".text = ''
+          symbols {
+            NEURAL_SPAM_LONG {
+              weight = 3.0; # sample weight
+              description = "Neural network spam (long)";
+            }
+            NEURAL_HAM_LONG {
+              weight = -3.0; # sample weight
+              description = "Neural network ham (long)";
+            }
+            NEURAL_SPAM_SHORT {
+              weight = 2.0; # sample weight
+              description = "Neural network spam (short)";
+            }
+            NEURAL_HAM_SHORT {
+              weight = -1.0; # sample weight
+              description = "Neural network ham (short)";
+            }
+          }
+        '';
+        "phishing.conf".text = ''
           openphish_enabled = true;
-        };
-        "reputation.conf".text = builtins.toJSON {
-          rules = {
-            ip_reputation = {
+        '';
+        "reputation.conf".text = ''
+          rules {
+            ip_reputation {
               selector.type = "ip";
               backend.type = "redis";
               symbol = "IP_REPUTATION";
-            };
-            spf_reputation = {
+            }
+            spf_reputation {
               selector.type = "spf";
               backend.type = "redis";
               symbol = "SPF_REPUTATION";
-            };
-            dkim_reputation = {
+            }
+            dkim_reputation {
               selector.type = "dkim";
               backend.type = "redis";
               symbol = "DKIM_REPUTATION";
-            };
-            asn_reputation = {
+            }
+            asn_reputation {
               selector.type = "generic";
               selector.selector = "asn";
               backend.type = "redis";
               symbol = "ASN_REPUTATION";
-            };
-            country_reputation = {
+            }
+            country_reputation {
               selector.type = "generic";
               selector.selector = "country";
               backend.type = "redis";
               symbol = "COUNTRY_REPUTATION";
-            };
-          };
-        };
-        "replies.conf".text = builtins.toJSON {
+            }
+          }
+        '';
+        "replies.conf".text = ''
           expire = "7d";
           symbol = "REPLY";
-        };
-        "redis.conf".text = builtins.toJSON {
+        '';
+        "redis.conf".text = ''
           servers = "${config.services.redis.servers.rspamd.bind}:${toString config.services.redis.servers.rspamd.port}";
-        };
+        '';
       };
       workers = {
         normal = {
