@@ -68,7 +68,7 @@ in
   services.postgresql.ensureUsers = [{
     name = "matrix-media-repo";
     ensurePermissions = {
-      "DATABASE matrix_media_repo" = "ALL_PRIVILEGES";
+      "DATABASE matrix_media_repo" = "ALL PRIVILEGES";
     };
   }];
 }
