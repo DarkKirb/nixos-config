@@ -71,4 +71,30 @@ in
       "DATABASE matrix_media_repo" = "ALL PRIVILEGES";
     };
   }];
+  services.nginx.virtualHosts."matrix.chir.rs" = {
+    locations."/_matrix" = {
+      proxyPass = "https://matrix.int.chir.rs";
+      proxyWebsockets = true;
+      extraConfig = ''
+        proxy_ssl_server_name on;
+      '';
+    };
+    locations."/_matrix/media" = {
+      proxyPass = "http://localhost:8008";
+      proxyWebsockets = true;
+    };
+  };
+  services.nginx.virtualHosts."chir.rs" = {
+    locations."/.well-known/matrix/server" = {
+      extraConfig = ''
+        return 200 '{ "m.server": "matrix.chir.rs:443" }';
+      '';
+    };
+    locations."/.well-known/matrix/client" = {
+      extraConfig = ''
+        add_header Access-Control-Allow-Origin '*';
+        return 200 '{ "m.homeserver": { "base_url": "matrix.chir.rs:443" } }';
+      '';
+    };
+  };
 }
