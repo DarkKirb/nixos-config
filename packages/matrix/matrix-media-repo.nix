@@ -1,7 +1,7 @@
-{ buildGoModule
+{ buildGo116Module
 , fetchFromGitHub
 , git
-}: buildGoModule rec {
+}: buildGo116Module rec {
   pname = "matrix-media-repo";
   version = "1.2.12";
   src = fetchFromGitHub {
@@ -10,12 +10,10 @@
     rev = "v${version}";
     sha256 = "1j6y7alr60mmj5h014qmpz9a5qjv8cm61andwdacb0dqjjbvsm0z";
   };
-  vendorSha256 = "sha256-wRxzA5JQ/Sx06YZHEhFH0UGmPKM2GVjo022kM4Ponlo=";
+  proxyVendor = true;
+  vendorSha256 = "sha256-gb2inc/XlPAplVYQXmR77b3/5GsEZDg5v7D/FbZRQ7w=";
   nativeBuildInputs = [
     git
-  ];
-  patches = [
-    ./matrix-media-repo.patch
   ];
   buildPhase = ''
     GOBIN=$PWD/bin go install -v ./cmd/compile_assets
