@@ -13,6 +13,7 @@
           enable_inbound = true;
           enable_outbound = true;
         };
+        private_key = config.sops.secrets."services/dendrite/private_key".path;
       };
       app_service_api.database.connection_string = "postgresql:///dendrite_app_service";
       client_api = {
@@ -33,6 +34,7 @@
     };
   };
   sops.secrets."services/dendrite/secrets" = { owner = "dendrite"; };
+  sops.secrets."services/dendrite/private_key" = { owner = "dendrite"; };
   services.postgresql.ensureDatabases = [
     "dendrite_app_service"
     "dendrite_federation"
@@ -56,6 +58,19 @@
       "DATABASE dendrite_userapi" = "ALL PRIVILEGES";
     };
   }];
+  systemd.services.dendrite.serviceConfig = {
+    User = "dendrite";
+    Group = "dendrite";
+    DynamicUser = lib.mkForce false;
+  };
+  users.users.dendrite = {
+    description = "Matrix Media Repository";
+    home = "/var/lib/dendrite";
+    useDefaultShell = true;
+    group = "dendrite";
+    isSystemUser = true;
+  };
+  users.groups.dendrite = { };
   services.nginx.virtualHosts =
     let
       listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
