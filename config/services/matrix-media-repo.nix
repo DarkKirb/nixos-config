@@ -72,6 +72,8 @@ in
     };
   }];
   services.nginx.virtualHosts."matrix.chir.rs" = {
+    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
+    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
     locations."/_matrix" = {
       proxyPass = "https://matrix.int.chir.rs";
       proxyWebsockets = true;
