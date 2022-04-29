@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   matrix-media-repo = pkgs.callPackage ../../packages/matrix/matrix-media-repo.nix { };
-  config = pkgs.writeText "matrix-media-repo.yaml" (lib.generators.toYAML { } {
+  config-yml = pkgs.writeText "matrix-media-repo.yaml" (lib.generators.toYAML { } {
     repo = {
       bindAddress = "127.0.0.1";
       port = 8008;
@@ -37,7 +37,7 @@ in
     preStart = ''
       akid=$(cat ${config.sops.secrets."services/matrix-media-repo/access-key-id".path})
       sak=$(cat ${config.sops.secrets."services/matrix-media-repo/access-key-id".path})
-      cat ${config} > /var/lib/matrix-media-repo/config.yml
+      cat ${config-yml} > /var/lib/matrix-media-repo/config.yml
       sed -i "s|#ACCESS_KEY_ID#|$akid|g' /var/lib/matrix-media-repo/config.yml
       sed -i "s|#SECRET_ACCESS_KEY#|$sak|g' /var/lib/matrix-media-repo/config.yml
     '';
