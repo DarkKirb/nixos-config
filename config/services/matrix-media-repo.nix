@@ -6,7 +6,7 @@ let
       bindAddress = "127.0.0.1";
       port = 8008;
     };
-    database.postgres = "postgresql:///matrix-media-repo?sslmode=disable";
+    database.postgres = "postgresql://matrix-media-repo@localhost/matrix-media-repo?sslmode=disable";
     homeservers = [{
       name = "chir.rs";
       csApi = "https://matrix.chir.rs";
@@ -20,7 +20,7 @@ let
         tempPath = "/tmp/mediarepo_s3_upload";
         endpoint = "s3.us-west-000.backblazeb2.com";
         accessKeyId = "#ACCESS_KEY_ID#";
-        accessSecret = "#SECRET_ACCESS_KEY";
+        accessSecret = "#SECRET_ACCESS_KEY#";
         ssl = true;
         bucketName = "matrix-chir-rs";
         region = "us-west-000";
@@ -62,4 +62,13 @@ in
   systemd.tmpfiles.rules = [
     "d '/var/lib/matrix-media-repo' 0750 matrix-media-repo matrix-media-repo - -"
   ];
+  services.postgresql.ensureDatabases = [
+    "matrix-media-repo"
+  ];
+  services.postgresql.ensureUsers = [{
+    name = "matrix-media-repo";
+    ensurePermissions = {
+      "DATABASE matrix-media-repo" = "ALL_PRIVILEGES";
+    };
+  }];
 }
