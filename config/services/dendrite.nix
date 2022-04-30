@@ -16,8 +16,8 @@
         private_key = config.sops.secrets."services/dendrite/private_key".path;
       };
       app_service_api = {
-        connection_string = "postgresql:///dendrite_app_service?sslmode=disable&host=/run/postgresql";
-        database.config_files = [
+        database.connection_string = "postgresql:///dendrite_app_service?sslmode=disable&host=/run/postgresql";
+        config_files = [
           "/var/lib/mautrix-telegram/telegram-registration.yaml"
         ];
       };
