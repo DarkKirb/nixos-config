@@ -30,11 +30,11 @@
         double_puppet_allow_discovery = true;
         invite_link_resolve = true;
         animated_sticker.target = "webm";
-        encryption = {
-          allow = true;
-          default = true;
-          keysharing.allow = true;
-        };
+        #encryption = {
+        #allow = true;
+        #default = true;
+        #keysharing.allow = true;
+        #};
         delivery_receipts = true;
         delivery_error_reports = true;
         pinned_tag = "m.favourite";
