@@ -15,8 +15,6 @@
         port = 29317;
         max_body_size = 10;
         database = "postgres:///mautrix_telegram?sslmode=disable&host=/run/postgresql";
-        as_token = "$AS_TOKEN";
-        hs_token = "$HS_TOKEN";
       };
       bridge = {
         displayname_template = "{displayname}";
