@@ -92,7 +92,7 @@ in
       Type = "oneshot";
     };
     script = ''
-      rm /run/hydra-machines
+      rm -f /run/hydra-machines
       if ping -c 1 nutty-noon.int.chir.rs; then
         echo "build-pc armv7l-linux,aarch64-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 16 2 kvm,nixos-test,big-parallel,benchmark,gccarch-znver2,gccarch-znver1,gccarch-skylake,ca-derivations  -" > /run/hydra-machines
       fi
