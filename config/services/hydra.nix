@@ -33,7 +33,7 @@ in
     '';
     giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
     githubTokenFile = "/run/secrets/services/hydra/github_token";
-    buildMachineFiles = [
+    buildMachinesFiles = [
       "${machines}"
       "/run/hydra-machines"
     ];
