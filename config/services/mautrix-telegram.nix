@@ -60,4 +60,16 @@
       "DATABASE mautrix_telegram" = "ALL PRIVILEGES";
     };
   }];
+  users.users.mautrix-telegram = {
+    description = "Mautrix telegram bridge";
+    home = "/var/lib/mautrix-telegram";
+    useDefaultShell = true;
+    group = "dendrite";
+    isSystemUser = true;
+  };
+  systemd.services.mautrix-telegram.serviceConfig = {
+    User = "mautrix-telegram";
+    Group = "dendrite";
+    DynamicUser = lib.mkForce false;
+  };
 }

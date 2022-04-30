@@ -18,7 +18,7 @@
       app_service_api.database = {
         connection_string = "postgresql:///dendrite_app_service?sslmode=disable&host=/run/postgresql";
         config_files = [
-          "/var/lib/mautrix-telegram"
+          "/var/lib/mautrix-telegram/telegram-registration.yaml"
         ];
       };
       client_api = {
@@ -69,7 +69,7 @@
     DynamicUser = lib.mkForce false;
   };
   users.users.dendrite = {
-    description = "Matrix Media Repository";
+    description = "Dendrite";
     home = "/var/lib/dendrite";
     useDefaultShell = true;
     group = "dendrite";
