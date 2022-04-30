@@ -50,7 +50,7 @@
       };
     };
   };
-  config.sops.secrets."services/mautrix/telegram".owner = "mautrix-telegram";
+  sops.secrets."services/mautrix/telegram".owner = "mautrix-telegram";
   services.postgresql.ensureDatabases = [
     "mautrix_telegram"
   ];
