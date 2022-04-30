@@ -29,7 +29,7 @@
         };
         double_puppet_allow_discovery = true;
         invite_link_resolve = true;
-        animated_sticker.target = webm;
+        animated_sticker.target = "webm";
         encryption = {
           allow = true;
           default = true;
