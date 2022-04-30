@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ lib, config, pkgs, ... }: {
   services.mautrix-telegram = {
     enable = true;
     environmentFile = config.sops.secrets."services/mautrix/telegram".path;
