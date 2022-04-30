@@ -36,6 +36,7 @@
       room_server.database.connection_string = "postgresql:///dendrite_roomserver?sslmode=disable&host=/run/postgresql";
       sync_api.database.connection_string = "postgresql:///dendrite_syncapi?sslmode=disable&host=/run/postgresql";
       user_api.account_database.connection_string = "postgresql:///dendrite_userapi?sslmode=disable&host=/run/postgresql";
+      user_api.device_database.connection_string = "postgresql:///dendrite_deviceapi?sslmode=disable&host=/run/postgresql";
     };
   };
   sops.secrets."services/dendrite/secrets" = { owner = "dendrite"; };
@@ -49,6 +50,7 @@
     "dendrite_roomserver"
     "dendrite_syncapi"
     "dendrite_userapi"
+    "dendrite_userapi_devices"
   ];
   services.postgresql.ensureUsers = [{
     name = "dendrite";
@@ -61,6 +63,7 @@
       "DATABASE dendrite_roomserver" = "ALL PRIVILEGES";
       "DATABASE dendrite_syncapi" = "ALL PRIVILEGES";
       "DATABASE dendrite_userapi" = "ALL PRIVILEGES";
+      "DATABASE dendrite_userapi_devices" = "ALL PRIVILEGES";
     };
   }];
   systemd.services.dendrite.serviceConfig = {
