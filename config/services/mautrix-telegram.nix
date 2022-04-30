@@ -24,9 +24,8 @@
         sync_create_limit = 0;
         sync_direct_chats = true;
         sync_direct_chat_list = true;
-        double_puppet_server_map = {
-          chir.rs = "https://matrix.chir.rs";
-        };
+        double_puppet_server_map = { };
+        login_shared_secret_map = { };
         double_puppet_allow_discovery = true;
         invite_link_resolve = true;
         animated_sticker.target = "webm";
