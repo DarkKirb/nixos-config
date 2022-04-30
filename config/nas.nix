@@ -16,6 +16,7 @@
     ./services/mastodon.nix
     ./services/rspamd.nix
     ./services/dendrite.nix
+    ./services/mautrix-telegram.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;

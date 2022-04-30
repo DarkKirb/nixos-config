@@ -15,7 +15,12 @@
         };
         private_key = config.sops.secrets."services/dendrite/private_key".path;
       };
-      app_service_api.database.connection_string = "postgresql:///dendrite_app_service?sslmode=disable&host=/run/postgresql";
+      app_service_api.database = {
+        connection_string = "postgresql:///dendrite_app_service?sslmode=disable&host=/run/postgresql";
+        config_files = [
+          "/var/lib/mautrix-telegram"
+        ];
+      };
       client_api = {
         registration_shared_secret = "$REGISTRATION_SHARED_SECRET";
       };
