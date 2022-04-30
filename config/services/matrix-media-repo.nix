@@ -8,7 +8,7 @@ let
     };
     database.postgres = "postgresql:///matrix_media_repo?sslmode=disable&host=/run/postgresql";
     homeservers = [{
-      name = "chir.rs";
+      name = "matrix.chir.rs";
       csApi = "https://matrix.chir.rs";
     }];
     admins = [ "@lotte:chir.rs" ];
