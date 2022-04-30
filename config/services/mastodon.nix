@@ -12,6 +12,7 @@ let
       "mastodon-sidekiq.service"
     ];
   };
+  mastodon = pkgs.callPackage ../../packages/mastodon { };
 in
 {
   imports = [
@@ -21,6 +22,7 @@ in
   services.mastodon = {
     enable = true;
     enableUnixSocket = false;
+    package = mastodon;
     elasticsearch = {
       host = "127.0.0.1";
     };

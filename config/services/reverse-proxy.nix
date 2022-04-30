@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ pkgs, config, ... }: {
   services.nginx.virtualHosts."hydra.chir.rs" = {
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
@@ -10,17 +10,23 @@
       '';
     };
   };
-  services.nginx.virtualHosts."mastodon.chir.rs" = {
-    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
-    locations."/" = {
-      proxyPass = "https://mastodon.int.chir.rs";
-      proxyWebsockets = true;
-      extraConfig = ''
-        proxy_ssl_server_name on;
-      '';
+  services.nginx.virtualHosts."mastodon.chir.rs" =
+    let mastodon = pkgs.callPackage ../../packages/mastodon { }; in
+    {
+      sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
+      sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
+      root = "${config.services.mastodon.package}/public/";
+      locations."/" = {
+        tryFiles = "$uri @proxy";
+      };
+      locations."@proxy" = {
+        proxyPass = "https://mastodon.int.chir.rs";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_ssl_server_name on;
+        '';
+      };
     };
-  };
   services.nginx.virtualHosts."mastodon-assets.chir.rs" = {
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";

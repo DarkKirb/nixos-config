@@ -87,10 +87,12 @@ rec {
           systems);
       devShell.x86_64-linux = let pkgs = import nixpkgs { system = "x86_64-linux"; }; in
         pkgs.mkShell {
-          nativeBuildInputs = [
-            pkgs.sops
-            pkgs.ssh-to-age
-            pkgs.nix-prefetch-git
+          nativeBuildInputs = with pkgs; [
+            sops
+            ssh-to-age
+            nix-prefetch-git
+            jq
+            bundix
           ];
         };
       hydraJobs = (builtins.listToAttrs (map
