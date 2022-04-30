@@ -85,6 +85,17 @@ in
       proxyPass = "http://localhost:8008";
       proxyWebsockets = true;
     };
+    locations."/.well-known/matrix/server" = {
+      extraConfig = ''
+        return 200 '{ "m.server": "matrix.chir.rs:443" }';
+      '';
+    };
+    locations."/.well-known/matrix/client" = {
+      extraConfig = ''
+        add_header Access-Control-Allow-Origin '*';
+        return 200 '{ "m.homeserver": { "base_url": "https://matrix.chir.rs" } }';
+      '';
+    };
   };
   services.nginx.virtualHosts."chir.rs" = {
     locations."/.well-known/matrix/server" = {
@@ -95,7 +106,7 @@ in
     locations."/.well-known/matrix/client" = {
       extraConfig = ''
         add_header Access-Control-Allow-Origin '*';
-        return 200 '{ "m.homeserver": { "base_url": "matrix.chir.rs:443" } }';
+        return 200 '{ "m.homeserver": { "base_url": "https://matrix.chir.rs" } }';
       '';
     };
   };
