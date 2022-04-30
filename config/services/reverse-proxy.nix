@@ -15,7 +15,7 @@
     {
       sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
       sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
-      root = "${config.services.mastodon.package}/public/";
+      root = "${mastodon}/public/";
       locations."/" = {
         tryFiles = "$uri @proxy";
       };
