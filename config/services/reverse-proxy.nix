@@ -55,12 +55,9 @@
     };
   };
   services.nginx.appendHttpConfig = ''
-    proxy_cache_path /var/tmp/nginx levels=1:2 keys_zone=CACHE:10m max_size=10g
+    proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=CACHE:10m max_size=10g
                  inactive=60m use_temp_path=off;
   '';
-  systemd.tmpfiles.rules = [
-    "d /var/tmp/nginx 0700 nginx acme - -"
-  ];
   services.nginx.virtualHosts."chir.rs" = {
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
