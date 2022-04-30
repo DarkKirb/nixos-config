@@ -30,7 +30,7 @@
       };
       room_server.database.connection_string = "postgresql:///dendrite_roomserver?sslmode=disable&host=/run/postgresql";
       sync_api.database.connection_string = "postgresql:///dendrite_syncapi?sslmode=disable&host=/run/postgresql";
-      user_api.database.connection_string = "postgresql:///dendrite_userapi?sslmode=disable&host=/run/postgresql";
+      user_api.account_database.connection_string = "postgresql:///dendrite_userapi?sslmode=disable&host=/run/postgresql";
     };
   };
   sops.secrets."services/dendrite/secrets" = { owner = "dendrite"; };
