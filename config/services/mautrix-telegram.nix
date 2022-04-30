@@ -10,6 +10,7 @@
         async_media = true;
       };
       appservice = {
+        address = "http://localhost:29317";
         hostname = "127.0.0.1";
         port = 29317;
         max_body_size = 10;
