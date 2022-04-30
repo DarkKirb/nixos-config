@@ -79,11 +79,17 @@ in
       proxyWebsockets = true;
       extraConfig = ''
         proxy_ssl_server_name on;
+        proxy_hide_header Access-Control-Allow-Origin;
+        add_header Access-Control-Allow-Origin '*' always;
       '';
     };
     locations."/_matrix/media" = {
       proxyPass = "http://localhost:8008";
       proxyWebsockets = true;
+      extraConfig = ''
+        proxy_hide_header Access-Control-Allow-Origin;
+        add_header Access-Control-Allow-Origin '*' always;
+      '';
     };
     locations."/.well-known/matrix/server" = {
       extraConfig = ''
