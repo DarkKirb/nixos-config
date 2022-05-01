@@ -67,4 +67,27 @@
       "DATABASE synapse" = "ALL PRIVILEGES";
     };
   }];
+  services.nginx.virtualHosts =
+    let
+      listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
+      listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
+        add_header Alt-Svc 'h3=":443"';
+      '';
+      synapse = {
+        listenAddresses = listenIPs;
+        locations."/_matrix" = {
+          proxyPass = "http://localhost:8008";
+        };
+      };
+    in
+    {
+      "matrix.chir.rs" = synapse // {
+        sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
+        sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
+      };
+      "matrix.int.chir.rs" = synapse // {
+        sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
+        sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
+      };
+    };
 }
