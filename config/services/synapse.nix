@@ -64,7 +64,7 @@
   services.postgresql.ensureUsers = [{
     name = "matrix-synapse";
     ensurePermissions = {
-      "DATABASE matrix-synapse" = "ALL PRIVILEGES";
+      "DATABASE synapse" = "ALL PRIVILEGES";
     };
   }];
 }
