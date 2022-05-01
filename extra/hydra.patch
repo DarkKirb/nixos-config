@@ -1,16 +1,3 @@
-diff --git a/src/hydra-eval-jobs/hydra-eval-jobs.cc b/src/hydra-eval-jobs/hydra-eval-jobs.cc
-index d98ad88d..6830567c 100644
---- a/src/hydra-eval-jobs/hydra-eval-jobs.cc
-+++ b/src/hydra-eval-jobs/hydra-eval-jobs.cc
-@@ -289,7 +289,7 @@ int main(int argc, char * * argv)
- 
-         /* Prevent access to paths outside of the Nix search path and
-            to the environment. */
--        evalSettings.restrictEval = true;
-+        //evalSettings.restrictEval = true;
- 
-         /* When building a flake, use pure evaluation (no access to
-            'getEnv', 'currentSystem' etc. */
 diff --git a/src/hydra-queue-runner/build-remote.cc b/src/hydra-queue-runner/build-remote.cc
 index e7495f33..cbd6f18e 100644
 --- a/src/hydra-queue-runner/build-remote.cc
@@ -31,7 +18,7 @@ index e7495f33..cbd6f18e 100644
 +              } catch (Error & e) {
 +                printError(e.msg());
 +              }
- 
+
                // Also register the unresolved one
                auto unresolvedRealisation = realisation;
                unresolvedRealisation.signatures.clear();
@@ -50,14 +37,14 @@ index e7495f33..cbd6f18e 100644
 +              }
            }
          }
- 
+
 diff --git a/src/lib/Hydra/Plugin/GiteaStatus.pm b/src/lib/Hydra/Plugin/GiteaStatus.pm
-index 426c93f5..c246fa2a 100644
+index 426c93f5..9fe83c2a 100644
 --- a/src/lib/Hydra/Plugin/GiteaStatus.pm
 +++ b/src/lib/Hydra/Plugin/GiteaStatus.pm
 @@ -52,34 +52,51 @@ sub common {
              });
- 
+
          while (my $eval = $evals->next) {
 -            my $giteastatusInput = $eval->jobsetevalinputs->find({ name => "gitea_status_repo" });
 -            next unless defined $giteastatusInput && defined $giteastatusInput->value;
@@ -121,7 +108,7 @@ index 426c93f5..c246fa2a 100644
 +                }
 +
 +                $sendStatus->($giteastatusInput, $host, $repoOwner, $repoName, $rev);
- 
+
 -            print STDERR "GiteaStatus POSTing $state to $url\n";
 -            my $req = HTTP::Request->new('POST', $url);
 -            $req->header('Content-Type' => 'application/json');
@@ -139,7 +126,7 @@ index 05a35ca2..251a042a 100644
 +++ b/src/lib/Hydra/Plugin/GithubStatus.pm
 @@ -26,7 +26,7 @@ sub toGithubState {
  }
- 
+
  sub common {
 -    my ($self, $topbuild, $dependents, $finished) = @_;
 +    my ($self, $topbuild, $dependents, $finished, $publish) = @_;
@@ -173,7 +160,7 @@ index 05a35ca2..251a042a 100644
 +                        }
 +                    }
                  };
- 
+
                  if (defined $eval->flake) {
                      my $fl = $eval->flake;
                      print STDERR "Flake is $fl\n";

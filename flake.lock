@@ -178,6 +178,7 @@
     },
     "hydra": {
       "inputs": {
+        "newNixpkgs": "newNixpkgs",
         "nix": [
           "nix"
         ],
@@ -187,16 +188,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1642687475,
-        "narHash": "sha256-jdzUBckbpckHVcllLxi5fIGD0ANmUR22mAKPmgiNcoY=",
-        "owner": "thufschmitt",
+        "lastModified": 1650377387,
+        "narHash": "sha256-3fVFViUzr1Kv8+N38lblXA8S4hHrRcA9GaFH/NemKGM=",
+        "owner": "NixOS",
         "repo": "hydra",
-        "rev": "cdff8067285336abbe4750ae15d0a7dcdda5fcb5",
+        "rev": "5c90edd19f1787141ae3d9751f567b4df11fc0fa",
         "type": "github"
       },
       "original": {
-        "owner": "thufschmitt",
-        "ref": "nix-ca",
+        "owner": "NixOS",
         "repo": "hydra",
         "type": "github"
       }
@@ -249,6 +249,22 @@
         "url": "https://git.chir.rs/CarolineHusky/MiiFox.net"
       }
     },
+    "newNixpkgs": {
+      "locked": {
+        "lastModified": 1651114127,
+        "narHash": "sha256-/lLC0wkMZkAdA5e1W76SnJzbhfOGDvync3VRHJMtAKk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "6766fb6503ae1ebebc2a9704c162b2aef351f921",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nix": {
       "inputs": {
         "lowdown-src": "lowdown-src",
@@ -256,16 +272,16 @@
         "nixpkgs-regression": "nixpkgs-regression"
       },
       "locked": {
-        "lastModified": 1645099657,
-        "narHash": "sha256-E9iQ7f+9Z6xFcUvvfksTEfn8LsDfzmwrcRBC//5B3V0=",
+        "lastModified": 1646680282,
+        "narHash": "sha256-m8tqCS6uHveDon5GSro5yZor9H+sHeh+v/veF1IGw24=",
         "owner": "NixOS",
         "repo": "nix",
-        "rev": "e044ccb67ce38d11059de32515306f5f1bd2f04f",
+        "rev": "ffe155abd36366a870482625543f9bf924a58281",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "2.6.1",
+        "ref": "2.7.0",
         "repo": "nix",
         "type": "github"
       }
