@@ -15,7 +15,7 @@
     ./services/hostapd.nix
     ./services/mastodon.nix
     ./services/rspamd.nix
-    ./services/dendrite.nix
+    ./services/synapse.nix
     ./services/mautrix-telegram.nix
   ];
 
