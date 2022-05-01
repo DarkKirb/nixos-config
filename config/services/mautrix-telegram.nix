@@ -21,8 +21,8 @@
       bridge = {
         displayname_template = "{displayname}";
         allow_avatar_remove = true;
-        max_initial_member_sync = -1;
-        sync_create_limit = 0;
+        #max_initial_member_sync = -1;
+        #sync_create_limit = 0;
         sync_direct_chats = true;
         sync_direct_chat_list = true;
         double_puppet_server_map = { };
