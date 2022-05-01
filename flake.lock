@@ -179,10 +179,9 @@
     "hydra": {
       "inputs": {
         "newNixpkgs": "newNixpkgs",
-        "nix": [
-          "nix"
-        ],
+        "nix": "nix",
         "nixpkgs": [
+          "hydra",
           "nix",
           "nixpkgs"
         ]
@@ -272,18 +271,14 @@
         "nixpkgs-regression": "nixpkgs-regression"
       },
       "locked": {
-        "lastModified": 1646680282,
+        "lastModified": 0,
         "narHash": "sha256-m8tqCS6uHveDon5GSro5yZor9H+sHeh+v/veF1IGw24=",
-        "owner": "NixOS",
-        "repo": "nix",
-        "rev": "ffe155abd36366a870482625543f9bf924a58281",
-        "type": "github"
+        "path": "/nix/store/x509laxixq7hgvp9j3qv3f4v0wflr9sy-source",
+        "type": "path"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "2.7.0",
-        "repo": "nix",
-        "type": "github"
+        "id": "nix",
+        "type": "indirect"
       }
     },
     "nixos-hardware": {
@@ -472,7 +467,6 @@
         "hosts-list": "hosts-list",
         "hydra": "hydra",
         "miifox-net": "miifox-net",
-        "nix": "nix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-systemd-249": "nixpkgs-systemd-249",

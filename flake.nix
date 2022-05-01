@@ -15,9 +15,9 @@ rec {
     polymc.inputs.nixpkgs.follows = "nixpkgs";
     dns.url = "github:DarkKirb/dns.nix?ref=master";
     hydra.url = github:NixOS/hydra;
-    nix.url = github:NixOS/nix/2.7.0;
-    hydra.inputs.nix.follows = "nix";
-    hydra.inputs.nixpkgs.follows = "nix/nixpkgs";
+    #nix.url = github:NixOS/nix/2.7.0;
+    #hydra.inputs.nix.follows = "nix";
+    #hydra.inputs.nixpkgs.follows = "nix/nixpkgs";
     hosts-list.url = github:StevenBlack/hosts;
     hosts-list.flake = false;
     nixos-hardware.url = github:NixOS/nixos-hardware;
