@@ -64,12 +64,12 @@
     description = "Mautrix telegram bridge";
     home = "/var/lib/mautrix-telegram";
     useDefaultShell = true;
-    group = "dendrite";
+    group = "matrix-synapse";
     isSystemUser = true;
   };
   systemd.services.mautrix-telegram.serviceConfig = {
     User = "mautrix-telegram";
-    Group = "dendrite";
+    Group = "matrix-synapse";
     DynamicUser = lib.mkForce false;
   };
 }
