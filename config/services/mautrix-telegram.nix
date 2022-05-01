@@ -21,8 +21,8 @@
       bridge = {
         displayname_template = "{displayname}";
         allow_avatar_remove = true;
-        #max_initial_member_sync = -1;
-        #sync_create_limit = 0;
+        max_initial_member_sync = -1;
+        sync_create_limit = 0;
         sync_direct_chats = true;
         sync_direct_chat_list = true;
         double_puppet_server_map = { };
@@ -30,11 +30,11 @@
         double_puppet_allow_discovery = true;
         invite_link_resolve = true;
         animated_sticker.target = "webm";
-        #encryption = {
-        #allow = true;
-        #default = true;
-        #keysharing.allow = true;
-        #};
+        encryption = {
+          allow = true;
+          default = true;
+          keysharing.allow = true;
+        };
         delivery_receipts = true;
         delivery_error_reports = true;
         pinned_tag = "m.favourite";
