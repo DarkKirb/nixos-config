@@ -1,4 +1,4 @@
-{ lib, config, ... }: {
+{ pkgs, lib, config, ... }: {
   services.matrix-synapse = {
     enable = true;
     settings = {
@@ -67,6 +67,7 @@
       "DATABASE synapse" = "ALL PRIVILEGES";
     };
   }];
+  systemd.services.matrix-synapse.serviceConfig.ExecStartPre = lib.mkForce (pkgs.writeShellScript "dummy" "true");
   services.nginx.virtualHosts =
     let
       listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
