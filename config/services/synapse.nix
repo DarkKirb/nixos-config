@@ -25,7 +25,6 @@
           user = "matrix-synapse";
           database = "synapse";
         };
-        allow_unsafe_locale = true; # shut up
       };
       enable_media_repo = false;
       url_preview_enabled = true;
