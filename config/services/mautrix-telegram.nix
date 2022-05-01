@@ -7,7 +7,7 @@
         address = "https://matrix.chir.rs";
         domain = "chir.rs";
         http_retry_count = 1000;
-        #async_media = true;
+        async_media = false;
       };
       appservice = {
         address = "http://localhost:29317";
