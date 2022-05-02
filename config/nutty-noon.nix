@@ -19,6 +19,8 @@
   boot.extraModulePackages = [
     config.boot.kernelPackages.zenpower
   ];
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_testing;
+  boot.zfs.enableUnstable = true;
 
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.devNodes = "/dev/";
