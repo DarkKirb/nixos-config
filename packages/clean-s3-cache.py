@@ -135,7 +135,7 @@ def delete_object(key: str) -> None:
 
 def get_store_hashes() -> set[str]:
     hashes = set()
-    for obj in os.listdir("/nix/store"):
+    for obj in listdir("/nix/store"):
         hashes.add(obj.split("-")[0])
 
 async def main() -> None:
