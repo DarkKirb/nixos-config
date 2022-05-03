@@ -28,7 +28,7 @@ let
     }];
     metrics = {
       enabled = true;
-      bindAddress = "[::]";
+      bindAddress = "::";
       port = 9000;
     };
   });
