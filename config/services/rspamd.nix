@@ -203,5 +203,7 @@
     11332
     11333
     11334
+    7980
   ];
+  services.prometheus.exporters.rspamd.enable = true;
 }

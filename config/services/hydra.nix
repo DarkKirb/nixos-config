@@ -30,6 +30,12 @@ in
         jobs = .*
       </githubstatus>
       store_uri = s3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15
+      <hydra_notify>
+        <prometheus>
+          listen_address = 127.0.0.1
+          port = 9199
+        </prometheus>
+      </hydra_notify>
     '';
     giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
     githubTokenFile = "/run/secrets/services/hydra/github_token";
@@ -38,6 +44,7 @@ in
       "/run/hydra-machines"
     ];
   };
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [ 9199 ];
   nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" "https://darkkirb.de/" "https://git.neo-layout.org/" "https://static.darkkirb.de/" ];
   sops.secrets."services/hydra/gitea_token" = { };
   sops.secrets."services/hydra/github_token" = { };

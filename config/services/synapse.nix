@@ -14,7 +14,13 @@
           names = [ "client" "federation" ];
           compress = false;
         }];
-      }];
+      }
+        {
+          port = 9009;
+          type = "metrics";
+          bind_addresses = [ "::" ];
+          resources = [ ];
+        }];
       admin_contact = "mailto:lotte@chir.rs";
       retention.enabled = true;
       database = {
@@ -54,9 +60,11 @@
       ];
       signing_key_path = config.sops.secrets."services/synapse/private_key".path;
       encryption_enabled_by_default_for_room_type = "all";
+      enable_metrics = true;
     };
     withJemalloc = true;
   };
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [ 9009 ];
   sops.secrets."services/synapse/private_key" = { owner = "matrix-synapse"; };
   services.postgresql.ensureDatabases = [
     "synapse"

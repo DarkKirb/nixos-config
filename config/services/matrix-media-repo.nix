@@ -26,9 +26,15 @@ let
         region = "us-west-000";
       };
     }];
+    metrics = {
+      enabled = true;
+      bindAddress = "[::]";
+      port = 9000;
+    };
   });
 in
 {
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [ 9000 ];
   systemd.services.matrix-media-repo = {
     description = "Matrix Media Repo";
     after = [ "network.target" ];

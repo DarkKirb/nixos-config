@@ -9,7 +9,7 @@ let
       filename = "/tmp/positions.yaml";
     };
     client = {
-      url = "http://[fd0d:a262:1fa6:e621:b4e1:08ff:e658:6f49]:3100/loki/api/v1/push";
+      url = "http://nixos-8gb-fsn1-1.int.chir.rs:3100/loki/api/v1/push";
       external_labels.host = config.networking.hostName;
     };
     scrape_configs = [

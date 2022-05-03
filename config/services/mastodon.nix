@@ -18,6 +18,7 @@ in
   imports = [
     ./elasticsearch.nix
     ../../modules/mastodon.nix
+    ./statsd-exporter.nix
   ];
   services.mastodon = {
     enable = true;
@@ -43,6 +44,7 @@ in
       S3_OPEN_TIMEOUT = "120";
       S3_READ_TIMEOUT = "120";
       S3_MULTIPART_THRESHOLD = "5242880";
+      STATSD_ADDR = "127.0.0.1:9125";
     };
     redis.createLocally = false;
     otpSecretFile = config.sops.secrets."services/mastodon/otpSecret".path;

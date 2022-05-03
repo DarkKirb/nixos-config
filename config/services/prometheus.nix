@@ -11,10 +11,10 @@
         job_name = "node_exporter";
         static_configs = [{
           targets = [
-            "[fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49]:${toString config.services.prometheus.exporters.node.port}"
-            "[fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437]:${toString config.services.prometheus.exporters.node.port}"
-            "[fd0d:a262:1fa6:e621:f45a:db9f:eb7c:1a3f]:${toString config.services.prometheus.exporters.node.port}"
-            "[fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b]:${toString config.services.prometheus.exporters.node.port}"
+            "nixos-8gb-fsn1-1.int.chir.rs:${toString config.services.prometheus.exporters.node.port}"
+            "nutty-noon.int.chir.rs:${toString config.services.prometheus.exporters.node.port}"
+            "nas.int.chir.rs:${toString config.services.prometheus.exporters.node.port}"
+            "thinkrac.int.chir.rs:${toString config.services.prometheus.exporters.node.port}"
           ];
         }];
       }
@@ -22,7 +22,7 @@
         job_name = "bind_exporter";
         static_configs = [{
           targets = [
-            "[fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49]:${toString config.services.prometheus.exporters.bind.port}"
+            "nixos-8gb-fsn1-1.int.chir.rs:${toString config.services.prometheus.exporters.bind.port}"
           ];
         }];
       }
@@ -30,7 +30,7 @@
         job_name = "postgres_exporter";
         static_configs = [{
           targets = [
-            "[fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49]:${toString config.services.prometheus.exporters.postgres.port}"
+            "nixos-8gb-fsn1-1.int.chir.rs:${toString config.services.prometheus.exporters.postgres.port}"
           ];
         }];
       }
@@ -38,27 +38,59 @@
         job_name = "gitea_exporter";
         static_configs = [{
           targets = [
-            "[fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49]:${toString config.services.gitea.httpPort}"
+            "nixos-8gb-fsn1-1.int.chir.rs:${toString config.services.gitea.httpPort}"
           ];
         }];
       }
       {
-        job_name = "minio_exporter";
-        bearer_token_file = "/run/secrets/services/minio_scrape";
-        metrics_path = "/minio/v0/metrics/cluster";
-        scheme = "https";
-        static_configs = [
-          {
-            targets = [
-              "minio.int.chir.rs"
-            ];
-          }
-        ];
+        job_name = "dovecot_exporter";
+        static_configs = [{
+          targets = [
+            "nixos-8gb-fsn1-1.int.chir.rs:${toString config.services.prometheus.exporters.dovecot.port}"
+          ];
+        }];
+      }
+      {
+        job_name = "hydra_exporter";
+        static_configs = [{
+          targets = [
+            "nas.int.chir.rs:9199"
+          ];
+        }];
+      }
+      {
+        job_name = "statsd_exporter";
+        static_configs = [{
+          targets = [
+            "nas.int.chir.rs:9102"
+          ];
+        }];
+      }
+      {
+        job_name = "matrix_media_repo";
+        static_configs = [{
+          targets = [
+            "nixos-8gb-fsn1-1.int.chir.rs:9000"
+          ];
+        }];
+      }
+      {
+        job_name = "rspamd_exporter";
+        static_configs = [{
+          targets = [
+            "nas.int.chir.rs:7980"
+          ];
+        }];
+      }
+      {
+        job_name = "synapse";
+        static_configs = [{
+          targets = [
+            "nas.int.chir.rs:9009"
+          ];
+        }];
       }
     ];
     checkConfig = false;
-  };
-  sops.secrets."services/minio_scrape" = {
-    owner = "prometheus";
   };
 }

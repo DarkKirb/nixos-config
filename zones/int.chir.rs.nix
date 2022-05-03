@@ -8,7 +8,7 @@ in
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 13;
+    serial = 14;
   };
   NS = [
     "ns1.chir.rs."
@@ -179,6 +179,9 @@ in
         }
       ];
     };
+    thinkrac.AAAA = [
+      (ttl zoneTTL (aaaa "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b"))
+    ];
     nas = {
       AAAA = [
         (ttl zoneTTL (aaaa "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b"))

@@ -17,7 +17,6 @@
     ./services/dovecot.nix
     ./services/postfix.nix
     ./services/minecraft.nix
-    ./services/minio.nix
     ./services/loki.nix
     ./services/reverse-proxy.nix
     ./services/matrix-media-repo.nix
