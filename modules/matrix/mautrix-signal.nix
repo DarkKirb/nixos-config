@@ -153,6 +153,10 @@ in
     services.matrix-synapse.settings.app_service_config_files = [
       registrationFile
     ];
-    services.signald.enable = true;
+    services.signald = {
+      user = "mautrix-signal";
+      group = "matrix-synapse";
+      enable = true;
+    };
   };
 }
