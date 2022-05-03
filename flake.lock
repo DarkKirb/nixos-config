@@ -163,11 +163,11 @@
     "hosts-list": {
       "flake": false,
       "locked": {
-        "lastModified": 1651278065,
-        "narHash": "sha256-JpNy20xFMMnVxU88smVeZwbgqsFV86PLNLgBz6oGXUE=",
+        "lastModified": 1651619459,
+        "narHash": "sha256-VUCHjAOthrRZivDm4k3BXmAqlCvaeoCyeb/NHfvV3OI=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "baf083579cf5b4cb6e7b926dfeff642ed9c47cff",
+        "rev": "d0d4874f5e38209e531c7c947774149a5e8269a6",
         "type": "github"
       },
       "original": {
