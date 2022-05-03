@@ -22,6 +22,7 @@
         listen = "[::]:29319";
       };
       bridge = {
+        displayname_template = "{displayname}";
         personal_filtering_spaces = true;
         delivery_receipts = true;
         hystory_sync = {
