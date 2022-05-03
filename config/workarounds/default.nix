@@ -100,7 +100,7 @@ in
       # remove when matrix-1.58 hits
       matrix-synapse = prev.matrix-synapse.overrideAttrs (old: {
         version = "1.58.0";
-        src = pkgs.fetchPypi {
+        src = pkgs.python3.pkgs.fetchPypi {
           pname = "matrix-synapse";
           version = "1.58.0";
           sha256 = "sha256-cY3rtmaaAimEQPU4wcMEy/QysPNCdk7yptrkctnLfDA=";
