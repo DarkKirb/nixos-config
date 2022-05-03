@@ -98,7 +98,7 @@ in
         '';
       });
       # remove when matrix-1.58 hits
-      matrix-synapse = prev.overrideAttrs (old: {
+      matrix-synapse = prev.matrix-synapse.overrideAttrs (old: {
         version = "1.58.0";
         src = pkgs.fetchPypi {
           pname = "matrix-synapse";
