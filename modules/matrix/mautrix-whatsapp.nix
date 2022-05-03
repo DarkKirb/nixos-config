@@ -52,7 +52,8 @@ in
     systemd.services.mautrix-whatsapp-genregistration = {
       description = "Mautrix-Whatsapp Registration";
 
-      requiredBy = [ "matrix-synapse.service" ];
+      wantedBy = [ "matrix-synapse.service" ];
+      before = [ "matrix-synapse.service" ];
       script = ''
         # Not all secrets can be passed as environment variable (yet)
         # https://github.com/tulir/mautrix-telegram/issues/584
@@ -98,9 +99,8 @@ in
     systemd.services.mautrix-whatsapp = {
       description = "Mautrix-Whatsapp";
       wantedBy = [ "multi-user.target" ];
-      wants = [ "matrix-synapse.service" ];
-      after = [ "matrix-synapse.service" ];
-      requires = [ "mautrix-whatsapp-genregistration.service" ];
+      wants = [ "matrix-synapse.service" "mautrix-whatsapp-genregistration.service" ];
+      after = [ "matrix-synapse.service" "mautrix-whatsapp-genregistration.service" ];
       serviceConfig = {
         Type = "simple";
         Restart = "always";
