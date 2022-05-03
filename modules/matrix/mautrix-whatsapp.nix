@@ -81,6 +81,7 @@ in
       '';
       serviceConfig = {
         Type = "oneshot";
+        RemainAfterExit = true;
         ProtectSystem = "strict";
         ProtectHome = true;
         ProtectKernelTunables = true;
