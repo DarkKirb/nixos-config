@@ -18,6 +18,7 @@
         {
           port = 9009;
           type = "metrics";
+          tls = false;
           bind_addresses = [ "::" ];
           resources = [ ];
         }];
