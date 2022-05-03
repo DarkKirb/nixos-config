@@ -67,7 +67,7 @@ in
         umask $old_umask
 
         [ -f ${registrationFile} ] && rm -f ${registrationFile}
-        ${mautrix-whatsapp}/bin/mautrix-whatsapp --generate-registration --base-config ${mautrix-whatsapp.src}/example-config.yaml --config ${settingsFile} --registration ${registrationFile}
+        ${mautrix-whatsapp}/bin/mautrix-whatsapp --generate-registration --config ${settingsFile} --registration ${registrationFile}
 
         # Extract the tokens from the registration
         export AS_TOKEN=$(${pkgs.yq}/bin/yq -r '.as_token' ${registrationFile})
