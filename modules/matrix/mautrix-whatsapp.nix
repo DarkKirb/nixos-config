@@ -69,6 +69,7 @@ in
 
         [ -f ${registrationFile} ] && rm -f ${registrationFile}
         ${mautrix-whatsapp}/bin/mautrix-whatsapp --generate-registration --config ${settingsFile} --registration ${registrationFile}
+        chmod 660 ${registrationFile}
 
         # Extract the tokens from the registration
         export AS_TOKEN=$(${pkgs.yq}/bin/yq -r '.as_token' ${registrationFile})
