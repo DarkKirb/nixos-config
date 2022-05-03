@@ -31,6 +31,7 @@
         static_configs = [{
           targets = [
             "nixos-8gb-fsn1-1.int.chir.rs:${toString config.services.prometheus.exporters.postgres.port}"
+            "nas.int.chir.rs:${toString config.services.prometheus.exporters.postgres.port}"
           ];
         }];
       }

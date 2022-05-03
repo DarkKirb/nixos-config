@@ -17,4 +17,5 @@
     user = "postgres";
     listenAddress = (import ../../utils/getInternalIP.nix config).listenIP;
   };
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [ 9187 ];
 }

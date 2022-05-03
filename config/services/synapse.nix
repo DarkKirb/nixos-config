@@ -58,7 +58,6 @@
     };
     withJemalloc = true;
   };
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [ 9009 ];
   sops.secrets."services/synapse/private_key" = { owner = "matrix-synapse"; };
   services.postgresql.ensureDatabases = [
     "synapse"
