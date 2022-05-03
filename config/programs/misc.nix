@@ -2,6 +2,8 @@
   home.packages = with pkgs; [
     ghidra
     android-studio
-    element-desktop-wayland
+    (element-desktop.override {
+      useKeytar = false;
+    })
   ];
 }
