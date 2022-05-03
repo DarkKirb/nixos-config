@@ -5,13 +5,13 @@
   pname = "matrix-media-repo";
   version = "1.2.12";
   src = fetchFromGitHub {
-    owner = "hifi";
+    owner = "turt2live";
     repo = pname;
-    rev = "8e27b16955bf9f1437709c557144a25bfbb0aecb";
-    sha256 = "19iakdd9hd8gx1n5m3yd3kv3zbv4gdbw8h1nn6xm8w3qnkrfrn80";
+    rev = "v${version}";
+    sha256 = "1j6y7alr60mmj5h014qmpz9a5qjv8cm61andwdacb0dqjjbvsm0z";
   };
   proxyVendor = true;
-  vendorSha256 = "sha256-QBV7NbhMLFABO0/t0ZGaa0EktFgG517t3uvbblLnv9s=";
+  vendorSha256 = "sha256-gb2inc/XlPAplVYQXmR77b3/5GsEZDg5v7D/FbZRQ7w=";
   nativeBuildInputs = [
     git
   ];
