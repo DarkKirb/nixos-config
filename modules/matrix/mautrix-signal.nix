@@ -25,7 +25,29 @@ in
             hs_token = "$HS_TOKEN";
           };
           logging = {
-            file_name_format = null;
+            version = 1;
+
+            formatters.precise.format = "[%(levelname)s@%(name)s] %(message)s";
+
+            handlers.console = {
+              class = "logging.StreamHandler";
+              formatter = "precise";
+            };
+
+            loggers = {
+              mau.level = "INFO";
+              telethon.level = "INFO";
+
+              # prevent tokens from leaking in the logs:
+              # https://github.com/tulir/mautrix-telegram/issues/351
+              aiohttp.level = "WARNING";
+            };
+
+            # log to console/systemd instead of file
+            root = {
+              level = "INFO";
+              handlers = [ "console" ];
+            };
           };
         };
       };
