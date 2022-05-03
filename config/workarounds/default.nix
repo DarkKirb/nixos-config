@@ -97,6 +97,15 @@ in
           sed -i 's/gtk_compose_table_save_cache (compose_table);//' gtk/gtkcomposetable.c
         '';
       });
+      # remove when matrix-1.58 hits
+      matrix-synapse = prev.overrideAttrs (old: {
+        version = "1.58.0";
+        src = pkgs.fetchPypi {
+          pname = "matrix-synapse";
+          version = "1.58.0";
+          sha256 = "sha256-cY3rtmaaAimEQPU4wcMEy/QysPNCdk7yptrkctnLfDA=";
+        };
+      });
     })
   ];
 }
