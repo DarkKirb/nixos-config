@@ -118,6 +118,10 @@ in
         User = "mautrix-whatsapp";
         Group = "matrix-synapse";
         EnvironmentFile = cfg.environmentFile;
+        ExecStart = ''
+          ${mautrix-whatsapp}/bin/mautrix-whatsapp \
+            --config='${settingsFile}'
+        '';
       };
       restartTriggers = [ cfg.environmentFile ];
     };
