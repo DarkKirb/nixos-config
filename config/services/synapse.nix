@@ -11,17 +11,10 @@
         x_forwarded = true;
         bind_addresses = [ "::1" "127.0.0.1" ];
         resources = [{
-          names = [ "client" "federation" ];
+          names = [ "client" "federation" "metrics" ];
           compress = false;
         }];
-      }
-        {
-          port = 9009;
-          type = "metrics";
-          tls = false;
-          bind_addresses = [ "::" ];
-          resources = [ ];
-        }];
+      }];
       admin_contact = "mailto:lotte@chir.rs";
       retention.enabled = true;
       database = {
@@ -84,6 +77,8 @@
         add_header Alt-Svc 'h3=":443"';
       '';
       synapse = {
+        forceSSL = false;
+        addSSL = true;
         listenAddresses = listenIPs;
         locations."/_matrix" = {
           proxyPass = "http://localhost:8008";

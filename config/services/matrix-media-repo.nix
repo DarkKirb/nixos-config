@@ -108,6 +108,11 @@ in
         return 200 '{ "m.homeserver": { "base_url": "https://matrix.chir.rs" } }';
       '';
     };
+    locations."/_synapse/metrics" = {
+      extraConfig = ''
+        return 404 'Not found';
+      '';
+    };
   };
   services.nginx.virtualHosts."chir.rs" = {
     locations."/.well-known/matrix/server" = {

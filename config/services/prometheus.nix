@@ -84,9 +84,10 @@
       }
       {
         job_name = "synapse";
+        metrics_path = "/_synapse/metrics";
         static_configs = [{
           targets = [
-            "nas.int.chir.rs:9009"
+            "matrix.int.chir.rs:80"
           ];
         }];
       }
