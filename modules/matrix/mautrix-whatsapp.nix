@@ -126,5 +126,8 @@ in
       group = "matrix-synapse";
       isSystemUser = true;
     };
+    services.matrix-synapse.settings.app_service_config_files = [
+      registrationFile
+    ];
   };
 }
