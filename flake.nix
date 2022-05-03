@@ -90,7 +90,7 @@ rec {
           nativeBuildInputs = with pkgs; [
             sops
             ssh-to-age
-            nix-prefetch-git
+            nix-prefetch
             jq
             bundix
           ];

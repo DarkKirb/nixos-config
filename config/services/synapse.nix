@@ -55,6 +55,10 @@
       signing_key_path = config.sops.secrets."services/synapse/private_key".path;
       encryption_enabled_by_default_for_room_type = "all";
       enable_metrics = true;
+      experimental_features = {
+        msc2716_enabled = true;
+        spaces_enabled = true;
+      };
     };
     withJemalloc = true;
   };

@@ -17,6 +17,7 @@
     ./services/rspamd.nix
     ./services/synapse.nix
     ./services/mautrix-telegram.nix
+    ./services/mautrix-whatsapp.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
