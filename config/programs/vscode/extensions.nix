@@ -84,12 +84,6 @@
     sha256 = "12vrn40cfm789qzsrjfy96ilfxzbdbmsr2h0ghz8spaw37fqqmbd";
   }
   {
-    name = "rust-analyzer";
-    publisher = "matklad";
-    version = "0.3.1043";
-    sha256 = "sha256-XiW6kou598qqvch/bSp3H22fkOf3Y3BrcROW1/vyXFM=";
-  }
-  {
     name = "remote-ssh";
     publisher = "ms-vscode-remote";
     version = "0.79.2022040715";

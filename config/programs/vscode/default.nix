@@ -2,7 +2,9 @@
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = false;
-    extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
+    extensions = [
+      (pkgs.callPackage ../../../packages/rust-analyzer.nix { })
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
     userSettings = {
       "diffEditor.codeLens" = true;
       "editor.bracketPairColorization.enabled" = true;
