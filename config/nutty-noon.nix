@@ -123,7 +123,6 @@
   system.stateVersion = "21.11";
 
   networking.wireguard.interfaces."wg0".ips = [ "fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437/64" ];
-  networking.nameservers = [ "192.168.2.1" ];
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
