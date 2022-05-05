@@ -187,7 +187,7 @@
       allowedIPs = [
         "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b/128"
       ];
-      endpoint = "192.168.2.2:51820";
+      endpoint = "192.168.2.1:51820";
     }
   ];
   # Build server stuff

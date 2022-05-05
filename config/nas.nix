@@ -19,6 +19,7 @@
     ./services/mautrix-telegram.nix
     ./services/mautrix-whatsapp.nix
     ./services/mautrix-signal.nix
+    ./services/router.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
@@ -132,15 +133,8 @@
     ipv4 = {
       addresses = [
         {
-          address = "192.168.2.2";
+          address = "192.168.2.1";
           prefixLength = 24;
-        }
-      ];
-      routes = [
-        {
-          address = "0.0.0.0";
-          prefixLength = 0;
-          via = "192.168.2.1";
         }
       ];
     };
