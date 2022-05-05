@@ -87,7 +87,7 @@
     name = "rust-analyzer";
     publisher = "matklad";
     version = "0.3.1043";
-    sha256 = "12ynf3hm35070dknr2kmzq9bq1i33zgc3ryamjprxi9964s78446";
+    sha256 = "sha256-XiW6kou598qqvch/bSp3H22fkOf3Y3BrcROW1/vyXFM=";
   }
   {
     name = "remote-ssh";
