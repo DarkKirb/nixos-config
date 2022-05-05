@@ -18,4 +18,5 @@
     iptables -A FORWARD -i br0 -j ACCEPT
     iptables -t nat -A POSTROUTING -o enp1s0f0u4 -s 192.168.2.0/24 -j MASQUERADE
   '';
+  networking.interfaces.enp1s0f0u4.macAddress = "00:d8:61:d0:de:1e"; # fucking ISP
 }
