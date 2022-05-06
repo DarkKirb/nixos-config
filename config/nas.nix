@@ -20,6 +20,7 @@
     ./services/mautrix-whatsapp.nix
     ./services/mautrix-signal.nix
     ./services/router.nix
+    ./services/syncthing.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
@@ -68,6 +69,68 @@
 
   fileSystems."/var/lib" = {
     device = "tank/nixos/var/lib";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+
+  fileSystems."/var/lib/syncthing" = {
+    device = "tank/nixos/var/lib/syncthing";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+
+  fileSystems."/var/lib/syncthing/.wine" = {
+    device = "tank/nixos/var/lib/syncthing/.wine";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+  fileSystems."/var/lib/syncthing/lennyface" = {
+    device = "tank/nixos/var/lib/syncthing/lennyface";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+  fileSystems."/var/lib/syncthing/Music-flac" = {
+    device = "tank/nixos/var/lib/syncthing/Music-flac";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+  fileSystems."/var/lib/syncthing/Studium" = {
+    device = "tank/nixos/var/lib/syncthing/Studium";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+  fileSystems."/var/lib/syncthing/Pictures" = {
+    device = "tank/nixos/var/lib/syncthing/Pictures";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+  fileSystems."/var/lib/syncthing/Data" = {
+    device = "tank/nixos/var/lib/syncthing/Data";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+  fileSystems."/var/lib/syncthing/CarolineFlac" = {
+    device = "tank/nixos/var/lib/syncthing/CarolineFlac";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+  fileSystems."/var/lib/syncthing/Camera" = {
+    device = "tank/nixos/var/lib/syncthing/Camera";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+  fileSystems."/var/lib/syncthing/reveng" = {
+    device = "tank/nixos/var/lib/syncthing/reveng";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+  fileSystems."/var/lib/syncthing/Music" = {
+    device = "tank/nixos/var/lib/syncthing/Music";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
+  fileSystems."/var/lib/syncthing/Documents" = {
+    device = "tank/nixos/var/lib/syncthing/Documents";
     fsType = "zfs";
     options = [ "zfsutil" ];
   };

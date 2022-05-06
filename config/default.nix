@@ -59,4 +59,5 @@
     pinentryFlavor = "curses";
   };
   users.mutableUsers = false;
+  boot.kernelParams = [ "nohibernate" ];
 }
