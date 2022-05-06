@@ -186,12 +186,6 @@
     sha256 = "11hzjd0gxkq37689rrr2aszxng5l9fwpgs9nnglq3zhfa1msyn08";
   }
   {
-    name = "vscode-lldb";
-    publisher = "vadimcn";
-    version = "1.7.0";
-    sha256 = "0sdy261fkccff13i0s6kiykkwisinasxy1n23m0xmw72i9w31rhf";
-  }
-  {
     name = "markdown-all-in-one";
     publisher = "yzhang";
     version = "3.4.3";
