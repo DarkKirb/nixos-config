@@ -74,4 +74,30 @@ in
     };
   };
   sops.secrets."services/restic/env".owner = "backup";
+  sops.secrets."services/restic/rclone.conf" = {
+    owner = "backup";
+    path = "/backup/.config/rclone/rclone.conf";
+  };
+  systemd.services.backup-rclone = {
+    enable = true;
+    description = "Upload backup to remote";
+    script = ''
+      ${pkgs.rclone}/bin/rclone sync /backup backup:backup-darkkirb-de/backup
+    '';
+    serviceConfig = {
+      User = "backup";
+      Group = "backup";
+      Type = "oneshot";
+    };
+  };
+  systemd.timers.backup-rclone = {
+    enable = true;
+    description = "Upload backup to remote";
+    requires = [ "backup-rclone.service" ];
+    wantedBy = [ "multi-user.target" ];
+    timerConfig = {
+      onBootSec = 300;
+      onUnitActiveSec = 86400;
+    };
+  };
 }
