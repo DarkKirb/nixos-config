@@ -53,7 +53,9 @@ in
     home = "/backup";
     isSystemUser = true;
     openssh.authorizedKeys.keys = [
-
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAN/rVZJuwiO44LwOqimpH4zyGehYUMF2ZhYFXUCkupP hydra-queue-runner@nas"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFuWXwZAQYnC2oso7In6BNNM3H+Ek7s6ygIuEvqE3YUf root@nutty-noon"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpO0Lh7eOE/EBttb/XWZ6ISiJ0RkmBYfruq3U6linEz root@nixos-8gb-fsn1-1"
     ];
     group = "backup";
   };
