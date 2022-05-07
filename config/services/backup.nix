@@ -58,6 +58,7 @@ in
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpO0Lh7eOE/EBttb/XWZ6ISiJ0RkmBYfruq3U6linEz root@nixos-8gb-fsn1-1"
     ];
     group = "backup";
+    useDefaultShell = true;
   };
   users.groups.backup = { };
   systemd.services.restic-prune = {
