@@ -6,12 +6,9 @@
     enable = true;
     countryCode = "DE";
     interface = "wlp6s0";
-    ssid = "🦝";
+    ssid = "racc";
     wpa = true;
     wpaPassphraseFile = config.sops.secrets."services/hostapd".path;
-    extraConfig = ''
-      utf8_ssid=1
-    '';
   };
   sops.secrets."services/hostapd" = {
     restartUnits = [
