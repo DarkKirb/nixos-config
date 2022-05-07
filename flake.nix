@@ -3,7 +3,9 @@ rec {
 
   # Use NixOS unstable
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs;
+    #nixpkgs.url = github:NixOS/nixpkgs;
+    # Fix regression
+    nixpkgs.url = github:DarkKirb/nixpkgs/fix-typo-171879;
     flake-utils.url = github:numtide/flake-utils;
     home-manager.url = "github:andresilva/home-manager/fix-systemd-services";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
