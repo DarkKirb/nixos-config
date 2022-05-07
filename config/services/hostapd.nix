@@ -9,6 +9,10 @@
     ssid = "racc";
     wpa = true;
     wpaPassphraseFile = config.sops.secrets."services/hostapd".path;
+    extraConfig = ''
+      wmm_enabled=1
+      ieee80211n=1
+    '';
   };
   sops.secrets."services/hostapd" = {
     restartUnits = [
