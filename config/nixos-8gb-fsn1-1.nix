@@ -176,13 +176,6 @@
 
     peers = [
       {
-        publicKey = "4nwQdXTrcTPKNNtyzoWpsIXg1+QfVchCYtwIFR9RCnc=";
-        allowedIPs = [
-          "fd0d:a262:1fa6:e621:966f:16df:af3f:f063/128"
-          "10.0.0.1/32"
-        ];
-      }
-      {
         publicKey = "YDh67pqmhWMPNWf1BYXeH4/GTScCWqoWuyIao3ZUcz4=";
         allowedIPs = [
           "fd0d:a262:1fa6:e621:480:b859:2a43:7101/128"
