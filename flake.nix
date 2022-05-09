@@ -91,6 +91,7 @@ rec {
             sops
             ssh-to-age
             nix-prefetch
+            nix-prefetch-git
             jq
             bundix
           ];

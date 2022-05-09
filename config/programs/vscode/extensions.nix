@@ -50,8 +50,8 @@
   {
     name = "copilot";
     publisher = "GitHub";
-    version = "1.17.5850";
-    sha256 = "0rzrga8yz0n2gmya4q5d683m0zfflf75ms9nnl6iqd13rxgk8psa";
+    version = "1.18.5858";
+    sha256 = "0gqxqlc8n7qvl9nyi7xr2a1di77zrpapxgg9i8llnz4jr19ciah6";
   }
   {
     name = "vscode-test-explorer";
@@ -92,8 +92,8 @@
   {
     name = "cmake-tools";
     publisher = "ms-vscode";
-    version = "1.11.15";
-    sha256 = "0gb2vdls0g7jhrc53z4qlddi27kj3cz7d3pgszlzf82w2l9cya1w";
+    version = "1.11.17";
+    sha256 = "1gl5dr8z0l8p08g858j235s5m3f2qvdkjynhz91ng45qm7hnlfy8";
   }
   {
     name = "cpptools";
@@ -134,8 +134,8 @@
   {
     name = "material-icon-theme";
     publisher = "PKief";
-    version = "4.16.0";
-    sha256 = "1alj7xbldfj35sajfkas3fspz5n3c6h9q1016qdagns1hmdfzq80";
+    version = "4.17.0";
+    sha256 = "1dmmqc003v45pmiz6yccpnvw94hbvbg7fhy24njii0kwpxbv4q7l";
   }
   {
     name = "vscode-yaml";

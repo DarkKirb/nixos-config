@@ -110,6 +110,6 @@ in
 
     }*/
 fetchurl {
-  url = "https://ci.lucko.me/job/LuckPerms/1426/artifact/bukkit/loader/build/libs/LuckPerms-Bukkit-5.4.18.jar";
-  sha256 = "3fa8900bce939de37dc75622177ff3f9883fbc552a1fd6f7582e4fadbf2c4acb";
+  url = "https://ci.lucko.me/job/LuckPerms/1429/artifact/bukkit/loader/build/libs/LuckPerms-Bukkit-5.4.21.jar";
+  sha256 = "bd9090b3cf1412d77ff58ee0c2c7229184306cc83ff18ff4681ea1b7116b3747";
 }

@@ -45,6 +45,7 @@ in
       S3_READ_TIMEOUT = "120";
       S3_MULTIPART_THRESHOLD = "5242880";
       STATSD_ADDR = "127.0.0.1:9125";
+      MAX_TOOT_CHARS = "58913";
     };
     redis.createLocally = false;
     otpSecretFile = config.sops.secrets."services/mastodon/otpSecret".path;
