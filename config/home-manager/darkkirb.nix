@@ -18,7 +18,6 @@
     ../programs/yubikey.nix
     ../programs/keybase.nix
     ../programs/keepass.nix
-    ../programs/alacritty.nix
     ../programs/kicad.nix
     ../programs/vscode
     ../programs/misc.nix
