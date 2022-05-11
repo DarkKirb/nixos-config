@@ -10,13 +10,13 @@
       don-t-fuck-with-paste
       i-dont-care-about-cookies
       keepassxc-browser
+      plasma-integration
       privacy-badger
       privacy-possum
       sponsorblock
       stylus
       tree-style-tab
       ublock-origin
-      umatrix
       unpaywall
     ];
     profiles = {
