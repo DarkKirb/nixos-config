@@ -10,7 +10,7 @@ let
 in
 {
   imports = [
-    ./services/sway.nix
+    ./services/kde.nix
     ./services/pipewire.nix
   ];
   fonts.fonts = with pkgs; [
