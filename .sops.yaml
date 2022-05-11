@@ -33,3 +33,10 @@ creation_rules:
           - *nas
         pgp:
           - *lotte
+  - path_regex: secrets/desktop\.yaml$
+    key_groups:
+      - age:
+          - *nutty-noon
+          - *thinkrac
+        pgp:
+          - *lotte

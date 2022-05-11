@@ -12,6 +12,7 @@ in
   imports = [
     ./services/kde.nix
     ./services/pipewire.nix
+    ./desktop-secrets.nix
   ];
   fonts.fonts = with pkgs; [
     noto-fonts
