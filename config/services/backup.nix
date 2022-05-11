@@ -99,8 +99,8 @@ in
     requires = [ "backup-rclone.service" ];
     wantedBy = [ "multi-user.target" ];
     timerConfig = {
-      onBootSec = 300;
-      onUnitActiveSec = 86400;
+      OnBootSec = 300;
+      OnUnitActiveSec = 86400;
     };
   };
 }
