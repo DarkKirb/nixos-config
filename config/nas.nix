@@ -1,4 +1,4 @@
-{ config, pkgs, modulesPath, lib, nixos-hardware, ... } @ args: {
+{ config, pkgs, modulesPath, lib, nixos-hardware, mrobbetts-extra, ... } @ args: {
   networking.hostName = "nas";
   networking.hostId = "70af00ed";
 
@@ -21,6 +21,7 @@
     ./services/mautrix-signal.nix
     ./services/router.nix
     ./services/syncthing.nix
+    "${mrobbetts-extra}/tc_cake.nix"
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
@@ -249,4 +250,37 @@
   hardware.nvidia.prime.offload.enable = false;
   services.xserver.videoDrivers = [ "nvidia" ];
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix { desktop = false; inherit args; };
+
+  networking.tc_cake = {
+    enp1s0f0u4 = {
+      shapeEgress = {
+        bandwidth = "4mbit";
+        extraArgs = "docsis nat ack-filter";
+      };
+      shapeIngress = {
+        bandwidth = "33mbit";
+        ifb = "ifb4enp1s0f0u4";
+      };
+    };
+    enp8s0 = {
+      shapeEgress = {
+        bandwidth = "1gbit";
+        extraArgs = "ethernet nonat ack-filter lan";
+      };
+      shapeIngress = {
+        bandwidth = "1gbit";
+        ifb = "ifb4enp8s0";
+      };
+    };
+    wlp6s0 = {
+      shapeEgress = {
+        bandwidth = "65mbit";
+        extraArgs = "ethernet nonat ack-filter lan";
+      };
+      shapeIngress = {
+        bandwidth = "65mbit";
+        ifb = "ifb4wlp6s0";
+      };
+    };
+  };
 }
