@@ -9,4 +9,5 @@
     enable = true;
     indicator = true;
   };
+  home.file.".face.icon".source = ../../extra/.face.icon;
 }
