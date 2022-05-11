@@ -2,7 +2,6 @@ desktop: { pkgs, ... }: {
   imports = [
     ../programs/zsh.nix
     ../programs/vim.nix
-    ../programs/mail.nix
     ../programs/tmux.nix
     ../programs/ssh.nix
   ];
