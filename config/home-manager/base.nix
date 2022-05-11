@@ -16,17 +16,6 @@ desktop: { pkgs, ... }: {
       initExtraBeforeCompInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       initExtra = ''
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-        if [[ ! $TMUX ]]; then
-          # figure out the session to use
-          SESSION_NAME="$USER"
-          if [[ $SSH_CLIENT ]]; then
-            SESSION_NAME="$SESSION_NAME-$(echo $SSH_CLIENT | ${pkgs.gawk}/bin/awk '{print $1}' | sed 's/[\.\:]/_/g')"
-            ${if desktop then ''elif [[ $WAYLAND_DISPLAY ]]; then
-            SESSION_NAME="$SESSION_NAME-$(${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '.. | select(.focused?) | .rect | "\(.width)x\(.height)"')"'' else ""}
-          fi
-          ${pkgs.tmux}/bin/tmux attach-session -t "$SESSION_NAME" || ${pkgs.tmux}/bin/tmux new-session -s "$SESSION_NAME"
-        fi
       '';
       sessionVariables = {
         SDL_VIDEODRIVER = "wayland";
