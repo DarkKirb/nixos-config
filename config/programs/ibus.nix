@@ -23,4 +23,19 @@ in
       ExecStart = "${ibusPackage}/bin/ibus-daemon --xim";
     };
   };
+  dconf.settings = {
+    "desktop/ibus/general" = {
+      engines-order = [ "xkb:de:neo:deu" "mozc-jp" ];
+      preload-engines = [ "xkb:de:neo:deu" "mozc-jp" ];
+      use-system-keyboard-layout = true;
+      version = "1.5.26";
+    };
+    "desktop/ibus/panel" = {
+      show = 0;
+      use-glyph-from-engine-lang = true;
+    };
+    "desktop/ibus/emoji" = {
+      hotkey = [ "<Control><Shift>e" ];
+    };
+  };
 }
