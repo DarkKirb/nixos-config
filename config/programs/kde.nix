@@ -4,6 +4,9 @@
   ];
   home.packages = with pkgs; [
     kde-gtk-config
-    kdeconnect
   ];
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
 }
