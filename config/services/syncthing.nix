@@ -136,4 +136,5 @@
       };
     };
   };
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [ 8384 ];
 }
