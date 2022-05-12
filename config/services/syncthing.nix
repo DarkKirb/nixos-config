@@ -37,20 +37,20 @@
       };
     };
     folders = {
-      ".wine" = {
+      "/var/lib/syncthing/.wine" = {
         devices = [
           "nutty-noon"
           "thinkrac"
         ];
         id = "9dsac-mdcw7";
       };
-      "lennyface" = {
+      "/var/lib/syncthing/lennyface" = {
         devices = [
           "Huskydev"
         ];
         id = "aa7tq-xljao";
       };
-      "Music-flac" = {
+      "/var/lib/syncthing/Music-flac" = {
         devices = [
           "HuskyPhone"
           "nutty-noon"
@@ -62,7 +62,7 @@
         ];
         id = "aahbh-r3esw";
       };
-      "Studium" = {
+      "/var/lib/syncthing/Studium" = {
         devices = [
           "nutty-noon"
           "thinkrac"
@@ -70,7 +70,7 @@
         ];
         id = "esljk-osrt6";
       };
-      Pictures = {
+      "/var/lib/syncthing/Pictures" = {
         devices = [
           "nutty-noon"
           "thinkrac"
@@ -79,7 +79,7 @@
         ];
         id = "f3dqm-u2jtt";
       };
-      Data = {
+      "/var/lib/syncthing/Data" = {
         devices = [
           "nutty-noon"
           "thinkrac"
@@ -88,7 +88,7 @@
         ];
         id = "m6n5r-kkiyj";
       };
-      CarolineFlac = {
+      "/var/lib/syncthing/CarolineFlac" = {
         devices = [
           "HuskyPhone"
           "nutty-noon"
@@ -100,7 +100,7 @@
         ];
         id = "qgvvc-uiohe";
       };
-      Camera = {
+      "/var/lib/syncthing/Camera" = {
         devices = [
           "nutty-noon"
           "thinkrac"
@@ -109,14 +109,14 @@
         ];
         id = "redmi_note_6_pro_y714-photos";
       };
-      reveng = {
+      "/var/lib/syncthing/reveng" = {
         devices = [
           "nutty-noon"
           "thinkrac"
         ];
         id = "txvu6-h3djq";
       };
-      Music = {
+      "/var/lib/syncthing/Music" = {
         devices = [
           "nutty-noon"
           "thinkrac"
@@ -125,7 +125,7 @@
         ];
         id = "uotge-rsr0d";
       };
-      Documents = {
+      "/var/lib/syncthing/Documents" = {
         devices = [
           "nutty-noon"
           "thinkrac"
