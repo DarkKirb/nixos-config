@@ -7,4 +7,16 @@
     layout = "de";
     xkbVariant = "neo";
   };
+  networking.firewall.interfaces."wg0".allowedTCPPortRanges = [
+    {
+      from = 1714;
+      to = 1764;
+    }
+  ];
+  networking.firewall.interfaces."wg0".allowedUDPPortRanges = [
+    {
+      from = 1714;
+      to = 1764;
+    }
+  ];
 }
