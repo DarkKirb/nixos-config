@@ -191,5 +191,11 @@
     version = "3.4.3";
     sha256 = "0z0sdb5vmx1waln5k9fk6s6lj1pzpcm3hwm4xc47jz62iq8930m3";
   }
+  {
+    name = "editorconfig";
+    publisher = "editorconfig";
+    version = "0.16.4";
+    sha256 = "sha256-j+P2oprpH0rzqI0VKt0JbZG19EDE7e7+kAb3MGGCRDk=";
+  }
 ];
 }
