@@ -1,6 +1,7 @@
 { ... }: {
   services.syncthing = {
     enable = true;
+    guiAddress = "[::]:8384";
     devices = {
       HuskyPhone = {
         id = "K4WRMGA-3PNENMC-FT4FGR2-DBOJUAW-QG6GS7E-WDJWA5Q-7KEQI3K-T4D3AA3";
