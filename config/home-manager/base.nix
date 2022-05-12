@@ -17,11 +17,6 @@ desktop: { pkgs, ... }: {
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
       '';
       sessionVariables = {
-        SDL_VIDEODRIVER = "wayland";
-        QT_QPA_PLATFORM = "wayland";
-        QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
-        _JAVA_AWT_WM_NONREPARENTING = 1;
-        MOZ_ENABLE_WAYLAND = 1;
         GTK_IM_MODULE = "ibus";
         QT_IM_MODULE = "ibus";
         XMODIFIERS = "@im=ibus";
