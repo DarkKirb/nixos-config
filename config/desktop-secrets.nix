@@ -13,7 +13,7 @@ let mkSopsSecret =
   };
 in
 {
-  sops.secrets."desktop/aws/credentials" = builtins.listToAttrs (map mkSopsSecret [
+  sops.secrets = builtins.listToAttrs (map mkSopsSecret [
     {
       name = "aws/credentials";
       path = ".aws/credentials";
