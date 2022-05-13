@@ -253,6 +253,7 @@
 
   networking.tc_cake = {
     enp1s0f0u4 = {
+      disableOffload = true;
       shapeEgress = {
         bandwidth = "4mbit";
         extraArgs = "docsis nat ack-filter";
@@ -263,6 +264,7 @@
       };
     };
     enp8s0 = {
+      disableOffload = true;
       shapeEgress = {
         bandwidth = "1gbit";
         extraArgs = "ethernet nonat ack-filter lan";
@@ -273,6 +275,7 @@
       };
     };
     wlp6s0 = {
+      disableOffload = true;
       shapeEgress = {
         bandwidth = "65mbit";
         extraArgs = "ethernet nonat ack-filter lan";

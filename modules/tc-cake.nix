@@ -30,16 +30,28 @@ let
             ${pkgs.ethtool}/bin/ethtool -K ${name} gro off gso off tso off
           ''}
 
-          # Egress control.
+          # Make sure that the cake is reset
           ${optionalString (opts.shapeEgress.bandwidth != null) ''
-            ${pkgs.iproute}/bin/tc qdisc add dev ${name} root cake bandwidth ${opts.shapeEgress.bandwidth} ${opts.shapeEgress.extraArgs}
+            ${pkgs.iproute}/bin/tc qdisc del dev ${name} root || true
+            ${pkgs.iproute}/bin/tc qdisc del dev ${name} ingress || true
+          ''}
+          ${optionalString (opts.shapeIngress.bandwidth != null) ''
+            ${pkgs.iproute}/bin/tc qdisc del dev ${opts.shapeIngress.ifb} root || true
+            ${pkgs.iproute}/bin/tc qdisc del dev ${opts.shapeIngress.ifb} ingress || true
           ''}
 
           # Ingress control.
           ${optionalString (opts.shapeIngress.bandwidth != null) ''
             ${pkgs.iproute}/bin/tc qdisc add dev ${name} handle ffff: ingress
+            ${pkgs.iproute}/bin/ip link add name ${opts.shapeIngress.ifb} type ifb || true
+            ${pkgs.iproute}/bin/ip link set ${opts.shapeIngress.ifb} up
             ${pkgs.iproute}/bin/tc qdisc add dev ${opts.shapeIngress.ifb} root cake bandwidth ${opts.shapeIngress.bandwidth} ingress
-            ${pkgs.iproute}/bin/tc filter add dev ${name} parent ffff: protocol ip u32 match u32 0 0 action mirred egress redirect dev ${opts.shapeIngress.ifb}
+            ${pkgs.iproute}/bin/tc filter add dev ${name} parent ffff: protocol all u32 match u32 0 0 action mirred egress redirect dev ${opts.shapeIngress.ifb}
+          ''}
+
+          # Egress control.
+          ${optionalString (opts.shapeEgress.bandwidth != null) ''
+            ${pkgs.iproute}/bin/tc qdisc add dev ${name} root cake bandwidth ${opts.shapeEgress.bandwidth} ${opts.shapeEgress.extraArgs}
           ''}
         '';
       };
