@@ -249,22 +249,6 @@
         "url": "https://git.chir.rs/CarolineHusky/MiiFox.net"
       }
     },
-    "mrobbetts-extra": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1651793149,
-        "narHash": "sha256-b2PGTx8FOypHN5yvyAYYfeBqI0MLAQ4t+9g1NJGSTvM=",
-        "owner": "mrobbetts",
-        "repo": "nixos_extra_modules",
-        "rev": "0fb4e94fceaef7fed497562bab31922a6bfd24b3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mrobbetts",
-        "repo": "nixos_extra_modules",
-        "type": "github"
-      }
-    },
     "newNixpkgs": {
       "locked": {
         "lastModified": 1647380550,
@@ -488,7 +472,6 @@
         "hosts-list": "hosts-list",
         "hydra": "hydra",
         "miifox-net": "miifox-net",
-        "mrobbetts-extra": "mrobbetts-extra",
         "nix": "nix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",

@@ -1,4 +1,4 @@
-{ config, pkgs, modulesPath, lib, nixos-hardware, mrobbetts-extra, ... } @ args: {
+{ config, pkgs, modulesPath, lib, nixos-hardware, ... } @ args: {
   networking.hostName = "nas";
   networking.hostId = "70af00ed";
 
@@ -21,7 +21,7 @@
     ./services/mautrix-signal.nix
     ./services/router.nix
     ./services/syncthing.nix
-    "${mrobbetts-extra}/tc_cake.nix"
+    ../modules/tc-cake.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
