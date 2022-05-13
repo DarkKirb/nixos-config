@@ -163,11 +163,11 @@
     "hosts-list": {
       "flake": false,
       "locked": {
-        "lastModified": 1652234048,
-        "narHash": "sha256-JmszalzB1WphIKN6VrwNn7hS/swqvqGIVL+IXRltTm8=",
+        "lastModified": 1652458837,
+        "narHash": "sha256-2kLf3CpLNYHnJVwjGDGuzvZ0GuJ2AqTmQfoMnTiFfwI=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "8ded82cd4d9fc8092a774d1077dd6d580cc31057",
+        "rev": "0677b534b17005943694c869426ca3b97bd0a46b",
         "type": "github"
       },
       "original": {
@@ -396,11 +396,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1652455842,
-        "narHash": "sha256-NY2CUKVAbYiC3Z1Pb+LLZvV27B8tfRKzd82j125M6Xk=",
+        "lastModified": 1652460572,
+        "narHash": "sha256-MJr0HeFJRio6ZaoZgbsvcMwwHCN7dk5yU/8sZvPE6HU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6896ebd60f06b91ddd5f10ba0d5b065dec86d182",
+        "rev": "dc91515841780fadb4b86aab8e0514660274045c",
         "type": "github"
       },
       "original": {
@@ -434,11 +434,11 @@
         "quazip": "quazip"
       },
       "locked": {
-        "lastModified": 1652445746,
-        "narHash": "sha256-2on9uFYbelPPyKhv9z9K7vjog5G+WWcZfuIkmU/cSr0=",
+        "lastModified": 1652458660,
+        "narHash": "sha256-jiEYnyCt1mHeV+Bv47nRrWvBIukQO6YltBjIKM+AAQc=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "c83e16aba4651e4d8cd8eaab2fc6e6d0f51f465a",
+        "rev": "8dd68580a6b34ca9e0e5ef399ea592899014e7d1",
         "type": "github"
       },
       "original": {
