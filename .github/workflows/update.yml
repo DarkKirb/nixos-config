@@ -51,6 +51,7 @@ jobs:
           body="${body//$'\r'/'%0D'}"
           echo ::set-output name=body::$body
       - uses: peter-evans/create-pull-request@v4
+        if: steps.update-step.outputs.body != ''
         with:
           token: ${{ secrets.PUBLISH_TOKEN }}
           body: ${{ steps.update-step.outputs.body }}
@@ -65,3 +66,4 @@ jobs:
             automated
           assignees: darkkirb
           reviewers: darkkirb
+          add-paths: flake.lock
