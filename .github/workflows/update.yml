@@ -1,7 +1,7 @@
 name: Update flake
 on:
   schedule:
-    - cron: "35 * * * *"
+    - cron: "35 4 * * *"
   workflow_dispatch: {}
 jobs:
   update-flake:
@@ -16,8 +16,52 @@ jobs:
           extra_nix_config: |
             substituters = https://f000.backblazeb2.com/file/cache-chir-rs/ https://cache.nixos.org/
             trusted-public-keys = nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=
-      - run: nix flake update
-      - run: git config user.email autoupdate@chir.rs
-      - run: git config user.name "Autoupdater"
-      - run: git commit -am "Automatic update" || true
-      - run: git push
+      # instantiate the current derivations
+      - id: update-step
+        run: |
+          for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
+            nix show-derivation '.#hydraJobs.$job.x86_64-linux' > old-$job.json
+          done
+
+          nix flake update
+
+          for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
+            nix show-derivation '.#hydraJobs.$job.x86_64-linux' > new-$job.json
+
+            python scripts/diff-drvs old-$job.json new-$job.json > report-$job.txt
+            cat report-$job.txt >> full-report.txt
+          done
+
+          if [ -s full-report.txt ]; then
+            echo "Automatic flake.lock update" > pr-message.txt
+            echo "" >> pr-message.txt
+            for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
+              echo "## Changes for $job:" >> pr-message.txt
+              echo "```" >> pr-message.txt
+              cat report-$job.txt >> pr-message.txt
+              echo "```" >> pr-message.txt
+            done
+          else
+            touch pr-message.txt
+          fi
+
+          body=$(cat pr-message.txt)
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}"
+          echo ::set-output name=body::$body
+      - uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.PUBLISH_TOKEN }}
+          body: ${{ steps.update-step.outputs.body }}
+          commit-message: Update flake.lock
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          branch: update-flake
+          delete-branch: true
+          title: "Update flake.nix"
+          labels: |
+            update
+            automated
+          assignees: darkkirb
+          reviewers: darkkirb
