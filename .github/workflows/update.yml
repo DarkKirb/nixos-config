@@ -28,7 +28,7 @@ jobs:
           for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
             nix show-derivation ".#hydraJobs.$job.x86_64-linux" > new-$job.json
 
-            python scripts/diff-drvs old-$job.json new-$job.json > report-$job.txt
+            python scripts/diff-drvs.py old-$job.json new-$job.json > report-$job.txt
             cat report-$job.txt >> full-report.txt
           done
 
