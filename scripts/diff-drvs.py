@@ -9,8 +9,8 @@ new_drv = sys.argv[2]
 
 # Read both derivations recursively
 
-old_derivation = json.loads(old_drv)
-new_derivation = json.loads(new_drv)
+old_derivation = json.load(open(old_drv))
+new_derivation = json.load(open(new_drv))
 
 packages = {}
 
