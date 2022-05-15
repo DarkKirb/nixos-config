@@ -5,7 +5,7 @@
     thunderbird
   ];
   xdg.configFile."gdb/gdbinit".text = "set auto-load safe-path /nix/store";
-  xsettingsd = {
+  services.xsettingsd = {
     enable = true;
     settings = {
       "Gtk/EnableAnimations" = 1;
