@@ -1,8 +1,8 @@
 diff --git a/src/hydra-eval-jobs/hydra-eval-jobs.cc b/src/hydra-eval-jobs/hydra-eval-jobs.cc
-index 7485b297..24cd76b3 100644
+index 918bd451..a23c00a3 100644
 --- a/src/hydra-eval-jobs/hydra-eval-jobs.cc
 +++ b/src/hydra-eval-jobs/hydra-eval-jobs.cc
-@@ -284,7 +284,7 @@ int main(int argc, char * * argv)
+@@ -306,7 +306,7 @@ int main(int argc, char * * argv)
  
          /* Prevent access to paths outside of the Nix search path and
             to the environment. */
@@ -152,3 +152,16 @@ index fe791533..c0271833 100644
                      }
                  }
              }
+diff --git a/src/script/hydra-eval-jobset b/src/script/hydra-eval-jobset
+index 8804b2bb..c93ce7de 100755
+--- a/src/script/hydra-eval-jobset
++++ b/src/script/hydra-eval-jobset
+@@ -313,6 +313,8 @@ sub inputsToArgs {
+     my ($inputInfo) = @_;
+     my @res = ();
+ 
++    push @res, "-I", "store=/nix/store";
++
+     foreach my $input (sort keys %{$inputInfo}) {
+         push @res, "-I", "$input=$inputInfo->{$input}->[0]->{storePath}"
+             if scalar @{$inputInfo->{$input}} == 1
