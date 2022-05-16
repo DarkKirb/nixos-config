@@ -37,9 +37,9 @@ jobs:
             echo "" >> pr-message.txt
             for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
               echo "## Changes for $job:" >> pr-message.txt
-              echo "```" >> pr-message.txt
+              echo '```' >> pr-message.txt
               cat report-$job.txt >> pr-message.txt
-              echo "```" >> pr-message.txt
+              echo '```' >> pr-message.txt
             done
           else
             touch pr-message.txt
@@ -57,7 +57,7 @@ jobs:
           body: ${{ steps.update-step.outputs.body }}
           commit-message: Update flake.lock
           committer: GitHub <noreply@github.com>
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           branch: update-flake
           delete-branch: true
           title: "Update flake.nix"
