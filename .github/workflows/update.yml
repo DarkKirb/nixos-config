@@ -53,7 +53,7 @@ jobs:
       - uses: peter-evans/create-pull-request@v4
         if: steps.update-step.outputs.body != ''
         with:
-          token: ${{ secrets.PUBLISH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           body: ${{ steps.update-step.outputs.body }}
           commit-message: Update flake.lock
           committer: GitHub <noreply@github.com>
