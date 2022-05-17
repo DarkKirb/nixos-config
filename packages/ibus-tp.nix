@@ -10,9 +10,11 @@
   buildInputs = [ ibus ibus-engines.table ];
 
   buildPhase = ''
-    ibus-table-createdb -n tokipona.db tokipona.txt
+    export HOME=$(pwd)
+    ibus-table-createdb -n tokipona.db -s tokipona.txt
   '';
   installPhase = ''
     install -m444 -Dt $out/share/ibus-table/tables tokipona.db
   '';
+  meta.isIbusEngine = true;
 }
