@@ -19,7 +19,7 @@ in
     noto-fonts-cjk
     noto-fonts-emoji
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Noto" ]; })
-    (import ../packages/linja-sike.nix pkgs)
+    (pkgs.callPackage ../packages/linja-nanpa.nix { })
   ];
 
 
