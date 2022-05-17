@@ -263,27 +263,5 @@
         ifb = "ifb4enp1s0f0u4";
       };
     };
-    enp8s0 = {
-      disableOffload = true;
-      shapeEgress = {
-        bandwidth = "1gbit";
-        extraArgs = "ethernet nonat ack-filter lan";
-      };
-      shapeIngress = {
-        bandwidth = "1gbit";
-        ifb = "ifb4enp8s0";
-      };
-    };
-    wlp6s0 = {
-      disableOffload = true;
-      shapeEgress = {
-        bandwidth = "65mbit";
-        extraArgs = "ethernet nonat ack-filter lan";
-      };
-      shapeIngress = {
-        bandwidth = "65mbit";
-        ifb = "ifb4wlp6s0";
-      };
-    };
   };
 }
