@@ -30,4 +30,18 @@
     384000
   ];
   services.pipewire.config.pipewire."context.properties"."default.clock.quantum" = 8192;
+  services.pipewire.config.pipewire-pulse = {
+    "pusle.rules" = [
+      {
+        matches = [{
+          "application.process.binary" = "Discord";
+        }];
+        actions = {
+          update-props = {
+            "pulse.min.quantum" = "1024/48000";
+          };
+        };
+      }
+    ];
+  };
 }
