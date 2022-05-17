@@ -60,6 +60,7 @@ in
       table
       table-others
       uniemoji
+      (pkgs.callPackage ../packages/ibus-tp.nix { })
     ];
   };
   # For syncthing
