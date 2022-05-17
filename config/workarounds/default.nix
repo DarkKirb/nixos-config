@@ -1,4 +1,4 @@
-{ system, pkgs, nixpkgs, hydra, ... }: with pkgs;
+{ system, pkgs, nixpkgs, hydra, nixpkgs-noto-variable, ... }: with pkgs;
 let
   hydra-pkg = hydra.defaultPackage.${system};
   rtf-tokenize = with python3Packages; buildPythonPackage rec {
@@ -58,6 +58,7 @@ let
     '';
     installCheckPhase = "true";
   };
+  noto-variable = import nixpkgs-noto-variable { inherit system; };
 in
 {
   nixpkgs.overlays = [
@@ -97,6 +98,7 @@ in
           sed -i 's/gtk_compose_table_save_cache (compose_table);//' gtk/gtkcomposetable.c
         '';
       });
+      noto-fonts-cjk = noto-variable.noto-fonts-cjk;
     })
   ];
 }
