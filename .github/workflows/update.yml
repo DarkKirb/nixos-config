@@ -33,7 +33,7 @@ jobs:
             echo "</details>" >> report
           done
 
-          body=$(cat report.txt)
+          body=$(cat report)
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}"
