@@ -95,6 +95,7 @@ rec {
             jq
             bundix
             python3
+            python3Packages.yapf
           ];
         };
       hydraJobs = (builtins.listToAttrs (map
