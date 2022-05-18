@@ -216,7 +216,7 @@ let dsquotes = "''"; in
       rust-vim # for proper syntax highlighting
     ];
     extraPackages = with pkgs; [
-      nodejs-17_x
+      nodejs_latest
     ];
   };
 }
