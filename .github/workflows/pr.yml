@@ -1,0 +1,33 @@
+name: Pull request diff
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  diff-expr:
+    name: Diff nix expressions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v17
+        with:
+          extra_nix_config: |
+            substituters = https://cache.nixos.org/ https://f000.backblazeb2.com/file/cache-chir-rs/
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=
+      - run: |
+          echo "Difference between this PR and main:" > review
+          echo "" >> review
+
+          for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
+            old_job=$(nix build --dry-run "github:DarkKirb/nixos-config/main#hydraJobs.$job.x86_64-linux" 2>&1 | tail -n1)
+            new_job=$(nix build --dry-run ".#hydraJobs.$job.x86_64-linux" 2>&1 | tail -n1)
+            echo "<details>" >> review
+            echo "<summary>expression difference for $job</summary>" >> review
+            nix run 'nixpkgs#nix-diff' $old_job $new_job >> review
+            echo "</details>" >> review
+          done
+      - uses: harupy/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: review
