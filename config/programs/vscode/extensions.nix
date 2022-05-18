@@ -197,5 +197,11 @@
     version = "0.16.4";
     sha256 = "sha256-j+P2oprpH0rzqI0VKt0JbZG19EDE7e7+kAb3MGGCRDk=";
   }
+  {
+    name = "python";
+    publisher = "ms-python";
+    version = "2022.6.2";
+    sha256 = "sha256-dGVwW4PtIPJhnpqcmUPDEjejaAgkvZ56tRTk8MO2XRM=";
+  }
 ];
 }

@@ -94,6 +94,7 @@ rec {
             nix-prefetch-git
             jq
             bundix
+            python3
           ];
         };
       hydraJobs = (builtins.listToAttrs (map
