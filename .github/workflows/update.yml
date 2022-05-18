@@ -23,8 +23,10 @@ jobs:
           echo "Difference between this PR and main:" > report
           echo "" >> report
           for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
-            old_job=$(nix build --dry-run "github:DarkKirb/nixos-config/main#$hydraJobs.$job.x86_64-linux" 2>&1 | tail -n1)
-            new_job=$(nix build --dry-run ".#$hydraJobs.$job.x86_64-linux" 2>&1 | tail -n1)
+            old_job=$(nix build --dry-run "github:DarkKirb/nixos-config/main#hydraJobs.$job.x86_64-linux" 2>&1 | tail -n1)
+            new_job=$(nix build --dry-run ".#hydraJobs.$job.x86_64-linux" 2>&1 | tail -n1)
+            echo $old_job
+            echo $new_job
             echo "<details>" >> report
             echo "<summary>expression difference for $job</summary>" >> report
             nix run 'nixpkgs#nix-diff' $old_job $new_job >> report
