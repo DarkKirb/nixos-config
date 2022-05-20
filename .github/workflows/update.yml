@@ -65,4 +65,4 @@ jobs:
         if: steps.update-step.outputs.artifact != ''
         with:
           name: deriv-diff
-          path: ${{ steps.update-step.outputs.artifact }}
+          path: ${{ github.workspace }}/${{ steps.update-step.outputs.artifact }}
