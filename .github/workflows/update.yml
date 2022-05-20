@@ -33,6 +33,12 @@ jobs:
             echo "</details>" >> report
           done
 
+          if [ $(wc -c report) -gt 131072 ]; then
+            mv report report-artifact.txt
+            echo "Difference is too large for github. Please check the artifact" > report
+            echo ::set-output name=artifact::report-artifact.txt
+          fi
+
           body=$(cat report)
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
@@ -55,3 +61,8 @@ jobs:
           assignees: darkkirb
           reviewers: darkkirb
           add-paths: flake.lock
+      - uses: actions/upload-artifact@v3
+        if: steps.update-step.outputs.artifact != ''
+        with:
+          name: deriv-diff
+          path: ${{ steps.update-step.outputs.artifact }}
