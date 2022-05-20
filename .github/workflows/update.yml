@@ -44,6 +44,11 @@ jobs:
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}"
           echo ::set-output name=body::$body
+      - uses: actions/upload-artifact@v3
+        if: steps.update-step.outputs.artifact != ''
+        with:
+          name: deriv-diff
+          path: ${{ github.workspace }}/${{ steps.update-step.outputs.artifact }}
       - uses: peter-evans/create-pull-request@v4
         if: steps.update-step.outputs.body != ''
         with:
@@ -61,8 +66,3 @@ jobs:
           assignees: darkkirb
           reviewers: darkkirb
           add-paths: flake.lock
-      - uses: actions/upload-artifact@v3
-        if: steps.update-step.outputs.artifact != ''
-        with:
-          name: deriv-diff
-          path: ${{ github.workspace }}/${{ steps.update-step.outputs.artifact }}
