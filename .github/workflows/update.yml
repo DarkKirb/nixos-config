@@ -33,7 +33,7 @@ jobs:
             echo "</details>" >> report
           done
 
-          if [ $(wc -c report) -gt 131072 ]; then
+          if [ "$(wc -c report | awk '{print $1}')" -gt 131072 ]; then
             mv report report-artifact.txt
             echo "Difference is too large for github. Please check the artifact" > report
             echo ::set-output name=artifact::report-artifact.txt
