@@ -218,4 +218,5 @@
     "gccarch-skylake"
     "ca-derivations"
   ];
+  nix.settings.auto-optimise-store = true;
 }

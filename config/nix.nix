@@ -8,7 +8,6 @@
       sandbox = true;
       trusted-users = [ "@wheel" ];
       require-sigs = true;
-      auto-optimise-store = true;
       builders-use-substitutes = true;
       substituters = [
         "https://f000.backblazeb2.com/file/cache-chir-rs/"
@@ -26,10 +25,6 @@
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
-    };
-    optimise = {
-      automatic = true;
-      dates = [ "weekly" ];
     };
     buildMachines = [
       #{
