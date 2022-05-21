@@ -34,7 +34,7 @@
     "pusle.rules" = [
       {
         matches = [{
-          "application.process.binary" = "Discord";
+          "application.process.binary" = ".Discord-wrapped";
         }];
         actions = {
           update-props = {
