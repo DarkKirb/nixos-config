@@ -22,7 +22,10 @@ executor: ThreadPoolExecutor = ThreadPoolExecutor()
 F = TypeVar('F', bound=Callable[..., Any])
 T = TypeVar('T')
 
-def with_backoff(f: Callable[..., Awaitable[T]]) -> Callable[..., Awaitable[T]]:
+
+def with_backoff(
+        f: Callable[..., Awaitable[T]]) -> Callable[..., Awaitable[T]]:
+
     async def with_backoff_wrapper(*args: Any, **kwargs: Any) -> T:
         last_delay = 2
         while True:
@@ -32,14 +35,17 @@ def with_backoff(f: Callable[..., Awaitable[T]]) -> Callable[..., Awaitable[T]]:
                 print(f"{e}")
                 await asyncio.sleep(last_delay)
                 last_delay *= last_delay
+
     return with_backoff_wrapper
 
 
 def aio(f: Callable[..., T]) -> Callable[..., Awaitable[T]]:
+
     async def aio_wrapper(*args: Any, **kwargs: Any) -> T:
         f_bound: Callable[[], T] = functools.partial(f, *args, **kwargs)
         loop: asyncio.AbstractEventLoop = asyncio.get_running_loop()
         return await loop.run_in_executor(executor, f_bound)
+
     return aio_wrapper
 
 
@@ -49,6 +55,7 @@ def exists_locally(store_path: str) -> bool:
 
 
 class NarInfo(object):
+
     def __init__(self, narinfo: str) -> None:
         self.compression = "bzip2"
         for narinfo_line in narinfo.splitlines():
@@ -84,6 +91,7 @@ class NarInfo(object):
 
 s3 = boto3.client("s3", endpoint_url=ENDPOINT_URL)
 
+
 @with_backoff
 @aio
 def get_object(Key: str) -> str:
@@ -96,20 +104,16 @@ def get_object(Key: str) -> str:
 
 
 async def list_old_cache_objects() -> AsyncIterable[str]:
+
     @with_backoff
     @aio
-    def list_objects_v2(
-        ContinuationToken: Optional[str]
-    ) -> dict[str, Any]:
+    def list_objects_v2(ContinuationToken: Optional[str]) -> dict[str, Any]:
         if ContinuationToken != None:
-            return s3.list_objects_v2(
-                Bucket=BUCKET_NAME,
-                ContinuationToken=ContinuationToken
-            )
+            return s3.list_objects_v2(Bucket=BUCKET_NAME,
+                                      ContinuationToken=ContinuationToken)
         else:
-            return s3.list_objects_v2(
-                Bucket=BUCKET_NAME
-            )
+            return s3.list_objects_v2(Bucket=BUCKET_NAME)
+
     cont_token = None
     while True:
         objs = await list_objects_v2(cont_token)
@@ -120,7 +124,8 @@ async def list_old_cache_objects() -> AsyncIterable[str]:
                 if not isinstance(obj, dict):
                     raise Exception("Not dict")
                 obj = cast(dict[str, Any], obj)
-                if "LastModified" in obj and isinstance(obj["LastModified"], datetime.datetime):
+                if "LastModified" in obj and isinstance(
+                        obj["LastModified"], datetime.datetime):
                     if obj["LastModified"] < yesterday:
                         yield obj["Key"]
 
@@ -128,29 +133,29 @@ async def list_old_cache_objects() -> AsyncIterable[str]:
             break
         cont_token = objs["NextContinuationToken"]
 
+
 @with_backoff
 @aio
 def delete_object(key: str) -> None:
     s3.delete_object(Bucket=BUCKET_NAME, Key=key)
+
 
 def get_store_hashes() -> set[str]:
     hashes = set()
     for obj in listdir("/nix/store"):
         hashes.add(obj.split("-")[0])
 
+
 async def main() -> None:
     store_hashes = get_store_hashes()
     sem = asyncio.Semaphore(16)
-
-    async for obj_key in list_old_cache_objects():
-        asyncio.create_task(handle_obj(obj_key))
 
     async def handle_obj(obj_key: str) -> None:
         async with sem:
             if obj_key.endswith(".narinfo"):
                 # check if we have the hash locally
                 if obj_key.split(".")[0] in store_hashes:
-                    return # yes, don’t delete
+                    return  # yes, don’t delete
                 narinfo = await get_object(obj_key)
                 narinfo = NarInfo(narinfo)
                 if not await narinfo.exists_locally():
@@ -164,9 +169,16 @@ async def main() -> None:
                     return
                 if "outPath" not in realisation:
                     return
-                if not await exists_locally("/nix/store/" + realisation["outPath"]):
-                    print(f"Found unused realisation for {realisation['outPath']}")
+                if not await exists_locally("/nix/store/" +
+                                            realisation["outPath"]):
+                    print(
+                        f"Found unused realisation for {realisation['outPath']}"
+                    )
                     await delete_object(obj_key)
+
+    async for obj_key in list_old_cache_objects():
+        asyncio.create_task(handle_obj(obj_key))
+
 
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(main())
