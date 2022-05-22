@@ -29,7 +29,9 @@ jobs:
             echo $new_job
             echo "<details>" >> report
             echo "<summary>expression difference for $job</summary>" >> report
+            echo '```' >> report
             nix run 'nixpkgs#nix-diff' $old_job $new_job >> report
+            echo '```' >> report
             echo "</details>" >> report
           done
 
