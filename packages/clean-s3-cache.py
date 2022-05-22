@@ -144,6 +144,7 @@ def get_store_hashes() -> set[str]:
     hashes = set()
     for obj in listdir("/nix/store"):
         hashes.add(obj.split("-")[0])
+    return hashes
 
 
 async def main() -> None:
