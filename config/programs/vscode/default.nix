@@ -12,6 +12,7 @@
       "editor.cursorSurroundingLines" = 3;
       "editor.foldingImportsByDefault" = true;
       "editor.fontFamily" = "'FiraCode Nerd Font Mono', 'Noto Sans Mono CJK', monospace";
+      "editor.fontLigatures" = true;
       "editor.formatOnPaste" = true;
       "editor.formatOnSave" = true;
       "editor.formatOnType" = true;
