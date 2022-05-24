@@ -43,7 +43,7 @@ in
       };
       "_acme-challenge.darkkirb.de" = {
         master = true;
-        file = "_acme-challenge.darkkirb.de";
+        file = "/var/lib/named/_acme-challenge.darkkirb.de";
         extraConfig = ''
           update-policy {
             grant certbot. name _acme-challenge.darkkirb.de. txt;
@@ -56,7 +56,7 @@ in
       };
       "_acme-challenge.chir.rs" = {
         master = true;
-        file = "_acme-challenge.chir.rs";
+        file = "/var/lib/named/_acme-challenge.chir.rs";
         extraConfig = ''
           update-policy {
             grant certbot. name _acme-challenge.chir.rs. txt;
@@ -69,7 +69,7 @@ in
       };
       "_acme-challenge.int.chir.rs" = {
         master = true;
-        file = "_acme-challenge.int.chir.rs";
+        file = "/var/lib/named/_acme-challenge.int.chir.rs";
         extraConfig = ''
           update-policy {
             grant certbot. name _acme-challenge.int.chir.rs. txt;
