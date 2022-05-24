@@ -24,6 +24,7 @@ rec {
     miifox-net.url = "git+https://git.chir.rs/CarolineHusky/MiiFox.net";
     miifox-net.flake = false;
     nixpkgs-noto-variable.url = github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d;
+    nixpkgs-go116.url = github:NixOS/nixpkgs/dab5668f6be905a7f0de39a7d67fd8f78a13d600;
   };
 
   outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, polymc, ... } @ args:

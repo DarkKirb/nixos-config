@@ -1,4 +1,4 @@
-{ system, pkgs, nixpkgs, hydra, nixpkgs-noto-variable, ... }: with pkgs;
+{ system, pkgs, nixpkgs, hydra, nixpkgs-noto-variable, nixpkgs-go116, ... }: with pkgs;
 let
   hydra-pkg = hydra.defaultPackage.${system};
   rtf-tokenize = with python3Packages; buildPythonPackage rec {
@@ -59,6 +59,7 @@ let
     installCheckPhase = "true";
   };
   noto-variable = import nixpkgs-noto-variable { inherit system; };
+  go116 = import nixpkgs-go116 { inherit system; };
 in
 {
   nixpkgs.overlays = [
@@ -99,6 +100,7 @@ in
         '';
       });
       noto-fonts-cjk = noto-variable.noto-fonts-cjk;
+      buildGo116Module = go116.buildGo116Module;
     })
   ];
 }

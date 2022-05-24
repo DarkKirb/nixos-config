@@ -343,6 +343,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-go116": {
+      "locked": {
+        "lastModified": 1653232931,
+        "narHash": "sha256-t9cmSEy9HRkQ3kO560qI75sDijkWk1k2U7DFa5C7uNY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "dab5668f6be905a7f0de39a7d67fd8f78a13d600",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "dab5668f6be905a7f0de39a7d67fd8f78a13d600",
+        "type": "github"
+      }
+    },
     "nixpkgs-noto-variable": {
       "locked": {
         "lastModified": 1648877644,
@@ -485,6 +501,7 @@
         "nix": "nix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-go116": "nixpkgs-go116",
         "nixpkgs-noto-variable": "nixpkgs-noto-variable",
         "nur": "nur",
         "polymc": "polymc",

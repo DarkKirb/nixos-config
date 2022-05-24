@@ -1,7 +1,7 @@
-{ buildGo118Module
+{ buildGo116Module
 , fetchFromGitHub
 , git
-}: buildGo118Module rec {
+}: buildGo116Module rec {
   pname = "matrix-media-repo";
   version = "1.2.12";
   src = fetchFromGitHub {
