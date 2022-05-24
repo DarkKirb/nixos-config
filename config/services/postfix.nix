@@ -59,4 +59,5 @@
   sops.secrets."services/postfix/virtual_alias_maps.cf" = { owner = "postfix"; };
   sops.secrets."services/postfix/virtual_mailbox_domains.cf" = { owner = "postfix"; };
   networking.firewall.allowedTCPPorts = [ 25 465 587 ];
+  security.acme.certs."chir.rs".reloadServices = [ "postfix.service" ];
 }

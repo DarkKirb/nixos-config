@@ -150,4 +150,5 @@ in
     993 # IMAPS
     995 # POP3S
   ];
+  security.acme.certs."chir.rs".reloadServices = [ "dovecot2.service" ];
 }

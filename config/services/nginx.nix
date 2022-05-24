@@ -32,6 +32,10 @@
     };
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     networking.firewall.allowedUDPPorts = [ 443 ];
+    security.acme.certs."darkkirb.de".reloadServices = [ "nginx.service" ];
+    security.acme.certs."chir.rs".reloadServices = [ "nginx.service" ];
+    security.acme.certs."int.chir.rs".reloadServices = [ "nginx.service" ];
+    security.acme.certs."miifox.net".reloadServices = [ "nginx.service" ];
   };
 
   options.services.nginx.virtualHosts = lib.mkOption {
