@@ -26,6 +26,5 @@
   services.nginx.group = "acme";
   systemd.services.nginx.serviceConfig.ProtectHome = false;
   sops.secrets."security/acme/dns" = { };
-  sops.secrets."security/acme/dns2" = { };
   sops.secrets."security/acme/cloudflare" = { };
 }
