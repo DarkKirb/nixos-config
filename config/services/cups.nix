@@ -8,6 +8,9 @@
     listenAddresses = [ "*:631" ];
     allowFrom = [ "all" ];
     defaultShared = true;
+    extraConf = ''
+      ServerAlias *
+    '';
   };
 
   services.avahi = {
