@@ -22,6 +22,7 @@
     ./services/router.nix
     ./services/syncthing.nix
     ../modules/tc-cake.nix
+    ./services/cups.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;

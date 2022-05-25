@@ -13,6 +13,7 @@ in
     ./services/kde.nix
     ./services/pipewire.nix
     ./desktop-secrets.nix
+    ./services/cups.nix
   ];
   fonts.fonts = with pkgs; [
     noto-fonts
