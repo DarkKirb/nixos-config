@@ -19,38 +19,37 @@ jobs:
       # instantiate the current derivations
       - id: update-step
         run: |
-          nix flake update
-          echo "Difference between this PR and main:" > report
-          echo "" >> report
-          for job in nixos-8gb-fsn1-1 nutty-noon thinkrac nas; do
-            old_job=$(nix build --dry-run "github:DarkKirb/nixos-config/main#hydraJobs.$job.x86_64-linux" 2>&1 | grep nixos-system-$job | grep drv | tail -n1 | sed 's/ //g')
-            new_job=$(nix build --dry-run ".#hydraJobs.$job.x86_64-linux" 2>&1 | grep nixos-system-$job | grep drv | tail -n1 | sed 's/ //g')
-            echo $old_job
-            echo $new_job
-            echo "<details>" >> report
-            echo "<summary>expression difference for $job</summary>" >> report
-            echo '```' >> report
-            nix run 'nixpkgs#nix-diff' $old_job $new_job >> report
-            echo '```' >> report
-            echo "</details>" >> report
+          for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
+            nix show-derivation -r ".#hydraJobs.$job.x86_64-linux" > old-$job.json
           done
 
-          if [ "$(wc -c report | awk '{print $1}')" -gt 131072 ]; then
-            mv report report-artifact.txt
-            echo "Difference is too large for github. Please check the artifact" > report
-            echo ::set-output name=artifact::report-artifact.txt
+          nix flake update
+
+          for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
+            nix show-derivation -r ".#hydraJobs.$job.x86_64-linux" > new-$job.json
+
+            python scripts/diff-drvs.py old-$job.json new-$job.json > report-$job.txt
+            cat report-$job.txt >> full-report.txt
+          done
+
+          if [ -s full-report.txt ]; then
+            echo "Automatic flake.lock update" > pr-message.txt
+            echo "" >> pr-message.txt
+            for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
+              echo "## Changes for $job:" >> pr-message.txt
+              echo '```' >> pr-message.txt
+              cat report-$job.txt >> pr-message.txt
+              echo '```' >> pr-message.txt
+            done
+          else
+            touch pr-message.txt
           fi
 
-          body=$(cat report)
+          body=$(cat pr-message.txt)
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}"
           echo ::set-output name=body::$body
-      - uses: actions/upload-artifact@v3
-        if: steps.update-step.outputs.artifact != ''
-        with:
-          name: deriv-diff
-          path: ${{ github.workspace }}/${{ steps.update-step.outputs.artifact }}
       - uses: peter-evans/create-pull-request@v4
         if: steps.update-step.outputs.body != ''
         with:
