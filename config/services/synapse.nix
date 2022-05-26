@@ -19,7 +19,6 @@
       retention.enabled = true;
       database = {
         name = "psycopg2";
-        allow_unsafe_locale = true;
         txn_limit = 10000;
         args = {
           host = "/run/postgresql";
