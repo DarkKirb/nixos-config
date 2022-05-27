@@ -17,7 +17,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_17;
+  boot.kernelPackages = pkgs.zfsUnstable.latestCompatibleLinuxPackages;
   boot.zfs.enableUnstable = true;
 
   boot.supportedFilesystems = [ "zfs" ];
