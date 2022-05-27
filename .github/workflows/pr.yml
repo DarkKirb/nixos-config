@@ -15,16 +15,21 @@ jobs:
             substituters = https://cache.nixos.org/ https://f000.backblazeb2.com/file/cache-chir-rs/
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=
       - run: |
+
+          for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
+            nix show-derivation -r "github:DarkKirb/nixos-config/main#hydraJobs.$job.x86_64-linux" > old-$job.json
+          done
+
           echo "Difference between this PR and main:" > review
           echo "" >> review
 
           for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
-            old_job=$(nix build --dry-run "github:DarkKirb/nixos-config/main#hydraJobs.$job.x86_64-linux" 2>&1 | grep nixos-system-$job | grep drv | tail -n1 | sed 's/ //g')
-            new_job=$(nix build --dry-run ".#hydraJobs.$job.x86_64-linux" 2>&1 | grep nixos-system-$job | grep drv | tail -n1 | sed 's/ //g')
-            echo "<details>" >> review
-            echo "<summary>expression difference for $job</summary>" >> review
-            nix run 'nixpkgs#nix-diff' $old_job $new_job >> review
-            echo "</details>" >> review
+            nix show-derivation -r ".#hydraJobs.$job.x86_64-linux" > new-$job.json
+
+            echo "## Changes for $job:" >> review
+            echo '```' >> review
+            python scripts/diff-drvs.py old-$job.json new-$job.json >> review
+            echo '```' >> review
           done
       - uses: harupy/comment-on-pr@master
         env:
