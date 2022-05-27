@@ -604,7 +604,7 @@ in
     systemd.timers.mastodon-clean-media = {
       description = "Clean mastodon remote media";
       requires = [ "mastodon-clean-media.service" ];
-      wanted-by = [ "multi-user.target" ];
+      wantedBy = [ "multi-user.target" ];
       timerConfig = {
         OnUnitActiveSec = 604800;
       };
@@ -623,7 +623,7 @@ in
     systemd.timers.mastodon-clean-preview-cards = {
       description = "Clean mastodon preview cards";
       requires = [ "mastodon-clean-preview-cards.service" ];
-      wanted-by = [ "multi-user.target" ];
+      wantedBy = [ "multi-user.target" ];
       timerConfig = {
         OnUnitActiveSec = 604800;
       };
