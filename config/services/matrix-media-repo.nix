@@ -45,6 +45,9 @@ let
         "fc00::/7"
       ];
     };
+    downloads = {
+      expireAfterDays = 7;
+    };
   });
 in
 {
