@@ -590,6 +590,45 @@ in
       path = with pkgs; [ file imagemagick ffmpeg ];
     };
 
+    systemd.services.mastodon-clean-media = {
+      description = "Clean mastodon remote media";
+      environment = env;
+      serviceConfig = {
+        ExecStart = "${cfg.package}/bin/tootctl media remove";
+        Type = "oneshot";
+        EnvironmentFile = "/var/lib/mastodon/.secrets_env";
+        SystemCallFilter = [ ("~" + lib.concatStringsSep " " systemCallsList) "@chown" "pipe" "pipe2" ];
+      } // cfgService;
+      path = with pkgs; [ file imagemagick ffmpeg ];
+    };
+    systemd.timers.mastodon-clean-media = {
+      description = "Clean mastodon remote media";
+      requires = [ "mastodon-clean-media.service" ];
+      wanted-by = [ "multi-user.target" ];
+      timerConfig = {
+        OnUnitActiveSec = 604800;
+      };
+    };
+    systemd.services.mastodon-clean-preview-cards = {
+      description = "Clean mastodon preview cards";
+      environment = env;
+      serviceConfig = {
+        ExecStart = "${cfg.package}/bin/tootctl preview_cards remove";
+        Type = "oneshot";
+        EnvironmentFile = "/var/lib/mastodon/.secrets_env";
+        SystemCallFilter = [ ("~" + lib.concatStringsSep " " systemCallsList) "@chown" "pipe" "pipe2" ];
+      } // cfgService;
+      path = with pkgs; [ file imagemagick ffmpeg ];
+    };
+    systemd.timers.mastodon-clean-preview-cards = {
+      description = "Clean mastodon preview cards";
+      requires = [ "mastodon-clean-preview-cards.service" ];
+      wanted-by = [ "multi-user.target" ];
+      timerConfig = {
+        OnUnitActiveSec = 604800;
+      };
+    };
+
     services.nginx = lib.mkIf cfg.configureNginx {
       enable = true;
       recommendedProxySettings = true; # required for redirections to work
