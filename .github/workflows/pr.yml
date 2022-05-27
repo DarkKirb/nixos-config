@@ -33,6 +33,6 @@ jobs:
           done
       - uses: harupy/comment-on-pr@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.workspace }}/${{ secrets.GITHUB_TOKEN }}
         with:
           filename: review
