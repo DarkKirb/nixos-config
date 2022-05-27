@@ -31,6 +31,20 @@ let
       bindAddress = "::";
       port = 9000;
     };
+    urlPreviews = {
+      enabled = true;
+      numWorkers = 10;
+      oEmbed = true;
+      disallowedNetworks = [
+        "127.0.0.1/8"
+        "10.0.0.0/8"
+        "172.16.0.0/12"
+        "192.168.0.0/16"
+        "::1/128"
+        "fe80::/64"
+        "fc00::/7"
+      ];
+    };
   });
 in
 {
