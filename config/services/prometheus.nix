@@ -90,6 +90,11 @@
           targets = [
             "matrix.int.chir.rs:80"
           ];
+          labels = {
+            instance = "matrix.chir.rs";
+            job = "master";
+            index = 1;
+          };
         }];
       }
     ];

@@ -86,6 +86,9 @@
         locations."/_matrix" = {
           proxyPass = "http://localhost:8008";
         };
+        locations."/_synapse" = {
+          proxyPass = "http://localhost:8008";
+        };
       };
     in
     {
