@@ -5,6 +5,7 @@ let
     repo = {
       bindAddress = "127.0.0.1";
       port = 8008;
+      logDirectory = "-";
     };
     database.postgres = "postgresql:///matrix_media_repo?sslmode=disable&host=/run/postgresql";
     homeservers = [{
