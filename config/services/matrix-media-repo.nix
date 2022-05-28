@@ -49,6 +49,13 @@ let
     downloads = {
       expireAfterDays = 7;
     };
+    featureSupport = {
+      MSC2448.enabled = true;
+      MSC2246 = {
+        enabled = true;
+        asyncUploadExpirySecs = 120;
+      };
+    };
   });
 in
 {

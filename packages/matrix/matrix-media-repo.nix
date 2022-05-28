@@ -10,6 +10,9 @@
     rev = "v${version}";
     sha256 = "1j6y7alr60mmj5h014qmpz9a5qjv8cm61andwdacb0dqjjbvsm0z";
   };
+  patches = [
+    ./matrix-media-repo.patch
+  ];
   proxyVendor = true;
   vendorSha256 = "sha256-gb2inc/XlPAplVYQXmR77b3/5GsEZDg5v7D/FbZRQ7w=";
   nativeBuildInputs = [
