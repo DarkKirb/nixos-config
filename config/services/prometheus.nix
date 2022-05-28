@@ -85,6 +85,8 @@
       }
       {
         job_name = "synapse";
+        scrape_interval = "30s";
+        scrape_timeout = "10s";
         metrics_path = "/_synapse/metrics";
         static_configs = [{
           targets = [
