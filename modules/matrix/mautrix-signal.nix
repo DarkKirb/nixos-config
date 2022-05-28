@@ -106,7 +106,6 @@ in
         ProtectKernelTunables = true;
         ProtectKernelModules = true;
         ProtectControlGroups = true;
-        PrivateTmp = true;
         WorkingDirectory = dataDir;
         StateDirectory = baseNameOf dataDir;
         UMask = 0117;
