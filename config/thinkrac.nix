@@ -107,7 +107,7 @@
   };
 
   networking.interfaces.enp0s31f6.useDHCP = true;
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
   networking.wireguard.interfaces."wg0".ips = [
     "fd0d:a262:1fa6:e621:f45a:db9f:eb7c:1a3f/64"
   ];
