@@ -93,7 +93,7 @@
           labels = {
             instance = "matrix.chir.rs";
             job = "master";
-            index = 1;
+            index = "1";
           };
         }];
       }
