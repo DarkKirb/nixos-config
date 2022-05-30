@@ -206,4 +206,5 @@
     "gccarch-skylake"
     "ca-derivations"
   ];
+  networking.firewall.allowedTCPPorts = [ 58913 ];
 }
