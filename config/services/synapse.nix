@@ -51,6 +51,7 @@
       enable_registration = false;
       app_service_config_files = [
         "/var/lib/mautrix-telegram/telegram-registration.yaml"
+        sops.secrets."services/synapse/discord-dev-registration.yaml".path
       ];
       signing_key_path = config.sops.secrets."services/synapse/private_key".path;
       encryption_enabled_by_default_for_room_type = "all";
@@ -64,6 +65,7 @@
     withJemalloc = true;
   };
   sops.secrets."services/synapse/private_key" = { owner = "matrix-synapse"; };
+  sops.secrets."services/synapse/discord-dev-registration.yaml" = { owner = "matrix-synapse"; };
   services.postgresql.ensureDatabases = [
     "synapse"
   ];
