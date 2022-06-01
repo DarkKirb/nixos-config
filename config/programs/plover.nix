@@ -58,12 +58,12 @@ in
   home.packages = [
     pkgs.plover.dev
   ];
-  home.activation.ploverSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  /*home.activation.ploverSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD mkdir $VERBOSE_ARG -p $HOME/.config/plover
     $DRY_RUN_CMD rm -f $HOME/.config/plover/plover.cfg
     $DRY_RUN_CMD cp $VERBOSE_ARG ${plover-cfg} $HOME/.config/plover/plover.cfg
     $DRY_RUN_CMD chmod +w $VERBOSE_ARG $HOME/.config/plover/plover.cfg
-  '';
+    '';*/
   systemd.user.services.plover = {
     Unit = {
       Description = "plover";

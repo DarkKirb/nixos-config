@@ -73,7 +73,7 @@ in
           ../../extra/hydra.patch
         ];
       });
-      plover.dev = plover;
+      #plover.dev = plover;
       mosh = prev.mosh.overrideAttrs (old: {
         patches = [
           ./mosh/ssh_path.patch
