@@ -169,6 +169,8 @@ async def main() -> None:
                                         realisation["outPath"]):
                 print(f"Found unused realisation for {realisation['outPath']}")
                 await delete_object(obj_key)
+        if obj_key.startswith("nar/"):
+            nars_to_delete.add(obj_key)
     for nar in nars_to_delete:
         if nar in nars_to_keep:
             continue
