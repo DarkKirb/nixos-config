@@ -30,6 +30,8 @@ def with_backoff(
                 return await f(*args, **kwargs)
             except Exception as e:
                 print(f"{e}")
+                if last_delay >= 120:
+                    raise
                 await asyncio.sleep(last_delay)
                 last_delay *= last_delay
 
