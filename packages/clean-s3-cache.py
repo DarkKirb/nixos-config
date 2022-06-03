@@ -14,9 +14,6 @@ from botocore.response import StreamingBody
 ENDPOINT_URL: str = "https://s3.us-west-000.backblazeb2.com"
 BUCKET_NAME: str = "cache-chir-rs"
 
-yesterday = datetime.datetime.now().replace(
-    tzinfo=datetime.timezone.utc) - datetime.timedelta(days=1)
-
 executor: ThreadPoolExecutor = ThreadPoolExecutor()
 
 F = TypeVar('F', bound=Callable[..., Any])
@@ -103,7 +100,7 @@ def get_object(Key: str) -> str:
     raise Exception("Not StreamingBody")
 
 
-async def list_old_cache_objects() -> AsyncIterable[str]:
+async def list_cache_objects() -> AsyncIterable[str]:
 
     @with_backoff
     @aio
@@ -124,10 +121,7 @@ async def list_old_cache_objects() -> AsyncIterable[str]:
                 if not isinstance(obj, dict):
                     raise Exception("Not dict")
                 obj = cast(dict[str, Any], obj)
-                if "LastModified" in obj and isinstance(
-                        obj["LastModified"], datetime.datetime):
-                    if obj["LastModified"] < yesterday:
-                        yield obj["Key"]
+                yield obj["Key"]
 
         if "NextContinuationToken" not in objs:
             break
@@ -149,36 +143,35 @@ def get_store_hashes() -> set[str]:
 
 async def main() -> None:
     store_hashes = get_store_hashes()
-    sem = asyncio.Semaphore(16)
-
-    async def handle_obj(obj_key: str) -> None:
-        async with sem:
-            if obj_key.endswith(".narinfo"):
-                # check if we have the hash locally
-                if obj_key.split(".")[0] in store_hashes:
-                    return  # yes, don’t delete
-                narinfo = await get_object(obj_key)
-                narinfo = NarInfo(narinfo)
-                if not await narinfo.exists_locally():
-                    print(f"Found unused NAR for {narinfo.store_path}")
-                    await delete_object(obj_key)
-                    await delete_object(narinfo.url)
-            if obj_key.startswith("realisations/"):
-                realisation = await get_object(obj_key)
-                realisation = json.loads(realisation)
-                if not isinstance(realisation, dict):
-                    return
-                if "outPath" not in realisation:
-                    return
-                if not await exists_locally("/nix/store/" +
-                                            realisation["outPath"]):
-                    print(
-                        f"Found unused realisation for {realisation['outPath']}"
-                    )
-                    await delete_object(obj_key)
-
-    async for obj_key in list_old_cache_objects():
-        asyncio.create_task(handle_obj(obj_key))
+    nars_to_delete = set()
+    nars_to_keep = set()
+    async for obj_key in list_cache_objects():
+        if obj_key.endswith(".narinfo"):
+            # check if we have the hash locally
+            narinfo = await get_object(obj_key)
+            narinfo = NarInfo(narinfo)
+            if not await narinfo.exists_locally():
+                print(f"Found unused NAR for {narinfo.store_path}")
+                await delete_object(obj_key)
+                nars_to_delete.add(narinfo.url)
+            else:
+                nars_to_keep.add(narinfo.url)
+        if obj_key.startswith("realisations/"):
+            realisation = await get_object(obj_key)
+            realisation = json.loads(realisation)
+            if not isinstance(realisation, dict):
+                continue
+            if "outPath" not in realisation:
+                continue
+            if not await exists_locally("/nix/store/" +
+                                        realisation["outPath"]):
+                print(f"Found unused realisation for {realisation['outPath']}")
+                await delete_object(obj_key)
+    for nar in nars_to_delete:
+        if nar in nars_to_keep:
+            continue
+        print(f"Deleting unused NAR {nar}")
+        await delete_object(nar)
 
 
 if __name__ == "__main__":
