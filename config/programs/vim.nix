@@ -4,7 +4,7 @@ let dsquotes = "''"; in
   programs.neovim = {
     enable = true;
     coc = {
-      #enable = true;
+      enable = true;
       settings = {
         languageserver = {
           nix = {
@@ -49,11 +49,11 @@ let dsquotes = "''"; in
       " Ban replacing NERDTree
       autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
               \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
+      
       " NerdTree git plugin
       " Use nerdfonts
       let g:NERDTreeGitStatusUseNerdFonts = 1
-
+      
       " CtrlP config
       let g:ctrlp_map = '<c-p>'
       let g:ctrlp_cmd = 'CtrlP'
@@ -80,7 +80,7 @@ let dsquotes = "''"; in
       " format on enter, <cr> could be remapped by other vim plugin
       inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                                    \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
+      
       " Use `[g` and `]g` to navigate diagnostics
       " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
       nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -210,7 +210,7 @@ let dsquotes = "''"; in
       ctrlp-vim
       vim-nix
       tagbar
-      #coc-nvim
+      coc-nvim
       vim-airline
       copilot-vim
       rust-vim # for proper syntax highlighting
