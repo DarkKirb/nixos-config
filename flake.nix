@@ -97,6 +97,7 @@ rec {
             bundix
             python3
             python3Packages.yapf
+            github-cli
           ];
         };
       hydraJobs = (builtins.listToAttrs (map

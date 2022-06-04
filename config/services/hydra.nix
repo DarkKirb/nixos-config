@@ -8,6 +8,11 @@ let
   machines = pkgs.writeText "machines" ''
     localhost armv7l-linux,aarch64-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 12 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver1,gccarch-skylake,ca-derivations  -
   '';
+  run_deploy = pkgs.writeScript "run_deploy" ''
+    export GITHUB_TOKEN=$(cat /run/secrets/services/hydra/github_token)
+
+    ${pkgs.github-cli}/bin/gh workflow run deploy.yml -R
+  '';
 in
 {
   imports = [
@@ -37,6 +42,10 @@ in
           port = 9199
         </prometheus>
       </hydra_notify>
+      <runcommand>
+        job = nixos-config:nixos-config:*
+        command = cat $HYDRA_JSON > /tmp/hydra-output
+      </runcommand>
     '';
     giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
     githubTokenFile = "/run/secrets/services/hydra/github_token";
