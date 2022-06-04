@@ -8,7 +8,7 @@
     environmentFile = pkgs.emptyFile;
     settings = {
       homeserver = {
-        address = "https://matrix.int.chir.rs";
+        address = "https://matrix.chir.rs";
         domain = "chir.rs";
         async_media = true;
       };
