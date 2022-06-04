@@ -96,7 +96,6 @@
           proxyPass = "https://matrix.chir.rs";
           proxyWebsockets = true;
           extraConfig = ''
-            proxy_ssl_server_name on;
             proxy_hide_header Access-Control-Allow-Origin;
             add_header Access-Control-Allow-Origin '*' always;
           '';
