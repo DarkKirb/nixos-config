@@ -94,11 +94,11 @@ in
           sha256 = "09mvk9zxclkf4wrkkfzg0p2hx1f74gpymr0a0l3pckmk6za2n3d1";
         };
       });
-      gtk3 = prev.gtk3.overrideAttrs (old: {
+      /*gtk3 = prev.gtk3.overrideAttrs (old: {
         postPatch = old.postPatch + ''
-          sed -i 's/gtk_compose_table_save_cache (compose_table);//' gtk/gtkcomposetable.c
+        sed -i 's/gtk_compose_table_save_cache (compose_table);//' gtk/gtkcomposetable.c
         '';
-      });
+        });*/
       noto-fonts-cjk = noto-variable.noto-fonts-cjk;
       buildGo116Module = go116.buildGo116Module;
     })
