@@ -23,7 +23,7 @@
         listen = "[::]:29319";
       };
       bridge = {
-        displayname_template = "{displayname}";
+        displayname_template = "{{if .PushName}}{{.PushName}}{{else if .BusinessName}}{{.BusinessName}}{{else}}{{.JID}}{{end}}";
         personal_filtering_spaces = true;
         delivery_receipts = true;
         hystory_sync = {
