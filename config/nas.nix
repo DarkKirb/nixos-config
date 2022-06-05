@@ -23,6 +23,7 @@
     ./services/syncthing.nix
     ../modules/tc-cake.nix
     ./services/cups.nix
+    ./services/github-runner.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
