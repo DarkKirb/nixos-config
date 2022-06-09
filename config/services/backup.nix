@@ -15,20 +15,26 @@ let
 
     # Wait for the restic repository to be unlocked
     while [ -n "$(${pkgs.restic}/bin/restic list locks)" ]; then
-      sleep
+      sleep 10
     fi
 
     # Clone the Dataset
     ${pkgs.zfs}/bin/zfs snapshot tank/backup@prune
-    ${pkgs.zfs}/bin/zfs clone tank/backup@prune tank/backup-prune
+    ${pkgs.zfs}/bin/zfs clone -o mountpoint=/backup-prune tank/backup@prune tank/backup-prune
     chown backup:backup /backup-prune
   '';
   resticPrune = pkgs.writeScript "resticPrune" ''
     export RESTIC_REPOSITORY="$RESTIC_REPOSITORY-prune"
-    ${pkgs.restic} prune --no-cache --max-unused 0
+    ${pkgs.restic}/bin/restic prune --no-cache --max-unused 0
+    ${pkgs.restic}/bin/restic check --read-data-subset 10%
   '';
   resticPrunePost = pkgs.writeScript "resticPrunePost" ''
     set -ex
+
+    # Wait for the restic repository to be unlocked
+    while [ -n "$(${pkgs.restic}/bin/restic list locks)" ]; then
+      sleep 10
+    fi
 
     # make the original read-only
     ${pkgs.zfs}/bin/zfs set readonly=on tank/backup
@@ -43,8 +49,13 @@ let
     ${pkgs.zfs}/bin/zfs rename tank/backup tank/backup-old
     ${pkgs.zfs}/bin/zfs rename tank/backup-prune tank/backup
 
+    # Change the mount point
+    ${pkgs.zfs}/bin/zfs set mountpoint=/backup tank/backup
+
     # Destroy the old dataset
-    ${pkgs.zfs}/bin/zfs destroy -r tank/backup-old
+    ${pkgs.zfs}/bin/zfs destroy -rf tank/backup-old
+    ${pkgs.zfs}/bin/zfs destroy tank/backup@prune
+    ${pkgs.zfs}/bin/zfs mount tank/backup
   '';
 in
 {
