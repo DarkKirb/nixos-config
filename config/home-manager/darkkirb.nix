@@ -11,6 +11,7 @@
     ../programs/waybar.nix
     ../programs/ims.nix
     ../programs/syncthing.nix
+    ../programs/mpd.nix
     ../programs/zoom.nix
     ../programs/plover.nix
     ../programs/texlive.nix
