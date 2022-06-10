@@ -23,7 +23,6 @@
     ../programs/kicad.nix
     ../programs/vscode
     ../programs/misc.nix
-  ] else [
     ../programs/mail.nix
-  ]);
+  ] else [ ]);
 }
