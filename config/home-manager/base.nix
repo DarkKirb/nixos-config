@@ -100,11 +100,15 @@ desktop: { pkgs, ... }: {
       vim = "nvim";
       cat = "bat";
       less = "bat";
+      icat = "${pkgs.kitty}/bin/kitty +kitten icat";
+      d = "${pkgs.kitty}/bin/kitty +kitten diff";
+      hg = "${pkgs.kitty}/bin/kitty +kitten hyperlinked_grep";
     };
     packages = with pkgs; [
       mosh
       yubikey-manager
       yubico-piv-tool
+      ripgrep
     ];
   };
 
