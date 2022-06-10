@@ -26,43 +26,27 @@ let theme = import ../../extra/theme.nix; in
   qt.style.package = pkgs.libsForQt5.breeze-qt5;
   qt.style.name = "BreezeDark";
 
-  # Paraiso (dark) by Chris Kempson
-  # Alacritty colors
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      colors = with theme; {
-        # Default Colors
-        primary = {
-          background = alacrittyColor bg;
-          foreground = alacrittyColor fg;
-        };
-
-        # Normal Colors
-        normal = {
-          black = alacrittyColor black;
-          red = alacrittyColor dark-red;
-          green = alacrittyColor dark-green;
-          yellow = alacrittyColor dark-yellow;
-          blue = alacrittyColor dark-blue;
-          magenta = alacrittyColor dark-magenta;
-          cyan = alacrittyColor dark-cyan;
-          white = alacrittyColor light-grey;
-        };
-
-        # Bright Colors
-        bright = {
-          black = alacrittyColor dark-grey;
-          red = alacrittyColor red;
-          green = alacrittyColor green;
-          yellow = alacrittyColor yellow;
-          blue = alacrittyColor blue;
-          magenta = alacrittyColor magenta;
-          cyan = alacrittyColor cyan;
-          white = alacrittyColor white;
-        };
-      };
-    };
+  programs.kitty.settings = {
+    background = cssColor bg;
+    foreground = cssColor fg;
+    cursor = cssColor fg;
+    selection_background = "#4f414c";
+    color0 = cssColor black;
+    color1 = cssColor dark-red;
+    color2 = cssColor dark-green;
+    color3 = cssColor dark-yellow;
+    color4 = cssColor dark-blue;
+    color5 = cssColor dark-magenta;
+    color6 = cssColor dark-cyan;
+    color7 = cssColor light-grey;
+    color8 = cssColor dark-grey;
+    color9 = cssColor red;
+    color10 = cssColor green;
+    color11 = cssColor yellow;
+    color12 = cssColor blue;
+    color13 = cssColor magenta;
+    color14 = cssColor cyan;
+    color15 = cssColor white;
   };
 
   programs.waybar.style = with theme; ''
