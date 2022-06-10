@@ -3,7 +3,6 @@
     ghidra
     android-studio
     thunderbird
-    audacious
   ];
   xdg.configFile."gdb/gdbinit".text = "set auto-load safe-path /nix/store";
   services.xsettingsd = {
