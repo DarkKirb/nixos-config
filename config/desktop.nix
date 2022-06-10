@@ -10,7 +10,7 @@ let
 in
 {
   imports = [
-    ./services/kde.nix
+    ./services/sway.nix
     ./services/pipewire.nix
     ./desktop-secrets.nix
     ./services/cups.nix
