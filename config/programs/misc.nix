@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     ghidra
     android-studio
