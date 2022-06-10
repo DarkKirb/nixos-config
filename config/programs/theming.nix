@@ -26,7 +26,7 @@ let theme = import ../../extra/theme.nix; in
   qt.style.package = pkgs.libsForQt5.breeze-qt5;
   qt.style.name = "BreezeDark";
 
-  programs.kitty.settings = {
+  programs.kitty.settings = with theme; {
     background = cssColor bg;
     foreground = cssColor fg;
     cursor = cssColor fg;
