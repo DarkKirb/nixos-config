@@ -53,6 +53,22 @@
         "url": "https://git.chir.rs/darkkirb/chir.rs.git"
       }
     },
+    "clean-s3-cache": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1654951411,
+        "narHash": "sha256-Om6LZGjdrhsIL2K8VwzyRrX3+fOHJ1Bct4pI7/ijDP4=",
+        "ref": "refs/heads/main",
+        "rev": "e4bef52b5b8b8427d7027c681c96ac52ea007421",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://gist.github.com/DarkKirb/533e9e8b9b6dd1badf9b103b4285dc4e"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gist.github.com/DarkKirb/533e9e8b9b6dd1badf9b103b4285dc4e"
+      }
+    },
     "dns": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -136,6 +152,21 @@
       }
     },
     "flake-utils_3": {
+      "locked": {
+        "lastModified": 1653893745,
+        "narHash": "sha256-0jntwV3Z8//YwuOjzhV2sgJJPt+HY6KhU7VZUL0fKZQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "1ed9fb1935d260de5fe1c2f7ee0ebaae17ed2fa1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_4": {
       "locked": {
         "lastModified": 1653893745,
         "narHash": "sha256-0jntwV3Z8//YwuOjzhV2sgJJPt+HY6KhU7VZUL0fKZQ=",
@@ -294,6 +325,29 @@
         "owner": "NixOS",
         "repo": "nix",
         "rev": "5fe4fe823c193cbb7bfa05a468de91eeab09058d",
+        "type": "github"
+      }
+    },
+    "nix-packages": {
+      "inputs": {
+        "clean-s3-cache": "clean-s3-cache",
+        "flake-utils": "flake-utils_4",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1654952251,
+        "narHash": "sha256-sa7L/6Hy5pIinOqGJBcmfqLJO5M3nKkR84Uah07XbbM=",
+        "owner": "DarkKirb",
+        "repo": "nix-packages",
+        "rev": "6b1156875efc37dc2b74c11a2a7f54228b185b22",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DarkKirb",
+        "ref": "main",
+        "repo": "nix-packages",
         "type": "github"
       }
     },
@@ -498,6 +552,7 @@
         "hydra": "hydra",
         "miifox-net": "miifox-net",
         "nix": "nix",
+        "nix-packages": "nix-packages",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-go116": "nixpkgs-go116",
