@@ -5,6 +5,6 @@
     settings = {
       disable_ligatures = "cursor";
       shell_integration = "disabled";
-    }
-      };
-  }
+    };
+  };
+}
