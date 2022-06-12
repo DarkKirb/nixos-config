@@ -22,9 +22,10 @@ in
       vim-airline
       copilot-vim
       rust-vim # for proper syntax highlighting
-      tabline-nvim
       nvim-lspconfig
       vim-gitgutter
+      nvim-web-devicons
+      bufferline-nvim
     ];
   };
   xdg.configFile."nvim/lua/base.lua".source = ./base.lua;

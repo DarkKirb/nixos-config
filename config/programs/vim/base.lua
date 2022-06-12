@@ -93,3 +93,7 @@ for _, lsp in pairs(servers) do
         }
     }
 end
+
+-- Initialize bufferline
+vim.opt.termguicolors = true
+require("bufferline").setup{}
