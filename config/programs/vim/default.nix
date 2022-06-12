@@ -24,6 +24,7 @@ in
       rust-vim # for proper syntax highlighting
       tabline-nvim
       nvim-lspconfig
+      vim-gitgutter
     ];
   };
   xdg.configFile."nvim/lua/base.lua".source = ./base.lua;
