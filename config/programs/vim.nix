@@ -1,6 +1,8 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   dsquotes = "''";
-in {
+in
+{
   programs.neovim = {
     enable = true;
     coc = {
@@ -214,6 +216,7 @@ in {
       vim-airline
       copilot-vim
       rust-vim # for proper syntax highlighting
+      tabline-nvim
     ];
     extraPackages = with pkgs; [
       nodejs_latest
