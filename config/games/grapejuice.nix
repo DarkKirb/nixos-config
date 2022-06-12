@@ -1,5 +1,9 @@
-{ system, ... } @ args: { lib, config, pkgs, ... }:
-let
+{system, ...} @ args: {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   grapejuice_config = {
     __version__ = 2;
     __hardware_profiles__ = null;
@@ -22,15 +26,15 @@ let
         enable_winedebug = false;
         winedebug_string = "";
         roblox_renderer = "OpenGL";
-        env = { };
+        env = {};
         hints = [
           "player"
           "app"
         ];
         fast_flags = {
-          roblox_studio = { };
-          roblox_player = { };
-          roblox_app = { };
+          roblox_studio = {};
+          roblox_player = {};
+          roblox_app = {};
         };
         third_party = {
           fps_unlocker = false;
@@ -40,12 +44,11 @@ let
     ];
   };
   grapejuiceJson = pkgs.writeText "grapejuice.json" (builtins.toJSON grapejuice_config);
-in
-{
+in {
   home.packages = [
     pkgs.grapejuice
   ];
-  home.activation.grapejuiceSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.grapejuiceSettings = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD mkdir $VERBOSE_ARG -p $HOME/.config/brinkervii/grapejuice
     $DRY_RUN_CMD rm $VERBOSE_ARG -f $HOME/.config/brinkervii/grapejuice/user_settings.json
     $DRY_RUN_CMD cp $VERBOSE_ARG ${grapejuiceJson} $HOME/.config/brinkervii/grapejuice/user_settings.json

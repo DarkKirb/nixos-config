@@ -1,6 +1,6 @@
-{ pkgs, ... }:
-let theme = import ../../extra/theme.nix; in
-{
+{pkgs, ...}: let
+  theme = import ../../extra/theme.nix;
+in {
   gtk = {
     enable = true;
     cursorTheme = {

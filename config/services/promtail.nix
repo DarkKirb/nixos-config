@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   promtail_config = {
     server = {
       http_listen_port = 28183;
@@ -21,19 +25,18 @@ let
         };
         relabel_configs = [
           {
-            source_labels = [ "__journal__systemd_unit" ];
+            source_labels = ["__journal__systemd_unit"];
             target_label = "unit";
           }
         ];
       }
     ];
   };
-  promtail_yml = pkgs.writeText "promtail.yml" (lib.generators.toYAML { } promtail_config);
-in
-{
+  promtail_yml = pkgs.writeText "promtail.yml" (lib.generators.toYAML {} promtail_config);
+in {
   systemd.services.promtail = {
     description = "Promtail service for Loki";
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
 
     serviceConfig = {
       ExecStart = ''

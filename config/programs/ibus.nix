@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   ibusPackage = pkgs.ibus-with-plugins.override {
     plugins = with pkgs.ibus-engines; [
       mozc
@@ -8,16 +7,15 @@ let
       uniemoji
     ];
   };
-in
-{
+in {
   systemd.user.services.ibus = {
     Unit = {
       Description = "IBus daemon";
-      PartOf = [ "graphical-session.target" ];
-      Requires = [ "dbus.socket" ];
+      PartOf = ["graphical-session.target"];
+      Requires = ["dbus.socket"];
     };
     Install = {
-      WantedBy = [ "graphical-session.target" ];
+      WantedBy = ["graphical-session.target"];
     };
     Service = {
       ExecStart = "${ibusPackage}/bin/ibus-daemon --xim";
@@ -25,8 +23,8 @@ in
   };
   dconf.settings = {
     "desktop/ibus/general" = {
-      engines-order = [ "xkb:de:neo:deu" "mozc-jp" ];
-      preload-engines = [ "xkb:de:neo:deu" "mozc-jp" ];
+      engines-order = ["xkb:de:neo:deu" "mozc-jp"];
+      preload-engines = ["xkb:de:neo:deu" "mozc-jp"];
       use-system-keyboard-layout = true;
       version = "1.5.26";
     };
@@ -35,7 +33,7 @@ in
       use-glyph-from-engine-lang = true;
     };
     "desktop/ibus/emoji" = {
-      hotkey = [ "<Control><Shift>e" ];
+      hotkey = ["<Control><Shift>e"];
     };
   };
 }

@@ -1,7 +1,7 @@
-{ ... }:
-let mkSopsSecret =
-  { name
-  , path
+{...}: let
+  mkSopsSecret = {
+    name,
+    path,
   }: {
     name = "desktop/${name}";
     value = {
@@ -11,8 +11,7 @@ let mkSopsSecret =
       path = "/home/darkkirb/${path}";
     };
   };
-in
-{
+in {
   sops.secrets = builtins.listToAttrs (map mkSopsSecret [
     {
       name = "aws/credentials";

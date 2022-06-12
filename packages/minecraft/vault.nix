@@ -1,10 +1,10 @@
-{ fetchFromGitHub
-, findutils
-, maven
-, openjdk8_headless
-, stdenv
-}:
-let
+{
+  fetchFromGitHub,
+  findutils,
+  maven,
+  openjdk8_headless,
+  stdenv,
+}: let
   pname = "Vault";
   version = "1.7.3";
 
@@ -14,7 +14,6 @@ let
     rev = version;
     sha256 = "05g24xzi7ksncz9rjmwqva2cm7mm88i6qy49a9ad6wa0cgsf660h";
   };
-
 
   deps = stdenv.mkDerivation {
     name = "${pname}-deps";
@@ -37,18 +36,18 @@ let
     outputHash = "sha256-zkuMyoVHg47j8Vpia1oeeXC28HJG2kUxQgpks+tihxU=";
   };
 in
-stdenv.mkDerivation {
-  inherit pname version src;
+  stdenv.mkDerivation {
+    inherit pname version src;
 
-  name = "${pname}-${version}.jar";
+    name = "${pname}-${version}.jar";
 
-  buildPhase = ''
-    export JAVA_HOME=${openjdk8_headless}
-    cp -dpR ${deps}/.m2 ./
-    chmod +w -R .m2
-    ${maven}/bin/mvn package --offline -Dmaven.repo.local=$(pwd)/.m2
-  '';
-  installPhase = ''
-    cp target/${pname}-${version}.jar $out
-  '';
-}
+    buildPhase = ''
+      export JAVA_HOME=${openjdk8_headless}
+      cp -dpR ${deps}/.m2 ./
+      chmod +w -R .m2
+      ${maven}/bin/mvn package --offline -Dmaven.repo.local=$(pwd)/.m2
+    '';
+    installPhase = ''
+      cp target/${pname}-${version}.jar $out
+    '';
+  }

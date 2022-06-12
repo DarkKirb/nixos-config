@@ -1,11 +1,15 @@
-{ config, lib, options, pkgs, ... }:
-with lib;
-let
-  multiverse = pkgs.callPackage ../../packages/minecraft/multiverse.nix { };
+{
+  config,
+  lib,
+  options,
+  pkgs,
+  ...
+}:
+with lib; let
+  multiverse = pkgs.callPackage ../../packages/minecraft/multiverse.nix {};
   cfg = config.services.minecraft.multiverse;
   opt = options.services.minecraft.multiverse;
-in
-{
+in {
   options.services.minecraft.multiverse = {
     enable = mkOption {
       default = false;
@@ -30,25 +34,33 @@ in
   };
   config = mkIf cfg.enable {
     services.minecraft.plugins = mkMerge [
-      [{
-        package = multiverse.core;
-        startScript = pkgs.writeScript "dummy" "";
-      }]
+      [
+        {
+          package = multiverse.core;
+          startScript = pkgs.writeScript "dummy" "";
+        }
+      ]
       (mkIf cfg.netherportals
-        [{
-          package = multiverse.nether-portals;
-          startScript = pkgs.writeScript "dummy" "";
-        }])
+        [
+          {
+            package = multiverse.nether-portals;
+            startScript = pkgs.writeScript "dummy" "";
+          }
+        ])
       (mkIf cfg.signportals
-        [{
-          package = multiverse.sign-portals;
-          startScript = pkgs.writeScript "dummy" "";
-        }])
+        [
+          {
+            package = multiverse.sign-portals;
+            startScript = pkgs.writeScript "dummy" "";
+          }
+        ])
       (mkIf cfg.inventories
-        [{
-          package = multiverse.inventories;
-          startScript = pkgs.writeScript "dummy" "";
-        }])
+        [
+          {
+            package = multiverse.inventories;
+            startScript = pkgs.writeScript "dummy" "";
+          }
+        ])
     ];
   };
 }

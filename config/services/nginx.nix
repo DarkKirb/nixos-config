@@ -1,8 +1,11 @@
-{ lib, pkgs, ... }:
 {
+  lib,
+  pkgs,
+  ...
+}: {
   config = {
     services.nginx = {
-      additionalModules = [ pkgs.nginxModules.brotli ];
+      additionalModules = [pkgs.nginxModules.brotli];
       clientMaxBodySize = "10g";
       enable = true;
       appendHttpConfig = ''
@@ -27,15 +30,15 @@
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedProxySettings = true;
-      resolver.addresses = [ "127.0.0.1" "[::1]" ];
+      resolver.addresses = ["127.0.0.1" "[::1]"];
       sslProtocols = "TLSv1.2 TLSv1.3";
     };
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
-    networking.firewall.allowedUDPPorts = [ 443 ];
-    security.acme.certs."darkkirb.de".reloadServices = [ "nginx.service" ];
-    security.acme.certs."chir.rs".reloadServices = [ "nginx.service" ];
-    security.acme.certs."int.chir.rs".reloadServices = [ "nginx.service" ];
-    security.acme.certs."miifox.net".reloadServices = [ "nginx.service" ];
+    networking.firewall.allowedTCPPorts = [80 443];
+    networking.firewall.allowedUDPPorts = [443];
+    security.acme.certs."darkkirb.de".reloadServices = ["nginx.service"];
+    security.acme.certs."chir.rs".reloadServices = ["nginx.service"];
+    security.acme.certs."int.chir.rs".reloadServices = ["nginx.service"];
+    security.acme.certs."miifox.net".reloadServices = ["nginx.service"];
   };
 
   options.services.nginx.virtualHosts = lib.mkOption {

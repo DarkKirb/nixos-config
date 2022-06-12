@@ -1,4 +1,8 @@
-{ stdenvNoCC, fetchFromGitHub, fontforge }:
+{
+  stdenvNoCC,
+  fetchFromGitHub,
+  fontforge,
+}:
 stdenvNoCC.mkDerivation rec {
   pname = "nasin-nanpa";
   version = "2.5.18";
@@ -8,7 +12,7 @@ stdenvNoCC.mkDerivation rec {
     rev = "f464d17d992ce1d974983a54a25b57948d27e811";
     sha256 = "sha256-zyKibrjvO5R0wbS2ocFRksJtrXjnW1I0gqkCAr/UZfc=";
   };
-  nativeBuildInputs = [ fontforge ];
+  nativeBuildInputs = [fontforge];
   buildPhase = ''
     fontforge -lang=ff -c 'Open($1); Generate($2)' "ffversions/2.5/nasin-nanpa-${version}.sfd" "nasin-nanpa.otf"
   '';

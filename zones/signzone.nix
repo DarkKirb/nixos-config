@@ -1,13 +1,22 @@
-{ dns, ksk, zsk, zone, zonename, ... }: { pkgs, system, ... }:
-let
+{
+  dns,
+  ksk,
+  zsk,
+  zone,
+  zonename,
+  ...
+}: {
+  pkgs,
+  system,
+  ...
+}: let
   writeZone = dns.util.${system}.writeZone;
   zoneFile = writeZone zonename zone;
-in
-{
+in {
   systemd.services."zonesign@${zonename}" = {
     description = "Signing the DNS zone '${zonename}'";
-    wantedBy = [ "bind.service" ];
-    before = [ "bind.service" ];
+    wantedBy = ["bind.service"];
+    before = ["bind.service"];
     script = ''
       set -ex
 
@@ -26,10 +35,10 @@ in
       OnUnitInactiveSec = 86400;
       RandomizedDelaySec = 3600;
     };
-    wantedBy = [ "bind.service" ];
+    wantedBy = ["bind.service"];
   };
-  sops.secrets."${ksk}.key" = { };
-  sops.secrets."${ksk}.private" = { };
-  sops.secrets."${zsk}.key" = { };
-  sops.secrets."${zsk}.private" = { };
+  sops.secrets."${ksk}.key" = {};
+  sops.secrets."${ksk}.private" = {};
+  sops.secrets."${zsk}.key" = {};
+  sops.secrets."${zsk}.private" = {};
 }

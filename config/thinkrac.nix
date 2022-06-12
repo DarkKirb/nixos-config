@@ -1,4 +1,12 @@
-{ config, pkgs, modulesPath, lib, nixos-hardware, system, ... }: {
+{
+  config,
+  pkgs,
+  modulesPath,
+  lib,
+  nixos-hardware,
+  system,
+  ...
+}: {
   networking.hostName = "thinkrac";
   networking.hostId = "2bfaea87";
 
@@ -14,20 +22,19 @@
   ];
   hardware.cpu.intel.updateMicrocode = true;
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "bcache" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "bcache"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
   boot.kernelPackages = pkgs.zfsUnstable.latestCompatibleLinuxPackages;
   boot.zfs.enableUnstable = true;
 
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = ["zfs"];
   boot.zfs.devNodes = "/dev/";
 
   services.zfs.trim.enable = true;
   services.zfs.autoScrub.enable = true;
-  services.zfs.autoScrub.pools = [ "tank" ];
-
+  services.zfs.autoScrub.pools = ["tank"];
 
   boot.initrd.luks.devices = {
     disk = {
@@ -39,67 +46,67 @@
   fileSystems."/" = {
     device = "tank/nixos";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/nix" = {
     device = "tank/nixos/nix";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/etc" = {
     device = "tank/nixos/etc";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/var" = {
     device = "tank/nixos/var";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/var/lib" = {
     device = "tank/nixos/var/lib";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/var/log" = {
     device = "tank/nixos/var/log";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/var/spool" = {
     device = "tank/nixos/var/spool";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/home" = {
     device = "tank/userdata/home";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/root" = {
     device = "tank/userdata/home/root";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/home/darkkirb" = {
     device = "tank/userdata/home/darkkirb";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/build" = {
     device = "tank/build";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/boot" = {
@@ -112,7 +119,7 @@
   networking.wireguard.interfaces."wg0".ips = [
     "fd0d:a262:1fa6:e621:f45a:db9f:eb7c:1a3f/64"
   ];
-  services.xserver.videoDrivers = [ "modesetting" ];
+  services.xserver.videoDrivers = ["modesetting"];
   nix.settings.cores = 4;
 
   # Disable kernel mitigations
@@ -121,7 +128,7 @@
   # - device has a limited workload, consisting mostly of running trusted code and visiting trusted websites with an advertisement blocker
   # - device is battery powered (we want to spend more time in an idle state, as opposed to running user code or mitigating cpu bugs)
   # - device is also not involved in any sort of virtualization
-  boot.kernelParams = [ "mitigations=off" ];
+  boot.kernelParams = ["mitigations=off"];
   # use the lowest frequency possible, to save power
   powerManagement.cpuFreqGovernor = "powersave";
   # lm_sensors who cares
@@ -156,7 +163,7 @@
     "vm.dirty_writeback_centisecs" = "1500";
   };
   networking.networkmanager.enable = true;
-  users.users.darkkirb.extraGroups = [ "networkmanager" ];
+  users.users.darkkirb.extraGroups = ["networkmanager"];
   nix.settings.max-jobs = 4;
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";

@@ -1,18 +1,25 @@
-{ config, lib, options, pkgs, ... }:
-with lib;
-let
-  luckperms = pkgs.callPackage ../../packages/minecraft/luckperms.nix { };
+{
+  config,
+  lib,
+  options,
+  pkgs,
+  ...
+}:
+with lib; let
+  luckperms = pkgs.callPackage ../../packages/minecraft/luckperms.nix {};
   cfg = config.services.minecraft.luckperms;
   opt = options.services.minecraft.luckperms;
-  luckperms-yml = pkgs.writeText "luckperms.yml" (generators.toYAML { } cfg.config);
-  groups = builtins.mapAttrs (name: value: pkgs.writeText "${name}.yml" (generators.toYAML { } value)) cfg.groups;
-  users = builtins.mapAttrs (name: value: pkgs.writeText "${name}.yml" (generators.toYAML { } value)) cfg.users;
-  groupPermCopy = builtins.map
+  luckperms-yml = pkgs.writeText "luckperms.yml" (generators.toYAML {} cfg.config);
+  groups = builtins.mapAttrs (name: value: pkgs.writeText "${name}.yml" (generators.toYAML {} value)) cfg.groups;
+  users = builtins.mapAttrs (name: value: pkgs.writeText "${name}.yml" (generators.toYAML {} value)) cfg.users;
+  groupPermCopy =
+    builtins.map
     (group: ''
       cat ${groups.${group}} > plugins/LuckPerms/yaml-storage/groups/${group}.yml
     '')
     (builtins.attrNames groups);
-  userPermCopy = builtins.map
+  userPermCopy =
+    builtins.map
     (user: ''
       cat ${users.${user}} > plugins/LuckPerms/yaml-storage/users/${user}.yml
     '')
@@ -25,8 +32,7 @@ let
     mkdir -p plugins/LuckPerms/yaml-storage/users/
     ${builtins.toString userPermCopy}
   '';
-in
-{
+in {
   imports = [
     ./vault.nix
   ];
@@ -85,12 +91,12 @@ in
       };
       temporary-add-behaviour = mkOption {
         default = "deny";
-        type = types.enum [ "accumulate" "replace" "deny" ];
+        type = types.enum ["accumulate" "replace" "deny"];
         description = "How to handle temporary permissions";
       };
       primary-group-calculation = mkOption {
         default = "parents-by-weight";
-        type = types.enum [ "stored" "parents-by-weight" "all-parents-by-weight" ];
+        type = types.enum ["stored" "parents-by-weight" "all-parents-by-weight"];
         description = "How to calculate the primary group";
       };
       argument-based-command-permissions = mkOption {
@@ -109,7 +115,7 @@ in
         description = "Log notifications";
       };
       log-notify-filtered-descriptions = mkOption {
-        default = [ ];
+        default = [];
         type = types.listOf types.str;
         description = "Log filtered descriptions";
       };
@@ -120,7 +126,7 @@ in
       };
       inheritance-traversal-algorithm = mkOption {
         default = "depth-first-pre-order";
-        type = types.enum [ "breadth-first" "depth-first-pre-order" "depth-first-post-order" ];
+        type = types.enum ["breadth-first" "depth-first-pre-order" "depth-first-post-order"];
         description = "Inheritance traversal algorithm";
       };
       post-traversal-inheritance-sort = mkOption {
@@ -130,11 +136,11 @@ in
       };
       context-satisfy-mode = mkOption {
         default = "at-least-one-value-per-key";
-        type = types.enum [ "at-least-one-value-per-key" "all-values-per-key" ];
+        type = types.enum ["at-least-one-value-per-key" "all-values-per-key"];
         description = "Context satisfy mode";
       };
       disabled-contexts = mkOption {
-        default = [ ];
+        default = [];
         type = types.listOf types.str;
         description = "Disabled contexts";
       };
@@ -160,12 +166,12 @@ in
       };
       meta-value-selection-default = mkOption {
         default = "inheritance";
-        type = types.enum [ "inheritance" "highest-number" "lowest-number" ];
+        type = types.enum ["inheritance" "highest-number" "lowest-number"];
         description = "Meta value selection default";
       };
       meta-value-selection = mkOption {
-        default = { };
-        type = types.attrsOf (types.enum [ "inheritance" "highest-number" "lowest-number" ]);
+        default = {};
+        type = types.attrsOf (types.enum ["inheritance" "highest-number" "lowest-number"]);
         description = "Meta value selection";
       };
       apply-wildcards = mkOption {
@@ -209,17 +215,17 @@ in
         description = "Apply Bukkit attachment permissions";
       };
       disabled-context-calculators = mkOption {
-        default = [ ];
+        default = [];
         type = types.listOf types.str;
         description = "Disabled context calculators";
       };
       world-rewrite = mkOption {
-        default = { };
+        default = {};
         type = types.attrsOf types.str;
         description = "World rewrite";
       };
       group-weight = mkOption {
-        default = { };
+        default = {};
         type = types.attrsOf types.int;
         description = "Group weight";
       };
@@ -326,11 +332,11 @@ in
             type = types.str;
           };
           parents = mkOption {
-            default = [ ];
+            default = [];
             type = types.listOf types.str;
           };
           permissions = mkOption {
-            default = [ ];
+            default = [];
             type = types.listOf (types.oneOf [
               types.str
               (types.attrsOf (types.submodule {
@@ -340,7 +346,7 @@ in
                     default = true;
                   };
                   context = mkOption {
-                    default = { };
+                    default = {};
                     type = types.attrsOf types.str;
                   };
                 };
@@ -348,11 +354,11 @@ in
             ]);
           };
           prefixes = mkOption {
-            default = [ ];
+            default = [];
             type = types.listOf (types.attrsOf types.anything);
           };
           meta = mkOption {
-            default = { };
+            default = {};
             type = types.attrsOf types.anything;
           };
         };
@@ -360,7 +366,7 @@ in
       description = "Group configuration";
     };
     users = mkOption {
-      default = { };
+      default = {};
       type = types.attrsOf (types.submodule {
         options = {
           uuid = mkOption {
@@ -374,19 +380,19 @@ in
             default = "default";
           };
           parents = mkOption {
-            default = [ "default" ];
+            default = ["default"];
             type = types.listOf types.str;
           };
           permissions = mkOption {
-            default = [ ];
+            default = [];
             type = types.listOf types.str;
           };
           prefixes = mkOption {
-            default = [ ];
+            default = [];
             type = types.listOf (types.attrsOf types.anything);
           };
           meta = mkOption {
-            default = { };
+            default = {};
             type = types.attrsOf types.anything;
           };
         };
@@ -394,10 +400,11 @@ in
     };
   };
   config = mkIf cfg.enable {
-    services.minecraft.plugins = [{
-      package = luckperms;
-      startScript = startScript;
-    }];
+    services.minecraft.plugins = [
+      {
+        package = luckperms;
+        startScript = startScript;
+      }
+    ];
   };
 }
-

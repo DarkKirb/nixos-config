@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.waybar = {
     enable = true;
     settings = {
@@ -85,11 +85,11 @@
         temperature = {
           critical-threshold = 80;
           format = "{temperatureC}℃ {icon}";
-          format-icons = [ "" "" "" ];
+          format-icons = ["" "" ""];
         };
         backlight = {
           format = "{percent}% {icon}";
-          format-icons = [ "" "" ];
+          format-icons = ["" ""];
         };
         battery = {
           states = {
@@ -100,7 +100,7 @@
           format-charging = "{capacity}% ";
           format-plugged = "{capacity}% ";
           format-alt = "{time} {icon}";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = ["" "" "" "" ""];
         };
         "battery#bat2" = {
           bat = "BAT2";
@@ -127,7 +127,7 @@
             phone = "";
             portable = "";
             car = "";
-            default = [ "" "" "" ];
+            default = ["" "" ""];
           };
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };

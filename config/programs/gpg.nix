@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.gpg = {
     enable = true;
     mutableKeys = false;
@@ -45,8 +45,8 @@
       no-symkey-cache = true;
       use-agent = true;
       throw-keyids = true;
-      keyserver = [ "hkps://keys.openpgp.org" "hkps://keyserver.ubuntu.com:443" "hkps://hkps.pool.sks-keyservers.net" "hkps://pgp.ocf.berkeley.edu" ];
-      auto-key-locate = [ "local" "dane" "cert" "wkd" ];
+      keyserver = ["hkps://keys.openpgp.org" "hkps://keyserver.ubuntu.com:443" "hkps://hkps.pool.sks-keyservers.net" "hkps://pgp.ocf.berkeley.edu"];
+      auto-key-locate = ["local" "dane" "cert" "wkd"];
     };
   };
   services.gpg-agent = {

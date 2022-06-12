@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   services.postfixadmin = {
     enable = true;
     adminEmail = "lotte@chir.rs";
@@ -21,7 +21,7 @@
   sops.secrets."services/postfixadmin/setupPassword" = {
     owner = "postfixadmin";
   };
-  services.postgresql.ensureDatabases = [ "postfix" ];
+  services.postgresql.ensureDatabases = ["postfix"];
   services.postgresql.ensureUsers = [
     {
       name = "postfixadmin";

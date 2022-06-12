@@ -1,4 +1,5 @@
-{ fetchFromGitLab }: fetchFromGitLab {
+{fetchFromGitLab}:
+fetchFromGitLab {
   owner = "fedstoa";
   repo = "moa";
   rev = "8c794b2cb854c1b25570fbb3082e83a9a088c773";

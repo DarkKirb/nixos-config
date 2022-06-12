@@ -1,9 +1,17 @@
-{ system, nix-packages, lib, config, pkgs, ... }:
-let
+{
+  system,
+  nix-packages,
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
-  listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
-    add_header Alt-Svc 'h3=":443"';
-  '';
+  listenStatements =
+    lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs)
+    + ''
+      add_header Alt-Svc 'h3=":443"';
+    '';
   clean-cache = nix-packages.packages.${system}.clean-s3-cache;
   machines = pkgs.writeText "machines" ''
     localhost armv7l-linux,aarch64-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 12 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver1,gccarch-skylake,ca-derivations  -
@@ -13,8 +21,7 @@ let
 
     ${pkgs.github-cli}/bin/gh workflow run deploy.yml -R
   '';
-in
-{
+in {
   imports = [
     ./postgres.nix
     ../../modules/hydra.nix
@@ -54,10 +61,10 @@ in
       "/run/hydra-machines"
     ];
   };
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [ 9199 ];
-  nix.settings.allowed-uris = [ "https://github.com/" "https://git.chir.rs/" "https://darkkirb.de/" "https://git.neo-layout.org/" "https://static.darkkirb.de/" ];
-  sops.secrets."services/hydra/gitea_token" = { };
-  sops.secrets."services/hydra/github_token" = { };
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [9199];
+  nix.settings.allowed-uris = ["https://github.com/" "https://git.chir.rs/" "https://darkkirb.de/" "https://git.neo-layout.org/" "https://static.darkkirb.de/"];
+  sops.secrets."services/hydra/gitea_token" = {};
+  sops.secrets."services/hydra/github_token" = {};
   sops.secrets."services/hydra/cache-key" = {
     owner = "hydra-queue-runner";
   };
@@ -91,8 +98,8 @@ in
   systemd.timers.clean-s3-cache = {
     enable = true;
     description = "Clean up S3 cache";
-    requires = [ "clean-s3-cache.service" ];
-    wantedBy = [ "multi-user.target" ];
+    requires = ["clean-s3-cache.service"];
+    wantedBy = ["multi-user.target"];
     timerConfig = {
       OnBootSec = 300;
       OnUnitActiveSec = 604800;
@@ -101,7 +108,7 @@ in
   sops.secrets."services/hydra/aws_credentials" = {
     owner = "hydra-queue-runner";
     path = "/var/lib/hydra/queue-runner/.aws/credentials";
-    restartUnits = [ "hydra-queue-runner.service" ];
+    restartUnits = ["hydra-queue-runner.service"];
   };
   systemd.services.update-hydra-hosts = {
     description = "Update hydra hosts";
@@ -119,8 +126,8 @@ in
   systemd.timers.update-hydra-hosts = {
     enable = true;
     description = "Update hydra hosts";
-    requires = [ "update-hydra-hosts.service" ];
-    wantedBy = [ "multi-user.target" ];
+    requires = ["update-hydra-hosts.service"];
+    wantedBy = ["multi-user.target"];
     timerConfig = {
       OnBootSec = 300;
       OnUnitActiveSec = 300;

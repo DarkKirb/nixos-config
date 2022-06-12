@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   services.restic.backups."sysbackup" = {
     passwordFile = "/run/secrets/security/restic/password";
     paths = [
@@ -10,5 +10,5 @@
     ];
     repository = "sftp:backup@backup.int.chir.rs:/backup";
   };
-  sops.secrets."security/restic/password" = { };
+  sops.secrets."security/restic/password" = {};
 }

@@ -1,4 +1,9 @@
-{ pkgs, nix-packages, system, ... }: {
+{
+  pkgs,
+  nix-packages,
+  system,
+  ...
+}: {
   users.users.miifox = {
     createHome = true;
     description = "Miifox";
@@ -16,21 +21,21 @@
     MemoryHigh = "1G";
     MemoryMax = "1.1G";
   };
-  services.postgresql.ensureDatabases = [ "miifox" ];
-  services.postgresql.ensureUsers = [{
-    name = "miifox";
-    ensurePermissions = { "DATABASE miifox" = "ALL PRIVILEGES"; };
-  }];
+  services.postgresql.ensureDatabases = ["miifox"];
+  services.postgresql.ensureUsers = [
+    {
+      name = "miifox";
+      ensurePermissions = {"DATABASE miifox" = "ALL PRIVILEGES";};
+    }
+  ];
   services.nginx.virtualHosts."miifox.net" = {
     acmeRoot = "/home/miifox/miifox.net";
     sslCertificate = "/var/lib/acme/miifox.net/cert.pem";
     sslCertificateKey = "/var/lib/acme/miifox.net/key.pem";
-    locations."/" =
-      let
-        miifox-website = nix-packages.packages.${system}.miifox-net;
-      in
-      {
-        root = "${miifox-website}";
-      };
+    locations."/" = let
+      miifox-website = nix-packages.packages.${system}.miifox-net;
+    in {
+      root = "${miifox-website}";
+    };
   };
 }

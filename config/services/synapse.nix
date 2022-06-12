@@ -1,20 +1,29 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   services.matrix-synapse = {
     enable = true;
     settings = {
       server_name = "chir.rs";
       public_baseurl = "https://matrix.chir.rs/";
-      listeners = [{
-        port = 8008;
-        tls = false;
-        type = "http";
-        x_forwarded = true;
-        bind_addresses = [ "::1" "127.0.0.1" ];
-        resources = [{
-          names = [ "client" "federation" "metrics" ];
-          compress = false;
-        }];
-      }];
+      listeners = [
+        {
+          port = 8008;
+          tls = false;
+          type = "http";
+          x_forwarded = true;
+          bind_addresses = ["::1" "127.0.0.1"];
+          resources = [
+            {
+              names = ["client" "federation" "metrics"];
+              compress = false;
+            }
+          ];
+        }
+      ];
       admin_contact = "mailto:lotte@chir.rs";
       retention.enabled = true;
       database = {
@@ -64,52 +73,58 @@
     };
     withJemalloc = true;
   };
-  sops.secrets."services/synapse/private_key" = { owner = "matrix-synapse"; };
-  sops.secrets."services/synapse/discord-dev-registration.yaml" = { owner = "matrix-synapse"; };
+  sops.secrets."services/synapse/private_key" = {owner = "matrix-synapse";};
+  sops.secrets."services/synapse/discord-dev-registration.yaml" = {owner = "matrix-synapse";};
   services.postgresql.ensureDatabases = [
     "synapse"
   ];
-  services.postgresql.ensureUsers = [{
-    name = "matrix-synapse";
-    ensurePermissions = {
-      "DATABASE synapse" = "ALL PRIVILEGES";
-    };
-  }];
+  services.postgresql.ensureUsers = [
+    {
+      name = "matrix-synapse";
+      ensurePermissions = {
+        "DATABASE synapse" = "ALL PRIVILEGES";
+      };
+    }
+  ];
   systemd.services.matrix-synapse.serviceConfig.ExecStartPre = lib.mkForce (pkgs.writeShellScript "dummy" "true");
-  services.nginx.virtualHosts =
-    let
-      listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
-      listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
+  services.nginx.virtualHosts = let
+    listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
+    listenStatements =
+      lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs)
+      + ''
         add_header Alt-Svc 'h3=":443"';
       '';
-      synapse = {
-        forceSSL = false;
-        addSSL = true;
-        listenAddresses = listenIPs;
-        locations."/_matrix" = {
-          proxyPass = "http://localhost:8008";
-        };
-        locations."/_synapse" = {
-          proxyPass = "http://localhost:8008";
-        };
-        locations."/_matrix/media" = {
-          proxyPass = "https://matrix.chir.rs";
-          proxyWebsockets = true;
-          extraConfig = ''
-            proxy_hide_header Access-Control-Allow-Origin;
-            add_header Access-Control-Allow-Origin '*' always;
-          '';
-        };
+    synapse = {
+      forceSSL = false;
+      addSSL = true;
+      listenAddresses = listenIPs;
+      locations."/_matrix" = {
+        proxyPass = "http://localhost:8008";
       };
-    in
-    {
-      "matrix.chir.rs" = synapse // {
+      locations."/_synapse" = {
+        proxyPass = "http://localhost:8008";
+      };
+      locations."/_matrix/media" = {
+        proxyPass = "https://matrix.chir.rs";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_hide_header Access-Control-Allow-Origin;
+          add_header Access-Control-Allow-Origin '*' always;
+        '';
+      };
+    };
+  in {
+    "matrix.chir.rs" =
+      synapse
+      // {
         sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
         sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
       };
-      "matrix.int.chir.rs" = synapse // {
+    "matrix.int.chir.rs" =
+      synapse
+      // {
         sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
         sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
       };
-    };
+  };
 }

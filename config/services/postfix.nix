@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   nixpkgs.overlays = [
     (curr: prev: {
       postfix = prev.postfix.override {
@@ -18,7 +17,7 @@
     hostname = "mail.chir.rs";
     masterConfig = {
       submission = {
-        args = [ "-o" "smtpd_tls_security_level=encrypt" ];
+        args = ["-o" "smtpd_tls_security_level=encrypt"];
         type = "inet";
       };
     };
@@ -49,15 +48,17 @@
       tls_preempt_cipherlist = "no";
     };
   };
-  services.postgresql.ensureUsers = [{
-    name = "postfix";
-    ensurePermissions = {
-      "DATABASE \"postfix\"" = "CONNECT";
-    };
-  }];
-  sops.secrets."services/postfix/virtual_alias_domains.cf" = { owner = "postfix"; };
-  sops.secrets."services/postfix/virtual_alias_maps.cf" = { owner = "postfix"; };
-  sops.secrets."services/postfix/virtual_mailbox_domains.cf" = { owner = "postfix"; };
-  networking.firewall.allowedTCPPorts = [ 25 465 587 ];
-  security.acme.certs."chir.rs".reloadServices = [ "postfix.service" ];
+  services.postgresql.ensureUsers = [
+    {
+      name = "postfix";
+      ensurePermissions = {
+        "DATABASE \"postfix\"" = "CONNECT";
+      };
+    }
+  ];
+  sops.secrets."services/postfix/virtual_alias_domains.cf" = {owner = "postfix";};
+  sops.secrets."services/postfix/virtual_alias_maps.cf" = {owner = "postfix";};
+  sops.secrets."services/postfix/virtual_mailbox_domains.cf" = {owner = "postfix";};
+  networking.firewall.allowedTCPPorts = [25 465 587];
+  security.acme.certs."chir.rs".reloadServices = ["postfix.service"];
 }

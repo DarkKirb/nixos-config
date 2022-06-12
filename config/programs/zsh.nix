@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   programs = {
     zsh = {
       enable = true;

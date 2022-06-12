@@ -1,14 +1,17 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   dataDir = "/var/lib/mautrix-signal";
   registrationFile = "${dataDir}/signal-registration.yaml";
   cfg = config.services.mautrix-signal;
-  settingsFormat = pkgs.formats.yaml { };
+  settingsFormat = pkgs.formats.yaml {};
   settingsFileUnsubstituted = settingsFormat.generate "mautrix-telegram-signal-unsubstituted.yaml" cfg.settings;
   settingsFile = "${dataDir}/config.yaml";
-in
-{
+in {
   options = {
     services.mautrix-signal = {
       enable = mkEnableOption "Mautrix-signal, a Matrix-signal hybrid puppeting/relaybot bridge";
@@ -46,7 +49,7 @@ in
             # log to console/systemd instead of file
             root = {
               level = "INFO";
-              handlers = [ "console" ];
+              handlers = ["console"];
             };
           };
         };
@@ -70,8 +73,8 @@ in
     systemd.services.mautrix-signal-genregistration = {
       description = "Mautrix-signal Registration";
 
-      wantedBy = [ "matrix-synapse.service" ];
-      before = [ "matrix-synapse.service" ];
+      wantedBy = ["matrix-synapse.service"];
+      before = ["matrix-synapse.service"];
       script = ''
         # Not all secrets can be passed as environment variable (yet)
         # https://github.com/tulir/mautrix-telegram/issues/584
@@ -113,13 +116,13 @@ in
         Group = "matrix-synapse";
         EnvironmentFile = cfg.environmentFile;
       };
-      restartTriggers = [ settingsFileUnsubstituted cfg.environmentFile ];
+      restartTriggers = [settingsFileUnsubstituted cfg.environmentFile];
     };
     systemd.services.mautrix-signal = {
       description = "Mautrix-signal";
-      wantedBy = [ "multi-user.target" ];
-      wants = [ "matrix-synapse.service" "mautrix-signal-genregistration.service" "signald.service" ];
-      after = [ "matrix-synapse.service" "mautrix-signal-genregistration.service" "signald.service" ];
+      wantedBy = ["multi-user.target"];
+      wants = ["matrix-synapse.service" "mautrix-signal-genregistration.service" "signald.service"];
+      after = ["matrix-synapse.service" "mautrix-signal-genregistration.service" "signald.service"];
       serviceConfig = {
         Type = "simple";
         Restart = "always";
@@ -140,7 +143,7 @@ in
             --config='${settingsFile}'
         '';
       };
-      restartTriggers = [ cfg.environmentFile ];
+      restartTriggers = [cfg.environmentFile];
     };
     users.users.mautrix-signal = {
       description = "Mautrix signal bridge";

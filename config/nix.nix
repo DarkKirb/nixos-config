@@ -1,4 +1,10 @@
-{ pkgs, lib, config, system, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  system,
+  ...
+}: {
   imports = [
     ./workarounds
   ];
@@ -6,7 +12,7 @@
   nix = {
     settings = {
       sandbox = true;
-      trusted-users = [ "@wheel" ];
+      trusted-users = ["@wheel"];
       require-sigs = true;
       builders-use-substitutes = true;
       substituters = [
@@ -50,7 +56,7 @@
         ];
         maxJobs = 16;
         speedFactor = 1;
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "gccarch-znver1" "gccarch-skylake" "ca-derivations" ];
+        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "gccarch-znver1" "gccarch-skylake" "ca-derivations"];
       }
     ];
     distributedBuilds = true;

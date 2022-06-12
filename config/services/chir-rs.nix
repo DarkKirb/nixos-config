@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   systemd.services.chirrs = {
     enable = true;
     description = "chir.rs";
@@ -7,7 +7,7 @@
       WorkingDirectory = pkgs.chir-rs;
       EnvironmentFile = "/run/secrets/services/chir.rs";
     };
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
   };
   services.nginx.virtualHosts."api.chir.rs" = {
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
@@ -16,10 +16,12 @@
       proxyPass = "http://localhost:8621/api.chir.rs/";
     };
   };
-  services.postgresql.ensureDatabases = [ "homepage" ];
-  services.postgresql.ensureUsers = [{
-    name = "homepage";
-    ensurePermissions = { "DATABASE homepage" = "ALL PRIVILEGES"; };
-  }];
-  sops.secrets."services/chir.rs" = { };
+  services.postgresql.ensureDatabases = ["homepage"];
+  services.postgresql.ensureUsers = [
+    {
+      name = "homepage";
+      ensurePermissions = {"DATABASE homepage" = "ALL PRIVILEGES";};
+    }
+  ];
+  sops.secrets."services/chir.rs" = {};
 }

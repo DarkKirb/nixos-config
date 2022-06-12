@@ -1,4 +1,4 @@
-desktop: { pkgs, ... }: {
+desktop: {pkgs, ...}: {
   imports = [
     ../programs/zsh.nix
     ../programs/vim.nix
@@ -35,7 +35,7 @@ desktop: { pkgs, ... }: {
   accounts.email.maildirBasePath = "Maildir";
   accounts.email.accounts = rec {
     lotte = {
-      aliases = [ "darkkirb@darkkirb.de" "postmaster@darkkirb.de" "postmaster@chir.rs" "postmaster@miifox.net" ];
+      aliases = ["darkkirb@darkkirb.de" "postmaster@darkkirb.de" "postmaster@chir.rs" "postmaster@miifox.net"];
       gpg = {
         encryptByDefault = true;
         key = "B4E3D4801C49EC5E";
@@ -44,9 +44,12 @@ desktop: { pkgs, ... }: {
       imap.host = "mail.chir.rs";
       imapnotify = {
         enable = true;
-        boxes = [ "Inbox" ];
+        boxes = ["Inbox"];
         onNotify = "${pkgs.isync}/bin/mbsync -a || true";
-        onNotifyPost = if desktop then "${pkgs.notmuch}/bin/notmuch new && ${pkgs.libnotify}/bin/notify-send 'New mail arrived'" else "${pkgs.notmuch}/bin/notmuch new";
+        onNotifyPost =
+          if desktop
+          then "${pkgs.notmuch}/bin/notmuch new && ${pkgs.libnotify}/bin/notify-send 'New mail arrived'"
+          else "${pkgs.notmuch}/bin/notmuch new";
       };
       smtp.host = "mail.chir.rs";
       address = "lotte@chir.rs";
@@ -70,32 +73,38 @@ desktop: { pkgs, ... }: {
       signature.showSignature = "append";
       userName = "lotte@chir.rs";
     };
-    mdelenk = lotte // {
-      address = "mdelenk@hs-mittweida.de";
-      aliases = [ ];
-      gpg = lotte.gpg // {
-        key = "5130416C797067B6";
-      };
-      imap.host = "xc.hs-mittweida.de";
-      mbsync = lotte.mbsync // {
-        extraConfig.account = {
-          AuthMechs = "LOGIN";
+    mdelenk =
+      lotte
+      // {
+        address = "mdelenk@hs-mittweida.de";
+        aliases = [];
+        gpg =
+          lotte.gpg
+          // {
+            key = "5130416C797067B6";
+          };
+        imap.host = "xc.hs-mittweida.de";
+        mbsync =
+          lotte.mbsync
+          // {
+            extraConfig.account = {
+              AuthMechs = "LOGIN";
+            };
+          };
+        passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/email/mdelenk@hs-mittweida.de";
+        realName = "Morten Delenk";
+        signature.text = ''
+          Morten
+        '';
+        signature.showSignature = "append";
+        smtp = {
+          host = "xc.hs-mittweida.de";
+          port = 587;
+          tls.useStartTls = true;
         };
+        userName = "mdelenk@hs-mittweida.de";
+        primary = false;
       };
-      passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/email/mdelenk@hs-mittweida.de";
-      realName = "Morten Delenk";
-      signature.text = ''
-        Morten
-      '';
-      signature.showSignature = "append";
-      smtp = {
-        host = "xc.hs-mittweida.de";
-        port = 587;
-        tls.useStartTls = true;
-      };
-      userName = "mdelenk@hs-mittweida.de";
-      primary = false;
-    };
   };
   home = {
     sessionVariables = {

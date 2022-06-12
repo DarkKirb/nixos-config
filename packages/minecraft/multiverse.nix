@@ -1,4 +1,4 @@
-{ fetchurl }: {
+{fetchurl}: {
   core = fetchurl {
     url = "https://dev.bukkit.org/projects/multiverse-core/files/3462546/download";
     sha256 = "38c8b6a6aa168ae6a09cc0c9f77115ea975768410bc107c4ce0b32de1bebc787";

@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   switch_window = pkgs.writeScript "switchWindow" ''
       # https://www.reddit.com/r/swaywm/comments/krd0sq/comment/gib6z73/?context=3
     jq_filter='
@@ -34,8 +38,7 @@ let
     ${pkgs.sway-contrib.grimshot}/bin/grimshot "$@"
     ${pkgs.sway}/bin/swaymsg mode default
   '';
-in
-{
+in {
   imports = [
     ./wl-clipboard.nix
     ./mako.nix
@@ -70,10 +73,9 @@ in
           subpixel = "rgb";
         };
       };
-      keybindings =
-        let
-          modifier = config.wayland.windowManager.sway.config.modifier;
-        in
+      keybindings = let
+        modifier = config.wayland.windowManager.sway.config.modifier;
+      in
         lib.mkOptionDefault {
           "${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";
           "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";

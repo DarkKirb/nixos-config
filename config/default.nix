@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./zfs.nix
     ./users/darkkirb.nix
@@ -12,8 +16,8 @@
     ./services/promtail.nix
   ];
   services.openssh.enable = true;
-  environment.systemPackages = with pkgs; [ git pinentry-curses ];
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  environment.systemPackages = with pkgs; [git pinentry-curses];
+  networking.firewall.allowedTCPPorts = [22];
   networking.firewall.allowedUDPPortRanges = [
     {
       from = 60000;
@@ -43,9 +47,9 @@
     ];
     listenAddress = (import ../utils/getInternalIP.nix config).listenIP;
   };
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [ config.services.prometheus.exporters.node.port ];
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [config.services.prometheus.exporters.node.port];
 
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = ["/share/zsh"];
 
   console.keyMap = "neo";
 
@@ -59,5 +63,5 @@
     pinentryFlavor = "curses";
   };
   users.mutableUsers = false;
-  boot.kernelParams = [ "nohibernate" ];
+  boot.kernelParams = ["nohibernate"];
 }

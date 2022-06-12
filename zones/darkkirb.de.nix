@@ -1,8 +1,16 @@
-{ dns ? (import (builtins.fetchTarball "https://github.com/DarkKirb/dns.nix/archive/master.zip")).outputs, zoneTTL ? 3600 }:
-with dns.lib.combinators;
-let
+{
+  dns ? (import (builtins.fetchTarball "https://github.com/DarkKirb/dns.nix/archive/master.zip")).outputs,
+  zoneTTL ? 3600,
+}:
+with dns.lib.combinators; let
   inherit (builtins) hasAttr;
-  merge = a: b: (a // b) // (if ((hasAttr "subdomains" a) && (hasAttr "subdomains" b)) then { subdomains = (a.subdomains // b.subdomains); } else { });
+  merge = a: b:
+    (a // b)
+    // (
+      if ((hasAttr "subdomains" a) && (hasAttr "subdomains" b))
+      then {subdomains = a.subdomains // b.subdomains;}
+      else {}
+    );
   zoneBase = {
     A = [
       (ttl zoneTTL (a "138.201.155.128"))
@@ -36,33 +44,35 @@ let
         ttl = zoneTTL;
       }
     ];
-    /*subdomains = {
-      _tcp.subdomains."*".TLSA = [
-      {
-      certUsage = "dane-ee";
-      selector = "spki";
-      match = "sha256";
-      certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-      ttl = zoneTTL;
-      }
-      ];
-      _udp.subdomains."*".TLSA = [
-      {
-      certUsage = "dane-ee";
-      selector = "spki";
-      match = "sha256";
-      certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-      ttl = zoneTTL;
-      }
-      ];
-      };*/
+    /*
+     subdomains = {
+     _tcp.subdomains."*".TLSA = [
+     {
+     certUsage = "dane-ee";
+     selector = "spki";
+     match = "sha256";
+     certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
+     ttl = zoneTTL;
+     }
+     ];
+     _udp.subdomains."*".TLSA = [
+     {
+     certUsage = "dane-ee";
+     selector = "spki";
+     match = "sha256";
+     certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
+     ttl = zoneTTL;
+     }
+     ];
+     };
+     */
     HTTPS = [
       {
         svcPriority = 1;
         targetName = ".";
-        alpn = [ "http/1.1" "h2" "h3" ];
-        ipv4hint = [ "138.201.155.128" ];
-        ipv6hint = [ "2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49" ];
+        alpn = ["http/1.1" "h2" "h3"];
+        ipv4hint = ["138.201.155.128"];
+        ipv6hint = ["2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49"];
         ttl = zoneTTL;
       }
     ];
@@ -170,12 +180,11 @@ let
         "ns1.chir.rs."
         "ns2.chir.rs."
       ];
-      www = createZone { };
-      static = createZone { };
-      ns1 = createZone { };
-      ns2 = createZone { };
+      www = createZone {};
+      static = createZone {};
+      ns1 = createZone {};
+      ns2 = createZone {};
     };
   };
-
 in
-zone
+  zone

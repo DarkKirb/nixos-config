@@ -1,4 +1,8 @@
-{ pkgs, config, ... }: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ../../modules/matrix/mautrix-signal.nix
   ];
@@ -25,14 +29,13 @@
         socket_path = config.services.signald.socketPath;
         avatar_dir = "/var/lib/mautrix-signal/avatars";
         data_dir = "/var/lib/mautrix-signal/data";
-
       };
       bridge = {
         displayname_template = "{displayname}";
         autocreate_contact_portal = true;
         double_puppet_allow_discovery = true;
-        double_puppet_server_map = { };
-        login_shared_secret_map = { };
+        double_puppet_server_map = {};
+        login_shared_secret_map = {};
         encryption = {
           allow = true;
           default = true;
@@ -50,10 +53,12 @@
   services.postgresql.ensureDatabases = [
     "mautrix_signal"
   ];
-  services.postgresql.ensureUsers = [{
-    name = "mautrix-signal";
-    ensurePermissions = {
-      "DATABASE mautrix_signal" = "ALL PRIVILEGES";
-    };
-  }];
+  services.postgresql.ensureUsers = [
+    {
+      name = "mautrix-signal";
+      ensurePermissions = {
+        "DATABASE mautrix_signal" = "ALL PRIVILEGES";
+      };
+    }
+  ];
 }

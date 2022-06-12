@@ -1,4 +1,11 @@
-{ config, pkgs, modulesPath, lib, nixos-hardware, ... } @ args: {
+{
+  config,
+  pkgs,
+  modulesPath,
+  lib,
+  nixos-hardware,
+  ...
+} @ args: {
   networking.hostName = "nas";
   networking.hostId = "70af00ed";
 
@@ -27,18 +34,18 @@
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "igb" ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = ["igb"];
+  boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [
     config.boot.kernelPackages.zenpower
   ];
 
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = ["zfs"];
   boot.zfs.devNodes = "/dev/";
 
   services.zfs.autoScrub.enable = true;
-  services.zfs.autoScrub.pools = [ "tank" ];
+  services.zfs.autoScrub.pools = ["tank"];
 
   boot.initrd.luks.devices = {
     disk0.device = "/dev/disk/by-partuuid/b122f4e7-9edf-402e-87a9-b709741fe8c9";
@@ -49,123 +56,123 @@
   fileSystems."/" = {
     device = "tank/nixos";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/nix" = {
     device = "tank/nixos/nix";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/etc" = {
     device = "tank/nixos/etc";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/var" = {
     device = "tank/nixos/var";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/var/lib" = {
     device = "tank/nixos/var/lib";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/var/lib/syncthing" = {
     device = "tank/nixos/var/lib/syncthing";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/var/lib/syncthing/.wine" = {
     device = "tank/nixos/var/lib/syncthing/.wine";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
   fileSystems."/var/lib/syncthing/lennyface" = {
     device = "tank/nixos/var/lib/syncthing/lennyface";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
   fileSystems."/var/lib/syncthing/Music-flac" = {
     device = "tank/nixos/var/lib/syncthing/Music-flac";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
   fileSystems."/var/lib/syncthing/Studium" = {
     device = "tank/nixos/var/lib/syncthing/Studium";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
   fileSystems."/var/lib/syncthing/Pictures" = {
     device = "tank/nixos/var/lib/syncthing/Pictures";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
   fileSystems."/var/lib/syncthing/Data" = {
     device = "tank/nixos/var/lib/syncthing/Data";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
   fileSystems."/var/lib/syncthing/CarolineFlac" = {
     device = "tank/nixos/var/lib/syncthing/CarolineFlac";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
   fileSystems."/var/lib/syncthing/Camera" = {
     device = "tank/nixos/var/lib/syncthing/Camera";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
   fileSystems."/var/lib/syncthing/reveng" = {
     device = "tank/nixos/var/lib/syncthing/reveng";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
   fileSystems."/var/lib/syncthing/Music" = {
     device = "tank/nixos/var/lib/syncthing/Music";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
   fileSystems."/var/lib/syncthing/Documents" = {
     device = "tank/nixos/var/lib/syncthing/Documents";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/var/log" = {
     device = "tank/nixos/var/log";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/var/spool" = {
     device = "tank/nixos/var/spool";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/home" = {
     device = "tank/userdata/home";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/root" = {
     device = "tank/userdata/home/root";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/home/darkkirb" = {
     device = "tank/userdata/home/darkkirb";
     fsType = "zfs";
-    options = [ "zfsutil" ];
+    options = ["zfsutil"];
   };
 
   fileSystems."/boot" = {
@@ -206,10 +213,10 @@
     };
   };
   networking.bridges = {
-    br0.interfaces = [ "enp8s0" "wlp6s0" ];
+    br0.interfaces = ["enp8s0" "wlp6s0"];
   };
-  networking.wireguard.interfaces."wg0".ips = [ "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b/64" ];
-  networking.nameservers = [ "192.168.2.1" ];
+  networking.wireguard.interfaces."wg0".ips = ["fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b/64"];
+  networking.nameservers = ["192.168.2.1"];
   environment.etc."sysconfig/lm_sensors".text = ''
     # Generated by sensors-detect on Sun Apr 24 08:31:51 2022
     # This file is sourced by /etc/init.d/lm_sensors and defines the modules to
@@ -250,8 +257,11 @@
 
   system.stateVersion = "22.05";
   hardware.nvidia.prime.offload.enable = false;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  home-manager.users.darkkirb = import ./home-manager/darkkirb.nix { desktop = false; inherit args; };
+  services.xserver.videoDrivers = ["nvidia"];
+  home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
+    desktop = false;
+    inherit args;
+  };
 
   networking.tc_cake = {
     enp1s0f0u4 = {

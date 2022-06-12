@@ -1,5 +1,8 @@
-{ config, pkgs, ... } @ args:
-let
+{
+  config,
+  pkgs,
+  ...
+} @ args: let
   lockscreen-all = pkgs.writeScript "lockscreen-all" ''
     #!${pkgs.bash}/bin/bash
 
@@ -7,8 +10,7 @@ let
       ${pkgs.systemd}/bin/loginctl list-sessions | ${pkgs.gnugrep}/bin/grep '^\ ' | ${pkgs.gawk}/bin/awk '{print $1}' | ${pkgs.findutils}/bin/xargs -i ${pkgs.systemd}/bin/loginctl lock-session {}
     fi
   '';
-in
-{
+in {
   imports = [
     ./services/sway.nix
     ./services/pipewire.nix
@@ -19,10 +21,9 @@ in
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Noto" ]; })
-    (pkgs.callPackage ../packages/linja-nanpa.nix { })
+    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Noto"];})
+    (pkgs.callPackage ../packages/linja-nanpa.nix {})
   ];
-
 
   time.timeZone = "Etc/GMT-1"; # Confusing naming, it's 1 hour east of GMT
   services.pcscd.enable = true;
@@ -43,16 +44,20 @@ in
   nixpkgs.overlays = [
     (curr: prev: {
       steam = prev.steam.override {
-        extraPkgs = pkgs: with pkgs; [
-          mono
-        ];
+        extraPkgs = pkgs:
+          with pkgs; [
+            mono
+          ];
       };
     })
   ];
   programs.java.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
-  home-manager.users.darkkirb = import ./home-manager/darkkirb.nix { desktop = true; inherit args; };
+  home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
+    desktop = true;
+    inherit args;
+  };
 
   i18n.inputMethod = {
     enabled = "ibus";
@@ -61,10 +66,10 @@ in
       table
       table-others
       uniemoji
-      (pkgs.callPackage ../packages/ibus-tp.nix { })
+      (pkgs.callPackage ../packages/ibus-tp.nix {})
     ];
   };
   # For syncthing
-  networking.firewall.allowedTCPPorts = [ 22000 ];
-  networking.firewall.allowedUDPPorts = [ 22000 ];
+  networking.firewall.allowedTCPPorts = [22000];
+  networking.firewall.allowedUDPPorts = [22000];
 }

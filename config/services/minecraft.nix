@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   imports = [
     ../../modules/minecraft/server.nix
     ../../modules/minecraft/luckperms.nix

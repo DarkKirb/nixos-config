@@ -1,10 +1,14 @@
-{ pkgs, config, ... }: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ../modules/systemd-secure-boot
     #    ../modules/systemd-cryptsetup.nix # broken
   ];
 
-  sops.secrets."secureboot/DB.key" = { };
+  sops.secrets."secureboot/DB.key" = {};
   boot.loader.systemd-boot = {
     editor = false;
     secureBoot = {

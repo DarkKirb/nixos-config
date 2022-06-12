@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   security.acme = {
     acceptTerms = true;
     defaults = {
@@ -8,11 +8,11 @@
     };
     certs."darkkirb.de" = {
       domain = "*.darkkirb.de";
-      extraDomainNames = [ "darkkirb.de" ];
+      extraDomainNames = ["darkkirb.de"];
     };
     certs."chir.rs" = {
       domain = "*.chir.rs";
-      extraDomainNames = [ "chir.rs" ];
+      extraDomainNames = ["chir.rs"];
     };
     certs."int.chir.rs" = {
       domain = "*.int.chir.rs";
@@ -25,6 +25,6 @@
   };
   services.nginx.group = "acme";
   systemd.services.nginx.serviceConfig.ProtectHome = false;
-  sops.secrets."security/acme/dns" = { };
-  sops.secrets."security/acme/cloudflare" = { };
+  sops.secrets."security/acme/dns" = {};
+  sops.secrets."security/acme/cloudflare" = {};
 }

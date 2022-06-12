@@ -27,92 +27,111 @@ rec {
     nix-packages.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, sops-nix, home-manager, chir-rs, nur, polymc, ... } @ args:
-    let
-      systems = [
-        {
-          name = "nixos-8gb-fsn1-1"; # Hetzner Server
-          system = "x86_64-linux";
-        }
-        {
-          name = "nutty-noon"; # PC
-          system = "x86_64-linux";
-        }
-        {
-          name = "thinkrac"; # Thinkpad T470
-          system = "x86_64-linux";
-        }
-        {
-          name = "installer"; # The Installer DVD
-          system = "x86_64-linux";
-        }
-        {
-          name = "nas"; # My nas
-          system = "x86_64-linux";
-        }
-        #{
-        #  name = "rpi2"; # Raspberry Pi 2
-        #  system = "armv7l-linux";
-        #}
-      ];
-    in
-    rec {
-      nixosConfigurations =
-        builtins.listToAttrs (map
-          ({ name, system }: {
-            inherit name;
-            value = nixpkgs.lib.nixosSystem
-              {
+  outputs = {
+    self,
+    nixpkgs,
+    sops-nix,
+    home-manager,
+    chir-rs,
+    nur,
+    polymc,
+    ...
+  } @ args: let
+    systems = [
+      {
+        name = "nixos-8gb-fsn1-1"; # Hetzner Server
+        system = "x86_64-linux";
+      }
+      {
+        name = "nutty-noon"; # PC
+        system = "x86_64-linux";
+      }
+      {
+        name = "thinkrac"; # Thinkpad T470
+        system = "x86_64-linux";
+      }
+      {
+        name = "installer"; # The Installer DVD
+        system = "x86_64-linux";
+      }
+      {
+        name = "nas"; # My nas
+        system = "x86_64-linux";
+      }
+      #{
+      #  name = "rpi2"; # Raspberry Pi 2
+      #  system = "armv7l-linux";
+      #}
+    ];
+  in rec {
+    nixosConfigurations = builtins.listToAttrs (map
+      ({
+        name,
+        system,
+      }: {
+        inherit name;
+        value =
+          nixpkgs.lib.nixosSystem
+          {
+            inherit system;
+            specialArgs =
+              args
+              // {
                 inherit system;
-                specialArgs = args // {
-                  inherit system;
-                };
-                modules = [
-                  (./config + "/${name}.nix")
-                  ./config/default.nix
-                  sops-nix.nixosModules.sops
-                  home-manager.nixosModules.home-manager
-                  ({ pkgs, ... }: {
-                    nixpkgs.overlays = [
-                      (self: super: {
-                        chir-rs = chir-rs.outputs.defaultPackage.${system};
-                      })
-                      nur.overlay
-                      polymc.overlay
-                    ];
-                  })
-                  (import utils/link-input.nix args)
-                ];
               };
-          })
-          systems);
-      devShell.x86_64-linux = let pkgs = import nixpkgs { system = "x86_64-linux"; }; in
-        pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            sops
-            ssh-to-age
-            nix-prefetch
-            nix-prefetch-git
-            jq
-            bundix
-            python3
-            python3Packages.yapf
-            github-cli
-          ];
-        };
-      formatters.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-      hydraJobs = (builtins.listToAttrs (map
-        ({ name, system }: {
+            modules = [
+              (./config + "/${name}.nix")
+              ./config/default.nix
+              sops-nix.nixosModules.sops
+              home-manager.nixosModules.home-manager
+              ({pkgs, ...}: {
+                nixpkgs.overlays = [
+                  (self: super: {
+                    chir-rs = chir-rs.outputs.defaultPackage.${system};
+                  })
+                  nur.overlay
+                  polymc.overlay
+                ];
+              })
+              (import utils/link-input.nix args)
+            ];
+          };
+      })
+      systems);
+    devShell.x86_64-linux = let
+      pkgs = import nixpkgs {system = "x86_64-linux";};
+    in
+      pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          sops
+          ssh-to-age
+          nix-prefetch
+          nix-prefetch-git
+          jq
+          bundix
+          python3
+          python3Packages.yapf
+          github-cli
+        ];
+      };
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    hydraJobs =
+      (builtins.listToAttrs (map
+        ({
+          name,
+          system,
+        }: {
           inherit name;
           value = {
             ${system} = nixosConfigurations.${name}.config.system.build.toplevel;
           };
         })
-        systems)) // {
+        systems))
+      // {
         devShell = devShell;
         # Uncomment the line to build an installer image
         # This is EXTREMELY LARGE and will make builds take forever
         # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
       };
-    };
+  };
 }

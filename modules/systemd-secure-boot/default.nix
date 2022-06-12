@@ -1,8 +1,10 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.boot.loader.systemd-boot;
 
   efi = config.boot.loader.efi;
@@ -20,11 +22,20 @@ let
 
     nix = config.nix.package.out;
 
-    timeout = if config.boot.loader.timeout != null then config.boot.loader.timeout else "";
+    timeout =
+      if config.boot.loader.timeout != null
+      then config.boot.loader.timeout
+      else "";
 
-    editor = if cfg.editor then "True" else "False";
+    editor =
+      if cfg.editor
+      then "True"
+      else "False";
 
-    configurationLimit = if cfg.configurationLimit == null then 0 else cfg.configurationLimit;
+    configurationLimit =
+      if cfg.configurationLimit == null
+      then 0
+      else cfg.configurationLimit;
 
     inherit (cfg) consoleMode;
 
@@ -34,28 +45,29 @@ let
 
     inherit (efi) efiSysMountPoint canTouchEfiVariables;
 
-    memtest86 = if cfg.memtest86.enable then pkgs.memtest86-efi else "";
+    memtest86 =
+      if cfg.memtest86.enable
+      then pkgs.memtest86-efi
+      else "";
   };
 
-  checkedSystemdBootBuilder = pkgs.runCommand "systemd-boot"
+  checkedSystemdBootBuilder =
+    pkgs.runCommand "systemd-boot"
     {
-      nativeBuildInputs = [ pkgs.mypy ];
+      nativeBuildInputs = [pkgs.mypy];
     } ''
-    install -m755 ${systemdBootBuilder} $out
-    mypy \
-      --no-implicit-optional \
-      --disallow-untyped-calls \
-      --disallow-untyped-defs \
-      $out
-  '';
-in
-{
-
-  disabledModules = [ "system/boot/loader/systemd-boot/systemd-boot.nix" ];
-  imports =
-    [
-      (mkRenamedOptionModule [ "boot" "loader" "gummiboot" "enable" ] [ "boot" "loader" "systemd-boot" "enable" ])
-    ];
+      install -m755 ${systemdBootBuilder} $out
+      mypy \
+        --no-implicit-optional \
+        --disallow-untyped-calls \
+        --disallow-untyped-defs \
+        $out
+    '';
+in {
+  disabledModules = ["system/boot/loader/systemd-boot/systemd-boot.nix"];
+  imports = [
+    (mkRenamedOptionModule ["boot" "loader" "gummiboot" "enable"] ["boot" "loader" "systemd-boot" "enable"])
+  ];
 
   options.boot.loader.systemd-boot = {
     enable = mkOption {
@@ -96,7 +108,7 @@ in
     consoleMode = mkOption {
       default = "keep";
 
-      type = types.enum [ "0" "1" "2" "auto" "max" "keep" ];
+      type = types.enum ["0" "1" "2" "auto" "max" "keep"];
 
       description = ''
         The resolution of the console. The following values are valid:
@@ -177,7 +189,7 @@ in
         message = "The secureboot signing certificate must be provided";
       }
       {
-        assertion = (config.boot.kernelPackages.kernel.features or { efiBootStub = true; }) ? efiBootStub;
+        assertion = (config.boot.kernelPackages.kernel.features or {efiBootStub = true;}) ? efiBootStub;
 
         message = "This kernel does not support the EFI boot stub";
       }

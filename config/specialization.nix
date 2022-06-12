@@ -1,5 +1,10 @@
 # Configuration file configuring specialization
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   nixpkgs.overlays = [
     (self: prev: {
       custom_xanmod = pkgs.linuxPackagesFor (pkgs.linuxKernel.kernels.linux_xanmod.override {

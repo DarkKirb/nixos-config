@@ -1,6 +1,13 @@
-{ nix-packages, system, config, lib, options, pkgs, ... }:
-with lib;
-let
+{
+  nix-packages,
+  system,
+  config,
+  lib,
+  options,
+  pkgs,
+  ...
+}:
+with lib; let
   papermc = nix-packages.packages.${system}.papermc;
   cfg = config.services.minecraft;
   opt = options.services.minecraft;
@@ -19,8 +26,7 @@ let
   paperYaml = pkgs.writeText "paper.yml" ''
     ${generators.toYAML {} cfg.paper-yml}
   '';
-in
-{
+in {
   options.services.minecraft = {
     enable = mkOption {
       default = false;
@@ -55,7 +61,7 @@ in
       };
       difficulty = mkOption {
         default = "normal";
-        type = types.enum [ "peacful" "easy" "normal" "hard" ];
+        type = types.enum ["peacful" "easy" "normal" "hard"];
         description = "Difficulty";
       };
       enable-command-block = mkOption {
@@ -105,7 +111,7 @@ in
       };
       gamemode = mkOption {
         default = "survival";
-        type = types.enum [ "survival" "creative" "adventure" "spectator" ];
+        type = types.enum ["survival" "creative" "adventure" "spectator"];
         description = "Gamemode";
       };
       generate-structures = mkOption {
@@ -115,9 +121,12 @@ in
       };
       generator-settings = mkOption {
         default = "";
-        type = types.oneOf [ types.str (types.attrsOf types.anything) ];
+        type = types.oneOf [types.str (types.attrsOf types.anything)];
         description = "Generator settings";
-        apply = val: if (builtins.isString val) then val else builtins.toJSON val;
+        apply = val:
+          if (builtins.isString val)
+          then val
+          else builtins.toJSON val;
       };
       hardcore = mkOption {
         default = false;
@@ -136,7 +145,7 @@ in
       };
       level-type = mkOption {
         default = "default";
-        type = types.enum [ "default" "flat" "largeBiomes" "amplified" ];
+        type = types.enum ["default" "flat" "largeBiomes" "amplified"];
         description = "Level type";
       };
       max-players = mkOption {
@@ -280,7 +289,7 @@ in
         description = "View distance";
       };
       white-list = mkOption {
-        default = cfg.whitelist != [ ];
+        default = cfg.whitelist != [];
         type = types.bool;
         description = "White list";
       };
@@ -290,7 +299,7 @@ in
         description = "Enforce whitelist";
       };
       extraConfig = mkOption {
-        default = { };
+        default = {};
         type = types.attrsOf types.anything;
         description = "Extra configuration to be added to the minecraft server properties file";
       };
@@ -349,7 +358,7 @@ in
         };
         deprecated-verbose = mkOption {
           default = "default";
-          type = types.enum [ true false "default" ];
+          type = types.enum [true false "default"];
           description = "Deprecated verbose";
         };
         shutdown-message = mkOption {
@@ -522,7 +531,7 @@ in
           description = "Disable saving";
         };
         disabled = mkOption {
-          default = [ ];
+          default = [];
           type = types.listOf types.str;
           description = "Disabled Advancements";
         };
@@ -541,12 +550,12 @@ in
       };
       commands = {
         replace-commands = mkOption {
-          default = [ "setblock" "summon" "testforblock" "tellraw" ];
+          default = ["setblock" "summon" "testforblock" "tellraw"];
           type = types.listOf types.str;
           description = "Replace commands";
         };
         spam-exclusions = mkOption {
-          default = [ "/skill" ];
+          default = ["/skill"];
           type = types.listOf types.str;
           description = "Spam exclusions";
         };
@@ -579,7 +588,7 @@ in
         };
       };
       world-settings = mkOption {
-        default = { };
+        default = {};
         type = types.attrsOf (types.submodule {
           options = {
             below-zero-generation-in-existing-chunks = mkOption {
@@ -614,12 +623,12 @@ in
             };
             view-distance = mkOption {
               default = "default";
-              type = type.oneOf [ types.int types.str ];
+              type = type.oneOf [types.int types.str];
               description = "View distance";
             };
             simulation-distance = mkOption {
               default = "default";
-              type = type.oneOf [ types.int types.str ];
+              type = type.oneOf [types.int types.str];
               description = "Simulation distance";
             };
             thunder-chance = mkOption {
@@ -920,7 +929,7 @@ in
             };
             seed-stronghold = mkOption {
               default = "default";
-              type = types.oneOf [ types.int types.str ];
+              type = types.oneOf [types.int types.str];
               description = "Seed stronghold";
             };
             hunger = {
@@ -1140,7 +1149,7 @@ in
           description = "Server-name-privacy";
         };
         hidden-config-entries = mkOption {
-          default = [ "database" "settings.bungeecord-addresses" "setitngs.velocity-support.secret" ];
+          default = ["database" "settings.bungeecord-addresses" "setitngs.velocity-support.secret"];
           type = types.listOf types.str;
           description = "Hidden-config-entries";
         };
@@ -1477,7 +1486,7 @@ in
       };
       world-settings = mkOption {
         default = {
-          default = { };
+          default = {};
         };
         type = types.attrsOf (types.submodule {
           options = {
@@ -1703,7 +1712,7 @@ in
                 description = "World-settings.type.options.anti-xray.hidden-blocks";
               };
               replacement-blocks = mkOption {
-                default = [ "stone" "oak_planks" "deepslate" ];
+                default = ["stone" "oak_planks" "deepslate"];
                 type = types.listOf types.str;
                 description = "World-settings.type.options.anti-xray.replacement-blocks";
               };
@@ -1801,12 +1810,12 @@ in
             wateranimal-spawn-height = {
               maximum = mkOption {
                 default = "default";
-                type = types.oneOf [ types.int types.str ];
+                type = types.oneOf [types.int types.str];
                 description = "World-settings.type.options.wateranimal-spawn-height.maximum";
               };
               minimum = mkOption {
                 default = "default";
-                type = types.oneOf [ types.int types.str ];
+                type = types.oneOf [types.int types.str];
                 description = "World-settings.type.options.wateranimal-spawn-height.minimum";
               };
             };
@@ -1998,12 +2007,12 @@ in
             };
             door-breaking-difficulty = {
               zombie = mkOption {
-                default = [ "HARD" ];
-                type = types.listOf (types.enum [ "EASY" "NORMAL" "HARD" ]);
+                default = ["HARD"];
+                type = types.listOf (types.enum ["EASY" "NORMAL" "HARD"]);
               };
               vindicator = mkOption {
-                default = [ "NORMAL" "HARD" ];
-                type = types.listOf (types.enum [ "EASY" "NORMAL" "HARD" ]);
+                default = ["NORMAL" "HARD"];
+                type = types.listOf (types.enum ["EASY" "NORMAL" "HARD"]);
               };
             };
             max-growth-height = {
@@ -2395,7 +2404,7 @@ in
                 description = "World-settings.type.options.alt-item-despawn-rate.enabled";
               };
               items = mkOption {
-                default = { };
+                default = {};
                 type = types.attrsOf types.int;
                 description = "World-settings.type.options.alt-item-despawn-rate.items";
               };
@@ -2425,7 +2434,7 @@ in
       };
     };
     whitelist = mkOption {
-      default = [ ];
+      default = [];
       type = types.listOf (types.submodule {
         options = {
           uuid = mkOption {
@@ -2440,7 +2449,7 @@ in
       });
     };
     plugins = mkOption {
-      default = [ ];
+      default = [];
       type = types.listOf (types.submodule {
         options = {
           package = mkOption {
@@ -2448,7 +2457,7 @@ in
             description = "Package name of the plugin";
           };
           startScript = mkOption {
-            type = types.nullOr (types.oneOf [ types.str types.package ]);
+            type = types.nullOr (types.oneOf [types.str types.package]);
             description = "Start script of the plugin";
           };
         };
@@ -2457,59 +2466,67 @@ in
     };
   };
   config = mkIf cfg.enable {
-    services.minecraft.properties.extraConfig = with cfg.properties; lib.mkDefault {
-      inherit allow-flight allow-nether broadcast-console-to-ops broadcast-rcon-to-ops;
-      inherit difficulty enable-command-block enable-jmx-monitoring enable-rcon sync-chunk-writes;
-      inherit enable-status enable-query entity-broadcast-range-percentage force-gamemode;
-      inherit function-permission-level gamemode generate-structures generator-settings hardcore;
-      inherit level-name level-seed level-type max-players max-tick-time motd;
-      inherit network-compression-threshold online-mode permission-level player-idle-timeout;
-      inherit prevent-proxy-connections pvp rate-limit resource-pack resource-pack-prompt;
-      inherit resource-pack-sha1 require-resource-pack server-ip server-port;
-      inherit simulation-distance snooper-enabled spawn-animals spawn-monsters spawn-npcs;
-      inherit spawn-protection use-native-transport view-distance white-list enforce-whitelist;
+    services.minecraft.properties.extraConfig = with cfg.properties;
+      lib.mkDefault {
+        inherit allow-flight allow-nether broadcast-console-to-ops broadcast-rcon-to-ops;
+        inherit difficulty enable-command-block enable-jmx-monitoring enable-rcon sync-chunk-writes;
+        inherit enable-status enable-query entity-broadcast-range-percentage force-gamemode;
+        inherit function-permission-level gamemode generate-structures generator-settings hardcore;
+        inherit level-name level-seed level-type max-players max-tick-time motd;
+        inherit network-compression-threshold online-mode permission-level player-idle-timeout;
+        inherit prevent-proxy-connections pvp rate-limit resource-pack resource-pack-prompt;
+        inherit resource-pack-sha1 require-resource-pack server-ip server-port;
+        inherit simulation-distance snooper-enabled spawn-animals spawn-monsters spawn-npcs;
+        inherit spawn-protection use-native-transport view-distance white-list enforce-whitelist;
 
-      "query.port" = query-port;
-      "rcon.port" = rcon-port;
-    };
+        "query.port" = query-port;
+        "rcon.port" = rcon-port;
+      };
     systemd.services.minecraft = {
       description = "Minecraft Server";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
-      path = [ papermc ];
-      preStart =
-        let
-          plugins = builtins.map
-            (plugin: ''
-              cp ${plugin.package} plugins
-                  ${if plugin.startScript != null then ''
-                    ${plugin.startScript}
-                '' else ""}
-            '')
-            cfg.plugins;
-        in
-        ''
-          cd $HOME
-          # Agree to the EULA
-          echo "eula=true" > eula.txt
-          # Update the server properties
-          cat ${serverProperties} > server.properties
-          ${if cfg.properties.rcon-password-file != null then ''
+      after = ["network.target"];
+      wantedBy = ["multi-user.target"];
+      path = [papermc];
+      preStart = let
+        plugins =
+          builtins.map
+          (plugin: ''
+            cp ${plugin.package} plugins
+                ${
+              if plugin.startScript != null
+              then ''
+                ${plugin.startScript}
+              ''
+              else ""
+            }
+          '')
+          cfg.plugins;
+      in ''
+        cd $HOME
+        # Agree to the EULA
+        echo "eula=true" > eula.txt
+        # Update the server properties
+        cat ${serverProperties} > server.properties
+        ${
+          if cfg.properties.rcon-password-file != null
+          then ''
             echo "rcon.password=$(cat ${builtins.toString cfg.properties.rcon-password-file})" >> server.properties
-          '' else "" }
-          # Update the whitelist
-          cat ${whitelistJson} > whitelist.json
-          # Update the bukkit yml
-          cat ${bukkitYaml} > bukkit.yml
-          # Update the spigot yml
-          cat ${spigotYaml} > spigot.yml
-          # Update the paper yml
-          cat ${paperYaml} > paper.yml
-          # Update the plugins
-          mkdir -p plugins
-          rm -rf plugins/*.jar
-          ${builtins.toString plugins}
-        '';
+          ''
+          else ""
+        }
+        # Update the whitelist
+        cat ${whitelistJson} > whitelist.json
+        # Update the bukkit yml
+        cat ${bukkitYaml} > bukkit.yml
+        # Update the spigot yml
+        cat ${spigotYaml} > spigot.yml
+        # Update the paper yml
+        cat ${paperYaml} > paper.yml
+        # Update the plugins
+        mkdir -p plugins
+        rm -rf plugins/*.jar
+        ${builtins.toString plugins}
+      '';
       serviceConfig = {
         Type = "simple";
         User = "minecraft";
@@ -2520,7 +2537,7 @@ in
         RuntimeDirectory = "minecraft";
         RuntimeDirectoryMode = "0755";
         UMask = "0027";
-        ReadWritePaths = [ cfg.stateDir ]; # Grant access to the state directory
+        ReadWritePaths = [cfg.stateDir]; # Grant access to the state directory
         CapabilityBoundingSet = "";
         # Security
         NoNewPrivileges = true;
@@ -2536,7 +2553,7 @@ in
         ProtectKernelModules = true;
         ProtectKernelLogs = true;
         ProtectControlGroups = true;
-        RestrictAddressFamilies = [ "AF_UNIX AF_INET AF_INET6" ];
+        RestrictAddressFamilies = ["AF_UNIX AF_INET AF_INET6"];
         LockPersonality = true;
         RestrictRealtime = true;
         RestrictSUIDSGID = true;
@@ -2554,10 +2571,9 @@ in
       group = "minecraft";
       isSystemUser = true;
     };
-    users.groups.minecraft = { };
+    users.groups.minecraft = {};
     systemd.tmpfiles.rules = [
       "d '${cfg.stateDir}' 0750 minecraft minecraft - -"
     ];
   };
 }
-

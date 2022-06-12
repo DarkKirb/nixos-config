@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   services.mautrix-telegram = {
     enable = true;
     environmentFile = config.sops.secrets."services/mautrix/telegram".path;
@@ -25,8 +30,8 @@
         sync_create_limit = 0;
         sync_direct_chats = true;
         sync_direct_chat_list = true;
-        double_puppet_server_map = { };
-        login_shared_secret_map = { };
+        double_puppet_server_map = {};
+        login_shared_secret_map = {};
         double_puppet_allow_discovery = true;
         invite_link_resolve = true;
         animated_sticker.target = "webm";
@@ -54,12 +59,14 @@
   services.postgresql.ensureDatabases = [
     "mautrix_telegram"
   ];
-  services.postgresql.ensureUsers = [{
-    name = "mautrix-telegram";
-    ensurePermissions = {
-      "DATABASE mautrix_telegram" = "ALL PRIVILEGES";
-    };
-  }];
+  services.postgresql.ensureUsers = [
+    {
+      name = "mautrix-telegram";
+      ensurePermissions = {
+        "DATABASE mautrix_telegram" = "ALL PRIVILEGES";
+      };
+    }
+  ];
   users.users.mautrix-telegram = {
     description = "Mautrix telegram bridge";
     home = "/var/lib/mautrix-telegram";

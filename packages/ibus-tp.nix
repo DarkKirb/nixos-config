@@ -1,4 +1,10 @@
-{ stdenvNoCC, fetchFromGitHub, ibus, ibus-engines }: stdenvNoCC.mkDerivation rec {
+{
+  stdenvNoCC,
+  fetchFromGitHub,
+  ibus,
+  ibus-engines,
+}:
+stdenvNoCC.mkDerivation rec {
   pname = "ibus-toki-pona";
   version = "20220215";
   src = fetchFromGitHub {
@@ -7,7 +13,7 @@
     rev = "43da00449a99c0b8aaa6f5099d0dc1f795c7c39f";
     sha256 = "sha256-CIa0wJnv1G0jpS8l2cjEFey1pdQuJPftiwZ5MZyriJ8=";
   };
-  buildInputs = [ ibus ibus-engines.table ];
+  buildInputs = [ibus ibus-engines.table];
 
   buildPhase = ''
     export HOME=$(pwd)

@@ -1,5 +1,5 @@
-{ ... }: {
-  networking.dhcpcd.allowInterfaces = [ "enp1s0f0u4" ]; # yes a usb network card don’t judge
+{...}: {
+  networking.dhcpcd.allowInterfaces = ["enp1s0f0u4"]; # yes a usb network card don’t judge
   services.dhcpd4 = {
     enable = true;
     extraConfig = ''
@@ -11,7 +11,7 @@
         range 192.168.2.100 192.168.2.200;
       }
     '';
-    interfaces = [ "br0" ];
+    interfaces = ["br0"];
   };
   # No i don’t have ipv6 :(
   networking.firewall.extraCommands = ''

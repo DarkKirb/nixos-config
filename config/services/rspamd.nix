@@ -1,5 +1,8 @@
-{ config, lib, ... }:
 {
+  config,
+  lib,
+  ...
+}: {
   services = {
     # TODO: Antivirus
 
@@ -154,19 +157,18 @@
       };
       workers = {
         rspamd_proxy = {
-          includes = [ "$CONFDIR/worker-proxy.inc" ];
-          bindSockets = [ "*:11332" ];
+          includes = ["$CONFDIR/worker-proxy.inc"];
+          bindSockets = ["*:11332"];
         };
         normal = {
-          includes = [ "$CONFDIR/worker-normal.inc" ];
-          bindSockets = [ "*:11333" ];
+          includes = ["$CONFDIR/worker-normal.inc"];
+          bindSockets = ["*:11333"];
         };
         controller = {
-          includes = [ "$CONFDIR/worker-controller.inc" ];
-          bindSockets = [ "*:11334" ];
+          includes = ["$CONFDIR/worker-controller.inc"];
+          bindSockets = ["*:11334"];
         };
       };
-
     };
     redis.servers.rspamd = {
       enable = true;
@@ -178,27 +180,27 @@
         maxmemory-policy = "volatile-ttl";
       };
     };
-    nginx.virtualHosts."rspamd.int.chir.rs" =
-      let
-        listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
-        listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
+    nginx.virtualHosts."rspamd.int.chir.rs" = let
+      listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
+      listenStatements =
+        lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs)
+        + ''
           add_header Alt-Svc 'h3=":443"';
         '';
-      in
-      {
-        listenAddresses = listenIPs;
-        sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
-        sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:11334/";
-          proxyWebsockets = true;
-        };
+    in {
+      listenAddresses = listenIPs;
+      sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
+      sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:11334/";
+        proxyWebsockets = true;
       };
+    };
   };
-  sops.secrets."services/rspamd/dkim/darkkirb.de" = { owner = "rspamd"; };
-  sops.secrets."services/rspamd/dkim/miifox.net" = { owner = "rspamd"; };
-  sops.secrets."services/rspamd/dkim/chir.rs" = { owner = "rspamd"; };
-  networking.nameservers = lib.mkForce [ "fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49" ];
+  sops.secrets."services/rspamd/dkim/darkkirb.de" = {owner = "rspamd";};
+  sops.secrets."services/rspamd/dkim/miifox.net" = {owner = "rspamd";};
+  sops.secrets."services/rspamd/dkim/chir.rs" = {owner = "rspamd";};
+  networking.nameservers = lib.mkForce ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
   networking.firewall.interfaces."wg0".allowedTCPPorts = [
     11332
     11333

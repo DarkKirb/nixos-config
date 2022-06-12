@@ -1,10 +1,12 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = false;
-    extensions = [
-      (pkgs.callPackage ../../../packages/rust-analyzer.nix { })
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
+    extensions =
+      [
+        (pkgs.callPackage ../../../packages/rust-analyzer.nix {})
+      ]
+      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
     userSettings = {
       "diffEditor.codeLens" = true;
       "editor.bracketPairColorization.enabled" = true;
@@ -50,7 +52,7 @@
       "C_Cpp.errorSquiggles" = "Disabled";
       "clang-tidy.executable" = "${pkgs.llvmPackages_latest.clang-unwrapped}/bin/clang-tidy";
       "cmake.cmakePath" = "${pkgs.cmake}/bin/cmake";
-      "github.copilot.enable" = { "*" = true; };
+      "github.copilot.enable" = {"*" = true;};
       "crates.listPreReleases" = true;
       "css.format.spaceAroundSelectorSeparator" = true;
       "less.format.spaceAroundSelectorSeparator" = true;

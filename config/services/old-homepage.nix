@@ -1,8 +1,10 @@
-{ nix-packages, system, ... }:
-let
-  homepage-old = nix-packages.packages.${system}.homepage-old;
-in
 {
+  nix-packages,
+  system,
+  ...
+}: let
+  homepage-old = nix-packages.packages.${system}.homepage-old;
+in {
   systemd.services.homepage-old = {
     enable = true;
     description = "darkkirb.de";
@@ -11,12 +13,12 @@ in
       WorkingDirectory = homepage-old;
       EnvironmentFile = "/run/secrets/services/old-homepage";
     };
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
   };
   services.nginx.virtualHosts."darkkirb.de" = {
     sslCertificate = "/var/lib/acme/darkkirb.de/cert.pem";
     sslCertificateKey = "/var/lib/acme/darkkirb.de/key.pem";
-    serverAliases = [ "www.darkkirb.de" ];
+    serverAliases = ["www.darkkirb.de"];
     locations."/" = {
       proxyPass = "http://localhost:3002/";
     };
@@ -34,5 +36,5 @@ in
       proxyPass = "https://f000.backblazeb2.com/file/darkkirb-de/";
     };
   };
-  sops.secrets."services/old-homepage" = { };
+  sops.secrets."services/old-homepage" = {};
 }

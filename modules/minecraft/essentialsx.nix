@@ -1,12 +1,16 @@
-{ config, lib, options, pkgs, ... }:
-with lib;
-let
-  essentialsx = pkgs.callPackage ../../packages/minecraft/essentialsx.nix { };
+{
+  config,
+  lib,
+  options,
+  pkgs,
+  ...
+}:
+with lib; let
+  essentialsx = pkgs.callPackage ../../packages/minecraft/essentialsx.nix {};
   cfg = config.services.minecraft.essentialsx;
   opt = options.services.minecraft.essentialsx;
-  config-yml = pkgs.writeText "config.yml" (generators.toYAML { } cfg.config);
-in
-{
+  config-yml = pkgs.writeText "config.yml" (generators.toYAML {} cfg.config);
+in {
   options.services.minecraft.essentialsx = {
     enable = mkOption {
       default = false;
@@ -41,7 +45,7 @@ in
         type = types.int;
       };
       nick-blacklist = mkOption {
-        default = [ ];
+        default = [];
         description = "Nickname blacklist";
         type = types.listOf types.str;
       };
@@ -171,12 +175,12 @@ in
         type = types.int;
       };
       ovverridden-commands = mkOption {
-        default = [ ];
+        default = [];
         description = "Ovverridden commands";
         type = types.listOf types.str;
       };
       disabled-commands = mkOption {
-        default = [ ];
+        default = [];
         description = "Disabled commands";
         type = types.listOf types.str;
       };
@@ -233,12 +237,12 @@ in
         type = types.bool;
       };
       mute-commands = mkOption {
-        default = [ ];
+        default = [];
         description = "Mute commands";
         type = types.listOf types.str;
       };
       player-commands = mkOption {
-        default = [ ];
+        default = [];
         description = "Player commands";
         type = types.listOf types.str;
       };
@@ -268,7 +272,7 @@ in
         type = types.bool;
       };
       enabled-signs = mkOption {
-        default = [ ];
+        default = [];
         description = "Enabled signs";
         type = types.listOf types.str;
       };
@@ -283,7 +287,7 @@ in
         type = types.bool;
       };
       unprotected-sign-names = mkOption {
-        default = [ ];
+        default = [];
         description = "Unprotected sign names";
         type = types.listOf types.str;
       };
@@ -430,7 +434,7 @@ in
         type = types.int;
       };
       no-god-in-worlds = mkOption {
-        default = [ ];
+        default = [];
         description = "No god in worlds";
         type = types.listOf types.str;
       };
@@ -530,7 +534,7 @@ in
         type = types.bool;
       };
       command-cooldowns = mkOption {
-        default = { };
+        default = {};
         description = "Command cooldowns";
         type = types.attrsOf types.int;
       };
@@ -560,7 +564,7 @@ in
         type = types.int;
       };
       default-enabled-confirm-commands = mkOption {
-        default = [ ];
+        default = [];
         description = "Default enabled confirm commands";
         type = types.listOf types.str;
       };
@@ -660,7 +664,7 @@ in
         type = types.int;
       };
       command-costs = mkOption {
-        default = { };
+        default = {};
         description = "Command costs";
         type = types.attrsOf types.int;
       };
@@ -736,12 +740,12 @@ in
           type = types.str;
         };
         group-formats = mkOption {
-          default = { };
+          default = {};
           description = "Group formats";
           type = types.attrsOf types.str;
         };
         world-aliases = mkOption {
-          default = { };
+          default = {};
           description = "World aliases";
           type = types.attrsOf types.str;
         };
@@ -789,10 +793,11 @@ in
       spawn-on-join = mkOption {
         default = false;
         description = "Spawn on join";
-        type = types.oneOf [ types.bool types.str (types.listOf types.str) ];
+        type = types.oneOf [types.bool types.str (types.listOf types.str)];
       };
     };
-    worth-yml = mkOption
+    worth-yml =
+      mkOption
       {
         default = null;
         description = "Worth YML Path";
@@ -800,7 +805,8 @@ in
       };
   };
 
-  config = mkIf cfg.enable
+  config =
+    mkIf cfg.enable
     {
       assertions = [
         {
@@ -825,29 +831,39 @@ in
         vault.enable = config.services.minecraft.luckperms.enable;
       };
       services.minecraft.plugins = lib.mkMerge [
-        [{
-          package = essentialsx.essentialsx;
-          startScript = pkgs.writeScript "essentialsx" ''
-            mkdir -pv plugins/Essentials
-            cat ${config-yml} > plugins/Essentials/config.yml
-            ${if cfg.worth-yml != null then ''
-              cat ${cfg.worth-yml} > plugins/Essentials/worth.yml
-            '' else ""}
-          '';
-        }]
+        [
+          {
+            package = essentialsx.essentialsx;
+            startScript = pkgs.writeScript "essentialsx" ''
+              mkdir -pv plugins/Essentials
+              cat ${config-yml} > plugins/Essentials/config.yml
+              ${
+                if cfg.worth-yml != null
+                then ''
+                  cat ${cfg.worth-yml} > plugins/Essentials/worth.yml
+                ''
+                else ""
+              }
+            '';
+          }
+        ]
         (
           mkIf cfg.chat
-            [{
+          [
+            {
               package = essentialsx.essentialsx-chat;
               startScript = pkgs.writeScript "dummy" "";
-            }]
+            }
+          ]
         )
         (
           mkIf cfg.spawn
-            [{
+          [
+            {
               package = essentialsx.essentialsx-spawn;
               startScript = pkgs.writeScript "dummy" "";
-            }]
+            }
+          ]
         )
       ];
     };

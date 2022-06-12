@@ -1,8 +1,12 @@
-{ config, lib, pkgs, system, nixpkgs-systemd-249, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  system,
+  nixpkgs-systemd-249,
+  ...
+}:
+with lib; let
   systemd = nixpkgs-systemd-249.legacyPackages.${system}.systemd;
   luks = config.boot.initrd.luks;
   kernelPackages = config.boot.kernelPackages;
@@ -77,32 +81,31 @@ let
     umount /crypt-ramfs 2>/dev/null
   '';
 
-  openCommand = name: dev: assert name == dev.name;
-    let
-      csopen = "systemd-cryptsetup attach ${dev.name} ${dev.device} \"\" tpm2-device=/dev/tpmrm0"
-        + optionalString dev.allowDiscards ",discard"
-        + optionalString dev.bypassWorkqueues ",no-read-workqueue,no-write-workqueue"
-        + optionalString (dev.header != null) ",header=${dev.header}";
-    in
-    ''
-      # Wait for luksRoot (and optionally keyFile and/or header) to appear, e.g.
-      # if on a USB drive.
-      wait_target "device" ${dev.device} || die "${dev.device} is unavailable"
+  openCommand = name: dev: assert name == dev.name; let
+    csopen =
+      "systemd-cryptsetup attach ${dev.name} ${dev.device} \"\" tpm2-device=/dev/tpmrm0"
+      + optionalString dev.allowDiscards ",discard"
+      + optionalString dev.bypassWorkqueues ",no-read-workqueue,no-write-workqueue"
+      + optionalString (dev.header != null) ",header=${dev.header}";
+  in ''
+    # Wait for luksRoot (and optionally keyFile and/or header) to appear, e.g.
+    # if on a USB drive.
+    wait_target "device" ${dev.device} || die "${dev.device} is unavailable"
 
-      ${optionalString (dev.header != null) ''
-        wait_target "header" ${dev.header} || die "${dev.header} is unavailable"
-      ''}
+    ${optionalString (dev.header != null) ''
+      wait_target "header" ${dev.header} || die "${dev.header} is unavailable"
+    ''}
 
-      # commands to run right before we mount our device
-      ${dev.preOpenCommands}
+    # commands to run right before we mount our device
+    ${dev.preOpenCommands}
 
-      mkdir -pv ${pkgs.tpm2-tss}
-      ln -svf /lib ${pkgs.tpm2-tss}
-      ${csopen}
+    mkdir -pv ${pkgs.tpm2-tss}
+    ln -svf /lib ${pkgs.tpm2-tss}
+    ${csopen}
 
-      # commands to run right after we mounted our device
-      ${dev.postOpenCommands}
-    '';
+    # commands to run right after we mounted our device
+    ${dev.postOpenCommands}
+  '';
 
   askPass = pkgs.writeScriptBin "cryptsetup-askpass" ''
     #!/bin/sh
@@ -124,15 +127,12 @@ let
 
   preLVM = filterAttrs (n: v: v.preLVM) luks.devices;
   postLVM = filterAttrs (n: v: !v.preLVM) luks.devices;
-
-in
-{
+in {
   imports = [
-    (mkRemovedOptionModule [ "boot" "initrd" "luks" "enable" ] "")
+    (mkRemovedOptionModule ["boot" "initrd" "luks" "enable"] "")
   ];
 
   options = {
-
     boot.initrd.luks.mitigateDMAAttacks = mkOption {
       type = types.bool;
       default = true;
@@ -148,22 +148,21 @@ in
 
     boot.initrd.luks.cryptoModules = mkOption {
       type = types.listOf types.str;
-      default =
-        [
-          "aes"
-          "aes_generic"
-          "blowfish"
-          "twofish"
-          "serpent"
-          "cbc"
-          "xts"
-          "lrw"
-          "sha1"
-          "sha256"
-          "sha512"
-          "af_alg"
-          "algif_skcipher"
-        ];
+      default = [
+        "aes"
+        "aes_generic"
+        "blowfish"
+        "twofish"
+        "serpent"
+        "cbc"
+        "xts"
+        "lrw"
+        "sha1"
+        "sha256"
+        "sha512"
+        "af_alg"
+        "algif_skcipher"
+      ];
       description = ''
         A list of cryptographic kernel modules needed to decrypt the root device(s).
         The default includes all common modules.
@@ -181,8 +180,8 @@ in
     };
 
     boot.initrd.luks.devices = mkOption {
-      default = { };
-      example = { luksroot.device = "/dev/disk/by-uuid/430e9eff-d852-4f68-aa3b-2fa3599ebe08"; };
+      default = {};
+      example = {luksroot.device = "/dev/disk/by-uuid/430e9eff-d852-4f68-aa3b-2fa3599ebe08";};
       description = ''
         The encrypted disk that should be opened before the root
         filesystem is mounted. Both LVM-over-LUKS and LUKS-over-LVM
@@ -190,115 +189,123 @@ in
         <filename>/dev/mapper/<replaceable>name</replaceable></filename>.
       '';
 
-      type = with types; attrsOf (submodule (
-        { name, ... }: {
-          options = {
+      type = with types;
+        attrsOf (submodule (
+          {name, ...}: {
+            options = {
+              name = mkOption {
+                visible = false;
+                default = name;
+                example = "luksroot";
+                type = types.str;
+                description = "Name of the unencrypted device in <filename>/dev/mapper</filename>.";
+              };
 
-            name = mkOption {
-              visible = false;
-              default = name;
-              example = "luksroot";
-              type = types.str;
-              description = "Name of the unencrypted device in <filename>/dev/mapper</filename>.";
-            };
+              device = mkOption {
+                example = "/dev/disk/by-uuid/430e9eff-d852-4f68-aa3b-2fa3599ebe08";
+                type = types.str;
+                description = "Path of the underlying encrypted block device.";
+              };
 
-            device = mkOption {
-              example = "/dev/disk/by-uuid/430e9eff-d852-4f68-aa3b-2fa3599ebe08";
-              type = types.str;
-              description = "Path of the underlying encrypted block device.";
-            };
+              header = mkOption {
+                default = null;
+                example = "/root/header.img";
+                type = types.nullOr types.str;
+                description = ''
+                  The name of the file or block device that
+                  should be used as header for the encrypted device.
+                '';
+              };
 
-            header = mkOption {
-              default = null;
-              example = "/root/header.img";
-              type = types.nullOr types.str;
-              description = ''
-                The name of the file or block device that
-                should be used as header for the encrypted device.
-              '';
-            };
+              # FIXME: get rid of this option.
+              preLVM = mkOption {
+                default = true;
+                type = types.bool;
+                description = "Whether the luksOpen will be attempted before LVM scan or after it.";
+              };
 
-            # FIXME: get rid of this option.
-            preLVM = mkOption {
-              default = true;
-              type = types.bool;
-              description = "Whether the luksOpen will be attempted before LVM scan or after it.";
-            };
+              allowDiscards = mkOption {
+                default = false;
+                type = types.bool;
+                description = ''
+                  Whether to allow TRIM requests to the underlying device. This option
+                  has security implications; please read the LUKS documentation before
+                  activating it.
+                  This option is incompatible with authenticated encryption (dm-crypt
+                  stacked over dm-integrity).
+                '';
+              };
 
-            allowDiscards = mkOption {
-              default = false;
-              type = types.bool;
-              description = ''
-                Whether to allow TRIM requests to the underlying device. This option
-                has security implications; please read the LUKS documentation before
-                activating it.
-                This option is incompatible with authenticated encryption (dm-crypt
-                stacked over dm-integrity).
-              '';
-            };
+              bypassWorkqueues = mkOption {
+                default = false;
+                type = types.bool;
+                description = ''
+                  Whether to bypass dm-crypt's internal read and write workqueues.
+                  Enabling this should improve performance on SSDs; see
+                  <link xlink:href="https://wiki.archlinux.org/index.php/Dm-crypt/Specialties#Disable_workqueue_for_increased_solid_state_drive_(SSD)_performance">here</link>
+                  for more information. Needs Linux 5.9 or later.
+                '';
+              };
 
-            bypassWorkqueues = mkOption {
-              default = false;
-              type = types.bool;
-              description = ''
-                Whether to bypass dm-crypt's internal read and write workqueues.
-                Enabling this should improve performance on SSDs; see
-                <link xlink:href="https://wiki.archlinux.org/index.php/Dm-crypt/Specialties#Disable_workqueue_for_increased_solid_state_drive_(SSD)_performance">here</link>
-                for more information. Needs Linux 5.9 or later.
-              '';
-            };
+              preOpenCommands = mkOption {
+                type = types.lines;
+                default = "";
+                example = ''
+                  mkdir -p /tmp/persistent
+                  mount -t zfs rpool/safe/persistent /tmp/persistent
+                '';
+                description = ''
+                  Commands that should be run right before we try to mount our LUKS device.
+                  This can be useful, if the keys needed to open the drive is on another partion.
+                '';
+              };
 
-            preOpenCommands = mkOption {
-              type = types.lines;
-              default = "";
-              example = ''
-                mkdir -p /tmp/persistent
-                mount -t zfs rpool/safe/persistent /tmp/persistent
-              '';
-              description = ''
-                Commands that should be run right before we try to mount our LUKS device.
-                This can be useful, if the keys needed to open the drive is on another partion.
-              '';
+              postOpenCommands = mkOption {
+                type = types.lines;
+                default = "";
+                example = ''
+                  umount /tmp/persistent
+                '';
+                description = ''
+                  Commands that should be run right after we have mounted our LUKS device.
+                '';
+              };
             };
-
-            postOpenCommands = mkOption {
-              type = types.lines;
-              default = "";
-              example = ''
-                umount /tmp/persistent
-              '';
-              description = ''
-                Commands that should be run right after we have mounted our LUKS device.
-              '';
-            };
-          };
-        }
-      ));
+          }
+        ));
     };
   };
 
-  disabledModules = [ "system/boot/luksroot.nix" ];
+  disabledModules = ["system/boot/luksroot.nix"];
 
-  config = mkIf (luks.devices != { } || luks.forceLuksSupportInInitrd) {
+  config = mkIf (luks.devices != {} || luks.forceLuksSupportInInitrd) {
+    assertions = [
+      {
+        assertion =
+          any (dev: dev.bypassWorkqueues) (attrValues luks.devices)
+          -> versionAtLeast kernelPackages.kernel.version "5.9";
+        message = "boot.initrd.luks.devices.<name>.bypassWorkqueues is not supported for kernels older than 5.9";
+      }
+    ];
 
-    assertions = [{
-      assertion = any (dev: dev.bypassWorkqueues) (attrValues luks.devices)
-        -> versionAtLeast kernelPackages.kernel.version "5.9";
-      message = "boot.initrd.luks.devices.<name>.bypassWorkqueues is not supported for kernels older than 5.9";
-    }];
-
-    boot.initrd.kernelModules = [ "tpm" ];
+    boot.initrd.kernelModules = ["tpm"];
 
     # actually, sbp2 driver is the one enabling the DMA attack, but this needs to be tested
-    boot.blacklistedKernelModules = optionals luks.mitigateDMAAttacks
-      [ "firewire_ohci" "firewire_core" "firewire_sbp2" ];
+    boot.blacklistedKernelModules =
+      optionals luks.mitigateDMAAttacks
+      ["firewire_ohci" "firewire_core" "firewire_sbp2"];
 
     # Some modules that may be needed for mounting anything ciphered
-    boot.initrd.availableKernelModules = [ "dm_mod" "dm_crypt" "cryptd" "input_leds" ]
+    boot.initrd.availableKernelModules =
+      ["dm_mod" "dm_crypt" "cryptd" "input_leds"]
       ++ luks.cryptoModules
       # workaround until https://marc.info/?l=linux-crypto-vger&m=148783562211457&w=4 is merged
       # remove once 'modprobe --show-depends xts' shows ecb as a dependency
-      ++ (if builtins.elem "xts" luks.cryptoModules then [ "ecb" ] else [ ]);
+      ++ (
+        if builtins.elem "xts" luks.cryptoModules
+        then ["ecb"]
+        else []
+      );
 
     # copy the cryptsetup binary and it's dependencies
     boot.initrd.extraUtilsCommands = ''
@@ -317,6 +324,6 @@ in
     boot.initrd.preLVMCommands = commonFunctions + preCommands + concatStrings (mapAttrsToList openCommand preLVM) + postCommands;
     boot.initrd.postDeviceCommands = commonFunctions + preCommands + concatStrings (mapAttrsToList openCommand postLVM) + postCommands;
 
-    environment.systemPackages = [ pkgs.cryptsetup ];
+    environment.systemPackages = [pkgs.cryptsetup];
   };
 }

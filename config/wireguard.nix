@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   networking.wireguard = {
     enable = true;
     interfaces."wg0" = {
@@ -18,6 +17,6 @@
       ];
     };
   };
-  networking.firewall.allowedUDPPorts = [ 51820 ];
-  sops.secrets."network/wireguard/privkey" = { };
+  networking.firewall.allowedUDPPorts = [51820];
+  sops.secrets."network/wireguard/privkey" = {};
 }

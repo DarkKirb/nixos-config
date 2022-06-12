@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   resticPrunePre = pkgs.writeScript "resticPrunePre" ''
     set -ex
 
@@ -57,8 +60,7 @@ let
     ${pkgs.zfs}/bin/zfs destroy tank/backup@prune
     ${pkgs.zfs}/bin/zfs mount tank/backup
   '';
-in
-{
+in {
   users.users.backup = {
     description = "Backup user";
     home = "/backup";
@@ -71,7 +73,7 @@ in
     group = "backup";
     useDefaultShell = true;
   };
-  users.groups.backup = { };
+  users.groups.backup = {};
   systemd.services.restic-prune = {
     enable = true;
     description = "Cleaning up restic backups";
@@ -107,8 +109,8 @@ in
   systemd.timers.backup-rclone = {
     enable = true;
     description = "Upload backup to remote";
-    requires = [ "backup-rclone.service" ];
-    wantedBy = [ "multi-user.target" ];
+    requires = ["backup-rclone.service"];
+    wantedBy = ["multi-user.target"];
     timerConfig = {
       OnBootSec = 300;
       OnUnitActiveSec = 86400;

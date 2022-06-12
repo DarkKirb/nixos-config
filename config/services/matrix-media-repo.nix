@@ -1,32 +1,42 @@
-{ nix-packages, system, config, pkgs, lib, ... }:
-let
+{
+  nix-packages,
+  system,
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   matrix-media-repo = nix-packages.packages.${system}.matrix-media-repo;
-  config-yml = pkgs.writeText "matrix-media-repo.yaml" (lib.generators.toYAML { } {
+  config-yml = pkgs.writeText "matrix-media-repo.yaml" (lib.generators.toYAML {} {
     repo = {
       bindAddress = "127.0.0.1";
       port = 8008;
       logDirectory = "-";
     };
     database.postgres = "postgresql:///matrix_media_repo?sslmode=disable&host=/run/postgresql";
-    homeservers = [{
-      name = "matrix.chir.rs";
-      csApi = "https://matrix.chir.rs";
-    }];
-    admins = [ "@lotte:chir.rs" ];
-    datastores = [{
-      type = "s3";
-      enabled = true;
-      forKinds = [ "all" ];
-      opts = {
-        tempPath = "/tmp/mediarepo_s3_upload";
-        endpoint = "s3.us-west-000.backblazeb2.com";
-        accessKeyId = "#ACCESS_KEY_ID#";
-        accessSecret = "#SECRET_ACCESS_KEY#";
-        ssl = true;
-        bucketName = "matrix-chir-rs";
-        region = "us-west-000";
-      };
-    }];
+    homeservers = [
+      {
+        name = "matrix.chir.rs";
+        csApi = "https://matrix.chir.rs";
+      }
+    ];
+    admins = ["@lotte:chir.rs"];
+    datastores = [
+      {
+        type = "s3";
+        enabled = true;
+        forKinds = ["all"];
+        opts = {
+          tempPath = "/tmp/mediarepo_s3_upload";
+          endpoint = "s3.us-west-000.backblazeb2.com";
+          accessKeyId = "#ACCESS_KEY_ID#";
+          accessSecret = "#SECRET_ACCESS_KEY#";
+          ssl = true;
+          bucketName = "matrix-chir-rs";
+          region = "us-west-000";
+        };
+      }
+    ];
     metrics = {
       enabled = true;
       bindAddress = "::";
@@ -61,14 +71,13 @@ let
       dsn = "https://18e36e6f16b5490c83364101717cddba@o253952.ingest.sentry.io/6449283";
     };
   });
-in
-{
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [ 9000 ];
+in {
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [9000];
   systemd.services.matrix-media-repo = {
     description = "Matrix Media Repo";
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
-    path = [ matrix-media-repo ];
+    after = ["network.target"];
+    wantedBy = ["multi-user.target"];
+    path = [matrix-media-repo];
     preStart = ''
       akid=$(cat ${config.sops.secrets."services/matrix-media-repo/access-key-id".path})
       sak=$(cat ${config.sops.secrets."services/matrix-media-repo/secret-access-key".path})
@@ -93,19 +102,21 @@ in
     group = "matrix-media-repo";
     isSystemUser = true;
   };
-  users.groups.matrix-media-repo = { };
+  users.groups.matrix-media-repo = {};
   systemd.tmpfiles.rules = [
     "d '/var/lib/matrix-media-repo' 0750 matrix-media-repo matrix-media-repo - -"
   ];
   services.postgresql.ensureDatabases = [
     "matrix_media_repo"
   ];
-  services.postgresql.ensureUsers = [{
-    name = "matrix-media-repo";
-    ensurePermissions = {
-      "DATABASE matrix_media_repo" = "ALL PRIVILEGES";
-    };
-  }];
+  services.postgresql.ensureUsers = [
+    {
+      name = "matrix-media-repo";
+      ensurePermissions = {
+        "DATABASE matrix_media_repo" = "ALL PRIVILEGES";
+      };
+    }
+  ];
   services.nginx.virtualHosts."matrix.chir.rs" = {
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";

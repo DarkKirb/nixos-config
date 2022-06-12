@@ -1,10 +1,17 @@
-{ dns, zoneTTL ? 3600 }:
-with dns.lib.combinators;
-let
-  inherit (builtins) hasAttr;
-  merge = a: b: (a // b) // (if ((hasAttr "subdomains" a) && (hasAttr "subdomains" b)) then { subdomains = (a.subdomains // b.subdomains); } else { });
-in
 {
+  dns,
+  zoneTTL ? 3600,
+}:
+with dns.lib.combinators; let
+  inherit (builtins) hasAttr;
+  merge = a: b:
+    (a // b)
+    // (
+      if ((hasAttr "subdomains" a) && (hasAttr "subdomains" b))
+      then {subdomains = a.subdomains // b.subdomains;}
+      else {}
+    );
+in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
@@ -68,32 +75,34 @@ in
           ttl = zoneTTL;
         }
       ];
-      /*subdomains = {
-        _tcp.subdomains."*".TLSA = [
-        {
-        certUsage = "dane-ee";
-        selector = "spki";
-        match = "sha256";
-        certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-        ttl = zoneTTL;
-        }
-        ];
-        _udp.subdomains."*".TLSA = [
-        {
-        certUsage = "dane-ee";
-        selector = "spki";
-        match = "sha256";
-        certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-        ttl = zoneTTL;
-        }
-        ];
-        };*/
+      /*
+       subdomains = {
+       _tcp.subdomains."*".TLSA = [
+       {
+       certUsage = "dane-ee";
+       selector = "spki";
+       match = "sha256";
+       certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
+       ttl = zoneTTL;
+       }
+       ];
+       _udp.subdomains."*".TLSA = [
+       {
+       certUsage = "dane-ee";
+       selector = "spki";
+       match = "sha256";
+       certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
+       ttl = zoneTTL;
+       }
+       ];
+       };
+       */
       HTTPS = [
         {
           svcPriority = 1;
           targetName = ".";
-          alpn = [ "http/1.1" "h2" "h3" ];
-          ipv6hint = [ "fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49" ];
+          alpn = ["http/1.1" "h2" "h3"];
+          ipv6hint = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
           ttl = zoneTTL;
         }
       ];
@@ -153,8 +162,8 @@ in
         {
           svcPriority = 1;
           targetName = ".";
-          alpn = [ "http/1.1" "h2" "h3" ];
-          ipv6hint = [ "fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437" ];
+          alpn = ["http/1.1" "h2" "h3"];
+          ipv6hint = ["fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437"];
           ttl = zoneTTL;
         }
       ];
@@ -217,8 +226,8 @@ in
         {
           svcPriority = 1;
           targetName = ".";
-          alpn = [ "http/1.1" "h2" "h3" ];
-          ipv6hint = [ "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b" ];
+          alpn = ["http/1.1" "h2" "h3"];
+          ipv6hint = ["fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b"];
           ttl = zoneTTL;
         }
       ];
@@ -244,14 +253,14 @@ in
       ];
     };
 
-    grafana.CNAME = [ (ttl zoneTTL (cname "nixos-8gb-fsn1-1")) ];
-    minio.CNAME = [ (ttl zoneTTL (cname "nixos-8gb-fsn1-1")) ];
-    minio-console.CNAME = [ (ttl zoneTTL (cname "nixos-8gb-fsn1-1")) ];
-    backup.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    hydra.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    mastodon.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    matrix.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    rspamd.CNAME = [ (ttl zoneTTL (cname "nas")) ];
+    grafana.CNAME = [(ttl zoneTTL (cname "nixos-8gb-fsn1-1"))];
+    minio.CNAME = [(ttl zoneTTL (cname "nixos-8gb-fsn1-1"))];
+    minio-console.CNAME = [(ttl zoneTTL (cname "nixos-8gb-fsn1-1"))];
+    backup.CNAME = [(ttl zoneTTL (cname "nas"))];
+    hydra.CNAME = [(ttl zoneTTL (cname "nas"))];
+    mastodon.CNAME = [(ttl zoneTTL (cname "nas"))];
+    matrix.CNAME = [(ttl zoneTTL (cname "nas"))];
+    rspamd.CNAME = [(ttl zoneTTL (cname "nas"))];
     _acme-challenge = delegateTo [
       "ns1.chir.rs."
       "ns2.chir.rs."

@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   programs.ssh = {
     controlMaster = "auto";
     controlPersist = "10m";

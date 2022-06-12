@@ -1,9 +1,17 @@
-{ nix-packages, system, pkgs, config, lib, ... }:
-let
+{
+  nix-packages,
+  system,
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
-  listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
-    add_header Alt-Svc 'h3=":443"';
-  '';
+  listenStatements =
+    lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs)
+    + ''
+      add_header Alt-Svc 'h3=":443"';
+    '';
   sopsConfig = {
     owner = "mastodon";
     restartUnits = [
@@ -13,8 +21,7 @@ let
     ];
   };
   mastodon = nix-packages.packages.${system}.mastodon;
-in
-{
+in {
   imports = [
     ./elasticsearch.nix
     ../../modules/mastodon.nix
@@ -71,8 +78,8 @@ in
   sops.secrets."services/mastodon/s3/key_id" = sopsConfig;
   sops.secrets."services/mastodon/s3/secret_key" = sopsConfig;
 
-  services.nginx.virtualHosts =
-    let mastodon = {
+  services.nginx.virtualHosts = let
+    mastodon = {
       listenAddresses = listenIPs;
       root = "${config.services.mastodon.package}/public/";
       locations."/system/".alias = "/var/lib/mastodon/public-system/";
@@ -81,31 +88,40 @@ in
         tryFiles = "$uri @proxy";
       };
       locations."@proxy" = {
-        proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-web/web.socket" else "http://127.0.0.1:${toString(config.services.mastodon.webPort)}");
+        proxyPass =
+          if config.services.mastodon.enableUnixSocket
+          then "http://unix:/run/mastodon-web/web.socket"
+          else "http://127.0.0.1:${toString (config.services.mastodon.webPort)}";
         proxyWebsockets = true;
         extraConfig = ''
           proxy_set_header X-Forwarded-Proto https;
         '';
       };
       locations."/api/v1/streaming/" = {
-        proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-streaming/streaming.socket" else "http://127.0.0.1:${toString(config.services.mastodon.streamingPort)}/");
+        proxyPass =
+          if config.services.mastodon.enableUnixSocket
+          then "http://unix:/run/mastodon-streaming/streaming.socket"
+          else "http://127.0.0.1:${toString (config.services.mastodon.streamingPort)}/";
         proxyWebsockets = true;
         extraConfig = ''
           proxy_set_header X-Forwarded-Proto https;
         '';
       };
     };
-    in
-    {
-      "mastodon.chir.rs" = mastodon // {
+  in {
+    "mastodon.chir.rs" =
+      mastodon
+      // {
         sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
         sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
       };
-      "mastodon.int.chir.rs" = mastodon // {
+    "mastodon.int.chir.rs" =
+      mastodon
+      // {
         sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
         sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
       };
-    };
+  };
   services.redis.servers.mastodon = {
     enable = true;
     bind = "127.0.0.1";

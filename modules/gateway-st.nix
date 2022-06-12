@@ -1,13 +1,20 @@
-{ name, port ? 7777 }: { config, lib, options, pkgs, ... }:
-with lib;
-let
-  gateway = pkgs.callPackage ../packages/gateway-st.nix { };
-in
 {
+  name,
+  port ? 7777,
+}: {
+  config,
+  lib,
+  options,
+  pkgs,
+  ...
+}:
+with lib; let
+  gateway = pkgs.callPackage ../packages/gateway-st.nix {};
+in {
   systemd.services."storj-gateway@${name}" = {
     description = "storj gateway ${name}";
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
+    after = ["network.target"];
+    wantedBy = ["multi-user.target"];
     preStart = ''
       cd $HOME
       mkdir -p ${name}
@@ -31,7 +38,7 @@ in
       RuntimeDirectory = "storj";
       RuntimeDirectoryMode = "0700";
       Umask = "0077";
-      ReadWritePaths = [ "/var/lib/storj" ]; # Grant access to the state directory
+      ReadWritePaths = ["/var/lib/storj"]; # Grant access to the state directory
     };
     environment = {
       USER = "storj";
@@ -45,7 +52,7 @@ in
     group = "storj";
     isSystemUser = true;
   };
-  users.groups.storj = { };
+  users.groups.storj = {};
   systemd.tmpfiles.rules = [
     "d '/var/lib/storj' 0700 storj storj - -"
   ];

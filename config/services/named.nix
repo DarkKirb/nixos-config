@@ -1,15 +1,19 @@
-{ pkgs, config, dns, hosts-list, ... }:
-let
+{
+  pkgs,
+  config,
+  dns,
+  hosts-list,
+  ...
+}: let
   internalIP = import ../../utils/getInternalIP.nix config;
   createListenEntry = ip: "inet ${ip} port 8653 allow { any; };";
   listenEntries = builtins.map createListenEntry internalIP.listenIPsBare;
-  darkkirb-de = import ../../zones/darkkirb.de.nix { inherit dns; };
-  chir-rs = import ../../zones/chir.rs.nix { inherit dns; };
-  int-chir-rs = import ../../zones/int.chir.rs.nix { inherit dns; };
-  rpz-int-chir-rs = import ../../zones/rpz.int.chir.rs.nix { inherit pkgs hosts-list; };
+  darkkirb-de = import ../../zones/darkkirb.de.nix {inherit dns;};
+  chir-rs = import ../../zones/chir.rs.nix {inherit dns;};
+  int-chir-rs = import ../../zones/int.chir.rs.nix {inherit dns;};
+  rpz-int-chir-rs = import ../../zones/rpz.int.chir.rs.nix {inherit pkgs hosts-list;};
   signzone = import ../../zones/signzone.nix;
-in
-{
+in {
   imports = [
     (signzone {
       inherit dns;
@@ -100,13 +104,13 @@ in
       dnssec-validation yes;
     '';
   };
-  networking.firewall.allowedTCPPorts = [ 53 ];
-  networking.firewall.allowedUDPPorts = [ 53 ];
+  networking.firewall.allowedTCPPorts = [53];
+  networking.firewall.allowedUDPPorts = [53];
   services.prometheus.exporters.bind = {
     enable = true;
-    bindGroups = [ "server" "view" "tasks" ];
+    bindGroups = ["server" "view" "tasks"];
     bindURI = "http://${internalIP.listenIP}:8653/";
     listenAddress = internalIP.listenIP;
   };
-  sops.secrets."services/dns/named-keys" = { owner = "named"; };
+  sops.secrets."services/dns/named-keys" = {owner = "named";};
 }

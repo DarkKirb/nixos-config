@@ -1,7 +1,7 @@
-{ config, ... }: {
+{config, ...}: {
   imports = [
     ../../modules/gitea.nix
-    (import ../../modules/gateway-st.nix { name = "gitea"; })
+    (import ../../modules/gateway-st.nix {name = "gitea";})
   ];
   services.gitea = {
     enable = true;
@@ -61,11 +61,13 @@
     };
   };
 
-  services.postgresql.ensureDatabases = [ "gitea" ];
-  services.postgresql.ensureUsers = [{
-    name = "gitea";
-    ensurePermissions = { "DATABASE gitea" = "ALL PRIVILEGES"; };
-  }];
+  services.postgresql.ensureDatabases = ["gitea"];
+  services.postgresql.ensureUsers = [
+    {
+      name = "gitea";
+      ensurePermissions = {"DATABASE gitea" = "ALL PRIVILEGES";};
+    }
+  ];
 
   services.redis.servers.gitea = {
     enable = true;
@@ -73,5 +75,5 @@
     databases = 3;
     port = 6379;
   };
-  sops.secrets."services/gitea" = { owner = "gitea"; };
+  sops.secrets."services/gitea" = {owner = "gitea";};
 }

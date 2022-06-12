@@ -1,15 +1,15 @@
-{ coreutils
-, fetchFromGitHub
-, fetchurl
-, findutils
-, git
-, gnused
-, gradle
-, openjdk17_headless
-, perl
-, stdenv
-}:
-let
+{
+  coreutils,
+  fetchFromGitHub,
+  fetchurl,
+  findutils,
+  git,
+  gnused,
+  gradle,
+  openjdk17_headless,
+  perl,
+  stdenv,
+}: let
   pname = "EssentialsX";
   version = "2.19.2";
 
@@ -44,12 +44,10 @@ let
     HERE
   '';
 
-
-
   deps = stdenv.mkDerivation {
     pname = "${pname}-deps";
     inherit version src;
-    nativeBuildInputs = [ git ];
+    nativeBuildInputs = [git];
     postPatch = addResolveStep;
     buildPhase = ''
       export GRADLE_USER_HOME=$(${coreutils}/bin/mktemp -d)
@@ -69,13 +67,12 @@ let
     outputHashMode = "recursive";
     outputHash = "sha256-lNtkOErTlzheYXXBXN3yMjnouq5QQOoN/rgqUdFgB9k=";
   };
-in
-rec {
+in rec {
   # TODO: current broken
   essentialsx-full = stdenv.mkDerivation {
     inherit pname version src;
 
-    nativeBuildInputs = [ git ];
+    nativeBuildInputs = [git];
 
     buildPhase = ''
       ${gnused}/bin/sed -i 's#mavenCentral#maven { url = uri("${deps}/maven") }; mavenCentral#' settings.gradle.kts
@@ -87,7 +84,7 @@ rec {
     '';
 
     installPhase = ''
-      mkdir -p $out 
+      mkdir -p $out
       find . -name '*.jar'
       exit 1
     '';

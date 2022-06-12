@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -13,17 +13,39 @@
     wlr.enable = true;
   };
   security.pam.loginLimits = [
-    { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
-    { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
-    { domain = "@audio"; item = "nofile"; type = "soft"; value = "99999"; }
-    { domain = "@audio"; item = "nofile"; type = "hard"; value = "99999"; }
+    {
+      domain = "@audio";
+      item = "memlock";
+      type = "-";
+      value = "unlimited";
+    }
+    {
+      domain = "@audio";
+      item = "rtprio";
+      type = "-";
+      value = "99";
+    }
+    {
+      domain = "@audio";
+      item = "nofile";
+      type = "soft";
+      value = "99999";
+    }
+    {
+      domain = "@audio";
+      item = "nofile";
+      type = "hard";
+      value = "99999";
+    }
   ];
   services.pipewire.config.pipewire-pulse = {
     "pusle.rules" = [
       {
-        matches = [{
-          "application.process.binary" = ".Discord-wrapped";
-        }];
+        matches = [
+          {
+            "application.process.binary" = ".Discord-wrapped";
+          }
+        ];
         actions = {
           update-props = {
             "pulse.min.quantum" = "1024/48000";

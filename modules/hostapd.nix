@@ -1,15 +1,16 @@
-{ config, lib, pkgs, utils, ... }:
-
+{
+  config,
+  lib,
+  pkgs,
+  utils,
+  ...
+}:
 # TODO:
 #
 # asserts
 #   ensure that the nl80211 module is loaded/compiled in the kernel
 #   wpa_supplicant and hostapd on the same wireless interface doesn't make any sense
-
-with lib;
-
-let
-
+with lib; let
   cfg = config.services.hostapd;
 
   escapedInterface = utils.escapeSystemdPath cfg.interface;
@@ -34,22 +35,21 @@ let
 
     ${optionalString cfg.wpa ''
       wpa=2
-      wpa_passphrase=${if cfg.wpaPassphrase != null then cfg.wpaPassphrase else "#WPA_PASSPHRASE#"}
+      wpa_passphrase=${
+        if cfg.wpaPassphrase != null
+        then cfg.wpaPassphrase
+        else "#WPA_PASSPHRASE#"
+      }
     ''}
     ${optionalString cfg.noScan "noscan=1"}
 
     ${cfg.extraConfig}
   '';
-
-in
-
-{
+in {
   ###### interface
 
   options = {
-
     services.hostapd = {
-
       enable = mkOption {
         type = types.bool;
         default = false;
@@ -102,7 +102,7 @@ in
 
       hwMode = mkOption {
         default = "g";
-        type = types.enum [ "a" "b" "g" ];
+        type = types.enum ["a" "b" "g"];
         description = ''
           Operation mode.
           (a = IEEE 802.11a, b = IEEE 802.11b, g = IEEE 802.11g).
@@ -202,12 +202,11 @@ in
     };
   };
 
-  disabledModules = [ "services/networking/hostapd.nix" ];
+  disabledModules = ["services/networking/hostapd.nix"];
 
   ###### implementation
 
   config = mkIf cfg.enable {
-
     assertions = [
       {
         assertion = cfg.wpa != null -> (cfg.wpaPassphrase != null || cfg.wpaPassphraseFile != null);
@@ -219,31 +218,33 @@ in
       }
     ];
 
-    environment.systemPackages = [ pkgs.hostapd ];
+    environment.systemPackages = [pkgs.hostapd];
 
-    services.udev.packages = optional (cfg.countryCode != null) [ pkgs.crda ];
+    services.udev.packages = optional (cfg.countryCode != null) [pkgs.crda];
 
-    systemd.services.hostapd =
-      {
-        description = "hostapd wireless AP";
+    systemd.services.hostapd = {
+      description = "hostapd wireless AP";
 
-        path = [ pkgs.hostapd ];
-        after = [ "sys-subsystem-net-devices-${escapedInterface}.device" ];
-        bindsTo = [ "sys-subsystem-net-devices-${escapedInterface}.device" ];
-        requiredBy = [ "network-link-${cfg.interface}.service" ];
-        wantedBy = [ "multi-user.target" ];
+      path = [pkgs.hostapd];
+      after = ["sys-subsystem-net-devices-${escapedInterface}.device"];
+      bindsTo = ["sys-subsystem-net-devices-${escapedInterface}.device"];
+      requiredBy = ["network-link-${cfg.interface}.service"];
+      wantedBy = ["multi-user.target"];
 
-        preStart = mkIf (cfg.wpaPassphraseFile != null) ''
-          PASSPHRASE=$(cat ${cfg.wpaPassphraseFile})
-          sed "s|#WPA_PASSPHRASE#|$PASSPHRASE|g" ${configFile} > /run/hostapd/hostapd.conf
-        '';
+      preStart = mkIf (cfg.wpaPassphraseFile != null) ''
+        PASSPHRASE=$(cat ${cfg.wpaPassphraseFile})
+        sed "s|#WPA_PASSPHRASE#|$PASSPHRASE|g" ${configFile} > /run/hostapd/hostapd.conf
+      '';
 
-        serviceConfig =
-          {
-            ExecStart = "${pkgs.hostapd}/bin/hostapd ${if cfg.wpaPassphraseFile != null then "/run/hostapd/hostapd.conf" else configFile}";
-            Restart = "always";
-          };
+      serviceConfig = {
+        ExecStart = "${pkgs.hostapd}/bin/hostapd ${
+          if cfg.wpaPassphraseFile != null
+          then "/run/hostapd/hostapd.conf"
+          else configFile
+        }";
+        Restart = "always";
       };
+    };
     systemd.tmpfiles.rules = mkIf (cfg.wpaPassphraseFile != null) [
       "d '/run/hostapd' 0700 root root - -"
     ];

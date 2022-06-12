@@ -1,18 +1,17 @@
-{ coreutils
-, fetchFromGitHub
-, findutils
-, git
-, gnused
-, gradle
-, openjdk17_headless
-, perl
-, stdenv
-, lib
-, fetchurl
-, ...
-}:
-let
-
+{
+  coreutils,
+  fetchFromGitHub,
+  findutils,
+  git,
+  gnused,
+  gradle,
+  openjdk17_headless,
+  perl,
+  stdenv,
+  lib,
+  fetchurl,
+  ...
+}: let
   pname = "LuckPerms";
   version = "2022-04-08";
 
@@ -54,7 +53,7 @@ let
     pname = "${pname}-deps";
     inherit version src;
 
-    nativeBuildInputs = [ git ];
+    nativeBuildInputs = [git];
     postPatch = addResolveStep;
     buildPhase = ''
       export GRADLE_USER_HOME=$(${coreutils}/bin/mktemp -d)
@@ -71,45 +70,46 @@ let
     outputHashMode = "recursive";
     outputHash = "sha256-V7FlGxa+Q3ljohPldxlhi2Ak93TiEUggwFELLaR787w=";
   };
-
 in
-  /* stdenv.mkDerivation {
-    inherit pname version src;
-
-    name = "${pname}-${version}.jar";
-
-    nativeBuildInputs = [ git ];
-
-    postPatch = addResolveStep;
-
-    buildPhase = ''
-    ${gnused}/bin/sed -i "s#'bukkit-legacy',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'bukkit-legacy:loader',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'bungee',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'bungee:loader',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'nukkit',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'nukkit:loader',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'sponge',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'sponge:loader',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'sponge:sponge-service',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'sponge:sponge-service-api8',##" settings.gradle
-    ${gnused}/bin/sed -i "s#'velocity'##" settings.gradle
-    export GRADLE_USER_HOME=$(${coreutils}/bin/mktemp -d)
-
-    # add local maven repo
-    ${gnused}/bin/sed -i "s#mavenCentral()#mavenCentral(); maven { url '${deps}/maven' }#" build.gradle
-    ${gnused}/bin/sed -i "s#jcenter()#jcenter(); maven { url '${deps}/maven' }#" settings.gradle
-    ${gnused}/bin/sed -i "s#'fabric',##" settings.gradle
-
-    ${gradle}/bin/gradle --offline --no-daemon --info -Dorg.gradle.java.home=${openjdk17_headless} build
-    '';
-
-    installPhase = ''
-    cp bukkit/loader/build/libs/LuckPerms-Bukkit-5.4.0.jar $out
-    '';
-
-    }*/
-fetchurl {
-  url = "https://ci.lucko.me/job/LuckPerms/1429/artifact/bukkit/loader/build/libs/LuckPerms-Bukkit-5.4.21.jar";
-  sha256 = "bd9090b3cf1412d77ff58ee0c2c7229184306cc83ff18ff4681ea1b7116b3747";
-}
+  /*
+    stdenv.mkDerivation {
+   inherit pname version src;
+   
+   name = "${pname}-${version}.jar";
+   
+   nativeBuildInputs = [ git ];
+   
+   postPatch = addResolveStep;
+   
+   buildPhase = ''
+   ${gnused}/bin/sed -i "s#'bukkit-legacy',##" settings.gradle
+   ${gnused}/bin/sed -i "s#'bukkit-legacy:loader',##" settings.gradle
+   ${gnused}/bin/sed -i "s#'bungee',##" settings.gradle
+   ${gnused}/bin/sed -i "s#'bungee:loader',##" settings.gradle
+   ${gnused}/bin/sed -i "s#'nukkit',##" settings.gradle
+   ${gnused}/bin/sed -i "s#'nukkit:loader',##" settings.gradle
+   ${gnused}/bin/sed -i "s#'sponge',##" settings.gradle
+   ${gnused}/bin/sed -i "s#'sponge:loader',##" settings.gradle
+   ${gnused}/bin/sed -i "s#'sponge:sponge-service',##" settings.gradle
+   ${gnused}/bin/sed -i "s#'sponge:sponge-service-api8',##" settings.gradle
+   ${gnused}/bin/sed -i "s#'velocity'##" settings.gradle
+   export GRADLE_USER_HOME=$(${coreutils}/bin/mktemp -d)
+   
+   # add local maven repo
+   ${gnused}/bin/sed -i "s#mavenCentral()#mavenCentral(); maven { url '${deps}/maven' }#" build.gradle
+   ${gnused}/bin/sed -i "s#jcenter()#jcenter(); maven { url '${deps}/maven' }#" settings.gradle
+   ${gnused}/bin/sed -i "s#'fabric',##" settings.gradle
+   
+   ${gradle}/bin/gradle --offline --no-daemon --info -Dorg.gradle.java.home=${openjdk17_headless} build
+   '';
+   
+   installPhase = ''
+   cp bukkit/loader/build/libs/LuckPerms-Bukkit-5.4.0.jar $out
+   '';
+   
+   }
+   */
+  fetchurl {
+    url = "https://ci.lucko.me/job/LuckPerms/1429/artifact/bukkit/loader/build/libs/LuckPerms-Bukkit-5.4.21.jar";
+    sha256 = "bd9090b3cf1412d77ff58ee0c2c7229184306cc83ff18ff4681ea1b7116b3747";
+  }

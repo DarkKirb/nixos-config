@@ -1,5 +1,12 @@
-{ lib, writeText, writeScript, zsh, coreutils-full, rspamd, ... } @ pkgs:
-let
+{
+  lib,
+  writeText,
+  writeScript,
+  zsh,
+  coreutils-full,
+  rspamd,
+  ...
+} @ pkgs: let
   sievec = import ./sievec.nix pkgs;
   rspamd_host = "localhost";
   sa-learn-ham-script = writeScript "sa-learn-ham" ''
@@ -28,8 +35,7 @@ let
     ${coreutils-full}/bin/rm $tmpfile
   '';
   removeStore = location: lib.removePrefix "/nix/store/" "${location}";
-in
-{
+in {
   default = sievec {
     name = "default";
     src = writeText "default.sieve" ''
@@ -38,7 +44,7 @@ in
         fileinto "Junk";
       }
     '';
-    exts = [ "fileinto" ];
+    exts = ["fileinto"];
   };
   report-ham = sievec {
     name = "report-ham";
@@ -55,7 +61,7 @@ in
 
       pipe :copy "${removeStore sa-learn-ham-script}";
     '';
-    exts = [ "vnd.dovecot.pipe" "copy" "imapsieve" "environment" "variables" ];
+    exts = ["vnd.dovecot.pipe" "copy" "imapsieve" "environment" "variables"];
   };
   report-spam = sievec {
     name = "report-spam";
@@ -74,6 +80,6 @@ in
           pipe :copy "${removeStore sa-learn-spam-script}";
       }
     '';
-    exts = [ "vnd.dovecot.pipe" "copy" "imapsieve" "environment" "imap4flags" ];
+    exts = ["vnd.dovecot.pipe" "copy" "imapsieve" "environment" "imap4flags"];
   };
 }
