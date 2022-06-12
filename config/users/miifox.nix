@@ -1,4 +1,4 @@
-{ pkgs, miifox-net, ... }: {
+{ pkgs, nix-packages, system, ... }: {
   users.users.miifox = {
     createHome = true;
     description = "Miifox";
@@ -27,7 +27,7 @@
     sslCertificateKey = "/var/lib/acme/miifox.net/key.pem";
     locations."/" =
       let
-        miifox-website = pkgs.callPackage (import ../../packages/miifox.nix miifox-net) { };
+        miifox-website = nix-packages.packages.${system}.miifox-net;
       in
       {
         root = "${miifox-website}";

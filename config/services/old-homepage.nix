@@ -1,14 +1,14 @@
-{ ... }:
+{ nix-packages, system, ... }:
 let
-  homepage-old = import ../../packages/old-homepage.nix { };
+  homepage-old = nix-packages.packages.${system}.homepage-old;
 in
 {
   systemd.services.homepage-old = {
     enable = true;
     description = "darkkirb.de";
-    script = "${homepage-old.homepage-old}/homepage";
+    script = "${homepage-old}/homepage";
     serviceConfig = {
-      WorkingDirectory = homepage-old.homepage-old;
+      WorkingDirectory = homepage-old;
       EnvironmentFile = "/run/secrets/services/old-homepage";
     };
     wantedBy = [ "multi-user.target" ];

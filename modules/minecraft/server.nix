@@ -1,7 +1,7 @@
-{ config, lib, options, pkgs, ... }:
+{ nix-packages, system, config, lib, options, pkgs, ... }:
 with lib;
 let
-  papermc = pkgs.callPackage ../../packages/minecraft/paper.nix { };
+  papermc = nix-packages.packages.${system}.papermc;
   cfg = config.services.minecraft;
   opt = options.services.minecraft;
   serverProperties = pkgs.writeText "server.properties" ''

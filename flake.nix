@@ -21,10 +21,7 @@ rec {
     hosts-list.url = github:StevenBlack/hosts;
     hosts-list.flake = false;
     nixos-hardware.url = github:NixOS/nixos-hardware;
-    miifox-net.url = "git+https://git.chir.rs/CarolineHusky/MiiFox.net";
-    miifox-net.flake = false;
     nixpkgs-noto-variable.url = github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d;
-    nixpkgs-go116.url = github:NixOS/nixpkgs/dab5668f6be905a7f0de39a7d67fd8f78a13d600;
 
     nix-packages.url = github:DarkKirb/nix-packages/main;
     nix-packages.inputs.nixpkgs.follows = "nixpkgs";
@@ -103,6 +100,7 @@ rec {
             github-cli
           ];
         };
+      formatters.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
       hydraJobs = (builtins.listToAttrs (map
         ({ name, system }: {
           inherit name;

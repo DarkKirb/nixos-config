@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ nix-packages, system, config, pkgs, lib, ... }:
 with lib;
 let
   dataDir = "/var/lib/mautrix-whatsapp";
@@ -7,7 +7,7 @@ let
   settingsFormat = pkgs.formats.yaml { };
   settingsFileUnsubstituted = settingsFormat.generate "mautrix-telegram-whatsapp-unsubstituted.yaml" cfg.settings;
   settingsFile = "${dataDir}/config.yaml";
-  mautrix-whatsapp = pkgs.callPackage ../../packages/matrix/mautrix-whatsapp.nix { };
+  mautrix-whatsapp = nix-packages.packages.${system}.mautrix-whatsapp;
 in
 {
   options = {

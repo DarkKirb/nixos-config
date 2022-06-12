@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ nix-packages, system, pkgs, config, lib, ... }:
 let
   listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
   listenStatements = lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs) + ''
@@ -12,7 +12,7 @@ let
       "mastodon-sidekiq.service"
     ];
   };
-  mastodon = pkgs.callPackage ../../packages/mastodon { };
+  mastodon = nix-packages.packages.${system}.mastodon;
 in
 {
   imports = [

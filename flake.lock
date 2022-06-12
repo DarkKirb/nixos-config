@@ -181,6 +181,25 @@
         "type": "github"
       }
     },
+    "gomod2nix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4",
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1654019497,
+        "narHash": "sha256-yj53tEaOAJoZ1iEBbZ4TArpgAsLZnmivfr4eD0xF52c=",
+        "owner": "tweag",
+        "repo": "gomod2nix",
+        "rev": "71c797eb0d83f33de7e0247b3ffe7120d98c6b49",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tweag",
+        "repo": "gomod2nix",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -275,23 +294,55 @@
         "type": "github"
       }
     },
-    "miifox-net": {
+    "mastodon": {
       "flake": false,
       "locked": {
-        "lastModified": 1648216492,
-        "narHash": "sha256-OKGPwQZjZXbXziJLSOE8K/0fCWCnvU/I2Lm3Vc8KD/o=",
-        "ref": "refs/heads/master",
-        "rev": "7826b9a3bec5dddd4b8a879c3396a1406fc37370",
-        "revCount": 5,
-        "type": "git",
-        "url": "https://git.chir.rs/CarolineHusky/MiiFox.net"
+        "lastModified": 1654881571,
+        "narHash": "sha256-ASSrCM0jHMI04U7fFPQdaeDvt/sHzpiWKHSy6+/FW0M=",
+        "owner": "glitch-soc",
+        "repo": "mastodon",
+        "rev": "970f06331bc7e482226e974c468b559a9e2f3fa3",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://git.chir.rs/CarolineHusky/MiiFox.net"
+        "owner": "glitch-soc",
+        "repo": "mastodon",
+        "type": "github"
       }
     },
-    "miifox-net_2": {
+    "matrix-media-repo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648768263,
+        "narHash": "sha256-H1S9l5S4gcVU482qYCpDW+Ki0r8VkwBgkbUCk6k63sg=",
+        "owner": "turt2live",
+        "repo": "matrix-media-repo",
+        "rev": "3184dbc7720fc103aaf4704be894eac69535e887",
+        "type": "github"
+      },
+      "original": {
+        "owner": "turt2live",
+        "repo": "matrix-media-repo",
+        "type": "github"
+      }
+    },
+    "mautrix-whatsapp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1654374800,
+        "narHash": "sha256-8Jm1Z4pCmHBIZ+TNy2DFX/vQwYqeH4k2XtIoYkeoF3Y=",
+        "owner": "mautrix",
+        "repo": "whatsapp",
+        "rev": "0796d14133c19d5e18223b6f138835229b7acf10",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mautrix",
+        "repo": "whatsapp",
+        "type": "github"
+      }
+    },
+    "miifox-net": {
       "flake": false,
       "locked": {
         "lastModified": 1648216492,
@@ -348,17 +399,22 @@
       "inputs": {
         "clean-s3-cache": "clean-s3-cache",
         "flake-utils": "flake-utils_4",
-        "miifox-net": "miifox-net_2",
+        "gomod2nix": "gomod2nix",
+        "mastodon": "mastodon",
+        "matrix-media-repo": "matrix-media-repo",
+        "mautrix-whatsapp": "mautrix-whatsapp",
+        "miifox-net": "miifox-net",
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "nixpkgs-go116": "nixpkgs-go116"
       },
       "locked": {
-        "lastModified": 1654974491,
-        "narHash": "sha256-T4Kf3mgVu4QRxJqEMvIM0UvtCKwU4Jp6OaJYMFXf2PI=",
+        "lastModified": 1655044097,
+        "narHash": "sha256-zxkgayMFhrXCfO8Z8yycy04EwOtXggxFxqoGrbz1vW4=",
         "owner": "DarkKirb",
         "repo": "nix-packages",
-        "rev": "1c7b6c474494809cdc36a70d49b4d6f8f28617fc",
+        "rev": "03667319ca6732486e1761aa468328cf295e2723",
         "type": "github"
       },
       "original": {
@@ -509,11 +565,27 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1655003801,
-        "narHash": "sha256-V0NaVMDKQO/LxyKqD++5jEQGOHzfx1JzFGz7hHPly2U=",
+        "lastModified": 1653581809,
+        "narHash": "sha256-Uvka0V5MTGbeOfWte25+tfRL3moECDh1VwokWSZUdoY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "18bd58aa85947bdef47ae3a601fff2d81de0b2d3",
+        "rev": "83658b28fe638a170a19b8933aa008b30640fbd1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1655046959,
+        "narHash": "sha256-gxqHZKq1ReLDe6ZMJSbmSZlLY95DsVq5o6jQihhzvmw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "07bf3d25ce1da3bee6703657e6a787a4c6cdcea9",
         "type": "github"
       },
       "original": {
@@ -546,11 +618,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1654969551,
-        "narHash": "sha256-mcQIDMKK1yloAByYk6mnuG21K/mDznHWdmd2zHGZcRY=",
+        "lastModified": 1655023857,
+        "narHash": "sha256-Kspm/iGHRMe/1wgmlBKIybHUHxPe/PwtHtq1p/zDN7o=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "2bd8e7dca4aa55c836cb0bf33dc8d4be84fc938c",
+        "rev": "c4f2e3a95584d9c50544a978a83650f8f83551fa",
         "type": "github"
       },
       "original": {
@@ -567,12 +639,10 @@
         "home-manager": "home-manager",
         "hosts-list": "hosts-list",
         "hydra": "hydra",
-        "miifox-net": "miifox-net",
         "nix": "nix",
         "nix-packages": "nix-packages",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_4",
-        "nixpkgs-go116": "nixpkgs-go116",
+        "nixpkgs": "nixpkgs_5",
         "nixpkgs-noto-variable": "nixpkgs-noto-variable",
         "nur": "nur",
         "polymc": "polymc",
@@ -623,6 +693,21 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "utils": {
+      "locked": {
+        "lastModified": 1653893745,
+        "narHash": "sha256-0jntwV3Z8//YwuOjzhV2sgJJPt+HY6KhU7VZUL0fKZQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "1ed9fb1935d260de5fe1c2f7ee0ebaae17ed2fa1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     }

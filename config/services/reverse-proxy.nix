@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ nix-packages, system, pkgs, config, ... }: {
   services.nginx.virtualHosts."hydra.chir.rs" = {
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
@@ -11,7 +11,9 @@
     };
   };
   services.nginx.virtualHosts."mastodon.chir.rs" =
-    let mastodon = pkgs.callPackage ../../packages/mastodon { }; in
+    let
+      mastodon = nix-packages.packages.${system}.mastodon;
+    in
     {
       sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
       sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";

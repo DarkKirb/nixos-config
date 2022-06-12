@@ -1,6 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ nix-packages, system, config, pkgs, lib, ... }:
 let
-  matrix-media-repo = pkgs.callPackage ../../packages/matrix/matrix-media-repo.nix { };
+  matrix-media-repo = nix-packages.packages.${system}.matrix-media-repo;
   config-yml = pkgs.writeText "matrix-media-repo.yaml" (lib.generators.toYAML { } {
     repo = {
       bindAddress = "127.0.0.1";
