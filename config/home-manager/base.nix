@@ -1,4 +1,4 @@
-desktop: { pkgs, ... }: {
+desktop: {pkgs, ...}: {
   imports = [
     ../programs/zsh.nix
     ../programs/vim
@@ -35,7 +35,7 @@ desktop: { pkgs, ... }: {
   accounts.email.maildirBasePath = "Maildir";
   accounts.email.accounts = rec {
     lotte = {
-      aliases = [ "darkkirb@darkkirb.de" "postmaster@darkkirb.de" "postmaster@chir.rs" "postmaster@miifox.net" ];
+      aliases = ["darkkirb@darkkirb.de" "postmaster@darkkirb.de" "postmaster@chir.rs" "postmaster@miifox.net"];
       gpg = {
         encryptByDefault = true;
         key = "B4E3D4801C49EC5E";
@@ -44,7 +44,7 @@ desktop: { pkgs, ... }: {
       imap.host = "mail.chir.rs";
       imapnotify = {
         enable = true;
-        boxes = [ "Inbox" ];
+        boxes = ["Inbox"];
         onNotify = "${pkgs.isync}/bin/mbsync -a || true";
         onNotifyPost =
           if desktop
@@ -77,7 +77,7 @@ desktop: { pkgs, ... }: {
       lotte
       // {
         address = "mdelenk@hs-mittweida.de";
-        aliases = [ ];
+        aliases = [];
         gpg =
           lotte.gpg
           // {
