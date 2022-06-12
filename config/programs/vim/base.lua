@@ -9,7 +9,7 @@ o.cmdheight = 2 -- more space for displaying messages
 -- Having longer updatetime (default is 4000ms = 4s) leads to noticeable delays and poor user experience
 o.updatetime = 300
 -- don’t pass messages to |ins-completion-menu|
-o.shortmess ..= "c"
+o.shortmess = o.shortmess .. "c"
 
 wo.number = "relativenumber"
 wo.signcolumn = "number"
