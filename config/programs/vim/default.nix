@@ -13,31 +13,31 @@ in {
     plugins = with pkgs.vimPlugins; [
       {
         plugin = nerdtree;
-        config = "lua require(\"${./nerdtree.lua}\")";
+        config = "lua dofile(\"${./nerdtree.lua}\")";
       }
       {
         plugin = nerdtree-git-plugin;
-        config = "lua require(\"${./nerdtree-git.lua}\")";
+        config = "lua dofile(\"${./nerdtree-git.lua}\")";
       }
       vim-devicons
       {
         plugin = ctrlp-vim;
-        config = "lua require(\"${./ctrlp.lua}\")";
+        config = "lua dofile(\"${./ctrlp.lua}\")";
       }
       vim-nix
       {
         plugin = tagbar;
-        config = "lua require(\"${./tagbar.lua}\")";
+        config = "lua dofile(\"${./tagbar.lua}\")";
       }
       {
         plugin = vim-airline;
-        config = "lua require(\"${./airline.lua}\")";
+        config = "lua dofile(\"${./airline.lua}\")";
       }
       copilot-vim
       rust-vim # for proper syntax highlighting
       {
         plugin = nvim-lspconfig;
-        config = "lua require(\"${./lsp.lua}\")";
+        config = "lua dofile(\"${./lsp.lua}\")";
       }
       vim-gitgutter
       nvim-web-devicons
