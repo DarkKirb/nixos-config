@@ -111,8 +111,8 @@ in {
        '';
        });
        */
-      noto-fonts-cjk = noto-variable.noto-fonts-cjk;
-      buildGo116Module = go116.buildGo116Module;
+      inherit (noto-variable) noto-fonts-cjk;
+      inherit (go116) buildGo116Module;
     })
   ];
 }

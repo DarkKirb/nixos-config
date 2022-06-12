@@ -25,13 +25,13 @@
       DB_USER = cfg.database.user;
 
       REDIS_HOST = cfg.redis.host;
-      REDIS_PORT = toString (cfg.redis.port);
+      REDIS_PORT = toString cfg.redis.port;
       DB_HOST = cfg.database.host;
-      DB_PORT = toString (cfg.database.port);
+      DB_PORT = toString cfg.database.port;
       DB_NAME = cfg.database.name;
       LOCAL_DOMAIN = cfg.localDomain;
       SMTP_SERVER = cfg.smtp.host;
-      SMTP_PORT = toString (cfg.smtp.port);
+      SMTP_PORT = toString cfg.smtp.port;
       SMTP_FROM_ADDRESS = cfg.smtp.fromAddress;
       PAPERCLIP_ROOT_PATH = "/var/lib/mastodon/public-system";
       PAPERCLIP_ROOT_URL = "/system";
@@ -40,7 +40,7 @@
         then "true"
         else "false";
       ES_HOST = cfg.elasticsearch.host;
-      ES_PORT = toString (cfg.elasticsearch.port);
+      ES_PORT = toString cfg.elasticsearch.port;
 
       TRUSTED_PROXY_IP = cfg.trustedProxy;
     }
@@ -565,7 +565,7 @@ in {
         // (
           if cfg.enableUnixSocket
           then {SOCKET = "/run/mastodon-streaming/streaming.socket";}
-          else {PORT = toString (cfg.streamingPort);}
+          else {PORT = toString cfg.streamingPort;}
         );
       serviceConfig =
         {
@@ -603,7 +603,7 @@ in {
         // (
           if cfg.enableUnixSocket
           then {SOCKET = "/run/mastodon-web/web.socket";}
-          else {PORT = toString (cfg.webPort);}
+          else {PORT = toString cfg.webPort;}
         );
       serviceConfig =
         {
@@ -640,7 +640,7 @@ in {
       environment =
         env
         // {
-          PORT = toString (cfg.sidekiqPort);
+          PORT = toString cfg.sidekiqPort;
           DB_POOL = toString cfg.sidekiqThreads;
         };
       serviceConfig =
@@ -718,7 +718,7 @@ in {
           proxyPass =
             if cfg.enableUnixSocket
             then "http://unix:/run/mastodon-web/web.socket"
-            else "http://127.0.0.1:${toString (cfg.webPort)}";
+            else "http://127.0.0.1:${toString cfg.webPort}";
           proxyWebsockets = true;
         };
 
@@ -726,7 +726,7 @@ in {
           proxyPass =
             if cfg.enableUnixSocket
             then "http://unix:/run/mastodon-streaming/streaming.socket"
-            else "http://127.0.0.1:${toString (cfg.streamingPort)}/";
+            else "http://127.0.0.1:${toString cfg.streamingPort}/";
           proxyWebsockets = true;
         };
       };

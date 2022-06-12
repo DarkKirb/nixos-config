@@ -10,7 +10,7 @@
   system,
   ...
 }: let
-  writeZone = dns.util.${system}.writeZone;
+  inherit (dns.util.${system}) writeZone;
   zoneFile = writeZone zonename zone;
 in {
   systemd.services."zonesign@${zonename}" = {

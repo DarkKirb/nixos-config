@@ -49,7 +49,7 @@ in {
         internalToken = "${cfg.stateDir}/custom/conf/internal_token";
       in ''
         # copy custom configuration and generate a random secret key if needed
-        ${optionalString (cfg.useWizard == false) ''
+        ${optionalString (!cfg.useWizard) ''
           function gitea_setup {
             cp -f ${configFile} ${runConfig}
 

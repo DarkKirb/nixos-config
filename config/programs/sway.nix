@@ -74,7 +74,7 @@ in {
         };
       };
       keybindings = let
-        modifier = config.wayland.windowManager.sway.config.modifier;
+        inherit (config.wayland.windowManager.sway.config) modifier;
       in
         lib.mkOptionDefault {
           "${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";

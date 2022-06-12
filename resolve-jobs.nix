@@ -4,7 +4,7 @@
 # calls the flake's 'outputs' function. It then returns an attrset
 # containing 'defaultNix' (to be used in 'default.nix'), 'shellNix'
 # (to be used in 'shell.nix').
-{...}: let
+_: let
   inherit (builtins) attrNames listToAttrs;
 
   mapAttrs' = f: set:
@@ -28,11 +28,11 @@
               else {}
             )
           );
-        rev = info.rev;
+        inherit (info) rev;
         shortRev = builtins.substring 0 7 info.rev;
-        lastModified = info.lastModified;
+        inherit (info) lastModified;
         lastModifiedDate = formatSecondsSinceEpoch info.lastModified;
-        narHash = info.narHash;
+        inherit (info) narHash;
       }
       else if info.type == "git"
       then
@@ -40,7 +40,7 @@
           outPath =
             builtins.fetchGit
             (
-              {url = info.url;}
+              {inherit (info) url;}
               // (
                 if info ? rev
                 then {inherit (info) rev;}
@@ -57,22 +57,22 @@
                 else {}
               )
             );
-          lastModified = info.lastModified;
+          inherit (info) lastModified;
           lastModifiedDate = formatSecondsSinceEpoch info.lastModified;
-          narHash = info.narHash;
+          inherit (info) narHash;
         }
         // (
           if info ? rev
           then {
-            rev = info.rev;
+            inherit (info) rev;
             shortRev = builtins.substring 0 7 info.rev;
           }
           else {}
         )
       else if info.type == "path"
       then {
-        outPath = builtins.path {path = info.path;};
-        narHash = info.narHash;
+        outPath = builtins.path {inherit (info) path;};
+        inherit (info) narHash;
       }
       else if info.type == "tarball"
       then {
@@ -266,7 +266,7 @@
       if !(builtins.pathExists lockFilePath)
       then callLocklessFlake rootSrc
       else if lockFile.version == 4
-      then callFlake4 rootSrc (lockFile.inputs)
+      then callFlake4 rootSrc lockFile.inputs
       else if lockFile.version >= 5 && lockFile.version <= 7
       then allNodes.${lockFile.root}
       else throw "lock file '${lockFilePath}' has unsupported version ${toString lockFile.version}";

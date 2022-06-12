@@ -1,4 +1,4 @@
-{...}: {
+_: {
   networking.firewall.extraCommands = ''
     # Taken from https://gist.github.com/rampageX/5cbe95be43ca3165f4d963629e3bb946
     # Block Torrent algo string using Boyer-Moore (bm)

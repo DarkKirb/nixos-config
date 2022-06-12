@@ -3,27 +3,27 @@ rec {
 
   # Use NixOS unstable
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs;
-    flake-utils.url = github:numtide/flake-utils;
+    nixpkgs.url = "github:NixOS/nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
     home-manager.url = "github:andresilva/home-manager/fix-systemd-services";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    sops-nix.url = github:Mic92/sops-nix;
+    sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     chir-rs.url = "git+https://git.chir.rs/darkkirb/chir.rs.git?ref=main";
     nur.url = "github:nix-community/NUR";
     polymc.url = "github:PolyMC/PolyMC";
     polymc.inputs.nixpkgs.follows = "nixpkgs";
     dns.url = "github:DarkKirb/dns.nix?ref=master";
-    hydra.url = github:NixOS/hydra;
-    nix.url = github:NixOS/nix/5fe4fe823c193cbb7bfa05a468de91eeab09058d;
+    hydra.url = "github:NixOS/hydra";
+    nix.url = "github:NixOS/nix/5fe4fe823c193cbb7bfa05a468de91eeab09058d";
     hydra.inputs.nix.follows = "nix";
     hydra.inputs.nixpkgs.follows = "nix/nixpkgs";
-    hosts-list.url = github:StevenBlack/hosts;
+    hosts-list.url = "github:StevenBlack/hosts";
     hosts-list.flake = false;
-    nixos-hardware.url = github:NixOS/nixos-hardware;
-    nixpkgs-noto-variable.url = github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d;
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
 
-    nix-packages.url = github:DarkKirb/nix-packages/main;
+    nix-packages.url = "github:DarkKirb/nix-packages/main";
     nix-packages.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -112,6 +112,7 @@ rec {
           python3
           python3Packages.yapf
           github-cli
+          statix
         ];
       };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
@@ -128,7 +129,7 @@ rec {
         })
         systems))
       // {
-        devShell = devShell;
+        inherit devShell;
         # Uncomment the line to build an installer image
         # This is EXTREMELY LARGE and will make builds take forever
         # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;

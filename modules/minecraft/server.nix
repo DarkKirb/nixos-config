@@ -8,7 +8,7 @@
   ...
 }:
 with lib; let
-  papermc = nix-packages.packages.${system}.papermc;
+  inherit (nix-packages.packages.${system}) papermc;
   cfg = config.services.minecraft;
   opt = options.services.minecraft;
   serverProperties = pkgs.writeText "server.properties" ''

@@ -403,7 +403,7 @@ in {
     services.minecraft.plugins = [
       {
         package = luckperms;
-        startScript = startScript;
+        inherit startScript;
       }
     ];
   };

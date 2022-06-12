@@ -1,4 +1,4 @@
-{...}: {
+_: {
   security.acme = {
     acceptTerms = true;
     defaults = {

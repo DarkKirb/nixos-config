@@ -1,4 +1,4 @@
-{...}: {
+_: {
   boot.supportedFilesystems = ["zfs"];
   boot.zfs.devNodes = "/dev/";
   services.zfs.trim.enable = true;

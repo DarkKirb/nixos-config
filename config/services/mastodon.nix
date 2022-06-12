@@ -6,7 +6,7 @@
   lib,
   ...
 }: let
-  listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
+  inherit ((import ../../utils/getInternalIP.nix config)) listenIPs;
   listenStatements =
     lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs)
     + ''
@@ -20,7 +20,7 @@
       "mastodon-sidekiq.service"
     ];
   };
-  mastodon = nix-packages.packages.${system}.mastodon;
+  inherit (nix-packages.packages.${system}) mastodon;
 in {
   imports = [
     ./elasticsearch.nix
@@ -91,7 +91,7 @@ in {
         proxyPass =
           if config.services.mastodon.enableUnixSocket
           then "http://unix:/run/mastodon-web/web.socket"
-          else "http://127.0.0.1:${toString (config.services.mastodon.webPort)}";
+          else "http://127.0.0.1:${toString config.services.mastodon.webPort}";
         proxyWebsockets = true;
         extraConfig = ''
           proxy_set_header X-Forwarded-Proto https;
@@ -101,7 +101,7 @@ in {
         proxyPass =
           if config.services.mastodon.enableUnixSocket
           then "http://unix:/run/mastodon-streaming/streaming.socket"
-          else "http://127.0.0.1:${toString (config.services.mastodon.streamingPort)}/";
+          else "http://127.0.0.1:${toString config.services.mastodon.streamingPort}/";
         proxyWebsockets = true;
         extraConfig = ''
           proxy_set_header X-Forwarded-Proto https;

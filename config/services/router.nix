@@ -1,4 +1,4 @@
-{...}: {
+_: {
   networking.dhcpcd.allowInterfaces = ["enp1s0f0u4"]; # yes a usb network card don’t judge
   services.dhcpd4 = {
     enable = true;

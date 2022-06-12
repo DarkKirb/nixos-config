@@ -13,7 +13,7 @@ with lib; let
   settingsFormat = pkgs.formats.yaml {};
   settingsFileUnsubstituted = settingsFormat.generate "mautrix-telegram-whatsapp-unsubstituted.yaml" cfg.settings;
   settingsFile = "${dataDir}/config.yaml";
-  mautrix-whatsapp = nix-packages.packages.${system}.mautrix-whatsapp;
+  inherit (nix-packages.packages.${system}) mautrix-whatsapp;
 in {
   options = {
     services.mautrix-whatsapp = {

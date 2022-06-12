@@ -1,4 +1,4 @@
-{...}: let
+_: let
   mkSopsSecret = {
     name,
     path,

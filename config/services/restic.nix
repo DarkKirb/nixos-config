@@ -1,4 +1,4 @@
-{...}: {
+_: {
   services.restic.backups."sysbackup" = {
     passwordFile = "/run/secrets/security/restic/password";
     paths = [

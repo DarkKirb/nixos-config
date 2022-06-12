@@ -7,9 +7,9 @@
   ...
 }:
 with lib; let
-  systemd = nixpkgs-systemd-249.legacyPackages.${system}.systemd;
-  luks = config.boot.initrd.luks;
-  kernelPackages = config.boot.kernelPackages;
+  inherit (nixpkgs-systemd-249.legacyPackages.${system}) systemd;
+  inherit (config.boot.initrd) luks;
+  inherit (config.boot) kernelPackages;
 
   commonFunctions = ''
     die() {
@@ -81,31 +81,32 @@ with lib; let
     umount /crypt-ramfs 2>/dev/null
   '';
 
-  openCommand = name: dev: assert name == dev.name; let
-    csopen =
-      "systemd-cryptsetup attach ${dev.name} ${dev.device} \"\" tpm2-device=/dev/tpmrm0"
-      + optionalString dev.allowDiscards ",discard"
-      + optionalString dev.bypassWorkqueues ",no-read-workqueue,no-write-workqueue"
-      + optionalString (dev.header != null) ",header=${dev.header}";
-  in ''
-    # Wait for luksRoot (and optionally keyFile and/or header) to appear, e.g.
-    # if on a USB drive.
-    wait_target "device" ${dev.device} || die "${dev.device} is unavailable"
+  openCommand = name: dev:
+    assert name == dev.name; let
+      csopen =
+        "systemd-cryptsetup attach ${dev.name} ${dev.device} \"\" tpm2-device=/dev/tpmrm0"
+        + optionalString dev.allowDiscards ",discard"
+        + optionalString dev.bypassWorkqueues ",no-read-workqueue,no-write-workqueue"
+        + optionalString (dev.header != null) ",header=${dev.header}";
+    in ''
+      # Wait for luksRoot (and optionally keyFile and/or header) to appear, e.g.
+      # if on a USB drive.
+      wait_target "device" ${dev.device} || die "${dev.device} is unavailable"
 
-    ${optionalString (dev.header != null) ''
-      wait_target "header" ${dev.header} || die "${dev.header} is unavailable"
-    ''}
+      ${optionalString (dev.header != null) ''
+        wait_target "header" ${dev.header} || die "${dev.header} is unavailable"
+      ''}
 
-    # commands to run right before we mount our device
-    ${dev.preOpenCommands}
+      # commands to run right before we mount our device
+      ${dev.preOpenCommands}
 
-    mkdir -pv ${pkgs.tpm2-tss}
-    ln -svf /lib ${pkgs.tpm2-tss}
-    ${csopen}
+      mkdir -pv ${pkgs.tpm2-tss}
+      ln -svf /lib ${pkgs.tpm2-tss}
+      ${csopen}
 
-    # commands to run right after we mounted our device
-    ${dev.postOpenCommands}
-  '';
+      # commands to run right after we mounted our device
+      ${dev.postOpenCommands}
+    '';
 
   askPass = pkgs.writeScriptBin "cryptsetup-askpass" ''
     #!/bin/sh

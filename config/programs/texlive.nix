@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.texlive = {
     enable = true;
     extraPackages = tpkgs: {

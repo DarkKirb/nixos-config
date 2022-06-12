@@ -1,4 +1,4 @@
-{...}: {
+_: {
   networking.hostName = "rpi2";
   networking.hostId = "29d7b964";
   # NixOS wants to enable GRUB by default

@@ -17,7 +17,7 @@
     };
   };
   services.nginx.virtualHosts."mastodon.chir.rs" = let
-    mastodon = nix-packages.packages.${system}.mastodon;
+    inherit (nix-packages.packages.${system}) mastodon;
   in {
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";

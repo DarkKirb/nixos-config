@@ -88,7 +88,7 @@
   ];
   systemd.services.matrix-synapse.serviceConfig.ExecStartPre = lib.mkForce (pkgs.writeShellScript "dummy" "true");
   services.nginx.virtualHosts = let
-    listenIPs = (import ../../utils/getInternalIP.nix config).listenIPs;
+    inherit ((import ../../utils/getInternalIP.nix config)) listenIPs;
     listenStatements =
       lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs)
       + ''

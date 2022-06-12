@@ -7,7 +7,7 @@
 with lib; let
   cfg = config.boot.loader.systemd-boot;
 
-  efi = config.boot.loader.efi;
+  inherit (config.boot.loader) efi;
 
   systemdBootBuilder = pkgs.substituteAll {
     src = ./systemd-boot-builder.py;
@@ -179,12 +179,12 @@ in {
   config = mkIf cfg.enable {
     assertions = [
       {
-        assertion = !(cfg.secureBoot.enable && isNull cfg.secureBoot.keyPath);
+        assertion = !(cfg.secureBoot.enable && (cfg.secureBoot.keyPath == null));
 
         message = "The secureboot signing key must be provided";
       }
       {
-        assertion = !(cfg.secureBoot.enable && isNull cfg.secureBoot.certPath);
+        assertion = !(cfg.secureBoot.enable && (cfg.secureBoot.certPath == null));
 
         message = "The secureboot signing certificate must be provided";
       }

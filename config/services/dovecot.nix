@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  listenIP = (import ../../utils/getInternalIP.nix config).listenIP;
+  inherit ((import ../../utils/getInternalIP.nix config)) listenIP;
   sieves = import ../../packages/sieves.nix pkgs;
 in {
   nixpkgs.overlays = [

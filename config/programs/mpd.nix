@@ -1,4 +1,4 @@
-{...}: {
+_: {
   services.mpd = {
     enable = true;
     musicDirectory = /home/darkkirb/Music;

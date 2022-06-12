@@ -3,7 +3,7 @@
   system,
   ...
 }: let
-  homepage-old = nix-packages.packages.${system}.homepage-old;
+  inherit (nix-packages.packages.${system}) homepage-old;
 in {
   systemd.services.homepage-old = {
     enable = true;
