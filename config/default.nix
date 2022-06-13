@@ -16,7 +16,11 @@
     ./services/promtail.nix
   ];
   services.openssh.enable = true;
-  environment.systemPackages = with pkgs; [git pinentry-curses];
+  environment.systemPackages = with pkgs; [
+    git
+    pinentry-curses
+    kitty.terminfo
+  ];
   networking.firewall.allowedTCPPorts = [22];
   networking.firewall.allowedUDPPortRanges = [
     {
@@ -64,8 +68,4 @@
   };
   users.mutableUsers = false;
   boot.kernelParams = ["nohibernate"];
-
-  environment.systemPackages = [
-    pkgs.kitty.terminfo
-  ];
 }

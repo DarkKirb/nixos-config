@@ -91,8 +91,8 @@ in {
           "XF86AudioPrev" = "exec ${pkgs.mpc-cli}/bin/mpc prev";
           "XF86AudioStop" = "exec ${pkgs.mpc-cli}/bin/mpc stop";
           "Mod1+Tab" = "exec ${switch_window}";
-          "Mod1+Shift+t" = "exec ${pkgs.ibus}/bin/ibus engine table:tokipona"; 
-          "Mod1+Shift+l" = "exec ${pkgs.ibus}/bin/ibus engine xkb:de:neo:deu"; 
+          "Mod1+Shift+t" = "exec ${pkgs.ibus}/bin/ibus engine table:tokipona";
+          "Mod1+Shift+l" = "exec ${pkgs.ibus}/bin/ibus engine xkb:de:neo:deu";
         };
       bars = [
         {
