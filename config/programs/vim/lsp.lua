@@ -1,3 +1,7 @@
+-- Grab capabilties
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
@@ -41,6 +45,7 @@ for _, lsp in pairs(servers) do
         flags = {
             -- This will be the default in neovim 0.7+
             debounce_text_changes = 150,
-        }
+        },
+	capabilities = capabilities
     }
 end

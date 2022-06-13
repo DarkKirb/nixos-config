@@ -35,6 +35,13 @@ in {
       }
       copilot-vim
       rust-vim # for proper syntax highlighting
+      luasnip
+      cmp-nvim-lsp
+      cmp_luasnip
+      {
+        plugin = nvim-cmp;
+        config = "lua dofile(\"${./cmp.lua}\")";
+      }
       {
         plugin = nvim-lspconfig;
         config = "lua dofile(\"${./lsp.lua}\")";
