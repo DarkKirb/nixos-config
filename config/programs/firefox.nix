@@ -37,6 +37,13 @@
             }
           }
         '';
+        settings = {
+          "browser.display.use_document_fonts" = 0;
+          "font.default.x-western" = "sans-serif";
+          "font.name-list.monospace.x-western" = "monospace, nasin-nanpa";
+          "font.name-list.sans-serif.x-western" = "sans-serif, nasin-nanpa";
+          "font.name-list.serif.x-western" = "sans-serif, nasin-nanpa";
+        };
         id = 0;
       };
     };
