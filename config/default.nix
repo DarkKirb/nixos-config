@@ -64,4 +64,8 @@
   };
   users.mutableUsers = false;
   boot.kernelParams = ["nohibernate"];
+
+  environment.systemPackages = [
+    pkgs.kitty.terminfo
+  ];
 }
