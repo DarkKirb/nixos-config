@@ -114,10 +114,9 @@ in {
       inherit (noto-variable) noto-fonts-cjk;
       inherit (go116) buildGo116Module;
       kitty = prev.kitty.overrideAttrs (old: {
-        patches = [
+        patches = old.patches ++ [
           ../../extra/kitty.patch
         ];
-        installCheckPhase = "true";
       });
     })
   ];
