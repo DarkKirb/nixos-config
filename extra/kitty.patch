@@ -12,3 +12,16 @@ index 09f4b9a6..a755d77c 100755
  
  def parse_eaw() -> None:
      global doublewidth, ambiguous
+diff --git a/kitty/unicode-data.h b/kitty/unicode-data.h
+index ba4f4d40..c945a293 100644
+--- a/kitty/unicode-data.h
++++ b/kitty/unicode-data.h
+@@ -37,7 +37,7 @@ can_strip_from_end_of_url(uint32_t ch) {
+ 
+ static inline bool
+ is_private_use(char_type ch) {
+-    return (0xe000 <= ch && ch <= 0xf8ff) || (0xF0000 <= ch && ch <= 0xFFFFF) || (0x100000 <= ch && ch <= 0x10FFFF);
++    return ((0xe000 <= ch && ch <= 0xf8ff) || (0xF0000 <= ch && ch <= 0xFFFFF) || (0x100000 <= ch && ch <= 0x10FFFF)) && !(0xF1900 >= ch && ch <= 0xF19FF);
+ }
+ 
+ 
