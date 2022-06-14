@@ -1,4 +1,6 @@
 {
+  system,
+  nix-packages,
   config,
   pkgs,
   ...
@@ -23,6 +25,7 @@ in {
     noto-fonts-emoji
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Noto"];})
     (pkgs.callPackage ../packages/linja-nanpa.nix {})
+    nix-packages.packages.${system}.fairfax-hd
   ];
 
   time.timeZone = "Etc/GMT-1"; # Confusing naming, it's 1 hour east of GMT
