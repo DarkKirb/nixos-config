@@ -42,12 +42,12 @@ in {
       </match>
     </fontconfig>
   '';
-  
+
   environment.sessionVariables = {
-    GTK_IM_MODULE = "ibus";
-    QT_IM_MODULE = "ibus";
-    XMODIFIERS = "@im=ibus";
-    GLFW_IM_MODULE = "ibus";
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+    GLFW_IM_MODULE = "fcitx";
   };
 
   time.timeZone = "Etc/GMT-1"; # Confusing naming, it's 1 hour east of GMT
@@ -84,16 +84,6 @@ in {
     inherit args;
   };
 
-  i18n.inputMethod = {
-    enabled = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [
-      mozc
-      table
-      table-others
-      uniemoji
-      (pkgs.callPackage ../packages/ibus-tp.nix {})
-    ];
-  };
   # For syncthing
   networking.firewall.allowedTCPPorts = [22000];
   networking.firewall.allowedUDPPorts = [22000];
