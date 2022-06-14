@@ -1,17 +1,60 @@
 diff --git a/gen-wcwidth.py b/gen-wcwidth.py
-index 09f4b9a6..a755d77c 100755
+index 09f4b9a6..016d7b2f 100755
 --- a/gen-wcwidth.py
 +++ b/gen-wcwidth.py
-@@ -224,6 +224,9 @@ def parse_emoji() -> None:
- doublewidth: Set[int] = set()
- ambiguous: Set[int] = set()
+@@ -242,6 +242,13 @@ def parse_eaw() -> None:
+     doublewidth |= set(range(0x20000, 0x2FFFD + 1)) - seen
+     doublewidth |= set(range(0x30000, 0x3FFFD + 1)) - seen
  
-+doublewidth |= set(range(0xF1900, 0xF1990)) # nimi pu and nimi ku suli
-+doublewidth |= set(range(0xf19A0, 0xF1a00)) # nimi ku lili
++    doublewidth |= set(range(0xF1900, 0xF1990)) # nimi pu and nimi ku suli
++    doublewidth |= set(range(0xf19A0, 0xF1a00)) # nimi ku lili
++    for f in range(0xF1900, 0xF1990):
++        ambiguous.discard(f)
++    for f in range(0xF19A0, 0xF1A00):
++        ambiguous.discard(f)
 +
  
- def parse_eaw() -> None:
-     global doublewidth, ambiguous
+ def get_ranges(items: List[int]) -> Generator[Union[int, Tuple[int, int]], None, None]:
+     items.sort()
+@@ -543,6 +550,8 @@ def add(p: Callable[..., None], comment: str, chars_: Union[Set[int], FrozenSet[
+         add(p, 'Flags', flag_codepoints, 2)
+         add(p, 'Marks', marks | {0}, 0)
+         add(p, 'Non-printing characters', non_printing, -1)
++        for c in range(0xF1900, 0xF1A00):
++            class_maps['Co'].discard(c)
+         add(p, 'Private use', class_maps['Co'], -3)
+         add(p, 'Text Presentation', narrow_emoji, 1)
+         add(p, 'East Asian ambiguous width', ambiguous, -2)
+diff --git a/kittens/unicode_input/names.h b/kittens/unicode_input/names.h
+index 8d940865..5bc00b30 100644
+--- a/kittens/unicode_input/names.h
++++ b/kittens/unicode_input/names.h
+@@ -1,4 +1,4 @@
+-// unicode data, built from the unicode standard on: 2022-03-03
++// unicode data, built from the unicode standard on: 2022-06-14
+ // see gen-wcwidth.py
+ #pragma once
+ #include "data-types.h"
+diff --git a/kitty/emoji.h b/kitty/emoji.h
+index 433876c5..f0e1d376 100644
+--- a/kitty/emoji.h
++++ b/kitty/emoji.h
+@@ -1,4 +1,4 @@
+-// unicode data, built from the unicode standard on: 2022-01-05
++// unicode data, built from the unicode standard on: 2022-06-14
+ // see gen-wcwidth.py
+ #pragma once
+ #include "data-types.h"
+diff --git a/kitty/unicode-data.c b/kitty/unicode-data.c
+index 16b1fd7a..0e5ed4b7 100644
+--- a/kitty/unicode-data.c
++++ b/kitty/unicode-data.c
+@@ -1,4 +1,4 @@
+-// unicode data, built from the unicode standard on: 2022-01-05
++// unicode data, built from the unicode standard on: 2022-06-14
+ // see gen-wcwidth.py
+ #include "data-types.h"
+ 
 diff --git a/kitty/unicode-data.h b/kitty/unicode-data.h
 index ba4f4d40..c945a293 100644
 --- a/kitty/unicode-data.h
@@ -25,3 +68,61 @@ index ba4f4d40..c945a293 100644
  }
  
  
+diff --git a/kitty/wcwidth-std.h b/kitty/wcwidth-std.h
+index 12021233..3ff41402 100644
+--- a/kitty/wcwidth-std.h
++++ b/kitty/wcwidth-std.h
+@@ -1,4 +1,4 @@
+-// unicode data, built from the unicode standard on: 2022-01-05
++// unicode data, built from the unicode standard on: 2022-06-14
+ // see gen-wcwidth.py
+ #pragma once
+ #include "data-types.h"
+@@ -656,10 +656,12 @@ wcwidth_std(int32_t code) {
+ 			return -1;
+ 		// }}}
+ 
+-		// Private use (137468 codepoints) {{{
++		// Private use (137212 codepoints) {{{
+ 		case 0xe000 ... 0xf8ff:
+ 			return -3;
+-		case 0xf0000 ... 0xffffd:
++		case 0xf0000 ... 0xf18ff:
++			return -3;
++		case 0xf1a00 ... 0xffffd:
+ 			return -3;
+ 		case 0x100000 ... 0x10fffd:
+ 			return -3;
+@@ -906,7 +908,7 @@ wcwidth_std(int32_t code) {
+ 			return 1;
+ 		// }}}
+ 
+-		// East Asian ambiguous width (869 codepoints) {{{
++		// East Asian ambiguous width (885 codepoints) {{{
+ 		case 0xa1:
+ 			return -2;
+ 		case 0xa4:
+@@ -1255,9 +1257,11 @@ wcwidth_std(int32_t code) {
+ 			return -2;
+ 		case 0x1f19b ... 0x1f1ac:
+ 			return -2;
++		case 0xf1990 ... 0xf199f:
++			return -2;
+ 		// }}}
+ 
+-		// East Asian double width (182470 codepoints) {{{
++		// East Asian double width (182710 codepoints) {{{
+ 		case 0x1100 ... 0x115e:
+ 			return 2;
+ 		case 0x231a ... 0x231b:
+@@ -1512,6 +1516,10 @@ wcwidth_std(int32_t code) {
+ 			return 2;
+ 		case 0x30000 ... 0x3fffd:
+ 			return 2;
++		case 0xf1900 ... 0xf198f:
++			return 2;
++		case 0xf19a0 ... 0xf19ff:
++			return 2;
+ 		// }}}
+ 
+ 		// Emoji Presentation (0 codepoints) {{{
