@@ -27,6 +27,21 @@ in {
     (pkgs.callPackage ../packages/linja-nanpa.nix {})
     nix-packages.packages.${system}.fairfax-hd
   ];
+  fonts.fontconfig.enable = true;
+  fonts.fontconfig.localConf = ''
+    <?xml version="1.0"?>
+    <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+    <fontconfig>
+      <match target="scan">
+        <test name="family">
+          <string>Fairfax HD</string>
+        </test>
+        <edit name="spacing">
+          <int>100</int>
+        </edit>
+      </match>
+    </fontconfig>
+  '';
 
   time.timeZone = "Etc/GMT-1"; # Confusing naming, it's 1 hour east of GMT
   services.pcscd.enable = true;
