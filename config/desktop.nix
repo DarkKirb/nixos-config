@@ -24,7 +24,7 @@ in {
     noto-fonts-cjk
     noto-fonts-emoji
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Noto"];})
-    nix-packages.packages.${system}.linja-nanpa
+    nix-packages.packages.${system}.nasin-nanpa
     nix-packages.packages.${system}.fairfax-hd
   ];
   fonts.fontconfig.enable = true;
