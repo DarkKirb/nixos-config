@@ -42,6 +42,13 @@ in {
       </match>
     </fontconfig>
   '';
+  
+  environment.sessionVariables = {
+    GTK_IM_MODULE = "ibus";
+    QT_IM_MODULE = "ibus";
+    XMODIFIERS = "@im=ibus";
+    GLFW_IM_MODULE = "ibus";
+  };
 
   time.timeZone = "Etc/GMT-1"; # Confusing naming, it's 1 hour east of GMT
   services.pcscd.enable = true;

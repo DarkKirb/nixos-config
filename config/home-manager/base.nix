@@ -25,12 +25,6 @@ desktop: {pkgs, ...}: {
       ];
     };
   };
-  environment.sessionVariables = {
-    GTK_IM_MODULE = "ibus";
-    QT_IM_MODULE = "ibus";
-    XMODIFIERS = "@im=ibus";
-    GLFW_IM_MODULE = "ibus";
-  };
   home.file.".p10k.zsh".source = ./.p10k.zsh;
 
   accounts.email.maildirBasePath = "Maildir";
