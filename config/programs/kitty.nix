@@ -8,6 +8,7 @@ _: {
     };
     extraConfig = ''
       symbol_map U+F1900-U+F19FF Fairfax HD
+      narrow_symbols U+F1900-U+F19FF 2
     '';
   };
 }
