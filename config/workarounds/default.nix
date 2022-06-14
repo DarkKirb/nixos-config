@@ -117,7 +117,7 @@ in {
         patches = [
           ../../extra/kitty.patch
         ];
-        checkPhase = "true";
+        installCheckPhase = "true";
       });
     })
   ];
