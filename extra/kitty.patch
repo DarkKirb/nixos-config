@@ -1,0 +1,14 @@
+diff --git a/gen-wcwidth.py b/gen-wcwidth.py
+index 09f4b9a6..a755d77c 100755
+--- a/gen-wcwidth.py
++++ b/gen-wcwidth.py
+@@ -224,6 +224,9 @@ def parse_emoji() -> None:
+ doublewidth: Set[int] = set()
+ ambiguous: Set[int] = set()
+ 
++doublewidth |= set(range(0xF1900, 0xF1990)) # nimi pu and nimi ku suli
++doublewidth |= set(range(0xf19A0, 0xF1a00)) # nimi ku lili
++
+ 
+ def parse_eaw() -> None:
+     global doublewidth, ambiguous
