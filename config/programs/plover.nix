@@ -1,9 +1,12 @@
 {
   lib,
   pkgs,
+  nix-packages,
+  system,
   ...
 }: let
-  plover-src = pkgs.plover.dev.src;
+  inherit (nix-packages.packages.${system}) plover plover-plugins-manager;
+  plover-src = plover.src;
   plover-dictionaries = [
     {
       enabled = true;
@@ -58,7 +61,8 @@
   });
 in {
   home.packages = [
-    pkgs.plover.dev
+    plover
+    plover-plugins-manager
   ];
   home.activation.ploverSettings = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD mkdir $VERBOSE_ARG -p $HOME/.config/plover
@@ -77,7 +81,7 @@ in {
       WantedBy = ["graphical-session.target"];
     };
     Service = {
-      ExecStart = "${pkgs.plover.dev}/bin/plover";
+      ExecStart = "${plover}/bin/plover";
     };
   };
 }
