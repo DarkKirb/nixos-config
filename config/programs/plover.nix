@@ -10,7 +10,7 @@
       path = pkgs.writeText "user.json" (builtins.toJSON {
         "SER/TKPWAL" = "Sergal";
         "SERLG" = "Sergal";
-        "SER/WAL" = "serval";
+        "SER/SRAL" = "serval";
       });
     }
     {
