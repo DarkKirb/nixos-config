@@ -249,11 +249,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1654014175,
-        "narHash": "sha256-x9Qppzv5uic14v23T46AicjELIMG+jrqNspcosFa0MQ=",
+        "lastModified": 1655384771,
+        "narHash": "sha256-kmgN7D7tUC3Ki70D+rdS19PW/lrANlU3tc8gu5gsld0=",
         "owner": "NixOS",
         "repo": "hydra",
-        "rev": "cf9f38e43fd81f9298e3f2ff50c8a6ee0acc3af0",
+        "rev": "fb26435fe9a54f13143e69a545b8f3cecffaed96",
         "type": "github"
       },
       "original": {
@@ -441,14 +441,15 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nixpkgs-go116": "nixpkgs-go116"
+        "nixpkgs-go116": "nixpkgs-go116",
+        "plover": "plover"
       },
       "locked": {
-        "lastModified": 1655328818,
-        "narHash": "sha256-NQhKaPUK207opbQEecFUSxypfW1FXj4o/lKsV+OOGoo=",
+        "lastModified": 1655396165,
+        "narHash": "sha256-2uqU46rs5d0i0PmqaFvNPWbj5VFytb9y9HM0h2JKEm8=",
         "owner": "DarkKirb",
         "repo": "nix-packages",
-        "rev": "d19810aec829d09ecfba86434fb35e3a30e71335",
+        "rev": "47c9b99394c9940950ce1dd34680c368616ae206",
         "type": "github"
       },
       "original": {
@@ -615,11 +616,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1655353699,
-        "narHash": "sha256-d3Rw2rzNzxt9wSTQ5hZmc9cdYBkmxoaiunWYCFbpj2s=",
+        "lastModified": 1655407221,
+        "narHash": "sha256-LYS7V0+ucGTXd3q2RsYYaGnIfm9yQUYtQsTb9HXSNdI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "bef6dc29e87e414a99c1d794c712eee29187c372",
+        "rev": "3ae0e9c86e057fe50852c2b311e6a489d81c14c9",
         "type": "github"
       },
       "original": {
@@ -630,16 +631,32 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1655354642,
-        "narHash": "sha256-Yh4tWtlApE8/Mh7qLQlozYZ90mHl92+5/ZH2zkoQyVs=",
+        "lastModified": 1655398971,
+        "narHash": "sha256-yWtHgYPnv1/kPAxqjXnInGz7863lxJVa5pcGCJb3aRc=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "dd9c9041a430b798a5665c4cdd5c1bda8b5c6073",
+        "rev": "104471891ad659384eaec9f9cf4a17668612c3b4",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "NUR",
+        "type": "github"
+      }
+    },
+    "plover": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1652639506,
+        "narHash": "sha256-2sS5jnpIHV2j23vDMS4ka2neRTcEyLH+zs7Og+Ysjvg=",
+        "owner": "openstenoproject",
+        "repo": "plover",
+        "rev": "486a032f7bd50d1df3ddff47f407e77a4cfe0bc6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "openstenoproject",
+        "repo": "plover",
         "type": "github"
       }
     },
