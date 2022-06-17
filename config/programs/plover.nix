@@ -1,11 +1,10 @@
 {
   lib,
   pkgs,
-  nix-packages,
   system,
   ...
 }: let
-  inherit (nix-packages.packages.${system}) plover plover-plugins-manager;
+  inherit (pkgs) plover plover-plugins-manager;
   plover-src = plover.src;
   plover-dictionaries = [
     {

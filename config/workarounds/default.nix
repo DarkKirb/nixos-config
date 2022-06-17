@@ -5,6 +5,7 @@
   hydra,
   nixpkgs-noto-variable,
   nixpkgs-go116,
+  nix-packages,
   ...
 }:
 with pkgs; let
@@ -64,6 +65,7 @@ in {
        */
       inherit (noto-variable) noto-fonts-cjk;
       inherit (go116) buildGo116Module;
+      inherit (nix-packages.packages.${system}) plover plover-plugins-manager;
       kitty = prev.kitty.overrideAttrs (old: {
         patches =
           old.patches
