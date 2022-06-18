@@ -80,7 +80,7 @@ in {
       WantedBy = ["graphical-session.target"];
     };
     Service = {
-      ExecStart = "${plover}/bin/plover";
+      ExecStart = "${plover-env}/bin/plover";
     };
   };
 }
