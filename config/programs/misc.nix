@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     ghidra
     android-studio
+    anki
   ];
   xdg.configFile."gdb/gdbinit".text = "set auto-load safe-path /nix/store";
   services.xsettingsd = {
