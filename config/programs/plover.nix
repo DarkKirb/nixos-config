@@ -7,7 +7,7 @@
   inherit (pkgs) plover plover-plugins-manager regenpfeifer plover-regenpfeifer;
   plover-env = plover.pythonModule.withPackages (_: [plover plover-plugins-manager plover-regenpfeifer]);
   plover-src = plover.src;
-  plover-dictionaries = [
+  plover-dictionaries-english = [
     {
       enabled = true;
       path = pkgs.writeText "user.json" (builtins.toJSON {
@@ -25,38 +25,27 @@
       path = "${plover-src}/plover/assets/main.json";
     }
   ];
-  keyboard-keymap = [
-    ["#" ["1" "2" "3" "4" "5" "6" "7" "8" "9" "0" "-" "=" "b"]]
-    ["S-" ["q" "a"]]
-    ["T-" ["w"]]
-    ["K-" ["s"]]
-    ["P-" ["e"]]
-    ["W-" ["d"]]
-    ["H-" ["r"]]
-    ["R-" ["f"]]
-    ["A-" ["c"]]
-    ["O-" ["v"]]
-    ["*" ["t" "y" "g" "h"]]
-    ["-E" ["n"]]
-    ["-U" ["m"]]
-    ["-F" ["u"]]
-    ["-R" ["j"]]
-    ["-P" ["i"]]
-    ["-B" ["k"]]
-    ["-L" ["o"]]
-    ["-G" ["l"]]
-    ["-T" ["p"]]
-    ["-S" [";"]]
-    ["-D" ["["]]
-    ["-Z" ["'"]]
-    ["arpeggiate" ["space"]]
-    ["no-op" ["\\" "]" "z" "x" "" "." "/"]]
+  plover-dictionaries-german = [
+    {
+      enabled = true;
+      path = pkgs.writeText "user.json" (builtins.toJSON {});
+    }
+    {
+      enabled = true;
+      path = "${plover-src}/plover/assets/commands.json";
+    }
+    {
+      enabled = true;
+      path = regenpfeifer;
+    }
   ];
   plover-cfg = pkgs.writeText "plover.cfg" (lib.generators.toINI {} {
     "Machine Configuration".machine_type = "Keyboard";
     "System: English Stenotype" = {
-      dictionaries = builtins.toJSON plover-dictionaries;
-      "keymap[keyboard]" = builtins.toJSON keyboard-keymap;
+      dictionaries = builtins.toJSON plover-dictionaries-english;
+    };
+    "System: Regenpfeifer" = {
+      dictionaries = builtins.toJSON plover-dictionaries-german;
     };
   });
 in {
