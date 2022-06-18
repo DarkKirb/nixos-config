@@ -6,7 +6,7 @@ in {
     extraPackages = with pkgs; [
       universal-ctags
       rust-analyzer
-      nodejs_latest
+      nodejs-16_x
     ];
     extraConfig = ''
       lua require("base")
