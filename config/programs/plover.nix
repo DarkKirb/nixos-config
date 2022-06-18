@@ -4,7 +4,8 @@
   system,
   ...
 }: let
-  inherit (pkgs) plover plover-plugins-manager;
+  inherit (pkgs) plover plover-plugins-manager regenpfeifer plover-regenpfeifer;
+  plover-env = plover.pythonModule.withPackages (_: [plover plover-plugins-manager plover-regenpfeifer]);
   plover-src = plover.src;
   plover-dictionaries = [
     {
@@ -60,8 +61,7 @@
   });
 in {
   home.packages = [
-    plover
-    plover-plugins-manager
+    plover-env
   ];
   home.activation.ploverSettings = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD mkdir $VERBOSE_ARG -p $HOME/.config/plover
