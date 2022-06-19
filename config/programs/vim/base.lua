@@ -13,7 +13,6 @@ o.shortmess = o.shortmess .. "c"
 
 wo.number = true
 wo.relativenumber = true
-wo.signcolumn = "number"
 
 bo.tabstop = 2
 bo.shiftwidth = 2
