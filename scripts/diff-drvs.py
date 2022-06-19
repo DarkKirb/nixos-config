@@ -16,6 +16,8 @@ packages = {}
 
 for drv in old_derivation:
     drvData = old_derivation[drv]
+    if not "pname" in drvData["env"] and not "name" in drvData["env"]:
+        continue
     used_name = drvData["env"]["pname"] if "pname" in drvData["env"] else drvData["env"]["name"]
     version = drvData["env"]["version"] if "version" in drvData["env"] else drv
     if used_name in packages:
@@ -25,6 +27,8 @@ for drv in old_derivation:
 
 for drv in new_derivation:
     drvData = new_derivation[drv]
+    if not "pname" in drvData["env"] and not "name" in drvData["env"]:
+        continue
     used_name = drvData["env"]["pname"] if "pname" in drvData["env"] else drvData["env"]["name"]
     version = drvData["env"]["version"] if "version" in drvData["env"] else drv
     if used_name in packages:
