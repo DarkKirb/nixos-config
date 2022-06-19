@@ -14,6 +14,7 @@
         "SER/TKPWAL" = "Sergal";
         "SERLG" = "Sergal";
         "SER/SRAL" = "serval";
+        "SOL/DER" = "solder";
       });
     }
     {
