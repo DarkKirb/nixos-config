@@ -7,6 +7,7 @@ in {
       universal-ctags
       rust-analyzer
       nodejs-16_x
+      ripgrep
     ];
     extraConfig = ''
       lua require("base")
@@ -53,6 +54,17 @@ in {
         plugin = bufferline-nvim;
         config = "lua require(\"bufferline\").setup{}";
       }
+      plenary-nvim
+      telescope-ui-select-nvim
+      {
+        plugin = telescope-nvim;
+        config = "lua dofile(\"${./telescope.lua}\")";
+      }
+      {
+        plugin = rust-tools-nvim;
+        config = "lua dofile(\"${./rust-tools.lua}\")";
+      }
+      nvim-dap
     ];
   };
   xdg.configFile."nvim/lua/base.lua".source = ./base.lua;
