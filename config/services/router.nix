@@ -10,8 +10,22 @@ _: {
       subnet 192.168.2.0 netmask 255.255.255.0 {
         range 192.168.2.100 192.168.2.200;
       }
+      option client-arch code 93 = unsigned integer 16;
+      if exists user-class and option user-class = "iPXE" {
+        filename "";
+        option root-path "iscsi:192.168.2.1::::iqn.2022-06.rs.chir:rs.chir.int.nas.windows";
+      } elsif option client-arch != 00:00 {
+        filename "ipxe.efi";
+      } else {
+        filename "undionly.kpxe";
+      }
+      next-server 192.168.2.1;
     '';
     interfaces = ["br0"];
+  };
+  services.tftpd = {
+    enable = true;
+    path = ../../extra/tftp;
   };
   # No i don’t have ipv6 :(
   networking.firewall.extraCommands = ''
