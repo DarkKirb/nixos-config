@@ -15,6 +15,8 @@
         "SERLG" = "Sergal";
         "SER/SRAL" = "serval";
         "SOL/DER" = "solder";
+        "PWA/TPHA/TPHAS" = "bananas";
+        "PWA/TPHA/TPHAZ" = "bananas";
       });
     }
     {
