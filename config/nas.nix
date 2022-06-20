@@ -31,6 +31,7 @@
     ../modules/tc-cake.nix
     ./services/cups.nix
     ./services/github-runner.nix
+    ./services/iscsi.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
