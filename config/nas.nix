@@ -32,6 +32,7 @@
     ./services/cups.nix
     ./services/github-runner.nix
     ./services/iscsi.nix
+    ./services/samba.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
