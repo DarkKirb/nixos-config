@@ -12,9 +12,8 @@ _: {
       }
       option client-arch code 93 = unsigned integer 16;
       if exists user-class and option user-class = "iPXE" {
-        #filename "";
-        #option root-path "iscsi:192.168.2.1:::1:iqn.2022-06.rs.chir:rs.chir.int.nas.windows";
-        filename "http://nas.int.chir.rs/boot.ipxe";
+        option root-path "iscsi:192.168.2.1:::1:iqn.2022-06.rs.chir:rs.chir.int.nas.windows";
+        filename "http://192.168.2.1/boot.ipxe";
       } elsif option client-arch != 00:00 {
         filename "ipxe.efi";
       } else {
@@ -28,13 +27,11 @@ _: {
     enable = true;
     path = ../../extra/tftp;
   };
-  networking.firewall.interfaces."br0".allowedUDPPorts = [ 69 ];
-  services.nginx.virtualHosts."nas.int.chir.rs" = {
+  networking.firewall.interfaces."br0".allowedUDPPorts = [ 69 4011 ];
+  services.nginx.virtualHosts."192.168.2.1" = {
     root = "/var/lib/netboot";
-    sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
     forceSSL = false;
-    addSSL = true;
+    rejectSSL = true;
   };
   # No i don’t have ipv6 :(
   networking.firewall.extraCommands = ''
