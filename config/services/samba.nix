@@ -26,7 +26,7 @@ _: {
       winstall = {
         path = "/mnt/win";
         browseable = "yes";
-        "read only" = "yen";
+        "read only" = "yes";
         "guest ok" = "yes";
         "create mask" = "0644";
         "directory mask" = "0755";
