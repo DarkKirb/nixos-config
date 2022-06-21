@@ -27,7 +27,7 @@ _: {
     enable = true;
     path = ../../extra/tftp;
   };
-  networking.firewall.interfaces."br0".allowedUDPPorts = [ 69 4011 ];
+  networking.firewall.interfaces."br0".allowedUDPPorts = [69 4011];
   services.nginx.virtualHosts."192.168.2.1" = {
     root = "/var/lib/netboot";
     forceSSL = false;

@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
   networking.firewall.allowedTCPPorts = [
     5357 # wsdd
@@ -13,7 +13,7 @@
       workgroup = WORKGROUP
       server string = nas
       netbios name = nas
-      security = user 
+      security = user
       #use sendfile = yes
       #max protocol = smb2
       # note: localhost is the ipv6 localhost ::1
@@ -35,4 +35,5 @@
       };
     };
     openFirewall = true;
-  }
+  };
+}
