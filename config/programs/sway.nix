@@ -39,17 +39,19 @@
     ${pkgs.sway}/bin/swaymsg mode default
   '';
   bg-full-res = "${pkgs.lotte-art}/2022-06-21-sammythetanuki-lotteplushpride.jxl";
-  bg-1440p = pkgs.stdenvNoCC {
+  bg-1440p = pkgs.stdenvNoCC.mkDerivation {
     name = "wayland-background-1440p.png";
     nativeBuildInputs = [pkgs.imagemagick];
+    src = pkgs.emptyDirectory;
     buildPhase = ''
       convert ${bg-full-res} -resize 2560x1440 $out
     '';
     installPhase = "true";
   };
-  bg-1080p = pkgs.stdenvNoCC {
+  bg-1080p = pkgs.stdenvNoCC.mkDerivation {
     name = "wayland-background-1080p.png";
     nativeBuildInputs = [pkgs.imagemagick];
+    src = pkgs.emptyDirectory;
     buildPhase = ''
       convert ${bg-full-res} -resize 1920x1080 $out
     '';
