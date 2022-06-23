@@ -50,7 +50,8 @@ steps:
     image: alpine:latest
     commands:
       - apk add jq curl
-      - echo '{ "assignee": "DarkKirb", "base": "main", "head": "update-flake", "title": "Update flake" }' | jq '.body = $body' --arg body "$(cat ../pr-message.txt)" | curl -XPOST  'https://git.chir.rs/api/v1/repos/DarkKirb/nixos-config/pulls' -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer $AUTHORISATION" -d-
+      - |
+        echo '{ "assignee": "DarkKirb", "base": "main", "head": "update-flake", "title": "Update flake" }' | jq '.body = $body' --arg body "$(cat ../pr-message.txt)" | curl -XPOST  'https://git.chir.rs/api/v1/repos/DarkKirb/nixos-config/pulls' -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer $AUTHORISATION" -d-
     environment:
       AUTHORISATION:
         from_secret: GITEA_KEY
