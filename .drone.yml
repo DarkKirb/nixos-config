@@ -76,7 +76,7 @@ steps:
       - apk add jq curl
       - |
           while true; do
-            if [[ $(curl https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/commits/$DRONE_COMMIT | jq '[.statuses[] | select(.target_url | contains("https://hydra.chir.rs/"))] | length') != 0 ]]; then
+            if [[ $(curl https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/commits/$DRONE_COMMIT/statuses | jq '[.statuses[] | select(.target_url | contains("https://hydra.chir.rs/"))] | length') != 0 ]]; then
               exit 0
             fi
             sleep 5
@@ -87,7 +87,7 @@ steps:
       - apk add jq curl
       - |
           while true; do
-            if [[ $(curl https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/commits/$DRONE_COMMIT | jq '[.statuses[] | select(.target_url | contains("https://hydra.chir.rs/")) | select(.status == "pending") ] | length') == 0 ]]; then
+            if [[ $(curl https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/commits/$DRONE_COMMIT/statuses | jq '[.statuses[] | select(.target_url | contains("https://hydra.chir.rs/")) | select(.status == "pending") ] | length') == 0 ]]; then
               exit 0
             fi
             sleep 5
@@ -99,7 +99,7 @@ steps:
       - mkdir ~/.ssh
       - echo $SSH_KEY > ~/.ssh/id_ed25519
       - |
-        for build in $(curl https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/commits/$DRONE_COMMIT | jq -r '.statuses[] | select(.target_url | contains("https://hydra.chir.rs/")) | select(.status == "success ") | .target_url'); do
+        for build in $(curl https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/commits/$DRONE_COMMIT/statuses | jq -r '.statuses[] | select(.target_url | contains("https://hydra.chir.rs/")) | select(.status == "success ") | .target_url'); do
           JOB_JSON=$(curl -H "Accept: application/json" $build)
           PROJECT=$(echo "$JOB_JSON" | jq '.project')
           JOBSET=$(echo "$JOB_JSON" | jq '.jobset')
