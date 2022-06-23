@@ -11,9 +11,6 @@
       add_header Alt-Svc 'h3=":443"';
     '';
   split-system = pkgs.lib.strings.splitString "-" pkgs.system;
-  envFile =
-    pkgs.writeText "drone-server.env" ''
-    '';
 in {
   systemd.services.drone-server = {
     wantedBy = ["multi-user.target"];

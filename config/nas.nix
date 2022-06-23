@@ -34,6 +34,7 @@
     ./services/iscsi.nix
     ./services/samba.nix
     ./services/drone.nix
+    ./services/drone-runner-docker.nix
     ./services/docker.nix
   ];
 
