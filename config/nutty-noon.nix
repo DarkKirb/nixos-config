@@ -19,6 +19,7 @@
     nixos-hardware.nixosModules.common-gpu-amd
     nixos-hardware.nixosModules.common-pc-ssd
     ./services/postgres.nix
+    ./services/docker.nix
   ];
   hardware.cpu.amd.updateMicrocode = true;
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "k10temp"];
@@ -226,4 +227,9 @@
     384000
   ];
   services.pipewire.config.pipewire."context.properties"."default.clock.quantum" = 8192;
+  virtualisation.docker.daemon.settings = {
+    storage-opts = [
+      "zfs.fsname=hdd/docker"
+    ];
+  };
 }

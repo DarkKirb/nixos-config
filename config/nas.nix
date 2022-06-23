@@ -34,6 +34,7 @@
     ./services/iscsi.nix
     ./services/samba.nix
     ./services/drone.nix
+    ./services/docker.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
@@ -278,5 +279,10 @@
         ifb = "ifb4enp1s0f0u4";
       };
     };
+  };
+  virtualisation.docker.daemon.settings = {
+    storage-opts = [
+      "zfs.fsname=tank/docker"
+    ];
   };
 }
