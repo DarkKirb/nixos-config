@@ -23,7 +23,6 @@ in {
       DRONE_DATABASE_DRIVER = "postgres";
       DRONE_SERVER_HOST = "drone.chir.rs";
       DRONE_SERVER_PROTO = "https";
-      DRONE_REGISTRATION_CLOSED = "true";
       DRONE_RUNNER_OS = builtins.elemAt split-system 1;
       DRONE_RUNNER_ARCH = builtins.replaceStrings ["x86_64"] ["amd64"] (builtins.elemAt split-system 0);
       DRONE_SERVER_PORT = ":47927";
