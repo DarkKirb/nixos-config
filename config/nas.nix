@@ -33,6 +33,7 @@
     ./services/github-runner.nix
     ./services/iscsi.nix
     ./services/samba.nix
+    ./services/drone.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;

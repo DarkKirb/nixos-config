@@ -261,6 +261,7 @@ in {
     mastodon.CNAME = [(ttl zoneTTL (cname "nas"))];
     matrix.CNAME = [(ttl zoneTTL (cname "nas"))];
     rspamd.CNAME = [(ttl zoneTTL (cname "nas"))];
+    drone.CNAME = [(ttl zoneTTL (cname "nas"))];
     _acme-challenge = delegateTo [
       "ns1.chir.rs."
       "ns2.chir.rs."

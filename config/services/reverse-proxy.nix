@@ -73,4 +73,15 @@
       '';
     };
   };
+  services.nginx.virtualHosts."drone.chir.rs" = {
+    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
+    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
+    locations."/" = {
+      proxyPass = "https://drone.int.chir.rs";
+      proxyWebsockets = true;
+      extraConfig = ''
+        proxy_ssl_server_name on;
+      '';
+    };
+  };
 }
