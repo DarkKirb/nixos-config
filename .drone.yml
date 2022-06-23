@@ -99,7 +99,7 @@ steps:
       - mkdir ~/.ssh
       - echo $SSH_KEY > ~/.ssh/id_ed25519
       - |
-        for build in $(curl https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/commits/$DRONE_COMMIT/status | jq -r '.statuses[] | select(.target_url | contains("https://hydra.chir.rs/")) | select(.status == "success ") | .target_url'); do
+        for build in $(curl https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/commits/$DRONE_COMMIT/status | jq -r '.statuses[] | select(.target_url | contains("https://hydra.chir.rs/")) | select(.status == "success" ) | .target_url'); do
           JOB_JSON=$(curl -H "Accept: application/json" $build)
           PROJECT=$(echo "$JOB_JSON" | jq '.project')
           JOBSET=$(echo "$JOB_JSON" | jq '.jobset')
