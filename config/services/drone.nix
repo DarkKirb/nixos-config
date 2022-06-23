@@ -43,7 +43,7 @@ in {
   services.postgresql.ensureUsers = [
     {
       name = "drone-server";
-      ensurePermissions = {"DATABASE drone-server" = "ALL PRIVILEGES";};
+      ensurePermissions = {"DATABASE \"drone-server\"" = "ALL PRIVILEGES";};
     }
   ];
   services.nginx.virtualHosts."drone.chir.rs" = {
