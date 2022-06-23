@@ -70,7 +70,49 @@ steps:
     image: curlimages/curl:latest
     commands:
       - curl --get --data-urlencode "jobsets=nixos-config:nixos-config" https://hydra.chir.rs/api/push
-
+  - name: Wait for hydra job
+    image: alpine:latest
+    commands:
+      - apk add jq curl
+      - |
+          while true; do
+            if [[ $(curl https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/commits/$DRONE_COMMIT | jq '[.statuses[] | select(.target_url | contains("https://hydra.chir.rs/"))] | length') != 0 ]]; then
+              exit 0
+            fi
+            sleep 5
+          done
+  - name: Wait for hydra jobs to finish
+    image: alpine:latest
+    commands:
+      - apk add jq curl
+      - |
+          while true; do
+            if [[ $(curl https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/commits/$DRONE_COMMIT | jq '[.statuses[] | select(.target_url | contains("https://hydra.chir.rs/")) | select(.status == "pending") ] | length') == 0 ]]; then
+              exit 0
+            fi
+            sleep 5
+          done
+  - name: Deploy successful hydra jobs
+    image: alpine:latest
+    commands:
+      - apk add jq curl git
+      - mkdir ~/.ssh
+      - echo $SSH_KEY > ~/.ssh/id_ed25519
+      - |
+        for build in $(curl https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/commits/$DRONE_COMMIT | jq -r '.statuses[] | select(.target_url | contains("https://hydra.chir.rs/")) | select(.status == "success ") | .target_url'); do
+          JOB_JSON=$(curl -H "Accept: application/json" $build)
+          PROJECT=$(echo "$JOB_JSON" | jq '.project')
+          JOBSET=$(echo "$JOB_JSON" | jq '.jobset')
+          JOB=$(echo "$JOB_JSON" | jq '.job')
+          JOB_NAME="$PROJECT/$JOBSET/JOB"
+          git branch $JOB_NAME || true
+          git checkout $JOB_NAME
+          git reset --hard $DRONE_COMMIT
+          git push --force
+        done
+    environment:
+      SSH_KEY:
+        from_secret: SSH_KEY
 trigger:
   event:
     - push
