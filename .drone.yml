@@ -95,7 +95,7 @@ steps:
   - name: Deploy successful hydra jobs
     image: alpine:latest
     commands:
-      - apk add jq curl git
+      - apk add jq curl git openssh
       - mkdir ~/.ssh
       - echo $SSH_KEY > ~/.ssh/id_ed25519
       - |
