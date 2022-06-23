@@ -60,3 +60,18 @@ trigger:
     - cron
   cron:
     - updater
+---
+kind: pipeline
+type: docker
+name: hydra-deploy
+
+steps:
+  - name: Notify hydra
+    image: alpine:latest
+    commands:
+      - apk add curl
+      - curl --get --data-urlencode "repos=git+$DRONE_GIT_HTTP_URL?ref=$DRONE_COMMIT_BRANCH" https://hydra.chir.rs/api/push
+
+trigger:
+  event:
+    - push
