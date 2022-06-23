@@ -1,8 +1,15 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
+  inherit ((import ../../utils/getInternalIP.nix config)) listenIPs;
+  listenStatements =
+    lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs)
+    + ''
+      add_header Alt-Svc 'h3=":443"';
+    '';
   split-system = pkgs.lib.strings.splitString "-" pkgs.system;
   envFile =
     pkgs.writeText "drone-server.env" ''
@@ -47,19 +54,23 @@ in {
     }
   ];
   services.nginx.virtualHosts."drone.chir.rs" = {
+    listenAddresses = listenIPs;
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
     locations."/" = {
       proxyPass = "http://127.0.0.1:47927";
       proxyWebsockets = true;
     };
+    extraConfig = listenStatements;
   };
   services.nginx.virtualHosts."drone.int.chir.rs" = {
+    listenAddresses = listenIPs;
     sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
     locations."/" = {
       proxyPass = "http://127.0.0.1:47927";
       proxyWebsockets = true;
     };
+    extraConfig = listenStatements;
   };
 }
