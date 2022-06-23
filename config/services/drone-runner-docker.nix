@@ -12,7 +12,7 @@
     environment = {
       DRONE_RPC_HOST = "drone.int.chir.rs";
       DRONE_RPC_PROTO = "https";
-      DRONE_RUNNER_MAX_PROCS = config.nix.settings.cores;
+      DRONE_RUNNER_MAX_PROCS = toString config.nix.settings.cores;
       DRONE_RUNNER_NAME = "${config.networking.hostName}.int.chir.rs";
     };
     serviceConfig = {
