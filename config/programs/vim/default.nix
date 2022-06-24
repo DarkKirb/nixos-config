@@ -8,6 +8,7 @@ in {
       rust-analyzer
       nodejs-16_x
       ripgrep
+      gopls
     ];
     extraConfig = ''
       lua require("base")
