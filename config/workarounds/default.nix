@@ -65,7 +65,7 @@ in {
        */
       inherit (noto-variable) noto-fonts-cjk;
       inherit (go116) buildGo116Module;
-      inherit (nix-packages.packages.${system}) plover plover-plugins-manager regenpfeifer plover-regenpfeifer lotte-art;
+      inherit (nix-packages.packages.${system}) plover plover-plugins-manager regenpfeifer plover-regenpfeifer lotte-art copilot-lua copilot-cmp;
       kitty = prev.kitty.overrideAttrs (old: {
         patches =
           old.patches
