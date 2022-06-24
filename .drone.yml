@@ -20,7 +20,7 @@ steps:
         for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
           nix show-derivation -r ".#hydraJobs.$job.x86_64-linux" > ../new-$job.json
 
-          python scripts/diff-drvs.py ../old-$job.json ../new-$job.json > ../report-$job.txt
+          nix-shell -p python3 --run "python scripts/diff-drvs.py ../old-$job.json ../new-$job.json" > ../report-$job.txt
           cat report-$job.txt >> ../full-report.txt
         done
         if [ -s ../full-report.txt ]; then
