@@ -29,7 +29,7 @@ steps:
           for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
             echo "## Changes for $job:" >> ../pr-message.txt
             echo '```' >> ../pr-message.txt
-            cat report-$job.txt >> ../pr-message.txt
+            cat ../report-$job.txt >> ../pr-message.txt
             echo '```' >> ../pr-message.txt
           done
         else
