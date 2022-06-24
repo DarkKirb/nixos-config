@@ -21,7 +21,7 @@ steps:
           nix show-derivation -r ".#hydraJobs.$job.x86_64-linux" > ../new-$job.json
 
           nix-shell -p python3 --run "python scripts/diff-drvs.py ../old-$job.json ../new-$job.json" > ../report-$job.txt
-          cat report-$job.txt >> ../full-report.txt
+          cat ../report-$job.txt >> ../full-report.txt
         done
         if [ -s ../full-report.txt ]; then
           echo "Automatic flake.lock update" > ../pr-message.txt
