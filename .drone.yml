@@ -50,6 +50,9 @@ steps:
       - git add .
       - git commit -am "Update flake"
       - git push --force origin main:update-flake
+    environment:
+      SSH_KEY:
+        from_secret: SSH_KEY
   - name: Create pull request
     image: alpine:latest
     commands:
