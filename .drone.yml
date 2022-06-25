@@ -35,9 +35,11 @@ steps:
         else
           touch ../pr-message.txt
         fi
+        mv ../pr-message.txt .
   - name: Push git
     image: alpine:latest
     commands:
+      - mv pr-message.txt ..
       - apk add git openssh git-lfs
       - mkdir ~/.ssh
       - echo "$SSH_KEY" > ~/.ssh/id_ed25519
@@ -47,8 +49,8 @@ steps:
       - git remote set-url origin gitea@git.chir.rs:darkkirb/nixos-config.git
       - git config --global 'user.email' 'gitea-bot@chir.rs'
       - git config --global 'user.name' 'Gitea Bot'
-      - git add .
-      - git commit -am "Update flake"
+      - git add flake.lock
+      - git commit -m "Update flake"
       - git push --force origin main:update-flake
     environment:
       SSH_KEY:
