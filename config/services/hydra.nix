@@ -32,6 +32,7 @@ in {
     hydraURL = "https://hydra.chir.rs/";
     notificationSender = "hydra@chir.rs";
     useSubstitutes = true;
+    port = 3001;
     extraConfig = ''
       <gitea_authorization>
         darkkirb = #gitea_token#
@@ -73,7 +74,7 @@ in {
     sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
     locations."/" = {
-      proxyPass = "http://127.0.0.1:3000";
+      proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
       proxyWebsockets = true;
     };
     extraConfig = listenStatements;
@@ -83,7 +84,7 @@ in {
     sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
     sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
     locations."/" = {
-      proxyPass = "http://127.0.0.1:3000";
+      proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
       proxyWebsockets = true;
     };
     extraConfig = listenStatements;
