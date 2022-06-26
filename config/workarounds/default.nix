@@ -87,6 +87,9 @@ in {
           url = "https://github.com/go-gitea/gitea/releases/download/v1.17.0-rc1/gitea-src-1.17.0-rc1.tar.gz";
           sha256 = "sha256-9pu+fsU1rrfa9yOAxnh8tXDmxv4UYo5DP5azhJC0BpQ=";
         };
+        patches = [
+          ../../extra/gitea.patch
+        ];
       });
     })
   ];
