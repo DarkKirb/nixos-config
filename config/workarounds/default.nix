@@ -85,7 +85,7 @@ in {
         version = "1.17.0-rc1";
         src = prev.fetchurl {
           url = "https://github.com/go-gitea/gitea/releases/download/v1.17.0-rc1/gitea-src-1.17.0-rc1.tar.gz";
-          sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+          sha256 = "sha256-9pu+fsU1rrfa9yOAxnh8tXDmxv4UYo5DP5azhJC0BpQ=";
         };
       });
     })
