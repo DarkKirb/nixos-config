@@ -1,4 +1,4 @@
-{...}: {
+_: {
   virtualisation.docker = {
     autoPrune = {
       dates = "weekly";

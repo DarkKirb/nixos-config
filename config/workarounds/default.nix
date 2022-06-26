@@ -81,9 +81,9 @@ in {
           sha256 = "sha256-iYFBlrHTFyesHNEOeI98DbmXSbRHVd+avmtN7Un0eok=";
         };
       });
-      gitea = super.gitea.overrideAttrs (old: {
+      gitea = prev.gitea.overrideAttrs (old: {
         version = "1.17.0-rc1";
-        src = super.fetchurl {
+        src = prev.fetchurl {
           url = "https://github.com/go-gitea/gitea/releases/download/v1.17.0-rc1/gitea-src-1.17.0-rc1.tar.gz";
           sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
         };
