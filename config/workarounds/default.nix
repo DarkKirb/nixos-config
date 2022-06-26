@@ -81,15 +81,13 @@ in {
           sha256 = "sha256-iYFBlrHTFyesHNEOeI98DbmXSbRHVd+avmtN7Un0eok=";
         };
       });
-      gitea = prev.gitea.overrideAttrs (old: {
+      gitea = prev.gitea.overrideAttrs (old: rec {
         version = "1.17.0-rc1";
         src = prev.fetchurl {
-          url = "https://github.com/go-gitea/gitea/releases/download/v1.17.0-rc1/gitea-src-1.17.0-rc1.tar.gz";
+          url = "https://github.com/go-gitea/gitea/releases/download/${version}/gitea-src-${version}.tar.gz";
           sha256 = "sha256-9pu+fsU1rrfa9yOAxnh8tXDmxv4UYo5DP5azhJC0BpQ=";
         };
-        patches = [
-          ../../extra/gitea.patch
-        ];
+        sourceRoot = "source/gitea-src-${version}";
       });
     })
   ];
