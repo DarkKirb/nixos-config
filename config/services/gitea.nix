@@ -49,6 +49,7 @@
         TYPE = "redis";
         CONN_STRING = "redis://${config.services.redis.servers.gitea.bind}:${toString config.services.redis.servers.gitea.port}/2";
       };
+      packages.ENABLED = true;
     };
   };
 
