@@ -36,15 +36,11 @@ in {
         plugin = vim-airline;
         config = "lua dofile(\"${./airline.lua}\")";
       }
+      copilot-vim
       rust-vim # for proper syntax highlighting
       luasnip
       cmp-nvim-lsp
       cmp_luasnip
-      {
-        plugin = pkgs.copilot-lua;
-        config = "lua dofile(\"${./copilot-lua.lua}\")";
-      }
-      pkgs.copilot-cmp
       {
         plugin = nvim-cmp;
         config = "lua dofile(\"${./cmp.lua}\")";
