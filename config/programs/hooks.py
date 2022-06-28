@@ -6,8 +6,8 @@ from email.utils import parseaddr
 
 from alot.db.attachment import Attachment
 from alot.settings.const import settings
-import alot.crypto as crypto
-from alot import errors
+from alot import crypto, errors
+import alot
 
 import re
 import gpg
