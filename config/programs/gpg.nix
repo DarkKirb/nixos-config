@@ -1,8 +1,6 @@
 {pkgs, ...}: {
   programs.gpg = {
     enable = true;
-    mutableKeys = false;
-    mutableTrust = false;
     publicKeys = [
       {
         source = ../../keys/lotte_chir.rs.pgp;
