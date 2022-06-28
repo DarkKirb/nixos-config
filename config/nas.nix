@@ -30,7 +30,6 @@
     ./services/syncthing.nix
     ../modules/tc-cake.nix
     ./services/cups.nix
-    ./services/github-runner.nix
     ./services/iscsi.nix
     ./services/samba.nix
     ./services/drone.nix

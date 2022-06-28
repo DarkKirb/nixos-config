@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    ghidra
     anki-bin
   ];
   xdg.configFile."gdb/gdbinit".text = "set auto-load safe-path /nix/store";

@@ -21,7 +21,6 @@
         ../programs/mpd.nix
         ../programs/zoom.nix
         ../programs/plover.nix
-        ../programs/texlive.nix
         (import ../games/default.nix args)
         ../programs/yubikey.nix
         ../programs/keybase.nix
