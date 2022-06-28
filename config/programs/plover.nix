@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (pkgs) plover plover-plugins-manager regenpfeifer plover-regenpfeifer;
-  plover-env = plover.pythonModule.withPackages (_: [plover plover-plugins-manager plover-regenpfeifer]);
+  plover-env = plover.pythonModule.withPackages (_: [plover plover-plugins-manager]);
   plover-src = plover.src;
   plover-dictionaries-english = [
     {
@@ -30,27 +30,10 @@
       path = "${plover-src}/plover/assets/main.json";
     }
   ];
-  plover-dictionaries-german = [
-    {
-      enabled = true;
-      path = pkgs.writeText "user.json" (builtins.toJSON {});
-    }
-    {
-      enabled = true;
-      path = "${plover-src}/plover/assets/commands.json";
-    }
-    {
-      enabled = true;
-      path = regenpfeifer;
-    }
-  ];
   plover-cfg = pkgs.writeText "plover.cfg" (lib.generators.toINI {} {
     "Machine Configuration".machine_type = "Keyboard";
     "System: English Stenotype" = {
       dictionaries = builtins.toJSON plover-dictionaries-english;
-    };
-    "System: Regenpfeifer" = {
-      dictionaries = builtins.toJSON plover-dictionaries-german;
     };
   });
 in {
