@@ -22,4 +22,8 @@ in {
     };
   };
   programs.msmtp.enable = true;
+  home.file.".mailcap".text = ''
+    image/*; ${pkgs.kitty}/bin/kitty +kitten icat '%s'; copiousoutput
+    text/html;  ${pkgs.w3m}/bin/w3m -dump -o document_charset=%{charset} '%s'; nametemplate=%s.html; copiousoutput
+  '';
 }
