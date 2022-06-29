@@ -46,8 +46,8 @@ desktop: {pkgs, ...}: {
         onNotify = "${pkgs.isync}/bin/mbsync -a || true";
         onNotifyPost =
           if desktop
-          then "${pkgs.notmuch}/bin/notmuch new && ${pkgs.libnotify}/bin/notify-send 'New mail arrived'"
-          else "${pkgs.notmuch}/bin/notmuch new";
+          then "${pkgs.notmuch}/bin/notmuch new && ${pkgs.afew}/bin/afew --tag --new && ${pkgs.libnotify}/bin/notify-send 'New mail arrived'"
+          else "${pkgs.notmuch}/bin/notmuch new && ${pkgs.afew}/bin/afew --tag --new";
       };
       smtp.host = "mail.chir.rs";
       address = "lotte@chir.rs";
