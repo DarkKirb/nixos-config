@@ -137,7 +137,7 @@ def temp_gpg_context():
 async def import_keys(ui):
     ui.notify('Looking for keys in message...')
     m = ui.current_buffer.get_selected_message()
-    content = m.get_text_content()
+    content = m.get_body_text()
     attachments = m.get_attachments()
     inline = _get_inline_keys(content)
     attached = _get_attached_keys(attachments)

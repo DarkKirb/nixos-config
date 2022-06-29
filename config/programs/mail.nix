@@ -16,17 +16,17 @@ in {
         "control k" = "call hooks.attach_recipient_keys(ui)";
       };
       search = {
-        "t t" = "tag todo; untag inbox";
-        "t g" = "tag doing; untag todo,blocked,inbox";
-        "t b" = "tag blocked; untag todo,doing,inbox";
-        "t d" = "tag done; untag todo,doing,blocked,inbox";
+        "'T t'" = "tag todo; untag inbox";
+        "'T g'" = "tag doing; untag todo,blocked,inbox";
+        "'T b'" = "tag blocked; untag todo,doing,inbox";
+        "'T d'" = "tag done; untag todo,doing,blocked,inbox";
       };
       thread = {
         k = "call hooks.import_keys(ui)";
-        "T t" = "tag todo; untag inbox";
-        "T g" = "tag doing; untag todo,blocked,inbox";
-        "T b" = "tag blocked; untag todo,doing,inbox";
-        "T d" = "tag done; untag todo,doing,blocked,inbox";
+        "'T t'" = "tag todo; untag inbox";
+        "'T g'" = "tag doing; untag todo,blocked,inbox";
+        "'T b'" = "tag blocked; untag todo,doing,inbox";
+        "'T d'" = "tag done; untag todo,doing,blocked,inbox";
       };
     };
     settings = {
