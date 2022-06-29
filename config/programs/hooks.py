@@ -87,6 +87,9 @@ def text_quote(message):
 
 
 
+BEGIN_KEY = "-----BEGIN PGP PUBLIC KEY BLOCK-----"
+END_KEY = "-----END PGP PUBLIC KEY BLOCK-----"
+
 def _get_inline_keys(content):
     if BEGIN_KEY not in content:
         return []
