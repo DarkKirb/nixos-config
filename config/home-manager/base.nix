@@ -27,7 +27,10 @@ desktop: {pkgs, ...}: {
   };
   home.file.".p10k.zsh".source = ./.p10k.zsh;
 
-  accounts.email.maildirBasePath = "Maildir";
+  accounts.email.maildirBasePath = "Data/Maildir";
+  programs.mbsync.extraConfig = ''
+    FieldDelimiter -
+  '';
   accounts.email.accounts = rec {
     lotte = {
       aliases = ["darkkirb@darkkirb.de" "postmaster@darkkirb.de" "postmaster@chir.rs" "postmaster@miifox.net"];
