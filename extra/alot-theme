@@ -54,7 +54,7 @@
     [[threadline]]
         normal = '','','white','black','white','g0'
         focus = 'standout','','black','dark cyan','black','dark cyan'
-        parts = date,authors,mailcount,subject,tags,content
+        parts = date,authors,mailcount,subject,tags
         [[[date]]]
             normal = '','','white','black','white','g0'
             focus = 'standout','','black,bold','dark cyan','black,bold','dark cyan'
