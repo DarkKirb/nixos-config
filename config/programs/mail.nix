@@ -15,8 +15,18 @@ in {
         K = "call hooks.attach_keys(ui)";
         "control k" = "call hooks.attach_recipient_keys(ui)";
       };
+      search = {
+        "t t" = "tag todo; untag inbox";
+        "t g" = "tag doing; untag todo,blocked,inbox";
+        "t b" = "tag blocked; untag todo,doing,inbox";
+        "t d" = "tag done; untag todo,doing,blocked,inbox";
+      };
       thread = {
         k = "call hooks.import_keys(ui)";
+        "T t" = "tag todo; untag inbox";
+        "T g" = "tag doing; untag todo,blocked,inbox";
+        "T b" = "tag blocked; untag todo,doing,inbox";
+        "T d" = "tag done; untag todo,doing,blocked,inbox";
       };
     };
     settings = {
@@ -41,6 +51,9 @@ in {
       [KillThreadsFilter]
       [ListMailsFilter]
       [Filter.0]
+      query = from:*@hs-mittweida.de
+      tags = +university
+      [Filter.1]
       query = tag:new
       tags = +inbox;+unread;-new
     '';
