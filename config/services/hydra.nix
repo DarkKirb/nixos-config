@@ -43,7 +43,6 @@ in {
       <githubstatus>
         jobs = .*
       </githubstatus>
-      #store_uri = s3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15
       <hydra_notify>
         <prometheus>
           listen_address = 127.0.0.1
@@ -109,8 +108,8 @@ in {
     };
   };
   sops.secrets."services/hydra/aws_credentials" = {
-    owner = "hydra";
-    path = "/var/lib/hydra/.aws/credentials";
+    owner = "hydra-queue-runner";
+    path = "/var/lib/hydra/queue-runner/.aws/credentials";
     restartUnits = ["hydra-notify.service"];
   };
   systemd.services.update-hydra-hosts = {
