@@ -12,10 +12,64 @@ index 918bd451..cc1ee7d4 100644
          /* When building a flake, use pure evaluation (no access to
             'getEnv', 'currentSystem' etc. */
 diff --git a/src/lib/Hydra/Plugin/GiteaStatus.pm b/src/lib/Hydra/Plugin/GiteaStatus.pm
-index 426c93f5..c246fa2a 100644
+index 426c93f5..26df2345 100644
 --- a/src/lib/Hydra/Plugin/GiteaStatus.pm
 +++ b/src/lib/Hydra/Plugin/GiteaStatus.pm
-@@ -52,34 +52,51 @@ sub common {
+@@ -29,6 +29,53 @@ sub toGiteaState {
+     }
+ }
+ 
++sub url_from_jobsetevalinputs {
++    my ($eval) = @_;
++    my $giteastatusInput = $eval->jobsetevalinputs->find({ name => "gitea_status_repo" });
++    return undef unless defined $giteastatusInput && defined $giteastatusInput->value;
++    my $i = $eval->jobsetevalinputs->find({ name => $giteastatusInput->value, altnr => 0 });
++    return undef unless defined $i;
++    my $gitea_url = $eval->jobsetevalinputs->find({ name => "gitea_http_url" });
++
++    my $repoOwner = $eval->jobsetevalinputs->find({ name => "gitea_repo_owner" })->value;
++    my $repoName = $eval->jobsetevalinputs->find({ name => "gitea_repo_name" })->value;
++
++    my $rev = $i->revision;
++    my $domain = URI->new($i->uri)->host;
++    my $host;
++    unless (defined $gitea_url) {
++	$host = "https://$domain";
++    } else {
++	$host = $gitea_url->value;
++    }
++
++    return "$host/api/v1/repos/$repoOwner/$repoName/statuses/$rev";
++}
++sub is_gitea {
++    my ($ua, $hostname) = @_;
++    my $req = HTTP::Request->new('GET', "https://$hostname/api/swagger");
++    my $res = $ua->request($req);
++    return 0 unless $res->is_success;
++    return index($res->body, "Gitea") != -1;
++}
++
++sub try_gitea_from_repo_url {
++    my ($ua, $url) = @_;
++    if ($url =~ m!git\+https://([^/]+)/([^/]+)/([^/]+)\?.*rev=([[:xdigit:]]{40})$!) {
++	return "https://$1/api/v1/repos/$2/$3/statuses/$4" if is_gitea($ua, $1);
++    }
++    return undef;
++}
++
++sub try_gitea {
++    my ($ua, $eval) = @_;
++    if (defined $eval->flake) {
++	return try_gitea_from_repo_url($eval->flake);
++    }
++    return undef;
++}
++
++
+ sub common {
+     my ($self, $topbuild, $dependents, $status) = @_;
+     my $baseurl = $self->{config}->{'base_uri'} || "http://localhost:3000";
+@@ -52,26 +99,12 @@ sub common {
              });
  
          while (my $eval = $evals->next) {
@@ -34,65 +88,20 @@ index 426c93f5..c246fa2a 100644
 -            my $host;
 -            unless (defined $gitea_url) {
 -                $host = "https://$domain";
-+            my $sendStatus = sub {
-+                my ($input, $host, $owner, $repo, $rev) = @_;
-+
-+                my $accessToken = $self->{config}->{gitea_authorization}->{$owner};
-+                my $url = "$host/api/v1/repos/$owner/$repo/statuses/$rev";
-+
-+                print STDERR "GiteaStatus POSTing $state to $url\n";
-+                my $req = HTTP::Request->new('POST', $url);
-+                $req->header('Content-Type' => 'application/json');
-+                $req->header('Authorization' => "token $accessToken");
-+                $req->content($body);
-+                my $res = $ua->request($req);
-+                print STDERR $res->status_line, ": ", $res->decoded_content, "\n" unless $res->is_success;
-+
-+            };
-+            if (defined $eval->flake) {
-+                my $fl = $eval->flake;
-+                print STDERR "Flake is $fl\n";
-+                if ($eval->flake =~ m!git\+https://git\.chir\.rs/([^/]+)/([^/]+)\?.*rev=([[:xdigit:]]{40})$!) {
-+                    $sendStatus->("src", "https://git.chir.rs", $1, $2, $3);
-+                } else {
-+                    print STDERR "Can't parse flake, skipping Gitea status update\n";
-+                }
-             } else {
+-            } else {
 -                $host = $gitea_url->value;
 -            }
 -
 -            my $url = "$host/api/v1/repos/$repoOwner/$repoName/statuses/$rev";
-+                my $giteastatusInput = $eval->jobsetevalinputs->find({ name => "gitea_status_repo" });
-+                next unless defined $giteastatusInput && defined $giteastatusInput->value;
-+                my $i = $eval->jobsetevalinputs->find({ name => $giteastatusInput->value, altnr => 0 });
-+                next unless defined $i;
-+                my $gitea_url = $eval->jobsetevalinputs->find({ name => "gitea_http_url" });
-+
-+                my $repoOwner = $eval->jobsetevalinputs->find({ name => "gitea_repo_owner" })->value;
-+                my $repoName = $eval->jobsetevalinputs->find({ name => "gitea_repo_name" })->value;
-+
-+                my $rev = $i->revision;
-+                my $domain = URI->new($i->uri)->host;
-+                my $host;
-+                unless (defined $gitea_url) {
-+                    $host = "https://$domain";
-+                } else {
-+                    $host = $gitea_url->value;
-+                }
-+
-+                $sendStatus->($giteastatusInput, $host, $repoOwner, $repoName, $rev);
++	    my $url = url_from_jobsetevalinputs($eval);
++	    if (! defined $url) {
++		$url = try_gitea($ua, $eval);
++	    }
++	    next unless defined $url;
++	    my $accessToken = $self->{config}->{gitea_authorization}->{$repoOwner};
  
--            print STDERR "GiteaStatus POSTing $state to $url\n";
--            my $req = HTTP::Request->new('POST', $url);
--            $req->header('Content-Type' => 'application/json');
--            $req->header('Authorization' => "token $accessToken");
--            $req->content($body);
--            my $res = $ua->request($req);
--            print STDERR $res->status_line, ": ", $res->decoded_content, "\n" unless $res->is_success;
-+            }
-         }
-     }
- }
+             print STDERR "GiteaStatus POSTing $state to $url\n";
+             my $req = HTTP::Request->new('POST', $url);
 diff --git a/src/script/hydra-eval-jobset b/src/script/hydra-eval-jobset
 index 8804b2bb..c93ce7de 100755
 --- a/src/script/hydra-eval-jobset
