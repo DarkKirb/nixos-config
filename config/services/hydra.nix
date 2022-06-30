@@ -52,7 +52,7 @@ in {
       </hydra_notify>
       <runcommand>
         job = *:*:*
-        command = nix copy --to s3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15 $(cat $HYDRA_JSON | ${pkgs.jq}/bin/jq -r '.products[].path')
+        command = nix copy --to 's3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15' $(cat $HYDRA_JSON | ${pkgs.jq}/bin/jq -r '.products[].path')
       </runcommand>
       binary_cache_secret_key_file = ${config.sops.secrets."services/hydra/cache-key".path}
     '';
