@@ -43,7 +43,7 @@ in {
       <githubstatus>
         jobs = .*
       </githubstatus>
-      store_uri = s3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15
+      #store_uri = s3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15
       <hydra_notify>
         <prometheus>
           listen_address = 127.0.0.1
@@ -51,9 +51,10 @@ in {
         </prometheus>
       </hydra_notify>
       <runcommand>
-        job = nixos-config:nixos-config:*
-        command = cat $HYDRA_JSON > /tmp/hydra-output
+        job = *:*:*
+        command = nix copy --to s3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15 $(cat $HYDRA_JSON | ${pkgs.jq}/bin/jq -r '.products[].path')
       </runcommand>
+      binary_cache_secret_key_file = ${config.sops.secrets."services/hydra/cache-key".path}
     '';
     giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
     githubTokenFile = "/run/secrets/services/hydra/github_token";
@@ -67,7 +68,8 @@ in {
   sops.secrets."services/hydra/gitea_token" = {};
   sops.secrets."services/hydra/github_token" = {};
   sops.secrets."services/hydra/cache-key" = {
-    owner = "hydra-queue-runner";
+    owner = "hydra-www";
+    mode = "0440";
   };
   services.nginx.virtualHosts."hydra.chir.rs" = {
     listenAddresses = listenIPs;
@@ -107,9 +109,9 @@ in {
     };
   };
   sops.secrets."services/hydra/aws_credentials" = {
-    owner = "hydra-queue-runner";
-    path = "/var/lib/hydra/queue-runner/.aws/credentials";
-    restartUnits = ["hydra-queue-runner.service"];
+    owner = "hydra";
+    path = "/var/lib/hydra/.aws/credentials";
+    restartUnits = ["hydra-notify.service"];
   };
   systemd.services.update-hydra-hosts = {
     description = "Update hydra hosts";
