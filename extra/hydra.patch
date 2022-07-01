@@ -12,7 +12,7 @@ index 918bd451..cc1ee7d4 100644
          /* When building a flake, use pure evaluation (no access to
             'getEnv', 'currentSystem' etc. */
 diff --git a/src/lib/Hydra/Plugin/GiteaStatus.pm b/src/lib/Hydra/Plugin/GiteaStatus.pm
-index 426c93f5..dfacf0a8 100644
+index 426c93f5..c1e44226 100644
 --- a/src/lib/Hydra/Plugin/GiteaStatus.pm
 +++ b/src/lib/Hydra/Plugin/GiteaStatus.pm
 @@ -29,6 +29,53 @@ sub toGiteaState {
@@ -60,7 +60,7 @@ index 426c93f5..dfacf0a8 100644
 +sub try_gitea {
 +    my ($ua, $eval) = @_;
 +    if (defined $eval->flake) {
-+	return try_gitea_from_repo_url($eval->flake);
++	return try_gitea_from_repo_url($ua, $eval->flake);
 +    }
 +    return undef;
 +}
