@@ -16,7 +16,6 @@
       require-sigs = true;
       builders-use-substitutes = true;
       substituters = [
-        "https://hydra.int.chir.rs/"
         "https://f000.backblazeb2.com/file/cache-chir-rs/"
       ];
       trusted-public-keys = [
