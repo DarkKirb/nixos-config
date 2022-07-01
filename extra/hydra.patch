@@ -1,18 +1,104 @@
-diff --git a/src/hydra-eval-jobs/hydra-eval-jobs.cc b/src/hydra-eval-jobs/hydra-eval-jobs.cc
-index 918bd451..cc1ee7d4 100644
---- a/src/hydra-eval-jobs/hydra-eval-jobs.cc
-+++ b/src/hydra-eval-jobs/hydra-eval-jobs.cc
-@@ -306,7 +306,7 @@ int main(int argc, char * * argv)
+diff --git a/doc/manual/src/webhooks.md b/doc/manual/src/webhooks.md
+index 2b26cd61..674e1064 100644
+--- a/doc/manual/src/webhooks.md
++++ b/doc/manual/src/webhooks.md
+@@ -1,9 +1,12 @@
+ # Webhooks
  
-         /* Prevent access to paths outside of the Nix search path and
-            to the environment. */
--        evalSettings.restrictEval = true;
-+        evalSettings.restrictEval = false;
+-Hydra can be notified by github's webhook to trigger a new evaluation when a
++Hydra can be notified by github or gitea with webhooks to trigger a new evaluation when a
+ jobset has a github repo in its input.
+-To set up a github webhook go to `https://github.com/<yourhandle>/<yourrepo>/settings` and in the `Webhooks` tab
+-click on `Add webhook`.
++
++## GitHub
++
++To set up a webhook for a GitHub repository go to `https://github.com/<yourhandle>/<yourrepo>/settings`
++and in the `Webhooks` tab click on `Add webhook`.
  
-         /* When building a flake, use pure evaluation (no access to
-            'getEnv', 'currentSystem' etc. */
+ - In `Payload URL` fill in `https://<your-hydra-domain>/api/push-github`.
+ - In `Content type` switch to `application/json`.
+@@ -11,3 +14,14 @@ click on `Add webhook`.
+ - For `Which events would you like to trigger this webhook?` keep the default option for events on `Just the push event.`.
+ 
+ Then add the hook with `Add webhook`.
++
++## Gitea
++
++To set up a webhook for a Gitea repository go to the settings of the repository in your Gitea instance
++and in the `Webhooks` tab click on `Add Webhook` and choose `Gitea` in the drop down.
++
++- In `Target URL` fill in `https://<your-hydra-domain>/api/push-gitea`.
++- Keep HTTP method `POST`, POST Content Type `application/json` and Trigger On `Push Events`.
++- Change the branch filter to match the git branch hydra builds.
++
++Then add the hook with `Add webhook`.
+diff --git a/src/hydra-queue-runner/build-remote.cc b/src/hydra-queue-runner/build-remote.cc
+index 57a5f0df..57be4070 100644
+--- a/src/hydra-queue-runner/build-remote.cc
++++ b/src/hydra-queue-runner/build-remote.cc
+@@ -468,11 +468,6 @@ void State::buildRemote(ref<Store> destStore,
+                 infos.insert_or_assign(info.path, info);
+             }
+ 
+-            if (totalNarSize > maxOutputSize) {
+-                result.stepStatus = bsNarSizeLimitExceeded;
+-                return;
+-            }
+-
+             /* Copy each path. */
+             printMsg(lvlDebug, "copying outputs of ‘%s’ from ‘%s’ (%d bytes)",
+                 localStore->printStorePath(step->drvPath), machine->sshName, totalNarSize);
+diff --git a/src/lib/Hydra/Controller/API.pm b/src/lib/Hydra/Controller/API.pm
+index 6f10ef57..12073595 100644
+--- a/src/lib/Hydra/Controller/API.pm
++++ b/src/lib/Hydra/Controller/API.pm
+@@ -285,6 +285,22 @@ sub push_github : Chained('api') PathPart('push-github') Args(0) {
+     $c->response->body("");
+ }
+ 
++sub push_gitea : Chained('api') PathPart('push-gitea') Args(0) {
++    my ($self, $c) = @_;
++
++    $c->{stash}->{json}->{jobsetsTriggered} = [];
++
++    my $in = $c->request->{data};
++    my $url = $in->{repository}->{clone_url} or die;
++    print STDERR "got push from Gitea repository $url\n";
++
++    triggerJobset($self, $c, $_, 0) foreach $c->model('DB::Jobsets')->search(
++        { 'project.enabled' => 1, 'me.enabled' => 1 },
++        { join => 'project'
++        , where => \ [ 'me.flake like ? or exists (select 1 from JobsetInputAlts where project = me.project and jobset = me.name and value like ?)', [ 'flake', "%$url%"], [ 'value', "%$url%" ] ]
++        });
++    $c->response->body("");
++}
+ 
+ 
+ 1;
+diff --git a/src/lib/Hydra/Controller/Root.pm b/src/lib/Hydra/Controller/Root.pm
+index c6843d29..1b33db2a 100644
+--- a/src/lib/Hydra/Controller/Root.pm
++++ b/src/lib/Hydra/Controller/Root.pm
+@@ -32,6 +32,7 @@ sub noLoginNeeded {
+ 
+   return $whitelisted ||
+          $c->request->path eq "api/push-github" ||
++         $c->request->path eq "api/push-gitea" ||
+          $c->request->path eq "google-login" ||
+          $c->request->path eq "github-redirect" ||
+          $c->request->path eq "github-login" ||
+@@ -77,7 +78,7 @@ sub begin :Private {
+     $_->supportedInputTypes($c->stash->{inputTypes}) foreach @{$c->hydra_plugins};
+ 
+     # XSRF protection: require POST requests to have the same origin.
+-    if ($c->req->method eq "POST" && $c->req->path ne "api/push-github") {
++    if ($c->req->method eq "POST" && $c->req->path ne "api/push-github" && $c->req->path ne "api/push-gitea") {
+         my $referer = $c->req->header('Referer');
+         $referer //= $c->req->header('Origin');
+         my $base = $c->req->base;
 diff --git a/src/lib/Hydra/Plugin/GiteaStatus.pm b/src/lib/Hydra/Plugin/GiteaStatus.pm
-index 426c93f5..2d919a91 100644
+index 426c93f5..b4346870 100644
 --- a/src/lib/Hydra/Plugin/GiteaStatus.pm
 +++ b/src/lib/Hydra/Plugin/GiteaStatus.pm
 @@ -29,6 +29,53 @@ sub toGiteaState {
@@ -34,9 +120,9 @@ index 426c93f5..2d919a91 100644
 +    my $domain = URI->new($i->uri)->host;
 +    my $host;
 +    unless (defined $gitea_url) {
-+	$host = "https://$domain";
++        $host = "https://$domain";
 +    } else {
-+	$host = $gitea_url->value;
++        $host = $gitea_url->value;
 +    }
 +
 +    return ("$host/api/v1/repos/$repoOwner/$repoName/statuses/$rev", $repoOwner);
@@ -52,7 +138,7 @@ index 426c93f5..2d919a91 100644
 +sub try_gitea_from_repo_url {
 +    my ($ua, $url) = @_;
 +    if ($url =~ m!git\+https://([^/]+)/([^/]+)/([^/]+)\?.*rev=([[:xdigit:]]{40})$!) {
-+	return ("https://$1/api/v1/repos/$2/$3/statuses/$4", $2) if is_gitea($ua, $1);
++        return ("https://$1/api/v1/repos/$2/$3/statuses/$4", $2) if is_gitea($ua, $1);
 +    }
 +    return undef;
 +}
@@ -60,7 +146,7 @@ index 426c93f5..2d919a91 100644
 +sub try_gitea {
 +    my ($ua, $eval) = @_;
 +    if (defined $eval->flake) {
-+	return try_gitea_from_repo_url($ua, $eval->flake);
++        return try_gitea_from_repo_url($ua, $eval->flake);
 +    }
 +    return undef;
 +}
@@ -90,28 +176,14 @@ index 426c93f5..2d919a91 100644
 -                $host = "https://$domain";
 -            } else {
 -                $host = $gitea_url->value;
--            }
++            my ($url, $repoOwner) = url_from_jobsetevalinputs($eval);
++            if (! defined $url) {
++                ($url, $repoOwner) = try_gitea($ua, $eval);
+             }
 -
 -            my $url = "$host/api/v1/repos/$repoOwner/$repoName/statuses/$rev";
-+	    my ($url, $repoOwner) = url_from_jobsetevalinputs($eval);
-+	    if (! defined $url) {
-+                ($url, $repoOwner) = try_gitea($ua, $eval);
-+	    }
-+	    next unless defined $url;
-+	    my $accessToken = $self->{config}->{gitea_authorization}->{$repoOwner};
++            next unless defined $url;
++            my $accessToken = $self->{config}->{gitea_authorization}->{$repoOwner};
  
              print STDERR "GiteaStatus POSTing $state to $url\n";
              my $req = HTTP::Request->new('POST', $url);
-diff --git a/src/script/hydra-eval-jobset b/src/script/hydra-eval-jobset
-index 8804b2bb..c93ce7de 100755
---- a/src/script/hydra-eval-jobset
-+++ b/src/script/hydra-eval-jobset
-@@ -313,6 +313,8 @@ sub inputsToArgs {
-     my ($inputInfo) = @_;
-     my @res = ();
- 
-+    push @res, "-I", "store=/nix/store";
-+
-     foreach my $input (sort keys %{$inputInfo}) {
-         push @res, "-I", "$input=$inputInfo->{$input}->[0]->{storePath}"
-             if scalar @{$inputInfo->{$input}} == 1
