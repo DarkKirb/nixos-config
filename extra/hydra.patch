@@ -12,7 +12,7 @@ index 918bd451..cc1ee7d4 100644
          /* When building a flake, use pure evaluation (no access to
             'getEnv', 'currentSystem' etc. */
 diff --git a/src/lib/Hydra/Plugin/GiteaStatus.pm b/src/lib/Hydra/Plugin/GiteaStatus.pm
-index 426c93f5..c1e44226 100644
+index 426c93f5..2d919a91 100644
 --- a/src/lib/Hydra/Plugin/GiteaStatus.pm
 +++ b/src/lib/Hydra/Plugin/GiteaStatus.pm
 @@ -29,6 +29,53 @@ sub toGiteaState {
@@ -46,7 +46,7 @@ index 426c93f5..c1e44226 100644
 +    my $req = HTTP::Request->new('GET', "https://$hostname/api/swagger");
 +    my $res = $ua->request($req);
 +    return 0 unless $res->is_success;
-+    return index($res->body, "Gitea") != -1;
++    return index($res->as_string(), "Gitea") != -1;
 +}
 +
 +sub try_gitea_from_repo_url {
