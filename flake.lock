@@ -349,15 +349,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1655469208,
-        "narHash": "sha256-fFHAMMRbozPFEd5WsEFbd00AYCSMh131p2viyB7axeg=",
-        "owner": "NixOS",
+        "lastModified": 1656595702,
+        "narHash": "sha256-q23k6R5QX0RfIYjLk80mEbngvTS5eBWtYUO8mpzhObU=",
+        "owner": "mlabs-haskell",
         "repo": "hydra",
-        "rev": "44841fc827ff97a8ded8883f76cdca71cd31e7f1",
+        "rev": "3fdc9e491dc7d33bc09ef4f33984f87c8f478aa2",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "mlabs-haskell",
+        "ref": "aciceri/ca-derivations",
         "repo": "hydra",
         "type": "github"
       }
