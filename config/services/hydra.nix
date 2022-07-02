@@ -59,7 +59,7 @@ in {
     ];
   };
   networking.firewall.interfaces."wg0".allowedTCPPorts = [9199];
-  nix.settings.allowed-uris = ["https://github.com/" "https://git.chir.rs/" "https://darkkirb.de/" "https://git.neo-layout.org/" "https://static.darkkirb.de/"];
+  nix.settings.allowed-uris = ["https://github.com/" "https://git.chir.rs/" "https://darkkirb.de/" "https://git.neo-layout.org/" "https://static.darkkirb.de/" "https://gist.github.com/"];
   sops.secrets."services/hydra/gitea_token" = {};
   sops.secrets."services/hydra/github_token" = {};
   sops.secrets."services/hydra/cache-key" = {
