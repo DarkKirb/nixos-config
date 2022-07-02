@@ -75,10 +75,6 @@ type: docker
 name: hydra-deploy
 
 steps:
-  - name: Notify hydra
-    image: curlimages/curl:latest
-    commands:
-      - curl --get --data-urlencode "jobsets=nixos-config:nixos-config" https://hydra.chir.rs/api/push
   - name: Wait for hydra job
     image: alpine:latest
     commands:
