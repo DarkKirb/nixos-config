@@ -131,4 +131,5 @@ in {
       OnUnitActiveSec = 300;
     };
   };
+  nix.settings.trusted-users = ["@hydra"];
 }
