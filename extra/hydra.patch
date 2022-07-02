@@ -34,10 +34,10 @@ index 2b26cd61..674e1064 100644
 +
 +Then add the hook with `Add webhook`.
 diff --git a/src/hydra-queue-runner/build-remote.cc b/src/hydra-queue-runner/build-remote.cc
-index 57a5f0df..57be4070 100644
+index 05ab6761..c49de888 100644
 --- a/src/hydra-queue-runner/build-remote.cc
 +++ b/src/hydra-queue-runner/build-remote.cc
-@@ -468,11 +468,6 @@ void State::buildRemote(ref<Store> destStore,
+@@ -514,11 +514,6 @@ void State::buildRemote(ref<Store> destStore,
                  infos.insert_or_assign(info.path, info);
              }
  
@@ -49,11 +49,47 @@ index 57a5f0df..57be4070 100644
              /* Copy each path. */
              printMsg(lvlDebug, "copying outputs of ‘%s’ from ‘%s’ (%d bytes)",
                  localStore->printStorePath(step->drvPath), machine->sshName, totalNarSize);
+@@ -560,15 +555,31 @@ void State::buildRemote(ref<Store> destStore,
+           auto outputHashes = staticOutputHashes(*localStore, *step->drv);
+           for (auto & [outputId, realisation] : builtOutputs) {
+               // Register the resolved drv output
+-              localStore->registerDrvOutput(realisation);
+-              destStore->registerDrvOutput(realisation);
++	      try {
++                localStore->registerDrvOutput(realisation);
++              } catch (Error &e) {
++                printMsg(lvlWarn, "Failed registering realisation locally: %1% (already exists?)", e.what());
++              }
++              try {
++                destStore->registerDrvOutput(realisation);
++              } catch (Error &e) {
++                printMsg(lvlWarn, "Failed registering realisation on ‘%1%’: %2% (already exists?)", machine->sshName, e.what());
++              }
+ 
+               // Also register the unresolved one
+               auto unresolvedRealisation = realisation;
+               unresolvedRealisation.signatures.clear();
+               unresolvedRealisation.id.drvHash = outputHashes.at(outputId.outputName);
+-              localStore->registerDrvOutput(unresolvedRealisation);
+-              destStore->registerDrvOutput(unresolvedRealisation);
++	      try {
++                localStore->registerDrvOutput(unresolvedRealisation);
++              } catch (Error &e) {
++                printMsg(lvlWarn, "Failed registering unresolved realisation locally: %1% (already exists?)", e.what());
++              }
++              try {
++                destStore->registerDrvOutput(unresolvedRealisation);
++              } catch (Error &e) {
++                printMsg(lvlWarn, "Failed registering unresolved realisation on ‘%1%’: %2% (already exists?)", machine->sshName, e.what());
++              }
+           }
+         }
+ 
 diff --git a/src/lib/Hydra/Controller/API.pm b/src/lib/Hydra/Controller/API.pm
-index 6f10ef57..12073595 100644
+index 6f10ef57..5eeb0c04 100644
 --- a/src/lib/Hydra/Controller/API.pm
 +++ b/src/lib/Hydra/Controller/API.pm
-@@ -285,6 +285,22 @@ sub push_github : Chained('api') PathPart('push-github') Args(0) {
+@@ -285,6 +285,23 @@ sub push_github : Chained('api') PathPart('push-github') Args(0) {
      $c->response->body("");
  }
  
@@ -64,6 +100,7 @@ index 6f10ef57..12073595 100644
 +
 +    my $in = $c->request->{data};
 +    my $url = $in->{repository}->{clone_url} or die;
++    $url =~ s/.git$//;
 +    print STDERR "got push from Gitea repository $url\n";
 +
 +    triggerJobset($self, $c, $_, 0) foreach $c->model('DB::Jobsets')->search(
@@ -97,6 +134,19 @@ index c6843d29..1b33db2a 100644
          my $referer = $c->req->header('Referer');
          $referer //= $c->req->header('Origin');
          my $base = $c->req->base;
+diff --git a/src/lib/Hydra/Helper/AddBuilds.pm b/src/lib/Hydra/Helper/AddBuilds.pm
+index 9e3ddfd2..a6373be5 100644
+--- a/src/lib/Hydra/Helper/AddBuilds.pm
++++ b/src/lib/Hydra/Helper/AddBuilds.pm
+@@ -67,7 +67,7 @@ sub validateDeclarativeJobset {
+     my $enable_dynamic_run_command = defined $update{enable_dynamic_run_command} ? 1 : 0;
+     if ($enable_dynamic_run_command
+         && !($config->{dynamicruncommand}->{enable}
+-            && $project->{enable_dynamic_run_command}))
++            && $project->enable_dynamic_run_command))
+     {
+         die "Dynamic RunCommand is not enabled by the server or the parent project.";
+     }
 diff --git a/src/lib/Hydra/Plugin/GiteaStatus.pm b/src/lib/Hydra/Plugin/GiteaStatus.pm
 index 426c93f5..b4346870 100644
 --- a/src/lib/Hydra/Plugin/GiteaStatus.pm
@@ -187,3 +237,174 @@ index 426c93f5..b4346870 100644
  
              print STDERR "GiteaStatus POSTing $state to $url\n";
              my $req = HTTP::Request->new('POST', $url);
+diff --git a/t/Helper/AddBuilds/dynamic-disabled.t b/t/Helper/AddBuilds/dynamic-disabled.t
+index 0507b03e..0c91f382 100644
+--- a/t/Helper/AddBuilds/dynamic-disabled.t
++++ b/t/Helper/AddBuilds/dynamic-disabled.t
+@@ -6,11 +6,31 @@ use Test2::V0;
+ require Catalyst::Test;
+ use HTTP::Request::Common qw(POST PUT GET DELETE);
+ use JSON::MaybeXS qw(decode_json encode_json);
+-use Hydra::Helper::AddBuilds qw(validateDeclarativeJobset);
+-use Hydra::Helper::Nix qw(getHydraConfig);
+ 
+ my $ctx = test_context();
+ 
++Catalyst::Test->import('Hydra');
++
++my $db = Hydra::Model::DB->new;
++hydra_setup($db);
++
++my $user = $db->resultset('Users')->create({ username => 'alice', emailaddress => 'root@invalid.org', password => '!' });
++$user->setPassword('foobar');
++$user->userroles->update_or_create({ role => 'admin' });
++
++my $project_with_dynamic_run_command = $db->resultset('Projects')->create({
++    name => 'tests_with_dynamic_runcommand',
++    displayname => 'Tests with dynamic runcommand',
++    owner => 'alice',
++    enable_dynamic_run_command => 1,
++});
++my $project_without_dynamic_run_command = $db->resultset('Projects')->create({
++    name => 'tests_without_dynamic_runcommand',
++    displayname => 'Tests without dynamic runcommand',
++    owner => 'alice',
++    enable_dynamic_run_command => 0,
++});
++
+ sub makeJobsetSpec {
+     my ($dynamic) = @_;
+ 
+@@ -29,14 +49,16 @@ sub makeJobsetSpec {
+ };
+ 
+ subtest "validate declarative jobset with dynamic RunCommand disabled by server" => sub {
+-    my $config = getHydraConfig();
++    my $config = Hydra::Helper::Nix->getHydraConfig();
++    require Hydra::Helper::AddBuilds;
++    Hydra::Helper::AddBuilds->import( qw(validateDeclarativeJobset) );
+ 
+     subtest "project enabled dynamic runcommand, declarative jobset enabled dynamic runcommand" => sub {
+         like(
+             dies {
+               validateDeclarativeJobset(
+                   $config,
+-                  { enable_dynamic_run_command => 1 },
++                  $project_with_dynamic_run_command,
+                   "test-jobset",
+                   makeJobsetSpec(JSON::MaybeXS::true),
+               ),
+@@ -49,7 +71,7 @@ subtest "validate declarative jobset with dynamic RunCommand disabled by server"
+         ok(
+             validateDeclarativeJobset(
+                 $config,
+-                { enable_dynamic_run_command => 1 },
++                $project_with_dynamic_run_command,
+                 "test-jobset",
+                 makeJobsetSpec(JSON::MaybeXS::false)
+             ),
+@@ -61,7 +83,7 @@ subtest "validate declarative jobset with dynamic RunCommand disabled by server"
+             dies {
+               validateDeclarativeJobset(
+                   $config,
+-                  { enable_dynamic_run_command => 0 },
++                  $project_without_dynamic_run_command,
+                   "test-jobset",
+                   makeJobsetSpec(JSON::MaybeXS::true),
+               ),
+@@ -74,7 +96,7 @@ subtest "validate declarative jobset with dynamic RunCommand disabled by server"
+         ok(
+             validateDeclarativeJobset(
+                 $config,
+-                { enable_dynamic_run_command => 0 },
++                $project_without_dynamic_run_command,
+                 "test-jobset",
+                 makeJobsetSpec(JSON::MaybeXS::false)
+             ),
+diff --git a/t/Helper/AddBuilds/dynamic-enabled.t b/t/Helper/AddBuilds/dynamic-enabled.t
+index d2f5a386..46497bed 100644
+--- a/t/Helper/AddBuilds/dynamic-enabled.t
++++ b/t/Helper/AddBuilds/dynamic-enabled.t
+@@ -6,8 +6,6 @@ use Test2::V0;
+ require Catalyst::Test;
+ use HTTP::Request::Common qw(POST PUT GET DELETE);
+ use JSON::MaybeXS qw(decode_json encode_json);
+-use Hydra::Helper::AddBuilds qw(validateDeclarativeJobset);
+-use Hydra::Helper::Nix qw(getHydraConfig);
+ 
+ my $ctx = test_context(
+     hydra_config => q|
+@@ -17,6 +15,28 @@ my $ctx = test_context(
+     |
+ );
+ 
++Catalyst::Test->import('Hydra');
++
++my $db = Hydra::Model::DB->new;
++hydra_setup($db);
++
++my $user = $db->resultset('Users')->create({ username => 'alice', emailaddress => 'root@invalid.org', password => '!' });
++$user->setPassword('foobar');
++$user->userroles->update_or_create({ role => 'admin' });
++
++my $project_with_dynamic_run_command = $db->resultset('Projects')->create({
++    name => 'tests_with_dynamic_runcommand',
++    displayname => 'Tests with dynamic runcommand',
++    owner => 'alice',
++    enable_dynamic_run_command => 1,
++});
++my $project_without_dynamic_run_command = $db->resultset('Projects')->create({
++    name => 'tests_without_dynamic_runcommand',
++    displayname => 'Tests without dynamic runcommand',
++    owner => 'alice',
++    enable_dynamic_run_command => 0,
++});
++
+ sub makeJobsetSpec {
+     my ($dynamic) = @_;
+ 
+@@ -35,13 +55,15 @@ sub makeJobsetSpec {
+ };
+ 
+ subtest "validate declarative jobset with dynamic RunCommand enabled by server" => sub {
+-    my $config = getHydraConfig();
++    my $config = Hydra::Helper::Nix->getHydraConfig();
++    require Hydra::Helper::AddBuilds;
++    Hydra::Helper::AddBuilds->import( qw(validateDeclarativeJobset) );
+ 
+     subtest "project enabled dynamic runcommand, declarative jobset enabled dynamic runcommand" => sub {
+         ok(
+             validateDeclarativeJobset(
+                 $config,
+-                { enable_dynamic_run_command => 1 },
++                $project_with_dynamic_run_command,
+                 "test-jobset",
+                 makeJobsetSpec(JSON::MaybeXS::true)
+             ),
+@@ -52,7 +74,7 @@ subtest "validate declarative jobset with dynamic RunCommand enabled by server"
+         ok(
+             validateDeclarativeJobset(
+                 $config,
+-                { enable_dynamic_run_command => 1 },
++                $project_with_dynamic_run_command,
+                 "test-jobset",
+                 makeJobsetSpec(JSON::MaybeXS::false)
+             ),
+@@ -64,7 +86,7 @@ subtest "validate declarative jobset with dynamic RunCommand enabled by server"
+             dies {
+               validateDeclarativeJobset(
+                   $config,
+-                  { enable_dynamic_run_command => 0 },
++                  $project_without_dynamic_run_command,
+                   "test-jobset",
+                   makeJobsetSpec(JSON::MaybeXS::true),
+               ),
+@@ -77,7 +99,7 @@ subtest "validate declarative jobset with dynamic RunCommand enabled by server"
+         ok(
+             validateDeclarativeJobset(
+                 $config,
+-                { enable_dynamic_run_command => 0 },
++                $project_without_dynamic_run_command,
+                 "test-jobset",
+                 makeJobsetSpec(JSON::MaybeXS::false)
+             ),
