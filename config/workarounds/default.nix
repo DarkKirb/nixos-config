@@ -64,6 +64,11 @@ in {
         };
         sourceRoot = "source/gitea-src-${version}";
       });
+      nix = prev.nix.overrideAttrs (old: rec {
+        postPatchPhase = ''
+          sed 's/getBoolAttr."allowSubstitutes", true./true/' src/libstore/parsed-derivations.cc
+        '';
+      });
     })
   ];
 }
