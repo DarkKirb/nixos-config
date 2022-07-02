@@ -34,23 +34,18 @@ index 2b26cd61..674e1064 100644
 +
 +Then add the hook with `Add webhook`.
 diff --git a/src/hydra-queue-runner/build-remote.cc b/src/hydra-queue-runner/build-remote.cc
-index 05ab6761..eee166f9 100644
+index 05ab6761..b2b12ac0 100644
 --- a/src/hydra-queue-runner/build-remote.cc
 +++ b/src/hydra-queue-runner/build-remote.cc
-@@ -12,6 +12,12 @@
- #include "worker-protocol.hh"
- #include "finally.hh"
- #include "url.hh"
-+#include "sqlite.hh"
-+
-+// https://www.sqlite.com/rescode.html#constraint
-+#define SQLITE_CONSTRAINT 19
-+// https://www.sqlite.com/rescode.html#constraint_unique
-+#define SQLITE_CONSTRAINT_UNIQUE 2067
+@@ -358,6 +358,7 @@ void State::buildRemote(ref<Store> destStore,
+                 copyPaths(*destStore, *localStore, closure, NoRepair, NoCheckSigs, NoSubstitute);
+             } else {
+                 copyClosureTo(machine->state->sendLock, *destStore, from, to, step->drv->inputSrcs, true);
++                copyClosureTo(machine->state->sendLock, *destStore, from, to, basicDrv.inputSrcs, true);
+             }
  
- using namespace nix;
- 
-@@ -514,11 +520,6 @@ void State::buildRemote(ref<Store> destStore,
+             auto now2 = std::chrono::steady_clock::now();
+@@ -514,11 +515,6 @@ void State::buildRemote(ref<Store> destStore,
                  infos.insert_or_assign(info.path, info);
              }
  
@@ -62,39 +57,54 @@ index 05ab6761..eee166f9 100644
              /* Copy each path. */
              printMsg(lvlDebug, "copying outputs of ‘%s’ from ‘%s’ (%d bytes)",
                  localStore->printStorePath(step->drvPath), machine->sshName, totalNarSize);
-@@ -560,14 +561,30 @@ void State::buildRemote(ref<Store> destStore,
-           auto outputHashes = staticOutputHashes(*localStore, *step->drv);
-           for (auto & [outputId, realisation] : builtOutputs) {
-               // Register the resolved drv output
--              localStore->registerDrvOutput(realisation);
-+              try {
-+                localStore->registerDrvOutput(realisation);
-+              } catch (SQLiteError &e) {
-+                if (e.errNo == SQLITE_CONSTRAINT && e.extendedErrNo == SQLITE_CONSTRAINT_UNIQUE) {
-+                  printMsg(lvlWarn, "Failed registering realisation locally: %1% (already exists?)", e.what());
-+                } else {
-+                  throw e;
-+                }
-+              }
-               destStore->registerDrvOutput(realisation);
+@@ -528,26 +524,27 @@ void State::buildRemote(ref<Store> destStore,
+             for (auto & path : pathsSorted) {
+                 auto & info = infos.find(path)->second;
  
-               // Also register the unresolved one
-               auto unresolvedRealisation = realisation;
-               unresolvedRealisation.signatures.clear();
-               unresolvedRealisation.id.drvHash = outputHashes.at(outputId.outputName);
--              localStore->registerDrvOutput(unresolvedRealisation);
-+              try {
-+                localStore->registerDrvOutput(unresolvedRealisation);
-+              } catch (SQLiteError &e) {
-+                if (e.errNo == SQLITE_CONSTRAINT && e.extendedErrNo == SQLITE_CONSTRAINT_UNIQUE) {
-+                  printMsg(lvlWarn, "Failed registering unresolved realisation locally: %1% (already exists?)", e.what());
-+                } else {
-+                  throw e;
+-                /* Receive the NAR from the remote and add it to the
+-                   destination store. Meanwhile, extract all the info from the
+-                   NAR that getBuildOutput() needs. */
+-                auto source2 = sinkToSource([&](Sink & sink)
+-                {
+-                    /* Note: we should only send the command to dump the store
+-                       path to the remote if the NAR is actually going to get read
+-                       by the destination store, which won't happen if this path
+-                       is already valid on the destination store. Since this
+-                       lambda function only gets executed if someone tries to read
+-                       from source2, we will send the command from here rather
+-                       than outside the lambda. */
+-                    to << cmdDumpStorePath << localStore->printStorePath(path);
+-                    to.flush();
+-
+-                    TeeSource tee(from, sink);
+-                    extractNarData(tee, localStore->printStorePath(path), narMembers);
+-                });
+-
+-                destStore->addToStore(info, *source2, NoRepair, NoCheckSigs);
++                for (auto & store : {&*destStore, &*localStore}) {
++                  /* Receive the NAR from the remote and add it to the
++                     destination store. Meanwhile, extract all the info from the
++                     NAR that getBuildOutput() needs. */
++                  auto source2 = sinkToSource([&](Sink & sink)
++                  {
++                      /* Note: we should only send the command to dump the store
++                         path to the remote if the NAR is actually going to get read
++                         by the destination store, which won't happen if this path
++                         is already valid on the destination store. Since this
++                         lambda function only gets executed if someone tries to read
++                         from source2, we will send the command from here rather
++                         than outside the lambda. */
++                      to << cmdDumpStorePath << localStore->printStorePath(path);
++                      to.flush();
++
++                      TeeSource tee(from, sink);
++                      extractNarData(tee, localStore->printStorePath(path), narMembers);
++                  });
++                  store->addToStore(info, *source2, NoRepair, NoCheckSigs);
 +                }
-+              }
-               destStore->registerDrvOutput(unresolvedRealisation);
-           }
-         }
+             }
+ 
+             auto now2 = std::chrono::steady_clock::now();
 diff --git a/src/lib/Hydra/Controller/API.pm b/src/lib/Hydra/Controller/API.pm
 index 6f10ef57..5eeb0c04 100644
 --- a/src/lib/Hydra/Controller/API.pm
