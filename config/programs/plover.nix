@@ -14,11 +14,12 @@
         "SER/TKPWAL" = "Sergal";
         "SERLG" = "Sergal";
         "SER/SRAL" = "serval";
-        "SOL/DER" = "solder";
+        "SOL/TKER" = "solder";
         "KWREUF" = "yiff";
         "KWR*EUF" = "I didn't have";
         "PWA/TPHA/TPHAS" = "bananas";
         "PWA/TPHA/TPHAZ" = "bananas";
+        "HROT/TE" = "Lotte";
       });
     }
     {
