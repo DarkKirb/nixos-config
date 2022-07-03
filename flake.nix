@@ -11,7 +11,7 @@ rec {
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     chir-rs.url = "git+https://git.chir.rs/darkkirb/chir.rs.git?ref=main";
     nur.url = "github:nix-community/NUR";
-    polymc.url = "github:PolyMC/PolyMC";
+    polymc.url = "github:DarkKirb/PolyMC/nix-ecm";
     polymc.inputs.nixpkgs.follows = "nixpkgs";
     dns.url = "github:DarkKirb/dns.nix?ref=master";
     hydra.url = "github:mlabs-haskell/hydra/aciceri/ca-derivations";
