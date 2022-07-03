@@ -158,9 +158,6 @@
     "riscv64-linux"
     "wasm32-wasi"
   ];
-  nix.settings.substituters = lib.mkForce [
-    "https://cache.nixos.org/"
-  ];
   nix.buildMachines = lib.mkForce [
     #{
     #  hostName = "build-nas";
