@@ -811,16 +811,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1656840645,
-        "narHash": "sha256-LFGJlhCCjANeuT1SY9jt+5BMJluGq3tAzbl+6zn4S68=",
-        "owner": "DarkKirb",
+        "lastModified": 1656864985,
+        "narHash": "sha256-6ONpDQKlhbV5QLr0Y4XsmfiJwpvHPSilHLHmJn0AcsM=",
+        "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "471d6d603100e3668322d6da28ed1e1beee95456",
+        "rev": "e7ed3abb799ce1e648a734aae0ad82951df33ad9",
         "type": "github"
       },
       "original": {
-        "owner": "DarkKirb",
-        "ref": "nix-ecm",
+        "owner": "PolyMC",
         "repo": "PolyMC",
         "type": "github"
       }
