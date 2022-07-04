@@ -2,23 +2,16 @@
   system,
   pkgs,
   nixpkgs,
-  hydra,
   nixpkgs-noto-variable,
   nix-packages,
   ...
 }:
 with pkgs; let
-  hydra-pkg = hydra.defaultPackage.${system};
   noto-variable = import nixpkgs-noto-variable {inherit system;};
 in {
   nixpkgs.overlays = [
     (self: prev: {
-      hydra-unstable = hydra-pkg.overrideAttrs (old: {
-        checkPhase = "true";
-        patches = [
-          ../../extra/hydra.patch
-        ];
-      });
+      hydra-unstable = nix-packages.hydra;
       mosh = prev.mosh.overrideAttrs (old: {
         patches = [
           ./mosh/ssh_path.patch
