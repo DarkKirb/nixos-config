@@ -33,6 +33,7 @@ in {
 
   config = mkIf cfg.enable {
     systemd.services.gitea = {
+      path = [ pkgs.gnupg ];
       # In older versions the secret naming for JWT was kind of confusing.
       # The file jwt_secret hold the value for LFS_JWT_SECRET and JWT_SECRET
       # wasn't persistant at all.
