@@ -11,7 +11,7 @@ with pkgs; let
 in {
   nixpkgs.overlays = [
     (self: prev: {
-      hydra-unstable = nix-packages.hydra;
+      hydra-unstable = nix-packages.packages.${system}.hydra;
       mosh = prev.mosh.overrideAttrs (old: {
         patches = [
           ./mosh/ssh_path.patch
