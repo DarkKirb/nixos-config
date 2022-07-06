@@ -88,6 +88,7 @@ rec {
                   nur.overlay
                   polymc.overlay
                 ];
+                home-manager.extraSpecialArgs = args // {inherit system;};
               })
               (import utils/link-input.nix args)
             ];

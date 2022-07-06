@@ -2,36 +2,53 @@
   lib,
   pkgs,
   system,
+  nix-packages,
   ...
 }: let
   inherit (pkgs) plover plover-plugins-manager regenpfeifer plover-regenpfeifer plover-emoji plover-tapey-tape plover-yaml-dictionary;
   plover-env = plover.pythonModule.withPackages (_: [plover plover-plugins-manager plover-emoji plover-tapey-tape plover-yaml-dictionary]);
   plover-src = plover.src;
-  plover-dictionaries-english = [
-    {
-      enabled = true;
-      path = pkgs.writeText "user.json" (builtins.toJSON {
-        "SER/TKPWAL" = "Sergal";
-        "SERLG" = "Sergal";
-        "SER/SRAL" = "serval";
-        "SOL/TKER" = "solder";
-        "KWREUF" = "yiff";
-        "KWR*EUF" = "I didn't have";
-        "PWA/TPHA/TPHAS" = "bananas";
-        "PWA/TPHA/TPHAZ" = "bananas";
-        "HROT/TE" = "Lotte";
-        "TPUR/SO/TPHA" = "fursona";
-      });
-    }
-    {
-      enabled = true;
-      path = "${plover-src}/plover/assets/commands.json";
-    }
-    {
-      enabled = true;
-      path = "${plover-src}/plover/assets/main.json";
-    }
-  ];
+  plover-dictionaries-english =
+    [
+      {
+        enabled = true;
+        path = pkgs.writeText "user.json" (builtins.toJSON {
+          "SER/TKPWAL" = "Sergal";
+          "SERLG" = "Sergal";
+          "SER/SRAL" = "serval";
+          "SOL/TKER" = "solder";
+          "KWREUF" = "yiff";
+          "KWR*EUF" = "I didn't have";
+          "PWA/TPHA/TPHAS" = "bananas";
+          "PWA/TPHA/TPHAZ" = "bananas";
+          "HROT/TE" = "Lotte";
+          "TPUR/SO/TPHA" = "fursona";
+        });
+      }
+    ]
+    ++ (map (module: {
+        enabled = true;
+        path = nix-packages.packages.${system}."plover-dict-${module}";
+      }) [
+        "abbreviations"
+        "briefs"
+        "currency"
+        "dict"
+        "nouns"
+        "numbers"
+        "numbers-powerups"
+        "proper-nouns"
+        "punctuation-powerups"
+        "punctuation-unspaced"
+        "symbols"
+        "symbols-briefs"
+        "symbols-currency"
+        "top-10000-project-gutenberg-words"
+        "top-level-domains"
+        # Put these last
+        "condensed-strokes"
+        "condensed-strokes-fingerspelled"
+      ]);
   plover-cfg = pkgs.writeText "plover.cfg" (lib.generators.toINI {} {
     "Machine Configuration".machine_type = "Keyboard";
     "System: English Stenotype" = {
