@@ -670,14 +670,15 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "plover": "plover",
         "regenpfeifer": "regenpfeifer",
+        "steno-dictionaries": "steno-dictionaries",
         "wortformliste": "wortformliste"
       },
       "locked": {
-        "lastModified": 1657108195,
-        "narHash": "sha256-OM0sL8TNVm+QVokdxhffsrPEIg0RT4LE4CMnnX7Olz0=",
+        "lastModified": 1657115363,
+        "narHash": "sha256-rXUGUg3HryG6uX4P/sEll3a9lx9sNBjM/KJjgGYds1E=",
         "owner": "DarkKirb",
         "repo": "nix-packages",
-        "rev": "bc2b038da88aed06e682a0b78264059090e0ac7b",
+        "rev": "ba2a96775f3d259312fd117a8032ead2f7f2894b",
         "type": "github"
       },
       "original": {
@@ -759,29 +760,13 @@
         "type": "github"
       }
     },
-    "nixpkgs-21_11": {
-      "locked": {
-        "lastModified": 1656782578,
-        "narHash": "sha256-1eMCBEqJplPotTo/SZ/t5HU6Sf2I8qKlZi9MX7jv9fw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "573603b7fdb9feb0eb8efc16ee18a015c667ab1b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "release-21.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-22_05": {
       "locked": {
-        "lastModified": 1656782561,
-        "narHash": "sha256-sZVLNNKIcELllTHqydsckz8HBfVqxeAt51acaaQWLCw=",
+        "lastModified": 1656955776,
+        "narHash": "sha256-1aMu67m+orlGxVwfiX3RxTEVFoq/RmKa/L5u9zU3UNQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "18038cee44aa0c3c99a2319c3c1c4d16d6612d81",
+        "rev": "cc16da2c92041cbe817c40f62aac87c99104e9c2",
         "type": "github"
       },
       "original": {
@@ -978,11 +963,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1657111442,
-        "narHash": "sha256-ILV4a7q6nX8TUSdOxmTu4vGjLOYJ4Of2jrcc7z2U1kE=",
+        "lastModified": 1657130608,
+        "narHash": "sha256-7AxIWH26z/eU6kcApJ/IWmQDH2IJoOfm//sNoeXiqyU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "452c0ddf8ac095fcc950a6326878c3ec1570fd77",
+        "rev": "0e5feae317827fefeb5f8acae1b0b09179321655",
         "type": "github"
       },
       "original": {
@@ -993,11 +978,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1657106528,
-        "narHash": "sha256-Jm2XUK8PSdiWfzfF6f/lIfnaOCrcq+JsT/cV5P5c1Uw=",
+        "lastModified": 1657130590,
+        "narHash": "sha256-y59G144PyoYBpG1LlqawZW1cKhWJwJNU8auh31Bn980=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "71d760099ad1a16ebae22b4ec551bf54a9e93d8e",
+        "rev": "a77e5cacb89364664db7bc1c4026d0826adeeb66",
         "type": "github"
       },
       "original": {
@@ -1032,11 +1017,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1656864985,
-        "narHash": "sha256-6ONpDQKlhbV5QLr0Y4XsmfiJwpvHPSilHLHmJn0AcsM=",
+        "lastModified": 1657122009,
+        "narHash": "sha256-z8gDlShKcNdz6qtbuE2Dvrq5XIi6vtcMaqNIvHXPO00=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "e7ed3abb799ce1e648a734aae0ad82951df33ad9",
+        "rev": "f1902a44716201d9d6431cab762663cd749b58eb",
         "type": "github"
       },
       "original": {
@@ -1134,20 +1119,35 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nixpkgs-21_11": "nixpkgs-21_11",
         "nixpkgs-22_05": "nixpkgs-22_05"
       },
       "locked": {
-        "lastModified": 1656820546,
-        "narHash": "sha256-g+1URmRH75RDAzVUtVb4Ls7X8n1iocAGULtSE7JUdwU=",
+        "lastModified": 1657127702,
+        "narHash": "sha256-F88Oebl/7M1gnqTpNguhAHZxZJRtFmbdXL6RIn2K0XQ=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "85907ae7384477e447499f6e942d822d6f2998d8",
+        "rev": "3ef9ea29356c17341456a0418cf5b5c2d2cdb129",
         "type": "github"
       },
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "steno-dictionaries": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1655010543,
+        "narHash": "sha256-CkxtDyzB5XZpYyEQDbzspN9VYkXNUJzM7CvfD+tLmcg=",
+        "owner": "didoesdigital",
+        "repo": "steno-dictionaries",
+        "rev": "0dbbd849cdb62ef1195bb511b9062cbe4a826f8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "didoesdigital",
+        "repo": "steno-dictionaries",
         "type": "github"
       }
     },

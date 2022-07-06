@@ -91,4 +91,5 @@ in {
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
     gtkUsePortal = true;
   };
+  programs.dconf.enable = true;
 }
