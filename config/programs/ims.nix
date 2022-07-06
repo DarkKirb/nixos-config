@@ -1,8 +1,14 @@
-{pkgs, ...}: {
+{config, pkgs, ...}:
+let 
+  firefox-wrapped = config.programs.firefox.package;
+  firefox = firefox-wrapped.unwrapped;
+  nss = pkgs.lib.lists.findFirst (x: x.pname == "nss") null firefox.build-inputs;
+in
+{
   home.packages = with pkgs; [
-    discord
-    (element-desktop.override {
-      useKeytar = false;
+    (discord.override {
+      inherit nss;
     })
+    element-desktop
   ];
 }
