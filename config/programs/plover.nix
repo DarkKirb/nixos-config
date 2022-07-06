@@ -23,6 +23,8 @@
           "PWA/TPHA/TPHAZ" = "bananas";
           "HROT/TE" = "Lotte";
           "TPUR/SO/TPHA" = "fursona";
+          "TPWH" = "to be honest";
+          "TPWH*" = "tbh";
         });
       }
     ]
