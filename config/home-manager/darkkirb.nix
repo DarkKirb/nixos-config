@@ -29,7 +29,6 @@
         ../programs/misc.nix
         ../programs/mail.nix
         ../programs/kitty.nix
-        ../programs/fcitx.nix
       ]
       else []
     );

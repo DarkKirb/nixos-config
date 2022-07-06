@@ -41,14 +41,6 @@ in {
             ../../extra/kitty.patch
           ];
       });
-      fcitx5-table-other = prev.fcitx5-table-other.overrideAttrs (old: {
-        src = prev.fetchFromGitHub {
-          owner = "pontaoski";
-          repo = "fcitx5-table-other";
-          rev = "254c0aed99fd105120521629d177636ea043bf59";
-          sha256 = "sha256-iYFBlrHTFyesHNEOeI98DbmXSbRHVd+avmtN7Un0eok=";
-        };
-      });
       gitea = prev.gitea.overrideAttrs (old: rec {
         version = "1.17.0-rc1";
         src = prev.fetchurl {
