@@ -14,7 +14,6 @@
   '';
 in {
   imports = [
-    ./services/sway.nix
     ./services/pipewire.nix
     ./desktop-secrets.nix
     ./services/cups.nix
@@ -87,4 +86,16 @@ in {
   # For syncthing
   networking.firewall.allowedTCPPorts = [22000];
   networking.firewall.allowedUDPPorts = [22000];
+
+  environment.systemPackages = [
+    pkgs.qt5.qtwayland
+  ];
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    # gtk portal needed to make gtk apps happy
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    gtkUsePortal = true;
+  };
 }
