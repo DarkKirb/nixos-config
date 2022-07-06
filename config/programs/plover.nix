@@ -20,6 +20,7 @@
         "PWA/TPHA/TPHAS" = "bananas";
         "PWA/TPHA/TPHAZ" = "bananas";
         "HROT/TE" = "Lotte";
+        "TPUR/SO/TPHA" = "fursona";
       });
     }
     {
