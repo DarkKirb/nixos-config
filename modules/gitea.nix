@@ -33,7 +33,7 @@ in {
 
   config = mkIf cfg.enable {
     systemd.services.gitea = {
-      path = [ pkgs.gnupg ];
+      path = [pkgs.gnupg];
       serviceConfig = {
         SystemCallFilter = mkForce "~@clock @cpu-emulation @debug @module @mount @obsolete @raw-io @reboot @resources @setuid @swap";
       };
