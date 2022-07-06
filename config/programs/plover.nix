@@ -4,8 +4,8 @@
   system,
   ...
 }: let
-  inherit (pkgs) plover plover-plugins-manager regenpfeifer plover-regenpfeifer;
-  plover-env = plover.pythonModule.withPackages (_: [plover plover-plugins-manager]);
+  inherit (pkgs) plover plover-plugins-manager regenpfeifer plover-regenpfeifer plover-emoji plover-tapey-tape plover-yaml-dictionary;
+  plover-env = plover.pythonModule.withPackages (_: [plover plover-plugins-manager plover-emoji plover-tapey-tape plover-yaml-dictionary]);
   plover-src = plover.src;
   plover-dictionaries-english = [
     {
