@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.firefox = {
-    package = pkgs.firefox;
+    package = pkgs.firefox-wayland;
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       clearurls
@@ -10,7 +10,6 @@
       don-t-fuck-with-paste
       i-dont-care-about-cookies
       keepassxc-browser
-      plasma-integration
       privacy-badger
       privacy-possum
       sponsorblock
