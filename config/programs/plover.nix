@@ -26,6 +26,7 @@
           "TPWH" = "to be honest";
           "TPWH*" = "tbh";
           "PWRU" = "bruh";
+          "HROL" = "lol";
         });
       }
     ]
