@@ -111,7 +111,7 @@ steps:
         for build in $(curl https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/commits/$DRONE_COMMIT/status | jq -r '.statuses[] | select(.target_url | contains("https://hydra.chir.rs/")) | select(.status == "success" ) | .target_url'); do
           JOB_JSON=$(curl -H "Accept: application/json" $build)
           PROJECT=$(echo "$JOB_JSON" | jq -r '.project')
-          JOBSET=$(echo "$JOB_JSON" | jq -r '.jobset')
+          JOBSET=$(echo "$JOB_JSON" | jq -r '.jobset' | sed 's/nixos-config-update/nixos-config/')
           JOB=$(echo "$JOB_JSON" | jq -r '.job')
           JOB_NAME="$PROJECT/$JOBSET/$JOB"
           git branch $JOB_NAME || true
