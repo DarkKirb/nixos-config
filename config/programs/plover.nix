@@ -63,6 +63,7 @@
     "System: English Stenotype" = {
       dictionaries = builtins.toJSON plover-dictionaries-english;
     };
+    Plugins.enabled_extensions = builtins.toJSON ["plover_tapey_tape"];
   });
 in {
   home.packages = [
