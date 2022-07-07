@@ -25,6 +25,7 @@
           "TPUR/SO/TPHA" = "fursona";
           "TPWH" = "to be honest";
           "TPWH*" = "tbh";
+          "PWRU" = "bruh";
         });
       }
     ]
