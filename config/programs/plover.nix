@@ -27,6 +27,7 @@
           "TPWH*" = "tbh";
           "PWRU" = "bruh";
           "HROL" = "lol";
+          "TEU" = "{^ty}";
         });
       }
     ]
