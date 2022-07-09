@@ -44,7 +44,7 @@ in {
       gitea = prev.gitea.overrideAttrs (old: rec {
         version = "1.17.0-rc1";
         src = prev.fetchurl {
-          url = "https://github.com/go-gitea/gitea/releases/download/${version}/gitea-src-${version}.tar.gz";
+          url = "https://github.com/go-gitea/gitea/releases/download/v${version}/gitea-src-${version}.tar.gz";
           sha256 = "sha256-9pu+fsU1rrfa9yOAxnh8tXDmxv4UYo5DP5azhJC0BpQ=";
         };
         sourceRoot = "source/gitea-src-${version}";
