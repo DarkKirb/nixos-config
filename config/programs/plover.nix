@@ -35,12 +35,14 @@
         enabled = true;
         path = nix-packages.packages.${system}."plover-dict-${module}";
       }) [
+        #Put this first
+        "fingerspelling"
+        # put these in alphabetical order
         "abbreviations"
         "briefs"
         "computer-use"
         "currency"
         "dict"
-        "fingerspelling"
         "modifiers-single-stroke"
         "navigation"
         "nouns"
@@ -59,7 +61,6 @@
         "top-level-domains"
         # Put these last
         "condensed-strokes"
-        "condensed-strokes-fingerspelled"
       ]);
   plover-cfg = pkgs.writeText "plover.cfg" (lib.generators.toINI {} {
     "Machine Configuration".machine_type = "Keyboard";
