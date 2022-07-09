@@ -8,6 +8,7 @@
       ../programs/gpg.nix
       ../programs/git.nix
       ../programs/direnv.nix
+      ../programs/zk.nix
     ]
     ++ (
       if desktop

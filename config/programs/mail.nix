@@ -1,5 +1,4 @@
-{pkgs, ...}: let
-in {
+{pkgs, ...}: {
   services.imapnotify.enable = true;
   programs.mbsync.enable = true;
   programs.notmuch = {
