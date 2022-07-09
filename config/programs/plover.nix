@@ -12,23 +12,11 @@
     [
       {
         enabled = true;
-        path = pkgs.writeText "user.json" (builtins.toJSON {
-          "SER/TKPWAL" = "Sergal";
-          "SERLG" = "Sergal";
-          "SER/SRAL" = "serval";
-          "SOL/TKER" = "solder";
-          "KWREUF" = "yiff";
-          "KWR*EUF" = "I didn't have";
-          "PWA/TPHA/TPHAS" = "bananas";
-          "PWA/TPHA/TPHAZ" = "bananas";
-          "HROT/TE" = "Lotte";
-          "TPUR/SO/TPHA" = "fursona";
-          "TPWH" = "to be honest";
-          "TPWH*" = "tbh";
-          "PWRU" = "bruh";
-          "HROL" = "lol";
-          "TEU" = "{^ty}";
-        });
+        path = "tmpdic.yaml";
+      }
+      {
+        enabled = true;
+        path = ../../extras/user.yaml;
       }
     ]
     ++ (map (module: {
@@ -57,7 +45,6 @@
         "symbols-briefs"
         "symbols-currency"
         "tabbing"
-        "top-10000-project-gutenberg-words"
         "top-level-domains"
         # Put these last
         "condensed-strokes"
