@@ -16,7 +16,7 @@
       }
       {
         enabled = true;
-        path = ../../extras/user.yaml;
+        path = ../../extra/user.yaml;
       }
     ]
     ++ (map (module: {
