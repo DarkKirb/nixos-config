@@ -18,6 +18,7 @@ rec {
     hosts-list.flake = false;
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
+    emanote.url = "github:EmaApps/emanote";
 
     nix-packages.url = "github:DarkKirb/nix-packages/main";
     nix-packages.inputs.nixpkgs.follows = "nixpkgs";

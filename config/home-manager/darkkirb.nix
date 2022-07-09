@@ -8,7 +8,6 @@
       ../programs/gpg.nix
       ../programs/git.nix
       ../programs/direnv.nix
-      ../programs/zk.nix
     ]
     ++ (
       if desktop
@@ -30,6 +29,7 @@
         ../programs/misc.nix
         ../programs/mail.nix
         ../programs/kitty.nix
+        ../programs/zk.nix
       ]
       else []
     );
