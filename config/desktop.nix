@@ -89,7 +89,6 @@ in {
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    gtkUsePortal = true;
   };
   programs.dconf.enable = true;
   services.xserver = {

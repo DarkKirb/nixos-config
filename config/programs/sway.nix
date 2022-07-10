@@ -181,6 +181,7 @@ in {
       export _JAVA_AWT_WM_NONREPARENTING=1
       export MOZ_ENABLE_WAYLAND=1
       export XDG_CURRENT_DESKTOP=sway
+      export GTK_USE_PORTAL=1
     '';
     extraConfig = ''
       exec ${dbus-sway-environment}/bin/dbus-sway-environment
