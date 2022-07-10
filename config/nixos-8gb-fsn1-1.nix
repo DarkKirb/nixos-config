@@ -226,7 +226,7 @@
     "net.ipv4.conf.all.forwarding" = true;
     "net.ipv6.conf.all.forwarding" = true;
   };
-  nix.systemFeatures = [
+  nix.settings.system-features = [
     "kvm"
     "nixos-test"
     "big-parallel"

@@ -1,5 +1,9 @@
-{pkgs, emanote, ...}: {
-  imports = [ emanote.homeManagerModule ];
+{
+  pkgs,
+  emanote,
+  ...
+}: {
+  imports = [emanote.homeManagerModule];
   home.packages = [pkgs.zk];
   services.emanote = {
     enable = true;

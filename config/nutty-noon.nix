@@ -205,7 +205,7 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKB8oH1XbuGrKn/SeguXz96sw4AjJQQvZyAdpptotzOr root@thinkrac"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAN/rVZJuwiO44LwOqimpH4zyGehYUMF2ZhYFXUCkupP hydra-queue-runner@nas"
   ];
-  nix.systemFeatures = [
+  nix.settings.system-features = [
     "kvm"
     "nixos-test"
     "big-parallel"

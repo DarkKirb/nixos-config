@@ -167,7 +167,7 @@
   nix.settings.max-jobs = 4;
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
-  nix.systemFeatures = [
+  nix.settings.system-features = [
     "kvm"
     "nixos-test"
     "big-parallel"
