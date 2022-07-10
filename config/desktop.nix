@@ -94,7 +94,7 @@ in {
   programs.dconf.enable = true;
   services.xserver = {
     enable = true;
-    displayManager.defaultSession = "swa";
+    displayManager.defaultSession = "sway";
     displayManager.sddm.enable = true;
     libinput.enable = true;
     layout = "de";
