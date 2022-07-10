@@ -100,4 +100,5 @@ in {
     layout = "de";
     xkbVariant = "neo";
   };
+  programs.sway.enable = true;
 }
