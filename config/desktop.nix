@@ -92,4 +92,12 @@ in {
     gtkUsePortal = true;
   };
   programs.dconf.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.defaultSession = "swa";
+    displayManager.sddm.enable = true;
+    libinput.enable = true;
+    layout = "de";
+    xkbVariant = "neo";
+  };
 }
