@@ -29,6 +29,24 @@
 
       supportedSystems = ["x86_64-linux"];
 
+      hostDefaults = {
+        system = "x86_64-linux";
+        modules = [
+          ./config
+          inputs.home-manager.nixosModules.home-manager
+        ];
+        extraArgs = { inherit inputs; };
+      };
+
+      hosts = {
+        installer.modules = [ ./hosts/installer ];
+        nas.modules = [ ./hosts/nas ];
+        nixos-8gb-fsn1-1.modules = [ ./hosts/nixos-8gb-fsn1-1 ];
+        nutty-noon.modules = [ ./hosts/nutty-noon ];
+        thinkrac.modules = [ ./hosts/thinkrac ];
+      };
+      
+
       channelsConfig = {
         allowUnfree = true;
         contentAddressedByDefault = true;
@@ -42,9 +60,13 @@
       overlays = exportOverlays {
         inherit (inputs.self) pkgs inputs;
       };
-      outputsBuilder = channels: rec {
+      outputsBuilder = channels: let 
+        inherit (channels.nixpkgs) lib;
+        filteredConfigs = lib.attrsets.filterAttrs (_: value: value.config.nixpkgs.system == channels.nixpkgs.system) inputs.self.nixosConfigurations;
+        mappedConfigs = builtins.mapAttrs (_: value: value.config.system.build.toplevel) filteredConfigs;
+      in rec {
         # construct packagesBuilder to export all packages defined in overlays
-        packages = exportPackages inputs.self.overlays channels // devShells;
+        packages = exportPackages inputs.self.overlays channels // devShells // mappedConfigs;
 
         devShells = rec {
           devShell = with channels.nixpkgs;
