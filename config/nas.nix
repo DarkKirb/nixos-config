@@ -17,7 +17,6 @@
     ./services/hydra.nix
     ./services/backup.nix
     nixos-hardware.nixosModules.common-cpu-amd
-    nixos-hardware.nixosModules.common-gpu-nvidia
     nixos-hardware.nixosModules.common-pc-hdd
     ./services/hostapd.nix
     ./services/mastodon.nix
