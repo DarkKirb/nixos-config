@@ -21,6 +21,7 @@
   };
 
   outputs = inputs: let
+    inherit (inputs.nixpkgs.lib.attrsets) mapAttrsToList;
     inherit (inputs.utils.lib) exportOverlays exportPackages exportModules;
   in
     inputs.utils.lib.mkFlake {
@@ -31,21 +32,22 @@
 
       hostDefaults = {
         system = "x86_64-linux";
-        modules = [
-          ./config
-          inputs.home-manager.nixosModules.home-manager
-        ];
-        extraArgs = { inherit inputs; };
+        modules =
+          [
+            ./config
+            inputs.home-manager.nixosModules.home-manager
+          ]
+          ++ (mapAttrsToList (_: a: a) inputs.self.modules);
+        extraArgs = {inherit inputs;};
       };
 
       hosts = {
-        installer.modules = [ ./hosts/installer ];
-        nas.modules = [ ./hosts/nas ];
-        nixos-8gb-fsn1-1.modules = [ ./hosts/nixos-8gb-fsn1-1 ];
-        nutty-noon.modules = [ ./hosts/nutty-noon ];
-        thinkrac.modules = [ ./hosts/thinkrac ];
+        installer.modules = [./hosts/installer];
+        nas.modules = [./hosts/nas];
+        nixos-8gb-fsn1-1.modules = [./hosts/nixos-8gb-fsn1-1];
+        nutty-noon.modules = [./hosts/nutty-noon];
+        thinkrac.modules = [./hosts/thinkrac];
       };
-      
 
       channelsConfig = {
         allowUnfree = true;
@@ -56,11 +58,14 @@
         self.overlay
       ];
       overlay = import ./overlays;
+      modules = inputs.utils.lib.exportModules [
+        ./modules/zfs.nix
+      ];
       # export overlays automatically for all packages defined in overlaysBuilder of each channel
       overlays = exportOverlays {
         inherit (inputs.self) pkgs inputs;
       };
-      outputsBuilder = channels: let 
+      outputsBuilder = channels: let
         inherit (channels.nixpkgs) lib;
         filteredConfigs = lib.attrsets.filterAttrs (_: value: value.config.nixpkgs.system == channels.nixpkgs.system) inputs.self.nixosConfigurations;
         mappedConfigs = builtins.mapAttrs (_: value: value.config.system.build.toplevel) filteredConfigs;
