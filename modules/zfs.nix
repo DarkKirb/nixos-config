@@ -126,7 +126,7 @@ in {
               }
               (mkIf (config.bootfs != null) {inherit (config) bootfs;})
               (mkIf (config.cachefile != null) {inherit (config) cachefile;})
-              (mkIf (config.compatibility != false) {
+              (mkIf config.compatibility {
                 compatibility =
                   if builtins.isList config.compatibility
                   then lib.lists.foldl (a: b: a ++ (toString b)) "" config.compatibility
@@ -156,13 +156,19 @@ in {
       inherit (lib.attrsets) filterAttrs mapAttrs' mapAttrsToList;
       inherit (lib.strings) escapeShellArgs intersperse;
       enabledPools = filterAttrs (_: v: v.enable) cfg.zpool;
-    in mapAttrs' (name: value: {
-      name = "zfs-import-${name}";
-      value.environment.ZFS_FORCE = let
-        attrList = mapAttrsToList (name: value: "${name}=${value}") value.extraProps;
-        forceArg = if config.boot.zfs.forceImportAll || config.boot.zfs.forceImportRoot then "-f" else "";
-        cmdline = escapeShellArgs (intersperse "-o" ([forceArg] ++ attrList));
-      in mkForce cmdline;
-    }) enabledPools;
+    in
+      mapAttrs' (name: value: {
+        name = "zfs-import-${name}";
+        value.environment.ZFS_FORCE = let
+          attrList = mapAttrsToList (name: value: "${name}=${value}") value.extraProps;
+          forceArg =
+            if config.boot.zfs.forceImportAll || config.boot.zfs.forceImportRoot
+            then "-f"
+            else "";
+          cmdline = escapeShellArgs (intersperse "-o" ([forceArg] ++ attrList));
+        in
+          mkForce cmdline;
+      })
+      enabledPools;
   };
 }
