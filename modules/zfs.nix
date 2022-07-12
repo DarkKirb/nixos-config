@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -102,36 +103,36 @@ in {
               type = types.attrsOf types.str;
             };
           };
-          config = mkIf config.enable {
-            # TODO: figure out ashift
-            extraProps = let
-              toString = v:
-                if builtins.isBool v
-                then
-                  (
-                    if v
-                    then "on"
-                    else "off"
-                  )
-                else builtins.to_string v;
-            in
+          config.extraProps = let
+            toString = v:
+              if builtins.isBool v
+              then
+                (
+                  if v
+                  then "on"
+                  else "off"
+                )
+              else builtins.to_string v;
+          in
+            mkIf config.enable (mkMerge [
               {
                 autoexpand = toString config.autoexpand;
                 autoreplace = toString config.autoreplace;
                 autotrim = toString config.autotrim;
                 delegation = toString config.delegation;
                 listsnapshots = toString config.listsnapshots;
-                multihosts = toString config.multihosts;
+                multihost = toString config.multihost;
+                inherit (config) failmode;
               }
-              // (mkIf (config.bootfs != null) {inherit (config) bootfs;})
-              // (mkIf (config.cachefile != null) {inherit (config) cachefile;})
-              // (mkIf (config.compatibility != false) {
+              (mkIf (config.bootfs != null) {inherit (config) bootfs;})
+              (mkIf (config.cachefile != null) {inherit (config) cachefile;})
+              (mkIf (config.compatibility != false) {
                 compatibility =
                   if builtins.isList config.compatibility
                   then lib.lists.foldl (a: b: a ++ (toString b)) "" config.compatibility
                   else toString config.compatibility;
-              });
-          };
+              })
+            ]);
         }));
       };
     };
@@ -151,5 +152,17 @@ in {
           );
       supportedFilesystems = ["zfs"];
     };
+    systemd.services = let
+      inherit (lib.attrsets) filterAttrs mapAttrs' mapAttrsToList;
+      inherit (lib.strings) escapeShellArgs intersperse;
+      enabledPools = filterAttrs (_: v: v.enable) cfg.zpool;
+    in mapAttrs' (name: value: {
+      name = "zfs-import-${name}";
+      value.environment.ZFS_FORCE = let
+        attrList = mapAttrsToList (name: value: "${name}=${value}") value.extraProps;
+        forceArg = if config.boot.zfs.forceImportAll || config.boot.zfs.forceImportRoot then "-f" else "";
+        cmdline = escapeShellArgs (intersperse "-o" ([forceArg] ++ attrList));
+      in mkForce cmdline;
+    }) enabledPools;
   };
 }

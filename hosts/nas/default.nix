@@ -1,5 +1,5 @@
 _: {
-  networking.hostName = "nas.int.chir.rs";
+  networking.hostName = "nas";
   imports = [
     ./mounts.nix
   ];
