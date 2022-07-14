@@ -42,7 +42,6 @@
       };
 
       hosts = {
-        installer.modules = [./hosts/installer];
         nas.modules = [./hosts/nas];
         nixos-8gb-fsn1-1.modules = [./hosts/nixos-8gb-fsn1-1];
         nutty-noon.modules = [./hosts/nutty-noon];
