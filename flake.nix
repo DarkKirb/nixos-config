@@ -68,10 +68,7 @@
       outputsBuilder = channels: let
         inherit (channels.nixpkgs) lib;
         filteredConfigs = lib.attrsets.filterAttrs (_: value: value.config.nixpkgs.system == channels.nixpkgs.system) inputs.self.nixosConfigurations;
-        mappedConfigs = builtins.mapAttrs (name: value:
-          if name != "installer"
-          then value.config.system.build.toplevel
-          else value.config.system.build.isoImage)
+        mappedConfigs = builtins.mapAttrs (_: value: value.config.system.build.toplevel)
         filteredConfigs;
       in rec {
         # construct packagesBuilder to export all packages defined in overlays
