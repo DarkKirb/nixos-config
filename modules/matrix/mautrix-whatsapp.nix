@@ -104,9 +104,9 @@ in {
         ProtectHostname = true;
         ProtectKernelModules = true;
         ProtectClock = true;
-        SystemCallArchitectures="native";
-        SystemCallErrorNumber="EPERM";
-        SystemCallFilter="@system-service";
+        SystemCallArchitectures = "native";
+        SystemCallErrorNumber = "EPERM";
+        SystemCallFilter = "@system-service";
         WorkingDirectory = dataDir;
         StateDirectory = baseNameOf dataDir;
         UMask = 0117;
@@ -141,9 +141,9 @@ in {
         ProtectHostname = true;
         ProtectKernelModules = true;
         ProtectClock = true;
-        SystemCallArchitectures="native";
-        SystemCallErrorNumber="EPERM";
-        SystemCallFilter="@system-service";
+        SystemCallArchitectures = "native";
+        SystemCallErrorNumber = "EPERM";
+        SystemCallFilter = "@system-service";
         WorkingDirectory = dataDir;
         StateDirectory = baseNameOf dataDir;
         UMask = 0117;

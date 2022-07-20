@@ -40,6 +40,10 @@ rec {
         system = "x86_64-linux";
       }
       {
+        name = "nixos-8gb-fsn1-1-arm64"; # Hetzner Server
+        system = "aarch64-linux";
+      }
+      {
         name = "nutty-noon"; # PC
         system = "x86_64-linux";
       }
