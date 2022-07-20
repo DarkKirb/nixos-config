@@ -1,5 +1,20 @@
 {pkgs, ...}: let
   dsquotes = "''";
+  nvim-jdtls = pkgs.stdenvNoCC.mkDerivation rec {
+    name = "nvim-jdtls.lua";
+    src = ./nvim-jdtls.lua;
+    dontUnpack = true;
+    java = pkgs.openjdk;
+    jdtLanguageServer = pkgs.jdt-language-server;
+    buildInputs = [java jdtLanguageServer];
+    buildPhase = ''
+      export launcher="$(ls $jdtLanguageServer/share/java/plugins/org.eclipse.equinox.launcher_* | sort -V | tail -n1)"
+      substituteAll $src nvim-jdtls.lua
+    '';
+    installPhase = ''
+      cp nvim-jdtls.lua $out
+    '';
+  };
 in {
   programs.neovim = {
     enable = true;
@@ -64,6 +79,10 @@ in {
       {
         plugin = rust-tools-nvim;
         config = "lua dofile(\"${./rust-tools.lua}\")";
+      }
+      {
+        plugin = nvim-jdtls;
+        config = "lua dofile(\"${nvim-jdtls}\")";
       }
       nvim-dap
     ];
