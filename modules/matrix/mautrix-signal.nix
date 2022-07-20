@@ -73,7 +73,7 @@ in {
     systemd.services.mautrix-signal-genregistration = {
       description = "Mautrix-signal Registration";
 
-      wantedBy = ["matrix-synapse.service"];
+      requiredBy = ["matrix-synapse.service"];
       before = ["matrix-synapse.service"];
       script = ''
         # Not all secrets can be passed as environment variable (yet)
@@ -127,14 +127,7 @@ in {
         Type = "simple";
         Restart = "always";
 
-        ProtectSystem = "strict";
-        ProtectHome = true;
-        ProtectKernelTunables = true;
-        ProtectKernelModules = true;
-        ProtectControlGroups = true;
         WorkingDirectory = dataDir;
-        StateDirectory = baseNameOf dataDir;
-        UMask = 0117;
         User = "mautrix-signal";
         Group = "matrix-synapse";
         EnvironmentFile = cfg.environmentFile;
