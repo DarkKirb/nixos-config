@@ -40,6 +40,7 @@ in {
           ++ [
             ../../extra/kitty.patch
           ];
+          installCheckPhase = "true";
       });
       gitea = prev.gitea.overrideAttrs (old: rec {
         version = "1.17.0-rc1";
