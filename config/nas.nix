@@ -22,6 +22,7 @@
     ./services/mastodon.nix
     ./services/rspamd.nix
     ./services/synapse.nix
+    ./services/mautrix-discord.nix
     ./services/mautrix-telegram.nix
     ./services/mautrix-whatsapp.nix
     ./services/mautrix-signal.nix
