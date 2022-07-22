@@ -20,7 +20,7 @@
       };
       metrics = {
         enabled = true;
-        listen = "[::]:29319";
+        listen = "[::]:29321";
       };
       bridge = {
         delivery_receipts = true;

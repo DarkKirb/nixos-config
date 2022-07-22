@@ -23,9 +23,9 @@ in {
         inherit (settingsFormat) type;
         default = {
           appservice = {
-            address = "http://localhost:29318";
+            address = "http://localhost:29320";
             hostname = "0.0.0.0";
-            port = 29318;
+            port = 29320;
             database = {
               type = "sqlite";
               uri = "sqlite:///${dataDir}/mautrix-telegram.db";
