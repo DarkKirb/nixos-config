@@ -3,8 +3,10 @@
     enable = true;
     mutableExtensionsDir = false;
     extensions =
-      [
-        (pkgs.callPackage ../../../packages/rust-analyzer.nix {})
+      with pkgs.vscode-extensions; [
+        rust-lang.rust-analyzer
+        xaver.clang-format
+        github.vscode-pull-request-github
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
     userSettings = {
