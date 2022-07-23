@@ -13,10 +13,10 @@
       sha256 = "0zd0n9f5z1f0ckzfjr38xw2zzmcxg1gjrava7yahg5cvdcw6l35b";
     }
     {
-      name = "vscode-direnv";
-      publisher = "cab404";
-      version = "1.0.0";
-      sha256 = "0xikkhbzb5cd0a96smj5mr1sz5zxrmryhw56m0139sbg7zwwfwps";
+      name = "direnv";
+      publisher = "mkhl";
+      version = "0.6.1";
+      sha256 = "sha256-5/Tqpn/7byl+z2ATflgKV1+rhdqj+XMEZNbGwDmGwLQ=";
     }
     {
       name = "pioasm";
