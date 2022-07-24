@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = false;
@@ -35,7 +35,6 @@
       "files.trimFinalNewlines" = true;
       "files.trimTrailingWhitespace" = true;
       "git.autoStash" = true;
-      "git.autofetch" = true;
       "git.enableCommitSigning" = true;
       "git.enableSmartCommit" = true;
       "git.fetchOnPull" = true;
@@ -54,7 +53,7 @@
       "C_Cpp.errorSquiggles" = "Disabled";
       "clang-tidy.executable" = "${pkgs.llvmPackages_latest.clang-unwrapped}/bin/clang-tidy";
       "cmake.cmakePath" = "${pkgs.cmake}/bin/cmake";
-      "github.copilot.enable" = {"*" = true;};
+      "github.copilot.enable" = { "*" = true; };
       "crates.listPreReleases" = true;
       "css.format.spaceAroundSelectorSeparator" = true;
       "less.format.spaceAroundSelectorSeparator" = true;
