@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.vscode = {
     enable = true;
-    mutableExtensionsDir = false;
+    mutableExtensionsDir = true;
     extensions =
       with pkgs.vscode-extensions; [
         rust-lang.rust-analyzer
