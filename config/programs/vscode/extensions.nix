@@ -204,5 +204,35 @@
       version = "3.4.3";
       sha256 = "0z0sdb5vmx1waln5k9fk6s6lj1pzpcm3hwm4xc47jz62iq8930m3";
     }
+    {
+      name = "vscodeintellicode";
+      publisher = "visualstudioexptteam";
+      version = "1.2.22";
+      sha256 = "sha256-KlDrAV2MlJx5opVzf6KggaWn8zkeWU/TDEiCW3rLb+s=";
+    }
+    {
+      name = "vscode-java-debug";
+      publisher = "vscjava";
+      version = "0.42.0";
+      sha256 = "sha256-Zk2sPws0LRdBzO1R7C1qp7z9Q3OX702JbpAKhWWO16U=";
+    }
+    {
+      name = "vscode-maven";
+      publisher = "vscjava";
+      version = "0.36.0";
+      sha256 = "sha256-o8eWYF5J21WM6nXZ2kE6Blxv9svLYJTOi2ePqqQOGPg=";
+    }
+    {
+      name = "vscode-java-test";
+      publisher = "vscjava";
+      version = "0.35.2";
+      sha256 = "sha256-uSy0Ao1qL3Vi+WRycd7Fw9R52lDjHpXOJFWIpNW1wUo=";
+    }
+    {
+      name = "vscode-java-dependency";
+      publisher = "vscjava";
+      version = "0.20.0";
+      sha256 = "sha256-YD+TSpGaLMxLT38Fe/Xa46o+plepKKjYPLsyXBOvM3c=";
+    }
   ];
 }
