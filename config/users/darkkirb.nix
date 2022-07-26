@@ -5,6 +5,7 @@
     extraGroups = [
       "wheel"
       "input"
+      "dialout"
     ];
     group = "users";
     home = "/home/darkkirb";

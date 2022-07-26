@@ -8,4 +8,5 @@ _: {
     enable = true;
     storageDriver = "zfs";
   };
+  users.users.darkkirb.extraGroups = ["docker"];
 }
