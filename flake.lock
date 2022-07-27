@@ -777,21 +777,22 @@
         "nixpkgs-go116": "nixpkgs-go116",
         "nixpkgs-stable": "nixpkgs-stable",
         "plover": "plover",
+        "plover-machine-hid": "plover-machine-hid",
         "steno-dictionaries": "steno-dictionaries"
       },
       "locked": {
-        "lastModified": 1658801665,
-        "narHash": "sha256-jCp6RD1YyUEgINVxpP6ssXfNm6Awli8n8nmpjsfe4cA=",
-        "owner": "DarkKirb",
-        "repo": "nix-packages",
-        "rev": "f3ee04861c5d9fb68b80982aab5720c30e1ee481",
-        "type": "github"
+        "lastModified": 1658950209,
+        "narHash": "sha256-f5jpQQh/UNEYmzw64YgGg3H24Bz6eZ2bv225sr/boBI=",
+        "ref": "main",
+        "rev": "47e51c29dabf216969839ab8c3d8f659cd976f47",
+        "revCount": 171,
+        "type": "git",
+        "url": "https://git.chir.rs/DarkKirb/nix-packages"
       },
       "original": {
-        "owner": "DarkKirb",
         "ref": "main",
-        "repo": "nix-packages",
-        "type": "github"
+        "type": "git",
+        "url": "https://git.chir.rs/DarkKirb/nix-packages"
       }
     },
     "nix_2": {
@@ -1125,6 +1126,22 @@
         "ref": "wayland-sway",
         "repo": "plover",
         "type": "github"
+      }
+    },
+    "plover-machine-hid": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1658949572,
+        "narHash": "sha256-AinW7UcCDM5W0uJmyCV7FnZjTlwlBzD+VF+Y2cKlSK8=",
+        "ref": "refs/heads/main",
+        "rev": "06ed7f5db7bc4b5ca0bb0ddc8ec02fffaf254028",
+        "revCount": 13,
+        "type": "git",
+        "url": "https://git.chir.rs/darkkirb/plover-machine-hid"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.chir.rs/darkkirb/plover-machine-hid"
       }
     },
     "polymc": {
