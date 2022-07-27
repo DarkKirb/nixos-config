@@ -33,14 +33,14 @@ in {
         };
       });
       inherit (noto-variable) noto-fonts-cjk;
-      inherit (nix-packages.packages.${system}) plover plover-plugins-manager plover-emoji plover-tapey-tape plover-yaml-dictionary lotte-art;
+      inherit (nix-packages.packages.${system}) plover plover-plugins-manager plover-emoji plover-tapey-tape plover-yaml-dictionary lotte-art plover-machine-hid;
       kitty = prev.kitty.overrideAttrs (old: {
         patches =
           old.patches
           ++ [
             ../../extra/kitty.patch
           ];
-          installCheckPhase = "true";
+        installCheckPhase = "true";
       });
       gitea = prev.gitea.overrideAttrs (old: rec {
         version = "1.17.0-rc1";

@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (pkgs) plover plover-plugins-manager plover-emoji plover-tapey-tape plover-yaml-dictionary;
-  plover-env = plover.pythonModule.withPackages (_: [plover plover-plugins-manager plover-emoji plover-tapey-tape plover-yaml-dictionary]);
+  plover-env = plover.pythonModule.withPackages (_: [plover plover-plugins-manager plover-emoji plover-tapey-tape plover-yaml-dictionary plover-machine-hid]);
   plover-src = plover.src;
   plover-dictionaries-english =
     [

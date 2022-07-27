@@ -1,9 +1,9 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = true;
-    extensions =
-      with pkgs.vscode-extensions; [
+    extensions = with pkgs.vscode-extensions;
+      [
         rust-lang.rust-analyzer
         xaver.clang-format
         github.vscode-pull-request-github
@@ -54,7 +54,7 @@
       "C_Cpp.errorSquiggles" = "Disabled";
       "clang-tidy.executable" = "${pkgs.llvmPackages_latest.clang-unwrapped}/bin/clang-tidy";
       "cmake.cmakePath" = "${pkgs.cmake}/bin/cmake";
-      "github.copilot.enable" = { "*" = true; };
+      "github.copilot.enable" = {"*" = true;};
       "crates.listPreReleases" = true;
       "css.format.spaceAroundSelectorSeparator" = true;
       "less.format.spaceAroundSelectorSeparator" = true;
