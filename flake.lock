@@ -781,11 +781,11 @@
         "steno-dictionaries": "steno-dictionaries"
       },
       "locked": {
-        "lastModified": 1658953994,
-        "narHash": "sha256-G2cuJXuQ1jl0IRmXbQDYlBIpFtmQghHvqGmwBy2vJOY=",
+        "lastModified": 1658954484,
+        "narHash": "sha256-8ZoKdVNw5VwmW/cE16HsDK00dS2blQbr4kLNvkkz7Ko=",
         "ref": "main",
-        "rev": "f50afcc76a18d2a9548147d1060c44e5c9a5ee01",
-        "revCount": 173,
+        "rev": "d0d4c83d7af82da8107d8845dec879f98c11d47f",
+        "revCount": 174,
         "type": "git",
         "url": "https://git.chir.rs/DarkKirb/nix-packages"
       },
@@ -1131,11 +1131,11 @@
     "plover-machine-hid": {
       "flake": false,
       "locked": {
-        "lastModified": 1658953972,
-        "narHash": "sha256-PS0gtKJTDh8ZfG+OvwMqk4Z8Sj4zLokWVZDXOFt+/64=",
+        "lastModified": 1658954470,
+        "narHash": "sha256-iuu32Q5pdgyRybaBv8NQajgziicdwWwqvZV7DwIO64s=",
         "ref": "refs/heads/main",
-        "rev": "80f98167f206bc268852aa491f56c451ee522e91",
-        "revCount": 15,
+        "rev": "f11d7586a993522832efed78cfa5e3654bb48258",
+        "revCount": 16,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/plover-machine-hid"
       },
