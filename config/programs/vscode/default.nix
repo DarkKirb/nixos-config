@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = true;
@@ -54,7 +58,7 @@
       "C_Cpp.errorSquiggles" = "Disabled";
       "clang-tidy.executable" = "${pkgs.llvmPackages_latest.clang-unwrapped}/bin/clang-tidy";
       "cmake.cmakePath" = "${pkgs.cmake}/bin/cmake";
-      "github.copilot.enable" = { "*" = true; };
+      "github.copilot.enable" = {"*" = true;};
       "crates.listPreReleases" = true;
       "css.format.spaceAroundSelectorSeparator" = true;
       "less.format.spaceAroundSelectorSeparator" = true;
@@ -70,7 +74,7 @@
       "redhat.telemetry.enabled" = false; # FUCK OFF
     };
   };
-  home.activation.vscode-server = lib.hm.dag.entryAfter [ "write-boundary" ] ''
+  home.activation.vscode-server = lib.hm.dag.entryAfter ["write-boundary"] ''
     if test -f ~/.vscode-server; then
       if test -f "~/.vscode/extensions"; then
         if ! test -L "~/.vscode-server/extensions"; then

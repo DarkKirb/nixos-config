@@ -19,6 +19,7 @@ rec {
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
     emanote.url = "github:EmaApps/emanote";
+    rnix-lsp.url = "github:nix-community/rnix-lsp";
 
     nix-packages.url = "git+https://git.chir.rs/DarkKirb/nix-packages?ref=main";
     nix-packages.inputs.nixpkgs.follows = "nixpkgs";

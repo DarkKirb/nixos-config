@@ -3,6 +3,7 @@
 , nixpkgs
 , nixpkgs-noto-variable
 , nix-packages
+, rnix-lsp
 , ...
 }:
 with pkgs; let
@@ -55,16 +56,8 @@ in
           sed 's/getBoolAttr."allowSubstitutes", true./true/' src/libstore/parsed-derivations.cc
         '';
       });
-      rnix-lsp = prev.rnix-lsp.overrideAttrs (old: rec {
-        version = "0.3.0-alejandra";
-        src = prev.fetchFromGitHub {
-          owner = "nix-community";
-          repo = "rnix-lsp";
-          rev = "9189b50b34285b2a9de36a439f6c990fd283c9c7";
-          sha256 = "sha256-ZnUtvwkcz7QlAiqQxhI4qVUhtVR+thLhG3wQlle7oZg=";
-        };
-        cargoSha256 = "0000000000000000000000000000000000000000000000000000";
-        cargoBuildFlags = [ "--no-default-features" "--features" "alejandra" ];
+      rnix-lsp = rnix-lsp.packages.rnix-lsp.overrideAttrs (old: {
+        cargoBuildOptions = [ "--no-default-features" "--features" "alejandra" ];
       });
     })
   ];
