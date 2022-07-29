@@ -60,7 +60,6 @@ in
         src = prev.fetchFromGitHub {
           owner = "nix-community";
           repo = "rnix-lsp";
-          rev = "v${version}";
           rev = "9189b50b34285b2a9de36a439f6c990fd283c9c7";
           sha256 = "sha256-ZnUtvwkcz7QlAiqQxhI4qVUhtVR+thLhG3wQlle7oZg=";
         };
