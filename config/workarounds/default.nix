@@ -63,7 +63,7 @@ in
           rev = "9189b50b34285b2a9de36a439f6c990fd283c9c7";
           sha256 = "sha256-ZnUtvwkcz7QlAiqQxhI4qVUhtVR+thLhG3wQlle7oZg=";
         };
-        cargoSha256 = "sha256-VhE+DspQ0IZKf7rNkERA/gD7iMzjW4TnRSnYy1gdV0s=";
+        cargoSha256 = "0000000000000000000000000000000000000000000000000000";
         cargoBuildFlags = [ "--no-default-features" "--features" "alejandra" ];
       });
     })
