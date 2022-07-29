@@ -1,14 +1,14 @@
-{
-  system,
-  pkgs,
-  nixpkgs,
-  nixpkgs-noto-variable,
-  nix-packages,
-  ...
+{ system
+, pkgs
+, nixpkgs
+, nixpkgs-noto-variable
+, nix-packages
+, ...
 }:
 with pkgs; let
-  noto-variable = import nixpkgs-noto-variable {inherit system;};
-in {
+  noto-variable = import nixpkgs-noto-variable { inherit system; };
+in
+{
   nixpkgs.overlays = [
     (self: prev: {
       hydra-unstable = nix-packages.packages.${system}.hydra;
@@ -54,6 +54,18 @@ in {
         postPatchPhase = ''
           sed 's/getBoolAttr."allowSubstitutes", true./true/' src/libstore/parsed-derivations.cc
         '';
+      });
+      rnix-lsp = prev.rnix-lsp.overrideAttrs (old: rec {
+        version = "0.3.0-alejandra";
+        src = prev.fetchFromGitHub {
+          owner = "nix-community";
+          repo = "rnix-lsp";
+          rev = "v${version}";
+          rev = "9189b50b34285b2a9de36a439f6c990fd283c9c7";
+          sha256 = "sha256-ZnUtvwkcz7QlAiqQxhI4qVUhtVR+thLhG3wQlle7oZg=";
+        };
+        cargoSha256 = "sha256-VhE+DspQ0IZKf7rNkERA/gD7iMzjW4TnRSnYy1gdV0s=";
+        cargoBuildFlags = [ "--no-default-features" "--features" "alejandra" ];
       });
     })
   ];
