@@ -56,7 +56,7 @@ in
           sed 's/getBoolAttr."allowSubstitutes", true./true/' src/libstore/parsed-derivations.cc
         '';
       });
-      rnix-lsp = rnix-lsp.packages.rnix-lsp.overrideAttrs (old: {
+      rnix-lsp = rnix-lsp.packages.${system}.rnix-lsp.overrideAttrs (old: {
         cargoBuildOptions = [ "--no-default-features" "--features" "alejandra" ];
       });
     })
