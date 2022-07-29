@@ -78,7 +78,7 @@
         fi
       fi
       if test -f "~/vscode-server/bin"; then
-        for f (~/.vscode-server/bin/*/node); do
+        for f in ~/.vscode-server/bin/*/node; do
           if ! test -L $f; then
             $DRY_RUN_CMD ln -sf $VERBOSE_ARG ${pkgs.nodejs}/bin/node $f
           fi
