@@ -71,6 +71,10 @@ in {
             maintainers = with maintainers; [ma27];
           };
         };
+      dovecot = prev.dovcot.overrideAttrs (old: rec {
+        checkPhase = "true";
+        installCheckPhase = "true";
+      });
     })
   ];
 }
