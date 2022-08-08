@@ -33,7 +33,7 @@ in {
         };
       });
       inherit (noto-variable) noto-fonts-cjk;
-      inherit (nix-packages.packages.${system}) plover plover-plugins-manager plover-emoji plover-tapey-tape plover-yaml-dictionary lotte-art plover-machine-hid;
+      inherit (nix-packages.packages.${system}) plover plover-plugins-manager plover-emoji plover-tapey-tape plover-yaml-dictionary lotte-art plover-machine-hid mautrix-telegram mautrix-signal;
       kitty = prev.kitty.overrideAttrs (old: {
         patches =
           old.patches
