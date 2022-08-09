@@ -137,5 +137,4 @@ desktop: {pkgs, ...}: {
     tmux.enableShellIntegration = true;
   };
   home.stateVersion = "22.05";
-  xdg.configFile."htop/htoprc".source = ../../extra/htoprc;
 }
