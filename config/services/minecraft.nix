@@ -199,7 +199,6 @@
           "mail"
         ];
       };
-      worth-yml = ../../extra/worth.yml;
     };
     multiverse = {
       enable = true;
