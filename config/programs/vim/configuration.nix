@@ -27,7 +27,7 @@ in {
 
   output.path.style = "impure";
   output.makeWrapper = "--set LUA_PATH '${./modules/lua}/?.lua;;'";
-  output.path.path = with pkgs; [ xclip ];
+  output.path.path = with pkgs; [ wl-clipboard ];
 
   output.extraConfig = ''
     " Keybindings

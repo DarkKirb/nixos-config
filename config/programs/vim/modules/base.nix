@@ -11,7 +11,11 @@
     relativenumber = true;
     numberwidth = 3;
 
+    undodir = "~/.cache/nvim/undo-files";
     undofile = true;
+
+    mouse = "a";
+    clipboard = "unnamedplus";
 
     # Searching
     ignorecase = true;

@@ -10,11 +10,9 @@
 in {
   home.packages = [
     myNeovim
+  ];
 
-    # Override necessary here
-    # Commented for now to try out neovide
-    # (pkgs.neovim-qt.override { neovim = myNeovim; })
-
-    pkgs.neovide
+  systemd.user.tmpfiles.rules = [
+    "d %h/.cache/nvim/undo-files 0700 %u %g  mM:1d -"
   ];
 }
