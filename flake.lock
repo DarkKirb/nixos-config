@@ -815,11 +815,11 @@
         "steno-dictionaries": "steno-dictionaries"
       },
       "locked": {
-        "lastModified": 1659949356,
-        "narHash": "sha256-LrmspCiHfkL/YItMwWdwXTlM3KcCo7XLnJ+j0N+FcZY=",
+        "lastModified": 1660031673,
+        "narHash": "sha256-6k6xQf2VQqjdSvuJHrXqcpxi/dgbbZm/dov8f/GC6lg=",
         "ref": "main",
-        "rev": "43ce2b63532bd1789e701489d080c480b54e7f47",
-        "revCount": 185,
+        "rev": "3920fadc24af61decb3a07511c8eb3e206b7db8f",
+        "revCount": 187,
         "type": "git",
         "url": "https://git.chir.rs/DarkKirb/nix-packages"
       },
