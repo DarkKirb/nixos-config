@@ -11,7 +11,6 @@
     cmp-nvim-lua
     cmp-nvim-lsp
     cmp-latex-symbols
-    cmp-tmux
   ];
 
   plugin.setup.cmp = {
@@ -25,10 +24,6 @@
       { name = "nvim_lua"; }
       { name = "latex_symbols"; }
       { name = "buffer"; }
-      {
-        name = "tmux";
-        option.all_panes = true;
-      }
     ];
   };
 }
