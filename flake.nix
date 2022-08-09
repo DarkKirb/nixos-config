@@ -20,6 +20,11 @@ rec {
     nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
     emanote.url = "github:EmaApps/emanote";
 
+    nix-neovim = {
+      url = "github:syberant/nix-neovim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-packages.url = "git+https://git.chir.rs/DarkKirb/nix-packages?ref=main";
     nix-packages.inputs.nixpkgs.follows = "nixpkgs";
   };

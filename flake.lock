@@ -784,6 +784,26 @@
         "type": "github"
       }
     },
+    "nix-neovim": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1650651888,
+        "narHash": "sha256-2lC6oeQMTke7/bx8VxLNJr54A/WGkdAv2H0iebTmACY=",
+        "owner": "syberant",
+        "repo": "nix-neovim",
+        "rev": "6f03a1c206ff2c5bea209c73f861ebd8088de53b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "syberant",
+        "repo": "nix-neovim",
+        "type": "github"
+      }
+    },
     "nix-packages": {
       "inputs": {
         "cargo2nix": "cargo2nix_2",
@@ -810,16 +830,17 @@
         ],
         "nixpkgs-go116": "nixpkgs-go116",
         "nixpkgs-stable": "nixpkgs-stable",
+        "nvim-telescope-file-browser": "nvim-telescope-file-browser",
         "plover": "plover",
         "plover-machine-hid": "plover-machine-hid",
         "steno-dictionaries": "steno-dictionaries"
       },
       "locked": {
-        "lastModified": 1660031673,
-        "narHash": "sha256-6k6xQf2VQqjdSvuJHrXqcpxi/dgbbZm/dov8f/GC6lg=",
+        "lastModified": 1660058797,
+        "narHash": "sha256-uaN4uNBJDPuae4e0P+y6EZye8/p3KxrP7Qw1yyOUobU=",
         "ref": "main",
-        "rev": "3920fadc24af61decb3a07511c8eb3e206b7db8f",
-        "revCount": 187,
+        "rev": "69f22bd867480bc9c1eb39a22240e68317c220ea",
+        "revCount": 188,
         "type": "git",
         "url": "https://git.chir.rs/DarkKirb/nix-packages"
       },
@@ -1145,6 +1166,22 @@
         "type": "github"
       }
     },
+    "nvim-telescope-file-browser": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1659376895,
+        "narHash": "sha256-LYkyvjv6LO39c49s5fjzfdzRVRHrtTI1dweaZMFPLVc=",
+        "owner": "nvim-telescope",
+        "repo": "telescope-file-browser.nvim",
+        "rev": "4272c52078cc457dfaabce6fa3545e7495651d04",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-telescope",
+        "repo": "telescope-file-browser.nvim",
+        "type": "github"
+      }
+    },
     "plover": {
       "flake": false,
       "locked": {
@@ -1208,6 +1245,7 @@
         "flake-utils": "flake-utils_4",
         "home-manager": "home-manager",
         "hosts-list": "hosts-list",
+        "nix-neovim": "nix-neovim",
         "nix-packages": "nix-packages",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_9",
