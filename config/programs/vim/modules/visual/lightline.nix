@@ -12,6 +12,14 @@
         [ "fileformat" "fileencoding" "filetype" ]
       ];
     };
+    separator = {
+      left = "";
+      right = "";
+    };
+    subseparator = {
+      left = "";
+      right = "";
+    };
   };
 
   output.plugins = with pkgs.vimPlugins; [ lightline-vim ];
