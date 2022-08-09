@@ -2,12 +2,13 @@
   vim.opt = {
     # Use 4 spaces and expand tabs
     expandtab = true;
-    tabstop = 4;
-    softtabstop = 4;
-    shiftwidth = 4;
+    tabstop = 2;
+    softtabstop = 2;
+    shiftwidth = 2;
 
     cursorline = true; # Highlight line of cursor
     number = true; # Line numbering
+    relativenumber = true;
     numberwidth = 3;
 
     undofile = true;
