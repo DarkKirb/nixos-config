@@ -143,9 +143,6 @@ in {
       [KillThreadsFilter]
       [ListMailsFilter]
       [Filter.0]
-      query = from:*@hs-mittweida.de
-      tags = +university
-      [Filter.1]
       query = tag:new
       tags = +inbox;+unread;-new
     '';
