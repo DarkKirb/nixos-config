@@ -17,7 +17,6 @@
       };
       "<leader>" = {
         b = {
-          label = "Buffer commands";
           d = {
             command = "<cmd>BufferLineSortByDirectory<CR>";
             label = "Sort bufferline by directory";
