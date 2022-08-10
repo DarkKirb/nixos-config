@@ -11,7 +11,6 @@
     relativenumber = true;
     numberwidth = 3;
 
-    undodir = "$HOME/.cache/nvim/undo-files";
     undofile = true;
 
     mouse = "a";
@@ -32,12 +31,12 @@
   vim.g.clipboard = {
     name = "kitty";
     copy = {
-      "+" = ["${pkgs.kitty}/bin/kitty" "+kitten" "clipboard"];
-      "*" = ["${pkgs.kitty}/bin/kitty" "+kitten" "clipboard" "--use-primary"];
+      "+" = ["${pkgs.wl-clipboard}/bin/wl-copy"];
+      "*" = ["${pkgs.wl-clipboard}/bin/wl-copy" "--primary"];
     };
     paste = {
-      "+" = ["${pkgs.kitty}/bin/kitty" "+kitten" "clipboard" "--get-clipboard"];
-      "*" = ["${pkgs.kitty}/bin/kitty" "+kitten" "clipboard" "--get-clipboard" "--use-primary"];
+      "+" = ["${pkgs.wl-clipboard}/bin/wl-paste"];
+      "*" = ["${pkgs.wl-clipboard}/bin/wl-paste" "--primary"];
     };
   };
 
@@ -57,5 +56,6 @@
     if has('termguicolors')
       set termguicolors
     endif
+    set undodir=$HOME/.cache/nvim/undo-files
   '';
 }
