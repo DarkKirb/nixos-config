@@ -81,31 +81,6 @@ in {
   programs.mbsync.enable = true;
   programs.notmuch = {
     enable = true;
-    hooks = builtins.readFile ./hooks.py;
-    bindings = {
-      envelope = {
-        k = "call hooks.attach_my_key(ui)";
-        K = "call hooks.attach_keys(ui)";
-        "control k" = "call hooks.attach_recipient_keys(ui)";
-      };
-      search = {
-        "'T t'" = "tag todo; untag inbox";
-        "'T g'" = "tag doing; untag todo,blocked,inbox";
-        "'T b'" = "tag blocked; untag todo,doing,inbox";
-        "'T d'" = "tag done; untag todo,doing,blocked,inbox";
-      };
-      thread = {
-        k = "call hooks.import_keys(ui)";
-        "'T t'" = "tag todo; untag inbox";
-        "'T g'" = "tag doing; untag todo,blocked,inbox";
-        "'T b'" = "tag blocked; untag todo,doing,inbox";
-        "'T d'" = "tag done; untag todo,doing,blocked,inbox";
-      };
-    };
-    settings = {
-      envelope_txt2html = "${pkgs.pandoc}/bin/pandoc -f markdown -t html -s --self-contained --template=${../../extras/GitHub.html5}";
-      envelope_html2txt = "${pkgs.pandoc}/bin/pandoc -t markdown -f html";
-    };
   };
   programs.neomutt = {
     enable = true;
