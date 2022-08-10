@@ -22,7 +22,7 @@ with lib; {
           contentProvider = { preferred = 'fernflower' },
           codeGeneration = {
             toString = {
-              template = "\${object.className}{\${member.name()}=\${member.value}, \${otherMembers}}"
+              template = "''${object.className}{''${member.name()}=''${member.value}, ''${otherMembers}}"
             },
             hashCodeEquals = {
               useJava7Objects = true,
