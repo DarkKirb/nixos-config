@@ -58,6 +58,7 @@ desktop: {pkgs, ...}: {
         remove = "both";
       };
       msmtp.enable = true;
+      neomutt.enable = true;
       notmuch.enable = true;
       realName = "Charlotte 🦝 Delenk";
       passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/email/lotte@chir.rs";
