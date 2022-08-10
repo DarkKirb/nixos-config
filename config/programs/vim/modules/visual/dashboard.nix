@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   vim.g = {
     dashboard_custom_footer = [
       "It's pretty hard to tell what does bring happiness; poverty and wealth"
@@ -29,27 +27,27 @@
     dashboard_default_executive = "telescope";
     dashboard_custom_section = {
       "1_oldfiles" = {
-        description = [ " Open History                                -" ];
+        description = [" Open History                                -"];
         command = "Telescope oldfiles";
       };
       "2_find_files" = {
-        description = [ " Find File                             SPC f o" ];
+        description = [" Find File                             SPC f o"];
         command = "Telescope find_files";
       };
       "3_new_file" = {
-        description = [ " New File                                    -" ];
+        description = [" New File                                    -"];
         command = "enew";
       };
       "4_lazygit" = {
-        description = [ " lazygit                               SPC g g" ];
+        description = [" lazygit                               SPC g g"];
         command = "LazyGit";
       };
       "5_live_grep" = {
-        description = [ " Live Grep                             SPC f /" ];
+        description = [" Live Grep                             SPC f /"];
         command = "Telescope live_grep";
       };
     };
   };
 
-  output.plugins = with pkgs.vimPlugins; [ dashboard-nvim ];
+  output.plugins = with pkgs.vimPlugins; [dashboard-nvim];
 }

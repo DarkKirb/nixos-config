@@ -1,8 +1,10 @@
-{ pkgs, lib, config, ... }:
-
-with lib;
-
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
   cfg = config.treesitter;
   grammars = pkgs.tree-sitter.builtGrammars;
 in {
@@ -13,7 +15,6 @@ in {
       highlight.enable = true;
     };
 
-    output.plugins = with pkgs.vimPlugins;
-      [ (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars)) ];
+    output.plugins = with pkgs.vimPlugins; [(nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))];
   };
 }

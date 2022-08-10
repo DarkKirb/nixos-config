@@ -1,5 +1,3 @@
-{ pkgs, ... }:
-
-{
-  output.plugins = with pkgs.vimPlugins; [ vim-surround ];
+{pkgs, ...}: {
+  output.plugins = with pkgs.vimPlugins; [vim-surround];
 }

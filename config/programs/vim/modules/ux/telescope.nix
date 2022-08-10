@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   output.extraConfig = ''
     lua <<EOF
 
@@ -18,6 +16,6 @@
     EOF
   '';
 
-    output.path.path = with pkgs; [ fd ripgrep ];
-    output.plugins = with pkgs.vimPlugins; [ telescope-nvim ];
+  output.path.path = with pkgs; [fd ripgrep];
+  output.plugins = with pkgs.vimPlugins; [telescope-nvim];
 }

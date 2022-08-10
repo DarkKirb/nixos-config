@@ -5,7 +5,6 @@
 
     # Documented keybindings accessible via SPC
     keybindings."<leader>" = {
-
       ### LaTeX commands
       l = {
         # name = "LaTeX";
@@ -31,7 +30,6 @@
           label = "Pandoc View";
         };
       };
-
 
       ### Git commands
       v = {
@@ -80,11 +78,10 @@
 
     # Quick and dirty general keybindings
     keybindings-shortened = {
-      k = { command = "gk"; };
-      j = { command = "gj"; };
-      "0" = { command = "g0"; };
-      "$" = { command = "g$"; };
+      k = {command = "gk";};
+      j = {command = "gj";};
+      "0" = {command = "g0";};
+      "$" = {command = "g$";};
     };
-
   };
 }

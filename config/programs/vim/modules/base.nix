@@ -24,28 +24,28 @@
     # Wildmode
     wildmenu = true;
     wildignorecase = true;
-    wildignore = [ "*.o" "*~" "*.out" ];
-    wildmode = [ "longest" "list" "full" ];
+    wildignore = ["*.o" "*~" "*.out"];
+    wildmode = ["longest" "list" "full"];
+  };
 
-    # Clipboard command
-    clipboard = {
-      name = "kitty";
-      copy = {
-        "+" = "${pkgs.kitty}/bin/kitty +kitten clipboard";
-        "*" = "${pkgs.kitty}/bin/kitty +kitten clipboard --use-primary";
-      };
-      paste = {
-        "+" = "${pkgs.kitty}/bin/kitty +kitten clipboard --get-clipboard";
-        "*" = "${pkgs.kitty}/bin/kitty +kitten clipboard --get-clipboard --use-primary";
-      };
+  # Clipboard command
+  vim.g.clipboard = {
+    name = "kitty";
+    copy = {
+      "+" = "${pkgs.kitty}/bin/kitty +kitten clipboard";
+      "*" = "${pkgs.kitty}/bin/kitty +kitten clipboard --use-primary";
+    };
+    paste = {
+      "+" = "${pkgs.kitty}/bin/kitty +kitten clipboard --get-clipboard";
+      "*" = "${pkgs.kitty}/bin/kitty +kitten clipboard --get-clipboard --use-primary";
     };
   };
 
   vim.keybindings.keybindings-shortened = {
-    j = { command = "gj"; };
-    k = { command = "gk"; };
-    "0" = { command = "g0"; };
-    "$" = { command = "g$"; };
+    j = {command = "gj";};
+    k = {command = "gk";};
+    "0" = {command = "g0";};
+    "$" = {command = "g$";};
     "Y" = {
       command = "yy";
       mode = "n";
