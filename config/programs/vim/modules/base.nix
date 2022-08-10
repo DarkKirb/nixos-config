@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   vim.opt = {
     # Use 4 spaces and expand tabs
     expandtab = true;
