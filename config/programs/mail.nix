@@ -103,10 +103,8 @@ in {
       };
     };
     settings = {
-      envelope_txt2html = "${pkgs.pandoc}/bin/pandoc -f markdown -t html -s --self-contained --template=${../../extra/GitHub.html5}";
+      envelope_txt2html = "${pkgs.pandoc}/bin/pandoc -f markdown -t html -s --self-contained --template=${../../extras/GitHub.html5}";
       envelope_html2txt = "${pkgs.pandoc}/bin/pandoc -t markdown -f html";
-      theme = "alot-theme";
-      themes_dir = toString ../../extra;
     };
   };
   programs.neomutt = {
