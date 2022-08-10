@@ -26,6 +26,19 @@
     wildignorecase = true;
     wildignore = [ "*.o" "*~" "*.out" ];
     wildmode = [ "longest" "list" "full" ];
+
+    # Clipboard command
+    clipboard = {
+      name = "kitty";
+      copy = {
+        "+" = "${pkgs.kitty}/bin/kitty +kitten clipboard";
+        "*" = "${pkgs.kitty}/bin/kitty +kitten clipboard --use-primary";
+      };
+      paste = {
+        "+" = "${pkgs.kitty}/bin/kitty +kitten clipboard --get-clipboard";
+        "*" = "${pkgs.kitty}/bin/kitty +kitten clipboard --get-clipboard --use-primary";
+      };
+    };
   };
 
   vim.keybindings.keybindings-shortened = {
