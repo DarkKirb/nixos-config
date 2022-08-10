@@ -11,7 +11,7 @@
     relativenumber = true;
     numberwidth = 3;
 
-    undodir = "~/.cache/nvim/undo-files";
+    undodir = "$HOME/.cache/nvim/undo-files";
     undofile = true;
 
     mouse = "a";
@@ -32,12 +32,12 @@
   vim.g.clipboard = {
     name = "kitty";
     copy = {
-      "+" = "${pkgs.kitty}/bin/kitty +kitten clipboard";
-      "*" = "${pkgs.kitty}/bin/kitty +kitten clipboard --use-primary";
+      "+" = ["${pkgs.kitty}/bin/kitty" "+kitten" "clipboard"];
+      "*" = ["${pkgs.kitty}/bin/kitty" "+kitten" "clipboard" "--use-primary"];
     };
     paste = {
-      "+" = "${pkgs.kitty}/bin/kitty +kitten clipboard --get-clipboard";
-      "*" = "${pkgs.kitty}/bin/kitty +kitten clipboard --get-clipboard --use-primary";
+      "+" = ["${pkgs.kitty}/bin/kitty" "+kitten" "clipboard" "--get-clipboard"];
+      "*" = ["${pkgs.kitty}/bin/kitty" "+kitten" "clipboard" "--get-clipboard" "--use-primary"];
     };
   };
 
