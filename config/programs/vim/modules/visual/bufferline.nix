@@ -51,7 +51,7 @@
   output.plugins = with pkgs.vimPlugins; [
     bufferline-nvim
   ];
-  output.extra_config = ''
+  output.extraConfig = ''
     set termguicolors
     lua << EOF
     require("bufferline").setup{
