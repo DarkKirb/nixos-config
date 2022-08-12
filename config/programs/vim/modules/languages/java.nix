@@ -12,4 +12,5 @@ in {
       ${jdtls-lua}
     EOF
   '';
+  output.plugins = with pkgs.vimPlugins; [nvim-jdtls];
 }
