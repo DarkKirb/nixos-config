@@ -18,7 +18,6 @@
   services.openssh.enable = true;
   environment.systemPackages = with pkgs; [
     git
-    pinentry-curses
     kitty.terminfo
   ];
   networking.firewall.allowedTCPPorts = [22];
@@ -64,7 +63,6 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryFlavor = "curses";
   };
   users.mutableUsers = false;
   boot.kernelParams = ["nohibernate"];

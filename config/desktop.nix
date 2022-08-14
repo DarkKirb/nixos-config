@@ -81,8 +81,9 @@ in {
   networking.firewall.allowedUDPPorts = [22000];
 
   environment.systemPackages = [
-    pkgs.qt5.qtwayland
+    pinentry-gtk2
   ];
+  programs.gnupg.agent.pinentryFlavor = "gtk2";
 
   xdg.portal = {
     enable = true;
