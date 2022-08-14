@@ -20,6 +20,9 @@
         Restart = "always";
       };
       wantedBy = ["multi-user.target"];
+      environment = {
+        JAVA_HOME = "${pkgs.openjdk_headless}";
+      };
     };
     services.nginx.virtualHosts."invtracker.chir.rs" = {
       sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
