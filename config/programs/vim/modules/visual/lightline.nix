@@ -18,6 +18,9 @@
       left = "";
       right = "";
     };
+    enable = {
+      tabline = false;
+    };
   };
 
   output.plugins = with pkgs.vimPlugins; [lightline-vim];
