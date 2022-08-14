@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  outputs.plugins = with pkgs.vimPlugins; [zk-nvim];
+  output.plugins = with pkgs.vimPlugins; [zk-nvim];
   output.config_file = ''
     lua require("zk-config")
     '';
