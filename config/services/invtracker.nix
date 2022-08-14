@@ -1,7 +1,7 @@
 { pkgs, invtracker, ... }:
   let
     port = 19689;
-    configFile = builtins.toPath "config.xml" ''
+    configFile = builtins.toFile "config.xml" ''
     <?xml version="1.0" encoding="UTF-8"?>
     <config>
       <server host="127.0.0.1" port="${toString port}" />
