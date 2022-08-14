@@ -80,7 +80,7 @@ in {
   networking.firewall.allowedTCPPorts = [22000];
   networking.firewall.allowedUDPPorts = [22000];
 
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     pinentry-gtk2
   ];
   programs.gnupg.agent.pinentryFlavor = "gtk2";
