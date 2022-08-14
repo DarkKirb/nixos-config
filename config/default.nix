@@ -14,6 +14,7 @@
     ./services/restic.nix
     ./specialization.nix
     ./services/promtail.nix
+    ./env.nix
   ];
   services.openssh.enable = true;
   environment.systemPackages = with pkgs; [

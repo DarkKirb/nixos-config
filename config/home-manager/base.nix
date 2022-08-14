@@ -104,11 +104,11 @@ desktop: {pkgs, ...}: {
         userName = "mdelenk@hs-mittweida.de";
         primary = false;
       };
+    };
+  config.systemd.user.sessionVariables = {
+    EDITOR = "nvim";
   };
   home = {
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
     shellAliases = {
       vim = "nvim";
       cat = "bat";
