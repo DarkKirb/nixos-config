@@ -4,6 +4,7 @@ desktop: {pkgs, ...}: {
     ../programs/vim
     ../programs/tmux.nix
     ../programs/ssh.nix
+    ../programs/taskwarrior.nix
   ];
   programs = {
     zsh = {
