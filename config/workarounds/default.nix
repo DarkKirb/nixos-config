@@ -1,12 +1,11 @@
 {
   system,
-  pkgs,
   nixpkgs,
   nixpkgs-noto-variable,
   nix-packages,
   ...
 }:
-with pkgs; let
+with nixpkgs.legacyPackages.${system}; let
   noto-variable = import nixpkgs-noto-variable {inherit system;};
 in {
   nixpkgs.overlays = [
@@ -26,7 +25,7 @@ in {
               --subst-var-by mosh-client "$out/bin/mosh-client"
           '';
           version = "2022-02-04";
-          src = pkgs.fetchFromGitHub {
+          src = prev.fetchFromGitHub {
             owner = "mobile-shell";
             repo = "mosh";
             rev = "dbe419d0e069df3fedc212d456449f64d0280c76";

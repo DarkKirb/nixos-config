@@ -9,7 +9,8 @@ require("zk").setup({
   auto_attach = {
     enabled = true,
     filetypes = { "markdown" },
-  })
+  }
+})
 -- TODO: nvim-nix does not support multiple keybindings in different modes yet
 
 vim.api.nvim_set_keymap("v", "<leader>zf", ":'<,'>ZkMatch<CR>", { noremap = true, silent = false })
