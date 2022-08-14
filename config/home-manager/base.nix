@@ -105,7 +105,7 @@ desktop: {pkgs, ...}: {
         primary = false;
       };
     };
-  config.systemd.user.sessionVariables = {
+  systemd.user.sessionVariables = {
     EDITOR = "nvim";
   };
   home = {

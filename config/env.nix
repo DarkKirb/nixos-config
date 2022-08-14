@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }: {
-  config.environment.extraInit =
+  environment.extraInit =
     let
       systemdBin = lib.getBin config.systemd.package;
     in
