@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     anki-bin
+    mdcat
   ];
   xdg.configFile."gdb/gdbinit".text = "set auto-load safe-path /nix/store";
   services.xsettingsd = {
