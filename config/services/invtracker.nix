@@ -5,7 +5,7 @@
     <?xml version="1.0" encoding="UTF-8"?>
     <config>
       <server host="127.0.0.1" port="${toString port}" />
-      <database url="jdbc:sqlite:test.db />
+      <database url="jdbc:sqlite:test.db" />
     </config>
   '';
   in {
