@@ -52,6 +52,7 @@
   ];
   output.extraConfig = ''
     set termguicolors
+    set tabline=
     lua << EOF
     require("bufferline").setup{
       diagnostics = "nvim_lsp",

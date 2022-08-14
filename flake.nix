@@ -19,6 +19,7 @@ rec {
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
     emanote.url = "github:EmaApps/emanote";
+    invtracker.url = "git+https://git.chir.rs/darkkirb/Programmierbeleg";
 
     nix-neovim = {
       url = "github:syberant/nix-neovim";

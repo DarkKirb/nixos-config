@@ -19,7 +19,7 @@
       right = "";
     };
     enable = {
-      tabline = false;
+      tabline = 0;
     };
   };
 
