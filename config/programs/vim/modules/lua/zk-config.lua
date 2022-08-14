@@ -52,8 +52,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       require("which-key").register({
         z = {
           n = {
-            name = "New"
-            t = "New note with title from selection"
+            name = "New",
+            t = "New note with title from selection",
             c = "New note with content from selection"
           },
           b = "Open backlinks",
