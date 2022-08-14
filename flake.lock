@@ -594,11 +594,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1660471470,
-        "narHash": "sha256-/AN2tSPgICC05t6AXJJgNAc5doCCZnIC9LKTW2ywqCI=",
+        "lastModified": 1660474508,
+        "narHash": "sha256-ApGAMNb0JvOb7HjhieY+cBnCo4SLK65Kz0HGs5Hwigs=",
         "ref": "refs/heads/main",
-        "rev": "aa2fd671eba99376bd2574c960a4b9f941c9f96f",
-        "revCount": 8,
+        "rev": "05aba579dee3386fd8d04b3ad7ba4c5787e24680",
+        "revCount": 9,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/Programmierbeleg"
       },

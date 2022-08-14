@@ -102,7 +102,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 12;
+      serial = 13;
     };
     NS = [
       "ns1.chir.rs."
@@ -184,6 +184,8 @@ with dns.lib.combinators; let
       mastodon-assets = createZone {};
       matrix = createZone {};
       drone = createZone {};
+      invtracker = createZone {};
+
 
       int =
         delegateTo [
