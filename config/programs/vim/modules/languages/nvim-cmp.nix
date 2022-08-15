@@ -3,13 +3,18 @@
     nvim-cmp
 
     # Various sources
-    cmp-path
+    cmp_luasnip
     cmp-buffer
     cmp-calc
+    cmp-spell
+    cmp-path
+
     cmp-nvim-lua
     cmp-nvim-lsp
     cmp-latex-symbols
   ];
+
+  outputs.extraConfig = "lua require('cmp-config')";
 
   plugin.setup.cmp = {
     # TODO: maybe do non-default keybindings?
