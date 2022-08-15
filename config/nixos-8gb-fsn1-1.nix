@@ -151,7 +151,7 @@
 
   systemd.network = {
     enable = true;
-    networks."enp0s3".extraConfig = ''
+    networks."ens3".extraConfig = ''
       [Match]
       Name = ens3
       [Network]
