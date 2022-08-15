@@ -14,7 +14,7 @@
     cmp-latex-symbols
   ];
 
-  outputs.extraConfig = "lua require('cmp-config')";
+  output.extraConfig = "lua require('cmp-config')";
 
   plugin.setup.cmp = {
     # TODO: maybe do non-default keybindings?
