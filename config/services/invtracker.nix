@@ -41,5 +41,6 @@
     users.groups.invtracker = {};
     systemd.tmpfiles.rules = [
       "d '/var/lib/invtracker' 0750 invtracker invtracker - -"
+      "d '/var/lib/invtracker/media' 0750 invtracker invtracker - -"
     ];
   }
