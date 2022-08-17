@@ -25,6 +25,7 @@
     sslCert = "/var/lib/acme/chir.rs/cert.pem";
     sslKey = "/var/lib/acme/chir.rs/key.pem";
     config = {
+      smtpd_tls_security_level = "encrypt";
       smtp_tls_security_level = "encrypt";
 
       virtual_alias_domains = "pgsql:/run/secrets/services/postfix/virtual_alias_domains.cf";
