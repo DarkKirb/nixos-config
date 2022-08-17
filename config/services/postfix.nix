@@ -46,6 +46,7 @@
       smtpd_tls_mandatory_protocols = "!SSLv2, !SSLv3, !TLSv1, !TLSv1.1";
       smtpd_tls_protocols = "!SSLv2, !SSLv3, !TLSv1, !TLSv1.1";
       tls_preempt_cipherlist = "no";
+      smtputf8_enable="yes";
     };
   };
   services.postgresql.ensureUsers = [
