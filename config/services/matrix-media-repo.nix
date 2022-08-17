@@ -55,6 +55,7 @@
         "fe80::/64"
         "fc00::/7"
       ];
+      userAgent = "TelegramBot (like TwitterBot)"; # to make it work with fxtwitter/vxtwitter
     };
     downloads = {
       expireAfterDays = 7;
