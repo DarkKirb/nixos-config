@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{lib, pkgs, ...}: {
   nixpkgs.overlays = [
     (curr: prev: {
       postfix = prev.postfix.override {
@@ -25,7 +25,7 @@
     sslCert = "/var/lib/acme/chir.rs/cert.pem";
     sslKey = "/var/lib/acme/chir.rs/key.pem";
     config = {
-      smtpd_tls_security_level = "encrypt";
+      smtpd_tls_security_level = lib.mkForce "encrypt";
       smtp_tls_security_level = "encrypt";
 
       virtual_alias_domains = "pgsql:/run/secrets/services/postfix/virtual_alias_domains.cf";
