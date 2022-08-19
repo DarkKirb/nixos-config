@@ -37,7 +37,6 @@
         animated_sticker.target = "webm";
         encryption = {
           allow = true;
-          default = true;
           keysharing.allow = true;
         };
         delivery_receipts = true;

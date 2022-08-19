@@ -29,7 +29,6 @@
         private_chat_portal_meta = true;
         encryption = {
           allow = true;
-          default = true;
         };
         permissions = {
           "@lotte:chir.rs" = "admin";

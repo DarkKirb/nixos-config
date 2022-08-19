@@ -38,7 +38,6 @@
         login_shared_secret_map = {};
         encryption = {
           allow = true;
-          default = true;
         };
         private_chat_portal_meta = true;
         delivery_receipts = true;

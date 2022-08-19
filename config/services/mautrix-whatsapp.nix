@@ -42,7 +42,6 @@
         url_previews = true;
         encryption = {
           allow = true;
-          default = true;
         };
         permissions = {
           "@lotte:chir.rs" = "admin";
