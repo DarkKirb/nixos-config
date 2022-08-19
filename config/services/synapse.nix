@@ -25,7 +25,10 @@
         }
       ];
       admin_contact = "mailto:lotte@chir.rs";
-      retention.enabled = true;
+      retention = {
+        enabled = true;
+        max_lifetime = "12w";
+      };
       database = {
         name = "psycopg2";
         txn_limit = 10000;
@@ -63,7 +66,6 @@
         #config.sops.secrets."services/synapse/discord-dev-registration.yaml".path
       ];
       signing_key_path = config.sops.secrets."services/synapse/private_key".path;
-      encryption_enabled_by_default_for_room_type = "all";
       enable_metrics = true;
       experimental_features = {
         msc2716_enabled = true;
