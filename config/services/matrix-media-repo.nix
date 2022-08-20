@@ -66,7 +66,6 @@
         enabled = true;
         asyncUploadExpirySecs = 120;
       };
-      IPFS.enabled = true;
     };
     sentry = {
       enable = true;
