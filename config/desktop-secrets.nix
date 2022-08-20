@@ -21,9 +21,5 @@ in {
       name = ".config/gh/hosts.yml";
       path = ".config/gh/hosts.yml";
     }
-    {
-      name = ".config/github-copilot/hosts.json";
-      path = ".config/github-copilot/hosts.json";
-    }
   ]);
 }
