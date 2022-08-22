@@ -30,6 +30,9 @@
       locations."/" = {
         proxyPass = "http://localhost:${toString port}/";
       };
+      locations."/web" = {
+        root = "${invtracker.packages.${pkgs.system}.invtracker-web}";
+      };
     };
     users.users.invtracker = {
       description = "InvTracker";
