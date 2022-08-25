@@ -97,7 +97,6 @@
         "video/quicktime"
       ];
     };
-    accessTokens.maxCacheTimeSeconds = 43200;
   });
 in {
   networking.firewall.interfaces."wg0".allowedTCPPorts = [9000];
