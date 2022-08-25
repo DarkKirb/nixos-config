@@ -183,8 +183,8 @@ in {
       };
     };
   in {
-    "matrix.int.chir.rs" = main;
-    "matrix.chir.rs" =
+    "matrix.chir.rs" = main;
+    "matrix.int.chir.rs" =
       main
       // {
         sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
