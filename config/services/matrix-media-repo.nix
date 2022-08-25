@@ -169,18 +169,18 @@ in {
         };
         "/_matrix/media" = mediaProxyConfig;
         "/_matrix/client/v3/logout" = mediaProxyConfig;
-        "/.well-known/matrix/server" = {
+        locations."/.well-known/matrix/server" = {
           extraConfig = ''
             return 200 '{ "m.server": "matrix.chir.rs:443" }';
           '';
         };
-        "/.well-known/matrix/client" = {
+        locations."/.well-known/matrix/client" = {
           extraConfig = ''
             add_header Access-Control-Allow-Origin '*';
             return 200 '{ "m.homeserver": { "base_url": "https://matrix.chir.rs" } }';
           '';
         };
-        "/_synapse/metrics" = {
+        locations."/_synapse/metrics" = {
           extraConfig = ''
             return 404 'Not found';
           '';
