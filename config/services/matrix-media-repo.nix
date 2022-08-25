@@ -145,55 +145,51 @@ in {
     }
   ];
   services.nginx.virtualHosts = let
-    mediaProxyConfig = {
-      proxyPass = "http://localhost:8008";
-      proxyWebsockets = true;
-      extraConfig = ''
-        proxy_hide_header Access-Control-Allow-Origin;
-        add_header Access-Control-Allow-Origin '*' always;
-      '';
-    };
     main = {
       sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
       sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
-      locations = {
-        "/_matrix" = {
-          proxyPass = "https://matrix.int.chir.rs";
-          proxyWebsockets = true;
-          extraConfig = ''
-            proxy_ssl_server_name on;
-            proxy_hide_header Access-Control-Allow-Origin;
-            add_header Access-Control-Allow-Origin '*' always;
-          '';
-        };
-        "/_matrix/media" = mediaProxyConfig;
-        "/_matrix/client/v3/logout" = mediaProxyConfig;
-        locations."/.well-known/matrix/server" = {
-          extraConfig = ''
-            return 200 '{ "m.server": "matrix.chir.rs:443" }';
-          '';
-        };
-        locations."/.well-known/matrix/client" = {
-          extraConfig = ''
-            add_header Access-Control-Allow-Origin '*';
-            return 200 '{ "m.homeserver": { "base_url": "https://matrix.chir.rs" } }';
-          '';
-        };
-        locations."/_synapse/metrics" = {
-          extraConfig = ''
-            return 404 'Not found';
-          '';
-        };
+      locations."/_matrix" = {
+        proxyPass = "https://matrix.int.chir.rs";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_ssl_server_name on;
+          proxy_hide_header Access-Control-Allow-Origin;
+          add_header Access-Control-Allow-Origin '*' always;
+        '';
+      };
+      locations."/_matrix/media" = {
+        proxyPass = "http://localhost:8008";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_hide_header Access-Control-Allow-Origin;
+          add_header Access-Control-Allow-Origin '*' always;
+        '';
+      };
+      locations."/.well-known/matrix/server" = {
+        extraConfig = ''
+          return 200 '{ "m.server": "matrix.chir.rs:443" }';
+        '';
+      };
+      locations."/.well-known/matrix/client" = {
+        extraConfig = ''
+          add_header Access-Control-Allow-Origin '*';
+          return 200 '{ "m.homeserver": { "base_url": "https://matrix.chir.rs" } }';
+        '';
+      };
+      locations."/_synapse/metrics" = {
+        extraConfig = ''
+          return 404 'Not found';
+        '';
       };
     };
   in {
-    "matrix.int.chir.rs" =
+    "matrix.int.chir.rs" = main;
+    "matrix.chir.rs" =
       main
       // {
         sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
         sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
       };
-    "matrix.chir.rs" = main;
     "chir.rs" = {
       locations."/.well-known/matrix/server" = {
         extraConfig = ''
