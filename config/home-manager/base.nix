@@ -103,7 +103,7 @@ desktop: {pkgs, ...}: {
         userName = "mdelenk@hs-mittweida.de";
         primary = false;
       };
-    };
+  };
   systemd.user.sessionVariables = {
     EDITOR = "nvim";
   };

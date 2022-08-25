@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   vim.keybindings = {
     keybindings = {
       "[" = {
@@ -16,27 +20,29 @@
         };
       };
       "<leader>" = {
-        b = {
-          d = {
-            command = "<cmd>BufferLineSortByDirectory<CR>";
-            label = "Sort bufferline by directory";
+        b =
+          {
+            d = {
+              command = "<cmd>BufferLineSortByDirectory<CR>";
+              label = "Sort bufferline by directory";
+              options.silent = true;
+            };
+            e = {
+              command = "<cmd>BufferLineSortByExtension<CR>";
+              label = "Sort bufferline by extension";
+              options.silent = true;
+            };
+            "$" = {
+              command = "<cmd>BufferLineGoToBuffer -1<CR>";
+              label = "Go to last buffer";
+              options.silent = true;
+            };
+          }
+          // (lib.attrsets.genAttrs ["0" "1" "2" "3" "4" "5" "6" "7" "8" "9"] (n: {
+            command = "<cmd>BufferLineGoToBuffer ${n}<CR>";
+            label = "Go to buffer ${n}";
             options.silent = true;
-          };
-          e = {
-            command = "<cmd>BufferLineSortByExtension<CR>";
-            label = "Sort bufferline by extension";
-            options.silent = true;
-          };
-          "$" = {
-            command = "<cmd>BufferLineGoToBuffer -1<CR>";
-            label = "Go to last buffer";
-            options.silent = true;
-          };
-        } // (lib.attrsets.genAttrs ["0" "1" "2" "3" "4" "5" "6" "7" "8" "9"] (n: {
-          command = "<cmd>BufferLineGoToBuffer ${n}<CR>";
-          label = "Go to buffer ${n}";
-          options.silent = true;
-        }));
+          }));
       };
       g = {
         b = {
@@ -69,6 +75,5 @@
       }
     }
     EOF
-    '';
+  '';
 }
-

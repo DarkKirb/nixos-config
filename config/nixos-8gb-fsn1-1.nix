@@ -202,7 +202,7 @@
       }
       {
         publicKey = "JZi7Lw8G5W2pnoqJWW6YfJm4OAaxhaneY8i3V9EO8X4=";
-        allowedIPs= [
+        allowedIPs = [
           "10.0.0.3/32"
           "fd0d:a262:1fa6:e621:66b6:3f04:5583:db63/128"
         ];

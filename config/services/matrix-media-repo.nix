@@ -75,6 +75,28 @@
       enable = true;
       dsn = "https://18e36e6f16b5490c83364101717cddba@o253952.ingest.sentry.io/6449283";
     };
+    thumbnails = {
+      maxSourceBytes = 0;
+      maxPixels = 102000000;
+      types = [
+        "image/jpeg"
+        "image/jpg"
+        "image/png"
+        "image/apng"
+        "image/gif"
+        "image/heif"
+        "image/webp"
+        "image/svg+xml"
+        "audio/mpeg"
+        "audio/ogg"
+        "audio/wav"
+        "audio/flac"
+        "video/mp4"
+        "video/webm"
+        "video/x-matroska"
+        "video/quicktime"
+      ];
+    };
   });
 in {
   networking.firewall.interfaces."wg0".allowedTCPPorts = [9000];
@@ -82,7 +104,7 @@ in {
     description = "Matrix Media Repo";
     after = ["network.target"];
     wantedBy = ["multi-user.target"];
-    path = [matrix-media-repo];
+    path = [matrix-media-repo pkgs.ffmpeg pkgs.imagemagick];
     preStart = ''
       akid=$(cat ${config.sops.secrets."services/matrix-media-repo/access-key-id".path})
       sak=$(cat ${config.sops.secrets."services/matrix-media-repo/secret-access-key".path})

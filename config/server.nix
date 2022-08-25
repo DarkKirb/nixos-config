@@ -10,5 +10,4 @@
     pinentry-curses
   ];
   programs.gnupg.agent.pinentryFlavor = "curses";
-
 }
