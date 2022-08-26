@@ -66,12 +66,14 @@ in {
     owner = "hydra-www";
     mode = "0440";
   };
-  services.caddy.virtualHosts."hydra.chir.rs" = {
+  services.caddy.virtualHosts."hydra.int.chir.rs" = {
     useACMEHost = "chir.rs";
     extraConfig = ''
       import baseConfig
 
-      reverse_proxy http://127.0.0.1:${toString config.services.hydra.port}
+      reverse_proxy http://127.0.0.1:${toString config.services.hydra.port} {
+        trusted_proxies private_ranges
+      }
     '';
   };
   systemd.services.clean-s3-cache = {

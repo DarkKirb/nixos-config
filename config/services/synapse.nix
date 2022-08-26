@@ -97,13 +97,16 @@
 
       handle /_matrix/* {
         reverse_proxy localhost:8008
+        trusted_proxies private_ranges
       }
       handle /_synapse/* {
         reverse_proxy localhost:8008
+        trusted_proxies private_ranges
       }
       handle /_matrix/media/* {
         reverse_proxy {
           to https://matrix.chir.rs
+          trusted_proxies private_ranges
 
           header_up Host {upstream_hostport}
 
