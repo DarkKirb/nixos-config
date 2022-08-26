@@ -95,13 +95,13 @@
     extraConfig = ''
       import baseConfig
 
-      handler /_matrix/* {
+      handle /_matrix/* {
         reverse_proxy localhost:8008
       }
-      handler /_synapse/* {
+      handle /_synapse/* {
         reverse_proxy localhost:8008
       }
-      handler /_matrix/media/* {
+      handle /_matrix/media/* {
         reverse_proxy {
           up https://matrix.chir.rs
 
