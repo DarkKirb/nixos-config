@@ -96,12 +96,14 @@
       import baseConfig
 
       handle /_matrix/* {
-        reverse_proxy localhost:8008
-        trusted_proxies private_ranges
+        reverse_proxy localhost:8008 {
+          trusted_proxies private_ranges
+        }
       }
       handle /_synapse/* {
-        reverse_proxy localhost:8008
-        trusted_proxies private_ranges
+        reverse_proxy localhost:8008 {
+          trusted_proxies private_ranges
+        }
       }
       handle /_matrix/media/* {
         reverse_proxy {
