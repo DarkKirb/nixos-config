@@ -9,11 +9,11 @@
     useACMEHost = "chir.rs";
     extraConfig = ''
       import baseConfig
+      ${extra}
+
       reverse_proxy {
         to ${dest}
         header_up Host {upstream_hostport}
-
-        ${extra}
 
         transport http {
           versions 1.1 2 3
@@ -51,6 +51,8 @@ in {
         @getOnly {
           method GET
         }
+        rewrite * /file/mastodon-chir-rs/{path}
+
         reverse_proxy @getOnly {
           to https://f000.backblazeb2.com
           header_up Host {upstream_hostport}
@@ -60,7 +62,6 @@ in {
           header_down -Access-Control-Allow-Methods
           header_down Access-Control-Allow-Headers
           header_up -Set-Cookie
-          rewrite * /file/mastodon-chir-rs/{path}
 
           transport http {
             versions 1.1 2 3

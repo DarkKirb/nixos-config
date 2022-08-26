@@ -13,9 +13,9 @@
     useACMEHost = "chir.rs";
     extraConfig = ''
       import baseConfig
+      rewrite * /api.chir.rs/{path}
       reverse_proxy {
         to http://localhost:8621
-        rewrite * /api.chir.rs/{path}
       }
     '';
   };
