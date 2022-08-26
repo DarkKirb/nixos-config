@@ -91,6 +91,7 @@
         "image/heif"
         "image/webp"
         "image/svg+xml"
+        "image/jxl"
         "audio/mpeg"
         "audio/ogg"
         "audio/wav"
