@@ -105,7 +105,7 @@ in {
         map = ["index" "pager"];
       }
       {
-        key = "<Return>"; # what the fuck is this mapping
+        key = "<Enter>"; # what the fuck is this mapping
         action = "display-message";
         map = ["index"];
       }
@@ -123,7 +123,9 @@ in {
       macro index,pager A "<modify-labels-then-hide>+archive -unread -inbox\n"
       bind index,pager y modify-labels
       set mailcap_path = ${mailcap}
-      source ${molokai}
+      set send_charset="utf-8"
+      set edit_headers=yes
+      set use_8bit_mime=yes
     '';
   };
   home.file.".mailcap".text = ''
