@@ -103,7 +103,7 @@
       }
       handle /_matrix/media/* {
         reverse_proxy {
-          up https://matrix.chir.rs
+          to https://matrix.chir.rs
 
           header_up Host {upstream_hostport}
 
