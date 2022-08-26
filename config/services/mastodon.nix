@@ -89,6 +89,7 @@ in {
       handle /api/v1/streaming/* {
         reverse_proxy {
           to http://127.0.0.1:${toString config.services.mastodon.streamingPort}
+          header_up Host mastodon.chir.rs # shut up
           trusted_proxies private_ranges
         }
       }
@@ -100,6 +101,7 @@ in {
       handle_errors {
         reverse_proxy {
           to http://127.0.0.1:${toString config.services.mastodon.webPort}
+          header_up Host mastodon.chir.rs # shut up
           trusted_proxies private_ranges
         }
       }
