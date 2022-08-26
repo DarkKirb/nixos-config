@@ -98,6 +98,7 @@ with lib; {
     nvim-lspconfig
     lsp_extensions-nvim
     lsp-status-nvim
+    dhall-vim
   ];
 
   output.path.path = with pkgs; [
@@ -111,6 +112,9 @@ with lib; {
 
     # C++
     clang-tools
+
+    # Dhall
+    dhall-lsp-server
 
     # Python
     (writeScriptBin "pyright-langserver" ''
