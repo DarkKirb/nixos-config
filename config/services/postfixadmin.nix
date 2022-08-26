@@ -39,7 +39,7 @@
     extraConfig = ''
       import baseConfig
 
-      php_fastcgi unix:${config.services.phpfpm.pools.phpfpm.socket}
+      php_fastcgi unix:${config.services.phpfpm.pools.postfixadmin.socket}
     '';
   };
   services.phpfpm.pools.postfixadmin.settings."listen.group" = "acme"; # there is no nginx group
