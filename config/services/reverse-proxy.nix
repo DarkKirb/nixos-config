@@ -51,7 +51,7 @@ in {
         @getOnly {
           method GET
         }
-        rewrite * /file/mastodon-chir-rs/{path}
+        rewrite * /file/mastodon-chir-rs{path}
 
         reverse_proxy @getOnly {
           to https://f000.backblazeb2.com
