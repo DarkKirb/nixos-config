@@ -19,6 +19,10 @@
         name = "matrix.chir.rs";
         csApi = "https://matrix.chir.rs";
       }
+      {
+        name = "matrix.int.chir.rs";
+        csApi = "https://matrix.chir.rs";
+      }
     ];
     admins = ["@lotte:chir.rs"];
     datastores = [
