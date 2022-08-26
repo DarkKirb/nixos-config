@@ -90,7 +90,7 @@ in {
       Group = "backup";
       Type = "oneshot";
 
-      EnvironmentFile = config.sops.secrets."services/restic/env".owner;
+      EnvironmentFile = config.sops.secrets."services/restic/env".path;
     };
   };
   sops.secrets."services/restic/env".owner = "backup";
