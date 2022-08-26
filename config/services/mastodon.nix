@@ -37,6 +37,7 @@ in {
     localDomain = "chir.rs";
     extraConfig = {
       WEB_DOMAIN = "mastodon.chir.rs";
+      ALTERNATE_DOMAINS = "mastodon.int.chir.rs";
       REDIS_NAMESPACE = "mastodon";
       SINGLE_USER_MODE = "true";
       REDIS_HOST = "127.0.0.1";
