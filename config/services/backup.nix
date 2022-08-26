@@ -4,6 +4,7 @@
   ...
 }: let
   resticPrunePre = pkgs.writeScript "resticPrunePre" ''
+    #!/bin/sh
     set -ex
 
     # Recover from an unclean shutdown
@@ -17,9 +18,9 @@
     ${pkgs.zfs}/bin/zfs destroy tank/backup-old || true
 
     # Wait for the restic repository to be unlocked
-    while [ -n "$(${pkgs.restic}/bin/restic list locks)" ]; then
+    while [ -n "$(${pkgs.restic}/bin/restic list locks)" ]; do
       sleep 10
-    fi
+    done
 
     # Clone the Dataset
     ${pkgs.zfs}/bin/zfs snapshot tank/backup@prune
@@ -27,11 +28,13 @@
     chown backup:backup /backup-prune
   '';
   resticPrune = pkgs.writeScript "resticPrune" ''
+    #!/bin/sh
     export RESTIC_REPOSITORY="$RESTIC_REPOSITORY-prune"
     ${pkgs.restic}/bin/restic prune --no-cache --max-unused 0
     ${pkgs.restic}/bin/restic check --read-data-subset 10%
   '';
   resticPrunePost = pkgs.writeScript "resticPrunePost" ''
+    #!/bin/sh
     set -ex
 
     # Wait for the restic repository to be unlocked
