@@ -23,8 +23,6 @@ _: {
       dnsResolver = "1.1.1.1:53";
     };
   };
-  services.nginx.group = "acme";
-  systemd.services.nginx.serviceConfig.ProtectHome = false;
   sops.secrets."security/acme/dns" = {};
   sops.secrets."security/acme/cloudflare" = {};
 }

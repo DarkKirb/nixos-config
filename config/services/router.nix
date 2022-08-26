@@ -28,11 +28,6 @@ _: {
     path = ../../extra/tftp;
   };
   networking.firewall.interfaces."br0".allowedUDPPorts = [69 4011];
-  services.nginx.virtualHosts."192.168.2.1" = {
-    root = "/var/lib/netboot";
-    forceSSL = false;
-    rejectSSL = true;
-  };
   # No i don’t have ipv6 :(
   networking.firewall.extraCommands = ''
     iptables -A FORWARD -i br0 -j ACCEPT

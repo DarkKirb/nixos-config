@@ -1,7 +1,7 @@
 # Configuration unique to servers
 {pkgs, ...}: {
   imports = [
-    ./services/nginx.nix
+    ./services/caddy
     ./services/acme.nix
     ./services/fail2ban.nix
     ./services/initrd-ssh.nix

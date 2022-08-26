@@ -9,12 +9,15 @@
     };
     wantedBy = ["multi-user.target"];
   };
-  services.nginx.virtualHosts."api.chir.rs" = {
-    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
-    locations."/" = {
-      proxyPass = "http://localhost:8621/api.chir.rs/";
-    };
+  services.caddy.virtualHosts."api.chir.rs" = {
+    useACMEHost = "chir.rs";
+    extraConfig = ''
+      import baseConfig
+      reverse_proxy {
+        to http://localhost:8621
+        rewrite * /api.chir.rs/{path}
+      }
+    '';
   };
   services.postgresql.ensureDatabases = ["homepage"];
   services.postgresql.ensureUsers = [

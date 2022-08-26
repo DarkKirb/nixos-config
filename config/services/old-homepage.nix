@@ -15,26 +15,32 @@ in {
     };
     wantedBy = ["multi-user.target"];
   };
-  services.nginx.virtualHosts."darkkirb.de" = {
-    sslCertificate = "/var/lib/acme/darkkirb.de/cert.pem";
-    sslCertificateKey = "/var/lib/acme/darkkirb.de/key.pem";
-    serverAliases = ["www.darkkirb.de"];
-    locations."/" = {
-      proxyPass = "http://localhost:3002/";
-    };
-    locations."/.well-known/matrix" = {
-      proxyPass = "http://localhost:3002/.well-known/matrix";
-      extraConfig = "add_header Access-Control-Allow-Origin '*';";
-    };
+  services.caddy.virtualHosts."darkkirb.de" = {
+    useACMEHost = "darkkirb.de";
+    extraConfig = ''
+      import baseConfig
+
+      reverse_proxy {
+        to http://localhost:3002
+        trusted_proxies private_ranges
+      }
+    '';
   };
-  services.nginx.virtualHosts."static.darkkirb.de" = {
-    forceSSL = false;
-    addSSL = true;
-    sslCertificate = "/var/lib/acme/darkkirb.de/cert.pem";
-    sslCertificateKey = "/var/lib/acme/darkkirb.de/key.pem";
-    locations."/" = {
-      proxyPass = "https://f000.backblazeb2.com/file/darkkirb-de/";
-    };
+  services.caddy.virtualHosts."static.darkkirb.de" = {
+    useACMEHost = "darkkirb.de";
+    extraConfig = ''
+      import baseConfig
+
+      reverse_proxy {
+        to https://f000.backblazeb2.com
+        rewrite * /file/darkkirb-de/{path}
+        header_up Host {upstream_hostport}
+
+        transport http {
+          versions 1.1 2 3
+        }
+      }
+    '';
   };
   sops.secrets."services/old-homepage" = {};
 }

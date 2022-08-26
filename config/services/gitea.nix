@@ -63,13 +63,13 @@
     };
   };
 
-  services.nginx.virtualHosts."git.chir.rs" = {
-    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
-    locations."/" = {
-      proxyPass = "http://${config.services.gitea.httpAddress}:${toString config.services.gitea.httpPort}/";
-      proxyWebsockets = true;
-    };
+  services.caddy.virtualHosts."git.chir.rs" = {
+    useACMEHost = "chir.rs";
+    extraConfig = ''
+      import baseConfig
+
+      reverse_proxy http://${config.services.gitea.httpAddress}:${toString config.services.gitea.httpPort}
+    '';
   };
 
   services.postgresql.ensureDatabases = ["gitea"];

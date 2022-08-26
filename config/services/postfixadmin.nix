@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   services.postfixadmin = {
     enable = true;
     adminEmail = "lotte@chir.rs";
@@ -30,9 +34,13 @@
       };
     }
   ];
-  services.nginx.virtualHosts."mail.chir.rs" = {
-    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
+  services.caddy.virtualHosts."mail.chir.rs" = {
+    useACMEHost = "chir.rs";
+    extraConfig = ''
+      import baseConfig
+
+      php_fastcgi unix:${config.services.phpfpm.pools.phpfpm.socket}
+    '';
   };
   services.phpfpm.pools.postfixadmin.settings."listen.group" = "acme"; # there is no nginx group
   services.phpfpm.pools.postfixadmin.group = "dovecot";

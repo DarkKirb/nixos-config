@@ -89,44 +89,29 @@
     }
   ];
   systemd.services.matrix-synapse.serviceConfig.ExecStartPre = lib.mkForce (pkgs.writeShellScript "dummy" "true");
-  services.nginx.virtualHosts = let
-    inherit ((import ../../utils/getInternalIP.nix config)) listenIPs;
-    listenStatements =
-      lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs)
-      + ''
-        add_header Alt-Svc 'h3=":443"';
-      '';
-    synapse = {
-      forceSSL = false;
-      addSSL = true;
-      listenAddresses = listenIPs;
-      locations."/_matrix" = {
-        proxyPass = "http://localhost:8008";
-      };
-      locations."/_synapse" = {
-        proxyPass = "http://localhost:8008";
-      };
-      locations."/_matrix/media" = {
-        proxyPass = "https://matrix.chir.rs";
-        proxyWebsockets = true;
-        extraConfig = ''
-          proxy_hide_header Access-Control-Allow-Origin;
-          add_header Access-Control-Allow-Origin '*' always;
-        '';
-      };
-    };
-  in {
-    "matrix.chir.rs" =
-      synapse
-      // {
-        sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
-        sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
-      };
-    "matrix.int.chir.rs" =
-      synapse
-      // {
-        sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
-        sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
-      };
+
+  services.caddy.virtualHosts."matrix.int.chir.rs" = {
+    useACMEHost = "int.chir.rs";
+    extraConfig = ''
+      import baseConfig
+
+      handler /_matrix/* {
+        reverse_proxy localhost:8008
+      }
+      handler /_synapse/* {
+        reverse_proxy localhost:8008
+      }
+      handler /_matrix/media/* {
+        reverse_proxy {
+          up https://matrix.chir.rs
+
+          header_up Host {upstream_hostport}
+
+          transport http {
+            versions 1.1 2 3
+          }
+        }
+      }
+    '';
   };
 }

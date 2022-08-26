@@ -66,25 +66,13 @@ in {
     owner = "hydra-www";
     mode = "0440";
   };
-  services.nginx.virtualHosts."hydra.chir.rs" = {
-    listenAddresses = listenIPs;
-    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
-      proxyWebsockets = true;
-    };
-    extraConfig = listenStatements;
-  };
-  services.nginx.virtualHosts."hydra.int.chir.rs" = {
-    listenAddresses = listenIPs;
-    sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
-      proxyWebsockets = true;
-    };
-    extraConfig = listenStatements;
+  services.caddy.virtualHosts."hydra.chir.rs" = {
+    useACMEHost = "chir.rs";
+    extraConfig = ''
+      import baseConfig
+
+      reverse_proxy http://127.0.0.1:${toString config.services.hydra.port}
+    '';
   };
   systemd.services.clean-s3-cache = {
     enable = true;

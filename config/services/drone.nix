@@ -49,24 +49,11 @@ in {
       ensurePermissions = {"DATABASE \"drone-server\"" = "ALL PRIVILEGES";};
     }
   ];
-  services.nginx.virtualHosts."drone.chir.rs" = {
-    listenAddresses = listenIPs;
-    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:47927";
-      proxyWebsockets = true;
-    };
-    extraConfig = listenStatements;
-  };
-  services.nginx.virtualHosts."drone.int.chir.rs" = {
-    listenAddresses = listenIPs;
-    sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:47927";
-      proxyWebsockets = true;
-    };
-    extraConfig = listenStatements;
+  services.caddy.virtualHosts."drone.int.chir.rs" = {
+    useACMEHost = "int.chir.rs";
+    extraConfig = ''
+      import baseConfig
+      reverse_proxy http://127.0.0.1:47927
+    '';
   };
 }

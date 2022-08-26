@@ -27,15 +27,20 @@ in {
       JAVA_HOME = "${pkgs.openjdk_headless}";
     };
   };
-  services.nginx.virtualHosts."invtracker.chir.rs" = {
-    sslCertificate = "/var/lib/acme/chir.rs/cert.pem";
-    sslCertificateKey = "/var/lib/acme/chir.rs/key.pem";
-    locations."/" = {
-      proxyPass = "http://localhost:${toString port}/";
-    };
-    locations."/web" = {
-      root = "${invtracker.packages.${pkgs.system}.invtracker-web}";
-    };
+  services.caddy.virtualHosts."invtracker.chir.rs" = {
+    useACMEHost = "chir.rs";
+    extraConfig = ''
+      import baseConfig
+
+      handle /web/* {
+        root * ${invtracker.packages.${pkgs.system}.invtracker-web}
+        try_files {path} /web/index.html
+      }
+
+      handle {
+        reverse_proxy http://localhost:${toString port}
+      }
+    '';
   };
   users.users.invtracker = {
     description = "InvTracker";

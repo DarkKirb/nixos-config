@@ -180,21 +180,13 @@
         maxmemory-policy = "volatile-ttl";
       };
     };
-    nginx.virtualHosts."rspamd.int.chir.rs" = let
-      inherit ((import ../../utils/getInternalIP.nix config)) listenIPs;
-      listenStatements =
-        lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs)
-        + ''
-          add_header Alt-Svc 'h3=":443"';
-        '';
-    in {
-      listenAddresses = listenIPs;
-      sslCertificate = "/var/lib/acme/int.chir.rs/cert.pem";
-      sslCertificateKey = "/var/lib/acme/int.chir.rs/key.pem";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:11334/";
-        proxyWebsockets = true;
-      };
+    caddy.virtualHosts."rspamd.int.chir.rs" = {
+      useACMEHost = "int.chir.rs";
+      extraConfig = ''
+        import baseConfig
+
+        reverse_proxy http://127.0.0.1:11334
+      '';
     };
   };
   sops.secrets."services/rspamd/dkim/darkkirb.de" = {owner = "rspamd";};
