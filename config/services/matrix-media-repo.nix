@@ -155,7 +155,7 @@ in {
       import baseConfig
       handle /_matrix/media/* {
         reverse_proxy http://localhost:8008 {
-          header_down Access-Control-Allow-Origin '*'
+          header_down Access-Control-Allow-Origin *
         }
       }
 
@@ -175,13 +175,13 @@ in {
       }
 
       handle /.well-known/matrix/server {
-        header Access-Control-Allow-Origin '*'
-        header Content-Type 'application/json'
+        header Access-Control-Allow-Origin *
+        header Content-Type application/json
       }
 
       handle /.well-known/matrix/client {
-        header Access-Control-Allow-Origin '*'
-        header Content-Type 'application/json'
+        header Access-Control-Allow-Origin *
+        header Content-Type application/json
       }
     '';
   };

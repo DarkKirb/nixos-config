@@ -9,7 +9,6 @@ _: {
       servers {
         protocol {
           experimental_http3
-          strict_sni_host on
         }
       }
     '';
