@@ -31,7 +31,7 @@ in {
     extraConfig = ''
       import baseConfig
 
-      rewrite * /file/darkkirb-de/{path}
+      rewrite * /file/darkkirb-de{path}
 
       reverse_proxy {
         to https://f000.backblazeb2.com
