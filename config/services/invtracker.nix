@@ -32,9 +32,19 @@ in {
     extraConfig = ''
       import baseConfig
 
-      handle /web/* {
+      handle_path /assets/* {
+        root * ${invtracker.packages.${pkgs.system}.invtracker-web}/assets
+        file_server {
+          precompressed zstd br gzip
+        }
+      }
+
+      handle_path /web/* {
         root * ${invtracker.packages.${pkgs.system}.invtracker-web}
-        try_files {path} /web/index.html
+        file_server {
+          precompressed zstd br gzip
+        }
+        try_files {path} /index.html
       }
 
       handle {
