@@ -67,7 +67,7 @@ in {
     mode = "0440";
   };
   services.caddy.virtualHosts."hydra.int.chir.rs" = {
-    useACMEHost = "chir.rs";
+    useACMEHost = "int.chir.rs";
     extraConfig = ''
       import baseConfig
 
