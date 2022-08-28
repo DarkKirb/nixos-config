@@ -74,6 +74,7 @@ in {
           checkPhase = "true";
           installCheckPhase = "true";
         });
+        element-web = prev.callPackage ../../packages/element-web.nix {};
       }
       // nix-packages.packages.${system})
   ];
