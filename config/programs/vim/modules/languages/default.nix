@@ -84,6 +84,7 @@ with lib; {
     endfunction
     autocmd InsertLeave,BufEnter,BufWritePost * call lightline#update()
     autocmd User LspDiagnosticsChanged call lightline#update()
+    autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
 
     " Show diagnostic popup on cursor hold
     autocmd CursorHold * lua vim.diagnostic.open_float()
