@@ -8091,6 +8091,7 @@
 <Multi_key> <U2225> <dead_stroke> <dead_stroke> : "∦"
 <Multi_key> <U2225> <U0338> : "∦"
 <Multi_key> <U2227> <asciitilde> : "⍲"
+<Multi_key> <U2227> <U2227> : "⩓"
 <Multi_key> <U2227> <U2228> : "⋄"
 <Multi_key> <U2227> <U2395> : "⍓"
 <Multi_key> <U2228> <asciitilde> : "⍱"
