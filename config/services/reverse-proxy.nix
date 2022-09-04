@@ -78,7 +78,7 @@ in {
           header Location https://mastodon.chir.rs{path}
           respond 301
         }
-        handle /.well-known/matrix {
+        handle /.well-known/matrix/* {
           reverse_proxy https://matrix.int.chir.rs
         }
       '';
