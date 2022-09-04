@@ -98,8 +98,6 @@ with lib; {
 
   output.path.path = with pkgs; [
     # Rust
-    cargo
-    rustc
     rust-analyzer
 
     # Nix
