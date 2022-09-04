@@ -1,11 +1,6 @@
 # Largely copied from a great blog post:
 # https://sharksforarms.dev/posts/neovim-rust/
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ pkgs, lib, config, ... }:
 with lib; {
   vim.opt = {
     completeopt = "menuone,noinsert,noselect";
@@ -20,14 +15,15 @@ with lib; {
   };
 
   vim.keybindings.keybindings-shortened = {
-    "K" = {command = "<cmd>lua vim.lsp.buf.hover()<cr>";};
+    "K" = { command = "<cmd>lua vim.lsp.buf.hover()<cr>"; };
   };
 
   vim.g.lightline.component_expand.lsp_status = "LspStatus";
-  vim.g.lightline.active.right = mkAfter [["lsp_status"]];
+  vim.g.lightline.active.right = mkAfter [ [ "lsp_status" ] ];
 
   # https://discourse.nixos.org/t/rust-src-not-found-and-other-misadventures-of-developing-rust-on-nixos/11570/2
-  output.makeWrapper = "--set RUST_SRC_PATH ${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+  output.makeWrapper =
+    "--set RUST_SRC_PATH ${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 
   output.config_file = ''
     set shortmess+=c
@@ -50,8 +46,7 @@ with lib; {
       lsp_status.on_attach(client)
 
       -- Disable formatting for all LS, let null-ls handle this
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
+      client.resolved_capabilities.documentFormattingProvider = false
     end
 
     -- Setup all LSPs
@@ -84,7 +79,6 @@ with lib; {
     endfunction
     autocmd InsertLeave,BufEnter,BufWritePost * call lightline#update()
     autocmd User LspDiagnosticsChanged call lightline#update()
-    autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
 
     " Show diagnostic popup on cursor hold
     autocmd CursorHold * lua vim.diagnostic.open_float()

@@ -1,1 +1,1 @@
-{ pkgs, ... }: { output.plugins = with pkgs.vimPlugins; [ editorconfig-nvim ]; }
+{pkgs, ...}: {output.plugins = with pkgs.vimPlugins; [editorconfig-nvim];}
