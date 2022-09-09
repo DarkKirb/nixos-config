@@ -9,7 +9,6 @@ rec {
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    chir-rs.url = "git+https://git.chir.rs/darkkirb/chir.rs.git?ref=main";
     nur.url = "github:nix-community/NUR";
     polymc.url = "github:PolyMC/PolyMC";
     polymc.inputs.nixpkgs.follows = "nixpkgs";
@@ -35,7 +34,6 @@ rec {
     nixpkgs,
     sops-nix,
     home-manager,
-    chir-rs,
     nur,
     polymc,
     ...
@@ -89,9 +87,6 @@ rec {
               home-manager.nixosModules.home-manager
               ({pkgs, ...}: {
                 nixpkgs.overlays = [
-                  (self: super: {
-                    chir-rs = chir-rs.outputs.defaultPackage.${system};
-                  })
                   nur.overlay
                   polymc.overlay
                 ];

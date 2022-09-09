@@ -80,10 +80,10 @@ in {
           };
         '';
       };
-      "rpz.int.chir.rs" = {
-        master = true;
-        file = "${rpz-int-chir-rs}";
-      };
+      #"rpz.int.chir.rs" = {
+      #  master = true;
+      #  file = "${rpz-int-chir-rs}";
+      #};
     };
     extraConfig = ''
       statistics-channels {
@@ -98,9 +98,6 @@ in {
         fc00::/7;
       };
       recursion yes;
-      response-policy {
-        zone "rpz.int.chir.rs";
-      };
       dnssec-validation yes;
     '';
   };

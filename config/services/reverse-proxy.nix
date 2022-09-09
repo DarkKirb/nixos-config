@@ -29,18 +29,12 @@ in {
       useACMEHost = "chir.rs";
       extraConfig = ''
         import baseConfig
-        handle {
-          root * ${nix-packages.packages.${system}.mastodon}/public
-          file_server
-        }
-        handle_errors {
           reverse_proxy {
             to https://mastodon.int.chir.rs
             header_up Host {upstream_hostport}
             transport http {
               versions 1.1 2 3
             }
-          }
         }
       '';
     };
@@ -78,8 +72,16 @@ in {
           header Location https://mastodon.chir.rs{path}
           respond 301
         }
-        handle /.well-known/matrix/* {
-          reverse_proxy https://matrix.int.chir.rs
+        handle /.well-known/matrix/server {
+          header Access-Control-Allow-Origin *
+          header Content-Type application/json
+          respond "{ \"m.server\": \"matrix.chir.rs:443\" }" 200
+        }
+
+        handle /.well-known/matrix/client {
+          header Access-Control-Allow-Origin *
+          header Content-Type application/json
+          respond "{ \"m.homeserver\": { \"base_url\": \"https://matrix.chir.rs\" } }" 200
         }
       '';
     };
