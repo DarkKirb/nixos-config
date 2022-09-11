@@ -95,8 +95,11 @@ config :pleroma, :frontends,
   primary: %{
     "name" => "pleroma-fe",
     "ref" => "stable"
+  },
+  admin: %{
+    "name" => "admin-fe",
+    "ref" => "stable"
   }
-  # TODO: get admin to work
 
 config :web_push_encryption, :vapid_details,
   subject: "lotte@chir.rs"

@@ -4,10 +4,13 @@ let static_dir = pkgs.stdenvNoCC.mkDerivation {
   src = pkgs.emptyDirectory;
   nativeBuildInputs = with pkgs; [xorg.lndir];
   akkoma_fe = nix-packages.packages.${pkgs.system}.akkoma-fe;
+  akkoma_admin_fe = nix-packages.packages.${pkgs.system}.akkoma-admin-fe;
   dontUnpack = false;
   installPhase = ''
     mkdir -p $out/frontends/pleroma-fe/stable
     lndir $akkoma_fe $out/frontends/pleroma-fe/stable
+    mkdir -p $out/frontends/admin-fe/stable
+    lndir $akkoma_admin_fe $out/frontends/admin-fe/stable
   '';
 };
 akkconfig = builtins.replaceStrings ["%AKKOMA_STATIC_DIR%"] ["${static_dir}"] (builtins.readFile ./akkoma.exs);
