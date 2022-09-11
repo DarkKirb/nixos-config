@@ -792,6 +792,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-fluffychat": {
+      "locked": {
+        "lastModified": 1660598205,
+        "narHash": "sha256-j5gfym5GrZHG6dn2c3uDfXF2PWM11lNIylAKf6tqoKs=",
+        "owner": "Luis-Hebendanz",
+        "repo": "nixpkgs",
+        "rev": "6b8f6b33b2a9c0d482d0b05176a10825b6c36502",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Luis-Hebendanz",
+        "ref": "fix_mkFlutterApp",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-noto-variable": {
       "locked": {
         "lastModified": 1648877644,
@@ -1030,6 +1046,7 @@
         "nix-packages": "nix-packages",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_7",
+        "nixpkgs-fluffychat": "nixpkgs-fluffychat",
         "nixpkgs-noto-variable": "nixpkgs-noto-variable",
         "nur": "nur",
         "polymc": "polymc",
