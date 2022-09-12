@@ -41,9 +41,9 @@
     set -ex
 
     # Wait for the restic repository to be unlocked
-    while [ -n "$(${pkgs.restic}/bin/restic list locks)" ]; then
+    while [ -n "$(${pkgs.restic}/bin/restic list locks)" ]; do
       sleep 10
-    fi
+    done
 
     # make the original read-only
     ${pkgs.zfs}/bin/zfs set readonly=on tank/backup
@@ -64,6 +64,7 @@
     # Destroy the old dataset
     ${pkgs.zfs}/bin/zfs destroy -rf tank/backup-old
     ${pkgs.zfs}/bin/zfs destroy tank/backup@prune
+    sleep 15
     ${pkgs.zfs}/bin/zfs mount tank/backup
   '';
 in {
