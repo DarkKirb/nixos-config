@@ -17,6 +17,9 @@
     ${pkgs.zfs}/bin/zfs destroy tank/backup@prune || true
     ${pkgs.zfs}/bin/zfs destroy tank/backup-old || true
 
+    # remove old backups
+    ${pkgs.restic}/bin/restic forget --keep-daily 14 --keep-weekly 8 --keep-monthly 24 --keep-yearly 10
+
     # Wait for the restic repository to be unlocked
     while [ -n "$(${pkgs.restic}/bin/restic list locks)" ]; do
       sleep 10
