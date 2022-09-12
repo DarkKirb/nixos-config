@@ -62,9 +62,9 @@
     ${pkgs.zfs}/bin/zfs set mountpoint=/backup tank/backup
 
     # Destroy the old dataset
+    sleep 15
     ${pkgs.zfs}/bin/zfs destroy -rf tank/backup-old
     ${pkgs.zfs}/bin/zfs destroy tank/backup@prune
-    sleep 15
     ${pkgs.zfs}/bin/zfs mount tank/backup
   '';
 in {
