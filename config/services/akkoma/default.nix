@@ -1,29 +1,34 @@
-{ pkgs, nix-packages, config, ... }:
-let static_dir = pkgs.stdenvNoCC.mkDerivation {
-  name = "akkoma-static";
-  src = pkgs.emptyDirectory;
-  nativeBuildInputs = with pkgs; [xorg.lndir];
-  akkoma_fe = nix-packages.packages.${pkgs.system}.akkoma-fe;
-  akkoma_admin_fe = nix-packages.packages.${pkgs.system}.akkoma-admin-fe;
-  dontUnpack = false;
-  installPhase = ''
-    mkdir -p $out/frontends/pleroma-fe/stable
-    lndir $akkoma_fe $out/frontends/pleroma-fe/stable
-    mkdir -p $out/frontends/admin-fe/stable
-    lndir $akkoma_admin_fe $out/frontends/admin-fe/stable
-  '';
-};
-akkconfig = builtins.replaceStrings ["%AKKOMA_STATIC_DIR%"] ["${static_dir}"] (builtins.readFile ./akkoma.exs);
-in{
+{
+  pkgs,
+  nix-packages,
+  config,
+  ...
+}: let
+  static_dir = pkgs.stdenvNoCC.mkDerivation {
+    name = "akkoma-static";
+    src = pkgs.emptyDirectory;
+    nativeBuildInputs = with pkgs; [xorg.lndir];
+    akkoma_fe = nix-packages.packages.${pkgs.system}.akkoma-fe;
+    akkoma_admin_fe = nix-packages.packages.${pkgs.system}.akkoma-admin-fe;
+    dontUnpack = false;
+    installPhase = ''
+      mkdir -p $out/frontends/pleroma-fe/stable
+      lndir $akkoma_fe $out/frontends/pleroma-fe/stable
+      mkdir -p $out/frontends/admin-fe/stable
+      lndir $akkoma_admin_fe $out/frontends/admin-fe/stable
+    '';
+  };
+  akkconfig = builtins.replaceStrings ["%AKKOMA_STATIC_DIR%"] ["${static_dir}"] (builtins.readFile ./akkoma.exs);
+in {
   services.pleroma = {
     enable = true;
     package = nix-packages.packages.${pkgs.system}.akkoma;
-    configs = [ akkconfig ];
+    configs = [akkconfig];
     user = "akkoma";
     group = "akkoma";
     secretConfigFile = config.sops.secrets."services/akkoma.exs".path;
   };
-  systemd.services.pleroma.path = with pkgs; [ exiftool imagemagick ffmpeg ];
+  systemd.services.pleroma.path = with pkgs; [exiftool imagemagick ffmpeg];
   services.postgresql.ensureDatabases = ["akkoma"];
   services.postgresql.ensureUsers = [
     {
@@ -31,7 +36,7 @@ in{
       ensurePermissions = {"DATABASE akkoma" = "ALL PRIVILEGES";};
     }
   ];
-  sops.secrets."services/akkoma.exs" = { owner = "akkoma"; };
+  sops.secrets."services/akkoma.exs" = {owner = "akkoma";};
   services.caddy.virtualHosts."akko.chir.rs" = {
     useACMEHost = "chir.rs";
     extraConfig = ''
