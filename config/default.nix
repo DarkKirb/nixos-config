@@ -15,6 +15,7 @@
     ./specialization.nix
     ./services/promtail.nix
     ./env.nix
+    ./services/monitoring.nix
   ];
   services.openssh.enable = true;
   environment.systemPackages = with pkgs; [
