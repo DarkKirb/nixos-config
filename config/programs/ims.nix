@@ -4,8 +4,9 @@
   nixpkgs-fluffychat,
   ...
 }: let
+  pkgs-fluffychat = import nixpkgs-fluffychat { inherit (pkgs) system; };
 in {
   home.packages = with pkgs; [
-    nixpkgs-fluffychat.legacyPackages.${system}.fluffychat
+    (pkgs-fluffychat.callPackage ./fluffychat.nix {})
   ];
 }
