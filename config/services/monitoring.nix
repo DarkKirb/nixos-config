@@ -3,7 +3,7 @@
   programs.msmtp = {
     enable = true;
     accounts = {
-      notif = {
+      default = {
         auth = true;
         tls = true;
         host = "mail.chir.rs";
