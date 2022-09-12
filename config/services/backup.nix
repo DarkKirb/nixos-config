@@ -96,6 +96,17 @@ in {
       EnvironmentFile = config.sops.secrets."services/restic/env".path;
     };
   };
+  systemd.timers.restic-prune = {
+    enable = true;
+    description = "Prune restic backups";
+    requires = ["restic-prune.service"];
+    wantedBy = ["multi-user.target"];
+    timerConfig = {
+      OnCalendar = "weekly";
+      RandomizedDelaySec = 604800;
+    };
+  };
+
   sops.secrets."services/restic/env".owner = "backup";
   sops.secrets."services/restic/rclone.conf" = {
     owner = "backup";
@@ -119,8 +130,8 @@ in {
     requires = ["backup-rclone.service"];
     wantedBy = ["multi-user.target"];
     timerConfig = {
-      OnBootSec = 300;
-      OnUnitActiveSec = 86400;
+      OnCalendar = "weekly";
+      RandomizedDelaySec = 604800;
     };
   };
 }
