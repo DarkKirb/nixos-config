@@ -1,7 +1,8 @@
-{pkgs, ...}: {
+{lib, pkgs, ...}: {
   imports = [../../modules/systemd-email-notify.nix];
   programs.msmtp = {
     enable = true;
+    setSendmail = false;
     accounts = {
       default = {
         auth = true;

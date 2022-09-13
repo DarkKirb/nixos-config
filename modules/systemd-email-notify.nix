@@ -11,7 +11,7 @@ with lib; let
     ''
       #!/bin/sh
 
-      ${pkgs.system-sendmail}/bin/sendmail -t <<ERRMAIL
+      ${pkgs.msmtp}/bin/msmtp -t <<ERRMAIL
       To: $1
       From: ${config.systemd.email-notify.mailFrom}
       Subject: Status of service $2
