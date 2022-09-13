@@ -40,6 +40,8 @@
     #!/bin/sh
     set -ex
 
+    export PATH="${pkgs.openssh}/bin:$PATH"
+
     # Wait for the restic repository to be unlocked
     while [ -n "$(${pkgs.restic}/bin/restic list locks)" ]; do
       sleep 10
