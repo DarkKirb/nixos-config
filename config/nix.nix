@@ -23,7 +23,7 @@
         "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
       ];
     };
-    package = pkgs.nixFlakes;
+    package = pkgs.nix;
     extraOptions = ''
       experimental-features = nix-command flakes ca-derivations
     '';
