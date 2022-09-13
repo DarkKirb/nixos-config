@@ -3,6 +3,7 @@
   nixpkgs,
   nixpkgs-noto-variable,
   nix-packages,
+  nix-hotfix,
   ...
 }:
 with nixpkgs.legacyPackages.${system}; let
@@ -41,7 +42,7 @@ in {
             ];
           installCheckPhase = "true";
         });
-        nix = prev.nix.overrideAttrs (old: rec {
+        nix = nix-hotfix.packages.${system}.nix.overrideAttrs (old: rec {
           postPatchPhase = ''
             sed 's/getBoolAttr."allowSubstitutes", true./true/' src/libstore/parsed-derivations.cc
           '';
