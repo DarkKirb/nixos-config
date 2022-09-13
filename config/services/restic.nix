@@ -7,6 +7,7 @@ _: {
     ];
     extraBackupArgs = [
       "--exclude-caches"
+      "--compression max"
     ];
     repository = "sftp:backup@backup.int.chir.rs:/backup";
   };
