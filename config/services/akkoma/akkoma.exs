@@ -78,7 +78,8 @@ config :pleroma, :mrf,
     Pleroma.Web.ActivityPub.MRF.ForceBotUnlistedPolicy,
     Pleroma.Web.ActivityPub.MRF.AntiFollowbotPolicy,
     Pleroma.Web.ActivityPub.MRF.ObjectAgePolicy,
-    Pleroma.Web.ActivityPub.MRF.TagPolicy
+    Pleroma.Web.ActivityPub.MRF.TagPolicy,
+    Pleroma.Web.ActivityPub.MRF.RequireImageDescription
   ],
   transparency: true
 
