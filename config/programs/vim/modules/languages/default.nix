@@ -55,7 +55,7 @@ with lib; {
 
     -- Setup all LSPs
     local nvim_lsp = require'lspconfig'
-    local servers = {'rust_analyzer', 'rnix', 'clangd', 'pyright', 'dhall_lsp_server', 'elixirls'}
+    local servers = {'rust_analyzer', 'rnix', 'clangd', 'pyright', 'dhall_lsp_server', 'elixir-ls'}
     for _, s in ipairs(servers) do
       nvim_lsp[s].setup({
         on_attach = on_attach,
