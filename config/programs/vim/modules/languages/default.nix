@@ -55,7 +55,7 @@ with lib; {
 
     -- Setup all LSPs
     local nvim_lsp = require'lspconfig'
-    local servers = {'rust_analyzer', 'rnix', 'clangd', 'pyright', 'dhall_lsp_server'}
+    local servers = {'rust_analyzer', 'rnix', 'clangd', 'pyright', 'dhall_lsp_server', 'elixirls'}
     for _, s in ipairs(servers) do
       nvim_lsp[s].setup({
         on_attach = on_attach,
@@ -98,6 +98,7 @@ with lib; {
     lsp_extensions-nvim
     lsp-status-nvim
     dhall-vim
+    vim-elixir
   ];
 
   output.path.path = with pkgs; [
@@ -119,6 +120,9 @@ with lib; {
       # This wrapper script fixes that.
 
       ${pyright}/bin/pyright-langserver $@
-    '')
+      '')
+
+    # Elixir
+    elixir_ls
   ];
 }
