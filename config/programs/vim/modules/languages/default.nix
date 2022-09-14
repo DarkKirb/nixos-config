@@ -55,13 +55,18 @@ with lib; {
 
     -- Setup all LSPs
     local nvim_lsp = require'lspconfig'
-    local servers = {'rust_analyzer', 'rnix', 'clangd', 'pyright', 'dhall_lsp_server', 'elixir-ls'}
+    local servers = {'rust_analyzer', 'rnix', 'clangd', 'pyright', 'dhall_lsp_server', 'elixirls'}
     for _, s in ipairs(servers) do
       nvim_lsp[s].setup({
         on_attach = on_attach,
         capabilities = lsp_status.capabilities,
       })
-    end
+      end
+
+    -- special config for elixirls
+    require'lspconfig'.elixirls.setup{
+      cmd = { "${pkgs.elixir_ls}/bin/elixir-ls" }
+    }
 
     -- handle diagnostics
     -- https://github.com/nvim-lua/diagnostic-nvim/issues/73
@@ -121,8 +126,5 @@ with lib; {
 
       ${pyright}/bin/pyright-langserver $@
       '')
-
-    # Elixir
-    elixir_ls
   ];
 }
