@@ -7,6 +7,7 @@
   raccoon-emoji = pkgs.fetchzip {
     url = "https://volpeon.ink/art/emojis/raccoon/raccoon.zip";
     sha256 = "b1986c87e44efcf08abaf2bb818f319e8d3dceb9f2f1a49d50e1c5bfc4434e64";
+    stripRoot = false;
   };
   static_dir = pkgs.stdenvNoCC.mkDerivation {
     name = "akkoma-static";
