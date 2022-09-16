@@ -3,11 +3,11 @@
     "akkoma": {
       "flake": false,
       "locked": {
-        "lastModified": 1662632362,
-        "narHash": "sha256-X2rk9x1qvSBZK7FFhiO6JeMk6lcAi0LdZ9O8jaM9v8Q=",
+        "lastModified": 1663150807,
+        "narHash": "sha256-pycVgUZtoE8UW60oiwqE3TNQlTuGvdagbOhm0aaM+C8=",
         "ref": "refs/heads/develop",
-        "rev": "a6d85003fe0cedab924a14f1065c181a2d468a1b",
-        "revCount": 14702,
+        "rev": "00f840fd44d5c32a975af85ff7e3a0f6f242b903",
+        "revCount": 14718,
         "type": "git",
         "url": "https://akkoma.dev/AkkomaGang/akkoma"
       },
@@ -35,11 +35,11 @@
     "akkoma-fe": {
       "flake": false,
       "locked": {
-        "lastModified": 1662632260,
-        "narHash": "sha256-JykZWh+BQrVZPlaKe9bNHh5h5ieUddS/HYLfYyjPTbw=",
+        "lastModified": 1662997673,
+        "narHash": "sha256-eQ1cX8ddgqNWg0V6MKyIGjFoFM49msPytUGi1M2GMRA=",
         "ref": "refs/heads/develop",
-        "rev": "da4b315d69843ecf463b7236d90755afc43b0b52",
-        "revCount": 6732,
+        "rev": "f628483499a2222acef43b5f8f48ef37e951d1ff",
+        "revCount": 6739,
         "type": "git",
         "url": "https://akkoma.dev/AkkomaGang/pleroma-fe"
       },
@@ -489,11 +489,11 @@
     "kreative-open-relay": {
       "flake": false,
       "locked": {
-        "lastModified": 1661307836,
-        "narHash": "sha256-pUSh1TSxAa7tfFdxg3W3ma1mXaquYqugNF53e0lm6Po=",
+        "lastModified": 1662351068,
+        "narHash": "sha256-gV/1CnIPrFeTBHU0WyBBc9SdbnExai2RnRfhceCvvsw=",
         "owner": "kreativekorp",
         "repo": "open-relay",
-        "rev": "2858bb18a993e604a4a3effb3e448a028c2ac42a",
+        "rev": "cbaca8d9d6d65bddbc05dd3e20b7063639f6664a",
         "type": "github"
       },
       "original": {
@@ -569,11 +569,11 @@
     "mautrix-discord": {
       "flake": false,
       "locked": {
-        "lastModified": 1660985251,
-        "narHash": "sha256-mDoTHpCtQtnkzDku3slGfgOqopme6F+4LRjIkAoikek=",
+        "lastModified": 1663179219,
+        "narHash": "sha256-2r7254UASruTC18RT086jhzpFin//CQc5JzdkpTxq9A=",
         "owner": "mautrix",
         "repo": "discord",
-        "rev": "92c5407359e18500d3090cbca460781e86c88726",
+        "rev": "8f6f98acce8db6a660538d495aedcb7ea5c30f65",
         "type": "github"
       },
       "original": {
@@ -601,11 +601,11 @@
     "mautrix-telegram": {
       "flake": false,
       "locked": {
-        "lastModified": 1661520126,
-        "narHash": "sha256-SUwiRrTY8NgOGQ643prsm3ZklOlwX/59m/u1aewFuik=",
+        "lastModified": 1663076198,
+        "narHash": "sha256-kMKJpUWZwCdot6roR/b2SFIVttdAZim9E8EWzqgr9j0=",
         "owner": "mautrix",
         "repo": "telegram",
-        "rev": "0289f4b524f1b02b9fe21fda1d5d29a150a9880a",
+        "rev": "ad0c6cfc8d32e8411a0a948dfa3ce25417ce66ca",
         "type": "github"
       },
       "original": {
@@ -617,11 +617,11 @@
     "mautrix-whatsapp": {
       "flake": false,
       "locked": {
-        "lastModified": 1661933439,
-        "narHash": "sha256-hfFpHpfrmRaRF6nZrGpdx8y9f5uL9SACIFJwprHo1QM=",
+        "lastModified": 1663178976,
+        "narHash": "sha256-5ay147gERtF9YxTuGE65uIIxmA+6C+lKG9an4VqEUEc=",
         "owner": "mautrix",
         "repo": "whatsapp",
-        "rev": "b923a39d76a59033c143bec80b438d2aba4f0fb5",
+        "rev": "bcf67b89b64e5bde4a379be243828707141654a6",
         "type": "github"
       },
       "original": {
@@ -769,11 +769,11 @@
         "steno-dictionaries": "steno-dictionaries"
       },
       "locked": {
-        "lastModified": 1663147163,
-        "narHash": "sha256-Ckjpqrf+iG1kebdSwc3/3BWM5AVPQ83vjbEqftuJtQg=",
+        "lastModified": 1663314456,
+        "narHash": "sha256-464MHv1HsRCm1Oa9vwD4OqFRJKPz6ikIRa++KRdDNuE=",
         "ref": "main",
-        "rev": "5276d7d9f3062fd003c6bacb033a41bd6aba2372",
-        "revCount": 238,
+        "rev": "71fadb69af0b7ee384d822b8085b39f2746b95a9",
+        "revCount": 241,
         "type": "git",
         "url": "https://git.chir.rs/DarkKirb/nix-packages"
       },
@@ -894,11 +894,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1662099760,
-        "narHash": "sha256-MdZLCTJPeHi/9fg6R9fiunyDwP3XHJqDd51zWWz9px0=",
+        "lastModified": 1663067291,
+        "narHash": "sha256-1BTrqhLMamWf53sJobtMiUDI91PEw6xF8YEwg2VE8w4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "67e45078141102f45eff1589a831aeaa3182b41e",
+        "rev": "d86a4619b7e80bddb6c01bc01a954f368c56d1df",
         "type": "github"
       },
       "original": {
