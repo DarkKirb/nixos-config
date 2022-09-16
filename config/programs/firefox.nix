@@ -8,7 +8,6 @@
       darkreader
       decentraleyes
       don-t-fuck-with-paste
-      i-dont-care-about-cookies
       keepassxc-browser
       privacy-badger
       privacy-possum
