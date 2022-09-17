@@ -706,16 +706,16 @@
         "nixpkgs-regression": "nixpkgs-regression"
       },
       "locked": {
-        "lastModified": 1662728070,
-        "narHash": "sha256-PZE+ALZoBrNKaTzbRmOlQizIQNLvJaiEhAdNO0xpz88=",
-        "owner": "edolstra",
+        "lastModified": 1657886512,
+        "narHash": "sha256-B9EyDUz/9tlcWwf24lwxCFmkxuPTVW7HFYvp0C4xGbc=",
+        "owner": "NixOS",
         "repo": "nix",
-        "rev": "1bcfd7b166c7d512cd506cca98a62695ad825d13",
+        "rev": "0b62dab6db3da5b20e62697b14aaaf80f1a2eea6",
         "type": "github"
       },
       "original": {
-        "owner": "edolstra",
-        "ref": "hydra-temp",
+        "owner": "NixOS",
+        "ref": "2.10.3",
         "repo": "nix",
         "type": "github"
       }
