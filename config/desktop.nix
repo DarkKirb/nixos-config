@@ -64,6 +64,7 @@ in {
         extraPkgs = pkgs:
           with pkgs; [
             mono
+            fuse
           ];
       };
     })
