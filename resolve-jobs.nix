@@ -5,8 +5,11 @@
 # containing 'defaultNix' (to be used in 'default.nix'), 'shellNix'
 # (to be used in 'shell.nix').
 _: let
-  inherit (builtins) attrNames listToAttrs;
+  inherit (builtins) attrNames listToAttrs concatMap;
 
+  nameValuePair = name: value: { inherit name value; };
+  filterAttrs = pred: set:
+    listToAttrs (concatMap (name: let v = set.${name}; in if pred name v then [(nameValuePair name v)] else []) (attrNames set));
   mapAttrs' = f: set:
     listToAttrs (map (attr: f attr set.${attr}) (attrNames set));
 
@@ -274,6 +277,7 @@ _: let
     result.hydraJobs;
 
   prs = builtins.fromJSON (builtins.readFile <prs>);
+  filteredPrs = filterAttrs (f: f.state == "open") prs;
   srcs =
     mapAttrs'
     (n: value: {
@@ -285,6 +289,6 @@ _: let
           ref = "${value.head.ref}";
         };
     })
-    prs;
+    filteredPrs;
 in
   builtins.mapAttrs (_: flake_compat) srcs
