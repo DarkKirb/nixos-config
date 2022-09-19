@@ -281,7 +281,7 @@ _: let
       value =
         builtins.fetchGit
         {
-          url = "https://github.com/${value.head.repo.owner.login}/${value.head.repo.name}.git";
+          url = "${value.head.repo.clone_url}";
           ref = "${value.head.ref}";
         };
     })
