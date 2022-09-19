@@ -281,7 +281,7 @@ _: let
   srcs =
     mapAttrs'
     (n: value: {
-      name = "pr${n}";
+      name = "pr${value.id}";
       value =
         builtins.fetchGit
         {
