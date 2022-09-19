@@ -7,12 +7,6 @@
 _: let
   inherit (builtins) attrNames listToAttrs concatMap;
 
-  nameValuePair = name: value: { inherit name value; };
-  filterAttrs = pred: set:
-    listToAttrs (concatMap (name: let v = set.${name}; in if pred name v then [(nameValuePair name v)] else []) (attrNames set));
-  mapAttrs' = f: set:
-    listToAttrs (map (attr: f attr set.${attr}) (attrNames set));
-
   flake_compat = src: let
     lockFilePath = src + "/flake.lock";
 
@@ -277,10 +271,9 @@ _: let
     result.hydraJobs;
 
   prs = builtins.fromJSON (builtins.readFile <prs>);
-  filteredPrs = filterAttrs (f: f.state == "open") prs;
-  srcs =
-    mapAttrs'
-    (n: value: {
+  filteredPrs = builtins.filter (f: f.state == "open") prs;
+  srcs = listToAttrs (map
+    (value: {
       name = "pr${value.id}";
       value =
         builtins.fetchGit
@@ -289,6 +282,6 @@ _: let
           ref = "${value.head.ref}";
         };
     })
-    filteredPrs;
+    filteredPrs);
 in
   builtins.mapAttrs (_: flake_compat) srcs
