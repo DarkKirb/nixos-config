@@ -64,7 +64,8 @@ config :pleroma, :mrf_simple,
     {"pmth.us", "Harassment"},
     {"nicecrew.digital", "TERF Instance"},
     {"freespeechextremist.com", "Freeze Peach"},
-    {"ryona.agency", "Freeze Peach"}
+    {"ryona.agency", "Freeze Peach"},
+    {"howlr.me", "Owner was verified kiwifarms user, engages in harassment"}
   ],
   media_removal: [
     {"a.rathersafe.space", "posting borderline illegal imagery as the fediblock account"}
