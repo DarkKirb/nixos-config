@@ -125,6 +125,6 @@ with lib; {
       # This wrapper script fixes that.
 
       ${pyright}/bin/pyright-langserver $@
-      '')
+    '')
   ];
 }

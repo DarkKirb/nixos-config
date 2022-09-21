@@ -21,6 +21,7 @@ rec {
     emanote.url = "github:EmaApps/emanote";
     invtracker.url = "git+https://git.chir.rs/darkkirb/Programmierbeleg";
     nixpkgs-fluffychat.url = "github:Luis-Hebendanz/nixpkgs/fix_mkFlutterApp";
+    helix.url = "github:helix-editor/helix";
 
     nix-neovim = {
       url = "github:syberant/nix-neovim";

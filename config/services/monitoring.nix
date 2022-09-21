@@ -1,4 +1,8 @@
-{lib, pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [../../modules/systemd-email-notify.nix];
   programs.msmtp = {
     enable = true;
