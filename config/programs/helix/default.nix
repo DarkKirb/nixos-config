@@ -7,6 +7,10 @@
   imports = [
     ./languages.nix
   ];
+  home.packages = [
+    pkgs.wl-clipboard
+    pkgs.xsel
+  ];
   programs.helix = {
     enable = true;
     package = helix.packages.${system}.helix;
