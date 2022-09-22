@@ -128,7 +128,7 @@
     ];
     settings = {
       theme = "gruvbox";
-      config = {
+      editor = {
         line-number = "relative";
       };
     };
