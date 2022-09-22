@@ -151,7 +151,6 @@
       }
     ];
     settings = {
-      lsp.display-messages = true;
       theme = "gruvbox";
     };
     themes = {
