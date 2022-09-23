@@ -6,11 +6,6 @@ _: {
       admin off
       storage file_system /var/lib/caddy
       auto_https disable_certs
-      servers {
-        protocol {
-          experimental_http3
-        }
-      }
     '';
     extraConfig = ''
       (baseConfig) {
