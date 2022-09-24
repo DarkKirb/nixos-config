@@ -921,11 +921,11 @@
         "steno-dictionaries": "steno-dictionaries"
       },
       "locked": {
-        "lastModified": 1663894828,
-        "narHash": "sha256-7CDbTOVNwDSFJB5MqVWJWE5d09IYpkTHWbx2pjfcwOM=",
+        "lastModified": 1664006624,
+        "narHash": "sha256-zYthffO/8lMY4z3zt4O1yJIt1LCu0fKn5rb+Wwiktco=",
         "ref": "main",
-        "rev": "717bb0900e95dffc38d94489d824ee2440daeda7",
-        "revCount": 248,
+        "rev": "c772008ceb0a38c7f85f7ae7bbcd83b021da7081",
+        "revCount": 249,
         "type": "git",
         "url": "https://git.chir.rs/DarkKirb/nix-packages"
       },
