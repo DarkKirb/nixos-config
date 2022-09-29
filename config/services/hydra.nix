@@ -16,10 +16,18 @@
   machines = pkgs.writeText "machines" ''
     localhost armv7l-linux,aarch64-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 12 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver1,gccarch-skylake,ca-derivations  -
   '';
-  run_deploy = pkgs.writeScript "run_deploy" ''
-    export GITHUB_TOKEN=$(cat /run/secrets/services/hydra/github_token)
-
-    ${pkgs.github-cli}/bin/gh workflow run deploy.yml -R
+  post-build-hook = pkgs.writeScript "post-build-hook" ''
+    #!/bin/sh
+    set -euf
+    export IFS=' '
+    systemd_unitname=upload-derivation@$(${pkgs.systemd}/bin/systemd-escape "$DRV_PATH")
+    ${pkgs.systemd}/bin/systemctl start "$systemd_unitname" --no-block
+  '';
+  upload-script = pkgs.writeScript "upload-script" ''
+    #!/bin/sh
+    set -xefu
+    ${pkgs.nix}/bin/nix store sign --key-file ${config.sops.secrets."services/hydra/cache-key".path} $1
+    ${pkgs.nix}/bin/nix copy --to 's3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15' $1
   '';
 in {
   imports = [
@@ -43,7 +51,6 @@ in {
       <githubstatus>
         jobs = .*
       </githubstatus>
-      store_uri = s3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15
       <hydra_notify>
         <prometheus>
           listen_address = 127.0.0.1
@@ -121,5 +128,17 @@ in {
       OnUnitActiveSec = 300;
     };
   };
+  systemd.services."upload-derivation@" = {
+    description = "Upload %I to the nix cache";
+    onFailure = lib.mkForce [];
+    serviceConfig = {
+      Restart = "on-failure";
+      RestartSec = 30;
+      User = "hydra-queue-runner";
+      Group = "hydra";
+      ExecStart = "${upload-script} %I";
+    };
+  };
   nix.settings.trusted-users = ["@hydra"];
+  nix.settings.post-build-hook = "${post-build-hook}";
 }
