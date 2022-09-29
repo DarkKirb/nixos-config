@@ -221,7 +221,7 @@
       "zfs.fsname=hdd/docker"
     ];
   };
-  nix.substituters = lib.mkForce [
+  nix.settings.substituters = lib.mkForce [
     "https://hydra.int.chir.rs/"
     "https://cache.nixos.org/"
   ];
