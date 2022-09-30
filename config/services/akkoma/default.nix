@@ -13,8 +13,8 @@
     name = "akkoma-static";
     src = pkgs.emptyDirectory;
     nativeBuildInputs = with pkgs; [xorg.lndir];
-    akkoma_fe = nix-packages.packages.${pkgs.system}.akkoma-fe;
-    akkoma_admin_fe = nix-packages.packages.${pkgs.system}.akkoma-admin-fe;
+    akkoma_fe = nix-packages.packages.${pkgs.system}.pleroma-fe;
+    akkoma_admin_fe = nix-packages.packages.${pkgs.system}.admin-fe;
     raccoon_emoji = raccoon-emoji;
     dontUnpack = false;
     installPhase = ''

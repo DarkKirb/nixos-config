@@ -4,6 +4,7 @@
   nixpkgs-noto-variable,
   nix-packages,
   nix-hotfix,
+  hydra,
   ...
 }:
 with nixpkgs.legacyPackages.${system}; let
@@ -12,7 +13,10 @@ in {
   nixpkgs.overlays = [
     (self: prev:
       {
-        hydra-unstable = nix-packages.packages.${system}.hydra;
+        hydra-unstable = hydra.packages.${system}.hydra.overrideAttrs (_: {
+          checkPhase = "true";
+          installCheckPhase = "true";
+        });
         mosh = prev.mosh.overrideAttrs (old: {
           patches = [
             ./mosh/ssh_path.patch

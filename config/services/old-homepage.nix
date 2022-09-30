@@ -3,14 +3,14 @@
   system,
   ...
 }: let
-  inherit (nix-packages.packages.${system}) homepage-old;
+  inherit (nix-packages.packages.${system}) old-homepage;
 in {
   systemd.services.homepage-old = {
     enable = true;
     description = "darkkirb.de";
-    script = "${homepage-old}/homepage";
+    script = "${old-homepage}/homepage";
     serviceConfig = {
-      WorkingDirectory = homepage-old;
+      WorkingDirectory = old-homepage;
       EnvironmentFile = "/run/secrets/services/old-homepage";
     };
     wantedBy = ["multi-user.target"];

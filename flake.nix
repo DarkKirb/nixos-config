@@ -22,11 +22,7 @@ rec {
     invtracker.url = "git+https://git.chir.rs/darkkirb/Programmierbeleg";
     nixpkgs-fluffychat.url = "github:Luis-Hebendanz/nixpkgs/fix_mkFlutterApp";
     helix.url = "github:helix-editor/helix";
-
-    nix-neovim = {
-      url = "github:syberant/nix-neovim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hydra.url = "git+https://git.chir.rs/darkkirb/hydra?ref=hack";
 
     nix-packages.url = "git+https://git.chir.rs/DarkKirb/nix-packages?ref=main";
     nix-packages.inputs.nixpkgs.follows = "nixpkgs";

@@ -5,8 +5,8 @@
   nix-packages,
   ...
 }: let
-  inherit (pkgs) plover plover-plugins-manager plover-emoji plover-tapey-tape plover-yaml-dictionary plover-machine-hid;
-  plover-env = plover.pythonModule.withPackages (_: [plover plover-plugins-manager plover-emoji plover-tapey-tape plover-yaml-dictionary plover-machine-hid]);
+  inherit (pkgs) plover plover-plugins-manager plover-plugin-emoji plover-plugin-tapey-tape plover-plugin-yaml-dictionary plover-plugin-rkb1-hid;
+  plover-env = plover.pythonModule.withPackages (_: [plover plover-plugins-manager plover-plugin-emoji plover-plugin-tapey-tape plover-plugin-yaml-dictionary plover-plugin-rkb1-hid]);
   plover-src = plover.src;
   plover-dictionaries-english =
     [
@@ -21,7 +21,7 @@
     ]
     ++ (map (module: {
         enabled = true;
-        path = nix-packages.packages.${system}."plover-dict-${module}";
+        path = "${nix-packages.packages.${system}.plover-dict-didoesdigital}/dictionaries/${module}.json";
       }) [
         #Put this first
         "fingerspelling"

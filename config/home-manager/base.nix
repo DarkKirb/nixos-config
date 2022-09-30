@@ -1,7 +1,6 @@
 desktop: {pkgs, ...}: {
   imports = [
     ../programs/zsh.nix
-    ../programs/vim
     ../programs/helix
     ../programs/tmux.nix
     ../programs/ssh.nix
@@ -106,11 +105,13 @@ desktop: {pkgs, ...}: {
       };
   };
   systemd.user.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "hx";
   };
   home = {
     shellAliases = {
-      vim = "nvim";
+      vi = "hx";
+      vim = "hx";
+      nvim = "hx";
       cat = "bat";
       less = "bat";
       icat = "${pkgs.kitty}/bin/kitty +kitten icat";
