@@ -20,14 +20,9 @@
     #!/bin/sh
     set -euf
     export IFS=' '
-    systemd_unitname=upload-derivation@$(${pkgs.systemd}/bin/systemd-escape "$DRV_PATH")
-    ${pkgs.systemd}/bin/systemctl start "$systemd_unitname" --no-block
-  '';
-  upload-script = pkgs.writeScript "upload-script" ''
-    #!/bin/sh
-    set -xefu
-    ${pkgs.nix}/bin/nix store sign --key-file ${config.sops.secrets."services/hydra/cache-key".path} $1
-    ${pkgs.nix}/bin/nix copy --to 's3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15' $1
+    ${pkgs.nix}/bin/nix-store -r $DRV_PATH
+    ${pkgs.nix}/bin/nix store sign --key-file ${config.sops.secrets."services/hydra/cache-key".path} $DRV_PATH
+    ${pkgs.nix}/bin/nix copy --to 's3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15' $DRV_PATH --no-recursive
   '';
 in {
   imports = [
@@ -57,6 +52,7 @@ in {
           port = 9199
         </prometheus>
       </hydra_notify>
+      binary_cache_secret_key_file = ${config.sops.secrets."services/hydra/cache-key".path}
     '';
     giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
     githubTokenFile = "/run/secrets/services/hydra/github_token";
@@ -126,17 +122,6 @@ in {
     timerConfig = {
       OnBootSec = 300;
       OnUnitActiveSec = 300;
-    };
-  };
-  systemd.services."upload-derivation@" = {
-    description = "Upload %I to the nix cache";
-    onFailure = lib.mkForce [];
-    serviceConfig = {
-      Restart = "on-failure";
-      RestartSec = 30;
-      User = "hydra-queue-runner";
-      Group = "hydra";
-      ExecStart = "${upload-script} %I";
     };
   };
   nix.settings.trusted-users = ["@hydra"];
