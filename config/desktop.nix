@@ -103,4 +103,5 @@ in {
     xkbVariant = "neo";
   };
   programs.sway.enable = true;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 }
