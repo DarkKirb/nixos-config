@@ -29,7 +29,6 @@
   boot.extraModulePackages = [
     config.boot.kernelPackages.zenpower
   ];
-  boot.kernelPackages = pkgs.zfsUnstable.latestCompatibleLinuxPackages;
   boot.zfs.enableUnstable = true;
 
   boot.supportedFilesystems = ["zfs"];
