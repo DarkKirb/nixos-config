@@ -381,11 +381,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1664638638,
-        "narHash": "sha256-NoGJ2gxvKu575FixK85rUwN4FG/y74rBipcfZHeoN8w=",
+        "lastModified": 1664840336,
+        "narHash": "sha256-O8yf/awk3h6O9qeaWQEcijdRaFWZsIOMaRJ8mhlrvXs=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "5b5f1bd39ae46fdf68ba758b29bdb29200394c86",
+        "rev": "581fe5c6754f7af4ad53f65227428bbbcd31be3c",
         "type": "github"
       },
       "original": {
@@ -418,11 +418,11 @@
     "hosts-list": {
       "flake": false,
       "locked": {
-        "lastModified": 1664505343,
-        "narHash": "sha256-Q77ks/5m/7Af7C+DnEomQY/TYxhiJj8G/J1dHdJgLqA=",
+        "lastModified": 1664672306,
+        "narHash": "sha256-YGD3I64g/zD5iX2oIU6Qy/WqzcWcaNs1HjMUBeKcDZ4=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "76453b4ca4983a7305a42ac27b852b52e0060702",
+        "rev": "4651bd2d09dffbaa9f7f4d19d1ab5acc598a680c",
         "type": "github"
       },
       "original": {
@@ -617,11 +617,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1664552229,
-        "narHash": "sha256-0C+cZr+O/VUUN+GV3jaiucmX48ap1VzFGbhZsJismfQ=",
+        "lastModified": 1664867800,
+        "narHash": "sha256-rbZzTkFXv16loLHqAm7ZgZso9R70TXdqvLdPC3EK6TA=",
         "ref": "main",
-        "rev": "d67f5025c97c769a6db52bf7c516eb3ff9a1ddde",
-        "revCount": 292,
+        "rev": "cc8365b2398559aa26732abecf51c9efaa51e920",
+        "revCount": 293,
         "type": "git",
         "url": "https://git.chir.rs/DarkKirb/nix-packages"
       },
@@ -820,11 +820,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1664667791,
-        "narHash": "sha256-UGvROr6C2/JKbV2+HIuj0UGgI9tnORY32jskVLUPySk=",
+        "lastModified": 1664872109,
+        "narHash": "sha256-zHSr46U1r8QHoe5zJonbFqgggAXgUW11P+gwiOOheIQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ae1d03834ebe4881dca31da399e277657ba33779",
+        "rev": "28827908017f7d628e0ff4e89de91595670c5f02",
         "type": "github"
       },
       "original": {
@@ -835,11 +835,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1664667620,
-        "narHash": "sha256-ae803FY++ea1tKK3pKvRkXsf89UkHQARMcUvnEGOne8=",
+        "lastModified": 1664866618,
+        "narHash": "sha256-eJZNYKFVubevxkkixhm++8u5VygO11IA9e1q4PjtMuQ=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "4c59c86802a7792f4b30ea42db40c6ea2fde1dc2",
+        "rev": "ec3f8863164de94d1463a880f6e715a387d3c733",
         "type": "github"
       },
       "original": {
@@ -858,11 +858,11 @@
         "tomlplusplus": "tomlplusplus"
       },
       "locked": {
-        "lastModified": 1664651494,
-        "narHash": "sha256-KAK38OduZAs8GC9pK16ZoM+jCROYrIWd9CL5uA/oxzk=",
+        "lastModified": 1664716139,
+        "narHash": "sha256-oq1Th8mRjGbOgF9PNpPjGyOQv/y51G0jMARBXn0VH/Y=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "f315025a8dc62ac7cc7d79a3565533f1db5e6bb8",
+        "rev": "e3e9e394985e0327efe882d7b4e4c1d6a6cb6491",
         "type": "github"
       },
       "original": {
