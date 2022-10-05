@@ -53,6 +53,9 @@ in {
         </prometheus>
       </hydra_notify>
       binary_cache_secret_key_file = ${config.sops.secrets."services/hydra/cache-key".path}
+      <git-input>
+        timeout = 3600
+      </git-input>
     '';
     giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
     githubTokenFile = "/run/secrets/services/hydra/github_token";
