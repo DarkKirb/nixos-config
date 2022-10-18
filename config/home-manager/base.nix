@@ -140,4 +140,5 @@ desktop: {pkgs, ...}: {
     tmux.enableShellIntegration = true;
   };
   home.stateVersion = "22.05";
+  manual.manpages.enable = false; # broken
 }

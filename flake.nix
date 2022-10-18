@@ -11,8 +11,8 @@ rec {
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
-    polymc.url = "github:PolyMC/PolyMC";
-    polymc.inputs.nixpkgs.follows = "nixpkgs";
+    prismmc.url = "github:PlaceholderMC/PrismLauncher";
+    prismmc.inputs.nixpkgs.follows = "nixpkgs";
     dns.url = "github:DarkKirb/dns.nix?ref=master";
     hosts-list.url = "github:StevenBlack/hosts";
     hosts-list.flake = false;
@@ -34,7 +34,6 @@ rec {
     sops-nix,
     home-manager,
     nur,
-    polymc,
     ...
   } @ args: let
     systems = [
@@ -87,7 +86,7 @@ rec {
               ({pkgs, ...}: {
                 nixpkgs.overlays = [
                   nur.overlay
-                  polymc.overlay
+                  args.prismmc.overlay
                 ];
                 home-manager.extraSpecialArgs = args // {inherit system;};
               })

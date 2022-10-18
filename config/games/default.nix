@@ -4,6 +4,6 @@
   ];
   home.packages = [
     pkgs.wineWowPackages.staging
-    pkgs.polymc
+    pkgs.prismlauncher
   ];
 }
