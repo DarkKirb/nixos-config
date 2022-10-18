@@ -6,7 +6,7 @@
 let 
   firefox-wrapped = config.programs.firefox.package;
   firefox = firefox-wrapped.unwrapped;
-  nss = pkgs.lib.lists.findFirst (x: (x.pname ? x.name) == "nss") null firefox.buildInputs;
+  nss = pkgs.lib.lists.findFirst (x: x.pname or x.name == "nss") null firefox.buildInputs;
 in {
   home.packages = with pkgs; [
     (discord.override { inherit nss; })
