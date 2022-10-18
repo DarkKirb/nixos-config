@@ -10,7 +10,7 @@ let
 in {
   home.packages = with pkgs; [
     (discord.override { inherit nss; })
-    telegram-desktop
+    tdesktop
     element-desktop
   ];
 }
