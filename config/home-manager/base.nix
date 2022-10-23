@@ -28,7 +28,7 @@ desktop: {pkgs, ...}: {
   };
   home.file.".p10k.zsh".source = ./.p10k.zsh;
 
-  accounts.email.maildirBasePath = "Data/Maildir";
+  accounts.email.maildirBasePath = "Maildir";
   programs.mbsync.extraConfig = ''
     FieldDelimiter -
   '';
