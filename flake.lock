@@ -857,13 +857,13 @@
       "locked": {
         "lastModified": 1666483649,
         "narHash": "sha256-UTn7jthTOD0uXyWiB3b67WeOQZ6xC4VpIFs1b/Yxg4A=",
-        "owner": "PlaceholderMC",
+        "owner": "PrismLauncher",
         "repo": "PrismLauncher",
         "rev": "29e6e170cc73c39d816a4b5e857849aa6329b552",
         "type": "github"
       },
       "original": {
-        "owner": "PlaceholderMC",
+        "owner": "PrismLauncher",
         "repo": "PrismLauncher",
         "type": "github"
       }

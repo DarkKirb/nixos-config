@@ -11,7 +11,7 @@ rec {
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
-    prismmc.url = "github:PlaceholderMC/PrismLauncher";
+    prismmc.url = "github:PrismLauncher/PrismLauncher";
     prismmc.inputs.nixpkgs.follows = "nixpkgs";
     dns.url = "github:DarkKirb/dns.nix?ref=master";
     hosts-list.url = "github:StevenBlack/hosts";
