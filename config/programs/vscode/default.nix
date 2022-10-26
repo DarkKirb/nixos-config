@@ -11,7 +11,6 @@
         rust-lang.rust-analyzer
         xaver.clang-format
         github.vscode-pull-request-github
-        redhat.java
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
     userSettings = {
