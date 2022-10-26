@@ -5,6 +5,6 @@
   home.packages = [
     pkgs.wineWowPackages.staging
     pkgs.prismlauncher
-    pkgs.unityhub
   ];
+  programs.unity3d.enable = true;
 }

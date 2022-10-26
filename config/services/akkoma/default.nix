@@ -128,7 +128,7 @@ in {
   services.pleroma = {
     enable = true;
     package = nix-packages.packages.${pkgs.system}.akkoma;
-    configs = ["${akkconfig}"];
+    configs = [(builtins.readFile akkconfig)];
     user = "akkoma";
     group = "akkoma";
     secretConfigFile = config.sops.secrets."services/akkoma.exs".path;
