@@ -26,12 +26,109 @@
       lndir $raccoon_emoji $out/emoji/raccoons
     '';
   };
-  akkconfig = builtins.replaceStrings ["%AKKOMA_STATIC_DIR%"] ["${static_dir}"] (builtins.readFile ./akkoma.exs);
+  ec = pkgs.formats.elixirConf {};
+  akkconfig = ec.generate "config.exs" (with ec.lib; {
+    ":pleroma" = {
+      "Pleroma.Upload" = {
+        uploader = mkRaw "Pleroma.Uploaders.S3";
+        filters = map (v: mkRaw ("Pleroma.Upload.Filter." + v)) ["Mogrify" "Exiftool" "Dedupe" "AnonymizeFilename"];
+        base_url = "https://mastodon-assets.chir.rs/";
+      };
+      "Pleroma.Uploaders.S3" = {
+        bucket = "mastodon-chir-rs";
+        truncated_namespace = "";
+      };
+      "Pleroma.Upload.Filter.Mogrify" = {
+        args = "auto-orient";
+      };
+      ":instance" = {
+        name = "Raccoon Noises";
+        email = "lotte@chir.rs";
+        description = "Single User Akkoma Instance";
+        limit = 58913;
+        description_limit = 58913;
+        upload_limit = 100000000;
+        languages = ["en" "tok"];
+        registrations_open = false;
+        static_dir = "${static_dir}";
+        max_pinned_statuses = 10;
+        attachment_links = true;
+        max_report_comment_size = 58913;
+        safe_dm_mentions = true;
+        healthcheck = true;
+        user_bio_length = 58913;
+        user_name_length = 621;
+        max_account_fields = 69;
+        max_remote_account_fields = 621;
+        account_field_name_length = 621;
+        account_field_value_length = 58913;
+        registration_reason_length = 621;
+        external_user_synchronization = true;
+        cleanup_attachments = true;
+      };
+      ":markup" = {
+        allow_headings = true;
+        allow_tables = true;
+        allow_fonts = true;
+      };
+      ":frontend_configurations" = {
+        pleroma_fe = mkMap {
+          webPushNotifications = true;
+        };
+      };
+      ":activitypub".authorized_fetch_mode = true;
+      ":mrf_simple" = let
+        processMap = m: map (k: mkTuple [k m.${v}]) (builtins.attrNames m);
+      in {
+        reject = processMap {
+          "qoto.org" = "Freeze Peach";
+          "poa.st" = "Hosting neonazis";
+          "kiwifarms.cc" = "Targeted Harassment";
+          "pmth.us" = "Harassment";
+          "nicecrew.digital" = "TERF Instance";
+          "freespeechextremist.com" = "Freeze Peach";
+          "ryona.agency" = "Freeze Peach";
+          "howlr.me" = "Run by verified kiwifarms user";
+          "rdrama.cc" = "smells like Kiwifarms shit";
+        };
+        media_removal = processMap {
+          "a.rathersafe.space" = "posting borderline illegal imagery as the fediblock account";
+        };
+      };
+      ":mrf" = {
+        policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "MediaProxyWarmingPolicy" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "TagPolicy" "RequireImageDescription"];
+        transparency = true;
+      };
+      ":https_security".sts = true;
+      ":frontends" = {
+        primary = mkMap {
+          name = "pleroma-fe";
+          ref = "stable";
+        };
+        admin = mkMap {
+          name = "admin-fe";
+          ref = "stable";
+        };
+      };
+      "Pleroma.Repo" = {
+        adapter = mkRaw "Ecto.Adapters.Postgres";
+        database = "akkoma";
+        pool_size = 10;
+        socket_dir = "/run/postgresql";
+      };
+      "Pleroma.Web.Endpoint".url = {
+        host = "akko.chir.rs";
+        port = 443;
+        scheme = "https";
+      };
+    };
+    ":web_push_encryption".":vapid_details".subject = "lotte@chir.rs";
+  });
 in {
   services.pleroma = {
     enable = true;
     package = nix-packages.packages.${pkgs.system}.akkoma;
-    configs = [akkconfig];
+    configs = ["${akkconfig}"];
     user = "akkoma";
     group = "akkoma";
     secretConfigFile = config.sops.secrets."services/akkoma.exs".path;
