@@ -35,7 +35,7 @@ in {
     systemd.services.gitea = {
       path = [pkgs.gnupg];
       serviceConfig = {
-        SystemCallFilter = mkForce "~@clock @cpu-emulation @debug @module @mount @obsolete @raw-io @reboot @resources @setuid @swap";
+        SystemCallFilter = mkForce "~@clock @cpu-emulation @debug @module @mount @obsolete @raw-io @reboot @setuid @swap";
         ReadOnlyPaths = ["/var/lib/gitea/.gnupg"];
       };
       # In older versions the secret naming for JWT was kind of confusing.
