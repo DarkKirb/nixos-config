@@ -5,5 +5,6 @@
   home.packages = [
     pkgs.wineWowPackages.staging
     pkgs.prismlauncher
+    pkgs.unityhub
   ];
 }
