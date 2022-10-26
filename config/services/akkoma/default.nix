@@ -78,7 +78,7 @@
       };
       ":activitypub".authorized_fetch_mode = true;
       ":mrf_simple" = let
-        processMap = m: map (k: mkTuple [k m.${v}]) (builtins.attrNames m);
+        processMap = m: map (k: mkTuple [k m.${k}]) (builtins.attrNames m);
       in {
         reject = processMap {
           "qoto.org" = "Freeze Peach";
