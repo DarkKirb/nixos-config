@@ -3,7 +3,8 @@
     enable = true;
     services = {
       hsmw = {
-        registrationConfigFile = ./hsmw.conf;
+        registrationConfigFile = toString ./hsmw.conf;
+        dockerImage = "alpine";
       };
     };
   };
