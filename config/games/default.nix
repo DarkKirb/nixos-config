@@ -6,5 +6,4 @@
     pkgs.wineWowPackages.staging
     pkgs.prismlauncher
   ];
-  programs.unity3d.enable = true;
 }
