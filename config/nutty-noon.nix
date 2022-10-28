@@ -21,6 +21,7 @@
     ./services/postgres.nix
     ./services/docker.nix
     ./services/drone-runner-docker.nix
+    ./services/gitlab-runner
   ];
   hardware.cpu.amd.updateMicrocode = true;
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "k10temp"];
