@@ -6,6 +6,10 @@
         registrationConfigFile = toString ./hsmw.conf;
         dockerImage = "alpine";
       };
+      hsmw-fork = {
+        registrationConfigFile = toString ./hsmw-fork.conf;
+        dockerImage = "alpine";
+      };
     };
   };
 }
