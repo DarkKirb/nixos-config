@@ -80,6 +80,7 @@ in {
           installCheckPhase = "true";
         });
         element-web = prev.callPackage ../../packages/element-web.nix {};
+        openssl = prev.openssl_1_1; # TODO: workaround for openssl critical vuln
       }
       // nix-packages.packages.${system})
   ];
