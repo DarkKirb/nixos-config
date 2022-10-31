@@ -44,7 +44,6 @@ in
       export HOME=$PWD/tmp
       mkdir -p $HOME
 
-      export NODE_OPTIONS=--openssl-legacy-provider
       cp ${./element-web-package.json} package.json
       cp $yarnLock yarn.lock
       fixup_yarn_lock yarn.lock
