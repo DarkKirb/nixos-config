@@ -71,6 +71,7 @@
       "verilog.languageServer" = "${pkgs.svls}/bin/svls";
       "verilog.linting.linter" = "${pkgs.verilator}/bin/verilator";
       "redhat.telemetry.enabled" = false; # FUCK OFF
+      "projectManager.git.baseFolders" = ["/home/darkkirb/sources"];
     };
   };
   home.activation.vscode-server = lib.hm.dag.entryAfter ["write-boundary"] ''
