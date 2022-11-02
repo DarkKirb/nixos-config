@@ -268,13 +268,13 @@
       name = "java";
       publisher = "redhat";
       version = "1.13.2022102804";
-      sha256 = "177yhd12rvl45mda20cgz1rqg9iqww98qrnakylkzj6yj5x8kx42";
+      sha256 = "sha256-EbwaHrm/0eJe631R0AOc7ND+lVBfMro8HlZAF0VgY1M=";
     }
     {
       name = "vscode-xml";
       publisher = "redhat";
       version = "0.23.2022102904";
-      sha256 = "02flxq9lk096i7h285m47vki0jli4kmfdvgdxpnnrd79npig91py";
+      sha256 = "sha256-svOzvBicBqwD6xVEMpy38TucgrxnzH5iOfwktzXgk9g=";
     }
     {
       name = "vscode-yaml";
@@ -287,12 +287,6 @@
       publisher = "ritwickdey";
       version = "5.7.9";
       sha256 = "0dycc18i1zn20zgh5ymqbi1nmg2an49ndf9r2w6dr5lx8d49hh63";
-    }
-    {
-      name = "rust-analyzer";
-      publisher = "rust-lang";
-      version = "0.4.1264";
-      sha256 = "0ph07jwznksvwza986wp1pk3b0fb7fvy2zgjzjsjr683az9m24bi";
     }
     {
       name = "scala";
