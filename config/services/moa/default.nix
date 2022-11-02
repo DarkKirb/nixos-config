@@ -40,7 +40,6 @@
   };
   users.users.moa = {
     description = "Moa";
-    home = cfg.stateDir;
     useDefaultShell = true;
     group = "moa";
     isSystemUser = true;

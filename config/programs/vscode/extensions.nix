@@ -202,7 +202,7 @@
       name = "cpptools";
       publisher = "ms-vscode";
       version = "1.13.3";
-      sha256 = "0k8d66ckjz6r8s1r182s6fnchq0vc60k4p6x1a0d3j4k13xkc6qx";
+      sha256 = "sha256-BxBOFlkRrk+QOba5BaNiRnkfJlHMMU61bBC6g4WcZmQ=";
     }
     {
       name = "cpptools-extension-pack";
