@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  ...
 }: {
   systemd.services = {
     moa-app = {
