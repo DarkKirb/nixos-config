@@ -35,6 +35,7 @@
     ./services/drone-runner-docker.nix
     ./services/docker.nix
     ./services/gitlab-runner
+    ./services/moa
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
