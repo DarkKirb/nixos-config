@@ -9,8 +9,8 @@
       after = ["network.target"];
       wantedBy = ["multi-user.target"];
       environment = {
-        FLASK_RUN_PORT = 58023;
-        PYTHONPATH = ./.;
+        FLASK_RUN_PORT = toString 58023;
+        PYTHONPATH = toString ./.;
         MOA_CONFIG = "config.ProductionConfig";
       };
       serviceConfig = {
