@@ -9,9 +9,8 @@
       after = ["network.target"];
       wantedBy = ["multi-user.target"];
       environment = {
-        FLASK_RUN_PORT = toString 58023;
         PYTHONPATH = toString ./.;
-        MOA_CONFIG = "config.ProductionConfig";
+        MOA_CONFIG = "ProductionConfig";
       };
       serviceConfig = {
         Type = "simple";
@@ -26,9 +25,8 @@
       after = ["network.target"];
       wantedBy = ["multi-user.target"];
       environment = {
-        FLASK_RUN_PORT = toString 58023;
         PYTHONPATH = toString ./.;
-        MOA_CONFIG = "config.ProductionConfig";
+        MOA_CONFIG = "ProductionConfig";
       };
       serviceConfig = {
         Type = "simple";
@@ -61,7 +59,7 @@
     useACMEHost = "int.chir.rs";
     extraConfig = ''
       import baseConfig
-      reverse_proxy http://localhost:58023
+      reverse_proxy http://localhost:5000
     '';
   };
   sops.secrets."services/moa/secret".owner = "moa";

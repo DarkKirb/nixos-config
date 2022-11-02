@@ -46,7 +46,7 @@ class DefaultConfig(object):
     SECRET_KEY = '1Cl7ET1t3MKQb3kGEkiAy'
     TWITTER_CONSUMER_KEY = '4qJKzkQK4FcXYCiiiHKjB2cSE'
     TWITTER_CONSUMER_SECRET = 'vahm3TpA0TKfBilJbrUsEz5ABvpUKuJPWTtNCWGLrMNLVDHVwUP'
-    WORKER_JOBS = 10
+    WORKER_JOBS = 1
 
 
 class ProductionConfig(DefaultConfig):
@@ -56,7 +56,7 @@ class ProductionConfig(DefaultConfig):
     TWITTER_CONSUMER_SECRET = open(
         "/run/secrets/services/moa/twitter_consumer_secret").read()
     SANITIZE_TWITTER_HANDLES = False
-    SQLALCHEMY_DATABASE_URI = "postgresql+pyscopg2://moa@/moa?host=/run/postgresql"
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://moa@/moa?host=/run/postgresql"
 
 
 class DevelopmentConfig(DefaultConfig):
