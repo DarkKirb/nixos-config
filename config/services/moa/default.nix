@@ -22,8 +22,6 @@
     };
     moa-worker = {
       description = "Moa worker";
-      after = ["network.target"];
-      wantedBy = ["multi-user.target"];
       environment = {
         PYTHONPATH = toString ./.;
         MOA_CONFIG = "ProductionConfig";
@@ -35,6 +33,16 @@
         ExecStart = "${pkgs.moa}/start-worker.sh";
         Restart = "always";
       };
+    };
+  };
+  systemd.timers.moa-worker = {
+    description = "Moa worker";
+    after = ["network.target"];
+    wantedBy = ["multi-user.target"];
+    requires = ["moa-worker.service"];
+    timerConfig = {
+      OnUnitActiveSec = 300;
+      RandomizedDelaySec = 60;
     };
   };
   users.users.moa = {
