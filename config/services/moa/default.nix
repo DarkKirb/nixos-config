@@ -27,11 +27,10 @@
         MOA_CONFIG = "ProductionConfig";
       };
       serviceConfig = {
-        Type = "simple";
+        Type = "oneshot";
         User = "moa";
         Group = "moa";
         ExecStart = "${pkgs.moa}/start-worker.sh";
-        Restart = "always";
       };
     };
   };
