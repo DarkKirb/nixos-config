@@ -124,6 +124,18 @@
         port = 443;
         scheme = "https";
       };
+      "Pleroma.Emails.Mailer" = {
+        enabled = true;
+        adapter = mkRaw "Swoosh.Adapters.SMTP";
+        relay = "mail.chir.rs";
+        username = "akko@chir.rs";
+        port = "465";
+        ssl = true;
+        auth = mkAtom "always";
+      };
+      "Pleroma.Emails.NewUsersDigestEmail" = {
+        enabled = true;
+      };
     };
     ":web_push_encryption".":vapid_details".subject = "lotte@chir.rs";
   });
