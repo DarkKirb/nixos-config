@@ -16,6 +16,7 @@
     akkoma_fe = nix-packages.packages.${pkgs.system}.pleroma-fe;
     akkoma_admin_fe = nix-packages.packages.${pkgs.system}.admin-fe;
     raccoon_emoji = raccoon-emoji;
+    tos = ./terms-of-service.html;
     dontUnpack = false;
     installPhase = ''
       mkdir -p $out/frontends/pleroma-fe/stable
@@ -24,6 +25,8 @@
       lndir $akkoma_admin_fe $out/frontends/admin-fe/stable
       mkdir -p $out/emoji/raccoons
       lndir $raccoon_emoji $out/emoji/raccoons
+      mkdir $out/static
+      cp $tos $out/static/terms-of-service.html
     '';
   };
   ec = pkgs.formats.elixirConf {};
