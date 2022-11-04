@@ -47,7 +47,7 @@
         description = "Single User Akkoma Instance";
         limit = 58913;
         description_limit = 58913;
-        upload_limit = 100000000;
+        upload_limit = 134217728;
         languages = ["en" "tok"];
         registrations_open = false;
         static_dir = "${static_dir}";
