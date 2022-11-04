@@ -55,7 +55,6 @@ class ProductionConfig(DefaultConfig):
         "/run/secrets/services/moa/twitter_consumer_key").read()
     TWITTER_CONSUMER_SECRET = open(
         "/run/secrets/services/moa/twitter_consumer_secret").read()
-    SANITIZE_TWITTER_HANDLES = False
     SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://moa@/moa?host=/run/postgresql"
 
 
