@@ -79,7 +79,14 @@
           webPushNotifications = true;
         };
       };
-      ":activitypub".authorized_fetch_mode = true;
+      ":activitypub" = {
+        unfollow_blocked = false;
+        outgoing_blocks = false;
+        blockers_visible = false;
+        deny_follow_blocked = true;
+        sign_object_fetches = true;
+        authorized_fetch_mode = true;
+      };
       ":mrf_simple" = let
         processMap = m: map (k: mkTuple [k m.${k}]) (builtins.attrNames m);
       in {
