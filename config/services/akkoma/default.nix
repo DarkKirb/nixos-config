@@ -127,6 +127,12 @@
           ref = "stable";
         };
       };
+      ":media_proxy" = {
+        enabled = true;
+        proxy_opts = {
+          redirect_on_failure = true;
+        };
+      };
       "Pleroma.Repo" = {
         adapter = mkRaw "Ecto.Adapters.Postgres";
         database = "akkoma";
