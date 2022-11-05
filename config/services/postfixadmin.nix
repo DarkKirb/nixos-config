@@ -44,7 +44,6 @@
       php_fastcgi unix:${config.services.phpfpm.pools.postfixadmin.socket}
     '';
   };
-  services.nginx.enable = lib.mkForce false;
   services.phpfpm.pools.postfixadmin.settings."listen.group" = "acme"; # there is no nginx group
   services.phpfpm.pools.postfixadmin.group = "dovecot";
 }
