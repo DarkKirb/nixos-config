@@ -56,6 +56,7 @@ class ProductionConfig(DefaultConfig):
     TWITTER_CONSUMER_SECRET = open(
         "/run/secrets/services/moa/twitter_consumer_secret").read()
     SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://moa@/moa?host=/run/postgresql"
+    MASTODON_ALLOWLIST = [r'akko.chir.rs']
 
 
 class DevelopmentConfig(DefaultConfig):

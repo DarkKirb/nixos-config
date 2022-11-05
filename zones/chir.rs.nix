@@ -45,27 +45,27 @@ with dns.lib.combinators; let
       }
     ];
     /*
-    subdomains = {
-    _tcp.subdomains."*".TLSA = [
-    {
-    certUsage = "dane-ee";
-    selector = "spki";
-    match = "sha256";
-    certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-    ttl = zoneTTL;
-    }
-    ];
-    _udp.subdomains."*".TLSA = [
-    {
-    certUsage = "dane-ee";
-    selector = "spki";
-    match = "sha256";
-    certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-    ttl = zoneTTL;
-    }
-    ];
-    };
-    */
+     subdomains = {
+     _tcp.subdomains."*".TLSA = [
+     {
+     certUsage = "dane-ee";
+     selector = "spki";
+     match = "sha256";
+     certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
+     ttl = zoneTTL;
+     }
+     ];
+     _udp.subdomains."*".TLSA = [
+     {
+     certUsage = "dane-ee";
+     selector = "spki";
+     match = "sha256";
+     certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
+     ttl = zoneTTL;
+     }
+     ];
+     };
+     */
     HTTPS = [
       {
         svcPriority = 1;
@@ -102,7 +102,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 14;
+      serial = 15;
     };
     NS = [
       "ns1.chir.rs."
@@ -186,6 +186,7 @@ with dns.lib.combinators; let
       drone = createZone {};
       invtracker = createZone {};
       akko = createZone {};
+      moa = createZone {};
 
       int =
         delegateTo [
