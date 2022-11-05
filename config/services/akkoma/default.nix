@@ -153,10 +153,6 @@
       "Pleroma.Emails.NewUsersDigestEmail" = {
         enabled = true;
       };
-      "Pleroma.Web.Plugs.RemoteIp" = {
-        enabled = true;
-        proxies = ["127.0.0.1" "[::1]" "[fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49]"];
-      };
     };
     ":web_push_encryption".":vapid_details".subject = "lotte@chir.rs";
   });
