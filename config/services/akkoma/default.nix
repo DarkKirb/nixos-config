@@ -132,7 +132,7 @@
         username = "akko@chir.rs";
         port = "465";
         ssl = true;
-        auth = mkAtom "always";
+        auth = mkAtom ":always";
       };
       "Pleroma.Emails.NewUsersDigestEmail" = {
         enabled = true;
