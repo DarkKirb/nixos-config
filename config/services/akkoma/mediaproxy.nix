@@ -25,8 +25,7 @@
           proxy_cache_use_stale error timeout invalid_header updating;
           proxy_ignore_client_abort on;
           proxy_buffering    on;
-          proxy_ignore_headers Cache-Control Expires;
-          proxy_hide_header  Cache-Control Expires;
+          proxy_cache_lock on;
           proxy_pass         http://127.0.0.1:4000;
         }
       '';
