@@ -66,8 +66,9 @@
     useACMEHost = "int.chir.rs";
     extraConfig = ''
       import baseConfig
-      reverse_proxy http://localhost:5000
-      header_up Host "moa.chir.rs"
+      reverse_proxy http://localhost:5000 {
+        header_up Host "moa.chir.rs"
+      }
     '';
   };
   sops.secrets."services/moa/secret".owner = "moa";
