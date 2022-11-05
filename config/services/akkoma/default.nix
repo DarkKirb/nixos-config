@@ -103,7 +103,11 @@
         policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "MediaProxyWarmingPolicy" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "TagPolicy" "RequireImageDescription"];
         transparency = true;
       };
-      ":https_security".sts = true;
+      ":http_security" = {
+        enabled = true;
+        sts = true;
+        referrer_policy = "no-referrer";
+      };
       ":frontends" = {
         primary = mkMap {
           name = "pleroma-fe";
@@ -120,10 +124,13 @@
         pool_size = 10;
         socket_dir = "/run/postgresql";
       };
-      "Pleroma.Web.Endpoint".url = {
-        host = "akko.chir.rs";
-        port = 443;
-        scheme = "https";
+      "Pleroma.Web.Endpoint" = {
+        url = {
+          host = "akko.chir.rs";
+          port = 443;
+          scheme = "https";
+        };
+        secure_cookie_flag = true;
       };
       "Pleroma.Emails.Mailer" = {
         enabled = true;
@@ -136,6 +143,10 @@
       };
       "Pleroma.Emails.NewUsersDigestEmail" = {
         enabled = true;
+      };
+      "Pleroma.Web.Plugs.RemoteIp" = {
+        enabled = true;
+        proxies = ["127.0.0.1" "[::1]" "[fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49]"];
       };
     };
     ":web_push_encryption".":vapid_details".subject = "lotte@chir.rs";
