@@ -1,6 +1,7 @@
 {
   services.nginx = {
     enable = true;
+    commonHttpConfig = "proxy_cache_path /var/cache/mediacache levels=1:2 keys_zone=akkoma_media_cache:10m inactive=1y use_temp_path=off;";
     virtualHosts."mail.chir.rs".listen = [
       {
         addr = "127.0.0.1";
@@ -15,7 +16,6 @@
         }
       ];
       extraConfig = ''
-        proxy_cache_path /var/cache/mediacache levels=1:2 keys_zone=akkoma_media_cache:10m inactive=1y use_temp_path=off;
         location ~ ^/(media|proxy) {
           proxy_cache        akkoma_media_cache;
           slice              1m;
