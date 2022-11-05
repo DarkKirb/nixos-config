@@ -161,6 +161,9 @@
     ":web_push_encryption".":vapid_details".subject = "lotte@chir.rs";
   });
 in {
+  imports = [
+    ./mediaproxy.nix
+  ];
   services.pleroma = {
     enable = true;
     package = nix-packages.packages.${pkgs.system}.akkoma;
@@ -184,6 +187,11 @@ in {
       import baseConfig
       handle /media_attachments/* {
         redir https://mastodon-assets.chir.rs{uri} permanent
+      }
+      handle /proxy/* {
+        reverse_proxy {
+          to http://127.0.0.1:24154
+        }
       }
       handle {
         reverse_proxy {
