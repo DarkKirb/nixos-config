@@ -93,6 +93,7 @@
           "ryona.agency" = "Freeze Peach";
           "howlr.me" = "Run by verified kiwifarms user";
           "rdrama.cc" = "smells like Kiwifarms shit";
+          "xhais.love" = "Zoophile instance";
         };
         media_removal = processMap {
           "a.rathersafe.space" = "posting borderline illegal imagery as the fediblock account";
