@@ -94,6 +94,8 @@
           "howlr.me" = "Run by verified kiwifarms user";
           "rdrama.cc" = "smells like Kiwifarms shit";
           "xhais.love" = "Zoophile instance";
+          "beefyboys.win" = "freeze peach; hosts neonazis";
+          "bae.st" = "freeze peach";
         };
         media_removal = processMap {
           "a.rathersafe.space" = "posting borderline illegal imagery as the fediblock account";
