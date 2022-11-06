@@ -205,4 +205,6 @@ in {
       }
     '';
   };
+
+  services.postgresql.extraPlugins = with pkgs.postgresql_13.pkgs; [rum];
 }
