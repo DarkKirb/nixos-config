@@ -52,7 +52,8 @@
         description_limit = 58913;
         upload_limit = 134217728;
         languages = ["en" "tok"];
-        registrations_open = false;
+        registrations_open = true;
+        account_approval_required = true;
         static_dir = "${static_dir}";
         max_pinned_statuses = 10;
         attachment_links = true;
