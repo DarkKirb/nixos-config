@@ -139,6 +139,8 @@
         database = "akkoma";
         pool_size = 10;
         socket_dir = "/run/postgresql";
+        prepare = mkAtom ":named";
+        parameters.plan_cache_mode = "force_custom_plan";
       };
       "Pleroma.Web.Endpoint" = {
         url = {
