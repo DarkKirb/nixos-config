@@ -162,6 +162,7 @@
       "Pleroma.Emails.NewUsersDigestEmail" = {
         enabled = true;
       };
+      ":database".rum_enabled = true;
     };
     ":web_push_encryption".":vapid_details".subject = "lotte@chir.rs";
   });
