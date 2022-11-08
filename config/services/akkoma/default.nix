@@ -2,20 +2,24 @@
   pkgs,
   nix-packages,
   config,
+  lib,
   ...
 }: let
-  raccoon-emoji = pkgs.fetchzip {
-    url = "https://volpeon.ink/art/emojis/raccoon/raccoon.zip";
-    sha256 = "sha256-GkMiYAP0LS0TL6GMDG4R4FkGwFjhIwn3pAWUmCTUfHg=";
-    stripRoot = false;
-  };
+  emoji_set_names = ["volpeon-blobfox-flip" "volpeon-blobfox" "volpeon-bunhd-flip" "volpeon-bunhd" "volpeon-drgn" "vulpeon-fox" "vulpeon-raccoon" "vulpeon-vlpn"];
+  emoji_sets = builtins.listToAttrs (map (name: {
+    inherit name;
+    value = "${pkgs."emoji-${name}"}";
+  }));
+  copy_emoji_set = name: ''
+    mkdir -p $out/emoji/${name}
+    lndir ${emoji_sets.${name}} $out/emoji/${name}
+  '';
   static_dir = pkgs.stdenvNoCC.mkDerivation {
     name = "akkoma-static";
     src = pkgs.emptyDirectory;
     nativeBuildInputs = with pkgs; [xorg.lndir];
     akkoma_fe = nix-packages.packages.${pkgs.system}.pleroma-fe;
     akkoma_admin_fe = nix-packages.packages.${pkgs.system}.admin-fe;
-    raccoon_emoji = raccoon-emoji;
     tos = ./terms-of-service.html;
     dontUnpack = false;
     installPhase = ''
@@ -23,8 +27,7 @@
       lndir $akkoma_fe $out/frontends/pleroma-fe/stable
       mkdir -p $out/frontends/admin-fe/stable
       lndir $akkoma_admin_fe $out/frontends/admin-fe/stable
-      mkdir -p $out/emoji/raccoons
-      lndir $raccoon_emoji $out/emoji/raccoons
+      ${toString (map copy_emoji_set emoji_set_names)}
       mkdir $out/static
       cp $tos $out/static/terms-of-service.html
     '';
