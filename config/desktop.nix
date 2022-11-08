@@ -105,4 +105,8 @@ in {
   };
   #programs.sway.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_xanmod;
+  i18n.inputMethod = {
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [anthy];
+  };
 }
