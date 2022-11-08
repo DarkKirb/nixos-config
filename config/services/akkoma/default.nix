@@ -5,11 +5,12 @@
   lib,
   ...
 }: let
-  emoji_set_names = ["volpeon-blobfox-flip" "volpeon-blobfox" "volpeon-bunhd-flip" "volpeon-bunhd" "volpeon-drgn" "vulpeon-fox" "vulpeon-raccoon" "vulpeon-vlpn"];
+  emoji_set_names = ["volpeon-blobfox-flip" "volpeon-blobfox" "volpeon-bunhd-flip" "volpeon-bunhd" "volpeon-drgn" "vulpeon-fox" "vulpeon-raccoon" "vulpeon-vlpn" "lotte"];
   emoji_sets = builtins.listToAttrs (map (name: {
-    inherit name;
-    value = "${pkgs."emoji-${name}"}";
-  }));
+      inherit name;
+      value = "${pkgs."emoji-${name}"}";
+    })
+    emoji_set_names);
   copy_emoji_set = name: ''
     mkdir -p $out/emoji/${name}
     lndir ${emoji_sets.${name}} $out/emoji/${name}
