@@ -172,9 +172,9 @@
       ":emoji" = {
         shortcode_globs = ["/emoji/**/*.png"];
         groups = {
-          "Blobfox Flip" = "/emoji/volpeon-blobfox-flip/*.png";
+          "BlobfoxFlip" = "/emoji/volpeon-blobfox-flip/*.png";
           "Blobfox" = "/emoji/volpeon-blobfox/*.png";
-          "Bunhd Flip" = "/emoji/volpeon-bunhd-flip/*.png";
+          "BunhdFlip" = "/emoji/volpeon-bunhd-flip/*.png";
           "Bunhd" = "/emoji/volpeon-bunhd/*.png";
           "Drgn" = "/emoji/volpeon-drgn/*.png";
           "Fox" = "/emoji/volpeon-fox/*.png";
