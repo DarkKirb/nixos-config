@@ -30,7 +30,7 @@
       lndir $akkoma_admin_fe $out/frontends/admin-fe/stable
       ${toString (map copy_emoji_set emoji_set_names)}
       mkdir $out/emoji/misc
-      ln ${./therian.png} $out/emoji/misc
+      ln -s ${./therian.png} $out/emoji/misc
       mkdir $out/static
       cp $tos $out/static/terms-of-service.html
     '';
