@@ -16,16 +16,6 @@
   machines = pkgs.writeText "machines" ''
     localhost armv7l-linux,aarch64-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 12 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver1,gccarch-skylake,ca-derivations  -
   '';
-  post-build-hook = pkgs.writeScript "post-build-hook" ''
-    #!/bin/sh
-    set -euf
-    export IFS=' '
-    ${pkgs.nix}/bin/nix-store -r $DRV_PATH
-    for f in $DRV_PATH $OUT_PATHS; do
-      ${pkgs.nix}/bin/nix store sign --key-file ${config.sops.secrets."services/hydra/cache-key".path} $f
-      ${pkgs.nix}/bin/nix copy --to 's3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15' $f
-    done
-  '';
 in {
   imports = [
     ./postgres.nix
@@ -130,5 +120,4 @@ in {
     };
   };
   nix.settings.trusted-users = ["@hydra"];
-  nix.settings.post-build-hook = "${post-build-hook}";
 }

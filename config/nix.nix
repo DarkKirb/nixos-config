@@ -4,7 +4,18 @@
   config,
   system,
   ...
-}: {
+}: let
+  post-build-hook = pkgs.writeScript "post-build-hook" ''
+    #!/bin/sh
+    set -euf
+    export IFS=' '
+    ${pkgs.nix}/bin/nix-store -r $DRV_PATH
+    for f in $DRV_PATH $OUT_PATHS; do
+      ${pkgs.nix}/bin/nix store sign --key-file ${config.sops.secrets."services/nix/cache-key".path} $f
+      ${pkgs.nix}/bin/nix copy --to 's3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15' $f
+    done
+  '';
+in {
   imports = [
     ./workarounds
   ];
@@ -23,6 +34,7 @@
         "nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg="
         "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
       ];
+      post-build-hook = "${post-build-hook}";
     };
     package = pkgs.nix;
     extraOptions = ''
@@ -83,4 +95,5 @@
     dates = "hourly";
   };
   systemd.services.nix-daemon.environment.TMPDIR = "/build";
+  sops.secrets."services/nix/cache-key" = {};
 }
