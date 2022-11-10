@@ -29,6 +29,8 @@
       mkdir -p $out/frontends/admin-fe/stable
       lndir $akkoma_admin_fe $out/frontends/admin-fe/stable
       ${toString (map copy_emoji_set emoji_set_names)}
+      mkdir $out/emoji/misc
+      ln ${./therian.png} $out/emoji/misc
       mkdir $out/static
       cp $tos $out/static/terms-of-service.html
     '';
@@ -167,6 +169,21 @@
         enabled = true;
       };
       ":database".rum_enabled = true;
+      ":emoji" = {
+        shortcode_globs = ["/emoji/**/*.png"];
+        groups = {
+          "Blobfox Flip" = "/emoji/volpeon-blobfox-flip/*.png";
+          "Blobfox" = "/emoji/volpeon-blobfox/*.png";
+          "Bunhd Flip" = "/emoji/volpeon-bunhd-flip/*.png";
+          "Bunhd" = "/emoji/volpeon-bunhd/*.png";
+          "Drgn" = "/emoji/volpeon-drgn/*.png";
+          "Fox" = "/emoji/volpeon-fox/*.png";
+          "Raccoon" = "/emoji/volpeon-raccoon/*.png";
+          "Vlpn" = "/emoji/volpeon-vlpn/*.png";
+          "Lotte" = "/emoji/lotte/*.png";
+          "Misc" = "/emoji/misc/*.png";
+        };
+      };
     };
     ":web_push_encryption".":vapid_details".subject = "lotte@chir.rs";
   });
