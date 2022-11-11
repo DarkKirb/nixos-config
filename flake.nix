@@ -23,6 +23,9 @@ rec {
     nixpkgs-fluffychat.url = "github:Luis-Hebendanz/nixpkgs/fix_mkFlutterApp";
     helix.url = "github:helix-editor/helix";
     hydra.url = "git+https://git.chir.rs/darkkirb/hydra?ref=hack";
+    plasma-manager.url = "github:pjones/plasma-manager";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+    plasma-manager.inputs.home-manager.follows = "home-manager";
 
     nix-packages.url = "git+https://git.chir.rs/DarkKirb/nix-packages?ref=main";
     nix-packages.inputs.nixpkgs.follows = "nixpkgs";

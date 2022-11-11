@@ -12,7 +12,7 @@
     ++ (
       if desktop
       then [
-        ../programs/kde.nix
+        ../programs/kde
         ../programs/firefox.nix
         ../programs/theming.nix
         ../programs/waybar.nix
