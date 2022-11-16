@@ -44,14 +44,14 @@ jobs:
           AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
       - name: install jq
         run: sudo apt install jq
-      - name: Build ${{ matrix.package }}
+      - name: Build ${{ matrix.host }}
         run: |
-          DRV_PATH=$(nix-instantiate -E '((builtins.getFlake github:ursi/get-flake) ./.).hydraJobs.${{ matrix.package }}')
+          DRV_PATH=$(nix-instantiate -E '((builtins.getFlake github:ursi/get-flake) ./.).hydraJobs.${{ matrix.host }}')
           OUT_PATH=$(nix show-derivation $DRV_PATH | jq -r ".\"$DRV_PATH\".outputs.out.path")
           # check if we already built it
           NARINFO=$(echo $OUT_PATH | sed 's|/| |g' | sed 's|-| |g' | awk '{print $3}')
           if curl --output /dev/null --silent --head --fail "https://cache.chir.rs/$NARINFO.narinfo"; then
-            echo "${{ matrix.package }} already built. Skipping"
+            echo "${{ matrix.host }} already built. Skipping"
           else
             nix-store -r $DRV_PATH
           fi
