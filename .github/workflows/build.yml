@@ -1,0 +1,59 @@
+name: build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    strategy:
+      matrix:
+        host:
+          - installer.x86_64-linux
+          - nas.x86_64-linux
+          - nixos-8gb-fsn1-1.x86_64-linux
+          - nutty-noon.x86_64-linux
+          - thinkrac.x86_64-linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Cleanup Disk
+        uses: curoky/cleanup-disk-action@v2.0
+        with:
+          retain: ''
+      - name: Install Nix
+        uses: cachix/install-nix-action@v18
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=
+            experimental-features = nix-command flakes ca-derivations
+            post-build-hook = ${{ github.workspace }}/scripts/post-build-hook
+            substituters = https://cache.chir.rs/
+      - name: Set up secrets
+        run: |
+          echo "$NIX_CACHE_KEY" > ~/cache.key
+          sudo mkdir /root/.aws
+          echo "$AWS_CREDENTIALS" | sudo tee /root/.aws/credentials > /dev/null
+        env:
+          NIX_CACHE_KEY: ${{secrets.NIX_CACHE_KEY}}
+          AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
+      - name: install jq
+        run: sudo apt install jq
+      - name: Build ${{ matrix.package }}
+        run: |
+          DRV_PATH=$(nix-instantiate -E '((builtins.getFlake github:ursi/get-flake) ./.).hydraJobs.${{ matrix.package }}')
+          OUT_PATH=$(nix show-derivation $DRV_PATH | jq -r ".\"$DRV_PATH\".outputs.out.path")
+          # check if we already built it
+          NARINFO=$(echo $OUT_PATH | sed 's|/| |g' | sed 's|-| |g' | awk '{print $3}')
+          if curl --output /dev/null --silent --head --fail "https://cache.chir.rs/$NARINFO.narinfo"; then
+            echo "${{ matrix.package }} already built. Skipping"
+          else
+            nix-store -r $DRV_PATH
+          fi
+        env:
+          NIXPKGS_ALLOW_UNFREE: 1
