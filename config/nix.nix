@@ -87,7 +87,7 @@ in {
   };
   system.autoUpgrade = {
     enable = true;
-    flake = "git+https://git.chir.rs/darkkirb/nixos-config?ref=nixos-config/nixos-config/${config.networking.hostName}.${system}";
+    flake = "github:DarkKirb/nixos-config";
     flags = [
       "--no-write-lock-file"
       "-L" # print build logs
