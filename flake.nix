@@ -27,7 +27,7 @@ rec {
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
 
-    nix-packages.url = "git+https://git.chir.rs/DarkKirb/nix-packages?ref=main";
+    nix-packages.url = "github:DarkKirb/nix-packages";
     nix-packages.inputs.nixpkgs.follows = "nixpkgs";
   };
 
