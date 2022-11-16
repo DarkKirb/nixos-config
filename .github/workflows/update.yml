@@ -28,6 +28,6 @@ jobs:
           NIX_CACHE_KEY: ${{secrets.NIX_CACHE_KEY}}
           AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
       - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@vX
+        uses: DeterminateSystems/update-flake-lock@v14
         with:
           token: ${{ secrets.GH_TOKEN }}
