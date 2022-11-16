@@ -17,6 +17,14 @@ jobs:
             experimental-features = nix-command flakes ca-derivations
             post-build-hook = ${{ github.workspace }}/scripts/post-build-hook
             substituters = https://cache.chir.rs/
+      - name: Set up secrets
+        run: |
+          echo "$NIX_CACHE_KEY" > ~/cache.key
+          sudo mkdir /root/.aws
+          echo "$AWS_CREDENTIALS" | sudo tee /root/.aws/credentials > /dev/null
+        env:
+          NIX_CACHE_KEY: ${{secrets.NIX_CACHE_KEY}}
+          AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
       - run: |
 
           for job in nixos-8gb-fsn1-1 nutty-noon thinkrac installer nas; do
@@ -34,8 +42,9 @@ jobs:
             python scripts/diff-drvs.py old-$job.json new-$job.json >> review
             echo '```' >> review
           done
+          mv review .github/workflows
       - uses: harupy/comment-on-pr@master
         env:
-          GITHUB_TOKEN: ${{ github.workspace }}/${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           filename: review
