@@ -1,0 +1,33 @@
+name: update
+on:
+  workflow_dispatch: # allows manual triggering
+  schedule:
+    - cron: "49 7 * * *"
+jobs:
+  flake-lock:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Nix
+        uses: cachix/install-nix-action@v18
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=
+            experimental-features = nix-command flakes ca-derivations
+            post-build-hook = ${{ github.workspace }}/scripts/post-build-hook
+            substituters = https://cache.chir.rs/
+      - name: Set up secrets
+        run: |
+          echo "$NIX_CACHE_KEY" > ~/cache.key
+          sudo mkdir /root/.aws
+          echo "$AWS_CREDENTIALS" | sudo tee /root/.aws/credentials > /dev/null
+        env:
+          NIX_CACHE_KEY: ${{secrets.NIX_CACHE_KEY}}
+          AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@vX
+        with:
+          token: ${{ secrets.GH_TOKEN }}
