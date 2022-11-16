@@ -69,7 +69,7 @@ in {
         @getOnly {
           method GET
         }
-
+        
         reverse_proxy @getOnly {
           @error status 500 404
           handle_response @error {
@@ -87,18 +87,18 @@ in {
                 versions 1.1 2 3
               }
             }
-            to https://cache.nixos.org
-            header_up Host {upstream_hostport}
-            header_up -Authorization
-            header_down -Set-Cookie
-            header_down Access-Control-Allow-Origin '*'
-            header_down -Access-Control-Allow-Methods
-            header_down Access-Control-Allow-Headers
-            header_up -Set-Cookie
+          }
+          to https://cache.nixos.org
+          header_up Host {upstream_hostport}
+          header_up -Authorization
+          header_down -Set-Cookie
+          header_down Access-Control-Allow-Origin '*'
+          header_down -Access-Control-Allow-Methods
+          header_down Access-Control-Allow-Headers
+          header_up -Set-Cookie
 
-            transport http {
-              versions 1.1 2 3
-            }
+          transport http {
+            versions 1.1 2 3
           }
         }
       '';
