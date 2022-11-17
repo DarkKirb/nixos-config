@@ -117,7 +117,12 @@ in {
     enable = true;
     #displayManager.defaultSession = "sway";
     displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
+    desktopManager.plasma5 = {
+      enable = true;
+      excludePackages = with pkgs.libsForQt5; [
+        elisa
+      ];
+    };
     libinput.enable = true;
     layout = "de";
     xkbVariant = "neo";
