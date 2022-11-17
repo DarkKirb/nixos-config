@@ -43,10 +43,13 @@ desktop: {pkgs, ...}: {
       hg = "${pkgs.kitty}/bin/kitty +kitten hyperlinked_grep";
     };
     packages = with pkgs; [
-      mosh
       yubikey-manager
       yubico-piv-tool
       ripgrep
+      jq
+      gh
+      htop
+      sops
     ];
   };
 
