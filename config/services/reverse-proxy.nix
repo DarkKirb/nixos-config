@@ -66,6 +66,9 @@ in {
       useACMEHost = "chir.rs";
       extraConfig = ''
         import baseConfig
+        
+        uri strip_prefix /cache
+        
         @getOnly {
           method GET
         }
