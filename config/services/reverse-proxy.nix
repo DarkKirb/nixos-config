@@ -70,6 +70,24 @@ in {
           method GET
         }
         
+        @writeRequests {
+          method POST PUT PATCH DELETE
+        }
+        
+        reverse_proxy @writeRequests {
+          to https://cache-chir-rs.s3.us-west-000.backblazeb2.com
+          header_up Host {upstream_hostport}
+          header_down -Set-Cookie
+          header_down Access-Control-Allow-Origin '*'
+          header_down -Access-Control-Allow-Methods
+          header_down Access-Control-Allow-Headers
+          header_up -Set-Cookie
+
+          transport http {
+            versions 1.1 2 3
+          }
+        }
+        
         reverse_proxy @getOnly {
           @error status 500 404
           handle_response @error {
