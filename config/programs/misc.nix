@@ -2,6 +2,10 @@
   home.packages = with pkgs; [
     anki-bin
     mdcat
+    gimp
+    krita
+    ffmpeg-full
+    audacious
   ];
   xdg.configFile."gdb/gdbinit".text = "set auto-load safe-path /nix/store";
   services.xsettingsd = {

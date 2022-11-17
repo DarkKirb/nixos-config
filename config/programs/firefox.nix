@@ -16,6 +16,8 @@
       tree-style-tab
       ublock-origin
       unpaywall
+      plasma-integration
+      tampermonkey
     ];
     profiles = {
       unhardened = {
@@ -36,7 +38,6 @@
           }
         '';
         settings = {
-          "browser.display.use_document_fonts" = 0;
           "font.default.x-western" = "sans-serif";
           "font.name-list.monospace.x-western" = "monospace, nasin-nanpa";
           "font.name-list.sans-serif.x-western" = "sans-serif, nasin-nanpa";
