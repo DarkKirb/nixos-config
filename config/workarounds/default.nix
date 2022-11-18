@@ -3,7 +3,6 @@
   nixpkgs,
   nixpkgs-noto-variable,
   nix-packages,
-  nix-hotfix,
   hydra,
   ...
 }:
@@ -46,10 +45,12 @@ in {
             ];
           installCheckPhase = "true";
         });
-        nix = nix-hotfix.packages.${system}.nix.overrideAttrs (old: rec {
+        nix = nix-packages.packages.${system}.nix-s3-dedup.overrideAttrs (old: rec {
           postPatchPhase = ''
             sed 's/getBoolAttr."allowSubstitutes", true./true/' src/libstore/parsed-derivations.cc
           '';
+          checkPhase = "true";
+          installCheckPhase = "true";
         });
         rnix-lsp = with prev;
           rustPlatform.buildRustPackage rec {
