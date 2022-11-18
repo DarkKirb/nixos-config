@@ -13,6 +13,7 @@ in {
     (discord.override { inherit nss; })
     tdesktop
     element-desktop
+    nheko
   ];
   home.activation.betterDiscord = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD ${pkgs.betterdiscordctl}/bin/betterdiscordctl install $VERBOSE_ARG || true
