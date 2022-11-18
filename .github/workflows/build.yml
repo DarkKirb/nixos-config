@@ -31,6 +31,8 @@ jobs:
             experimental-features = nix-command flakes ca-derivations
             post-build-hook = ${{ github.workspace }}/scripts/post-build-hook
             substituters = https://cache.chir.rs/
+      - name: Download patched nix
+        run: nix build github:DarkKirb/nix-packages#nix-s3-dedup
       - name: Set up secrets
         run: |
           echo "$NIX_CACHE_KEY" > ~/cache.key
@@ -39,8 +41,6 @@ jobs:
         env:
           NIX_CACHE_KEY: ${{secrets.NIX_CACHE_KEY}}
           AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
-      - name: install jq
-        run: sudo apt install jq
       - name: Build ${{ matrix.host }}
         run: |
           nix build '.#hydraJobs.${{ matrix.host }}'
