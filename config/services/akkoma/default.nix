@@ -111,9 +111,6 @@
           "beefyboys.win" = "freeze peach; hosts neonazis";
           "bae.st" = "freeze peach";
         };
-        media_removal = processMap {
-          "a.rathersafe.space" = "posting borderline illegal imagery as the fediblock account";
-        };
       };
       ":mrf" = {
         policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "MediaProxyWarmingPolicy" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "TagPolicy" "RequireImageDescription"];
