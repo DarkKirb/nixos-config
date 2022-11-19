@@ -33,6 +33,7 @@
         permissions = {
           "@lotte:chir.rs" = "admin";
         };
+        channel_name_template = "{{if or (eq .Type 3) (eq .Type 4)}}{{.Name}} ({{.GuildName}} — {{.ParentName}}){{else}}#{{.Name}} ({{.GuildName}} — {{.ParentName}}){{end}}";
       };
     };
   };
