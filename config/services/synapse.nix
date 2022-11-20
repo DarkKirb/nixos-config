@@ -119,4 +119,14 @@
       }
     '';
   };
+
+  services.caddy.virtualHosts."matrix-admin.int.chir.rs" = {
+    useACMEHost = "int.chir.rs";
+    extraConfig = ''
+      import baseConfig
+
+      root * ${pkgs.synapse-admin}
+      file_server
+    '';
+  };
 }
