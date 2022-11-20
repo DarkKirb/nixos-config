@@ -66,17 +66,17 @@ in {
       useACMEHost = "chir.rs";
       extraConfig = ''
         import baseConfig
-        
+
         uri strip_prefix /cache
-        
+
         @getOnly {
           method GET
         }
-        
+
         @writeRequests {
           method POST PUT PATCH DELETE
         }
-        
+
         reverse_proxy @writeRequests {
           to https://cache-chir-rs.s3.us-west-000.backblazeb2.com
           header_up Host {upstream_hostport}
@@ -90,7 +90,7 @@ in {
             versions 1.1 2 3
           }
         }
-        
+
         reverse_proxy @getOnly {
           @error status 500 404
           handle_response @error {
