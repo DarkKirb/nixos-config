@@ -246,7 +246,7 @@
   ];
   hardware.enableRedistributableFirmware = true;
   nix.settings.substituters = lib.mkForce [
-    "https://cache.nixos.org/"
+    "https://cache.chir.rs/"
   ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
