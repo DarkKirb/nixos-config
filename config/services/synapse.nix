@@ -27,7 +27,21 @@
       admin_contact = "mailto:lotte@chir.rs";
       retention = {
         enabled = true;
+        default_policy = {
+          max_lifetime = "12w";
+        };
         max_lifetime = "12w";
+        allowed_lifetime_max = "12w";
+        purge_jobs = [
+          {
+            longest_max_lifetime = "3d";
+            interval = "12h";
+          }
+          {
+            shortest_max_lifetime = "3d";
+            interval = "1d";
+          }
+        ];
       };
       database = {
         name = "psycopg2";
