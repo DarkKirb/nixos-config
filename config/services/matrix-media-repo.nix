@@ -126,6 +126,7 @@ in {
     };
   };
   systemd.services.purge-old-media = {
+    path = [pkgs.curl];
     description = "Purge unused media";
     script = ''
       export MATRIX_TOKEN=$(cat ${config.sops.secrets."services/matrix-media-repo/matrix-token".path})
