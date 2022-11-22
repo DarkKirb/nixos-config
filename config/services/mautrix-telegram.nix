@@ -37,7 +37,10 @@
         animated_sticker.target = "webm";
         encryption = {
           allow = true;
-          keysharing.allow = true;
+          default = true;
+          appservice = true;
+          require = true;
+          allow_key_sharing = true;
         };
         delivery_receipts = true;
         delivery_error_reports = true;
