@@ -134,7 +134,7 @@ in {
         curl -H "Authorization: Bearer $MATRIX_TOKEN" -X POST https://matrix.chir.rs/_matrix/media/unstable/admin/purge/old\?before_ts=$(date -d "3 months ago" +%s%3N)\&include_local=true && exit 0
       done
     '';
-    
+
     serviceConfig = {
       Type = "oneshot";
       User = "matrix-media-repo";

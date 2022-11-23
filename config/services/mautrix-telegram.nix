@@ -4,7 +4,10 @@
   pkgs,
   ...
 }: {
-  services.mautrix-telegram = {
+  imports = [
+    ../../modules/matrix/mautrix-telegram.nix
+  ];
+  services.mautrix-telegram-2 = {
     enable = true;
     environmentFile = config.sops.secrets."services/mautrix/telegram".path;
     settings = {
@@ -69,16 +72,4 @@
       };
     }
   ];
-  users.users.mautrix-telegram = {
-    description = "Mautrix telegram bridge";
-    home = "/var/lib/mautrix-telegram";
-    useDefaultShell = true;
-    group = "matrix-synapse";
-    isSystemUser = true;
-  };
-  systemd.services.mautrix-telegram.serviceConfig = {
-    User = "mautrix-telegram";
-    Group = "matrix-synapse";
-    DynamicUser = lib.mkForce false;
-  };
 }
