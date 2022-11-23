@@ -6,15 +6,15 @@
 }:
 with lib; let
   dataDir = "/var/lib/mautrix-telegram";
-  registrationFile = "${dataDir}/signal-registration.yaml";
+  registrationFile = "${dataDir}/telegram-registration.yaml";
   cfg = config.services.mautrix-telegram-2;
   settingsFormat = pkgs.formats.yaml {};
-  settingsFileUnsubstituted = settingsFormat.generate "mautrix-telegram-signal-unsubstituted.yaml" cfg.settings;
+  settingsFileUnsubstituted = settingsFormat.generate "mautrix-telegram-config-unsubstituted.yaml" cfg.settings;
   settingsFile = "${dataDir}/config.yaml";
 in {
   options = {
     services.mautrix-telegram-2 = {
-      enable = mkEnableOption "mautrix-telegram, a Matrix-signal hybrid puppeting/relaybot bridge";
+      enable = mkEnableOption "mautrix-telegram, a Matrix-telegram hybrid puppeting/relaybot bridge";
       settings = mkOption rec {
         apply = recursiveUpdate default;
         inherit (settingsFormat) type;
