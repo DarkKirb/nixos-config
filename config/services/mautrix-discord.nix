@@ -27,6 +27,8 @@
         double_puppet_server_map = {};
         login_shared_secret_map = {};
         private_chat_portal_meta = true;
+        sync_direct_chat_list = true;
+        delete_portal_on_channel_delete = true;
         encryption = {
           allow = true;
           default = true;

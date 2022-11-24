@@ -36,6 +36,7 @@
         double_puppet_allow_discovery = true;
         double_puppet_server_map = {};
         login_shared_secret_map = {};
+        sync_with_custom_puppets = true;
         encryption = {
           allow = true;
           default = true;
