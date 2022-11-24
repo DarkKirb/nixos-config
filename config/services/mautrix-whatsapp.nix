@@ -43,7 +43,6 @@
         encryption = {
           allow = true;
           default = true;
-          appservice = true;
           require = true;
           allow_key_sharing = true;
         };
