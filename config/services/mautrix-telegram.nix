@@ -38,12 +38,24 @@
         double_puppet_allow_discovery = true;
         invite_link_resolve = true;
         animated_sticker.target = "webm";
+        sync_channel_members = true;
+        startup_sync = true;
+        sync_deferred_create_all = true;
+        sync_with_custom_puppets = true;
         encryption = {
           allow = true;
           default = true;
           appservice = true;
           require = true;
           allow_key_sharing = true;
+        };
+        private_chat_portal_meta = true;
+        mute_bridging = true;
+        backfill = {
+          msc2716 = true;
+          normal_groups = true;
+          unread_hours_threshold = -1;
+          incremental.max_batches.supergroup = -1;
         };
         delivery_receipts = true;
         delivery_error_reports = true;

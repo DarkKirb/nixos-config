@@ -26,6 +26,7 @@
         displayname_template = "{{if .PushName}}{{.PushName}}{{else if .BusinessName}}{{.BusinessName}}{{else}}{{.JID}}{{end}}";
         personal_filtering_spaces = true;
         delivery_receipts = true;
+        identity_change_notices = true;
         hystory_sync = {
           backfill = true;
           request_full_sync = true;
@@ -47,6 +48,12 @@
           require = true;
           allow_key_sharing = true;
         };
+        sync_with_custom_puppets = true;
+        sync_manual_marked_unread = true;
+        force_active_delivery_receipts = true;
+        parallel_member_sync = true;
+        extev_polls = 2;
+        send_whatsapp_edits = true;
         permissions = {
           "@lotte:chir.rs" = "admin";
         };

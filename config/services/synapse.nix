@@ -84,7 +84,27 @@
       signing_key_path = config.sops.secrets."services/synapse/private_key".path;
       enable_metrics = true;
       experimental_features = {
+        msc3026_enabled = true;
         msc2716_enabled = true;
+        msc3244_enabled = true;
+        msc3266_enabled = true;
+        msc3030_enabled = true;
+        msc2409_to_device_messages_enabled = true;
+        msc3202_device_masquerading_enabled = true;
+        msc3202_transaction_extensions = true;
+        msc3706_enabled = true;
+        faster_joins_enabled = true;
+        msc3720_enabled = true;
+        msc2654_enabled = true;
+        msc2815_enabled = true;
+        msc3773_enabled = true;
+        msc3664_enabled = true;
+        msc3848_enabled = true;
+        msc3852_enabled = true;
+        msc3881_enabled = true;
+        msc3882_enabled = true;
+        msc3874_enabled = true;
+        msc3912_enabled = true;
         spaces_enabled = true;
       };
       #sentry.dsn = "https://18e36e6f16b5490c83364101717cddba@o253952.ingest.sentry.io/6449283";
