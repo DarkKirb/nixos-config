@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  emoji_set_names = ["volpeon-blobfox-flip" "volpeon-blobfox" "volpeon-bunhd-flip" "volpeon-bunhd" "volpeon-drgn" "volpeon-fox" "volpeon-raccoon" "volpeon-vlpn" "lotte"];
+  emoji_set_names = ["volpeon-blobfox-flip" "volpeon-blobfox" "volpeon-bunhd-flip" "volpeon-bunhd" "volpeon-drgn" "volpeon-fox" "volpeon-raccoon" "volpeon-vlpn" "lotte" "caro"];
   emoji_sets = builtins.listToAttrs (map (name: {
       inherit name;
       value = "${pkgs."emoji-${name}"}";
@@ -178,6 +178,7 @@
           "Raccoon" = "/emoji/volpeon-raccoon/*.png";
           "Vlpn" = "/emoji/volpeon-vlpn/*.png";
           "Lotte" = "/emoji/lotte/*.png";
+          "Caroline" = "/emoji/caro/*.png";
           "Misc" = "/emoji/misc/*.png";
         };
       };
