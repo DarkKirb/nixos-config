@@ -28,6 +28,7 @@
     ./bittorrent-blocker.nix
     ./services/invtracker.nix # Remove once prof is done grading
     ./services/akkoma
+    ./services/peertube
   ];
 
   boot.initrd.availableKernelModules = ["ata_piix" "virtio_pci" "virtio_scsi" "xhci_pci" "sd_mod" "sr_mod"];
