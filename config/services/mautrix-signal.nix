@@ -27,8 +27,8 @@
       };
       signal = {
         socket_path = config.services.signald.socketPath;
-        avatar_dir = "/var/lib/mautrix-signal/avatars";
-        data_dir = "/var/lib/mautrix-signal/data";
+        avatar_dir = "/var/lib/signald/avatars";
+        data_dir = "/var/lib/signald/data";
       };
       bridge = {
         displayname_template = "{displayname}";
