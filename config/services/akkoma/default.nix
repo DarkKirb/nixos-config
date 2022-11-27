@@ -98,7 +98,7 @@
         processMap = m: map (k: mkTuple [k m.${k}]) (builtins.attrNames m);
       in {
         reject = processMap {
-          "qoto.org" = "Freeze Peach";
+          "qoto.org" = "Freeze Peach; Admin harasses other server admins; sends unsolicited emails";
           "poa.st" = "Hosting neonazis";
           "kiwifarms.cc" = "Targeted Harassment";
           "pmth.us" = "Harassment";
@@ -110,6 +110,11 @@
           "xhais.love" = "Zoophile instance";
           "beefyboys.win" = "freeze peach; hosts neonazis";
           "bae.st" = "freeze peach";
+        };
+        federated_timeline_removal = processMap {
+          "mastodon.social" = "Too large to be moderated well";
+          "mastodon.online" = "Too large to be moderated well";
+          "tumblr.com" = "Too large to be moderated well, corporate instance";
         };
       };
       ":mrf" = {
