@@ -21,7 +21,7 @@ rec {
     invtracker.url = "git+https://git.chir.rs/darkkirb/Programmierbeleg";
     nixpkgs-fluffychat.url = "github:Luis-Hebendanz/nixpkgs/fix_mkFlutterApp";
     helix.url = "github:helix-editor/helix";
-    hydra.url = "git+https://git.chir.rs/darkkirb/hydra?ref=hack";
+    hydra.url = "github:NixOS/hydra";
     plasma-manager.url = "github:pjones/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
