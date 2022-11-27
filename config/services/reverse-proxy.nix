@@ -46,20 +46,33 @@ in {
           method GET
         }
 
+        @options {
+          method OPTIONS
+        }
+
+        header {
+          Access-Control-Allow-Origin *
+          Access-Control-Allow-Credentials true
+          Access-Control-Allow-Methods GET
+          Access-Control-Allow-Headers *
+          defer
+        }
+
         reverse_proxy @getOnly {
           to http://localhost:24155
           header_up Host {upstream_hostport}
           header_up -Authorization
           header_down -Set-Cookie
-          header_down Access-Control-Allow-Origin '*'
+          header_down -Access-Control-Allow-Origin
           header_down -Access-Control-Allow-Methods
-          header_down Access-Control-Allow-Headers
+          header_down -Access-Control-Allow-Headers
           header_up -Set-Cookie
 
           transport http {
             versions 1.1 2 3
           }
         }
+        respond @options 204
       '';
     };
     "cache.chir.rs" = {

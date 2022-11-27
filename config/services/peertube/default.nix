@@ -3,7 +3,8 @@
     enable = true;
     localDomain = "peertube.chir.rs";
     listenHttp = 5370;
-    listenWeb = 5370;
+    listenWeb = 443;
+    enableWebHttps = true;
     serviceEnvironmentFile = config.sops.secrets."services/peertube".path;
     settings = {
       object_storage = {
