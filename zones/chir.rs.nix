@@ -102,7 +102,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 16;
+      serial = 17;
     };
     NS = [
       "ns1.chir.rs."
@@ -188,6 +188,7 @@ with dns.lib.combinators; let
       akko = createZone {};
       moa = createZone {};
       cache = createZone {};
+      peertube = createZone {};
 
       int =
         delegateTo [
