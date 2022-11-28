@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   services.peertube = {
     enable = true;
     localDomain = "peertube.chir.rs";
@@ -25,7 +30,7 @@
     database.createLocally = true;
     redis.createLocally = true;
   };
-  systemd.services.peertube.path = with pkgs; lib.mkForce [ bashInteractive ffmpeg_5 nodejs-16_x openssl yarn python3 coreutils systemd ];
+  systemd.services.peertube.path = with pkgs; lib.mkForce [bashInteractive ffmpeg_5 nodejs-16_x openssl yarn python3 coreutils systemd];
   services.caddy.virtualHosts."peertube.chir.rs" = {
     useACMEHost = "chir.rs";
     extraConfig = ''
