@@ -102,7 +102,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 18;
+      serial = 19;
     };
     NS = [
       "ns1.chir.rs."
@@ -182,7 +182,7 @@ with dns.lib.combinators; let
       hydra = createZone {};
       mastodon = createZone {};
       mastodon-assets.CNAME = [
-        "assets-chir-rs.b-cdn.net"
+        "assets-chir-rs.b-cdn.net."
       ];
       matrix = createZone {};
       drone = createZone {};
@@ -190,7 +190,7 @@ with dns.lib.combinators; let
       akko = createZone {};
       moa = createZone {};
       cache.CNAME = [
-        "cache-chir-rs.b-cdn.net"
+        "cache-chir-rs.b-cdn.net."
       ];
       peertube = createZone {};
 
