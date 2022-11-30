@@ -110,6 +110,7 @@
           "xhais.love" = "Zoophile instance";
           "beefyboys.win" = "freeze peach; hosts neonazis";
           "bae.st" = "freeze peach";
+          "vivaldi.net" = "Corporate instance; Registers nonconsensual accounts for Vivaldi Sync users";
         };
         federated_timeline_removal = processMap {
           "mastodon.social" = "Too large to be moderated well";
