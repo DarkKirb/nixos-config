@@ -3,6 +3,8 @@
   nix-packages,
   config,
   lib,
+  nixpkgs-libjxl-update,
+  system,
   ...
 }: let
   emoji_set_names = ["volpeon-blobfox-flip" "volpeon-blobfox" "volpeon-bunhd-flip" "volpeon-bunhd" "volpeon-drgn" "volpeon-fox" "volpeon-raccoon" "volpeon-vlpn" "lotte" "caro"];
@@ -203,7 +205,7 @@ in {
     group = "akkoma";
     secretConfigFile = config.sops.secrets."services/akkoma.exs".path;
   };
-  systemd.services.pleroma.path = with pkgs; [exiftool imagemagick ffmpeg];
+  systemd.services.pleroma.path = with pkgs; [exiftool nixpkgs-libjxl-update.legacyPackages.${system}.imagemagick ffmpeg];
   services.postgresql.ensureDatabases = ["akkoma"];
   services.postgresql.ensureUsers = [
     {

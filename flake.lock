@@ -577,11 +577,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1669708371,
-        "narHash": "sha256-cWSNnbs8aA6L7ITx5z/czm1TTCayThUDsYrn9Ld8/6M=",
+        "lastModified": 1669923178,
+        "narHash": "sha256-wNZ0JuH3Cqnzz5P45sLeGn/Pgb+cAR5PtOwGf5xIo6o=",
         "owner": "DarkKirb",
         "repo": "nix-packages",
-        "rev": "202c40926e3ecfe894caa817c723afafec3f06d0",
+        "rev": "a38f86d6344b42c4a78ea304342980ff1e6f174b",
         "type": "github"
       },
       "original": {
@@ -666,6 +666,22 @@
         "dir": "lib",
         "owner": "NixOS",
         "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-libjxl-update": {
+      "locked": {
+        "lastModified": 1669918756,
+        "narHash": "sha256-vc0TNEnwsIHVoQ9i7G0Sic80sQrrig6vxW375O5vNDM=",
+        "owner": "darkkirb",
+        "repo": "nixpkgs",
+        "rev": "9c686f3242fc3dde1819a92a7778ed58d088ec0b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "darkkirb",
+        "ref": "bump-jxl-0.7.0",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -855,6 +871,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_6",
         "nixpkgs-fluffychat": "nixpkgs-fluffychat",
+        "nixpkgs-libjxl-update": "nixpkgs-libjxl-update",
         "nixpkgs-noto-variable": "nixpkgs-noto-variable",
         "nur": "nur",
         "plasma-manager": "plasma-manager",
