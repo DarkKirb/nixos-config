@@ -25,6 +25,7 @@ rec {
     plasma-manager.url = "github:pjones/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
+    nixpkgs-libjxl-update.url = "github:darkkirb/nixpkgs/bump-jxl-0.7.0";
 
     nix-packages.url = "github:DarkKirb/nix-packages";
     nix-packages.inputs.nixpkgs.follows = "nixpkgs";
