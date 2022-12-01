@@ -42,7 +42,7 @@
     ":pleroma" = {
       "Pleroma.Upload" = {
         uploader = mkRaw "Pleroma.Uploaders.S3";
-        filters = map (v: mkRaw ("Pleroma.Upload.Filter." + v)) ["Mogrify" "Exiftool" "Dedupe" "AnonymizeFilename"];
+        filters = map (v: mkRaw ("Pleroma.Upload.Filter." + v)) ["Mogrify" "Dedupe" "AnonymizeFilename"];
         base_url = "https://mastodon-assets.chir.rs/";
       };
       "Pleroma.Uploaders.S3" = {
@@ -50,7 +50,7 @@
         truncated_namespace = "";
       };
       "Pleroma.Upload.Filter.Mogrify" = {
-        args = "auto-orient";
+        args = ["auto-orient" "strip"];
       };
       ":instance" = {
         name = "Raccoon Noises";
