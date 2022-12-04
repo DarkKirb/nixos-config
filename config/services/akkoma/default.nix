@@ -7,6 +7,13 @@
   system,
   ...
 }: let
+  purge_url_script = pkgs.writeScript "purge-url" ''
+    access_key=$(cat ${config.sops.secrets."services/bunny-key".path})
+    for url in $@; do
+      url=$(echo $url | ${pkgs.python3}/bin/python3 -c "import sys; import urllib.parse; print(urllib.parse.quote(sys.stdin.read().strip()))")
+      ${pkgs.curl}/bin/curl -H "Authorization: Bearer $access_key" -X POST "https://api.bunny.net/purge?url=$url&async=false"
+    done
+  '';
   emoji_set_names = ["volpeon-blobfox-flip" "volpeon-blobfox" "volpeon-bunhd-flip" "volpeon-bunhd" "volpeon-drgn" "volpeon-fox" "volpeon-raccoon" "volpeon-vlpn" "lotte" "caro"];
   emoji_sets = builtins.listToAttrs (map (name: {
       inherit name;
@@ -141,9 +148,17 @@
       };
       ":media_proxy" = {
         enabled = true;
+        base_url = "https://mediaproxy.chir.rs";
         proxy_opts = {
           redirect_on_failure = true;
         };
+        invalidation = {
+          enabled = true;
+          provider = mkRaw "Pleroma.Web.MediaProxy.Invalidation.Script";
+        };
+      };
+      "Pleroma.Web.MediaProxy.Invalidation.Script" = {
+        script_path = "${purge_url_script}";
       };
       "Pleroma.Repo" = {
         adapter = mkRaw "Ecto.Adapters.Postgres";
@@ -214,6 +229,7 @@ in {
     }
   ];
   sops.secrets."services/akkoma.exs" = {owner = "akkoma";};
+  sops.secrets."services/bunny-key".owner = "akkoma";
   services.caddy.virtualHosts."akko.chir.rs" = {
     useACMEHost = "chir.rs";
     extraConfig = ''

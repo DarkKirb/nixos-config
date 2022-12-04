@@ -102,7 +102,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 19;
+      serial = 20;
     };
     NS = [
       "ns1.chir.rs."
@@ -171,7 +171,7 @@ with dns.lib.combinators; let
       _keybase.TXT = [
         (ttl zoneTTL (txt "keybase-site-verification=r044cwg0wOTW-ws35BA5MMRLNwjdTNJ4uOu6kgdTopI"))
       ];
-
+      
       www = createZone {};
       api = createZone {};
       git = createZone {};
@@ -193,6 +193,7 @@ with dns.lib.combinators; let
         "cache-chir-rs.b-cdn.net."
       ];
       peertube = createZone {};
+      mediaproxy.CNAME = [ "mediaproxy-chir-rs.b-cdn.net." ];
 
       int =
         delegateTo [
