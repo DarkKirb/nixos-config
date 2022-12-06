@@ -18,7 +18,6 @@ rec {
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
     emanote.url = "github:EmaApps/emanote";
-    invtracker.url = "git+https://git.chir.rs/darkkirb/Programmierbeleg";
     nixpkgs-fluffychat.url = "github:Luis-Hebendanz/nixpkgs/fix_mkFlutterApp";
     helix.url = "github:helix-editor/helix";
     hydra.url = "github:NixOS/hydra";

@@ -26,7 +26,6 @@
     ./services/reverse-proxy.nix
     ./services/matrix-media-repo.nix
     ./bittorrent-blocker.nix
-    ./services/invtracker.nix # Remove once prof is done grading
     ./services/akkoma
     ./services/peertube
   ];
