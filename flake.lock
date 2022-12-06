@@ -1,28 +1,5 @@
 {
   "nodes": {
-    "android-nixpkgs": {
-      "inputs": {
-        "devshell": "devshell_2",
-        "flake-utils": "flake-utils_4",
-        "nixpkgs": [
-          "invtracker",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1661286159,
-        "narHash": "sha256-LxYboPfFEOWaqFKjaXW8KiQUrDkII14h9dQOoCkyi+U=",
-        "owner": "tadfisher",
-        "repo": "android-nixpkgs",
-        "rev": "cbace2456982e90bad37075329b67836e9347ce3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tadfisher",
-        "repo": "android-nixpkgs",
-        "type": "github"
-      }
-    },
     "crane": {
       "flake": false,
       "locked": {
@@ -47,33 +24,6 @@
         "owner": "numtide",
         "repo": "devshell",
         "rev": "96a9dd12b8a447840cc246e17a47b81a4268bba7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "devshell",
-        "type": "github"
-      }
-    },
-    "devshell_2": {
-      "inputs": {
-        "flake-utils": [
-          "invtracker",
-          "android-nixpkgs",
-          "nixpkgs"
-        ],
-        "nixpkgs": [
-          "invtracker",
-          "android-nixpkgs",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1660811669,
-        "narHash": "sha256-V6lmsaLNFz41myppL0yxglta92ijkSvpZ+XVygAh+bU=",
-        "owner": "numtide",
-        "repo": "devshell",
-        "rev": "c2feacb46ee69949124c835419861143c4016fb5",
         "type": "github"
       },
       "original": {
@@ -282,36 +232,6 @@
     },
     "flake-utils_4": {
       "locked": {
-        "lastModified": 1659877975,
-        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_5": {
-      "locked": {
-        "lastModified": 1659877975,
-        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_6": {
-      "locked": {
         "lastModified": 1667395993,
         "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
         "owner": "numtide",
@@ -452,26 +372,6 @@
         "type": "github"
       }
     },
-    "invtracker": {
-      "inputs": {
-        "android-nixpkgs": "android-nixpkgs",
-        "flake-utils": "flake-utils_5",
-        "nixpkgs": "nixpkgs_5"
-      },
-      "locked": {
-        "lastModified": 1661695658,
-        "narHash": "sha256-TWOhptDKsQ4UpORh9rtgxgQUyo6Gfp14ZO0oI8zxHtk=",
-        "ref": "refs/heads/main",
-        "rev": "f19d9ac9d464c98ea2b37e5dee485efd1eb57ea3",
-        "revCount": 30,
-        "type": "git",
-        "url": "https://git.chir.rs/darkkirb/Programmierbeleg"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.chir.rs/darkkirb/Programmierbeleg"
-      }
-    },
     "libnbtplusplus": {
       "flake": false,
       "locked": {
@@ -554,7 +454,7 @@
     },
     "nix-packages": {
       "inputs": {
-        "flake-utils": "flake-utils_6",
+        "flake-utils": "flake-utils_4",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -751,21 +651,6 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1661323386,
-        "narHash": "sha256-7BxU3dM5oCAwMs8ggblXV0yAIGCfVK6l0vfDvoEIBs8=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "678ac83e97abe80242d31a3e99915b19366db342",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_6": {
-      "locked": {
         "lastModified": 1670314633,
         "narHash": "sha256-id518l6bw5rtQoXw1AFt2H0endm7MhiZEcYFzhhyQ1o=",
         "owner": "NixOS",
@@ -849,10 +734,9 @@
         "home-manager": "home-manager",
         "hosts-list": "hosts-list",
         "hydra": "hydra",
-        "invtracker": "invtracker",
         "nix-packages": "nix-packages",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_5",
         "nixpkgs-fluffychat": "nixpkgs-fluffychat",
         "nixpkgs-libjxl-update": "nixpkgs-libjxl-update",
         "nixpkgs-noto-variable": "nixpkgs-noto-variable",
