@@ -45,27 +45,27 @@ with dns.lib.combinators; let
       }
     ];
     /*
-    subdomains = {
-    _tcp.subdomains."*".TLSA = [
-    {
-    certUsage = "dane-ee";
-    selector = "spki";
-    match = "sha256";
-    certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-    ttl = zoneTTL;
-    }
-    ];
-    _udp.subdomains."*".TLSA = [
-    {
-    certUsage = "dane-ee";
-    selector = "spki";
-    match = "sha256";
-    certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-    ttl = zoneTTL;
-    }
-    ];
-    };
-    */
+     subdomains = {
+     _tcp.subdomains."*".TLSA = [
+     {
+     certUsage = "dane-ee";
+     selector = "spki";
+     match = "sha256";
+     certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
+     ttl = zoneTTL;
+     }
+     ];
+     _udp.subdomains."*".TLSA = [
+     {
+     certUsage = "dane-ee";
+     selector = "spki";
+     match = "sha256";
+     certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
+     ttl = zoneTTL;
+     }
+     ];
+     };
+     */
     HTTPS = [
       {
         svcPriority = 1;
@@ -102,7 +102,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 20;
+      serial = 21;
     };
     NS = [
       "ns1.chir.rs."
@@ -171,7 +171,7 @@ with dns.lib.combinators; let
       _keybase.TXT = [
         (ttl zoneTTL (txt "keybase-site-verification=r044cwg0wOTW-ws35BA5MMRLNwjdTNJ4uOu6kgdTopI"))
       ];
-      
+
       www = createZone {};
       api = createZone {};
       git = createZone {};
@@ -186,14 +186,13 @@ with dns.lib.combinators; let
       ];
       matrix = createZone {};
       drone = createZone {};
-      invtracker = createZone {};
       akko = createZone {};
       moa = createZone {};
       cache.CNAME = [
         "cache-chir-rs.b-cdn.net."
       ];
       peertube = createZone {};
-      mediaproxy.CNAME = [ "mediaproxy-chir-rs.b-cdn.net." ];
+      mediaproxy.CNAME = ["mediaproxy-chir-rs.b-cdn.net."];
 
       int =
         delegateTo [
