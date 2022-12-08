@@ -4,8 +4,11 @@
 # calls the flake's 'outputs' function. It then returns an attrset
 # containing 'defaultNix' (to be used in 'default.nix'), 'shellNix'
 # (to be used in 'shell.nix').
-_: let
-  inherit (builtins) attrNames listToAttrs concatMap;
+let
+  inherit (builtins) attrNames listToAttrs;
+
+  mapAttrs' = f: set:
+    listToAttrs (map (attr: f attr set.${attr}) (attrNames set));
 
   flake_compat = src: let
     lockFilePath = src + "/flake.lock";
@@ -271,17 +274,17 @@ _: let
     result.hydraJobs;
 
   prs = builtins.fromJSON (builtins.readFile <prs>);
-  filteredPrs = builtins.filter (f: f.state == "open") prs;
-  srcs = listToAttrs (map
-    (value: {
-      name = "pr${value.id}";
+  srcs =
+    mapAttrs'
+    (n: value: {
+      name = "pr${n}";
       value =
         builtins.fetchGit
         {
-          url = "${value.head.repo.clone_url}";
+          url = "https://github.com/${value.head.repo.owner.login}/${value.head.repo.name}.git";
           ref = "${value.head.ref}";
         };
     })
-    filteredPrs);
+    prs;
 in
   builtins.mapAttrs (_: flake_compat) srcs
