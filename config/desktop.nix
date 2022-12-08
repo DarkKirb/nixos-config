@@ -17,6 +17,7 @@ in {
     ./services/pipewire.nix
     ./desktop-secrets.nix
     ./services/cups.nix
+    ./services/docker.nix
   ];
   fonts.fonts = with pkgs; [
     noto-fonts
