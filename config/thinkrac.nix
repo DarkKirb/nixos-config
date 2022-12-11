@@ -174,4 +174,5 @@
     "gccarch-skylake"
     "ca-derivations"
   ];
+  services.joycond.enable = true;
 }
