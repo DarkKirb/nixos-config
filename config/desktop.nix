@@ -129,7 +129,7 @@ in {
     xkbVariant = "neo";
   };
   #programs.sway.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_xanmod;
+  boot.kernelPackages = pkgs.zfsUnstable.latestCompatibleLinuxPackages;
   i18n.inputMethod = {
     enabled = "ibus";
     ibus.engines = with pkgs.ibus-engines; [anthy];
