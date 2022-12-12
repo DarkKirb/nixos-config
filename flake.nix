@@ -95,10 +95,10 @@ rec {
         name = "nas"; # My nas
         system = "x86_64-linux";
       }
-      #{
-      #  name = "rpi2"; # Raspberry Pi 2
-      #  system = "armv7l-linux";
-      #}
+      {
+        name = "aarch64-kexec"; # kexec tarball for aarch64
+        system = "aarch64-linux";
+      }
     ];
   in rec {
     nixosConfigurations = builtins.listToAttrs (map
@@ -166,6 +166,7 @@ rec {
         systems))
       // {
         inherit devShell;
+        aarch64-kexec-tarball = nixosConfigurations.aarch64-kexec.config.system.build.kexec_tarball;
         # Uncomment the line to build an installer image
         # This is EXTREMELY LARGE and will make builds take forever
         # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
