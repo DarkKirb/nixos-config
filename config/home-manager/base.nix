@@ -1,6 +1,6 @@
 desktop: {pkgs, ...}: {
   imports = [
-    ../programs/zsh.nix
+    (import ../programs/zsh.nix desktop)
     ../programs/helix
     ../programs/tmux.nix
     ../programs/ssh.nix
@@ -9,7 +9,6 @@ desktop: {pkgs, ...}: {
   programs = {
     zsh = {
       enable = true;
-      enableVteIntegration = true;
       oh-my-zsh = {
         enable = true;
       };
