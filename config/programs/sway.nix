@@ -138,7 +138,6 @@ in {
         inherit (config.wayland.windowManager.sway.config) modifier;
       in
         lib.mkOptionDefault {
-          "${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";
           "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";
           "Print" = "mode screenshot";
           "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";

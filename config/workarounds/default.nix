@@ -37,14 +37,6 @@ in {
           };
         });
         inherit (noto-variable) noto-fonts-cjk;
-        kitty = prev.kitty.overrideAttrs (old: {
-          patches =
-            old.patches
-            ++ [
-              ../../extra/kitty.patch
-            ];
-          installCheckPhase = "true";
-        });
         nix = nix-packages.packages.${system}.nix-s3-dedup.overrideAttrs (old: rec {
           postPatchPhase = ''
             sed 's/getBoolAttr."allowSubstitutes", true./true/' src/libstore/parsed-derivations.cc
@@ -76,10 +68,6 @@ in {
               maintainers = with maintainers; [ma27];
             };
           };
-        dovecot = prev.dovecot.overrideAttrs (old: rec {
-          checkPhase = "true";
-          installCheckPhase = "true";
-        });
         element-web = prev.callPackage ../../packages/element-web.nix {};
       }
       // nix-packages.packages.${system})

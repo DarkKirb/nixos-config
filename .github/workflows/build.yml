@@ -13,10 +13,14 @@ jobs:
           - nixos-8gb-fsn1-1.x86_64-linux
           - nutty-noon.x86_64-linux
           - thinkrac.x86_64-linux
+          - aarch64-kexec.aarch64-linux
+          - aarch64-kexec-tarball
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
       - name: Cleanup Disk
         uses: curoky/cleanup-disk-action@v2.0
         with:
@@ -31,6 +35,8 @@ jobs:
             experimental-features = nix-command flakes ca-derivations
             post-build-hook = ${{ github.workspace }}/scripts/post-build-hook
             substituters = https://cache.chir.rs/ https://cache.nixos.org/
+            extra-platforms = armv7l-linux aarch64-linux powerpc-linux powerpc64-linux powerpc64le-linux riscv32-linux riscv64-linux wasm32-wasi i686-linux
+            sandbox = false
       - name: Download patched nix
         run: nix build github:DarkKirb/nix-packages#nix-s3-dedup
       - name: Set up secrets

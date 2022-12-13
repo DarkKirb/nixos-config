@@ -26,29 +26,6 @@ in {
   qt.style.package = pkgs.libsForQt5.breeze-qt5;
   qt.style.name = "BreezeDark";
 
-  programs.kitty.settings = with theme; {
-    background = cssColor bg;
-    foreground = cssColor fg;
-    cursor = cssColor fg;
-    selection_background = "#4f414c";
-    color0 = cssColor black;
-    color1 = cssColor dark-red;
-    color2 = cssColor dark-green;
-    color3 = cssColor dark-yellow;
-    color4 = cssColor dark-blue;
-    color5 = cssColor dark-magenta;
-    color6 = cssColor dark-cyan;
-    color7 = cssColor light-grey;
-    color8 = cssColor dark-grey;
-    color9 = cssColor red;
-    color10 = cssColor green;
-    color11 = cssColor yellow;
-    color12 = cssColor blue;
-    color13 = cssColor magenta;
-    color14 = cssColor cyan;
-    color15 = cssColor white;
-  };
-
   programs.waybar.style = with theme; ''
     * {
       border: none;

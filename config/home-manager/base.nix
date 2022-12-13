@@ -1,7 +1,7 @@
 desktop: {pkgs, ...}: {
   imports = [
-    ../programs/zsh.nix
-    ../programs/helix
+    (import ../programs/zsh.nix desktop)
+    (import ../programs/helix desktop)
     ../programs/tmux.nix
     ../programs/ssh.nix
     ../programs/taskwarrior.nix
@@ -9,18 +9,12 @@ desktop: {pkgs, ...}: {
   programs = {
     zsh = {
       enable = true;
-      enableVteIntegration = true;
       oh-my-zsh = {
         enable = true;
       };
       initExtraBeforeCompInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       initExtra = ''
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-        test -n "$KITTY_INSTALLATION_DIR" || export KITTY_INSTALLATION_DIR=${pkgs.kitty}/lib/kitty
-        export KITTY_SHELL_INTEGRATION=enabled
-        autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
-        kitty-integration
-        unfunction kitty-integration
       '';
       plugins = [
       ];
@@ -38,19 +32,21 @@ desktop: {pkgs, ...}: {
       nvim = "hx";
       cat = "bat";
       less = "bat";
-      icat = "${pkgs.kitty}/bin/kitty +kitten icat";
-      d = "${pkgs.kitty}/bin/kitty +kitten diff";
-      hg = "${pkgs.kitty}/bin/kitty +kitten hyperlinked_grep";
     };
-    packages = with pkgs; [
-      yubikey-manager
-      yubico-piv-tool
-      ripgrep
-      jq
-      gh
-      htop
-      sops
-    ];
+    packages = with pkgs;
+      [
+        yubico-piv-tool
+        ripgrep
+        jq
+        gh
+        htop
+        sops
+      ]
+      ++ (
+        if desktop
+        then [yubikey-manager]
+        else []
+      );
   };
 
   programs.exa = {

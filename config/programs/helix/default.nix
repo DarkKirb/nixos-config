@@ -1,11 +1,14 @@
-{
+desktop: {
   system,
   pkgs,
   ...
 }: {
-  imports = [
-    ./languages.nix
-  ];
+  imports =
+    if desktop
+    then [
+      ./languages.nix
+    ]
+    else [];
   home.packages = [
     pkgs.wl-clipboard
     pkgs.xsel
