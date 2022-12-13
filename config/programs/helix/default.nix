@@ -1,5 +1,4 @@
 {
-  helix,
   system,
   pkgs,
   ...
@@ -13,7 +12,6 @@
   ];
   programs.helix = {
     enable = true;
-    package = helix.packages.${system}.helix;
     settings = {
       theme = "gruvbox";
       editor = {

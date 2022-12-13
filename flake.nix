@@ -3,31 +3,67 @@ rec {
 
   # Use NixOS unstable
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    # Sorted by name
+    dns = {
+      url = "github:DarkKirb/dns.nix";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ema.url = "github:EmaApps/ema";
+    emanote = {
+      url = "github:EmaApps/emanote";
+      inputs.ema.follows = "ema";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.haskell-flake.follows = "haskell-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     flake-utils.url = "github:numtide/flake-utils";
-    home-manager.url = "github:andresilva/home-manager/fix-systemd-services";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    nur.url = "github:nix-community/NUR";
-    prismmc.url = "github:PrismLauncher/PrismLauncher";
-    prismmc.inputs.nixpkgs.follows = "nixpkgs";
-    dns.url = "github:DarkKirb/dns.nix?ref=master";
-    hosts-list.url = "github:StevenBlack/hosts";
-    hosts-list.flake = false;
+    haskell-flake.url = "github:srid/haskell-flake";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hosts-list = {
+      url = "github:StevenBlack/hosts";
+      flake = false;
+    };
+    hydra = {
+      url = "github:NixOS/hydra";
+      #inputs.nix.follows = "nix";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-packages = {
+      url = "github:DarkKirb/nix-packages";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
-    emanote.url = "github:EmaApps/emanote";
-    nixpkgs-fluffychat.url = "github:Luis-Hebendanz/nixpkgs/fix_mkFlutterApp";
-    helix.url = "github:helix-editor/helix";
-    hydra.url = "github:NixOS/hydra";
-    plasma-manager.url = "github:pjones/plasma-manager";
-    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
-    plasma-manager.inputs.home-manager.follows = "home-manager";
+    nixpkgs.url = "github:NixOS/nixpkgs";
     nixpkgs-libjxl-update.url = "github:darkkirb/nixpkgs/bump-jxl-0.7.0";
-
-    nix-packages.url = "github:DarkKirb/nix-packages";
-    nix-packages.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
+    nur.url = "github:nix-community/NUR";
+    plasma-manager = {
+      url = "github:pjones/plasma-manager";
+      inputs.home-manager.follows = "home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    prismmc = {
+      url = "github:PrismLauncher/PrismLauncher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
+    tomlplusplus = {
+      url = "github:marzer/tomlplusplus";
+      flake = false;
+    };
   };
 
   outputs = {
