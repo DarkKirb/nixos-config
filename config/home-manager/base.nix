@@ -35,14 +35,13 @@ desktop: {pkgs, ...}: {
       less = "bat";
     };
     packages = with pkgs; [
-      yubikey-manager
       yubico-piv-tool
       ripgrep
       jq
       gh
       htop
       sops
-    ];
+    ] ++ (if desktop then [yubikey-manager] else []);
   };
 
   programs.exa = {
