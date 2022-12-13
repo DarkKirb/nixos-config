@@ -16,11 +16,6 @@ desktop: {pkgs, ...}: {
       initExtraBeforeCompInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       initExtra = ''
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-        test -n "$KITTY_INSTALLATION_DIR" || export KITTY_INSTALLATION_DIR=${pkgs.kitty}/lib/kitty
-        export KITTY_SHELL_INTEGRATION=enabled
-        autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
-        kitty-integration
-        unfunction kitty-integration
       '';
       plugins = [
       ];
@@ -38,9 +33,6 @@ desktop: {pkgs, ...}: {
       nvim = "hx";
       cat = "bat";
       less = "bat";
-      icat = "${pkgs.kitty}/bin/kitty +kitten icat";
-      d = "${pkgs.kitty}/bin/kitty +kitten diff";
-      hg = "${pkgs.kitty}/bin/kitty +kitten hyperlinked_grep";
     };
     packages = with pkgs; [
       yubikey-manager

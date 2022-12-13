@@ -10,16 +10,6 @@
     extraConfig = {
       init.defaultBranch = "main";
       merge.conflictstyle = "diff3";
-      diff = {
-        tool = "kitty";
-        guitool = "kitty.gui";
-      };
-      difftool = {
-        prompt = false;
-        trustExitCode = true;
-        kitty.cmd = "${pkgs.kitty}/bin/kitty +kitten diff $LOCAL $REMOTE";
-        "kitty.gui".cmd = "${pkgs.kitty}/bin/kitty ${pkgs.kitty}/bin/kitty +kitten diff $LOCAL $REMOTE";
-      };
     };
   };
 }

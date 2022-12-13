@@ -29,7 +29,6 @@
         ../programs/vscode
         ../programs/misc.nix
         ../programs/mail.nix
-        ../programs/kitty.nix
         ../programs/zk.nix
       ]
       else []
