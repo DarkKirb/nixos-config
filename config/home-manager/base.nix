@@ -1,7 +1,7 @@
 desktop: {pkgs, ...}: {
   imports = [
     (import ../programs/zsh.nix desktop)
-    ../programs/helix
+    (import ../programs/helix desktop)
     ../programs/tmux.nix
     ../programs/ssh.nix
     ../programs/taskwarrior.nix
@@ -33,14 +33,20 @@ desktop: {pkgs, ...}: {
       cat = "bat";
       less = "bat";
     };
-    packages = with pkgs; [
-      yubico-piv-tool
-      ripgrep
-      jq
-      gh
-      htop
-      sops
-    ] ++ (if desktop then [yubikey-manager] else []);
+    packages = with pkgs;
+      [
+        yubico-piv-tool
+        ripgrep
+        jq
+        gh
+        htop
+        sops
+      ]
+      ++ (
+        if desktop
+        then [yubikey-manager]
+        else []
+      );
   };
 
   programs.exa = {
