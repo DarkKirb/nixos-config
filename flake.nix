@@ -99,6 +99,10 @@ rec {
         name = "aarch64-kexec"; # kexec tarball for aarch64
         system = "aarch64-linux";
       }
+      {
+        name = "instance-20221213-1915"; # Oracle server
+        system = "aarch64-linux";
+      }
     ];
   in rec {
     nixosConfigurations = builtins.listToAttrs (map

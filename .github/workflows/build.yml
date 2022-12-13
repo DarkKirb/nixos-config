@@ -15,6 +15,7 @@ jobs:
           - thinkrac.x86_64-linux
           - aarch64-kexec.aarch64-linux
           - aarch64-kexec-tarball
+          - instance-20221213-1915.aarch64-linux
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

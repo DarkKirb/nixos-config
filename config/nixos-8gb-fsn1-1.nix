@@ -229,6 +229,13 @@
           "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b/128"
         ];
       }
+      # instance-20221213-1915
+      {
+        publicKey = "GHsVg8seCVIMYOidH5+/3EnoXRmi98NXtNTVu+nFcnw=";
+        allowedIPs = [
+          "fd0d:a262:1fa6:e621:746d:4523:5c04:1453/128"
+        ];
+      }
     ];
   };
   boot.kernel.sysctl = {
