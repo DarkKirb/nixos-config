@@ -83,4 +83,6 @@
   nix.settings.max-jobs = 2;
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
+
+  system.stateVersion = "22.11";
 }
