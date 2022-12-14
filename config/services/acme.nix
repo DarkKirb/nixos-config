@@ -17,6 +17,10 @@ _: {
     certs."int.chir.rs" = {
       domain = "*.int.chir.rs";
     };
+    certs."shitallover.me" = {
+      domain = "*.shitallover.me";
+      extraDomainNames = ["shitallover.me"];
+    };
     certs."miifox.net" = {
       dnsProvider = "cloudflare";
       credentialsFile = "/run/secrets/security/acme/cloudflare";

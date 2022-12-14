@@ -122,9 +122,9 @@ with dns.lib.combinators; let
   createZone = merge zoneBase;
   zone = createZone {
     SOA = {
-      nameServer = "ns1.darkkirb.de.";
+      nameServer = "ns1.shitallover.me.";
       adminEmail = "lotte@chir.rs";
-      serial = 3;
+      serial = 1;
     };
     NS = [
       "ns1.chir.rs."
@@ -190,20 +190,6 @@ with dns.lib.combinators; let
       }
     ];
     subdomains = {
-      _dmarc.TXT = [
-        (ttl zoneTTL (txt "v=DMARC1; p=quarantine; rua=mailto:dmarc@chir.rs; ruf=dmarc@chir.rs; fo=1; adkim=s; aspf=s; sp=reject;"))
-      ];
-      _domainkey.subdomains = {
-        dkim.TXT = [
-          (ttl zoneTTL (txt "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDk4XK4c7xWGIalV+yTj5F8B2eXOeFtp0p9VNMlG/dZMv1GGS9hUBEkZOOYhAuE2GhKhHsGtxMalGAIbCqJJglVBLTxDerPGLRAsgZ9EZCyhIh9ebOqv0SfhTfdoz6RZkNrB2DK4nnvzaOa0NQzp+a8a5pAN6niDFBbTF3FFBwkOQIDAQAB"))
-        ];
-        mail.TXT = [
-          (ttl zoneTTL (txt "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHmbBT9OJwDu5x7C2C/WhzeHirrxAlLwuh8Z9q7UBGS98MsLbS1NnCvZic4N3H/z80RHABF9KFhvJWy60NhM+UKWDEYSlgc8Z3KJZjuqOCUsajjf2cdhaTOKLbu57388tjghBD0cpK3mdqPU5aw2GY4jJR4YC4c0fqJ6vRTvyOSwIDAQAB"))
-        ];
-      };
-      _keybase.TXT = [
-        (ttl zoneTTL (txt "keybase-site-verification=9DC6G-moMF8zfcm7_lpjhh2cvT9gL4hHV5yQqf_RgBk"))
-      ];
       _acme-challenge = delegateTo [
         "ns1.chir.rs."
         "ns2.chir.rs."
@@ -215,7 +201,6 @@ with dns.lib.combinators; let
         "ns2.shitallover.me."
       ];
       www = createZone {};
-      static = createZone {};
       ns1 = createZone {};
       ns2 = createZone oracleBase;
     };
