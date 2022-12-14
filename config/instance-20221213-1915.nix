@@ -86,4 +86,9 @@
   nix.daemonIOSchedClass = "idle";
 
   system.stateVersion = "22.11";
+
+  sops.secrets."root/.ssh/id_ed25519" = {
+    owner = "root";
+    path = "/root/.ssh/id_ed25519";
+  };
 }
