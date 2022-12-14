@@ -15,6 +15,7 @@
   };
 in {
   services.bind = {
+    enable = true;
     zones = {
       "darkkirb.de" = mkZone "darkkirb.de";
       "_acme-challenge.darkkirb.de" = mkZone "_acme-challenge.darkkirb.de";
