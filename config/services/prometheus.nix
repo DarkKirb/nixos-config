@@ -16,6 +16,7 @@
               "nutty-noon.int.chir.rs:${toString config.services.prometheus.exporters.node.port}"
               "nas.int.chir.rs:${toString config.services.prometheus.exporters.node.port}"
               "thinkrac.int.chir.rs:${toString config.services.prometheus.exporters.node.port}"
+              "instance-20221213-1915.int.chir.rs:${toString config.services.prometheus.exporters.node.port}"
             ];
           }
         ];
