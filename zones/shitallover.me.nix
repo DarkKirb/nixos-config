@@ -16,7 +16,7 @@ with dns.lib.combinators; let
       (ttl zoneTTL (a "130.162.60.127"))
     ];
     AAAA = [
-      (ttl zoneTTL (aaa "2603:c020:8009:f100:f09a:894d:ef57:a278"))
+      (ttl zoneTTL (aaaa "2603:c020:8009:f100:f09a:894d:ef57:a278"))
     ];
     SSHFP = [
       {
