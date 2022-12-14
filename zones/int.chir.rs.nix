@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 17;
+    serial = 18;
   };
   NS = [
     "ns1.chir.rs."
@@ -252,6 +252,7 @@ in {
         }
       ];
     };
+    instance-20221213-1915.AAAA = [(ttl zoneTTL (aaaa "fd0d:a262:1fa6:e621:746d:4523:5c04:1453"))];
 
     grafana.CNAME = [(ttl zoneTTL (cname "nixos-8gb-fsn1-1"))];
     minio.CNAME = [(ttl zoneTTL (cname "nixos-8gb-fsn1-1"))];
