@@ -5,6 +5,9 @@
   hosts-list,
   ...
 }: let
+  internalIP = import ../../utils/getInternalIP.nix config;
+  createListenEntry = ip: "inet ${ip} port 8653 allow { any; };";
+  listenEntries = builtins.map createListenEntry internalIP.listenIPsBare;
   mkZone = name: {
     master = false;
     masters = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
