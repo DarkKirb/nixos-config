@@ -6,6 +6,16 @@ keys:
   - &nas age1c7y687sxh428wk34s8ws6kemu62mggafpt40rmanevgkuj5xa59q6f7tlc
   - &instance-20221213-1915 age1s7xxqxk6t6rw3zvfylgpwp5362v5guqsf8vjcvjjdj7wcnnxncvqc62frn
 creation_rules:
+  - path_regex: secrets/shared\.yaml$
+    key_groups:
+      - age:
+          - *nixos-8gb-fsn1-1
+          - *nutty-noon
+          - *thinkrac
+          - *nas
+          - *instance-20221213-1915
+        pgp:
+          - *lotte
   - path_regex: secrets/nixos-8gb-fsn1-1\.yaml$
     key_groups:
       - age:

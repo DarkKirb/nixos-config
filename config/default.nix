@@ -9,7 +9,7 @@
     ./users/root.nix
     ./nix.nix
     ./sops.nix
-    ./wireguard.nix
+    ./wireguard
     ./home.nix
     ./services/restic.nix
     ./specialization.nix
@@ -66,4 +66,11 @@
   };
   users.mutableUsers = false;
   boot.kernelParams = ["nohibernate"];
+
+  sops.secrets."root/aws/credentials" = {
+    sopsFile = ../secrets/shared.yaml;
+    owner = "root";
+    key = "aws/credentials";
+    path = "/root/.aws/credentials";
+  };
 }

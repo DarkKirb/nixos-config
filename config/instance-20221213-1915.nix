@@ -12,6 +12,7 @@
     (modulesPath + "/profiles/qemu-guest.nix")
     ./systemd-boot.nix
     ./server.nix
+    ./wireguard/public-server.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
@@ -83,4 +84,11 @@
   nix.settings.max-jobs = 2;
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
+
+  system.stateVersion = "22.11";
+
+  sops.secrets."root/.ssh/id_ed25519" = {
+    owner = "root";
+    path = "/root/.ssh/id_ed25519";
+  };
 }
