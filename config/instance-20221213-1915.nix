@@ -12,6 +12,7 @@
     (modulesPath + "/profiles/qemu-guest.nix")
     ./systemd-boot.nix
     ./server.nix
+    ./wireguard/public-server.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
