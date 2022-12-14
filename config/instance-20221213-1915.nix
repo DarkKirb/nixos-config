@@ -43,6 +43,7 @@
   fileSystems."/persist" = {
     device = "tank/safe/persist";
     fsType = "zfs";
+    neededForBoot = true;
   };
 
   fileSystems."/home" = {
@@ -91,4 +92,9 @@
     owner = "root";
     path = "/root/.ssh/id_ed25519";
   };
+  sops.secrets."services/ssh/host-key" = {
+    owner = "root";
+    path = "/etc/secrets/initrd/ssh_host_ed25519_key";
+  };
+  sops.age.sshKeyPaths = lib.mkForce [ "/persist/ssh/ssh_host_ed25519_key" ];
 }
