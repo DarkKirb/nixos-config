@@ -179,14 +179,14 @@ with dns.lib.combinators; let
       {
         flags.zoneSigningKey = true;
         flags.secureEntryPoint = true;
-        algorithm = "ecdsap256sha256";
-        publicKey = "FZklP7KowbXVjfkT5ndAE60QFvaKoghhLY2TavukRBGFA8pyGm+ce9QHekbrjE14q8sb5x0uXl4VdyDIUNZ3XQ==";
+        algorithm = "ed25519";
+        publicKey = "QThLj6F7+mnYaIhpc0A+Y0b9I0IzZzZGWe2giRqXbXg=";
         ttl = zoneTTL;
       }
       {
         flags.zoneSigningKey = true;
-        algorithm = "ecdsap256sha256";
-        publicKey = "WH9JM7Qvi2Hz3bCp7O5/WFLNdKUA/2aUkQqByfhaItfqoAm+hw6x4Qj8+umu5EDyo2A/HD/h9b/eO3zVq6pebw==";
+        algorithm = "ed25519";
+        publicKey = "vzisZDgE46SLwfzNvTLWEEVVfkiTXWWQkIyy2NCW/1w=";
       }
     ];
     subdomains = {

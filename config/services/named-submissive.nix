@@ -21,7 +21,7 @@ in {
       "_acme-challenge.darkkirb.de" = mkZone "_acme-challenge.darkkirb.de";
       "chir.rs" = mkZone "chir.rs";
       "_acme-challenge.chir.rs" = mkZone "_acme-challenge.chir.rs";
-      "int.chir.rs" = mkZone ".intchir.rs";
+      "int.chir.rs" = mkZone "int.chir.rs";
       "_acme-challenge.int.chir.rs" = mkZone "_acme-challenge.int.chir.rs";
       "shitallover.me" = mkZone "shitallover.me";
       "_acme-challenge.shitallover.me" = mkZone "_acme-challenge.shitallover.me";
@@ -30,7 +30,6 @@ in {
       statistics-channels {
         ${toString listenEntries}
       };
-      include "/run/secrets/services/dns/named-keys";
     '';
     extraOptions = ''
       allow-recursion {
@@ -50,4 +49,8 @@ in {
     bindURI = "http://${internalIP.listenIP}:8653/";
     listenAddress = internalIP.listenIP;
   };
+
+  systemd.tmpfiles.rules = [
+    "d /var/lib/named 4700 named named - -"
+  ];
 }

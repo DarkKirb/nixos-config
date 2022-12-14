@@ -39,8 +39,8 @@ in {
     })
     (signzone {
       inherit dns;
-      ksk = "services/dns/me/shitallover/30477";
-      zsk = "services/dns/me/shitallover/38310";
+      zsk = "services/dns/me/shitallover/30477";
+      ksk = "services/dns/me/shitallover/38310";
       zone = shitallover-me;
       zonename = "shitallover.me";
     })
@@ -52,7 +52,7 @@ in {
       "darkkirb.de" = {
         master = true;
         file = "/var/lib/named/darkkirb.de";
-        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
+        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
       };
       "_acme-challenge.darkkirb.de" = {
         master = true;
@@ -62,12 +62,12 @@ in {
             grant certbot. name _acme-challenge.darkkirb.de. txt;
           };
         '';
-        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
+        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
       };
       "chir.rs" = {
         master = true;
         file = "/var/lib/named/chir.rs";
-        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
+        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
       };
       "_acme-challenge.chir.rs" = {
         master = true;
@@ -77,12 +77,12 @@ in {
             grant certbot. name _acme-challenge.chir.rs. txt;
           };
         '';
-        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
+        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
       };
       "int.chir.rs" = {
         master = true;
         file = "/var/lib/named/int.chir.rs";
-        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
+        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
       };
       "_acme-challenge.int.chir.rs" = {
         master = true;
@@ -92,12 +92,12 @@ in {
             grant certbot. name _acme-challenge.int.chir.rs. txt;
           };
         '';
-        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
+        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
       };
       "shitallover.me" = {
         master = true;
         file = "/var/lib/named/shitallover.me";
-        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
+        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
       };
       "_acme-challenge.shitallover.me" = {
         master = true;
@@ -107,7 +107,7 @@ in {
             grant certbot. name _acme-challenge.shitallover.me. txt;
           };
         '';
-        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
+        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
       };
       #"rpz.int.chir.rs" = {
       #  master = true;
@@ -128,6 +128,7 @@ in {
       };
       recursion yes;
       dnssec-validation yes;
+      allow-transfer { fd0d:a262:1fa6:e621:746d:4523:5c04:1453; };
     '';
   };
   networking.firewall.allowedTCPPorts = [53];
