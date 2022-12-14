@@ -13,6 +13,7 @@
     ./systemd-boot.nix
     ./server.nix
     ./wireguard/public-server.nix
+    ./services/named-submissive.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
@@ -96,5 +97,5 @@
     owner = "root";
     path = "/etc/secrets/initrd/ssh_host_ed25519_key";
   };
-  sops.age.sshKeyPaths = lib.mkForce [ "/persist/ssh/ssh_host_ed25519_key" ];
+  sops.age.sshKeyPaths = lib.mkForce ["/persist/ssh/ssh_host_ed25519_key"];
 }

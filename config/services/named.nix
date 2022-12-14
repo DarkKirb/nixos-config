@@ -13,6 +13,7 @@
   int-chir-rs = import ../../zones/int.chir.rs.nix {inherit dns;};
   rpz-int-chir-rs = import ../../zones/rpz.int.chir.rs.nix {inherit pkgs hosts-list;};
   signzone = import ../../zones/signzone.nix;
+  shitallover-me = import ../../zones/shitallover.me.nix {inherit dns;};
 in {
   imports = [
     (signzone {
@@ -36,6 +37,13 @@ in {
       zone = darkkirb-de;
       zonename = "darkkirb.de";
     })
+    (signzone {
+      inherit dns;
+      ksk = "services/dns/me/shitallover/30477";
+      zsk = "services/dns/me/shitallover/38310";
+      zone = shitallover-me;
+      zonename = "shitallover.me";
+    })
   ];
 
   services.bind = {
@@ -44,6 +52,7 @@ in {
       "darkkirb.de" = {
         master = true;
         file = "/var/lib/named/darkkirb.de";
+        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
       };
       "_acme-challenge.darkkirb.de" = {
         master = true;
@@ -53,10 +62,12 @@ in {
             grant certbot. name _acme-challenge.darkkirb.de. txt;
           };
         '';
+        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
       };
       "chir.rs" = {
         master = true;
         file = "/var/lib/named/chir.rs";
+        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
       };
       "_acme-challenge.chir.rs" = {
         master = true;
@@ -66,10 +77,12 @@ in {
             grant certbot. name _acme-challenge.chir.rs. txt;
           };
         '';
+        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
       };
       "int.chir.rs" = {
         master = true;
         file = "/var/lib/named/int.chir.rs";
+        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
       };
       "_acme-challenge.int.chir.rs" = {
         master = true;
@@ -79,6 +92,22 @@ in {
             grant certbot. name _acme-challenge.int.chir.rs. txt;
           };
         '';
+        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
+      };
+      "shitallover.me" = {
+        master = true;
+        file = "/var/lib/named/shitallover.me";
+        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
+      };
+      "_acme-challenge.shitallover.me" = {
+        master = true;
+        file = "/var/lib/named/_acme-challenge.shitallover.me";
+        extraConfig = ''
+          update-policy {
+            grant certbot. name _acme-challenge.shitallover.me. txt;
+          };
+        '';
+        slaves = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
       };
       #"rpz.int.chir.rs" = {
       #  master = true;

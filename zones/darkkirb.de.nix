@@ -11,6 +11,50 @@ with dns.lib.combinators; let
       then {subdomains = a.subdomains // b.subdomains;}
       else {}
     );
+  oracleBase = {
+    A = [
+      (ttl zoneTTL (a "130.162.60.127"))
+    ];
+    AAAA = [
+      (ttl zoneTTL (aaa "2603:c020:8009:f100:f09a:894d:ef57:a278"))
+    ];
+    SSHFP = [
+      {
+        algorithm = "rsa";
+        mode = "sha1";
+        fingerprint = "b44a837703b22d8cbc2ca4e7019af4bcb0185348";
+        ttl = zoneTTL;
+      }
+      {
+        algorithm = "rsa";
+        mode = "sha256";
+        fingerprint = "8f276ce01188fdd2bbf2aaa03d477c58c911a6c1f9bee3f8ab35ca4b42aa19a9";
+        ttl = zoneTTL;
+      }
+      {
+        algorithm = "ed25519";
+        mode = "sha1";
+        fingerprint = "8dfd784c5f239822b086dc4fa7c058f260331e5d";
+        ttl = zoneTTL;
+      }
+      {
+        algorithm = "ed25519";
+        mode = "sha256";
+        fingerprint = "82d51bd3ab43af3b94801c6b68812c4f1db013ac5b53a466fbcdbb955de6d3e5";
+        ttl = zoneTTL;
+      }
+    ];
+    HTTPS = [
+      {
+        svcPriority = 1;
+        targetName = ".";
+        alpn = ["http/1.1" "h2" "h3"];
+        ipv4hint = ["130.162.60.127"];
+        ipv6hint = ["2603:c020:8009:f100:f09a:894d:ef57:a278"];
+        ttl = zoneTTL;
+      }
+    ];
+  };
   zoneBase = {
     A = [
       (ttl zoneTTL (a "138.201.155.128"))
@@ -44,28 +88,6 @@ with dns.lib.combinators; let
         ttl = zoneTTL;
       }
     ];
-    /*
-    subdomains = {
-    _tcp.subdomains."*".TLSA = [
-    {
-    certUsage = "dane-ee";
-    selector = "spki";
-    match = "sha256";
-    certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-    ttl = zoneTTL;
-    }
-    ];
-    _udp.subdomains."*".TLSA = [
-    {
-    certUsage = "dane-ee";
-    selector = "spki";
-    match = "sha256";
-    certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-    ttl = zoneTTL;
-    }
-    ];
-    };
-    */
     HTTPS = [
       {
         svcPriority = 1;
@@ -100,13 +122,19 @@ with dns.lib.combinators; let
   createZone = merge zoneBase;
   zone = createZone {
     SOA = {
-      nameServer = "ns1.chir.rs.";
+      nameServer = "ns1.darkkirb.de.";
       adminEmail = "lotte@chir.rs";
-      serial = 2;
+      serial = 3;
     };
     NS = [
       "ns1.chir.rs."
       "ns2.chir.rs."
+      "ns3.chir.rs."
+      "ns4.chir.rs."
+      "ns1.darkkirb.de."
+      "ns2.darkkirb.de."
+      "ns1.shitallover.me."
+      "ns2.shitallover.me."
     ];
     MX = [
       (ttl zoneTTL (mx.mx 10 "mail.chir.rs."))
@@ -179,11 +207,17 @@ with dns.lib.combinators; let
       _acme-challenge = delegateTo [
         "ns1.chir.rs."
         "ns2.chir.rs."
+        "ns3.chir.rs."
+        "ns4.chir.rs."
+        "ns1.darkkirb.de."
+        "ns2.darkkirb.de."
+        "ns1.shitallover.me."
+        "ns2.shitallover.me."
       ];
       www = createZone {};
       static = createZone {};
       ns1 = createZone {};
-      ns2 = createZone {};
+      ns2 = createZone oracleBase;
     };
   };
 in

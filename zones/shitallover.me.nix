@@ -122,9 +122,9 @@ with dns.lib.combinators; let
   createZone = merge zoneBase;
   zone = createZone {
     SOA = {
-      nameServer = "ns1.chir.rs.";
+      nameServer = "ns1.shitallover.me.";
       adminEmail = "lotte@chir.rs";
-      serial = 22;
+      serial = 1;
     };
     NS = [
       "ns1.chir.rs."
@@ -172,79 +172,24 @@ with dns.lib.combinators; let
       }
     ];
     TXT = [
-      (ttl zoneTTL (txt "v=spf1 ip4:138.201.155.128 ip6:2a01:4f8:1c17:d953::/64 -all"))
-      (ttl zoneTTL (txt "google-site-verification=qXjyR8La2S_BMayWYxan-9PB16aChjgKMRI2NGSTAds"))
+      (ttl zoneTTL (txt "v=spf1 ip4:138.201.155.128 ip6:2a01:4f8:1c17:d953/64 -all"))
+      (ttl zoneTTL (txt "google-site-verification=f2XWRDvD4F99pM7ux7sMtVJ9ZGtjKRLI_rfcO2IWIMI"))
     ];
     DNSKEY = [
       {
         flags.zoneSigningKey = true;
         flags.secureEntryPoint = true;
         algorithm = "ecdsap256sha256";
-        publicKey = "5biiUR5bWhxr+PzyniLJp+FKln03EvQTWw+fg88NxwThgvSDL56zEhqkHqh8mObDkEqQ3LdM5LaOxwdDhWVJ9A==";
+        publicKey = "FZklP7KowbXVjfkT5ndAE60QFvaKoghhLY2TavukRBGFA8pyGm+ce9QHekbrjE14q8sb5x0uXl4VdyDIUNZ3XQ==";
         ttl = zoneTTL;
       }
       {
         flags.zoneSigningKey = true;
         algorithm = "ecdsap256sha256";
-        publicKey = "EuNM0AynEfbLZf5Hn5eMi31X0jW/NxpayoSQpnRuoko9JWQRBg3nPbqTWSPKHaCKrfs6zVRMoHtSq2Hql1Z+dw==";
+        publicKey = "WH9JM7Qvi2Hz3bCp7O5/WFLNdKUA/2aUkQqByfhaItfqoAm+hw6x4Qj8+umu5EDyo2A/HD/h9b/eO3zVq6pebw==";
       }
     ];
     subdomains = {
-      _dmarc.TXT = [
-        (ttl zoneTTL (txt "v=DMARC1; p=reject; rua=mailto:postmaster@chir.rs;"))
-      ];
-      _domainkey.subdomains.mail.TXT = [
-        (ttl zoneTTL (txt "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDTZvuDWFmZOOMr9pogMK5lFBjV3nRAjUpFv3o0d4KhbRW/zVrOOdfdt83F6zSLzUqrxSOG3uKVG+J0KR4kX4BbYflSLZ++y91C0Uu5d+o3A8Y/z2vUSe5YVt44IaDQoPCCpuWEYyqKIEaKGXNFPvlsO6y551biM3raNjq5kEpb3wIDAQAB"))
-      ];
-      _keybase.TXT = [
-        (ttl zoneTTL (txt "keybase-site-verification=r044cwg0wOTW-ws35BA5MMRLNwjdTNJ4uOu6kgdTopI"))
-      ];
-
-      www = createZone {};
-      api = createZone {};
-      git = createZone {};
-      mail = createZone {};
-      mc = createZone {};
-      ns1 = createZone {};
-      ns2 = createZone {};
-      ns3 = createZone oracleBase;
-      ns4 = createZone oracleBase;
-      hydra = createZone {};
-      mastodon = createZone {};
-      mastodon-assets.CNAME = [
-        "assets-chir-rs.b-cdn.net."
-      ];
-      matrix = createZone {};
-      drone = createZone {};
-      akko = createZone {};
-      moa = createZone {};
-      cache.CNAME = [
-        "cache-chir-rs.b-cdn.net."
-      ];
-      peertube = createZone {};
-      mediaproxy.CNAME = ["mediaproxy-chir-rs.b-cdn.net."];
-
-      int =
-        delegateTo [
-          "ns1.chir.rs."
-          "ns2.chir.rs."
-          "ns3.chir.rs."
-          "ns4.chir.rs."
-          "ns1.darkkirb.de."
-          "ns2.darkkirb.de."
-          "ns1.shitallover.me."
-          "ns2.shitallover.me."
-        ]
-        // {
-          DS = [
-            {
-              keyTag = 35133;
-              algorithm = "ecdsap256sha256";
-              digestType = "sha-256";
-              digest = "668D4621260ADD9CE5B272A84ADE20E92FC43CBC59893A5843FA8ED8A356DB2B";
-            }
-          ];
-        };
       _acme-challenge = delegateTo [
         "ns1.chir.rs."
         "ns2.chir.rs."
@@ -255,6 +200,9 @@ with dns.lib.combinators; let
         "ns1.shitallover.me."
         "ns2.shitallover.me."
       ];
+      www = createZone {};
+      ns1 = createZone {};
+      ns2 = createZone oracleBase;
     };
   };
 in
