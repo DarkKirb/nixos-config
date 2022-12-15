@@ -124,7 +124,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.darkkirb.de.";
       adminEmail = "lotte@chir.rs";
-      serial = 3;
+      serial = 4;
     };
     NS = [
       "ns1.chir.rs."
@@ -207,12 +207,6 @@ with dns.lib.combinators; let
       _acme-challenge = delegateTo [
         "ns1.chir.rs."
         "ns2.chir.rs."
-        "ns3.chir.rs."
-        "ns4.chir.rs."
-        "ns1.darkkirb.de."
-        "ns2.darkkirb.de."
-        "ns1.shitallover.me."
-        "ns2.shitallover.me."
       ];
       www = createZone {};
       static = createZone {};

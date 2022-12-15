@@ -200,4 +200,7 @@
     max_parallel_workers = 2;
     max_parallel_maintenance_workers = 1;
   };
+
+  services.resolved.enable = false;
+  services.bind.forwarders = lib.mkForce [];
 }

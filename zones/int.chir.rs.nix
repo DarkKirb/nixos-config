@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 19;
+    serial = 20;
   };
   NS = [
     "ns1.chir.rs."
@@ -195,7 +195,7 @@ in {
       ];
     };
     thinkrac.AAAA = [
-      (ttl zoneTTL (aaaa "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b"))
+      (ttl zoneTTL (aaaa "fd0d:a262:1fa6:e621:f45a:db9f:eb7c:1a3f"))
     ];
     nas = {
       AAAA = [
@@ -274,12 +274,6 @@ in {
     _acme-challenge = delegateTo [
       "ns1.chir.rs."
       "ns2.chir.rs."
-      "ns3.chir.rs."
-      "ns4.chir.rs."
-      "ns1.darkkirb.de."
-      "ns2.darkkirb.de."
-      "ns1.shitallover.me."
-      "ns2.shitallover.me."
     ];
   };
 }

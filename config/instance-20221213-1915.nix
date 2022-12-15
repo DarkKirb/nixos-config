@@ -98,4 +98,5 @@
     path = "/etc/secrets/initrd/ssh_host_ed25519_key";
   };
   sops.age.sshKeyPaths = lib.mkForce ["/persist/ssh/ssh_host_ed25519_key"];
+  services.bind.forwarders = lib.mkForce [];
 }
