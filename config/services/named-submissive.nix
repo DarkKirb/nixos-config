@@ -18,13 +18,10 @@ in {
     enable = true;
     zones = {
       "darkkirb.de" = mkZone "darkkirb.de";
-      "_acme-challenge.darkkirb.de" = mkZone "_acme-challenge.darkkirb.de";
       "chir.rs" = mkZone "chir.rs";
-      "_acme-challenge.chir.rs" = mkZone "_acme-challenge.chir.rs";
       "int.chir.rs" = mkZone "int.chir.rs";
-      "_acme-challenge.int.chir.rs" = mkZone "_acme-challenge.int.chir.rs";
+      "rpz.int.chir.rs" = mkZone "rpz.int.chir.rs";
       "shitallover.me" = mkZone "shitallover.me";
-      "_acme-challenge.shitallover.me" = mkZone "_acme-challenge.shitallover.me";
     };
     extraConfig = ''
       statistics-channels {
@@ -40,6 +37,7 @@ in {
       recursion yes;
       dnssec-validation yes;
       allow-notify { 130.162.60.127; 2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49; 138.201.155.128; 2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49; fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49; };
+      response-policy {zone "rpz.int.chir.rs";};
     '';
   };
   networking.firewall.allowedTCPPorts = [53];

@@ -5,80 +5,8 @@
 }: let
   hostfiles-lists = [
     {
-      name = "Badd-Boyz-Hosts";
-      path = "${hosts-list}/data/Badd-Boyz-Hosts/hosts";
-    }
-    {
-      name = "KADhosts";
-      path = "${hosts-list}/data/KADhosts/hosts";
-    }
-    {
-      name = "MetaMask";
-      path = "${hosts-list}/data/MetaMask/hosts";
-    }
-    {
-      name = "StevenBlack";
-      path = "${hosts-list}/data/StevenBlack/hosts";
-    }
-    {
-      name = "URLHaus";
-      path = "${hosts-list}/data/URLHaus/hosts";
-    }
-    {
-      name = "UncheckyAds";
-      path = "${hosts-list}/data/UncheckyAds/hosts";
-    }
-    {
-      name = "adaway.org";
-      path = "${hosts-list}/data/adaway.org/hosts";
-    }
-    {
-      name = "add.2o7Net";
-      path = "${hosts-list}/data/add.2o7Net/hosts";
-    }
-    {
-      name = "add.Dead";
-      path = "${hosts-list}/data/add.Dead/hosts";
-    }
-    {
-      name = "add.Risk";
-      path = "${hosts-list}/data/add.Risk/hosts";
-    }
-    {
-      name = "add.Spam";
-      path = "${hosts-list}/data/add.Spam/hosts";
-    }
-    {
-      name = "hostsVN";
-      path = "${hosts-list}/data/hostsVN/hosts";
-    }
-    {
-      name = "mvps.org";
-      path = "${hosts-list}/data/mvps.org/hosts";
-    }
-    {
-      name = "shady-hosts";
-      path = "${hosts-list}/data/shady-hosts/hosts";
-    }
-    {
-      name = "someonewhocares.org";
-      path = "${hosts-list}/data/someonewhocares.org/hosts";
-    }
-    {
-      name = "tiuxo";
-      path = "${hosts-list}/data/tiuxo/hosts";
-    }
-    {
-      name = "yoyo.org";
-      path = "${hosts-list}/data/yoyo.org/hosts";
-    }
-    {
-      name = "fakenews";
-      path = "${hosts-list}/extensions/fakenews/hosts";
-    }
-    {
-      name = "gambling";
-      path = "${hosts-list}/extensions/gambling/hosts";
+      name = "Unified-fakenews-gambling";
+      path = "${hosts-list}/alternates/fakenews-gambling/hosts";
     }
   ];
   hostfile-to-hostname-list = hostfile: {
@@ -100,14 +28,6 @@
   hostname-lists =
     [
       {
-        name = "Adguard-cname";
-        path = "${hosts-list}/data/Adguard-cname/hosts";
-      }
-      {
-        name = "minecraft-hosts";
-        path = "${hosts-list}/data/minecraft-hosts/hosts";
-      }
-      {
         name = "no-application-dns";
         path = pkgs.writeText "no-application-dns" "use-application-dns.net";
       }
@@ -123,7 +43,14 @@
   '';
 in
   pkgs.runCommand "rpz.int.chir.rs" {} ''
-    echo "@ 3600 IN SOA ns2.darkkirb.de. lotte.chir.rs. 2 86400 7200 2592000 86400" > $out
+    echo "@ 3600 IN SOA ns1.chir.rs. lotte.chir.rs. ${toString hosts-list.lastModified} 86400 7200 2592000 86400" > $out
+    echo "@ 3600 IN NS ns1.chir.rs. " >> $out
+    echo "@ 3600 IN NS ns2.chir.rs. " >> $out
+    echo "@ 3600 IN NS ns3.chir.rs. " >> $out
+    echo "@ 3600 IN NS ns4.chir.rs. " >> $out
+    echo "@ 3600 IN NS ns1.darkkirb.de. " >> $out
     echo "@ 3600 IN NS ns2.darkkirb.de. " >> $out
+    echo "@ 3600 IN NS ns1.shitallover.me. " >> $out
+    echo "@ 3600 IN NS ns2.shitallover.me. " >> $out
     sed 's/$/ IN CNAME ./' ${concat-hostname-list} >> $out
   ''
