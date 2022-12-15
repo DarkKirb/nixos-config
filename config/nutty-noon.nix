@@ -18,7 +18,7 @@
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-gpu-amd
     nixos-hardware.nixosModules.common-pc-ssd
-    ./services/postgres.nix
+    ./services/postgres
     ./services/drone-runner-docker.nix
     ./services/gitlab-runner
   ];

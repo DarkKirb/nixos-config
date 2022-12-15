@@ -22,6 +22,11 @@ rec {
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    hapsql = {
+      url = "git+https://git.sr.ht/~bwolf/hapsql.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.sops-nix.follows = "sops-nix";
+    };
     haskell-flake.url = "github:srid/haskell-flake";
     home-manager = {
       url = "github:nix-community/home-manager";

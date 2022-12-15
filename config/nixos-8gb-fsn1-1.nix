@@ -15,7 +15,7 @@
     ./services/named.nix
     ./services/grafana.nix
     ./users/miifox.nix
-    ./services/postgres.nix
+    ./services/postgres
     ./services/gitea.nix
     ./services/old-homepage.nix
     ./services/postfixadmin.nix
@@ -30,6 +30,7 @@
     ./services/peertube
     ./services/rspamd.nix
     ./wireguard/public-server.nix
+    ./services/postgres/high-available.nix
   ];
 
   boot.initrd.availableKernelModules = ["ata_piix" "virtio_pci" "virtio_scsi" "xhci_pci" "sd_mod" "sr_mod"];

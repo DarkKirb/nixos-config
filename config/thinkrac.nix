@@ -18,7 +18,7 @@
     nixos-hardware.nixosModules.lenovo-thinkpad-t470s
     nixos-hardware.nixosModules.common-cpu-intel-kaby-lake
     nixos-hardware.nixosModules.common-pc-ssd
-    ./services/postgres.nix
+    ./services/postgres
   ];
   hardware.cpu.intel.updateMicrocode = true;
 
