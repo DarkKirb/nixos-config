@@ -192,7 +192,6 @@
   sops.secrets."services/rspamd/dkim/darkkirb.de" = {owner = "rspamd";};
   sops.secrets."services/rspamd/dkim/miifox.net" = {owner = "rspamd";};
   sops.secrets."services/rspamd/dkim/chir.rs" = {owner = "rspamd";};
-  networking.nameservers = lib.mkForce ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
   networking.firewall.interfaces."wg0".allowedTCPPorts = [
     11332
     11333
