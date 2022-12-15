@@ -39,6 +39,7 @@ in {
       };
       recursion yes;
       dnssec-validation yes;
+      allow-notify { 130.162.60.127; 2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49; 138.201.155.128; 2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49; fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49; };
     '';
   };
   networking.firewall.allowedTCPPorts = [53];

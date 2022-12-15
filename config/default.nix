@@ -73,4 +73,5 @@
     key = "aws/credentials";
     path = "/root/.aws/credentials";
   };
+  networking.nameservers = ["fd0d:a262:1fa6:e621:b4e1:08ff:e658:6f49" "fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
 }

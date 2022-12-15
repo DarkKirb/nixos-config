@@ -53,6 +53,7 @@ in {
         master = true;
         file = "/var/lib/named/darkkirb.de";
         slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
+        extraConfig = "also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};";
       };
       "_acme-challenge.darkkirb.de" = {
         master = true;
@@ -61,6 +62,7 @@ in {
           update-policy {
             grant certbot. name _acme-challenge.darkkirb.de. txt;
           };
+          also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};
         '';
         slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
       };
@@ -68,6 +70,7 @@ in {
         master = true;
         file = "/var/lib/named/chir.rs";
         slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
+        extraConfig = "also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};";
       };
       "_acme-challenge.chir.rs" = {
         master = true;
@@ -76,6 +79,7 @@ in {
           update-policy {
             grant certbot. name _acme-challenge.chir.rs. txt;
           };
+          also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};
         '';
         slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
       };
@@ -83,6 +87,7 @@ in {
         master = true;
         file = "/var/lib/named/int.chir.rs";
         slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
+        extraConfig = "also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};";
       };
       "_acme-challenge.int.chir.rs" = {
         master = true;
@@ -91,6 +96,7 @@ in {
           update-policy {
             grant certbot. name _acme-challenge.int.chir.rs. txt;
           };
+          also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};
         '';
         slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
       };
@@ -98,6 +104,7 @@ in {
         master = true;
         file = "/var/lib/named/shitallover.me";
         slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
+        extraConfig = "also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};";
       };
       "_acme-challenge.shitallover.me" = {
         master = true;
@@ -106,6 +113,7 @@ in {
           update-policy {
             grant certbot. name _acme-challenge.shitallover.me. txt;
           };
+          also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};
         '';
         slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
       };
@@ -129,6 +137,7 @@ in {
       recursion yes;
       dnssec-validation yes;
       allow-transfer { fd0d:a262:1fa6:e621:746d:4523:5c04:1453; };
+      notify-delay 0;
     '';
   };
   networking.firewall.allowedTCPPorts = [53];
