@@ -18,7 +18,7 @@
   '';
 in {
   imports = [
-    ./postgres
+    ./postgres.nix
     ../../modules/hydra.nix
   ];
   services.hydra = {

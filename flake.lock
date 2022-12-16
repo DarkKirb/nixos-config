@@ -143,31 +143,6 @@
         "type": "github"
       }
     },
-    "hapsql": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "patroni": "patroni",
-        "prometheus-keepalived-exporter": "prometheus-keepalived-exporter",
-        "sops-nix": [
-          "sops-nix"
-        ]
-      },
-      "locked": {
-        "lastModified": 1668373073,
-        "narHash": "sha256-jevN2P7euK8hWc7iEF40cW2UfQsqurHL2Ccw4vz0S6s=",
-        "ref": "refs/heads/master",
-        "rev": "daf95d1e1e7f0270ac82edd7231d9daed0106a0d",
-        "revCount": 21,
-        "type": "git",
-        "url": "https://git.sr.ht/~bwolf/hapsql.nix"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.sr.ht/~bwolf/hapsql.nix"
-      }
-    },
     "haskell-flake": {
       "locked": {
         "lastModified": 1668096377,
@@ -235,7 +210,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "utils": "utils_3"
+        "utils": "utils"
       },
       "locked": {
         "lastModified": 1670970889,
@@ -509,28 +484,6 @@
         "type": "github"
       }
     },
-    "patroni": {
-      "inputs": {
-        "nixpkgs": [
-          "hapsql",
-          "nixpkgs"
-        ],
-        "utils": "utils"
-      },
-      "locked": {
-        "lastModified": 1668372943,
-        "narHash": "sha256-JSbuXzu1cHuu3NbQzRDs3ExPUP89xTNWfTRJG/vzOqg=",
-        "ref": "refs/heads/master",
-        "rev": "0e0e7c4e82f6583efc8cec47904e0a8deb92191f",
-        "revCount": 16,
-        "type": "git",
-        "url": "https://git.sr.ht/~bwolf/patroni.nix"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.sr.ht/~bwolf/patroni.nix"
-      }
-    },
     "plasma-manager": {
       "inputs": {
         "home-manager": [
@@ -577,28 +530,6 @@
         "type": "github"
       }
     },
-    "prometheus-keepalived-exporter": {
-      "inputs": {
-        "nixpkgs": [
-          "hapsql",
-          "nixpkgs"
-        ],
-        "utils": "utils_2"
-      },
-      "locked": {
-        "lastModified": 1662960295,
-        "narHash": "sha256-4nOsFasQ463Zf8TAlUBydtr5FS+ivpNNcfyWeAdsyNw=",
-        "ref": "refs/heads/master",
-        "rev": "52fe5366dde3d5a9ee8562fff5b0502544921dd0",
-        "revCount": 5,
-        "type": "git",
-        "url": "https://git.sr.ht/~bwolf/prometheus-keepalived-exporter.nix"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.sr.ht/~bwolf/prometheus-keepalived-exporter.nix"
-      }
-    },
     "root": {
       "inputs": {
         "dns": "dns",
@@ -606,7 +537,6 @@
         "emanote": "emanote",
         "flake-parts": "flake-parts_2",
         "flake-utils": "flake-utils",
-        "hapsql": "hapsql",
         "haskell-flake": "haskell-flake_2",
         "home-manager": "home-manager",
         "hosts-list": "hosts-list",
@@ -679,36 +609,6 @@
       }
     },
     "utils": {
-      "locked": {
-        "lastModified": 1667395993,
-        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "utils_2": {
-      "locked": {
-        "lastModified": 1659877975,
-        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "utils_3": {
       "locked": {
         "lastModified": 1667395993,
         "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
