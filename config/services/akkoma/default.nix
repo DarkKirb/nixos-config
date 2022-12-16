@@ -24,12 +24,17 @@
     mkdir -p $out/emoji/${name}
     lndir ${emoji_sets.${name}} $out/emoji/${name}
   '';
+  masto_fe = pkgs.fetchzip {
+    url = "https://akkoma-updates.s3-website.fr-par.scw.cloud/frontend/akkoma/masto-fe.zip";
+    sha256 = "sha256-8kAF7O3I93npX37XsncNuwQrTLX5Y9w16QV3+SDls+0=";
+  };
   static_dir = pkgs.stdenvNoCC.mkDerivation {
     name = "akkoma-static";
     src = pkgs.emptyDirectory;
     nativeBuildInputs = with pkgs; [xorg.lndir];
     akkoma_fe = nix-packages.packages.${pkgs.system}.pleroma-fe;
     akkoma_admin_fe = nix-packages.packages.${pkgs.system}.admin-fe;
+    inherit masto_fe;
     tos = ./terms-of-service.html;
     dontUnpack = false;
     installPhase = ''
@@ -37,6 +42,8 @@
       lndir $akkoma_fe $out/frontends/pleroma-fe/stable
       mkdir -p $out/frontends/admin-fe/stable
       lndir $akkoma_admin_fe $out/frontends/admin-fe/stable
+      mkdir -p $out/frontends/masto-fe/akkoma
+      lndir $masto_fe $out/frontends/masto-fe/akkoma
       ${toString (map copy_emoji_set emoji_set_names)}
       mkdir $out/emoji/misc
       ln -s ${./therian.png} $out/emoji/misc/therian.png
@@ -67,8 +74,10 @@
         description_limit = 58913;
         upload_limit = 134217728;
         languages = ["en" "tok"];
-        registrations_open = false;
+        registrations_open = true;
         invites_enabled = true;
+        account_activation_required = true;
+        account_approval_required = true;
         static_dir = "${static_dir}";
         max_pinned_statuses = 10;
         attachment_links = true;
@@ -145,6 +154,10 @@
           name = "admin-fe";
           ref = "stable";
         };
+        mastodon = mkMap {
+          name = "masto-fe";
+          ref = "akkoma";
+        };
       };
       ":media_proxy" = {
         enabled = true;
@@ -204,6 +217,10 @@
           "Caroline" = "/emoji/caro/*.png";
           "Misc" = "/emoji/misc/*.png";
         };
+      };
+      "Pleroma.Captcha" = {
+        enabled = true;
+        method = mkRaw "Pleroma.Captcha.Kocaptcha";
       };
     };
     ":web_push_encryption".":vapid_details".subject = "lotte@chir.rs";
