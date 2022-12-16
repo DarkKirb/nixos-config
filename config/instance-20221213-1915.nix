@@ -14,7 +14,6 @@
     ./server.nix
     ./wireguard/public-server.nix
     ./services/named-submissive.nix
-    ./services/postgres/high-available.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
@@ -76,7 +75,6 @@
 
   systemd.tmpfiles.rules = [
     "L /var/lib/acme - - - - /persist/var/lib/acme"
-    "L /var/lib/postgresql - - - - /persist/var/lib/postgresql"
   ];
 
   networking.wireguard.interfaces."wg0".ips = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453/64"];
