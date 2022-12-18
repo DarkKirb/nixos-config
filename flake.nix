@@ -128,8 +128,15 @@ rec {
           };
       })
       systems);
+    overlays = {
+      x86_64-linux = import ./overlays args "x86_64-linux";
+      aarch64-linux = import ./overlays args "aarch64-linux";
+    };
     devShell.x86_64-linux = let
-      pkgs = import nixpkgs {system = "x86_64-linux";};
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [self.overlays.x86_64-linux];
+      };
     in
       pkgs.mkShell {
         nativeBuildInputs = with pkgs; [
