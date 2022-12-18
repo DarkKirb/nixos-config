@@ -1,4 +1,4 @@
-{system, ...} @ args: {
+args: {
   lib,
   config,
   pkgs,

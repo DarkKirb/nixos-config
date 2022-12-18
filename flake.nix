@@ -170,6 +170,108 @@ rec {
         ];
       };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    homeConfigurations = builtins.listToAttrs (nixpkgs.lib.foldr (a: b: a ++ b) [] (map (system: let
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          self.overlays.${system}
+          nur.overlay
+          args.prismmc.overlay
+        ];
+        config.allowUnfree = true;
+      };
+    in [
+      {
+        name = "base-${system}";
+        value = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            (import ./config/home-manager/base.nix false)
+            {
+              home.username = "base";
+              home.homeDirectory = "/home/base";
+            }
+          ];
+          extraSpecialArgs = args // {inherit system;};
+        };
+      }
+      {
+        name = "base-desktop-${system}";
+        value = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            (import ./config/home-manager/base.nix true)
+            {
+              home.username = "base";
+              home.homeDirectory = "/home/base";
+            }
+          ];
+          extraSpecialArgs = args // {inherit system;};
+        };
+      }
+      {
+        name = "root-${system}";
+        value = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./config/home-manager/root.nix
+            {
+              home.username = "root";
+              home.homeDirectory = "/root";
+            }
+          ];
+          extraSpecialArgs = args // {inherit system;};
+        };
+      }
+      {
+        name = "darkkirb-${system}";
+        value = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            (import ./config/home-manager/darkkirb.nix {
+              desktop = false;
+              args = {};
+            })
+            {
+              home.username = "darkkirb";
+              home.homeDirectory = "/home/darkkirb";
+            }
+          ];
+          extraSpecialArgs = args // {inherit system;};
+        };
+      }
+      {
+        name = "darkkirb-desktop-${system}";
+        value = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            (import ./config/home-manager/darkkirb.nix {
+              desktop = true;
+              args = {};
+            })
+            {
+              home.username = "darkkirb";
+              home.homeDirectory = "/home/darkkirb";
+            }
+          ];
+          extraSpecialArgs = args // {inherit system;};
+        };
+      }
+      {
+        name = "miifox-${system}";
+        value = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./config/home-manager/miifox.nix
+            {
+              home.username = "miifox";
+              home.homeDirectory = "/home/miifox";
+            }
+          ];
+          extraSpecialArgs = args // {inherit system;};
+        };
+      }
+    ]) ["x86_64-linux" "aarch64-linux"]));
     hydraJobs =
       (builtins.listToAttrs (map
         ({
@@ -185,6 +287,7 @@ rec {
         systems))
       // {
         inherit devShell;
+        homeConfigurations = nixpkgs.lib.mapAttrs (_: v: v.activationPackage) self.homeConfigurations;
         # Uncomment the line to build an installer image
         # This is EXTREMELY LARGE and will make builds take forever
         # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;

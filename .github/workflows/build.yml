@@ -4,48 +4,111 @@ on:
     branches:
       - main
 jobs:
-  base-server-x86_64:
+  user-base-x86_64-linux:
     uses: ./.github/workflows/build-one.yml
     with:
-      hostname: server-x86_64.x86_64-linux
+      job: homeConfigurations.base-x86_64-linux
+    secrets: inherit
+  user-base-aarch64-linux:
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.base-aarch64-linux
+    secrets: inherit
+  user-root-x86_64-linux:
+    needs: user-base-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.root-x86_64-linux
+    secrets: inherit
+  user-root-aarch64-linux:
+    needs: user-base-aarch64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.root-aarch64-linux
+    secrets: inherit
+  user-darkkirb-x86_64-linux:
+    needs: user-base-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.darkkirb-x86_64-linux
+    secrets: inherit
+  user-darkkirb-aarch64-linux:
+    needs: user-base-aarch64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.darkkirb-aarch64-linux
+    secrets: inherit
+  user-miifox-x86_64-linux:
+    needs: user-base-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.miifox-x86_64-linux
+    secrets: inherit
+  user-base-desktop-x86_64-linux:
+    needs: user-base-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.base-desktop-x86_64-linux
+    secrets: inherit
+  user-darkkirb-desktop-x86_64-linux:
+    needs: user-base-desktop-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.darkkirb-desktop-x86_64-linux
+    secrets: inherit
+  base-server-x86_64:
+    needs:
+      - user-root-x86_64-linux
+      - user-darkkirb-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: server-x86_64.x86_64-linux
     secrets: inherit
   base-server-aarch64:
+    needs:
+      - user-root-aarch64-linux
+      - user-darkkirb-aarch64-linux
     uses: ./.github/workflows/build-one.yml
     with:
-      hostname: server-aarch64.aarch64-linux
+      job: server-aarch64.aarch64-linux
     secrets: inherit
   base-desktop-x86_64:
+    needs:
+      - user-root-x86_64-linux
+      - user-darkkirb-desktop-x86_64-linux
     uses: ./.github/workflows/build-one.yml
     with:
-      hostname: desktop-x86_64.x86_64-linux
+      job: desktop-x86_64.x86_64-linux
     secrets: inherit
   nas:
     needs: base-server-x86_64
     uses: ./.github/workflows/build-one.yml
     with:
-      hostname: nas.x86_64-linux
+      job: nas.x86_64-linux
     secrets: inherit
   nixos-8gb-fsn1-1:
-    needs: base-server-x86_64
+    needs:
+      - base-server-x86_64
+      - user-miifox-x86_64-linux
     uses: ./.github/workflows/build-one.yml
     with:
-      hostname: nixos-8gb-fsn1-1.x86_64-linux
+      job: nixos-8gb-fsn1-1.x86_64-linux
     secrets: inherit
   nutty-noon:
     needs: base-desktop-x86_64
     uses: ./.github/workflows/build-one.yml
     with:
-      hostname: nutty-noon.x86_64-linux
+      job: nutty-noon.x86_64-linux
     secrets: inherit
   thinkrac:
     needs: base-desktop-x86_64
     uses: ./.github/workflows/build-one.yml
     with:
-      hostname: thinkrac.x86_64-linux
+      job: thinkrac.x86_64-linux
     secrets: inherit
   instance-20221213-1915:
     needs: base-server-aarch64
     uses: ./.github/workflows/build-one.yml
     with:
-      hostname: instance-20221213-1915.aarch64-linux
+      job: instance-20221213-1915.aarch64-linux
     secrets: inherit

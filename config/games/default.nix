@@ -1,4 +1,4 @@
-{system, ...} @ args: {pkgs, ...}: {
+args: {pkgs, ...}: {
   imports = [
     (import ./grapejuice.nix args)
   ];

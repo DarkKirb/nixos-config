@@ -2,7 +2,7 @@ name: Build a system
 on:
   workflow_call:
     inputs:
-      hostname:
+      job:
         required: true
         type: string
     secrets:
@@ -44,8 +44,8 @@ jobs:
         env:
           NIX_CACHE_KEY: ${{secrets.NIX_CACHE_KEY}}
           AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
-      - name: Build ${{ inputs.hostname }}
+      - name: Build ${{ inputs.job }}
         run: |
-          nix build '.#hydraJobs.${{ inputs.hostname }}'
+          nix build '.#hydraJobs.${{ inputs.job }}'
         env:
           NIXPKGS_ALLOW_UNFREE: 1
