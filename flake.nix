@@ -94,12 +94,28 @@ rec {
         name = "instance-20221213-1915"; # Oracle server
         system = "aarch64-linux";
       }
+      {
+        name = "server-x86_64"; # archetype
+        system = "x86_64-linux";
+        configName = "archetype-server";
+      }
+      {
+        name = "server-aarch64"; # archetype
+        system = "aarch64-linux";
+        configName = "archetype-server";
+      }
+      {
+        name = "desktop-x86_64"; # archetype
+        system = "x86_64-linux";
+        configName = "archetype-desktop";
+      }
     ];
   in rec {
     nixosConfigurations = builtins.listToAttrs (map
       ({
         name,
         system,
+        configName ? name,
       }: {
         inherit name;
         value =
@@ -112,7 +128,7 @@ rec {
                 inherit system;
               };
             modules = [
-              (./config + "/${name}.nix")
+              (./config + "/${configName}.nix")
               ./config/default.nix
               sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
@@ -159,6 +175,7 @@ rec {
         ({
           name,
           system,
+          ...
         }: {
           inherit name;
           value = {
