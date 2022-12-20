@@ -3,7 +3,6 @@
   nix-packages,
   config,
   lib,
-  nixpkgs-libjxl-update,
   system,
   ...
 }: let
@@ -245,7 +244,7 @@ in {
     group = "akkoma";
     secretConfigFile = config.sops.secrets."services/akkoma.exs".path;
   };
-  systemd.services.pleroma.path = with pkgs; [exiftool nixpkgs-libjxl-update.legacyPackages.${system}.imagemagick ffmpeg];
+  systemd.services.pleroma.path = with pkgs; [exiftool imagemagick ffmpeg];
   services.postgresql.ensureDatabases = ["akkoma"];
   services.postgresql.ensureUsers = [
     {

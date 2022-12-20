@@ -29,14 +29,14 @@ jobs:
           AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
       - run: |
 
-          for job in nixos-8gb-fsn1-1.x86_64-linux nutty-noon.x86_64-linux thinkrac.x86_64-linux installer.x86_64-linux nas.x86_64-linux instance-20221213-1915.aarch64-linux; do
+          for job in nixos-8gb-fsn1-1.x86_64-linux nutty-noon.x86_64-linux thinkrac.x86_64-linux nas.x86_64-linux instance-20221213-1915.aarch64-linux; do
             nix show-derivation -r "github:DarkKirb/nixos-config/main#hydraJobs.$job" > old-$job.json
           done
 
           echo "Difference between this PR and main:" > review
           echo "" >> review
 
-          for job in nixos-8gb-fsn1-1.x86_64-linux nutty-noon.x86_64-linux thinkrac.x86_64-linux installer.x86_64-linux nas.x86_64-linux instance-20221213-1915.aarch64-linux; do
+          for job in nixos-8gb-fsn1-1.x86_64-linux nutty-noon.x86_64-linux thinkrac.x86_64-linux nas.x86_64-linux instance-20221213-1915.aarch64-linux; do
             nix show-derivation -r ".#hydraJobs.$job" > new-$job.json
 
             echo "## Changes for $job:" >> review
