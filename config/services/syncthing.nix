@@ -17,18 +17,10 @@ _: {
         id = "R7NYMWC-QR56IC2-TGQWVJG-HL5VTQX-UTPD3YN-76MTTSW-UEW4VZJ-N7SMVAP";
       };
       thinkrac = {
-        addresses = [
-          "quic://thinkrac.int.chir.rs:51820"
-          "tcp://thinkrac.int.chir.rs:51820"
-        ];
         id = "SION6SB-UTOUYKL-UHJBK4D-S6WNUZO-BOB5YI3-7JGUG6S-PTKKGX3-VAWPDAP";
       };
       phone = {
-        addresses = [
-          "quic://[fd0d:a262:1fa6:e621:480:b859:2a43:7101]:51820"
-          "tcp://[fd0d:a262:1fa6:e621:480:b859:2a43:7101]:51820"
-        ];
-        id = "WDVUWGL-IZKDU3V-MFG5ZRO-BKKMFYR-CYKFLGH-P4UPQ2O-F5KWF2M-EBLHBA3";
+        id = "IM52Z76-ZPDILW4-WU4UOFN-PIJJPJP-NGCIL57-WT6Y44G-WRFUMDW-MUZQBQQ";
       };
       Huskydev = {
         id = "XKAXBTK-AT6Q2LU-DEOTKFM-LUCPZME-BGI4EKG-53DZ3L5-OCWG72B-Q7JSXQU";
