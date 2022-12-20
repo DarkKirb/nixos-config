@@ -130,6 +130,7 @@
           "bae.st" = "freeze peach";
           "vivaldi.net" = "Corporate instance; Registers nonconsensual accounts for Vivaldi Sync users";
           "moth.zone" = "racism/antiblackness; owner self-admitted pedophile";
+          "feral.cafe" = "Zoophilia";
         };
         federated_timeline_removal = processMap {
           "mastodon.social" = "Too large to be moderated well";
