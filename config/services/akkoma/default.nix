@@ -129,6 +129,7 @@
           "beefyboys.win" = "freeze peach; hosts neonazis";
           "bae.st" = "freeze peach";
           "vivaldi.net" = "Corporate instance; Registers nonconsensual accounts for Vivaldi Sync users";
+          "moth.zone" = "Run by a self-admitted pedophile";
         };
         federated_timeline_removal = processMap {
           "mastodon.social" = "Too large to be moderated well";
