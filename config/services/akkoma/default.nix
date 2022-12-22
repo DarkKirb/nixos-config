@@ -130,6 +130,7 @@
           "bae.st" = "freeze peach";
           "moth.zone" = "racism/antiblackness; owner self-admitted pedophile";
           "feral.cafe" = "Zoophilia";
+          "disqordia.space" = "No snooping!";
           "mastodon.cloud" = "Corporate instance; Owner engaged in scams";
           "mstdn.jp" = "Corporate instance; Owner engaged in scams";
           "pawoo.net" = "Corporate instance; Owner engaged in scams";
