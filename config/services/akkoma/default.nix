@@ -134,6 +134,7 @@
           "mastodon.cloud" = "Corporate instance; Owner engaged in scams";
           "mstdn.jp" = "Corporate instance; Owner engaged in scams";
           "pawoo.net" = "Corporate instance; Owner engaged in scams";
+          "activitypub-proxy.cf" = "Block circumvention tool";
         };
         followers_only = processMap {
           "vivaldi.net" = "Corporate instance; Registers nonconsensual accounts for Vivaldi Sync users";
