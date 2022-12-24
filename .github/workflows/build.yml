@@ -8,7 +8,6 @@ jobs:
     strategy:
       matrix:
         host:
-          - installer.x86_64-linux
           - nas.x86_64-linux
           - nixos-8gb-fsn1-1.x86_64-linux
           - nutty-noon.x86_64-linux

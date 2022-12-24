@@ -43,7 +43,6 @@ rec {
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:NixOS/nixpkgs";
-    nixpkgs-libjxl-update.url = "github:darkkirb/nixpkgs/bump-jxl-0.7.0";
     nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
     nur.url = "github:nix-community/NUR";
     plasma-manager = {
@@ -85,10 +84,6 @@ rec {
       }
       {
         name = "thinkrac"; # Thinkpad T470
-        system = "x86_64-linux";
-      }
-      {
-        name = "installer"; # The Installer DVD
         system = "x86_64-linux";
       }
       {

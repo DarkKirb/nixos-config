@@ -10,7 +10,8 @@
     listenHttp = 5370;
     listenWeb = 443;
     enableWebHttps = true;
-    serviceEnvironmentFile = config.sops.secrets."services/peertube".path;
+    serviceEnvironmentFile = config.sops.secrets."services/peertube/env".path;
+    secrets.secretsFile = config.sops.secrets."services/peertube/secret".path;
     settings = {
       object_storage = {
         enabled = true;
@@ -40,5 +41,6 @@
       }
     '';
   };
-  sops.secrets."services/peertube".owner = "peertube";
+  sops.secrets."services/peertube/env".owner = "peertube";
+  sops.secrets."services/peertube/secret".owner = "peertube";
 }
