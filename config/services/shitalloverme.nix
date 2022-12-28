@@ -38,7 +38,7 @@ in {
     extraConfig = ''
       import baseConfig
 
-      root = ${shitalloverme}
+      root * ${shitalloverme}
       file_server
     '';
   };
