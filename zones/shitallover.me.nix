@@ -120,11 +120,31 @@ with dns.lib.combinators; let
     ];
   };
   createZone = merge zoneBase;
-  zone = createZone {
+  createFullZone = merge (createZone {
+    A = [
+      (ttl zoneTTL (a "130.162.60.127"))
+      (ttl zoneTTL (a "138.201.155.128"))
+    ];
+    AAAA = [
+      (ttl zoneTTL (aaaa "2603:c020:8009:f100:f09a:894d:ef57:a278"))
+      (ttl zoneTTL (aaaa "2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49"))
+    ];
+    HTTPS = [
+      {
+        svcPriority = 1;
+        targetName = ".";
+        alpn = ["http/1.1" "h2" "h3"];
+        ipv4hint = ["138.201.155.128" "130.162.60.127"];
+        ipv6hint = ["2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49" "2603:c020:8009:f100:f09a:894d:ef57:a278"];
+        ttl = zoneTTL;
+      }
+    ];
+  });
+  zone = createFullZone {
     SOA = {
       nameServer = "ns1.shitallover.me.";
       adminEmail = "lotte@chir.rs";
-      serial = 2;
+      serial = 3;
     };
     NS = [
       "ns1.chir.rs."
@@ -194,7 +214,7 @@ with dns.lib.combinators; let
         "ns1.chir.rs."
         "ns2.chir.rs."
       ];
-      www = createZone {};
+      www = createFullZone {};
       ns1 = createZone {};
       ns2 = createZone oracleBase;
     };
