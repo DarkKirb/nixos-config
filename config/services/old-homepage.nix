@@ -1,6 +1,7 @@
 {
   nix-packages,
   system,
+  pkgs,
   ...
 }: let
   inherit (nix-packages.packages.${system}) old-homepage;
