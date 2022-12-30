@@ -7,6 +7,7 @@
 }: let
   mkConfigExtra = extra: dest: {
     useACMEHost = "chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
       ${extra}
@@ -27,6 +28,7 @@ in {
     "hydra.chir.rs" = mkConfig "https://hydra.int.chir.rs";
     "mastodon.chir.rs" = {
       useACMEHost = "chir.rs";
+      logFormat = pkgs.lib.mkForce "";
       extraConfig = ''
         import baseConfig
           reverse_proxy {
@@ -40,6 +42,7 @@ in {
     };
     "mastodon-assets.chir.rs" = {
       useACMEHost = "chir.rs";
+      logFormat = pkgs.lib.mkForce "";
       extraConfig = ''
         import baseConfig
         @getOnly {
@@ -77,6 +80,7 @@ in {
     };
     "cache.chir.rs" = {
       useACMEHost = "chir.rs";
+      logFormat = pkgs.lib.mkForce "";
       extraConfig = ''
         import baseConfig
 
@@ -141,6 +145,7 @@ in {
     "moa.chir.rs" = mkConfig "https://moa.int.chir.rs";
     "chir.rs" = {
       useACMEHost = "chir.rs";
+      logFormat = pkgs.lib.mkForce "";
       extraConfig = ''
         import baseConfig
         handle /.well-known/webfinger {

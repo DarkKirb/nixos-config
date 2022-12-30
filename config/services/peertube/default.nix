@@ -34,6 +34,7 @@
   systemd.services.peertube.path = with pkgs; lib.mkForce [bashInteractive ffmpeg_5 nodejs-16_x openssl yarn python3 coreutils systemd];
   services.caddy.virtualHosts."peertube.chir.rs" = {
     useACMEHost = "chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
       reverse_proxy {

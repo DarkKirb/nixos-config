@@ -178,6 +178,7 @@ in {
   ];
   services.caddy.virtualHosts."matrix.chir.rs" = {
     useACMEHost = "chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
       handle /_matrix/media/* {

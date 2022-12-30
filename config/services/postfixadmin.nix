@@ -37,6 +37,7 @@
   ];
   services.caddy.virtualHosts."mail.chir.rs" = {
     useACMEHost = "chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
 

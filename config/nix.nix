@@ -9,8 +9,7 @@
     #!/bin/sh
     set -euf
     export IFS=' '
-    ${pkgs.nix}/bin/nix-store -r $DRV_PATH
-    for f in $DRV_PATH $OUT_PATHS; do
+    for f in $OUT_PATHS; do
       ${pkgs.nix}/bin/nix store sign --key-file ${config.sops.secrets."services/nix/cache-key".path} $f
       ${pkgs.nix}/bin/nix copy --to 's3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/nix/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15' $f
     done

@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   services = {
@@ -182,6 +183,7 @@
     };
     caddy.virtualHosts."rspamd.int.chir.rs" = {
       useACMEHost = "int.chir.rs";
+      logFormat = pkgs.lib.mkForce "";
       extraConfig = ''
         import baseConfig
 

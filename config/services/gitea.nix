@@ -1,4 +1,4 @@
-{config, ...}: {
+{pkgs, config, ...}: {
   imports = [
     ../../modules/gitea.nix
     (import ../../modules/gateway-st.nix {name = "gitea";})
@@ -65,6 +65,7 @@
 
   services.caddy.virtualHosts."git.chir.rs" = {
     useACMEHost = "chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
 

@@ -51,6 +51,7 @@ in {
   ];
   services.caddy.virtualHosts."drone.int.chir.rs" = {
     useACMEHost = "int.chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
       reverse_proxy http://127.0.0.1:47927

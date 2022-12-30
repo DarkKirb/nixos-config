@@ -23,6 +23,7 @@ in {
 
   services.caddy.virtualHosts.${config.services.grafana.domain} = {
     useACMEHost = "int.chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
 
