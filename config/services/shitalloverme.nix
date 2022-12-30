@@ -35,6 +35,7 @@
 in {
   services.caddy.virtualHosts."shitallover.me" = {
     useACMEHost = "shitallover.me";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
 

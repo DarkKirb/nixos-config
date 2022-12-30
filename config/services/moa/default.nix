@@ -64,6 +64,7 @@
   ];
   services.caddy.virtualHosts."moa.int.chir.rs" = {
     useACMEHost = "int.chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
       reverse_proxy http://localhost:5000 {

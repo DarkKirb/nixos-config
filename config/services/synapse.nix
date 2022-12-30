@@ -124,6 +124,7 @@
 
   services.caddy.virtualHosts."matrix.int.chir.rs" = {
     useACMEHost = "int.chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
 
@@ -154,6 +155,7 @@
 
   services.caddy.virtualHosts."matrix-admin.int.chir.rs" = {
     useACMEHost = "int.chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
 

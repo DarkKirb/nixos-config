@@ -11,6 +11,7 @@
   };
   services.caddy.virtualHosts."api.chir.rs" = {
     useACMEHost = "chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
       rewrite * /api.chir.rs/{path}

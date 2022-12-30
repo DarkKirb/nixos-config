@@ -17,6 +17,7 @@ in {
   };
   services.caddy.virtualHosts."darkkirb.de" = {
     useACMEHost = "darkkirb.de";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
 
@@ -28,6 +29,7 @@ in {
   };
   services.caddy.virtualHosts."static.darkkirb.de" = {
     useACMEHost = "darkkirb.de";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
 

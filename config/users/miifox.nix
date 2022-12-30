@@ -30,6 +30,7 @@
   ];
   services.caddy.virtualHosts."miifox.net" = {
     useACMEHost = "miifox.net";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
 

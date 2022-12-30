@@ -65,6 +65,7 @@
 
   services.caddy.virtualHosts."git.chir.rs" = {
     useACMEHost = "chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
 

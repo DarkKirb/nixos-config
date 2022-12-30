@@ -257,6 +257,7 @@ in {
   sops.secrets."services/bunny-key".owner = "akkoma";
   services.caddy.virtualHosts."akko.chir.rs" = {
     useACMEHost = "chir.rs";
+    logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
       handle /media_attachments/* {
