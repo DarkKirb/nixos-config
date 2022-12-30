@@ -1,0 +1,58 @@
+name: Build a system
+on:
+  workflow_call:
+    inputs:
+      job:
+        required: true
+        type: string
+    secrets:
+      NIX_CACHE_KEY:
+        required: true
+      AWS_CREDENTIALS:
+        required: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Cleanup Disk
+        uses: curoky/cleanup-disk-action@v2.0
+        with:
+          retain: ''
+      - name: Install Nix
+        uses: cachix/install-nix-action@v18
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=
+            experimental-features = nix-command flakes ca-derivations
+            post-build-hook = ${{ github.workspace }}/scripts/post-build-hook
+            substituters = https://cache.chir.rs/ https://cache.nixos.org/
+            extra-platforms = armv7l-linux aarch64-linux powerpc-linux powerpc64-linux powerpc64le-linux riscv32-linux riscv64-linux wasm32-wasi i686-linux
+            sandbox = false
+      - name: Download patched nix
+        run: nix build github:DarkKirb/nix-packages#nix-s3-dedup
+      - name: Set up secrets
+        run: |
+          echo "$NIX_CACHE_KEY" > ~/cache.key
+          sudo mkdir /root/.aws
+          echo "$AWS_CREDENTIALS" | sudo tee /root/.aws/credentials > /dev/null
+        env:
+          NIX_CACHE_KEY: ${{secrets.NIX_CACHE_KEY}}
+          AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
+      - name: Build ${{ inputs.job }}
+        run: |
+          DRV_PATH=$(nix-instantiate -E '(import ./.).${{ inputs.job }}')
+          OUT_PATH=$(nix show-derivation $DRV_PATH | jq -r ".\"$DRV_PATH\".outputs.out.path")
+          NARINFO=$(echo $OUT_PATH | sed 's|/| |g' | sed 's|-| |g' | awk '{print $3}')
+          if curl --output /dev/null --silent --fail "https://cache.chir.rs/$NARINFO.narinfo"; then
+            echo "${{ inputs.job }} already built. Skipping"
+          else
+            nix-store -r $DRV_PATH
+          fi
+        env:
+          NIXPKGS_ALLOW_UNFREE: 1

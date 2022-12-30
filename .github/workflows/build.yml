@@ -4,49 +4,111 @@ on:
     branches:
       - main
 jobs:
-  build:
-    strategy:
-      matrix:
-        host:
-          - nas.x86_64-linux
-          - nixos-8gb-fsn1-1.x86_64-linux
-          - nutty-noon.x86_64-linux
-          - thinkrac.x86_64-linux
-          - instance-20221213-1915.aarch64-linux
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      - name: Cleanup Disk
-        uses: curoky/cleanup-disk-action@v2.0
-        with:
-          retain: ''
-      - name: Install Nix
-        uses: cachix/install-nix-action@v18
-        with:
-          nix_path: nixpkgs=channel:nixos-unstable
-          extra_nix_config: |
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=
-            experimental-features = nix-command flakes ca-derivations
-            post-build-hook = ${{ github.workspace }}/scripts/post-build-hook
-            substituters = https://cache.chir.rs/ https://cache.nixos.org/
-            extra-platforms = armv7l-linux aarch64-linux powerpc-linux powerpc64-linux powerpc64le-linux riscv32-linux riscv64-linux wasm32-wasi i686-linux
-            sandbox = false
-      - name: Download patched nix
-        run: nix build github:DarkKirb/nix-packages#nix-s3-dedup
-      - name: Set up secrets
-        run: |
-          echo "$NIX_CACHE_KEY" > ~/cache.key
-          sudo mkdir /root/.aws
-          echo "$AWS_CREDENTIALS" | sudo tee /root/.aws/credentials > /dev/null
-        env:
-          NIX_CACHE_KEY: ${{secrets.NIX_CACHE_KEY}}
-          AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
-      - name: Build ${{ matrix.host }}
-        run: |
-          nix build '.#hydraJobs.${{ matrix.host }}'
-        env:
-          NIXPKGS_ALLOW_UNFREE: 1
+  user-base-x86_64-linux:
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.base-x86_64-linux
+    secrets: inherit
+  user-base-aarch64-linux:
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.base-aarch64-linux
+    secrets: inherit
+  user-root-x86_64-linux:
+    needs: user-base-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.root-x86_64-linux
+    secrets: inherit
+  user-root-aarch64-linux:
+    needs: user-base-aarch64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.root-aarch64-linux
+    secrets: inherit
+  user-darkkirb-x86_64-linux:
+    needs: user-base-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.darkkirb-x86_64-linux
+    secrets: inherit
+  user-darkkirb-aarch64-linux:
+    needs: user-base-aarch64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.darkkirb-aarch64-linux
+    secrets: inherit
+  user-miifox-x86_64-linux:
+    needs: user-base-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.miifox-x86_64-linux
+    secrets: inherit
+  user-base-desktop-x86_64-linux:
+    needs: user-base-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.base-desktop-x86_64-linux
+    secrets: inherit
+  user-darkkirb-desktop-x86_64-linux:
+    needs: user-base-desktop-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.darkkirb-desktop-x86_64-linux
+    secrets: inherit
+  base-server-x86_64:
+    needs:
+      - user-root-x86_64-linux
+      - user-darkkirb-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: hydraJobs.server-x86_64.x86_64-linux
+    secrets: inherit
+  base-server-aarch64:
+    needs:
+      - user-root-aarch64-linux
+      - user-darkkirb-aarch64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: hydraJobs.server-aarch64.aarch64-linux
+    secrets: inherit
+  base-desktop-x86_64:
+    needs:
+      - user-root-x86_64-linux
+      - user-darkkirb-desktop-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: hydraJobs.desktop-x86_64.x86_64-linux
+    secrets: inherit
+  nas:
+    needs: base-server-x86_64
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: hydraJobs.nas.x86_64-linux
+    secrets: inherit
+  nixos-8gb-fsn1-1:
+    needs:
+      - base-server-x86_64
+      - user-miifox-x86_64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: hydraJobs.nixos-8gb-fsn1-1.x86_64-linux
+    secrets: inherit
+  nutty-noon:
+    needs: base-desktop-x86_64
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: hydraJobs.nutty-noon.x86_64-linux
+    secrets: inherit
+  thinkrac:
+    needs: base-desktop-x86_64
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: hydraJobs.thinkrac.x86_64-linux
+    secrets: inherit
+  instance-20221213-1915:
+    needs: base-server-aarch64
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: hydraJobs.instance-20221213-1915.aarch64-linux
+    secrets: inherit
