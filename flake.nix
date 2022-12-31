@@ -45,11 +45,6 @@ rec {
     nixpkgs.url = "github:NixOS/nixpkgs";
     nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
     nur.url = "github:nix-community/NUR";
-    plasma-manager = {
-      url = "github:pjones/plasma-manager";
-      inputs.home-manager.follows = "home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     prismmc = {
       url = "github:PrismLauncher/PrismLauncher";
       inputs.nixpkgs.follows = "nixpkgs";
