@@ -18,6 +18,7 @@ in {
     ./desktop-secrets.nix
     ./services/cups.nix
     ./services/docker.nix
+    ./services/cifs.nix
   ];
   fonts.fonts = with pkgs; [
     noto-fonts
@@ -49,7 +50,7 @@ in {
   security.pam = {
     services.login.u2fAuth = true;
     services.sddm.u2fAuth = true;
-    #services.swaylock.u2fAuth = true;
+    services.swaylock.u2fAuth = true;
     u2f = {
       enable = true;
       control = "required";
@@ -88,20 +89,6 @@ in {
   networking.firewall.allowedTCPPorts = [22000];
   networking.firewall.allowedUDPPorts = [22000];
 
-  # For KDEConnect
-  networking.firewall.allowedTCPPortRanges = [
-    {
-      from = 1714;
-      to = 1764;
-    }
-  ];
-  networking.firewall.allowedUDPPortRanges = [
-    {
-      from = 1714;
-      to = 1764;
-    }
-  ];
-
   environment.systemPackages = with pkgs; [
     pinentry-gtk2
   ];
@@ -116,19 +103,13 @@ in {
   programs.dconf.enable = true;
   services.xserver = {
     enable = true;
-    #displayManager.defaultSession = "sway";
+    displayManager.defaultSession = "sway";
     displayManager.sddm.enable = true;
-    desktopManager.plasma5 = {
-      enable = true;
-      excludePackages = with pkgs.libsForQt5; [
-        elisa
-      ];
-    };
     libinput.enable = true;
     layout = "de";
     xkbVariant = "neo";
   };
-  #programs.sway.enable = true;
+  programs.sway.enable = true;
   boot.kernelPackages = pkgs.zfsUnstable.latestCompatibleLinuxPackages;
   i18n.inputMethod = {
     enabled = "ibus";
