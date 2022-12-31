@@ -88,20 +88,6 @@ in {
   networking.firewall.allowedTCPPorts = [22000];
   networking.firewall.allowedUDPPorts = [22000];
 
-  # For KDEConnect
-  networking.firewall.allowedTCPPortRanges = [
-    {
-      from = 1714;
-      to = 1764;
-    }
-  ];
-  networking.firewall.allowedUDPPortRanges = [
-    {
-      from = 1714;
-      to = 1764;
-    }
-  ];
-
   environment.systemPackages = with pkgs; [
     pinentry-gtk2
   ];
