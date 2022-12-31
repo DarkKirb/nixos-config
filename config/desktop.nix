@@ -49,7 +49,7 @@ in {
   security.pam = {
     services.login.u2fAuth = true;
     services.sddm.u2fAuth = true;
-    #services.swaylock.u2fAuth = true;
+    services.swaylock.u2fAuth = true;
     u2f = {
       enable = true;
       control = "required";
@@ -102,19 +102,13 @@ in {
   programs.dconf.enable = true;
   services.xserver = {
     enable = true;
-    #displayManager.defaultSession = "sway";
+    displayManager.defaultSession = "sway";
     displayManager.sddm.enable = true;
-    desktopManager.plasma5 = {
-      enable = true;
-      excludePackages = with pkgs.libsForQt5; [
-        elisa
-      ];
-    };
     libinput.enable = true;
     layout = "de";
     xkbVariant = "neo";
   };
-  #programs.sway.enable = true;
+  programs.sway.enable = true;
   boot.kernelPackages = pkgs.zfsUnstable.latestCompatibleLinuxPackages;
   i18n.inputMethod = {
     enabled = "ibus";
