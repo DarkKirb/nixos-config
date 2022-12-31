@@ -18,6 +18,7 @@ in {
     ./desktop-secrets.nix
     ./services/cups.nix
     ./services/docker.nix
+    ./services/cifs.nix
   ];
   fonts.fonts = with pkgs; [
     noto-fonts
