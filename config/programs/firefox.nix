@@ -15,6 +15,7 @@
       stylus
       tree-style-tab
       ublock-origin
+      umatrix
       unpaywall
       plasma-integration
       tampermonkey
