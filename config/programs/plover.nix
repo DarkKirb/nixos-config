@@ -70,13 +70,10 @@ in {
   systemd.user.services.plover = {
     Unit = {
       Description = "plover";
-      After = ["tray.target"];
+      After = ["graphical-session-pre.target"];
       PartOf = ["graphical-session.target"];
-      Requires = ["tray.target"];
     };
-    Install = {
-      WantedBy = ["graphical-session.target"];
-    };
+    Install.WantedBy = ["graphical-session.target"];
     Service = {
       ExecStart = "${plover-env}/bin/plover";
     };

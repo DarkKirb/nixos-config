@@ -4,35 +4,24 @@
   lib,
   ...
 }: let
+  c = "$";
   switch_window = pkgs.writeScript "switchWindow" ''
-      # https://www.reddit.com/r/swaywm/comments/krd0sq/comment/gib6z73/?context=3
-    jq_filter='
-        # descend to workspace or scratchpad
-        .nodes[].nodes[]
-        # save workspace name as .w
-        | {"w": .name} + (
-          if (.nodes|length) > 0 then # workspace
-            [recurse(.nodes[])]
-          else # scratchpad
-            []
-          end
-          + .floating_nodes
-          | .[]
-          # select nodes with no children (windows)
-          | select(.nodes==[])
-        )
-        | [
-          "<span size=\"xx-small\">\(.id)</span>",
-          # remove markup and index from workspace name, replace scratch with "[S]"
-          "<span size=\"xx-small\">\(.w | gsub("^[^:]*:|<[^>]*>"; "") | sub("__i3_scratch"; "[S]"))</span>",
-          # get app name (or window class if xwayland)
-          "<span weight=\"bold\">\(if .app_id == null then .window_properties.class else .app_id end)</span>",
-          "<span style=\"italic\">\(.name)</span>"
-        ] | @tsv
-    '
-    ${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r "$jq_filter" | ${pkgs.wofi}/bin/wofi -m --insensitive --show dmenu --prompt='Focus a window' | {
-      read -r id name && swaymsg "[con_id=$id]" focus
+    set -euo pipefail
+
+    tree=$(${pkgs.sway}/bin/swaymsg -t get_tree)
+    readarray -t win_ids <<< "$(${pkgs.jq}/bin/jq -r '.. | objects | select(has("app_id")) | .id' <<< "$tree")"
+    readarray -t win_names <<< "$(${pkgs.jq}/bin/jq -r '.. | objects | select(has("app_id")) | .name' <<< "$tree")"
+    readarray -t win_types <<< "$(${pkgs.jq}/bin/jq -r '.. | objects | select(has("app_id")) | .app_id // .window_properties.class' <<< "$tree")"
+
+    switch () {
+        local k
+        read -r k
+        swaymsg "[con_id=${c}{win_ids[$k]}] focus"
     }
+
+    for k in $(seq 0 $((${c}{#win_ids[@]} - 1))); do
+        echo -e "<span weight=\\"bold\\">\\${c}{win_types[$k]}</span> - ${c}{win_names[$k]}"
+    done | rofi -dmenu -markup-rows -i -p window -format i | switch
   '';
   screenshot_then_switch = pkgs.writeScript "screenshotThenSwitch" ''
     ${pkgs.sway-contrib.grimshot}/bin/grimshot "$@"
@@ -59,23 +48,6 @@
     '';
     installPhase = "true";
   };
-  # bash script to let dbus know about important env variables and
-  # propogate them to relevent services run at the end of sway config
-  # see
-  # https://github.com/emersion/xdg-desktop-portal-wlr/wiki/"It-doesn't-work"-Troubleshooting-Checklist
-  # note: this is pretty much the same as  /etc/sway/config.d/nixos.conf but also restarts
-  # some user services to make sure they have the correct environment variables
-  dbus-sway-environment = pkgs.writeTextFile {
-    name = "dbus-sway-environment";
-    destination = "/bin/dbus-sway-environment";
-    executable = true;
-
-    text = ''
-      ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-      ${pkgs.systemd}/bin/systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-      ${pkgs.systemd}/bin/systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-    '';
-  };
   # currently, there is some friction between sway and gtk:
   # https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
   # the suggested way to set gtk settings is with gsettings
@@ -100,11 +72,9 @@ in {
     ./wl-clipboard.nix
     ./mako.nix
     ./swayidle.nix
+    ./foot.nix
+    ./rofi.nix
   ];
-  home.file.".config/wofi/config".text = ''
-    allow_markup = true
-    dmenu-parse_action = true
-  '';
   wayland.windowManager.sway = {
     enable = true;
     config = {
@@ -138,7 +108,8 @@ in {
         inherit (config.wayland.windowManager.sway.config) modifier;
       in
         lib.mkOptionDefault {
-          "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";
+          "${modifier}+Return" = "exec ${pkgs.foot}/bin/foot";
+          "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi --show drun";
           "Print" = "mode screenshot";
           "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
           "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
@@ -160,15 +131,15 @@ in {
       modes = {
         screenshot = {
           Print = "exec ${screenshot_then_switch} copy area";
-          "Shift+Print" = "exec ${screenshot_then_switch} save area $HOME/Pictures/grim-$(date --iso=s).png";
+          "Shift+Print" = "exec ${screenshot_then_switch} save area $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
           a = "exec ${screenshot_then_switch} copy active";
-          "Shift+a" = "exec ${screenshot_then_switch} save active $HOME/Pictures/grim-$(date --iso=s).png";
+          "Shift+a" = "exec ${screenshot_then_switch} save active $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
           s = "exec ${screenshot_then_switch} copy screen";
-          "Shift+s" = "exec ${screenshot_then_switch} save screen $HOME/Pictures/grim-$(date --iso=s).png";
+          "Shift+s" = "exec ${screenshot_then_switch} save screen $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
           o = "exec ${screenshot_then_switch} copy output";
-          "Shift+o" = "exec ${screenshot_then_switch} save output $HOME/Pictures/grim-$(date --iso=s).png";
+          "Shift+o" = "exec ${screenshot_then_switch} save output $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
           w = "exec ${screenshot_then_switch} copy window";
-          "Shift+w" = "exec ${screenshot_then_switch} save window $HOME/Pictures/grim-$(date --iso=s).png";
+          "Shift+w" = "exec ${screenshot_then_switch} save window $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
           Escape = ''mode "default"'';
           Return = ''mode "default"'';
         };
@@ -185,9 +156,10 @@ in {
       export GTK_USE_PORTAL=1
     '';
     extraConfig = ''
-      exec ${dbus-sway-environment}/bin/dbus-sway-environment
       exec ${configure-gtk}/bin/configure-gtk
       exec ${pkgs.systemd}/bin/systemctl --user import-environment
+      gaps outer 8
+      gaps inner 4
     '';
   };
 

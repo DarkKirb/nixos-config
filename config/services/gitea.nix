@@ -1,4 +1,8 @@
-{pkgs, config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ../../modules/gitea.nix
     (import ../../modules/gateway-st.nix {name = "gitea";})
