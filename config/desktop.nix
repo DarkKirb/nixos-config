@@ -115,4 +115,5 @@ in {
     enabled = "ibus";
     ibus.engines = with pkgs.ibus-engines; [anthy];
   };
+  services.polkit.enable = true;
 }

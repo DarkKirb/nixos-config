@@ -59,6 +59,20 @@
     '';
     installPhase = "true";
   };
+  start-extra-services = pkgs.writeTextFile {
+    name = "start-extra-services";
+    destination = "/bin/start-extra-services";
+    exexcutable = true;
+
+    text = ''
+      sleep 5
+      ${pkgs.systemd}/bin/systemctl --user start swayidle
+      ${pkgs.systemd}/bin/systemctl --user start keepassxc
+      ${pkgs.systemd}/bin/systemctl --user start plover
+      ${pkgs.systemd}/bin/systemctl --user start wl-clipboard
+      ${pkgs.systemd}/bin/systemctl --user start mako
+    '';
+  };
   # bash script to let dbus know about important env variables and
   # propogate them to relevent services run at the end of sway config
   # see
@@ -100,6 +114,7 @@ in {
     ./wl-clipboard.nix
     ./mako.nix
     ./swayidle.nix
+    ./foot.nix
   ];
   home.file.".config/wofi/config".text = ''
     allow_markup = true
@@ -138,6 +153,7 @@ in {
         inherit (config.wayland.windowManager.sway.config) modifier;
       in
         lib.mkOptionDefault {
+          "${modifier}+Return" = "exec ${pkgs.foot}/bin/foot";
           "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";
           "Print" = "mode screenshot";
           "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
@@ -160,15 +176,15 @@ in {
       modes = {
         screenshot = {
           Print = "exec ${screenshot_then_switch} copy area";
-          "Shift+Print" = "exec ${screenshot_then_switch} save area $HOME/Pictures/grim-$(date --iso=s).png";
+          "Shift+Print" = "exec ${screenshot_then_switch} save area $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
           a = "exec ${screenshot_then_switch} copy active";
-          "Shift+a" = "exec ${screenshot_then_switch} save active $HOME/Pictures/grim-$(date --iso=s).png";
+          "Shift+a" = "exec ${screenshot_then_switch} save active $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
           s = "exec ${screenshot_then_switch} copy screen";
-          "Shift+s" = "exec ${screenshot_then_switch} save screen $HOME/Pictures/grim-$(date --iso=s).png";
+          "Shift+s" = "exec ${screenshot_then_switch} save screen $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
           o = "exec ${screenshot_then_switch} copy output";
-          "Shift+o" = "exec ${screenshot_then_switch} save output $HOME/Pictures/grim-$(date --iso=s).png";
+          "Shift+o" = "exec ${screenshot_then_switch} save output $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
           w = "exec ${screenshot_then_switch} copy window";
-          "Shift+w" = "exec ${screenshot_then_switch} save window $HOME/Pictures/grim-$(date --iso=s).png";
+          "Shift+w" = "exec ${screenshot_then_switch} save window $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
           Escape = ''mode "default"'';
           Return = ''mode "default"'';
         };
@@ -188,6 +204,7 @@ in {
       exec ${dbus-sway-environment}/bin/dbus-sway-environment
       exec ${configure-gtk}/bin/configure-gtk
       exec ${pkgs.systemd}/bin/systemctl --user import-environment
+      exec ${start-extra-services}/bin/start-extra-services
     '';
   };
 
