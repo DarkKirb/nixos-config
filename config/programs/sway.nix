@@ -158,6 +158,8 @@ in {
     extraConfig = ''
       exec ${configure-gtk}/bin/configure-gtk
       exec ${pkgs.systemd}/bin/systemctl --user import-environment
+      gaps outer 8
+      gaps inner 4
     '';
   };
 
