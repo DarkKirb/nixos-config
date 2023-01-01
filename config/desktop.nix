@@ -116,8 +116,4 @@ in {
     ibus.engines = with pkgs.ibus-engines; [anthy];
   };
   security.polkit.enable = true;
-  security.pam.services.kwallet = {
-    name = "kwallet";
-    enableKwallet = true;
-  };
 }
