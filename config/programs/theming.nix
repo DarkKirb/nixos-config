@@ -162,7 +162,16 @@ in {
     	background: ${cssColor surface0};
       color: ${cssColor text};
     }
-    
+  '';
+
+  wayland.windowManager.sway.extraConfig = with theme; ''
+    # target                 title                bg               text              indicator             border
+    client.focused           ${cssColor pink}     ${cssColor base} ${cssColor text}  ${cssColor rosewater} ${cssColor pink}
+    client.focused_inactive  ${cssColor mauve}    ${cssColor base} ${cssColor text}  ${cssColor rosewater} ${cssColor mauve}
+    client.unfocused         ${cssColor mauve}    ${cssColor base} ${cssColor text}  ${cssColor rosewater} ${cssColor mauve}
+    client.urgent            ${cssColor peach}    ${cssColor base} ${cssColor peach} ${cssColor overlay0}  ${cssColor peach}
+    client.placeholder       ${cssColor overlay0} ${cssColor base} ${cssColor text}  ${cssColor overlay0}  ${cssColor overlay0}
+    client.background        ${cssColor base}
   '';
 
   programs.foot.settings.colors = with theme; {
