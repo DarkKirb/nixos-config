@@ -59,37 +59,6 @@
     '';
     installPhase = "true";
   };
-  start-extra-services = pkgs.writeTextFile {
-    name = "start-extra-services";
-    destination = "/bin/start-extra-services";
-    exexcutable = true;
-
-    text = ''
-      sleep 5
-      ${pkgs.systemd}/bin/systemctl --user start swayidle
-      ${pkgs.systemd}/bin/systemctl --user start keepassxc
-      ${pkgs.systemd}/bin/systemctl --user start plover
-      ${pkgs.systemd}/bin/systemctl --user start wl-clipboard
-      ${pkgs.systemd}/bin/systemctl --user start mako
-    '';
-  };
-  # bash script to let dbus know about important env variables and
-  # propogate them to relevent services run at the end of sway config
-  # see
-  # https://github.com/emersion/xdg-desktop-portal-wlr/wiki/"It-doesn't-work"-Troubleshooting-Checklist
-  # note: this is pretty much the same as  /etc/sway/config.d/nixos.conf but also restarts
-  # some user services to make sure they have the correct environment variables
-  dbus-sway-environment = pkgs.writeTextFile {
-    name = "dbus-sway-environment";
-    destination = "/bin/dbus-sway-environment";
-    executable = true;
-
-    text = ''
-      ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-      ${pkgs.systemd}/bin/systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-      ${pkgs.systemd}/bin/systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-    '';
-  };
   # currently, there is some friction between sway and gtk:
   # https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
   # the suggested way to set gtk settings is with gsettings
@@ -201,7 +170,6 @@ in {
       export GTK_USE_PORTAL=1
     '';
     extraConfig = ''
-      exec ${dbus-sway-environment}/bin/dbus-sway-environment
       exec ${configure-gtk}/bin/configure-gtk
       exec ${pkgs.systemd}/bin/systemctl --user import-environment
       exec ${start-extra-services}/bin/start-extra-services

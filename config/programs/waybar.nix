@@ -33,12 +33,12 @@
           format = "{name} {icon}";
         };
         "sway/mode" = {
-          format = "<span style=\"italic\">{}<span>";
+          format = "{}";
         };
         mpd = {
-          format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ";
-          format-disconnected = "Disconnected ";
-          format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ";
+          format = "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})";
+          format-disconnected = "ﳌ";
+          format-stopped = "";
           unknown-tag = "N/A";
           interval = 2;
           consume-icons = {
@@ -60,6 +60,11 @@
           };
           tooltip-format = "MPD (connected)";
           tooltip-format-disconnected = "MPD (disconnected)";
+          on-click = "${pkgs.mpc}/bin/mpc toggle";
+          on-click-middle = "${pkgs.foot}/bin/foot ${pkgs.ncmpcpp}/bin/ncmpcpp";
+          on-click-right = "${pkgs.mpc}/bin/mpc stop";
+          on-scroll-up = "${pkgs.mpc}/bin/seekthrough +00:00:10";
+          on-scroll-down = "${pkgs.mpc}/bin/seekthrough -00:00:10";
         };
         idle_inhibitor = {
           format = "{icon}";
@@ -106,20 +111,11 @@
           bat = "BAT2";
         };
         network = {
-          format-wifi = "{essid} ({signalStrength}%) ";
-          format-ethernet = "{ipaddr}/{cidr} ";
-          tooltip-format = "{ifname} via {gwaddr} ";
-          format-linked = "{ifname} (No IP) ";
-          format-disconnected = "Disconnected ⚠";
-          format-alt = "{ifname}: {ipaddr}/{cidr}";
+          format-wifi = " {essid} {ipaddr}";
+          format-ethernet = " {ipaddr}";
         };
         pulseaudio = {
-          format = "{volume}% {icon} {format_source}";
-          format-bluetooth = "{volume}% {icon} {format_source}";
-          format-bluetooth-muted = " {icon} {format_source}";
-          format-muted = " {format_source}";
-          format-source = "{volume}% ";
-          format-source-muted = "";
+          format = "{icon} {volume}%";
           format-icons = {
             headphone = "";
             hands-free = "";
