@@ -70,8 +70,8 @@ in {
   systemd.user.services.plover = {
     Unit = {
       Description = "plover";
-      After = [ "graphical-session-pre.target" ];
-      PartOf = [ "graphical-session.target" ];
+      After = ["graphical-session-pre.target"];
+      PartOf = ["graphical-session.target"];
     };
     Install.WantedBy = ["graphical-session.target"];
     Service = {

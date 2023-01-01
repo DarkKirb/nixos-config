@@ -198,12 +198,12 @@ in {
     bright7 = subtext0;
   };
 
-  programs.rofi.theme = with theme; 
-    let element = {
+  programs.rofi.theme = with theme; let
+    element = {
       background-color = mkLiteral "inherit";
       text-color = mkLiteral "inherit";
-    }; in
-  {
+    };
+  in {
     "*" = {
       bg-col = rasiColor base;
       bg-col-light = rasiColor base;
@@ -307,6 +307,228 @@ in {
       margin = mkLiteral "20px 0px 0px 20px";
       text-color = mkLiteral "@blue";
       background-color = mkLiteral "@bg-col-light";
+    };
+  };
+  programs.helix = {
+    settings.theme = "catppuccin";
+    themes.catppucchin = {
+      # Syntax highlighting
+      # -------------------
+      "type" = "yellow";
+
+      "constructor" = "sapphire";
+
+      "constant" = "peach";
+      "constant.builtin" = "peach";
+      "constant.character" = "teal";
+      "constant.character.escape" = "pink";
+
+      "string" = "green";
+      "string.regexp" = "peach";
+      "string.special" = "blue";
+
+      "comment" = {
+        fg = "surface2";
+        modifiers = ["italic"];
+      };
+
+      "variable" = "text";
+      "variable.parameter" = {
+        fg = "maroon";
+        modifiers = ["italic"];
+      };
+      "variable.builtin" = "red";
+      "variable.other.member" = "teal";
+
+      "label" = "sapphire"; # used for lifetimes
+
+      "punctuation" = "overlay2";
+      "punctuation.special" = "sky";
+
+      "keyword" = "mauve";
+      "keyword.control.conditional" = {
+        fg = "mauve";
+        modifiers = ["italic"];
+      };
+
+      "operator" = "sky";
+
+      "function" = "blue";
+      "function.builtin" = "peach";
+      "function.macro" = "mauve";
+
+      "tag" = "mauve";
+
+      "namespace" = {
+        fg = "blue";
+        modifiers = ["italic"];
+      };
+
+      "special" = "blue"; # fuzzy highlight
+
+      "markup.heading.marker" = {
+        fg = "peach";
+        modifiers = ["bold"];
+      };
+      "markup.heading.1" = "lavender";
+      "markup.heading.2" = "mauve";
+      "markup.heading.3" = "green";
+      "markup.heading.4" = "yellow";
+      "markup.heading.5" = "pink";
+      "markup.heading.6" = "teal";
+      "markup.list" = "mauve";
+      "markup.bold" = {modifiers = ["bold"];};
+      "markup.italic" = {modifiers = ["italic"];};
+      "markup.link.url" = {
+        fg = "rosewater";
+        modifiers = ["italic" "underlined"];
+      };
+      "markup.link.text" = "blue";
+      "markup.raw" = "flamingo";
+
+      "diff.plus" = "green";
+      "diff.minus" = "red";
+      "diff.delta" = "blue";
+
+      # User Interface
+      # --------------
+      "ui.background" = {
+        fg = "text";
+        bg = "base";
+      };
+
+      "ui.linenr" = {fg = "surface1";};
+      "ui.linenr.selected" = {fg = "lavender";};
+
+      "ui.statusline" = {
+        fg = "text";
+        bg = "mantle";
+      };
+      "ui.statusline.inactive" = {
+        fg = "surface2";
+        bg = "mantle";
+      };
+      "ui.statusline.normal" = {
+        fg = "base";
+        bg = "lavender";
+        modifiers = ["bold"];
+      };
+      "ui.statusline.insert" = {
+        fg = "base";
+        bg = "green";
+        modifiers = ["bold"];
+      };
+      "ui.statusline.select" = {
+        fg = "base";
+        bg = "flamingo";
+        modifiers = ["bold"];
+      };
+
+      "ui.popup" = {
+        fg = "text";
+        bg = "surface0";
+      };
+      "ui.window" = {fg = "crust";};
+      "ui.help" = {
+        fg = "overlay2";
+        bg = "surface0";
+      };
+
+      "ui.bufferline" = {
+        fg = "surface1";
+        bg = "mantle";
+      };
+      "ui.bufferline.active" = {
+        fg = "text";
+        bg = "base";
+        modifiers = ["bold" "italic"];
+      };
+      "ui.bufferline.background" = {bg = "surface0";};
+
+      "ui.text" = "text";
+      "ui.text.focus" = {
+        fg = "text";
+        bg = "surface0";
+        modifiers = ["bold"];
+      };
+
+      "ui.virtual" = "overlay0";
+      "ui.virtual.ruler" = {bg = "surface0";};
+      "ui.virtual.indent-guide" = "surface0";
+
+      "ui.selection" = {bg = "surface1";};
+
+      "ui.cursor" = {
+        fg = "base";
+        bg = "secondary_cursor";
+      };
+      "ui.cursor.primary" = {
+        fg = "base";
+        bg = "rosewater";
+      };
+      "ui.cursor.match" = {
+        fg = "peach";
+        modifiers = ["bold"];
+      };
+
+      "ui.cursorline.primary" = {bg = "cursorline";};
+
+      "ui.highlight" = {
+        bg = "surface1";
+        modifiers = ["bold"];
+      };
+
+      "ui.menu" = {
+        fg = "overlay2";
+        bg = "surface0";
+      };
+      "ui.menu.selected" = {
+        fg = "text";
+        bg = "surface1";
+        modifiers = ["bold"];
+      };
+
+      diagnostic = {modifiers = ["underlined"];};
+      "diagnostic.error" = "red";
+      "diagnostic.warn" = "yellow";
+      "diagnostic.info" = "sky";
+      "diagnostic.hint" = "teal";
+
+      error = "red";
+      warning = "yellow";
+      info = "sky";
+      hint = "teal";
+      palette = with theme; {
+        rosewater = cssColor rosewater;
+        flamingo = cssColor flamingo;
+        pink = cssColor pink;
+        mauve = cssColor mauve;
+        red = cssColor red;
+        maroon = cssColor maroon;
+        peach = cssColor peach;
+        yellow = cssColor yellow;
+        green = cssColor green;
+        teal = cssColor teal;
+        sky = cssColor sky;
+        sapphire = cssColor sapphire;
+        blue = cssColor blue;
+        lavender = cssColor lavender;
+        text = cssColor text;
+        subtext1 = cssColor subtext1;
+        subtext0 = cssColor subtext0;
+        overlay2 = cssColor overlay2;
+        overlay1 = cssColor overlay1;
+        overlay0 = cssColor overlay0;
+        surface2 = cssColor surface2;
+        surface1 = cssColor surface1;
+        surface0 = cssColor surface0;
+        base = cssColor base;
+        mantle = cssColor mantle;
+        crust = cssColor crust;
+
+        cursorline = "#2a2b3c";
+        secondary_cursor = "#b5a6a8";
+      };
     };
   };
 }

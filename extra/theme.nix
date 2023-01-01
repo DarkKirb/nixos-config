@@ -1,7 +1,7 @@
 rec {
   name = "Catppuccin Mocha Theme";
 
-  rosewater  = "f5e0dc";
+  rosewater = "f5e0dc";
   flamingo = "f2cdcd";
   pink = "f5c2e7";
   mauve = "cba6f7";
@@ -27,7 +27,7 @@ rec {
   base = "1e1e2e";
   mantle = "181825";
   crust = "11111b";
-  
+
   cssColor = color: "#${color}";
   alacrittyColor = color: "0x${color}";
 }

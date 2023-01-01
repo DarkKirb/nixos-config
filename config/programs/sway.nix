@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  c="$";
+  c = "$";
   switch_window = pkgs.writeScript "switchWindow" ''
     set -euo pipefail
 
@@ -22,7 +22,7 @@
     for k in $(seq 0 $((${c}{#win_ids[@]} - 1))); do
         echo -e "<span weight=\\"bold\\">\\${c}{win_types[$k]}</span> - ${c}{win_names[$k]}"
     done | rofi -dmenu -markup-rows -i -p window -format i | switch
-    '';
+  '';
   screenshot_then_switch = pkgs.writeScript "screenshotThenSwitch" ''
     ${pkgs.sway-contrib.grimshot}/bin/grimshot "$@"
     ${pkgs.sway}/bin/swaymsg mode default

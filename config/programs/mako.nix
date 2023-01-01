@@ -6,8 +6,8 @@
   systemd.user.services.mako = {
     Unit = {
       Description = "mako";
-      After = [ "graphical-session-pre.target" ];
-      PartOf = [ "graphical-session.target" ];
+      After = ["graphical-session-pre.target"];
+      PartOf = ["graphical-session.target"];
     };
     Install.WantedBy = ["graphical-session.target"];
     Service = {

@@ -2,8 +2,8 @@
   systemd.user.services.wl-clipboard = {
     Unit = {
       Description = "wl-clipboard";
-      After = [ "graphical-session-pre.target" ];
-      PartOf = [ "graphical-session.target" ];
+      After = ["graphical-session-pre.target"];
+      PartOf = ["graphical-session.target"];
     };
     Install.WantedBy = ["graphical-session.target"];
     Service = {

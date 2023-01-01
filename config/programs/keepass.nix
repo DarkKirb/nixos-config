@@ -7,8 +7,8 @@
   systemd.user.services.keepassxc = {
     Unit = {
       Description = "keepassxc";
-      After = [ "graphical-session-pre.target" ];
-      PartOf = [ "graphical-session.target" ];
+      After = ["graphical-session-pre.target"];
+      PartOf = ["graphical-session.target"];
     };
     Install.WantedBy = ["graphical-session.target"];
     Service = {
