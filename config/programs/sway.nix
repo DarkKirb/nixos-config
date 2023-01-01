@@ -20,7 +20,7 @@
     }
 
     for k in $(seq 0 $((${c}{#win_ids[@]} - 1))); do
-        echo -e "<span weight=\\"bold\\">\\${c}{win_types[$k]}</span> - ${c}{win_names[$k]}"
+        echo -e "<span weight=\"bold\">${c}{win_types[$k]}</span> - ${c}{win_names[$k]}"
     done | rofi -dmenu -markup-rows -i -p window -format i | switch
   '';
   screenshot_then_switch = pkgs.writeScript "screenshotThenSwitch" ''
@@ -109,7 +109,7 @@ in {
       in
         lib.mkOptionDefault {
           "${modifier}+Return" = "exec ${pkgs.foot}/bin/foot";
-          "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi --show drun";
+          "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
           "Print" = "mode screenshot";
           "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
           "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
@@ -158,6 +158,7 @@ in {
     extraConfig = ''
       exec ${configure-gtk}/bin/configure-gtk
       exec ${pkgs.systemd}/bin/systemctl --user import-environment
+      default_border none
       gaps outer 8
       gaps inner 4
     '';

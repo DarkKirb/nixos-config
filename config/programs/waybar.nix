@@ -20,8 +20,6 @@
           "memory"
           "temperature"
           "backlight"
-          "keyboard-state"
-          #          "sway/language"
           "battery"
           "battery#bat2"
           "clock"
@@ -63,8 +61,8 @@
           on-click = "${pkgs.mpc-cli}/bin/mpc toggle";
           on-click-middle = "${pkgs.foot}/bin/foot ${pkgs.ncmpcpp}/bin/ncmpcpp";
           on-click-right = "${pkgs.mpc-cli}/bin/mpc stop";
-          on-scroll-up = "${pkgs.mpc-cli}/bin/mpc seekthrough +00:00:10";
-          on-scroll-down = "${pkgs.mpc-cli}/bin/mpc seekthrough -00:00:10";
+          on-scroll-up = "${pkgs.mpc-cli}/bin/mpc seekthrough +00:00:01";
+          on-scroll-down = "${pkgs.mpc-cli}/bin/mpc seekthrough -00:00:01";
         };
         idle_inhibitor = {
           format = "{icon}";
@@ -78,7 +76,7 @@
         };
         clock = {
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          format = "{:%Y-%m-%dT%H:%M:%S+01:00}";
+          format = "{:%H:%M}";
         };
         cpu = {
           format = "{usage}% ";

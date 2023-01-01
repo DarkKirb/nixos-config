@@ -39,7 +39,7 @@ in {
     }
 
     window#waybar {
-      background: tranparent;
+      background: transparent;
       opacity: 0.9;
     }
 
