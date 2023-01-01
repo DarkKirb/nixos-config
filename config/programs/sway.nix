@@ -158,7 +158,6 @@ in {
     extraConfig = ''
       exec ${configure-gtk}/bin/configure-gtk
       exec ${pkgs.systemd}/bin/systemctl --user import-environment
-      exec ${start-extra-services}/bin/start-extra-services
     '';
   };
 

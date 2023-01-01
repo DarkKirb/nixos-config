@@ -41,7 +41,7 @@ in {
       {
         timeout = 305;
         command = "${screen-off-script}";
-        resume = "${resume-script}";
+        resumeCommand = "${resume-script}";
       }
       {
         timeout = 900;

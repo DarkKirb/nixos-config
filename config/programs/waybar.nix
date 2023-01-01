@@ -60,11 +60,11 @@
           };
           tooltip-format = "MPD (connected)";
           tooltip-format-disconnected = "MPD (disconnected)";
-          on-click = "${pkgs.mpc}/bin/mpc toggle";
+          on-click = "${pkgs.mpc-cli}/bin/mpc toggle";
           on-click-middle = "${pkgs.foot}/bin/foot ${pkgs.ncmpcpp}/bin/ncmpcpp";
-          on-click-right = "${pkgs.mpc}/bin/mpc stop";
-          on-scroll-up = "${pkgs.mpc}/bin/seekthrough +00:00:10";
-          on-scroll-down = "${pkgs.mpc}/bin/seekthrough -00:00:10";
+          on-click-right = "${pkgs.mpc-cli}/bin/mpc stop";
+          on-scroll-up = "${pkgs.mpc-cli}/bin/mpc seekthrough +00:00:10";
+          on-scroll-down = "${pkgs.mpc-cli}/bin/mpc seekthrough -00:00:10";
         };
         idle_inhibitor = {
           format = "{icon}";

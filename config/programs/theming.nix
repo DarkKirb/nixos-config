@@ -1,7 +1,7 @@
-{pkgs, ...}: let
+{pkgs, config, ...}: let
   theme = import ../../extra/theme.nix;
   inherit (config.lib.formats.rasi) mkLiteral;
-  rasiColor = c: mkLiteral (cssColor c);
+  rasiColor = c: mkLiteral (theme.cssColor c);
 in {
   gtk = {
     enable = true;
@@ -216,14 +216,12 @@ in {
       width = 600;
     };
     element-text = element;
-    element-icon = element;
-    mode-switcher = element;
     window = {
       height = mkLiteral "360px";
       border = mkLiteral "3px";
       border-color = mkLiteral "@border-col";
       background-color = mkLiteral "@bg-col";
-      opacity = 0.9;
+      opacity = mkLiteral "0.9";
     };
     mainbox = {
       background-color = mkLiteral "@bg-col";
@@ -269,7 +267,7 @@ in {
       text-color = mkLiteral "@fg-col";
     };
 
-    element-icon = {
+    element-icon = element // {
       size = mkLiteral "25px";
     };
 
@@ -278,7 +276,7 @@ in {
       text-color = mkLiteral "@fg-col2";
     };
 
-    mode-switcher = {
+    mode-switcher = element // {
       spacing = 0;
     };
 
@@ -286,8 +284,8 @@ in {
       padding = mkLiteral "10px";
       background-color = mkLiteral "@bg-col-light";
       text-color = mkLiteral "@grey";
-      vertical-align = 0.5;
-      horizontal-align = 0.5;
+      vertical-align = mkLiteral "0.5";
+      horizontal-align = mkLiteral "0.5";
     };
 
     "button selected" = {
