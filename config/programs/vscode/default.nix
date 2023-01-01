@@ -106,7 +106,8 @@
       "editor.fontFamily" = "\"FiraCode Nerd Font Mono\", \"Noto Sans Mono CJK JP\", monospace";
       "rust-analyzer.checkOnSave.command" = "clippy";
       "ledger.binary" = "${pkgs.hledger}/bin/hledger";
-      "workbench.colorTheme" = "Gruvbox Dark Hard";
+      "workbench.colorTheme" = "Catppuccin Mocha";
+      "window.titleBarStyle" = "custom";
       "rust-analyzer.hoverActions.references" = true;
       "rust-analyzer.lens.methodReferences" = true;
       "rust-analyzer.workspace.symbol.search.scope" = "workspace_and_dependencies";
@@ -289,6 +290,7 @@
         bierner.markdown-mermaid
         bradlc.vscode-tailwindcss
         bungcip.better-toml
+        catppuccin.catppuccin-vsc
         christian-kohler.path-intellisense
         codezombiech.gitignore
         davidanson.vscode-markdownlint
@@ -304,7 +306,6 @@
         github.vscode-pull-request-github
         golang.go
         haskell.haskell
-        jdinhlife.gruvbox
         jnoortheen.nix-ide
         justusadam.language-haskell
         mkhl.direnv
