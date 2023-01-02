@@ -20,6 +20,7 @@ desktop: {pkgs, ...}: {
       plugins = [
       ];
     };
+    atuin.enable = true;
     autojump.enable = true;
   };
   home.file.".p10k.zsh".source = ./.p10k.zsh;
