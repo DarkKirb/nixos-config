@@ -1,4 +1,8 @@
-{pkgs, config, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   theme = import ../../extra/theme.nix;
   inherit (config.lib.formats.rasi) mkLiteral;
   rasiColor = c: mkLiteral (theme.cssColor c);
@@ -267,18 +271,22 @@ in {
       text-color = mkLiteral "@fg-col";
     };
 
-    element-icon = element // {
-      size = mkLiteral "25px";
-    };
+    element-icon =
+      element
+      // {
+        size = mkLiteral "25px";
+      };
 
     "element selected" = {
       background-color = mkLiteral "@selected-col";
       text-color = mkLiteral "@fg-col2";
     };
 
-    mode-switcher = element // {
-      spacing = 0;
-    };
+    mode-switcher =
+      element
+      // {
+        spacing = 0;
+      };
 
     button = {
       padding = mkLiteral "10px";

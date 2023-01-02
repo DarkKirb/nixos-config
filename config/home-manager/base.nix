@@ -19,6 +19,7 @@ desktop: {pkgs, ...}: {
       plugins = [
       ];
     };
+    autojump.enable = true;
   };
   home.file.".p10k.zsh".source = ./.p10k.zsh;
 
@@ -41,10 +42,18 @@ desktop: {pkgs, ...}: {
         gh
         htop
         sops
+        ncdu
+        progress
+        hexyl
       ]
       ++ (
         if desktop
-        then [yubikey-manager]
+        then [
+          yubikey-manager
+          yt-dlp
+          oxipng
+          jpegoptim
+        ]
         else []
       );
   };
