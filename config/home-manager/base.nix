@@ -49,6 +49,7 @@ desktop: {pkgs, ...}: {
         progress
         hexyl
         mc
+        rclone
       ]
       ++ (
         if desktop
