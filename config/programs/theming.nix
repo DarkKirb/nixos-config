@@ -573,4 +573,5 @@ in {
     color sidebar_flagged   color1 default    # Mailboxes with flagged mails are Red
     color sidebar_new       color10 default   # Mailboxes with new mail are Green
   '';
+  home.file.".local/share/mc/skins/catppuccin.ini".source = ../../extra/mc-catppuccin.ini;
 }

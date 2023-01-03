@@ -22,6 +22,8 @@ desktop: {pkgs, ...}: {
     };
     atuin.enable = true;
     autojump.enable = true;
+    jq.enable = true;
+    ledger.enable = true;
   };
   home.file.".p10k.zsh".source = ./.p10k.zsh;
 
@@ -40,13 +42,13 @@ desktop: {pkgs, ...}: {
       [
         yubico-piv-tool
         ripgrep
-        jq
         gh
         htop
         sops
         ncdu
         progress
         hexyl
+        mc
       ]
       ++ (
         if desktop
@@ -55,6 +57,8 @@ desktop: {pkgs, ...}: {
           yt-dlp
           oxipng
           jpegoptim
+          picard
+          easytag
         ]
         else []
       );

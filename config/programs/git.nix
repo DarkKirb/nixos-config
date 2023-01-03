@@ -11,5 +11,7 @@
       init.defaultBranch = "main";
       merge.conflictstyle = "diff3";
     };
+    delta.enable = true;
   };
+  programs.gitui.enable = true;
 }
