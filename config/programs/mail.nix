@@ -5,7 +5,7 @@
   '';
 in {
   accounts.email = {
-    accounts = {
+    accounts = rec {
       lotte = {
         address = "lotte@chir.rs";
         aliases = ["darkkirb@darkkirb.de"];
@@ -39,6 +39,23 @@ in {
         '';
         smtp.host = "mail.chir.rs";
         userName = "lotte@chir.rs";
+      };
+      mdelenk = lotte // {
+        address = "mdelenk@hs-mittweida.de";
+        aliases = [];
+        gpg = {
+          encryptByDefault = true;
+          key = "0x5130416C797067B6";
+          signByDefault = true;
+        };
+        imap.host = "xc.hs-mittweida.de";
+        smtp.host = "xc.hs-mittweida.de";
+        userName = "mdelenk@hs-mittweida.de";
+        realName = "Morten Delenk";
+        signature.text = ''
+          Morten Delenk • Mtk.Nr. 54607 • IF21wI2-B
+        '';
+        primary = false;
       };
     };
   };
