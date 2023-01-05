@@ -178,7 +178,9 @@ in {
     client.urgent            ${cssColor peach}    ${cssColor base} ${cssColor peach} ${cssColor overlay0}  ${cssColor peach}
     client.placeholder       ${cssColor overlay0} ${cssColor base} ${cssColor text}  ${cssColor overlay0}  ${cssColor overlay0}
     client.background        ${cssColor base}
+    seat seat0 xcursor_theme breeze-dark 24
   '';
+  home.packages = with pkgs; [ libsForQt5.breeze-icons ];
 
   programs.foot.settings.colors = with theme; {
     alpha = 0.9;
