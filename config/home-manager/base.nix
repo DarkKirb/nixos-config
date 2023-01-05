@@ -20,7 +20,6 @@ desktop: {pkgs, ...}: {
       plugins = [
       ];
     };
-    atuin.enable = true;
     autojump.enable = true;
     jq.enable = true;
     ledger.enable = true;
