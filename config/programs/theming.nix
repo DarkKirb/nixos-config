@@ -7,12 +7,20 @@
   inherit (config.lib.formats.rasi) mkLiteral;
   rasiColor = c: mkLiteral (theme.cssColor c);
 in {
+  dconf.settings."org/gnome/desktop/interface" = {
+    gtk-theme = "Breeze-Dark";
+    icon-theme = "breeze-dark";
+    cursor-theme = "Vanilla-DMZ";
+  };
   gtk = {
     enable = true;
-    cursorTheme = {
-      package = pkgs.libsForQt5.breeze-icons;
-      name = "breeze-dark";
-      size = 24;
+    gtk2.extraConfig = ''
+      gtk-cursor-theme-name = "Vanilla-DMZ"
+      gtk-cursor-theme-size = 0
+    '';
+    gtk3.extraConfig = {
+      gtk-cursor-theme-name = "Vanilla-DMZ";
+      gtk-cursor-theme-size = 0;
     };
     font = {
       package = pkgs.noto-fonts;
@@ -28,9 +36,22 @@ in {
       name = "Breeze-Dark";
     };
   };
-  qt.enable = true;
-  qt.style.package = pkgs.libsForQt5.breeze-qt5;
-  qt.style.name = "BreezeDark";
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = {
+      name = "Breeze";
+      package = pkgs.libsForQt5.breeze-qt5;
+    };
+  };
+  home.file = {
+    ".icons/default/index.theme".text = ''
+      [Icon Theme]
+      Name=Default
+      Comment=Default Cursor Theme
+      Inherits=Vanilla-DMZ
+    '';
+  };
   # Taken from https://github.com/jakehamilton/dotfiles/blob/master/waybar/style.css
   programs.waybar.style = with theme; ''
     * {
@@ -180,7 +201,7 @@ in {
     client.background        ${cssColor base}
     seat seat0 xcursor_theme breeze-dark 24
   '';
-  home.packages = with pkgs; [ libsForQt5.breeze-icons ];
+  home.packages = with pkgs; [ libsForQt5.breeze-icons vanilla-dmz ];
 
   programs.foot.settings.colors = with theme; {
     alpha = 0.9;
