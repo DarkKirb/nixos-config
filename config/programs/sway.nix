@@ -168,4 +168,5 @@ in {
   };
 
   home.file.".XCompose".source = ../../extra/.XCompose;
+  home.packages = with pkgs; [ qt5ct ];
 }
