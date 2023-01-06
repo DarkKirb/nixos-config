@@ -48,25 +48,6 @@
     '';
     installPhase = "true";
   };
-  # currently, there is some friction between sway and gtk:
-  # https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
-  # the suggested way to set gtk settings is with gsettings
-  # for gsettings to work, we need to tell it where the schemas are
-  # using the XDG_DATA_DIR environment variable
-  # run at the end of sway config
-  configure-gtk = pkgs.writeTextFile {
-    name = "configure-gtk";
-    destination = "/bin/configure-gtk";
-    executable = true;
-    text = let
-      schema = pkgs.gsettings-desktop-schemas;
-      datadir = "${schema}/share/gsettings-schemas/${schema.name}";
-    in ''
-      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-      gnome_schema=org.gnome.desktop.interface
-      ${pkgs.glib}/bin/gsettings set $gnome_schema gtk-theme 'Breeze-Dark'
-    '';
-  };
 in {
   imports = [
     ./wl-clipboard.nix
@@ -145,19 +126,22 @@ in {
         };
       };
     };
-    wrapperFeatures.gtk = true;
+    wrapperFeatures = {
+      base = true;
+      gtk = true;
+    };
     extraSessionCommands = ''
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      export _JAVA_AWT_WM_NONREPARENTING=1
-      export MOZ_ENABLE_WAYLAND=1
+      export XDG_SESSION_TYPE=wayland
       export XDG_CURRENT_DESKTOP=sway
-      export GTK_USE_PORTAL=1
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+      export QT_AUTO_SCREEN_SCALE_FACTOR=0
+      export QT_SCALE_FACTOR=1
+      export GDK_SCALE=1
+      export GDK_DPI_SCALE=1
+      export MOZ_ENABLE_WAYLAND=1
+      export _JAVA_AWT_WM_NONREPARENTING=1
     '';
     extraConfig = ''
-      exec ${configure-gtk}/bin/configure-gtk
-      exec ${pkgs.systemd}/bin/systemctl --user import-environment
       default_border none
       gaps outer 8
       gaps inner 4

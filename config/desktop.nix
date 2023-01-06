@@ -20,15 +20,30 @@ in {
     ./services/docker.nix
     ./services/cifs.nix
   ];
-  fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Noto"];})
-    nix-packages.packages.${system}.nasin-nanpa
-    nix-packages.packages.${system}.fairfax-hd
-  ];
-  fonts.fontconfig.enable = true;
+  fonts = {
+    fontDir.enable = true;
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
+        monospace = [ "Fira Code" "Font Awesome 5 Free" ];
+        sansSerif = [ "Noto Sans" "Font Awesome 5 Free" ];
+        serif = [ "Noto Serif" "Font Awesome 5 Free" ];
+      };
+    };
+    fonts = with pkgs; [
+      fira-code
+      fira-code-symbols
+      font-awesome
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      noto-fonts-extra
+      (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Noto"];})
+      nix-packages.packages.${system}.nasin-nanpa
+      nix-packages.packages.${system}.fairfax-hd
+    ];
+  };
   fonts.fontconfig.localConf = ''
     <?xml version="1.0"?>
     <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
@@ -103,17 +118,16 @@ in {
   programs.dconf.enable = true;
   services.xserver = {
     enable = true;
-    displayManager.defaultSession = "sway";
-    displayManager.sddm.enable = true;
     libinput.enable = true;
     layout = "de";
     xkbVariant = "neo";
   };
-  programs.sway.enable = true;
   boot.kernelPackages = pkgs.zfsUnstable.latestCompatibleLinuxPackages;
   i18n.inputMethod = {
     enabled = "ibus";
     ibus.engines = with pkgs.ibus-engines; [anthy];
   };
   security.polkit.enable = true;
+  services.dbus.enable = true;
+  services.dbus.packages = with pkgs; [ dconf ];
 }
