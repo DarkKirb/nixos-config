@@ -23,9 +23,9 @@
     mkdir -p $out/emoji/${name}
     lndir ${emoji_sets.${name}} $out/emoji/${name}
   '';
-  masto_fe = pkgs.fetchzip {
-    url = "https://akkoma-updates.s3-website.fr-par.scw.cloud/frontend/akkoma/masto-fe.zip";
-    sha256 = "sha256-8kAF7O3I93npX37XsncNuwQrTLX5Y9w16QV3+SDls+0=";
+  fedibird_fe = pkgs.fetchzip {
+    url = "https://akkoma-updates.s3-website.fr-par.scw.cloud/frontend/akkoma/fedibird-fe.zip";
+    sha256 = "sha256-hUp8XAQInWB3BpTrwsTV36xNwxs6fK01fFAd4FBwn4U=";
   };
   static_dir = pkgs.stdenvNoCC.mkDerivation {
     name = "akkoma-static";
@@ -33,7 +33,7 @@
     nativeBuildInputs = with pkgs; [xorg.lndir];
     akkoma_fe = nix-packages.packages.${pkgs.system}.pleroma-fe;
     akkoma_admin_fe = nix-packages.packages.${pkgs.system}.admin-fe;
-    inherit masto_fe;
+    inherit fedibird_fe;
     tos = ./terms-of-service.html;
     dontUnpack = false;
     installPhase = ''
@@ -41,8 +41,8 @@
       lndir $akkoma_fe $out/frontends/pleroma-fe/stable
       mkdir -p $out/frontends/admin-fe/stable
       lndir $akkoma_admin_fe $out/frontends/admin-fe/stable
-      mkdir -p $out/frontends/masto-fe/akkoma
-      lndir $masto_fe $out/frontends/masto-fe/akkoma
+      mkdir -p $out/frontends/fedibird-fe/akkoma
+      lndir $fedibird_fe $out/frontends/fedibird-fe/akkoma
       ${toString (map copy_emoji_set emoji_set_names)}
       mkdir $out/emoji/misc
       ln -s ${./therian.png} $out/emoji/misc/therian.png
@@ -68,7 +68,8 @@
       ":instance" = {
         name = "Raccoon Noises";
         email = "lotte@chir.rs";
-        description = "Single User Akkoma Instance";
+        notify_email = "akko@chir.rs";
+        description = "Small Akkoma Instance";
         limit = 58913;
         description_limit = 58913;
         upload_limit = 134217728;
@@ -145,7 +146,7 @@
         };
       };
       ":mrf" = {
-        policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "MediaProxyWarmingPolicy" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "TagPolicy" "RequireImageDescription"];
+        policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "MediaProxyWarmingPolicy" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "TagPolicy" "RequireImageDescription" "BlockInvalidDatetime"];
         transparency = true;
       };
       ":http_security" = {
@@ -163,10 +164,11 @@
           ref = "stable";
         };
         mastodon = mkMap {
-          name = "masto-fe";
+          name = "fedibird-fe";
           ref = "akkoma";
         };
       };
+      ":static_fe".enabled = true;
       ":media_proxy" = {
         enabled = true;
         base_url = "https://mediaproxy.chir.rs";
@@ -177,6 +179,9 @@
           enabled = true;
           provider = mkRaw "Pleroma.Web.MediaProxy.Invalidation.Script";
         };
+      };
+      ":media_preview_proxy" = {
+        enabled = true;
       };
       "Pleroma.Web.MediaProxy.Invalidation.Script" = {
         script_path = "${purge_url_script}";
@@ -211,7 +216,19 @@
       };
       ":database".rum_enabled = true;
       ":emoji" = {
-        shortcode_globs = ["/emoji/**/*.png"];
+        shortcode_globs = [
+          "/emoji/volpeon-blobfox-flip/*.png"
+          "/emoji/volpeon-blobfox/*.png"
+          "/emoji/volpeon-bunhd-flip/*.png"
+          "/emoji/volpeon-bunhd/*.png"
+          "/emoji/volpeon-drgn/*.png"
+          "/emoji/volpeon-fox/*.png"
+          "/emoji/volpeon-raccoon/*.png"
+          "/emoji/volpeon-vlpn/*.png"
+          "/emoji/lotte/*.png"
+          "/emoji/caro/*.png"
+          "/emoji/misc/*.png"
+        ];
         groups = {
           "BlobfoxFlip" = "/emoji/volpeon-blobfox-flip/*.png";
           "Blobfox" = "/emoji/volpeon-blobfox/*.png";
