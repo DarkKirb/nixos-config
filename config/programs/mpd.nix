@@ -7,6 +7,7 @@ _: {
         type "pipewire"
         name "Pipewire"
       }
+      replaygain          "track"
     '';
   };
   programs.ncmpcpp.enable = true;
