@@ -25,7 +25,7 @@
   '';
   masto_fe = pkgs.fetchzip {
     url = "https://akkoma-updates.s3-website.fr-par.scw.cloud/frontend/akkoma/masto-fe.zip";
-    sha256 = "sha256-8kAF7O3I93npX37XsncNuwQrTLX5Y9w16QV3+SDls+0=";
+    sha256 = "sha256-hUp8XAQInWB3BpTrwsTV36xNwxs6fK01fFAd4FBwn4U=";
   };
   static_dir = pkgs.stdenvNoCC.mkDerivation {
     name = "akkoma-static";
@@ -68,6 +68,7 @@
       ":instance" = {
         name = "Raccoon Noises";
         email = "lotte@chir.rs";
+        notify_email = "akko@chir.rs";
         description = "Single User Akkoma Instance";
         limit = 58913;
         description_limit = 58913;
@@ -145,7 +146,7 @@
         };
       };
       ":mrf" = {
-        policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "MediaProxyWarmingPolicy" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "TagPolicy" "RequireImageDescription"];
+        policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "MediaProxyWarmingPolicy" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "TagPolicy" "RequireImageDescription" "BlockInvalidDatetime"];
         transparency = true;
       };
       ":http_security" = {
@@ -167,6 +168,7 @@
           ref = "akkoma";
         };
       };
+      ":static_fe".enabled = true;
       ":media_proxy" = {
         enabled = true;
         base_url = "https://mediaproxy.chir.rs";
