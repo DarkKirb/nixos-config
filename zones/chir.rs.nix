@@ -124,7 +124,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 23;
+      serial = 24;
     };
     NS = [
       "ns1.chir.rs."
@@ -217,7 +217,6 @@ with dns.lib.combinators; let
       matrix = createZone {};
       drone = createZone {};
       akko = createZone {};
-      moa = createZone {};
       cache.CNAME = [
         "cache-chir-rs.b-cdn.net."
       ];
