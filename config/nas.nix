@@ -33,7 +33,6 @@
     ./services/drone.nix
     ./services/drone-runner-docker.nix
     ./services/docker.nix
-    ./services/moa
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
