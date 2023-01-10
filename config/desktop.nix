@@ -105,9 +105,9 @@ in {
   networking.firewall.allowedUDPPorts = [22000];
 
   environment.systemPackages = with pkgs; [
-    pinentry-gtk2
+    pinentry-qt
   ];
-  programs.gnupg.agent.pinentryFlavor = "gtk2";
+  programs.gnupg.agent.pinentryFlavor = "qt";
 
   xdg.portal = {
     enable = true;

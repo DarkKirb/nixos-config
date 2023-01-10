@@ -140,6 +140,7 @@ in {
       export GDK_DPI_SCALE=1
       export MOZ_ENABLE_WAYLAND=1
       export _JAVA_AWT_WM_NONREPARENTING=1
+      export QT_QPA_PLATFORMTHEME=qt5ct
     '';
     extraConfig = ''
       default_border none
