@@ -38,7 +38,6 @@ in {
   };
   qt = {
     enable = true;
-    platformTheme = "gnome";
     style = {
       name = "Breeze";
       package = pkgs.libsForQt5.breeze-qt5;
@@ -201,7 +200,7 @@ in {
     client.background        ${cssColor base}
     seat seat0 xcursor_theme breeze-dark 24
   '';
-  home.packages = with pkgs; [ libsForQt5.breeze-icons vanilla-dmz ];
+  home.packages = with pkgs; [ libsForQt5.breeze-icons libsForQt5.qt5ct vanilla-dmz ];
 
   programs.foot.settings.colors = with theme; {
     alpha = 0.9;
