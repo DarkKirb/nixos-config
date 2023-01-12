@@ -1,9 +1,15 @@
-args: {pkgs, ...}: {
+args: {
+  pkgs,
+  nixpkgs,
+  ...
+}: let
+  x86_64-linux-pkgs = import nixpkgs {system = "x86_64-linux";};
+in {
   imports = [
     (import ./grapejuice.nix args)
   ];
   home.packages = [
-    pkgs.wineWowPackages.staging
+    x86_64-linux-pkgs.wineWowPackages.staging
     pkgs.prismlauncher
   ];
 }
