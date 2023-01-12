@@ -25,10 +25,10 @@ in {
     fontconfig = {
       enable = true;
       defaultFonts = {
-        emoji = [ "Noto Color Emoji" ];
-        monospace = [ "Fira Code" "Font Awesome 5 Free" ];
-        sansSerif = [ "Noto Sans" "Font Awesome 5 Free" ];
-        serif = [ "Noto Serif" "Font Awesome 5 Free" ];
+        emoji = ["Noto Color Emoji"];
+        monospace = ["Fira Code" "Font Awesome 5 Free"];
+        sansSerif = ["Noto Sans" "Font Awesome 5 Free"];
+        serif = ["Noto Serif" "Font Awesome 5 Free"];
       };
     };
     fonts = with pkgs; [
@@ -129,5 +129,13 @@ in {
   };
   security.polkit.enable = true;
   services.dbus.enable = true;
-  services.dbus.packages = with pkgs; [ dconf ];
+  services.dbus.packages = with pkgs; [dconf];
+  # Futureproofing: on non-x86 machines, emulate x86
+  boot.binfmt.emulatedSystems =
+    if system != "x86_64-linux"
+    then [
+      "x86_64-linux"
+      "i686-linux"
+    ]
+    else [];
 }
