@@ -4,6 +4,18 @@ rec {
   # Use NixOS unstable
   inputs = {
     # Sorted by name
+    cargo2nix = {
+      url = "github:cargo2nix/cargo2nix";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
+    chir-rs = {
+      url = "github:DarkKirb/chir.rs";
+      inputs.cargo2nix.follows = "cargo2nix";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     dns = {
       url = "github:DarkKirb/dns.nix";
       inputs.flake-utils.follows = "flake-utils";
@@ -47,6 +59,11 @@ rec {
     nur.url = "github:nix-community/NUR";
     prismmc = {
       url = "github:PrismLauncher/PrismLauncher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
