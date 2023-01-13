@@ -2,8 +2,10 @@ args: {
   lib,
   config,
   pkgs,
+  nixpkgs,
   ...
 }: let
+  x86_64-linux-pkgs = import nixpkgs {system = "x86_64-linux";};
   grapejuice_config = {
     __version__ = 2;
     __hardware_profiles__ = null;
@@ -19,7 +21,7 @@ args: {
         priority = 0;
         name_on_disk = "player";
         display_name = "Player";
-        wine_home = "${pkgs.wineWowPackages.staging}";
+        wine_home = "${x86_64-linux-pkgs.wineWowPackages.staging}";
         dll_overrides = "dxdiagn=;winemenubuilder.exe=";
         prime_offload_sink = -1;
         use_mesa_gl_override = false;
@@ -46,7 +48,7 @@ args: {
   grapejuiceJson = pkgs.writeText "grapejuice.json" (builtins.toJSON grapejuice_config);
 in {
   home.packages = [
-    pkgs.grapejuice
+    x86_64-linux-pkgs.grapejuice
   ];
   home.activation.grapejuiceSettings = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD mkdir $VERBOSE_ARG -p $HOME/.config/brinkervii/grapejuice

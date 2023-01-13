@@ -1,8 +1,14 @@
 {
   pkgs,
+  nixpkgs,
   lib,
   ...
-}: {
+}: let
+  x86_64-linux-pkgs = import nixpkgs {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
+in {
   home.activation.vscode-server = lib.hm.dag.entryAfter ["write-boundary"] ''
     if test -f ~/.vscode-server; then
       if test -f "~/.vscode/extensions"; then
@@ -279,7 +285,7 @@
       "nix.formatterPath" = "${pkgs.alejandra}/bin/alejandra";
       "nix.enableLanguageServer" = true;
     };
-    extensions = with pkgs.vscode-extensions;
+    extensions = with x86_64-linux-pkgs.vscode-extensions;
       [
         alefragnani.bookmarks
         alefragnani.project-manager

@@ -44,17 +44,35 @@ jobs:
     with:
       job: homeConfigurations.miifox-x86_64-linux
     secrets: inherit
+  user-miifox-aarch64-linux:
+    needs: user-base-aarch64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.miifox-aarch64-linux
+    secrets: inherit
   user-base-desktop-x86_64-linux:
     needs: user-base-x86_64-linux
     uses: ./.github/workflows/build-one.yml
     with:
       job: homeConfigurations.base-desktop-x86_64-linux
     secrets: inherit
+  user-base-desktop-aarch64-linux:
+    needs: user-base-aarch64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.base-desktop-aarch64-linux
+    secrets: inherit
   user-darkkirb-desktop-x86_64-linux:
     needs: user-base-desktop-x86_64-linux
     uses: ./.github/workflows/build-one.yml
     with:
       job: homeConfigurations.darkkirb-desktop-x86_64-linux
+    secrets: inherit
+  user-darkkirb-desktop-aarch64-linux:
+    needs: user-base-desktop-aarch64-linux
+    uses: ./.github/workflows/build-one.yml
+    with:
+      job: homeConfigurations.darkkirb-desktop-aarch64-linux
     secrets: inherit
   base-server-x86_64:
     needs:
