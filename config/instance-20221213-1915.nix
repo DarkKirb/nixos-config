@@ -15,6 +15,7 @@
     ./wireguard/public-server.nix
     ./services/named-submissive.nix
     ./services/shitalloverme.nix
+    ./services/chir.rs
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
