@@ -1,6 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  nixpkgs,
+  ...
+}: let
+  x86_64-linux-pkgs = import nixpkgs {system = "x86_64-linux";};
+in {
   home.packages = with pkgs; [
-    anki-bin
+    x86_64-linux-pkgs.anki-bin
     mdcat
     gimp
     krita
