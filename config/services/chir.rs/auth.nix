@@ -18,9 +18,9 @@
           }
 
     in  BaseConfig::{
-        , database_url = "postgres://auth_chir_rs:${d}{password}@nixos-8gb-fsn1-1.int.chir.rs",
+        , database_url = "postgres://auth_chir_rs:${d}{password}@nixos-8gb-fsn1-1.int.chir.rs"
         , listen_addr = "[::1]:7954"
-        , redis_url = "redis://localhost:53538/0"
+        , redis_url = "redis://${d}{password}@nixos-8gb-fsn1-1.int.chir.rs:53538/0"
         }
   '';
 in {
@@ -60,8 +60,11 @@ in {
     }
   ];
   services.redis.servers."auth_chir_rs" = {
-    enable = true;
+    enable = config.networking.hostName == "nixos-8gb-fsn1-1";
     port = 53538;
     save = [];
+    requirePassFile = config.sops.secrets."services/chir-rs/auth/password".path;
+    user = "auth_chir_rs";
   };
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [53538];
 }
