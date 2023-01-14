@@ -5,6 +5,7 @@
   imports =
     [
       (import ./base.nix desktop)
+      ../programs/ssh.nix
       ../programs/gpg.nix
       ../programs/git.nix
       ../programs/direnv.nix

@@ -20,6 +20,7 @@
     nixos-hardware.nixosModules.common-pc-ssd
     ./services/postgres.nix
     ./services/drone-runner-docker.nix
+    ./users/remote-build.nix
   ];
   hardware.cpu.amd.updateMicrocode = true;
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "k10temp"];
@@ -156,33 +157,6 @@
     "riscv64-linux"
     "wasm32-wasi"
   ];
-  nix.buildMachines = lib.mkForce [
-    #{
-    #  hostName = "build-nas";
-    #  systems = [ "x86_64-linux" ];
-    #  maxJobs = 12;
-    #  speedFactor = 1;
-    #  supportedFeatures = [ "gccarch-znver1" "ca-derivations" ];
-    #}
-    {
-      maxJobs = 16;
-      speedFactor = 2;
-      hostName = "localhost";
-      systems = [
-        "armv7l-linux"
-        "aarch64-linux"
-        "powerpc-linux"
-        "powerpc64-linux"
-        "powerpc64le-linux"
-        "riscv32-linux"
-        "riscv64-linux"
-        "wasm32-wasi"
-        "x86_64-linux"
-        "i686-linux"
-      ];
-      supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "gccarch-znver1" "gccarch-skylake" "ca-derivations"];
-    }
-  ];
   hardware.enableRedistributableFirmware = true;
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
@@ -196,14 +170,7 @@
       endpoint = "192.168.2.1:51820";
     }
   ];
-  # Build server stuff
 
-  users.users.darkkirb.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpO0Lh7eOE/EBttb/XWZ6ISiJ0RkmBYfruq3U6linEz root@nixos-8gb-fsn1-1"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKB8oH1XbuGrKn/SeguXz96sw4AjJQQvZyAdpptotzOr root@thinkrac"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAN/rVZJuwiO44LwOqimpH4zyGehYUMF2ZhYFXUCkupP hydra-queue-runner@nas"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFLEmOYG4xipOh2YsWGbQtvoJXQzToQDotyCRFnHpVP5 root@instance-20221213-1915"
-  ];
   nix.settings.system-features = [
     "kvm"
     "nixos-test"

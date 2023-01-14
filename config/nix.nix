@@ -27,7 +27,6 @@ in {
       builders-use-substitutes = true;
       substituters = [
         "https://cache.chir.rs/"
-        "https://hydra.int.chir.rs/"
       ];
       trusted-public-keys = [
         "nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg="
@@ -80,6 +79,15 @@ in {
         maxJobs = 16;
         speedFactor = 2;
         supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "gccarch-znver1" "gccarch-skylake" "ca-derivations"];
+      }
+      {
+        hostName = "build-aarch64";
+        systems = [
+          "aarch64-linux"
+        ];
+        maxJobs = 2;
+        speedFactor = 10;
+        supportedFeatures = ["nixos-test" "benchmark" "ca-derivations"];
       }
     ];
     distributedBuilds = true;
