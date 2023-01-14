@@ -22,7 +22,7 @@ in {
   nix = {
     settings = {
       sandbox = true;
-      trusted-users = ["@wheel"];
+      trusted-users = ["@wheel" "remote-build"];
       require-sigs = true;
       builders-use-substitutes = true;
       substituters = [

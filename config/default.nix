@@ -74,10 +74,17 @@
     key = "aws/credentials";
     path = "/root/.aws/credentials";
   };
-  sops.secrets."ssh/builder_id_ed25519" = {
+  sops.secrets."root/ssh/builder_id_ed25519" = {
     sopsFile = ../secrets/shared.yaml;
     owner = "root";
     key = "ssh/builder_id_ed25519";
+    path = "/root/.ssh/builder_id_ed25519";
+  };
+  sops.secrets."darkkirb/ssh/builder_id_ed25519" = {
+    sopsFile = ../secrets/shared.yaml;
+    owner = "darkkirb";
+    key = "ssh/builder_id_ed25519";
+    path = "/home/darkkirb/.ssh/builder_id_ed25519";
   };
   networking.nameservers = ["fd0d:a262:1fa6:e621:b4e1:08ff:e658:6f49" "fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
 

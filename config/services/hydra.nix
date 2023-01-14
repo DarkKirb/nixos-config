@@ -122,5 +122,10 @@ in {
     };
   };
   nix.settings.trusted-users = ["@hydra"];
-  sops.secrets."ssh/builder_id_ed25519".owner = lib.mkForce "hydra";
+  sops.secrets."hydra/ssh/builder_id_ed25519" = {
+    sopsFile = ../../secrets/shared.yaml;
+    owner = "hydra";
+    key = "ssh/builder_id_ed25519";
+    path = "/var/lib/hydra/.ssh/builder_id_ed25519";
+  };
 }
