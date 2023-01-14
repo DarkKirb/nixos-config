@@ -3,7 +3,6 @@ desktop: {pkgs, ...}: {
     (import ../programs/zsh.nix desktop)
     (import ../programs/helix desktop)
     ../programs/tmux.nix
-    ../programs/ssh.nix
     ../programs/taskwarrior.nix
     ../programs/mail.nix
   ];
