@@ -144,7 +144,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 25;
+      serial = 26;
     };
     NS = [
       "ns1.chir.rs."
@@ -243,6 +243,8 @@ with dns.lib.combinators; let
       peertube = createZone {};
       mediaproxy.CNAME = ["mediaproxy-chir-rs.b-cdn.net."];
       auth = createFullZone {};
+      attic-nocdn = createFullZone {};
+      attic.CNAME = ["attic-chir-rs.b-cdn.net."];
 
       int =
         delegateTo [

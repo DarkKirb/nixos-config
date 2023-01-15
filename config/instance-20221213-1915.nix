@@ -17,6 +17,7 @@
     ./services/shitalloverme.nix
     ./services/chir.rs
     ./users/remote-build.nix
+    ./services/atticd.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
