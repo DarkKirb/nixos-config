@@ -67,4 +67,15 @@ in {
     user = "auth_chir_rs";
   };
   networking.firewall.interfaces."wg0".allowedTCPPorts = [53538];
+  services.caddy.virtualHosts."auth.chir.rs" = {
+    useACMEHost = "chir.rs";
+    logFormat = pkgs.lib.mkForce "";
+    extraConfig = ''
+      import baseConfig
+
+      reverse_proxy http://127.0.0.1:7954 {
+        trusted_proxies private_ranges
+      }
+    '';
+  };
 }

@@ -4,6 +4,13 @@ rec {
   # Use NixOS unstable
   inputs = {
     # Sorted by name
+    attic = {
+      #url = "github:zhaofengli/attic";
+      url = "github:DarkKirb/attic/env-config";
+      inputs.crane.follows = "crane";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     cargo2nix = {
       url = "github:cargo2nix/cargo2nix";
       inputs.flake-utils.follows = "flake-utils";
@@ -13,6 +20,11 @@ rec {
     chir-rs = {
       url = "github:DarkKirb/chir.rs";
       inputs.cargo2nix.follows = "cargo2nix";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    crane = {
+      url = "github:ipetkov/crane";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
