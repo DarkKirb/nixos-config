@@ -93,7 +93,6 @@ in {
     distributedBuilds = true;
   };
   system.autoUpgrade = {
-    enable = true;
     flake = "github:DarkKirb/nixos-config";
     flags = [
       "--no-write-lock-file"

@@ -6,7 +6,7 @@ rec {
     # Sorted by name
     attic = {
       #url = "github:zhaofengli/attic";
-      url = "github:DarkKirb/attic/env-config";
+      url = "github:DarkKirb/attic/fix-compression-field-null-insert";
       inputs.crane.follows = "crane";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -14,16 +14,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1673804308,
-        "narHash": "sha256-e3zmDjZXJO6XA+r/Tg5uzXh4ASPwxSJz8BfpAfGfprY=",
+        "lastModified": 1673875751,
+        "narHash": "sha256-iyXrUwIWpE8XtZAXYY0T884w6si3Bxteuut0P8O1I1k=",
         "owner": "DarkKirb",
         "repo": "attic",
-        "rev": "fb77c7eb2b3dbe652a60d7d11f3cfd72dbd9a0f0",
+        "rev": "c2d1a98e3df16a6c757ea89d2becf28dcd48be71",
         "type": "github"
       },
       "original": {
         "owner": "DarkKirb",
-        "ref": "env-config",
+        "ref": "fix-compression-field-null-insert",
         "repo": "attic",
         "type": "github"
       }
