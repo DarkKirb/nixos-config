@@ -11,19 +11,19 @@
         ],
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1673875751,
-        "narHash": "sha256-iyXrUwIWpE8XtZAXYY0T884w6si3Bxteuut0P8O1I1k=",
-        "owner": "DarkKirb",
+        "lastModified": 1673903654,
+        "narHash": "sha256-KbrCEtEYfuaGhbaDqc18QvfrG3/f6hMbjGE9WwxxjA4=",
+        "owner": "zhaofengli",
         "repo": "attic",
-        "rev": "c2d1a98e3df16a6c757ea89d2becf28dcd48be71",
+        "rev": "49bd872153180a3ac705d6cb86071f9f290ef1a4",
         "type": "github"
       },
       "original": {
-        "owner": "DarkKirb",
-        "ref": "fix-compression-field-null-insert",
+        "owner": "zhaofengli",
         "repo": "attic",
         "type": "github"
       }
@@ -607,6 +607,22 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "215d4d0fd80ca5163643b03a33fde804a29cc1e2",
+        "type": "github"
+      }
+    },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1673800717,
+        "narHash": "sha256-SFHraUqLSu5cC6IxTprex/nTsI81ZQAtDvlBvGDWfnA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2f9fd351ec37f5d479556cd48be4ca340da59b8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-22.11",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },

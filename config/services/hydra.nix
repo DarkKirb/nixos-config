@@ -76,23 +76,6 @@ in {
       }
     '';
   };
-  systemd.services.clean-s3-cache = {
-    enable = true;
-    description = "Clean up S3 cache";
-    serviceConfig = {
-      ExecStart = "${clean-cache}/bin/clean-s3-cache.py";
-    };
-  };
-  systemd.timers.clean-s3-cache = {
-    enable = true;
-    description = "Clean up S3 cache";
-    requires = ["clean-s3-cache.service"];
-    wantedBy = ["multi-user.target"];
-    timerConfig = {
-      OnBootSec = 300;
-      OnUnitActiveSec = 604800;
-    };
-  };
   sops.secrets."services/hydra/aws_credentials" = {
     owner = "hydra-queue-runner";
     path = "/var/lib/hydra/queue-runner/.aws/credentials";
