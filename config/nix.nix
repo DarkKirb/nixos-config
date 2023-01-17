@@ -7,10 +7,13 @@
   ...
 }: let
   post-build-hook = pkgs.writeScript "post-build-hook" ''
-    #!/bin/sh
+    #!${pkgs.bash}/bin/bash
     set -euf
     export IFS=' '
-    ${attic.packages.${system}.attic-client}/bin/attic-client push cache $OUT_PATHS
+    until ${attic.packages.${system}.attic-client}/bin/attic-client push chir-rs $OUT_PATHS; do
+        sleep 5
+        echo "Retrying..."
+    done
   '';
 in {
   imports = [
@@ -30,14 +33,15 @@ in {
       require-sigs = true;
       builders-use-substitutes = true;
       substituters = [
-        "https://attic.chir.rs/cache/"
+        "https://attic.chir.rs/chir-rs/"
       ];
       trusted-public-keys = [
         "nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg="
         "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
-        "cache:6tx18bfuH66LOfrn37EmN2YxwNZI3qNk3lKHoz/XlXI="
+        "chir-rs:AnwyFacopHSkprD6aXY4/R3J9JYzTbV2rosJCBPaB28="
       ];
       post-build-hook = "${post-build-hook}";
+      auto-optimise-store = true;
     };
     package = pkgs.nix;
     extraOptions = ''

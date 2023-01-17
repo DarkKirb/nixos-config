@@ -28,10 +28,10 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs= cache:6tx18bfuH66LOfrn37EmN2YxwNZI3qNk3lKHoz/XlXI=
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs= chir-rs:AnwyFacopHSkprD6aXY4/R3J9JYzTbV2rosJCBPaB28=
             experimental-features = nix-command flakes ca-derivations
             post-build-hook = ${{ github.workspace }}/scripts/post-build-hook
-            substituters = https://cache.chir.rs/ https://cache.nixos.org/ https://attic.chir.rs/cache
+            substituters = https://cache.chir.rs/ https://cache.nixos.org/ https://attic.chir.rs/chir-rs
             extra-platforms = armv7l-linux aarch64-linux powerpc-linux powerpc64-linux powerpc64le-linux riscv32-linux riscv64-linux wasm32-wasi i686-linux
             sandbox = false
       - name: Download patched nix
@@ -43,7 +43,7 @@ jobs:
           echo "$NIX_CACHE_KEY" > ~/cache.key
           sudo mkdir /root/.aws
           echo "$AWS_CREDENTIALS" | sudo tee /root/.aws/credentials > /dev/null
-          nix run github:DarkKirb/nix-packages#attic-client -- login attic-server https://attic.chir.rs/ "$ATTIC_TOKEN"
+          nix run github:DarkKirb/nix-packages#attic-client -- login attic-server https://attic-nocdn.chir.rs/ "$ATTIC_TOKEN"
         env:
           NIX_CACHE_KEY: ${{secrets.NIX_CACHE_KEY}}
           AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
