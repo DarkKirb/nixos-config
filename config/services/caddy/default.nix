@@ -6,9 +6,6 @@
       admin off
       storage file_system /var/lib/caddy
       auto_https disable_certs
-      servers :443 {
-        max_header_size 1MiB
-      }
     '';
     logFormat = lib.mkForce ''
       output file /var/log/caddy/access.log {
