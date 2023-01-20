@@ -27,6 +27,7 @@
             ipv6 0
           }
         }
+      }
     '';
     extraConfig = ''
       (baseConfig) {
