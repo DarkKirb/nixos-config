@@ -3,21 +3,28 @@
   lib,
   config,
   system,
+  attic,
   ...
 }: let
   post-build-hook = pkgs.writeScript "post-build-hook" ''
-    #!/bin/sh
+    #!${pkgs.bash}/bin/bash
     set -euf
     export IFS=' '
-    for f in $OUT_PATHS; do
-      ${pkgs.nix}/bin/nix store sign --key-file ${config.sops.secrets."services/nix/cache-key".path} $f
-      ${pkgs.nix}/bin/nix copy --to 's3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=${config.sops.secrets."services/nix/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15' $f
+    until ${attic.packages.${system}.attic-client}/bin/attic-client push chir-rs $OUT_PATHS; do
+        sleep 5
+        echo "Retrying..."
     done
   '';
 in {
   imports = [
     ./workarounds
   ];
+  sops.secrets."attic/config.toml" = {
+    sopsFile = ../secrets/shared.yaml;
+    owner = "root";
+    key = "attic/config.toml";
+    path = "/root/.config/attic/config.toml";
+  };
   nixpkgs.config.allowUnfree = true;
   nix = {
     settings = {
@@ -26,13 +33,15 @@ in {
       require-sigs = true;
       builders-use-substitutes = true;
       substituters = [
-        "https://cache.chir.rs/"
+        "https://attic.chir.rs/chir-rs/"
       ];
       trusted-public-keys = [
         "nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg="
         "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
+        "chir-rs:AnwyFacopHSkprD6aXY4/R3J9JYzTbV2rosJCBPaB28="
       ];
       post-build-hook = "${post-build-hook}";
+      auto-optimise-store = true;
     };
     package = pkgs.nix;
     extraOptions = ''
@@ -100,7 +109,7 @@ in {
       "-L" # print build logs
     ];
     dates = "hourly";
+    randomizedDelaySec = "1h";
   };
   systemd.services.nix-daemon.environment.TMPDIR = "/build";
-  sops.secrets."services/nix/cache-key" = {};
 }

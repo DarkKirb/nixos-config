@@ -13,20 +13,24 @@ jobs:
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs= chir-rs:AnwyFacopHSkprD6aXY4/R3J9JYzTbV2rosJCBPaB28=
             experimental-features = nix-command flakes ca-derivations
             post-build-hook = ${{ github.workspace }}/scripts/post-build-hook
-            substituters = https://cache.chir.rs/ https://cache.nixos.org/
+            substituters = https://cache.chir.rs/ https://cache.nixos.org/ https://attic.chir.rs/chir-rs
       - name: Download patched nix
         run: nix build github:DarkKirb/nix-packages#nix-s3-dedup
+      - name: Download attic
+        run: nix build github:DarkKirb/nix-packages#attic-client
       - name: Set up secrets
         run: |
           echo "$NIX_CACHE_KEY" > ~/cache.key
           sudo mkdir /root/.aws
           echo "$AWS_CREDENTIALS" | sudo tee /root/.aws/credentials > /dev/null
+          nix run github:DarkKirb/nix-packages#attic-client -- login attic-server https://attic.chir.rs/ "$ATTIC_TOKEN"
         env:
           NIX_CACHE_KEY: ${{secrets.NIX_CACHE_KEY}}
           AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
+          ATTIC_TOKEN: ${{secrets.ATTIC_TOKEN}}
       - run: |
 
           for job in nixos-8gb-fsn1-1.x86_64-linux nutty-noon.x86_64-linux thinkrac.x86_64-linux nas.x86_64-linux instance-20221213-1915.aarch64-linux; do

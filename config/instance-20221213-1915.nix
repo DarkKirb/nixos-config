@@ -104,4 +104,5 @@
   sops.age.sshKeyPaths = lib.mkForce ["/persist/ssh/ssh_host_ed25519_key"];
   services.bind.forwarders = lib.mkForce [];
   boot.loader.systemd-boot.configurationLimit = lib.mkForce 1;
+  system.autoUpgrade.allowReboot = true;
 }
