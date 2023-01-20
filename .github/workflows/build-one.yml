@@ -53,7 +53,7 @@ jobs:
           DRV_PATH=$(nix-instantiate -E '(import ./.).${{ inputs.job }}')
           OUT_PATH=$(nix show-derivation $DRV_PATH | jq -r ".\"$DRV_PATH\".outputs.out.path")
           NARINFO=$(echo $OUT_PATH | sed 's|/| |g' | sed 's|-| |g' | awk '{print $3}')
-          if curl --output /dev/null --silent --fail "https://cache.chir.rs/$NARINFO.narinfo"; then
+          if curl --output /dev/null --silent --fail "https://attic.chir.rs/chir-rs/$NARINFO.narinfo"; then
             echo "${{ inputs.job }} already built. Skipping"
           else
             nix-store -r $DRV_PATH
