@@ -2,13 +2,7 @@
 set -euf
 export IFS=' '
 export XDG_CONFIG_HOME=/home/runner/.config
-/nix/var/nix/profiles/default/bin/nix store sign --key-file /home/runner/cache.key $DRV_PATH
-/nix/var/nix/profiles/default/bin/nix run 'github:DarkKirb/nix-packages#nix-s3-dedup' -- copy --to 's3://cache-chir-rs?scheme=https&endpoint=s3.us-west-000.backblazeb2.com&secret-key=/home/runner/cache.key&multipart-upload=true&compression=zstd&compression-level=15' $DRV_PATH
-max_retry=5
-counter=0
-while ! /nix/var/nix/profiles/default/bin/nix run 'github:DarkKirb/nix-packages#attic-client' -- push chir-rs $OUT_PATHS; do
+until /nix/var/nix/profiles/default/bin/nix run 'github:DarkKirb/nix-packages#attic-client' -- push chir-rs $OUT_PATHS; do
     sleep 5
-    [[ counter -eq $max_retry ]] && echo "Failed!" && exit 1
-    echo "Trying again. Try #$counter"
-    ((counter++))
+    echo "Retrying..."
 done
