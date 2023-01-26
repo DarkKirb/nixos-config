@@ -107,6 +107,20 @@ rec {
     nur,
     ...
   } @ args: let
+    nixpkgsFor = system:
+      import ./utils/patched-nixpkgs.nix {
+        inherit nixpkgs system;
+        patches = [./extra/nixpkgs.patch];
+      };
+    pkgsFor = system:
+      import (nixpkgsFor system) {
+        overlays = [
+          self.overlays.${system}
+          nur.overlay
+          args.prismmc.overlay
+        ];
+        config.allowUnfree = true;
+      };
     systems = [
       {
         name = "nixos-8gb-fsn1-1"; # Hetzner Server
@@ -143,10 +157,14 @@ rec {
         name,
         system,
         configName ? name,
-      }: {
+      }: let
+        nixpkgs' = nixpkgsFor system;
+        pkgs = pkgsFor system;
+        nixosSystem = import "${nixpkgs'}/nixos/lib/eval-config.nix";
+      in {
         inherit name;
         value =
-          nixpkgs.lib.nixosSystem
+          nixosSystem
           {
             inherit system;
             specialArgs =
@@ -166,6 +184,10 @@ rec {
                 home-manager.extraSpecialArgs = args // {inherit system;};
               })
               (import utils/link-input.nix args)
+              {
+                system.nixos.versionSuffix = ".${pkgs.lib.substring 0 8 (self.lastModifiedDate or self.lastModified or "19700101")}.${self.shortRev or "dirty"}";
+                system.nixos.revision = pkgs.lib.mkIf (nixpkgs ? rev) nixpkgs.rev;
+              }
             ];
           };
       })
@@ -175,10 +197,7 @@ rec {
       aarch64-linux = import ./overlays args "aarch64-linux";
     };
     devShell.x86_64-linux = let
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        overlays = [self.overlays.x86_64-linux];
-      };
+      pkgs = pkgsFor "x86_64-linux";
     in
       pkgs.mkShell {
         nativeBuildInputs = with pkgs; [

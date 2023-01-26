@@ -1,0 +1,142 @@
+diff --git a/lib/systems/architectures.nix b/lib/systems/architectures.nix
+index 94127fa90b3..5253e4bbcd3 100644
+--- a/lib/systems/architectures.nix
++++ b/lib/systems/architectures.nix
+@@ -32,9 +32,24 @@ rec {
+     armv5te        = [ ];
+     armv6          = [ ];
+     armv7-a        = [ ];
+-    armv8-a        = [ ];
++    armv8-a        = [ "fp" "simd" ];
++    "armv8.1-a"    = [ "crc" "lse" "rdma" ] ++ features.armv8-a;
++    "armv8.2-a"    = features."armv8.1-a";
++    "armv8.3-a"    = [ "pauth" ] ++ features."armv8.2-a";
++    "armv8.4-a"    = [ "flagm" "fp16fml" "dotprod" ] ++ features."armv8.3-a";
++    "armv8.5-a"    = [ "sb" "sbss" "predres" ] ++ features."armv8.4-a";
++    "armv8.6-a"    = [ "bf16" "i8mm" ] ++ features."armv8.5-a";
++    "armv8.7-a"    = [ "ls64" ] ++ features."armv8.6-a";
++    "armv8.8-a"    = [ "mops" ] ++ features."armv8.7-a";
++    "armv9-a"      = [ "sve" "sve2" ] ++ features."armv8.5-a";
++    "armv9.1-a"    = [ "bf16" "i8mm" ] ++ features."armv9-a";
++    "armv9.2-a"    = [ "ls64" ] ++ features."armv9.1-a";
++    "armv9.3-a"    = [ "mops" ] ++ features."armv9.2-a";
+     mips32         = [ ];
+     loongson2f     = [ ];
++    riscv64-g      = [ "multiply" "atomic" "float" "double" "csr" "ifencei" ];
++    riscv64-gc     = [ "compressed" ] ++ features.riscv64-g;
++    riscv64-gcv    = [ "vector" ] ++ features.riscv64-gc;
+   };
+
+   # a superior CPU has all the features of an inferior and is able to build and test code for it
+@@ -85,8 +100,23 @@ rec {
+     armv6          = [ ];
+     armv7-a        = [ ];
+     armv8-a        = [ ];
++    "armv8.1-a"    = [ "armv8-a" ] ++ inferiors.armv8-a;
++    "armv8.2-a"    = [ "armv8.1-a" ] ++ inferiors."armv8.1-a";
++    "armv8.3-a"    = [ "armv8.2-a" ] ++ inferiors."armv8.2-a";
++    "armv8.4-a"    = [ "armv8.3-a" ] ++ inferiors."armv8.3-a";
++    "armv8.5-a"    = [ "armv8.4-a" ] ++ inferiors."armv8.4-a";
++    "armv8.6-a"    = [ "armv8.5-a" ] ++ inferiors."armv8.5-a";
++    "armv8.7-a"    = [ "armv8.6-a" ] ++ inferiors."armv8.6-a";
++    "armv8.8-a"    = [ "armv8.7-a" ] ++ inferiors."armv8.7-a";
++    "armv9-a"      = [ "armv8.5-a" ] ++ inferiors."armv8.5-a";
++    "armv9.1-a"    = [ "armv9-a" "armv8.6-a" ] ++ inferiors."armv9-a" ++ inferiors."armv8.6-a";
++    "armv9.2-a"    = [ "armv9.1-a" "armv8.7-a" ] ++ inferiors."armv9.1-a" ++ inferiors."armv8.7-a";
++    "armv9.3-a"    = [ "armv9.2-a" "armv8.8-a" ] ++ inferiors."armv9.2-a" ++ inferiors."armv8.8-a";
+     mips32         = [ ];
+     loongson2f     = [ ];
++    riscv64-g      = [ ];
++    riscv64-gc     = [ "riscv64-g" ] ++ inferiors.riscv64-g;
++    riscv64-gcv    = [ "riscv64-gc" ] ++ inferiors.riscv64-gc;
+   };
+
+   predicates = let
+diff --git a/pkgs/build-support/cc-wrapper/default.nix b/pkgs/build-support/cc-wrapper/default.nix
+index 06aabf2a6f3..cec4cff3a0f 100644
+--- a/pkgs/build-support/cc-wrapper/default.nix
++++ b/pkgs/build-support/cc-wrapper/default.nix
+@@ -89,6 +89,10 @@ let
+         znver1         = versionAtLeast ccVersion "6.0";
+         znver2         = versionAtLeast ccVersion "9.0";
+         znver3         = versionAtLeast ccVersion "11.0";
++        # ARM
++        # TODO: Fill in as needed
++        # RISCV
++        # TODO: Fill in as needed
+       }.${arch} or true
+     else if isClang then
+       { # Intel
+@@ -99,6 +103,10 @@ let
+         # AMD
+         znver1         = versionAtLeast ccVersion "4.0";
+         znver2         = versionAtLeast ccVersion "9.0";
++        # AMD
++        # TODO: Fill in as needed
++        # RISCV
++        # TODO: Fill in as needed
+       }.${arch} or true
+     else
+       false;
+diff --git a/pkgs/stdenv/generic/make-derivation.nix b/pkgs/stdenv/generic/make-derivation.nix
+index 81fc31d6728..1d0ee03754d 100644
+--- a/pkgs/stdenv/generic/make-derivation.nix
++++ b/pkgs/stdenv/generic/make-derivation.nix
+@@ -163,10 +163,8 @@ let
+ , ... } @ attrs:
+
+ let
+-  # TODO(@oxij, @Ericson2314): This is here to keep the old semantics, remove when
+-  # no package has `doCheck = true`.
+-  doCheck' = doCheck && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
+-  doInstallCheck' = doInstallCheck && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
++  doCheck' = config.doCheckByDefault && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
++  doInstallCheck' = config.doCheckByDefault && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
+
+   separateDebugInfo' = separateDebugInfo && stdenv.hostPlatform.isLinux;
+   outputs' = outputs ++ lib.optional separateDebugInfo' "debug";
+diff --git a/pkgs/stdenv/linux/default.nix b/pkgs/stdenv/linux/default.nix
+index 3f2d77729ab..b2773ac60f0 100644
+--- a/pkgs/stdenv/linux/default.nix
++++ b/pkgs/stdenv/linux/default.nix
+@@ -267,11 +267,12 @@ in
+   # overrides attribute and the inherit syntax.
+   (prevStage:
+     # previous stage0 stdenv:
+-    assert isFromBootstrapFiles prevStage.binutils.bintools;
+-    assert isFromBootstrapFiles prevStage."${localSystem.libc}";
+-    assert isFromBootstrapFiles prevStage.gcc-unwrapped;
+-    assert isFromBootstrapFiles prevStage.coreutils;
+-    assert isFromBootstrapFiles prevStage.gnugrep;
++    # We override the bootstrap compiler with an unrelated one
++    #assert isFromBootstrapFiles prevStage.binutils.bintools;
++    #assert isFromBootstrapFiles prevStage."${localSystem.libc}";
++    #assert isFromBootstrapFiles prevStage.gcc-unwrapped;
++    #assert isFromBootstrapFiles prevStage.coreutils;
++    #assert isFromBootstrapFiles prevStage.gnugrep;
+     stageFun prevStage {
+     name = "bootstrap-stage1";
+
+diff --git a/pkgs/top-level/impure.nix b/pkgs/top-level/impure.nix
+index 4d847e280f4..fadd8836e5e 100644
+--- a/pkgs/top-level/impure.nix
++++ b/pkgs/top-level/impure.nix
+@@ -8,13 +8,16 @@ let
+
+   # Return ‘x’ if it evaluates, or ‘def’ if it throws an exception.
+   try = x: def: let res = builtins.tryEval x; in if res.success then res.value else def;
+-
++
++  configuredLocalSystem = if builtins.pathExists "/etc/nix/local-system.json" then builtins.fromJSON (builtins.readFile "/etc/nix/local-system.json") else { system = builtins.currentSystem; };
++  localSystemOverriden = args: args ? system && (args.system != configuredLocalSystem);
++  defaultLocalSystem = args: if localSystemOverriden args then { system = args.system; } else configuredLocalSystem;
+ in
+
+ { # We put legacy `system` into `localSystem`, if `localSystem` was not passed.
+   # If neither is passed, assume we are building packages on the current
+   # (build, in GNU Autotools parlance) platform.
+-  localSystem ? { system = args.system or builtins.currentSystem; }
++  localSystem ? defaultLocalSystem
+
+ # These are needed only because nix's `--arg` command-line logic doesn't work
+ # with unnamed parameters allowed by ...
