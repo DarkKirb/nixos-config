@@ -94,7 +94,7 @@ in {
         ];
         maxJobs = 2;
         speedFactor = 1;
-        supportedFeatures = ["nixos-test" "benchmark" "ca-derivations"];
+        supportedFeatures = ["nixos-test" "benchmark" "ca-derivations" "gccarch-armv8-a" "gccarch-armv8.1-a" "gccarch-armv8.2-a"];
       }
     ];
     distributedBuilds = true;
