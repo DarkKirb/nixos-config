@@ -180,4 +180,9 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.tailscale.useRoutingFeatures = "client";
+  nixpkgs.localSystem = {
+    system = "x86_64-linux";
+    gcc.arch = "skylake";
+    gcc.tune = "skylake";
+  };
 }

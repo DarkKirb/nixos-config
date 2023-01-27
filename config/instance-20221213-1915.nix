@@ -145,4 +145,9 @@
   };
 
   services.restic.backups.sysbackup.paths = ["/persist"];
+  nixpkgs.localSystem = {
+    system = "aarch64-linux";
+    gcc.arch = "armv8.2-a";
+    gcc.tune = "neoverse-n1";
+  };
 }

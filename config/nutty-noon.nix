@@ -121,4 +121,9 @@
   ];
   services.tailscale.useRoutingFeatures = "client";
   home-manager.users.darkkirb._module.args.withNSFW = lib.mkForce true;
+  nixpkgs.localSystem = {
+    system = "x86_64-linux";
+    gcc.arch = "znver2";
+    gcc.tune = "znver2";
+  };
 }

@@ -170,4 +170,10 @@
     "/ip4/0.0.0.0/tcp/5001"
     "/ip6/::/tcp/5001"
   ]; # Only exposed over the tailed scale
+
+  nixpkgs.localSystem = {
+    system = "x86_64-linux";
+    gcc.arch = "znver1";
+    gcc.tune = "znver1";
+  };
 }

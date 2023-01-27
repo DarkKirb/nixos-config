@@ -14,4 +14,9 @@
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
   networking.hostId = "8425e349";
   nix.settings.post-build-hook = lib.mkForce "true";
+  nixpkgs.localSystem = {
+    system = "x86_64-linux";
+    gcc.arch = "skylake";
+    gcc.tune = "skylake";
+  };
 }

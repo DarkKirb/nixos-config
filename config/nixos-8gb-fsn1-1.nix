@@ -206,4 +206,9 @@
   services.resolved.enable = false;
   services.bind.forwarders = lib.mkForce [];
   services.tailscale.useRoutingFeatures = "server";
+  nixpkgs.localSystem = {
+    system = "x86_64-linux";
+    gcc.arch = "skylake";
+    gcc.tune = "skylake";
+  };
 }
