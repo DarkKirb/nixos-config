@@ -6,9 +6,7 @@ rec {
     # Sorted by name
     attic = {
       url = "github:zhaofengli/attic";
-      inputs.crane.follows = "crane";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     cargo2nix = {
       url = "github:cargo2nix/cargo2nix";
@@ -22,11 +20,6 @@ rec {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.attic.follows = "attic";
-    };
-    crane = {
-      url = "github:ipetkov/crane";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     dns = {
       url = "github:DarkKirb/dns.nix";
