@@ -6,9 +6,10 @@ rec {
     # Sorted by name
     attic = {
       url = "github:zhaofengli/attic";
-      inputs.crane.follows = "crane";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.crane.follows = "crane";
+      #inputs.flake-utils.follows = "flake-utils";
+      #inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     cargo2nix = {
       url = "github:cargo2nix/cargo2nix";
@@ -19,12 +20,6 @@ rec {
     chir-rs = {
       url = "github:DarkKirb/chir.rs";
       inputs.cargo2nix.follows = "cargo2nix";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.attic.follows = "attic";
-    };
-    crane = {
-      url = "github:DarkKirb/crane";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -62,6 +57,7 @@ rec {
     };
     nix-packages = {
       url = "github:DarkKirb/nix-packages";
+      inputs.attic.follows = "attic";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
