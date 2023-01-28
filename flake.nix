@@ -63,13 +63,13 @@ rec {
     };
     nix-packages = {
       url = "github:DarkKirb/nix-packages";
-      inputs.attic.follows = "attic";
+      #inputs.attic.follows = "attic";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:NixOS/nixpkgs";
-    nixpkgs-for-crane.url = "github:NixOS/nixpkgs/298add347c2bbce14020fcb54051f517c391196b";
+    nixpkgs-for-crane.url = "github:NixOS/nixpkgs/3ae365afb80773c3bb67e52294a82e329a9e5be0";
     nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
     nur.url = "github:nix-community/NUR";
     prismmc = {
