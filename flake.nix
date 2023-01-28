@@ -23,6 +23,12 @@ rec {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    crane = {
+      url = "github:DarkKirb/crane";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
     dns = {
       url = "github:DarkKirb/dns.nix";
       inputs.flake-utils.follows = "flake-utils";
@@ -57,7 +63,7 @@ rec {
     };
     nix-packages = {
       url = "github:DarkKirb/nix-packages";
-      #inputs.attic.follows = "attic";
+      inputs.attic.follows = "attic";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
