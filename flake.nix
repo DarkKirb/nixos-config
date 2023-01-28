@@ -6,10 +6,10 @@ rec {
     # Sorted by name
     attic = {
       url = "github:zhaofengli/attic";
-      #inputs.crane.follows = "crane";
-      #inputs.flake-utils.follows = "flake-utils";
-      #inputs.nixpkgs.follows = "nixpkgs";
-      #inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs.crane.follows = "crane";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     cargo2nix = {
       url = "github:cargo2nix/cargo2nix";
@@ -21,7 +21,7 @@ rec {
       url = "github:DarkKirb/chir.rs";
       inputs.cargo2nix.follows = "cargo2nix";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-for-crane";
     };
     crane = {
       url = "github:DarkKirb/crane";
@@ -69,6 +69,7 @@ rec {
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs-for-crane.url = "github:NixOS/nixpkgs/298add347c2bbce14020fcb54051f517c391196b";
     nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
     nur.url = "github:nix-community/NUR";
     prismmc = {
