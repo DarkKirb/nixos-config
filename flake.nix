@@ -57,7 +57,7 @@ rec {
     };
     nix-packages = {
       url = "github:DarkKirb/nix-packages";
-      inputs.attic.follows = "attic";
+      #inputs.attic.follows = "attic";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
