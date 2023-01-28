@@ -10,10 +10,10 @@
           "flake-utils"
         ],
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-for-crane"
         ],
         "nixpkgs-stable": [
-          "nixpkgs"
+          "nixpkgs-for-crane"
         ]
       },
       "locked": {

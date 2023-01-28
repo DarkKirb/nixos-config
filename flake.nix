@@ -8,8 +8,8 @@ rec {
       url = "github:zhaofengli/attic";
       inputs.crane.follows = "crane";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-for-crane";
+      inputs.nixpkgs-stable.follows = "nixpkgs-for-crane";
     };
     cargo2nix = {
       url = "github:cargo2nix/cargo2nix";
