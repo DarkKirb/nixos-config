@@ -21,12 +21,12 @@ rec {
       url = "github:DarkKirb/chir.rs";
       inputs.cargo2nix.follows = "cargo2nix";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs-for-crane";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     crane = {
       url = "github:DarkKirb/crane";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-for-crane";
       inputs.rust-overlay.follows = "rust-overlay";
     };
     dns = {

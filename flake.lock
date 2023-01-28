@@ -96,7 +96,7 @@
           "flake-utils"
         ],
         "nixpkgs": [
-          "nixpkgs-for-crane"
+          "nixpkgs"
         ],
         "rust-overlay": "rust-overlay"
       },
@@ -121,7 +121,7 @@
           "flake-utils"
         ],
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-for-crane"
         ],
         "rust-overlay": [
           "rust-overlay"
