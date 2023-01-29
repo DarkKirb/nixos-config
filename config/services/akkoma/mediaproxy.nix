@@ -35,5 +35,4 @@
     "d '/var/cache/mediacache' 0750 nginx nginx - -"
   ];
   systemd.services.nginx.serviceConfig.ReadWritePaths = ["/var/cache/mediacache"];
-  services.nginx.validateConfig = false;
 }

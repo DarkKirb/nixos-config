@@ -29,7 +29,7 @@ in
         };
       });
       inherit (noto-variable) noto-fonts-cjk;
-      nix = nix-packages.packages.${system}.nix-s3-dedup.overrideAttrs (old: rec {
+      nix = prev.nix.overrideAttrs (old: rec {
         postPatchPhase = ''
           sed 's/getBoolAttr."allowSubstitutes", true./true/' src/libstore/parsed-derivations.cc
         '';

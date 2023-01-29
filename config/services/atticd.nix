@@ -2,11 +2,14 @@
   attic,
   config,
   lib,
+  nix-packages,
+  system,
   ...
 }: {
   imports = [attic.nixosModules.atticd];
   services.atticd = {
     enable = true;
+    package = attic.packages.${system}.attic-server;
     credentialsFile = config.sops.secrets."services/attic".path;
     settings = {
       listen = "[::1]:57448";

@@ -8,7 +8,8 @@ rec {
       url = "github:zhaofengli/attic";
       inputs.crane.follows = "crane";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-for-crane";
+      inputs.nixpkgs-stable.follows = "nixpkgs-for-crane";
     };
     cargo2nix = {
       url = "github:cargo2nix/cargo2nix";
@@ -21,12 +22,12 @@ rec {
       inputs.cargo2nix.follows = "cargo2nix";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.attic.follows = "attic";
     };
     crane = {
-      url = "github:ipetkov/crane";
+      url = "github:DarkKirb/crane";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-for-crane";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     dns = {
       url = "github:DarkKirb/dns.nix";
@@ -62,11 +63,13 @@ rec {
     };
     nix-packages = {
       url = "github:DarkKirb/nix-packages";
+      #inputs.attic.follows = "attic";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs-for-crane.url = "github:NixOS/nixpkgs/3ae365afb80773c3bb67e52294a82e329a9e5be0";
     nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
     nur.url = "github:nix-community/NUR";
     prismmc = {
@@ -117,21 +120,6 @@ rec {
       {
         name = "instance-20221213-1915"; # Oracle server
         system = "aarch64-linux";
-      }
-      {
-        name = "server-x86_64"; # archetype
-        system = "x86_64-linux";
-        configName = "archetype-server";
-      }
-      {
-        name = "server-aarch64"; # archetype
-        system = "aarch64-linux";
-        configName = "archetype-server";
-      }
-      {
-        name = "desktop-x86_64"; # archetype
-        system = "x86_64-linux";
-        configName = "archetype-desktop";
       }
     ];
   in rec {
@@ -194,108 +182,6 @@ rec {
         ];
       };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-    homeConfigurations = builtins.listToAttrs (nixpkgs.lib.foldr (a: b: a ++ b) [] (map (system: let
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [
-          self.overlays.${system}
-          nur.overlay
-          args.prismmc.overlay
-        ];
-        config.allowUnfree = true;
-      };
-    in [
-      {
-        name = "base-${system}";
-        value = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            (import ./config/home-manager/base.nix false)
-            {
-              home.username = "base";
-              home.homeDirectory = "/home/base";
-            }
-          ];
-          extraSpecialArgs = args // {inherit system;};
-        };
-      }
-      {
-        name = "base-desktop-${system}";
-        value = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            (import ./config/home-manager/base.nix true)
-            {
-              home.username = "base";
-              home.homeDirectory = "/home/base";
-            }
-          ];
-          extraSpecialArgs = args // {inherit system;};
-        };
-      }
-      {
-        name = "root-${system}";
-        value = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./config/home-manager/root.nix
-            {
-              home.username = "root";
-              home.homeDirectory = "/root";
-            }
-          ];
-          extraSpecialArgs = args // {inherit system;};
-        };
-      }
-      {
-        name = "darkkirb-${system}";
-        value = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            (import ./config/home-manager/darkkirb.nix {
-              desktop = false;
-              args = {};
-            })
-            {
-              home.username = "darkkirb";
-              home.homeDirectory = "/home/darkkirb";
-            }
-          ];
-          extraSpecialArgs = args // {inherit system;};
-        };
-      }
-      {
-        name = "darkkirb-desktop-${system}";
-        value = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            (import ./config/home-manager/darkkirb.nix {
-              desktop = true;
-              args = {};
-            })
-            {
-              home.username = "darkkirb";
-              home.homeDirectory = "/home/darkkirb";
-            }
-          ];
-          extraSpecialArgs = args // {inherit system;};
-        };
-      }
-      {
-        name = "miifox-${system}";
-        value = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./config/home-manager/miifox.nix
-            {
-              home.username = "miifox";
-              home.homeDirectory = "/home/miifox";
-            }
-          ];
-          extraSpecialArgs = args // {inherit system;};
-        };
-      }
-    ]) ["x86_64-linux" "aarch64-linux"]));
     hydraJobs =
       (builtins.listToAttrs (map
         ({
@@ -311,7 +197,6 @@ rec {
         systems))
       // {
         inherit devShell;
-        homeConfigurations = nixpkgs.lib.mapAttrs (_: v: v.activationPackage) self.homeConfigurations;
         # Uncomment the line to build an installer image
         # This is EXTREMELY LARGE and will make builds take forever
         # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
