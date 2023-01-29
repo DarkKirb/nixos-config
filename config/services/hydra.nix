@@ -142,7 +142,7 @@ in {
     key = "ssh/builder_id_ed25519";
     path = "/var/lib/hydra/queue-runner/.ssh/builder_id_ed25519";
   };
-  system.activationScripts.activationScripts.setupHydraSshConfig = lib.stringAfter ["var"] ''
+  system.activationScripts.setupHydraSshConfig = lib.stringAfter ["var"] ''
     mkdir -p /var/lib/hydra/queue-runner/.ssh/
     chown -Rv hydra-queue-runner /var/lib/hydra/queue-runner
     ln -svf ${sshConfig} /var/lib/hydra/queue-runner/.ssh/config
