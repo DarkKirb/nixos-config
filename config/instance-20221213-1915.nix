@@ -40,11 +40,6 @@
     fsType = "zfs";
   };
 
-  fileSystems."/safe" = {
-    device = "tank/safe";
-    fsType = "zfs";
-  };
-
   fileSystems."/persist" = {
     device = "tank/safe/persist";
     fsType = "zfs";
