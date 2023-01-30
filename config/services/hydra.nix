@@ -14,8 +14,39 @@
     '';
   clean-cache = nix-packages.packages.${system}.clean-s3-cache;
   machines = pkgs.writeText "machines" ''
-    localhost armv7l-linux,aarch64-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 12 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver1,gccarch-skylake,ca-derivations  -
-    build-aarch64 aarch64-linux - 2 10 nixos-test,benchmark,ca-derivations  -
+    localhost armv7l-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 12 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver1,gccarch-skylake,ca-derivations  -
+    build-aarch64 aarch64-linux - 2 1 nixos-test,benchmark,ca-derivations  -
+  '';
+  sshConfig = pkgs.writeText "ssh-config" ''
+    Host build-aarch64
+      Port 22
+      IdentitiesOnly yes
+      User remote-build
+      HostName instance-20221213-1915.int.chir.rs
+      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
+    Host build-nas
+      Port 22
+      IdentitiesOnly yes
+      User remote-build
+      HostName nas.int.chir.rs
+      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
+    Host build-pc
+      Port 22
+      IdentitiesOnly yes
+      User remote-build
+      HostName nutty-noon.int.chir.rs
+      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
+
+    Host *
+      ForwardAgent no
+      Compression no
+      ServerAliveInterval 0
+      ServerAliveCountMax 3
+      HashKnownHosts no
+      UserKnownHostsFile ~/.ssh/known_hosts
+      ControlMaster auto
+      ControlPath ~/.ssh/master-%r@%n:%p
+      ControlPersist 10m
   '';
 in {
   imports = [
@@ -88,7 +119,7 @@ in {
     };
     script = ''
       if ${pkgs.iputils}/bin/ping -c 1 nutty-noon.int.chir.rs; then
-        echo "build-pc armv7l-linux,aarch64-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 16 2 kvm,nixos-test,big-parallel,benchmark,gccarch-znver2,gccarch-znver1,gccarch-skylake,ca-derivations  -" > /run/hydra-machines
+        echo "build-pc armv7l-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 16 2 kvm,nixos-test,big-parallel,benchmark,gccarch-znver2,gccarch-znver1,gccarch-skylake,ca-derivations  -" > /run/hydra-machines
       else
         rm -f /run/hydra-machines
       fi
@@ -107,8 +138,13 @@ in {
   nix.settings.trusted-users = ["@hydra"];
   sops.secrets."hydra/ssh/builder_id_ed25519" = {
     sopsFile = ../../secrets/shared.yaml;
-    owner = "hydra";
+    owner = "hydra-queue-runner";
     key = "ssh/builder_id_ed25519";
-    path = "/var/lib/hydra/.ssh/builder_id_ed25519";
+    path = "/var/lib/hydra/queue-runner/.ssh/builder_id_ed25519";
   };
+  system.activationScripts.setupHydraSshConfig = lib.stringAfter ["var"] ''
+    mkdir -p /var/lib/hydra/queue-runner/.ssh/
+    chown -Rv hydra-queue-runner /var/lib/hydra/queue-runner
+    ln -svf ${sshConfig} /var/lib/hydra/queue-runner/.ssh/config
+  '';
 }

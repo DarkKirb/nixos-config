@@ -57,7 +57,6 @@ in {
         hostName = "build-nas";
         systems = [
           "armv7l-linux"
-          "aarch64-linux"
           "powerpc-linux"
           "powerpc64-linux"
           "powerpc64le-linux"
@@ -75,7 +74,6 @@ in {
         hostName = "build-pc";
         systems = [
           "armv7l-linux"
-          "aarch64-linux"
           "powerpc-linux"
           "powerpc64-linux"
           "powerpc64le-linux"
@@ -95,7 +93,7 @@ in {
           "aarch64-linux"
         ];
         maxJobs = 2;
-        speedFactor = 10;
+        speedFactor = 1;
         supportedFeatures = ["nixos-test" "benchmark" "ca-derivations"];
       }
     ];
