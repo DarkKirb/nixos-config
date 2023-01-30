@@ -5,8 +5,8 @@
     settings = {
       main = {
         term = "xterm-256color";
-        font = "FiraCode Nerd Font:size=6";
-        dpi-aware = "yes";
+        font = "FiraCode Nerd Font:size=8";
+        dpi-aware = "no";
       };
     };
   };
