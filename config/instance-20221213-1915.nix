@@ -74,6 +74,8 @@
 
   systemd.tmpfiles.rules = [
     "L /var/lib/acme - - - - /persist/var/lib/acme"
+    "L /var/lib/tailscale - - - - /persist/var/lib/tailscale"
+    "D /build - - - - -"
   ];
 
   networking.wireguard.interfaces."wg0".ips = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453/64"];
@@ -100,4 +102,5 @@
   services.bind.forwarders = lib.mkForce [];
   boot.loader.systemd-boot.configurationLimit = lib.mkForce 1;
   system.autoUpgrade.allowReboot = true;
+  services.tailscale.useRoutingFeatures = "server";
 }
