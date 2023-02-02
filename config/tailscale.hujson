@@ -18,6 +18,18 @@
       "action": "accept",
       "src": ["tag:nixos-8gb-fsn1-1"],
       "dst": ["tag:dnsserver:9119"]
+    },
+    // Allow ssh access to build devices
+    {
+      "action": "accept",
+      "src": ["autogroup:members"],
+      "dst": ["tag:buildserver:22"]
+    },
+    // Allow all development devices to connect via ssh
+    {
+      "action": "accept",
+      "src": ["tag:devDevice"],
+      "dst": ["*:22"]
     }
   ],
 
@@ -28,6 +40,8 @@
     "tag:moto-g82-5g": ["DarkKirb@github"],
     "tag:nutty-noon": ["DarkKirb@github"],
     "tag:thinkrac": ["DarkKirb@github"],
-    "tag:dnsserver": ["DarkKirb@github"]
+    "tag:dnsserver": ["DarkKirb@github"],
+    "tag:buildserver": ["DarkKirb@github"],
+    "tag:devDevice": ["DarkKirb@github"]
   }
 }
