@@ -7,8 +7,27 @@
 
   // Access control lists.
   "acls": [
-    // Match absolutely everything.
-    // Comment this section out if you want to define specific restrictions.
-    { "action": "accept", "users": ["*"], "ports": ["*:*"] }
-  ]
+    // Allow DNS access to the DNS servers
+    {
+      "action": "accept",
+      "src": ["*"],
+      "dst": ["tag:dnsserver:53"]
+    },
+    // Prometheus scrape port for named
+    {
+      "action": "accept",
+      "src": ["tag:nixos-8gb-fsn1-1"],
+      "dst": ["tag:dnsserver:9119"]
+    }
+  ],
+
+  "tagOwners": {
+    "tag:instance-20221213-1915": ["DarkKirb@github"],
+    "tag:nixos-8gb-fsn1-1": ["DarkKirb@github"],
+    "tag:nas": ["DarkKirb@github"],
+    "tag:moto-g82-5g": ["DarkKirb@github"],
+    "tag:nutty-noon": ["DarkKirb@github"],
+    "tag:thinkrac": ["DarkKirb@github"],
+    "tag:dnsserver": ["DarkKirb@github"]
+  }
 }

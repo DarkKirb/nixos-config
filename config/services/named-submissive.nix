@@ -6,11 +6,9 @@
   ...
 }: let
   internalIP = import ../../utils/getInternalIP.nix config;
-  createListenEntry = ip: "inet ${ip} port 8653 allow { any; };";
-  listenEntries = builtins.map createListenEntry internalIP.listenIPsBare;
   mkZone = name: {
     master = false;
-    masters = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
+    masters = ["100.119.226.33" "fd7a:115c:a1e0:ab12:4843:cd96:6277:e221"];
     file = "/var/lib/named/${name}";
   };
 in {
@@ -25,7 +23,7 @@ in {
     };
     extraConfig = ''
       statistics-channels {
-        ${toString listenEntries}
+        inet 127.0.0.1 port 8653 allow { 127.0.0.1; };
       };
     '';
     extraOptions = ''
@@ -33,10 +31,11 @@ in {
         127.0.0.1;
         ::1;
         fc00::/7;
+        100.0.0.0/8;
       };
       recursion yes;
       dnssec-validation yes;
-      allow-notify { 130.162.60.127; 2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49; 138.201.155.128; 2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49; fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49; };
+      allow-notify { 130.162.60.127; 2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49; 138.201.155.128; 2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49; fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49; 100.119.226.33; fd7a:115c:a1e0:ab12:4843:cd96:6277:e221; };
       response-policy {zone "rpz.int.chir.rs";};
     '';
   };
@@ -45,8 +44,7 @@ in {
   services.prometheus.exporters.bind = {
     enable = true;
     bindGroups = ["server" "view" "tasks"];
-    bindURI = "http://${internalIP.listenIP}:8653/";
-    listenAddress = internalIP.listenIP;
+    bindURI = "http://127.0.0.1:8653/";
   };
 
   systemd.tmpfiles.rules = [
