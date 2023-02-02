@@ -206,4 +206,5 @@
 
   services.resolved.enable = false;
   services.bind.forwarders = lib.mkForce [];
+  services.tailscale.useRoutingFeatures = "server";
 }

@@ -16,6 +16,7 @@
     ./specialization.nix
     ./services/promtail.nix
     ./env.nix
+    ./tailscale.nix
   ];
   services.openssh.enable = true;
   environment.systemPackages = with pkgs; [

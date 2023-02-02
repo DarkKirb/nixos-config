@@ -302,4 +302,5 @@
     max_parallel_workers = 12;
     max_parallel_maintenance_workers = 4;
   };
+  services.tailscale.useRoutingFeatures = "both";
 }

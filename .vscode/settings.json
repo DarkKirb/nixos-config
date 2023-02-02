@@ -1,4 +1,15 @@
 {
   "python.formatting.provider": "yapf",
-  "conventionalCommits.scopes": ["thinkrac", "aarch64"]
+  "conventionalCommits.scopes": ["thinkrac", "aarch64"],
+  "files.associations": {
+    "*.hujson": "jsonc"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": ["*.hujson"],
+      "schema": {
+        "allowTrailingCommas": true
+      }
+    }
+  ]
 }

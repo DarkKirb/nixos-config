@@ -191,4 +191,5 @@
     "https://hydra.int.chir.rs/"
     "https://cache.nixos.org/"
   ];
+  services.tailscale.useRoutingFeatures = "client";
 }
