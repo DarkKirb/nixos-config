@@ -38,13 +38,13 @@
       "action": "accept",
       "src": ["autogroup:members"],
       "dst": [
-        "tag:nixos-8gb-fsn-1:25", // SMTP
-        "tag:nixos-8gb-fsn-1:110", // POP3
-        "tag:nixos-8gb-fsn-1:143", // IMAP
-        "tag:nixos-8gb-fsn-1:465", // Submission
-        "tag:nixos-8gb-fsn-1:587", // SMTPS
-        "tag:nixos-8gb-fsn-1:993", // IMAPS
-        "tag:nixos-8gb-fsn-1:995" // POP3S
+        "tag:nixos-8gb-fsn1-1:25", // SMTP
+        "tag:nixos-8gb-fsn1-1:110", // POP3
+        "tag:nixos-8gb-fsn1-1:143", // IMAP
+        "tag:nixos-8gb-fsn1-1:465", // Submission
+        "tag:nixos-8gb-fsn1-1:587", // SMTPS
+        "tag:nixos-8gb-fsn1-1:993", // IMAPS
+        "tag:nixos-8gb-fsn1-1:995" // POP3S
       ]
     },
 
