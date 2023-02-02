@@ -74,7 +74,7 @@
 
   systemd.tmpfiles.rules = [
     "L /var/lib/acme - - - - /persist/var/lib/acme"
-    "L /var/lib/tailscale - - - - /persist/var/lib/tailscale"
+    "L /var/lib/tailscale/tailscaled.state - - - - /persist/var/lib/tailscale/tailscaled.state"
     "D /build - - - - -"
   ];
 
