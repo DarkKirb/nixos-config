@@ -1,0 +1,14 @@
+// This file is managed in the nixos-config repo
+{
+  // Declare static groups of users beyond those in the identity service.
+  "groups": {
+    "group:admins": ["DarkKirb@github"]
+  },
+
+  // Access control lists.
+  "acls": [
+    // Match absolutely everything.
+    // Comment this section out if you want to define specific restrictions.
+    { "action": "accept", "users": ["*"], "ports": ["*:*"] }
+  ]
+}
