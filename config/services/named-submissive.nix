@@ -5,7 +5,6 @@
   hosts-list,
   ...
 }: let
-  internalIP = import ../../utils/getInternalIP.nix config;
   mkZone = name: {
     master = false;
     masters = ["100.119.226.33" "fd7a:115c:a1e0:ab12:4843:cd96:6277:e221"];

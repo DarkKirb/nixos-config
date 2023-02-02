@@ -5,7 +5,6 @@
   hosts-list,
   ...
 }: let
-  internalIP = import ../../utils/getInternalIP.nix config;
   darkkirb-de = import ../../zones/darkkirb.de.nix {inherit dns;};
   chir-rs = import ../../zones/chir.rs.nix {inherit dns;};
   int-chir-rs = import ../../zones/int.chir.rs.nix {inherit dns;};

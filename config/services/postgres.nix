@@ -19,7 +19,7 @@
   services.prometheus.exporters.postgres = {
     enable = true;
     user = "postgres";
-    listenAddress = (import ../../utils/getInternalIP.nix config).listenIP;
+    listenAddress = "0.0.0.0";
   };
   networking.firewall.interfaces."wg0".allowedTCPPorts = [9187 5432];
 }

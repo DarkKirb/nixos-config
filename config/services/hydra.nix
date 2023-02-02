@@ -6,12 +6,6 @@
   pkgs,
   ...
 }: let
-  inherit ((import ../../utils/getInternalIP.nix config)) listenIPs;
-  listenStatements =
-    lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs)
-    + ''
-      add_header Alt-Svc 'h3=":443"';
-    '';
   clean-cache = nix-packages.packages.${system}.clean-s3-cache;
   machines = pkgs.writeText "machines" ''
     localhost armv7l-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 12 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver1,gccarch-skylake,ca-derivations  -
