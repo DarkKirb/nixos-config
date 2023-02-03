@@ -50,7 +50,7 @@
       "systemd"
       "tcpstat"
     ];
-    listenAddress = (import ../utils/getInternalIP.nix config).listenIP;
+    listenAddress = "0.0.0.0";
   };
   networking.firewall.interfaces."wg0".allowedTCPPorts = [config.services.prometheus.exporters.node.port];
 

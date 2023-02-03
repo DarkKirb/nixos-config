@@ -4,12 +4,6 @@
   lib,
   ...
 }: let
-  inherit ((import ../../utils/getInternalIP.nix config)) listenIPs;
-  listenStatements =
-    lib.concatStringsSep "\n" (builtins.map (ip: "listen ${ip}:443 http3;") listenIPs)
-    + ''
-      add_header Alt-Svc 'h3=":443"';
-    '';
   split-system = pkgs.lib.strings.splitString "-" pkgs.system;
 in {
   systemd.services.drone-server = {

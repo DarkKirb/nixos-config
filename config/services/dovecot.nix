@@ -3,7 +3,6 @@
   config,
   ...
 }: let
-  inherit ((import ../../utils/getInternalIP.nix config)) listenIP;
   sieves = import ../../packages/sieves.nix pkgs;
 in {
   nixpkgs.overlays = [
@@ -135,7 +134,7 @@ in {
   };
   services.prometheus.exporters.dovecot = {
     enable = true;
-    listenAddress = listenIP;
+    listenAddress = "0.0.0.0";
   };
   sops.secrets."services/dovecot/rspamd_password" = {owner = "dovecot";};
   sops.secrets."services/dovecot/dovecot-sql.conf.ext" = {owner = "dovecot";};

@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 20;
+    serial = 21;
   };
   NS = [
     "ns1.chir.rs."
@@ -52,8 +52,11 @@ in {
       ];
     };
     nixos-8gb-fsn1-1 = {
+      A = [
+        (ttl zoneTTL (a "100.119.226.33"))
+      ];
       AAAA = [
-        (ttl zoneTTL (aaaa "fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"))
+        (ttl zoneTTL (aaaa "fd7a:115c:a1e0:ab12:4843:cd96:6277:e221"))
       ];
       SSHFP = [
         {
@@ -82,33 +85,34 @@ in {
         }
       ];
       /*
-      subdomains = {
-      _tcp.subdomains."*".TLSA = [
-      {
-      certUsage = "dane-ee";
-      selector = "spki";
-      match = "sha256";
-      certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-      ttl = zoneTTL;
-      }
-      ];
-      _udp.subdomains."*".TLSA = [
-      {
-      certUsage = "dane-ee";
-      selector = "spki";
-      match = "sha256";
-      certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-      ttl = zoneTTL;
-      }
-      ];
-      };
-      */
+       subdomains = {
+       _tcp.subdomains."*".TLSA = [
+       {
+       certUsage = "dane-ee";
+       selector = "spki";
+       match = "sha256";
+       certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
+       ttl = zoneTTL;
+       }
+       ];
+       _udp.subdomains."*".TLSA = [
+       {
+       certUsage = "dane-ee";
+       selector = "spki";
+       match = "sha256";
+       certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
+       ttl = zoneTTL;
+       }
+       ];
+       };
+       */
       HTTPS = [
         {
           svcPriority = 1;
           targetName = ".";
           alpn = ["http/1.1" "h2" "h3"];
-          ipv6hint = ["fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49"];
+          ipv4hint = ["100.119.226.33"];
+          ipv6hint = ["fd7a:115c:a1e0:ab12:4843:cd96:6277:e221"];
           ttl = zoneTTL;
         }
       ];
@@ -134,8 +138,11 @@ in {
       ];
     };
     nutty-noon = {
+      A = [
+        (ttl zoneTTL (a "100.105.131.79"))
+      ];
       AAAA = [
-        (ttl zoneTTL (aaaa "fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437"))
+        (ttl zoneTTL (aaaa "fd7a:115c:a1e0:ab12:4843:cd96:6269:834f"))
       ];
       SSHFP = [
         {
@@ -169,7 +176,8 @@ in {
           svcPriority = 1;
           targetName = ".";
           alpn = ["http/1.1" "h2" "h3"];
-          ipv6hint = ["fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437"];
+          ipv4hint = ["100.105.131.79"];
+          ipv6hint = ["fd7a:115c:a1e0:ab12:4843:cd96:6269:834f"];
           ttl = zoneTTL;
         }
       ];
@@ -194,12 +202,16 @@ in {
         }
       ];
     };
-    thinkrac.AAAA = [
-      (ttl zoneTTL (aaaa "fd0d:a262:1fa6:e621:f45a:db9f:eb7c:1a3f"))
-    ];
-    nas = {
+    thinkrac = {
+      A = [(ttl zoneTTL (a "100.75.9.4"))];
       AAAA = [
-        (ttl zoneTTL (aaaa "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b"))
+        (ttl zoneTTL (aaaa "fd7a:115c:a1e0:ab12:4843:cd96:624b:904"))
+      ];
+    };
+    nas = {
+      A = [(ttl zoneTTL (a "100.99.129.7"))];
+      AAAA = [
+        (ttl zoneTTL (aaaa "fd7a:115c:a1e0:ab12:4843:cd96:6263:8107"))
       ];
       SSHFP = [
         {
@@ -233,7 +245,8 @@ in {
           svcPriority = 1;
           targetName = ".";
           alpn = ["http/1.1" "h2" "h3"];
-          ipv6hint = ["fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b"];
+          ipv4hint = ["100.99.129.7"];
+          ipv6hint = ["fd7a:115c:a1e0:ab12:4843:cd96:6263:8107"];
           ttl = zoneTTL;
         }
       ];
@@ -258,7 +271,12 @@ in {
         }
       ];
     };
-    instance-20221213-1915.AAAA = [(ttl zoneTTL (aaaa "fd0d:a262:1fa6:e621:746d:4523:5c04:1453"))];
+    instance-20221213-1915 = {
+      A = [(ttl zoneTTL (a "100.99.173.107"))];
+      AAAA = [
+        (ttl zoneTTL (aaaa "fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b"))
+      ];
+    };
 
     grafana.CNAME = [(ttl zoneTTL (cname "nixos-8gb-fsn1-1"))];
     minio.CNAME = [(ttl zoneTTL (cname "nixos-8gb-fsn1-1"))];

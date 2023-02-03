@@ -7,8 +7,96 @@
 
   // Access control lists.
   "acls": [
-    // Match absolutely everything.
-    // Comment this section out if you want to define specific restrictions.
-    { "action": "accept", "users": ["*"], "ports": ["*:*"] }
-  ]
+    // Allow DNS access to the DNS servers
+    {
+      "action": "accept",
+      "src": ["*"],
+      "dst": ["tag:dnsserver:53"]
+    },
+    // Allow ssh access to build devices
+    {
+      "action": "accept",
+      "src": ["autogroup:members"],
+      "dst": ["tag:buildserver:22"]
+    },
+    // Allow all development devices to connect via ssh
+    {
+      "action": "accept",
+      "src": ["tag:devDevice"],
+      "dst": ["*:22"]
+    },
+
+    // http servers running on the servers can be accessed
+    {
+      "action": "accept",
+      "src": ["*"],
+      "dst": ["tag:server:80", "tag:server:443"]
+    },
+
+    // members can access email server
+    {
+      "action": "accept",
+      "src": ["autogroup:members"],
+      "dst": [
+        "tag:nixos-8gb-fsn1-1:25", // SMTP
+        "tag:nixos-8gb-fsn1-1:110", // POP3
+        "tag:nixos-8gb-fsn1-1:143", // IMAP
+        "tag:nixos-8gb-fsn1-1:465", // Submission
+        "tag:nixos-8gb-fsn1-1:587", // SMTPS
+        "tag:nixos-8gb-fsn1-1:993", // IMAPS
+        "tag:nixos-8gb-fsn1-1:995" // POP3S
+      ]
+    },
+
+    // Prometheus scrapers
+    {
+      "action": "accept",
+      "src": ["tag:nixos-8gb-fsn1-1"],
+      "dst": [
+        "*:9100", // node exporter
+        "*:28183",
+        ":41115", // promtail
+        "tag:dnsserver:9119", // bind
+        "tag:nixos-8gb-fsn1-1:9000", // matrix mediaa repo
+        "tag:nas:9102", // statsd-exporter
+        "tag:nixos-8gb-fsn1-1:3100", // loki
+        "tag:server:9187", // postgres
+        "tag:nutty-noon:9187"
+      ]
+    },
+
+    // postgres and redis
+    {
+      "action": "accept",
+      "src": ["tag:instance-20221213-1915"],
+      "dst": ["tag:nixos-8gb-fsn1-1:5432", "tag:nixos-8gb-fsn1-1:53538"]
+    },
+
+    // syncthing
+    {
+      "action": "accept",
+      "src": ["tag:syncthing"],
+      "dst": ["tag:syncthing:22000"]
+    },
+    // syncthing admin panel, cups
+    {
+      "action": "accept",
+      "src": ["tag:devDevice"],
+      "dst": ["tag:nas:8384", "tag:nas:631"]
+    }
+  ],
+
+  "tagOwners": {
+    "tag:instance-20221213-1915": ["DarkKirb@github"],
+    "tag:nixos-8gb-fsn1-1": ["DarkKirb@github"],
+    "tag:nas": ["DarkKirb@github"],
+    "tag:moto-g82-5g": ["DarkKirb@github"],
+    "tag:nutty-noon": ["DarkKirb@github"],
+    "tag:thinkrac": ["DarkKirb@github"],
+    "tag:dnsserver": ["DarkKirb@github"],
+    "tag:buildserver": ["DarkKirb@github"],
+    "tag:devDevice": ["DarkKirb@github"],
+    "tag:server": ["DarkKirb@github"],
+    "tag:syncthing": ["DarkKirb@github"]
+  }
 }

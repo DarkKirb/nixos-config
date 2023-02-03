@@ -5,9 +5,6 @@
   hosts-list,
   ...
 }: let
-  internalIP = import ../../utils/getInternalIP.nix config;
-  createListenEntry = ip: "inet ${ip} port 8653 allow { any; };";
-  listenEntries = builtins.map createListenEntry internalIP.listenIPsBare;
   darkkirb-de = import ../../zones/darkkirb.de.nix {inherit dns;};
   chir-rs = import ../../zones/chir.rs.nix {inherit dns;};
   int-chir-rs = import ../../zones/int.chir.rs.nix {inherit dns;};
@@ -52,8 +49,8 @@ in {
       "darkkirb.de" = {
         master = true;
         file = "/var/lib/named/darkkirb.de";
-        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
-        extraConfig = "also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};";
+        slaves = ["fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b" "100.99.173.107"];
+        extraConfig = "also-notify {fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b; 100.99.173.107;};";
       };
       "_acme-challenge.darkkirb.de" = {
         master = true;
@@ -67,8 +64,8 @@ in {
       "chir.rs" = {
         master = true;
         file = "/var/lib/named/chir.rs";
-        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
-        extraConfig = "also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};";
+        slaves = ["fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b" "100.99.173.107"];
+        extraConfig = "also-notify {fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b; 100.99.173.107;};";
       };
       "_acme-challenge.chir.rs" = {
         master = true;
@@ -82,8 +79,8 @@ in {
       "int.chir.rs" = {
         master = true;
         file = "/var/lib/named/int.chir.rs";
-        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
-        extraConfig = "also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};";
+        slaves = ["fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b" "100.99.173.107"];
+        extraConfig = "also-notify {fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b; 100.99.173.107;};";
       };
       "_acme-challenge.int.chir.rs" = {
         master = true;
@@ -97,8 +94,8 @@ in {
       "shitallover.me" = {
         master = true;
         file = "/var/lib/named/shitallover.me";
-        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
-        extraConfig = "also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};";
+        slaves = ["fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b" "100.99.173.107"];
+        extraConfig = "also-notify {fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b; 100.99.173.107;};";
       };
       "_acme-challenge.shitallover.me" = {
         master = true;
@@ -112,13 +109,13 @@ in {
       "rpz.int.chir.rs" = {
         master = true;
         file = "${rpz-int-chir-rs}";
-        slaves = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
-        extraConfig = "also-notify {fd0d:a262:1fa6:e621:746d:4523:5c04:1453;};";
+        slaves = ["fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b" "100.99.173.107"];
+        extraConfig = "also-notify {fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b; 100.99.173.107;};";
       };
     };
     extraConfig = ''
       statistics-channels {
-        ${toString listenEntries}
+        inet 127.0.0.1 port 8653 allow { 127.0.0.1; };
       };
       include "/run/secrets/services/dns/named-keys";
     '';
@@ -127,10 +124,11 @@ in {
         127.0.0.1;
         ::1;
         fc00::/7;
+        100.0.0.0/8;
       };
       recursion yes;
       dnssec-validation yes;
-      allow-transfer { fd0d:a262:1fa6:e621:746d:4523:5c04:1453; };
+      also-transfer {fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b; 100.99.173.107;};
       notify-delay 0;
       response-policy {zone "rpz.int.chir.rs";};
     '';
@@ -140,8 +138,7 @@ in {
   services.prometheus.exporters.bind = {
     enable = true;
     bindGroups = ["server" "view" "tasks"];
-    bindURI = "http://${internalIP.listenIP}:8653/";
-    listenAddress = internalIP.listenIP;
+    bindURI = "http://127.0.0.1:8653/";
   };
   sops.secrets."services/dns/named-keys" = {owner = "named";};
 }
