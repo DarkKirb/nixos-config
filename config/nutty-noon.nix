@@ -182,6 +182,18 @@
     "ca-derivations"
   ];
   networking.firewall.allowedTCPPorts = [58913];
+  services.pipewire.config.pipewire."context.properties"."default.clock.rate" = 384000;
+  services.pipewire.config.pipewire."context.properties"."default.clock.allowed-rates" = [
+    44100
+    48000
+    88200
+    96000
+    176400
+    192000
+    352800
+    384000
+  ];
+  services.pipewire.config.pipewire."context.properties"."default.clock.quantum" = 8192;
   virtualisation.docker.daemon.settings = {
     storage-opts = [
       "zfs.fsname=hdd/docker"
