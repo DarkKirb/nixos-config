@@ -55,7 +55,7 @@
       "dst": [
         "*:9100", // node exporter
         "*:28183",
-        ":41115", // promtail
+        "*:41115", // promtail
         "tag:dnsserver:9119", // bind
         "tag:nixos-8gb-fsn1-1:9000", // matrix mediaa repo
         "tag:nas:9102", // statsd-exporter
