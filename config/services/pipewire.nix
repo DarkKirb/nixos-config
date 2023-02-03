@@ -45,10 +45,13 @@ _: {
           {
             "application.process.binary" = ".Discord-wrapped";
           }
+          {
+            "application.process.binary" = "Discord";
+          }
         ];
         actions = {
           update-props = {
-            "pulse.min.quantum" = "1024/48000";
+            "pulse.min.quantum" = "8192/48000";
           };
         };
       }
