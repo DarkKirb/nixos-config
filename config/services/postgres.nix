@@ -6,7 +6,7 @@
   services.postgresql = {
     enable = true;
     enableTCPIP = true;
-    authentication = "host  all all fd0d:a262:1fa6:e621::/64 md5";
+    authentication = "host  all all fd7a:115c:a1e0:ab12::/64 md5";
     settings = {
       shared_preload_libraries = "pg_stat_statements";
       "pg_stat_statements.track" = "all";
