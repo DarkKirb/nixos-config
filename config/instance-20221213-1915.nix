@@ -85,6 +85,16 @@
   };
   nix.settings.cores = 2;
   nix.settings.max-jobs = 2;
+  nix.settings.system-features = [
+    "nixos-test"
+    "big-parallel"
+    "benchmark"
+    "gccarch-armv8-a"
+    "gccarch-armv8.1-a"
+    "gccarch-armv8.2-a"
+    "gccarch-skylake"
+    "ca-derivations"
+  ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
 
