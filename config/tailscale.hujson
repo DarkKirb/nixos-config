@@ -16,7 +16,7 @@
     // Allow ssh access to build devices
     {
       "action": "accept",
-      "src": ["autogroup:members"],
+      "src": ["*"],
       "dst": ["tag:buildserver:22"]
     },
     // Allow all development devices to connect via ssh
@@ -36,7 +36,7 @@
     // members can access email server
     {
       "action": "accept",
-      "src": ["autogroup:members"],
+      "src": ["*"],
       "dst": [
         "tag:nixos-8gb-fsn1-1:25", // SMTP
         "tag:nixos-8gb-fsn1-1:110", // POP3
