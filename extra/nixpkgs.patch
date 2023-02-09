@@ -1,5 +1,5 @@
 diff --git a/lib/systems/architectures.nix b/lib/systems/architectures.nix
-index 94127fa90b3..5253e4bbcd3 100644
+index 94127fa9..5253e4bb 100644
 --- a/lib/systems/architectures.nix
 +++ b/lib/systems/architectures.nix
 @@ -32,9 +32,24 @@ rec {
@@ -53,7 +53,7 @@ index 94127fa90b3..5253e4bbcd3 100644
 
    predicates = let
 diff --git a/pkgs/build-support/cc-wrapper/default.nix b/pkgs/build-support/cc-wrapper/default.nix
-index 06aabf2a6f3..cec4cff3a0f 100644
+index 33df804d..646a8a0b 100644
 --- a/pkgs/build-support/cc-wrapper/default.nix
 +++ b/pkgs/build-support/cc-wrapper/default.nix
 @@ -89,6 +89,10 @@ let
@@ -79,10 +79,10 @@ index 06aabf2a6f3..cec4cff3a0f 100644
      else
        false;
 diff --git a/pkgs/stdenv/generic/make-derivation.nix b/pkgs/stdenv/generic/make-derivation.nix
-index 81fc31d6728..1d0ee03754d 100644
+index 08bd836e..af706805 100644
 --- a/pkgs/stdenv/generic/make-derivation.nix
 +++ b/pkgs/stdenv/generic/make-derivation.nix
-@@ -163,10 +163,8 @@ let
+@@ -165,10 +165,8 @@ let
  , ... } @ attrs:
 
  let
@@ -95,30 +95,8 @@ index 81fc31d6728..1d0ee03754d 100644
 
    separateDebugInfo' = separateDebugInfo && stdenv.hostPlatform.isLinux;
    outputs' = outputs ++ lib.optional separateDebugInfo' "debug";
-diff --git a/pkgs/stdenv/linux/default.nix b/pkgs/stdenv/linux/default.nix
-index 3f2d77729ab..b2773ac60f0 100644
---- a/pkgs/stdenv/linux/default.nix
-+++ b/pkgs/stdenv/linux/default.nix
-@@ -267,11 +267,12 @@ in
-   # overrides attribute and the inherit syntax.
-   (prevStage:
-     # previous stage0 stdenv:
--    assert isFromBootstrapFiles prevStage.binutils.bintools;
--    assert isFromBootstrapFiles prevStage."${localSystem.libc}";
--    assert isFromBootstrapFiles prevStage.gcc-unwrapped;
--    assert isFromBootstrapFiles prevStage.coreutils;
--    assert isFromBootstrapFiles prevStage.gnugrep;
-+    # We override the bootstrap compiler with an unrelated one
-+    #assert isFromBootstrapFiles prevStage.binutils.bintools;
-+    #assert isFromBootstrapFiles prevStage."${localSystem.libc}";
-+    #assert isFromBootstrapFiles prevStage.gcc-unwrapped;
-+    #assert isFromBootstrapFiles prevStage.coreutils;
-+    #assert isFromBootstrapFiles prevStage.gnugrep;
-     stageFun prevStage {
-     name = "bootstrap-stage1";
-
 diff --git a/pkgs/top-level/impure.nix b/pkgs/top-level/impure.nix
-index 4d847e280f4..fadd8836e5e 100644
+index 4d847e28..fadd8836 100644
 --- a/pkgs/top-level/impure.nix
 +++ b/pkgs/top-level/impure.nix
 @@ -8,13 +8,16 @@ let
