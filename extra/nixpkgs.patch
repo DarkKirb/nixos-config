@@ -78,6 +78,23 @@ index 33df804d..646a8a0b 100644
        }.${arch} or true
      else
        false;
+diff --git a/pkgs/stdenv/cross/default.nix b/pkgs/stdenv/cross/default.nix
+index bf410ec0..10b240b7 100644
+--- a/pkgs/stdenv/cross/default.nix
++++ b/pkgs/stdenv/cross/default.nix
+@@ -26,9 +26,9 @@ in lib.init bootStages ++ [
+     inherit config overlays;
+     selfBuild = false;
+     stdenv =
+-      assert vanillaPackages.stdenv.buildPlatform == localSystem;
+-      assert vanillaPackages.stdenv.hostPlatform == localSystem;
+-      assert vanillaPackages.stdenv.targetPlatform == localSystem;
++      assert vanillaPackages.stdenv.buildPlatform.system == localSystem.system;
++      assert vanillaPackages.stdenv.hostPlatform.system == localSystem.system;
++      assert vanillaPackages.stdenv.targetPlatform.system == localSystem.system;
+       vanillaPackages.stdenv.override { targetPlatform = crossSystem; };
+     # It's OK to change the built-time dependencies
+     allowCustomOverrides = true;
 diff --git a/pkgs/stdenv/generic/make-derivation.nix b/pkgs/stdenv/generic/make-derivation.nix
 index 08bd836e..af706805 100644
 --- a/pkgs/stdenv/generic/make-derivation.nix

@@ -7,13 +7,9 @@
 }: {
   nixpkgs.overlays = [
     (self: prev: {
-      custom_xanmod = pkgs.linuxPackagesFor (pkgs.linuxKernel.kernels.linux_xanmod.override {
-        ignoreConfigErrors = true;
-        autoModules = true;
-        kernelPreferBuiltin = true;
-        enableParallelBuilding = true;
-        extraConfig = import (../extra/linux/config- + "${config.networking.hostName}.nix");
-      });
     })
   ];
+  environment.etc."nix/local-system.json".text = builtins.toJSON {
+    inherit (config.nixpkgs.localSystem) system gcc rustc linux-kernel;
+  };
 }

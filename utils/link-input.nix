@@ -22,12 +22,16 @@ inputs': {
 in {
   nix.registry = nixRegistry;
   environment.etc =
-    mapAttrs'
-    (name: value: {
-      name = "nix/inputs/${name}";
-      value = {source = value.outPath;};
-    })
-    inputs;
-  environment.etc."nix/inputs/nixpkgs-overlays".source = ./nixpkgs-overlays;
+    (
+      mapAttrs'
+      (name: value: {
+        name = "nix/inputs/${name}";
+        value = {source = value.outPath;};
+      })
+      inputs
+    )
+    // {
+      "nix/inputs/nixpkgs-overlays".source = lib.mkForce ./nixpkgs-overlays;
+    };
   nix.nixPath = ["/etc/nix/inputs"];
 }

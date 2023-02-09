@@ -114,6 +114,7 @@ rec {
       };
     pkgsFor = system:
       import (nixpkgsFor system) {
+        localSystem.system = system;
         overlays = [
           self.overlays.${system}
           nur.overlay
