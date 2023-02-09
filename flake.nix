@@ -34,10 +34,8 @@ rec {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ema.url = "github:EmaApps/ema";
     emanote = {
       url = "github:EmaApps/emanote";
-      inputs.ema.follows = "ema";
       inputs.flake-parts.follows = "flake-parts";
       inputs.haskell-flake.follows = "haskell-flake";
       inputs.nixpkgs.follows = "nixpkgs";

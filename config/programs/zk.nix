@@ -10,6 +10,6 @@
     notes = [
       "/home/darkkirb/Data/notes"
     ];
-    package = emanote.packages.${pkgs.system}.default;
+    #package = emanote.packages.${pkgs.system}.default;
   };
 }
