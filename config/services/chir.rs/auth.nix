@@ -64,7 +64,6 @@ in {
     port = 53538;
     save = [];
     requirePassFile = config.sops.secrets."services/chir-rs/auth/password".path;
-    user = "auth_chir_rs";
   };
   networking.firewall.interfaces."wg0".allowedTCPPorts = [53538];
   services.caddy.virtualHosts."auth.chir.rs" = {
