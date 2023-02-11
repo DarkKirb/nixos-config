@@ -19,12 +19,12 @@
         videos = {
           bucket_name = "mastodon-chir-rs";
           prefix = "peertube/videos/";
-          base_url = "https://mastodon-assets.chir.rs/";
+          base_url = "https://mastodon-assets.chir.rs";
         };
         streaming_playlists = {
           bucket_name = "mastodon-chir-rs";
           prefix = "peertube/streaming-playlists/";
-          base_url = "https://mastodon-assets.chir.rs/";
+          base_url = "https://mastodon-assets.chir.rs";
         };
       };
     };
