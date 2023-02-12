@@ -195,7 +195,7 @@ in {
       "editor.tabCompletion" = "on";
       "editor.unicodeHighlight.ambiguousCharacters" = false;
       "editor.wordWrapColumn" = 120;
-      "editor.cursorSmoothCaretAnimation" = true;
+      "editor.cursorSmoothCaretAnimation" = "on";
       "editor.cursorSurroundingLines" = 5;
       "editor.find.autoFindInSelection" = "multiline";
       "editor.fontLigatures" = true;
