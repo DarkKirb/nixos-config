@@ -119,13 +119,6 @@
     fsType = "vfat";
   };
 
-  swapDevices = [
-    {
-      device = "/dev/disk/by-partuuid/110ae65d-8ea1-214d-bd7b-a6f3e1b5dc3a";
-      randomEncryption = true;
-    }
-  ];
-
   networking.interfaces.enp34s0.useDHCP = true;
 
   system.stateVersion = "21.11";
