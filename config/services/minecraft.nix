@@ -211,4 +211,18 @@
   networking.firewall.allowedTCPPorts = [
     config.services.minecraft.properties.server-port
   ];
+  config.minecraft.plugins = [
+    (pkgs.callPackage ../../packages/minecraft/dynmap.nix {}).core
+  ];
+  services.caddy.virtualHosts."mc.chir.rs" = {
+    useACMEHost = "mc.chir.rs";
+    logFormat = pkgs.lib.mkForce "";
+    extraConfig = ''
+      import baseConfig
+
+      reverse_proxy http://127.0.0.1:8123 {
+        trusted_proxies private_ranges
+      }
+    '';
+  };
 }
