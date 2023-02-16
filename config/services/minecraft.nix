@@ -227,7 +227,7 @@
     extraConfig = ''
       import baseConfig
 
-      reverse_proxy http://127.0.0.1:8123 {
+      reverse_proxy http://138.201.155.128:8123 {
         trusted_proxies private_ranges
       }
     '';
