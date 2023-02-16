@@ -222,7 +222,7 @@
     }
   ];
   services.caddy.virtualHosts."mc.chir.rs" = {
-    useACMEHost = "mc.chir.rs";
+    useACMEHost = "chir.rs";
     logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
