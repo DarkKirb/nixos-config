@@ -215,8 +215,11 @@
   networking.firewall.allowedTCPPorts = [
     config.services.minecraft.properties.server-port
   ];
-  minecraft.plugins = [
-    (pkgs.callPackage ../../packages/minecraft/dynmap.nix {}).core
+  services.minecraft.plugins = [
+    {
+      package = (pkgs.callPackage ../../packages/minecraft/dynmap.nix {}).core;
+      startScript = "";
+    }
   ];
   services.caddy.virtualHosts."mc.chir.rs" = {
     useACMEHost = "mc.chir.rs";
