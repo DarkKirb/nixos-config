@@ -215,7 +215,7 @@
   networking.firewall.allowedTCPPorts = [
     config.services.minecraft.properties.server-port
   ];
-  config.minecraft.plugins = [
+  minecraft.plugins = [
     (pkgs.callPackage ../../packages/minecraft/dynmap.nix {}).core
   ];
   services.caddy.virtualHosts."mc.chir.rs" = {
