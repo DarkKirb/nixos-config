@@ -11,7 +11,7 @@
     "fd0d:a262:1fa6:e621:6ec2:1e4e:ce7f:d2af/64"
   ];
   boot.supportedFilesystems = ["zfs" "bcachefs"];
-  system.packages = with pkgs; ["bcachefs-tools"];
+  system.packages = with pkgs; [bcachefs-tools];
   networking.hostId = "8425e349";
   # Oldest system I have is skylake-based
   /*
