@@ -3,6 +3,7 @@
   nix-packages,
   config,
   pkgs,
+  lib,
   ...
 } @ args: let
   lockscreen-all = pkgs.writeScript "lockscreen-all" ''
@@ -121,6 +122,7 @@ in {
     libinput.enable = true;
     layout = "de";
     xkbVariant = "neo";
+    displayManager.lightdm.enable = lib.mkForce false;
   };
   boot.kernelPackages = pkgs.zfsUnstable.latestCompatibleLinuxPackages;
   i18n.inputMethod = {
