@@ -570,11 +570,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1677772875,
-        "narHash": "sha256-Oq9A4zTeFN7MrSb5SRAZfC1x4aXRTqU3KL/rT66mmhM=",
+        "lastModified": 1677858875,
+        "narHash": "sha256-4aFyisNvqREtNsym/dTKFYB1nipxXg1uBVWqWhiSuSY=",
         "owner": "DarkKirb",
         "repo": "nix-packages",
-        "rev": "593e39ae0cadc95cbc85eba42fc36c83b1641238",
+        "rev": "c3251d10ddc1f559b5cccaf432af690bcc63c2d2",
         "type": "github"
       },
       "original": {
