@@ -13,10 +13,6 @@
     ./services/fail2ban.nix
     ./users/remote-build.nix
   ];
-  environment.systemPackages = with pkgs; [
-    pinentry-curses
-  ];
-  programs.gnupg.agent.pinentryFlavor = "curses";
 
   nixpkgs.overlays = [
     (import ../overlays/riscv.nix)

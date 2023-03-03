@@ -148,4 +148,9 @@ in {
     waydroid.enable = true;
     lxd.enable = true;
   };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 }
