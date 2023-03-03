@@ -104,6 +104,19 @@ in {
             supportedFeatures = ["nixos-test" "benchmark" "ca-derivations" "gccarch-armv8-a" "gccarch-armv8.1-a" "gccarch-armv8.2-a" "big-parallel"];
           }
         ])
+        (mkIf (config.networking.hostName
+          != "vf2" [
+            {
+              hostName = "build-riscv64";
+              systems = [
+                "riscv32-linux"
+                "riscv64-linux"
+              ];
+              maxJobs = 4;
+              speedFactor = 1;
+              supportedFeatures = ["nixos-test" "benchmark" "ca-derivations"];
+            }
+          ]))
       ];
     distributedBuilds = true;
   };

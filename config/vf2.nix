@@ -4,13 +4,14 @@
   config,
   pkgs,
   ...
-}: {
+} @ args: {
   networking.hostName = "vf2";
   networking.hostId = "ad325df9";
   imports = [
     ./services/caddy
     ./services/acme.nix
     ./services/fail2ban.nix
+    ./users/remote-build.nix
   ];
   environment.systemPackages = with pkgs; [
     pinentry-curses
@@ -76,4 +77,29 @@
   };
   hardware.deviceTree.name = "starfive/jh7110-visionfive-v2.dtb";
   system.stateVersion = "22.11";
+  home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
+    desktop = false;
+    inherit args;
+  };
+  nix.settings.cores = 2;
+  nix.settings.max-jobs = 2;
+  nix.settings.system-features = [
+    "nixos-test"
+    "big-parallel"
+    "benchmark"
+    "ca-derivations"
+  ];
+  nix.daemonCPUSchedPolicy = "idle";
+  nix.daemonIOSchedClass = "idle";
+  sops.secrets."root/.ssh/id_ed25519" = {
+    owner = "root";
+    path = "/root/.ssh/id_ed25519";
+  };
+  sops.secrets."services/ssh/host-key" = {
+    owner = "root";
+    path = "/etc/secrets/initrd/ssh_host_ed25519_key";
+  };
+  system.autoUpgrade.allowReboot = true;
+  services.tailscale.useRoutingFeatures = "server";
+  boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
 }

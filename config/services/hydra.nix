@@ -10,6 +10,7 @@
   machines = pkgs.writeText "machines" ''
     localhost armv7l-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,riscv32-linux,riscv64-linux,wasm32-wasi,x86_64-linux,i686-linux - 12 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver1,gccarch-skylake,ca-derivations  -
     build-aarch64 aarch64-linux - 4 1 nixos-test,benchmark,ca-derivations,gccarch-armv8-a,gccarch-armv8.1-a,gccarch-armv8.2-a,big-parallel  -
+    build-riscv riscv-linux - 4 1 nixos-test,benchmark,ca-derivations,big-parallel  -
   '';
   sshConfig = pkgs.writeText "ssh-config" ''
     Host build-aarch64
@@ -29,6 +30,12 @@
       IdentitiesOnly yes
       User remote-build
       HostName nutty-noon.int.chir.rs
+      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
+    Host build-riscv
+      Port 22
+      IdentitiesOnly yes
+      User remote-build
+      HostName vf2.int.chir.rs
       IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
 
     Host *
