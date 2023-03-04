@@ -3,12 +3,14 @@ desktop: {pkgs, ...}: {
     [
       (import ../programs/zsh.nix desktop)
       ../programs/tmux.nix
-      ../programs/taskwarrior.nix
       (import ../programs/vim desktop)
     ]
     ++ (
       if desktop
-      then [../programs/mail.nix]
+      then [
+        ../programs/mail.nix
+        ../programs/taskwarrior.nix
+      ]
       else []
     );
   programs = {
