@@ -154,5 +154,5 @@ in {
     enableSSHSupport = true;
   };
 
-  config.environment.noXlibs = lib.mkForce false;
+  environment.noXlibs = lib.mkForce false;
 }

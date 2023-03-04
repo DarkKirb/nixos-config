@@ -6,5 +6,5 @@
     ./services/fail2ban.nix
   ];
 
-  config.environment.noXlibs = true;
+  environment.noXlibs = true;
 }
