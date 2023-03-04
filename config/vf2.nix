@@ -15,6 +15,7 @@
   ];
 
   environment.noXlibs = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
 
   nixpkgs.overlays = [
     (import ../overlays/riscv.nix)
