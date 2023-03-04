@@ -5,4 +5,6 @@
     ./services/acme.nix
     ./services/fail2ban.nix
   ];
+
+  config.environment.noXlibs = true;
 }
