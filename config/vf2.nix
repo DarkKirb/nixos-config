@@ -14,6 +14,8 @@
     ./users/remote-build.nix
   ];
 
+  environment.noXlibs = true;
+
   nixpkgs.overlays = [
     (import ../overlays/riscv.nix)
   ];
