@@ -6,7 +6,7 @@
     [
       (import ./base.nix desktop)
       ../programs/ssh.nix
-      ../programs/git.nix
+      (import ../programs/git.nix desktop)
       ../programs/direnv.nix
     ]
     ++ (
