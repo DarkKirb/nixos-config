@@ -40,6 +40,7 @@ in {
         "nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg="
         "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
         "chir-rs:AnwyFacopHSkprD6aXY4/R3J9JYzTbV2rosJCBPaB28="
+        "riscv:TZX1ReuoIGt7QiSQups+92ym8nKJUSV0O2NkS4HAqH8="
       ];
       post-build-hook = "${post-build-hook}";
       auto-optimise-store = true;

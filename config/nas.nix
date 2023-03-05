@@ -121,6 +121,7 @@
   nix.settings.substituters = lib.mkForce [
     "https://attic.chir.rs/chir-rs/"
     "https://cache.nixos.org/"
+    "https://beam.attic.rs/riscv"
   ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";

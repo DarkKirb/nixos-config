@@ -21,6 +21,7 @@
     (import ../overlays/riscv.nix)
   ];
 
+  nix.settings.substituters = ["https://beam.attic.rs/riscv"];
   boot = {
     supportedFilesystems = lib.mkForce ["vfat" "ext4"];
     kernelPackages = nix-packages.packages.riscv64-linux.vf2KernelPackages;
