@@ -16,5 +16,5 @@ desktop: {pkgs, ...}: {
     };
     delta.enable = true;
   };
-  programs.gitui.enable = true;
+  programs.gitui.enable = desktop;
 }
