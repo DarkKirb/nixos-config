@@ -60,6 +60,5 @@ in
             maintainers = with maintainers; [ma27];
           };
         };
-      element-web = prev.callPackage ../packages/element-web.nix {};
     }
     // nix-packages.packages.${system}
