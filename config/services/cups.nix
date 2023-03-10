@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  nixpkgs,
+  ...
+}: {
   services.printing = {
     enable = true;
     drivers = with pkgs; [
@@ -20,4 +24,8 @@
   };
   networking.firewall.interfaces.wg0.allowedUDPPorts = [631];
   networking.firewall.interfaces.wg0.allowedTCPPorts = [631];
+
+  imports = ["${nixpkgs}/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix"];
+  hardware.sane.enable = true;
+  hardware.sane.brscan4.enable = true;
 }
