@@ -32,6 +32,7 @@ in {
     wantedBy = ["multi-user.target"];
     script = ''
       export CONFIG_FILE=${pkgs.writeText "config.dhall" dhallConfig}
+      export RUST_LOG=info
       exec ${chir-rs.packages.${system}.chir-rs-auth}/bin/chir-rs-auth
     '';
     serviceConfig = {
