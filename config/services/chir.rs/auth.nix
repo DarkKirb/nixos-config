@@ -22,7 +22,7 @@
         , database_url = "postgres://auth_chir_rs:${d}{password}@nixos-8gb-fsn1-1.int.chir.rs"
         , listen_addr = "[::1]:7954"
         , redis_url = "redis://${d}{password}@nixos-8gb-fsn1-1.int.chir.rs:53538/0"
-        , asset_path = "${chir-rs.packages.${system}.chir-rs-web}"
+        , asset_path = "${chir-rs.packages.${system}.chir-rs-auth-web}"
         }
   '';
 in {
