@@ -75,7 +75,7 @@ in {
     extraConfig = ''
       import baseConfig
 
-      reverse_proxy http://127.0.0.1:7954 {
+      reverse_proxy http://127.0.0.1:5621 {
         trusted_proxies private_ranges
       }
     '';
