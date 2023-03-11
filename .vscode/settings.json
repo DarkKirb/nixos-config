@@ -11,5 +11,8 @@
         "allowTrailingCommas": true
       }
     }
-  ]
+  ],
+  "files.watcherExclude": {
+    "**/target": true
+  }
 }
