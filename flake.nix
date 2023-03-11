@@ -12,7 +12,7 @@ rec {
       inputs.nixpkgs-stable.follows = "nixpkgs-for-crane";
     };
     cargo2nix = {
-      url = "github:cargo2nix/cargo2nix";
+      url = "github:DarkKirb/cargo2nix/release-0.11.0";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";

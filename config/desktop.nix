@@ -80,6 +80,7 @@ in {
     SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0306", TAG+="uaccess"
     SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0330", TAG+="uaccess"
   '';
+  services.udev.packages = [pkgs.dolphinEmuMaster];
   programs.steam.enable = true;
   nixpkgs.overlays = [
     (curr: prev: {
@@ -107,6 +108,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     pinentry-qt
+    dolphinEmuMaster
   ];
   programs.gnupg.agent.pinentryFlavor = "qt";
 

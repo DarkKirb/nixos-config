@@ -1,0 +1,16 @@
+diff --git a/src/hydra-queue-runner/build-remote.cc b/src/hydra-queue-runner/build-remote.cc
+index 21a6c331..05380681 100644
+--- a/src/hydra-queue-runner/build-remote.cc
++++ b/src/hydra-queue-runner/build-remote.cc
+@@ -468,11 +468,6 @@ void State::buildRemote(ref<Store> destStore,
+                 infos.insert_or_assign(info.path, info);
+             }
+ 
+-            if (totalNarSize > maxOutputSize) {
+-                result.stepStatus = bsNarSizeLimitExceeded;
+-                return;
+-            }
+-
+             /* Copy each path. */
+             printMsg(lvlDebug, "copying outputs of ‘%s’ from ‘%s’ (%d bytes)",
+                 localStore->printStorePath(step->drvPath), machine->sshName, totalNarSize);

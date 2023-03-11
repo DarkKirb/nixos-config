@@ -5,6 +5,7 @@ in
   with nixpkgs.legacyPackages.${system};
     {
       hydra-unstable = hydra.packages.${system}.hydra.overrideAttrs (_: {
+        patches = [./hydra-size-limit.patch];
         checkPhase = "true";
         installCheckPhase = "true";
       });
