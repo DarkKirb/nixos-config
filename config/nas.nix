@@ -153,11 +153,6 @@
       };
     };
   };
-  virtualisation.docker.daemon.settings = {
-    storage-opts = [
-      "zfs.fsname=tank/docker"
-    ];
-  };
   services.postgresql.settings = {
     max_connections = 200;
     shared_buffers = "4GB";

@@ -32,7 +32,7 @@
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
   boot.supportedFilesystems = lib.mkForce ["bcachefs" "vfat"];
-  
+
   fileSystems."/" = {
     device = "/dev/disk/by-partuuid/d4c6a94f-2ae9-e446-9613-2596c564078c:/dev/disk/by-partuuid/53773b73-fb8a-4de8-ac58-d9d8ff1be430";
     fsType = "bcachefs";
@@ -111,11 +111,6 @@
     384000
   ];
   services.pipewire.config.pipewire."context.properties"."default.clock.quantum" = 8192;
-  virtualisation.docker.daemon.settings = {
-    storage-opts = [
-      "zfs.fsname=hdd/docker"
-    ];
-  };
   nix.settings.substituters = lib.mkForce [
     "https://hydra.int.chir.rs/"
     "https://cache.nixos.org/"
