@@ -220,7 +220,7 @@
     };
   };
   networking.bridges = {
-    br0.interfaces = ["enp8s0" "wlp6s0"];
+    br0.interfaces = ["enp9s0" "wlp9s0"];
   };
   networking.wireguard.interfaces."wg0".ips = ["fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b/64"];
   environment.etc."sysconfig/lm_sensors".text = ''
@@ -271,7 +271,7 @@
   };
 
   networking.tc_cake = {
-    enp1s0f0u4 = {
+    enp2s0f0u4 = {
       disableOffload = true;
       shapeEgress = {
         bandwidth = "4mbit";
@@ -279,7 +279,7 @@
       };
       shapeIngress = {
         bandwidth = "33mbit";
-        ifb = "ifb4enp1s0f0u4";
+        ifb = "ifb4enp2s0f0u4";
       };
     };
   };

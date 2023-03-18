@@ -5,7 +5,7 @@
   services.hostapd = {
     enable = true;
     countryCode = "DE";
-    interface = "wlp6s0";
+    interface = "wlp7s0";
     ssid = "🦝";
     wpa = true;
     wpaPassphraseFile = config.sops.secrets."services/hostapd".path;
