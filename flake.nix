@@ -153,7 +153,7 @@ rec {
               ({pkgs, ...}: {
                 nixpkgs.overlays = [
                   nur.overlay
-                  args.prismmc.overlay
+                  args.prismmc.overlays.default
                 ];
                 home-manager.extraSpecialArgs = args // {inherit system;};
               })
