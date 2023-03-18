@@ -143,7 +143,7 @@ in {
   programs.thunderbird = {
     enable = true;
     profiles.main = {
-      withExternalGnuupg = truue;
+      withExternalGnuupg = true;
     };
   };
 }
