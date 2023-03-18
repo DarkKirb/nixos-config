@@ -1,11 +1,16 @@
 desktop: {pkgs, ...}: {
-  imports = [
-    (import ../programs/zsh.nix desktop)
-    (import ../programs/helix desktop)
-    ../programs/tmux.nix
-    ../programs/taskwarrior.nix
-    ../programs/mail.nix
-  ];
+  imports =
+    [
+      (import ../programs/zsh.nix desktop)
+      (import ../programs/helix desktop)
+      ../programs/tmux.nix
+      ../programs/taskwarrior.nix
+    ]
+    ++ (
+      if desktop
+      then [../programs/mail.nix]
+      else []
+    );
   programs = {
     zsh = {
       enable = true;
