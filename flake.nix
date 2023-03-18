@@ -116,6 +116,14 @@ rec {
         system = "x86_64-linux";
       }
       {
+        name = "installer"; # Installer iso
+        system = "x86_64-linux";
+      }
+      {
+        name = "netboot"; # Installer netboot
+        system = "x86_64-linux";
+      }
+      {
         name = "instance-20221213-1915"; # Oracle server
         system = "aarch64-linux";
       }
