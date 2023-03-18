@@ -17,7 +17,7 @@
     ./services/hydra.nix
     ./services/backup.nix
     nixos-hardware.nixosModules.common-cpu-amd
-    nixos-hardware.nixosModules.common-pc-hdd
+    nixos-hardware.nixosModules.common-pc-ssd
     ./services/hostapd.nix
     ./services/synapse.nix
     ./services/mautrix-discord.nix
@@ -37,7 +37,7 @@
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "sd_mod"];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = ["igb"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [
@@ -179,6 +179,10 @@
   };
 
   fileSystems."/boot" = {
+    device = "/dev/nvme0n1p1";
+    fsType = "vfat";
+  };
+  fileSystems."/boot1" = {
     device = "/dev/disk/by-partuuid/b50f9cff-552d-4c6e-bda2-104723ee638e";
     fsType = "vfat";
   };
