@@ -17,7 +17,7 @@
     ./services/hydra.nix
     ./services/backup.nix
     nixos-hardware.nixosModules.common-cpu-amd
-    nixos-hardware.nixosModules.common-pc-hdd
+    nixos-hardware.nixosModules.common-pc-ssd
     ./services/hostapd.nix
     ./services/synapse.nix
     ./services/mautrix-discord.nix
@@ -37,148 +37,26 @@
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "sd_mod"];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = ["igb"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [
     config.boot.kernelPackages.zenpower
   ];
 
-  boot.supportedFilesystems = ["zfs"];
-  boot.zfs.devNodes = "/dev/";
-
-  services.zfs.autoScrub.enable = true;
-  services.zfs.autoScrub.pools = ["tank"];
-
-  boot.initrd.luks.devices = {
-    disk0.device = "/dev/disk/by-partuuid/b122f4e7-9edf-402e-87a9-b709741fe8c9";
-    disk1.device = "/dev/disk/by-partuuid/6e080c43-35fc-4c7c-a749-112d5b618a64";
-    disk2.device = "/dev/disk/by-partuuid/13f012a4-b9a9-4144-8888-cbb637657f69";
-  };
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
+  boot.supportedFilesystems = lib.mkForce ["bcachefs" "vfat"];
 
   fileSystems."/" = {
-    device = "tank/nixos";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/nix" = {
-    device = "tank/nixos/nix";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/etc" = {
-    device = "tank/nixos/etc";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/var" = {
-    device = "tank/nixos/var";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/var/lib" = {
-    device = "tank/nixos/var/lib";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/var/lib/syncthing" = {
-    device = "tank/nixos/var/lib/syncthing";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/var/lib/syncthing/.wine" = {
-    device = "tank/nixos/var/lib/syncthing/.wine";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-  fileSystems."/var/lib/syncthing/lennyface" = {
-    device = "tank/nixos/var/lib/syncthing/lennyface";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-  fileSystems."/var/lib/syncthing/Music-flac" = {
-    device = "tank/nixos/var/lib/syncthing/Music-flac";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-  fileSystems."/var/lib/syncthing/Studium" = {
-    device = "tank/nixos/var/lib/syncthing/Studium";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-  fileSystems."/var/lib/syncthing/Pictures" = {
-    device = "tank/nixos/var/lib/syncthing/Pictures";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-  fileSystems."/var/lib/syncthing/Data" = {
-    device = "tank/nixos/var/lib/syncthing/Data";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-  fileSystems."/var/lib/syncthing/CarolineFlac" = {
-    device = "tank/nixos/var/lib/syncthing/CarolineFlac";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-  fileSystems."/var/lib/syncthing/Camera" = {
-    device = "tank/nixos/var/lib/syncthing/Camera";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-  fileSystems."/var/lib/syncthing/reveng" = {
-    device = "tank/nixos/var/lib/syncthing/reveng";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-  fileSystems."/var/lib/syncthing/Music" = {
-    device = "tank/nixos/var/lib/syncthing/Music";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-  fileSystems."/var/lib/syncthing/Documents" = {
-    device = "tank/nixos/var/lib/syncthing/Documents";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/var/log" = {
-    device = "tank/nixos/var/log";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/var/spool" = {
-    device = "tank/nixos/var/spool";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/home" = {
-    device = "tank/userdata/home";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/root" = {
-    device = "tank/userdata/home/root";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/home/darkkirb" = {
-    device = "tank/userdata/home/darkkirb";
-    fsType = "zfs";
-    options = ["zfsutil"];
+    device = "/dev/nvme0n1p2:/dev/sda1:/dev/sdb1:/dev/sdc2";
+    fsType = "bcachefs";
   };
 
   fileSystems."/boot" = {
+    device = "/dev/nvme0n1p1";
+    fsType = "vfat";
+  };
+  fileSystems."/boot1" = {
     device = "/dev/disk/by-partuuid/b50f9cff-552d-4c6e-bda2-104723ee638e";
     fsType = "vfat";
   };
@@ -216,7 +94,7 @@
     };
   };
   networking.bridges = {
-    br0.interfaces = ["enp8s0" "wlp6s0"];
+    br0.interfaces = ["enp9s0" "wlp9s0"];
   };
   networking.wireguard.interfaces."wg0".ips = ["fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b/64"];
   environment.etc."sysconfig/lm_sensors".text = ''
@@ -265,7 +143,7 @@
   };
 
   networking.tc_cake = {
-    enp1s0f0u4 = {
+    enp2s0f0u4 = {
       disableOffload = true;
       shapeEgress = {
         bandwidth = "4mbit";
@@ -273,14 +151,9 @@
       };
       shapeIngress = {
         bandwidth = "33mbit";
-        ifb = "ifb4enp1s0f0u4";
+        ifb = "ifb4enp2s0f0u4";
       };
     };
-  };
-  virtualisation.docker.daemon.settings = {
-    storage-opts = [
-      "zfs.fsname=tank/docker"
-    ];
   };
   services.postgresql.settings = {
     max_connections = 200;
@@ -290,8 +163,8 @@
     checkpoint_completion_target = 0.9;
     wal_buffers = "16MB";
     default_statistics_target = 100;
-    random_page_cost = 4;
-    effective_io_concurrency = 2;
+    random_page_cost = 1.1;
+    effective_io_concurrency = 200;
     work_mem = "5242kB";
     min_wal_size = "1GB";
     max_wal_size = "4GB";

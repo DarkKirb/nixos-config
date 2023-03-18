@@ -38,10 +38,11 @@
         sync_with_custom_puppets = true;
         encryption = {
           allow = true;
-          default = true;
-          require = true;
+          default = false;
+          require = false;
           allow_key_sharing = true;
         };
+        sync_direct_chat_list = true;
         private_chat_portal_meta = true;
         delivery_receipts = true;
         delivery_error_reports = true;

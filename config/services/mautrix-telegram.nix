@@ -43,10 +43,11 @@
         sync_with_custom_puppets = true;
         encryption = {
           allow = true;
-          default = true;
-          require = true;
+          default = false;
+          require = false;
           allow_key_sharing = true;
         };
+        public_portals = true;
         private_chat_portal_meta = true;
         mute_bridging = true;
         backfill = {
@@ -57,6 +58,7 @@
         };
         delivery_receipts = true;
         delivery_error_reports = true;
+        incoming_bridge_error_reports = true;
         pinned_tag = "m.favourite";
         archive_tag = "m.lowpriority";
         permissions = {

@@ -30,8 +30,8 @@
         delete_portal_on_channel_delete = true;
         encryption = {
           allow = true;
-          default = true;
-          require = true;
+          default = false;
+          require = false;
           allow_key_sharing = true;
         };
         permissions = {

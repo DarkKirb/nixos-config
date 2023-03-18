@@ -10,7 +10,6 @@
       server_name = "chir.rs";
       public_baseurl = "https://matrix.chir.rs/";
       default_room_version = 10;
-      encryption_enabled_by_default_for_room_type = "all";
       listeners = [
         {
           port = 8008;
@@ -84,7 +83,7 @@
         msc2716_enabled = true;
         msc3244_enabled = true;
         msc3266_enabled = true;
-        msc3030_enabled = true;
+
         msc2409_to_device_messages_enabled = true;
         msc3202_device_masquerading_enabled = true;
         msc3202_transaction_extensions = true;
@@ -93,6 +92,7 @@
         msc3720_enabled = true;
         msc2654_enabled = true;
         msc2815_enabled = true;
+        msc3391_enabled = true;
         msc3773_enabled = true;
         msc3664_enabled = true;
         msc3848_enabled = true;
@@ -100,8 +100,14 @@
         msc3881_enabled = true;
         msc3882_enabled = true;
         msc3874_enabled = true;
+        msc3890_enabled = true;
+        msc3381_polls_enabled = true;
         msc3912_enabled = true;
-        spaces_enabled = true;
+        msc1767_enabled = true;
+        msc3952_intentional_mentions = true;
+        msc3958_supress_edit_notifs = true;
+        msc3967_enabled = true;
+        msc2659_enabled = true;
       };
       #sentry.dsn = "https://18e36e6f16b5490c83364101717cddba@o253952.ingest.sentry.io/6449283";
     };
