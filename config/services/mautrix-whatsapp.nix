@@ -42,8 +42,8 @@
         url_previews = true;
         encryption = {
           allow = true;
-          default = true;
-          require = true;
+          default = false;
+          require = false;
           allow_key_sharing = true;
         };
         sync_with_custom_puppets = true;

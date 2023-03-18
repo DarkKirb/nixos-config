@@ -43,8 +43,8 @@
         sync_with_custom_puppets = true;
         encryption = {
           allow = true;
-          default = true;
-          require = true;
+          default = false;
+          require = false;
           allow_key_sharing = true;
         };
         private_chat_portal_meta = true;

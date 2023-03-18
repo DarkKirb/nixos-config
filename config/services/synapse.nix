@@ -10,7 +10,6 @@
       server_name = "chir.rs";
       public_baseurl = "https://matrix.chir.rs/";
       default_room_version = 10;
-      encryption_enabled_by_default_for_room_type = "all";
       listeners = [
         {
           port = 8008;
