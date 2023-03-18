@@ -259,8 +259,6 @@
   ];
 
   system.stateVersion = "22.05";
-  hardware.nvidia.prime.offload.enable = false;
-  services.xserver.videoDrivers = ["nvidia"];
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
     desktop = false;
     inherit args;
