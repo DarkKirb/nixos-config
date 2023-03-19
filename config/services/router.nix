@@ -1,4 +1,31 @@
-_: {
+{
+  nixos-config-for-netboot,
+  pkgs,
+  ...
+}: let
+  netboot-x86_64 = pkgs.symlinkJoin {
+    name = "netboot-x86_64";
+    paths = [
+      pkgs.ipxe
+      nixos-config-for-netboot.nixosConfigurations.netboot.system.build.kernel
+      nixos-config-for-netboot.nixosConfigurations.netboot.system.build.netbootRamdisk
+      nixos-config-for-netboot.nixosConfigurations.netboot.system.build.netbootIpxeScript
+    ];
+  };
+  bootIpxeScript = pkgs.writeText "boot.ipxe" ''
+    chain http://192.168.2.1/${"$"}{buildarch}/netboot.ipxe
+  '';
+  netboot = pkgs.stdenvNoCC.mkDerivation {
+    name = "netboot";
+    src = pkgs.emptyDirectory;
+    buildPhase = true;
+    installPhase = ''
+      mkdir $out
+      cp ${bootIpxeScript} $out/boot.ipxe
+      ln -svf ${netboot-x86_64} $out/x86_64
+    '';
+  };
+in {
   networking.dhcpcd.allowInterfaces = ["enp2s0f0u4"]; # yes a usb network card don’t judge
   services.dhcpd4 = {
     enable = true;
@@ -12,21 +39,28 @@ _: {
       }
       option client-arch code 93 = unsigned integer 16;
       if exists user-class and option user-class = "iPXE" {
-        option root-path "iscsi:192.168.2.1:::1:iqn.2022-06.rs.chir:rs.chir.int.nas.windows";
         filename "http://192.168.2.1/boot.ipxe";
+      } elsif substring (option vendor-class-identifier, 0, 10) = "HTTPClient" {
+        filename "http://192.168.2.1/x86_64/ipxe.efi";
       } elsif option client-arch != 00:00 {
-        filename "ipxe.efi";
+        filename "/ipxe.efi";
+        next-server 192.168.2.1;
       } else {
-        filename "undionly.kpxe";
+        filename "/undionly.kpxe";
+        next-server 192.168.2.1;
       }
-      next-server 192.168.2.1;
     '';
     interfaces = ["br0"];
   };
   services.tftpd = {
     enable = true;
-    path = ../../extra/tftp;
+    path = pkgs.ipxe;
   };
+  services.caddy.virtualHosts."http://192.168.2.1".extraConfig = ''
+    import baseConfig
+    root * ${netboot}
+    file_server
+  '';
   networking.firewall.interfaces."br0".allowedUDPPorts = [69 4011];
   # No i don’t have ipv6 :(
   networking.firewall.extraCommands = ''
