@@ -14,7 +14,11 @@ in {
           key = "0xB4E3D4801C49EC5E";
           signByDefault = true;
         };
-        imap.host = "mail.chir.rs";
+        imap = {
+          host = "mail.chir.rs";
+          port = 993;
+          tls.enable = true;
+        };
         imapnotify = {
           enable = true;
           boxes = ["Inbox"];
@@ -37,7 +41,12 @@ in {
 
           @charlotte@akko.chir.rs • https://darkkirb.de • 0xB4E3D4801C49EC5E
         '';
-        smtp.host = "mail.chir.rs";
+        smtp = {
+          host = "mail.chir.rs";
+          port = 465;
+          tls.enable = true;
+          tls.useStartTls = true;
+        };
         thunderbird.enable = true;
         userName = "lotte@chir.rs";
       };
