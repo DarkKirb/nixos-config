@@ -33,7 +33,7 @@
     dontFixup = true;
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
-    outputHash = "sha256-zkuMyoVHg47j8Vpia1oeeXC28HJG2kUxQgpks+tihxU=";
+    outputHash = "sha256-vH/bnae6EmbGbgYDzMs1wKyLpFJqE+vNbukYmzrLmW8=";
   };
 in
   stdenv.mkDerivation {

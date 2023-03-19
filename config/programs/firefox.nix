@@ -36,7 +36,7 @@
           keepassxc-browser
           privacy-badger
           privacy-possum
-          sponsorblock
+          #sponsorblock
           stylus
           tree-style-tab
           ublock-origin
