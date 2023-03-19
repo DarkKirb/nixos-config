@@ -7,9 +7,9 @@
     name = "netboot-x86_64";
     paths = [
       pkgs.ipxe
-      nixos-config-for-netboot.nixosConfigurations.netboot.system.build.kernel
-      nixos-config-for-netboot.nixosConfigurations.netboot.system.build.netbootRamdisk
-      nixos-config-for-netboot.nixosConfigurations.netboot.system.build.netbootIpxeScript
+      nixos-config-for-netboot.nixosConfigurations.netboot.config.system.build.kernel
+      nixos-config-for-netboot.nixosConfigurations.netboot.config.system.build.netbootRamdisk
+      nixos-config-for-netboot.nixosConfigurations.netboot.config.system.build.netbootIpxeScript
     ];
   };
   bootIpxeScript = pkgs.writeText "boot.ipxe" ''
