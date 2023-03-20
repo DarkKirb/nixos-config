@@ -62,6 +62,7 @@
         pinned_tag = "m.favourite";
         archive_tag = "m.lowpriority";
         permissions = {
+          "*" = "relaybot";
           "@lotte:chir.rs" = "admin";
         };
       };
