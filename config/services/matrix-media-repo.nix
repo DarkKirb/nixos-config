@@ -184,6 +184,7 @@ in {
       handle /_matrix/media/* {
         reverse_proxy http://localhost:8008 {
           header_down Access-Control-Allow-Origin *
+          header_down Access-Control-Allow-Headers *
         }
       }
 
