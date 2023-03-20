@@ -48,6 +48,7 @@
         delivery_error_reports = true;
         periodic_sync = 86400;
         permissions = {
+          "*" = "relaybot";
           "@lotte:chir.rs" = "admin";
         };
       };
