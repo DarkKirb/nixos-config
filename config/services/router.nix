@@ -18,7 +18,7 @@
   netboot = pkgs.stdenvNoCC.mkDerivation {
     name = "netboot";
     src = pkgs.emptyDirectory;
-    buildPhase = true;
+    buildPhase = "true";
     installPhase = ''
       mkdir $out
       cp ${bootIpxeScript} $out/boot.ipxe
