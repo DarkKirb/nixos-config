@@ -18,6 +18,7 @@ in {
     tdesktop
     element-desktop
     nheko
+    cinny-desktop
   ];
   home.activation.betterDiscord = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD ${pkgs.betterdiscordctl}/bin/betterdiscordctl install $VERBOSE_ARG || true
