@@ -53,9 +53,10 @@
         extev_polls = 2;
         send_whatsapp_edits = true;
         permissions = {
-          "*" = "relaybot";
+          "*" = "relay";
           "@lotte:chir.rs" = "admin";
         };
+        relay.enabled = true;
       };
     };
   };
