@@ -74,6 +74,7 @@ in {
       <git-input>
         timeout = 3600
       </git-input>
+      max_concurrent_evals = 1
     '';
     giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
     githubTokenFile = "/run/secrets/services/hydra/github_token";
