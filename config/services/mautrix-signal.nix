@@ -48,8 +48,10 @@
         delivery_error_reports = true;
         periodic_sync = 86400;
         permissions = {
+          "*" = "relay";
           "@lotte:chir.rs" = "admin";
         };
+        relay.enabled = true;
       };
     };
   };

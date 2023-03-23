@@ -62,12 +62,14 @@
         pinned_tag = "m.favourite";
         archive_tag = "m.lowpriority";
         permissions = {
+          "*" = "relaybot";
           "@lotte:chir.rs" = "admin";
         };
       };
       telegram = {
         api_id = "$API_ID";
         api_hash = "$API_HASH";
+        bot_token = "$BOT_TOKEN";
         connection.retries = -1;
       };
     };
