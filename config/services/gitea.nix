@@ -7,7 +7,7 @@
     ../../modules/gitea.nix
   ];
   services.gitea = {
-    packages = pkgs.forgejo;
+    package = pkgs.forgejo;
     enable = true;
     appName = "Lotte's Git";
     cookieSecure = true;
