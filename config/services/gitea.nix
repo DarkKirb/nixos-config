@@ -5,9 +5,9 @@
 }: {
   imports = [
     ../../modules/gitea.nix
-    (import ../../modules/gateway-st.nix {name = "gitea";})
   ];
   services.gitea = {
+    package = pkgs.forgejo;
     enable = true;
     appName = "Lotte's Git";
     cookieSecure = true;
@@ -25,11 +25,11 @@
     settings = rec {
       storage = {
         STORAGE_TYPE = "minio";
-        MINIO_ENDPOINT = "localhost:7777";
-        MINIO_ACCESS_KEY_ID = "gitea";
+        MINIO_ENDPOINT = "s3.us-west-000.backblazeb2.com";
+        MINIO_ACCESS_KEY_ID = "000decd694f9e7d0000000020";
         MINIO_SECRET_ACCESS_KEY = "#storageSecret#";
-        MINIO_BUCKET = "gitea";
-        MINIO_USE_SSL = "false";
+        MINIO_BUCKET = "git-chir-rs";
+        MINIO_USE_SSL = "true";
       };
       openid = {
         ENABLE_OPENID_SIGNIN = true;
