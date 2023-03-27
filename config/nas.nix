@@ -69,20 +69,22 @@
     fsType = "vfat";
   };
 
-  swapDevices = [
-    {
-      device = "/dev/disk/by-partuuid/3b652a7e-a550-4342-a0d7-d2ae47b3e9d1";
-      randomEncryption = true;
-    }
-    {
-      device = "/dev/disk/by-partuuid/59de36d4-6613-4b50-9643-8824e9a9b1f9";
-      randomEncryption = true;
-    }
-    {
-      device = "/dev/disk/by-partuuid/f6260d75-2b96-4f55-ba0f-050c58b84b78";
-      randomEncryption = true;
-    }
-  ];
+  /*
+     swapDevices = [
+     {
+       device = "/dev/disk/by-partuuid/3b652a7e-a550-4342-a0d7-d2ae47b3e9d1";
+       randomEncryption = true;
+     }
+     {
+       device = "/dev/disk/by-partuuid/59de36d4-6613-4b50-9643-8824e9a9b1f9";
+       randomEncryption = true;
+     }
+     {
+       device = "/dev/disk/by-partuuid/f6260d75-2b96-4f55-ba0f-050c58b84b78";
+       randomEncryption = true;
+     }
+   ];
+   */
   networking.interfaces.br0 = {
     ipv4 = {
       addresses = [
