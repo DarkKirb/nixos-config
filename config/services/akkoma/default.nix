@@ -136,6 +136,7 @@
           "pawoo.net" = "Corporate instance; Owner engaged in scams";
           "activitypub-proxy.cf" = "Block circumvention tool";
           "mapsupport.de" = "Pedophile instance";
+          "pedo.school" = "Pedophile instance";
         };
         followers_only = processMap {
           "vivaldi.net" = "Corporate instance; Registers nonconsensual accounts for Vivaldi Sync users";
