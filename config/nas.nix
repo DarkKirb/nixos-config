@@ -174,4 +174,5 @@
     max_parallel_maintenance_workers = 4;
   };
   services.tailscale.useRoutingFeatures = "both";
+  hardware.sane.brscan4.enable = true;
 }
