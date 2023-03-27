@@ -81,7 +81,7 @@ in {
     SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0330", TAG+="uaccess"
   '';
   services.udev.packages = [pkgs.dolphinEmuMaster];
-  programs.steam.enable = true;
+  programs.steam.enable = system == "x86_64-linux";
   nixpkgs.overlays = [
     (curr: prev: {
       steam = prev.steam.override {
