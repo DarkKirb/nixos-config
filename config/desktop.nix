@@ -96,7 +96,7 @@ in {
   services.flatpak.enable = true;
   programs.java.enable = true;
   hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.driSupport32Bit = system == "x86_64-linux";
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
     desktop = true;
     inherit args;
