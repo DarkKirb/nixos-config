@@ -23,7 +23,7 @@
     fkms-3d.enable = true;
     apply-overlays-dtmerge.enable = true;
     pwm0.enable = true;
-    tc358743.enable = true;
+    #tc358743.enable = true;
   };
 
   fileSystems = {
