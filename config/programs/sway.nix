@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  system,
   ...
 }: let
   c = "$";
@@ -141,7 +142,9 @@ in {
       export MOZ_ENABLE_WAYLAND=1
       export _JAVA_AWT_WM_NONREPARENTING=1
       export QT_QPA_PLATFORMTHEME=qt5ct
-    '';
+    '' + (if system == "x86_64-linux" then ''
+      export VK_ICD_FILENAMES=/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json
+    '' else "");
     extraConfig = ''
       default_border none
       gaps outer 8
