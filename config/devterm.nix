@@ -10,20 +10,28 @@
   networking.hostName = "devterm";
   networking.hostId = "b83a2c93";
 
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_rpi4;
+  boot.kernelPatches = [
+    {
+      name = "devterm-cm4";
+      patch = ./workarounds/devterm-kernel.patch;
+    }
+  ];
+
   imports = [
     ./desktop.nix
     nixos-hardware.nixosModules.raspberry-pi-4
   ];
 
   hardware.raspberry-pi."4" = {
-    #audio.enable = true;
+    audio.enable = true;
     dwc2.enable = true;
-    #i2c0.enable = true;
-    #i2c1.enable = true;
-    #fkms-3d.enable = true;
+    i2c0.enable = true;
+    i2c1.enable = true;
+    fkms-3d.enable = true;
     apply-overlays-dtmerge.enable = true;
     pwm0.enable = true;
-    #tc358743.enable = true;
+    tc358743.enable = true;
   };
 
   fileSystems = {
