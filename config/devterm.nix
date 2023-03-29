@@ -11,12 +11,14 @@
   networking.hostId = "b83a2c93";
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_rpi4;
-  boot.kernelPatches = [
-    {
-      name = "devterm-cm4";
-      patch = ./workarounds/devterm-kernel.patch;
-    }
-  ];
+  /*
+     boot.kernelPatches = [
+     {
+       name = "devterm-cm4";
+       patch = ./workarounds/devterm-kernel.patch;
+     }
+   ];
+   */
 
   imports = [
     ./desktop.nix
