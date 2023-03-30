@@ -78,7 +78,7 @@ index 8e61f905d79c..903cf784a81d 100644
      description: Cloud Engines, Inc.
    "^cnm,.*":
 diff --git a/arch/arm/boot/dts/overlays/Makefile b/arch/arm/boot/dts/overlays/Makefile
-index 0fab3056a939..fe7fd1842165 100644
+index 0fab3056a939..f7e94befb2b6 100644
 --- a/arch/arm/boot/dts/overlays/Makefile
 +++ b/arch/arm/boot/dts/overlays/Makefile
 @@ -44,6 +44,11 @@ dtbo-$(CONFIG_ARCH_BCM2835) += \
@@ -87,7 +87,7 @@ index 0fab3056a939..fe7fd1842165 100644
  	dacberry400.dtbo \
 +	devterm-bt.dtbo \
 +	devterm-misc.dtbo \
-+	devterm-panel.dtbo
++	devterm-panel.dtbo \
 +	devterm-pmu.dtbo \
 +	devterm-wifi.dtbo \
  	dht11.dtbo \
