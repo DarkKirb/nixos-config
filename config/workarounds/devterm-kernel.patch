@@ -468,10 +468,10 @@ index 57d878273d8b..1631f7a77bfc 100644
 +obj-$(CONFIG_DRM_PANEL_CWD686) += panel-cwd686.o
 diff --git a/drivers/gpu/drm/panel/panel-cwd686.c b/drivers/gpu/drm/panel/panel-cwd686.c
 new file mode 100644
-index 000000000000..6b6969f29f62
+index 000000000000..5ed492009fb9
 --- /dev/null
 +++ b/drivers/gpu/drm/panel/panel-cwd686.c
-@@ -0,0 +1,295 @@
+@@ -0,0 +1,356 @@
 +// SPDX-License-Identifier: GPL-2.0
 +
 +#include <linux/backlight.h>
@@ -480,7 +480,68 @@ index 000000000000..6b6969f29f62
 +
 +#include <video/mipi_display.h>
 +
-+#include <drm/drmP.h>
++#include <linux/agp_backend.h>
++#include <linux/cdev.h>
++#include <linux/dma-mapping.h>
++#include <linux/file.h>
++#include <linux/fs.h>
++#include <linux/highmem.h>
++#include <linux/idr.h>
++#include <linux/init.h>
++#include <linux/io.h>
++#include <linux/jiffies.h>
++#include <linux/kernel.h>
++#include <linux/kref.h>
++#include <linux/miscdevice.h>
++#include <linux/mm.h>
++#include <linux/mutex.h>
++#include <linux/platform_device.h>
++#include <linux/poll.h>
++#include <linux/ratelimit.h>
++#include <linux/sched.h>
++#include <linux/slab.h>
++#include <linux/types.h>
++#include <linux/vmalloc.h>
++#include <linux/workqueue.h>
++#include <linux/dma-fence.h>
++#include <linux/module.h>
++#include <linux/mman.h>
++#include <asm/pgalloc.h>
++#include <linux/uaccess.h>
++
++#include <uapi/drm/drm.h>
++#include <uapi/drm/drm_mode.h>
++
++#include <drm/drm_agpsupport.h>
++#include <drm/drm_crtc.h>
++#include <drm/drm_fourcc.h>
++#include <drm/drm_hashtab.h>
++#include <drm/drm_mm.h>
++#include <drm/drm_os_linux.h>
++#include <drm/drm_sarea.h>
++#include <drm/drm_drv.h>
++#include <drm/drm_prime.h>
++#include <drm/drm_print.h>
++#include <drm/drm_pci.h>
++#include <drm/drm_file.h>
++#include <drm/drm_debugfs.h>
++#include <drm/drm_ioctl.h>
++#include <drm/drm_sysfs.h>
++#include <drm/drm_vblank.h>
++#include <drm/drm_irq.h>
++#include <drm/drm_device.h>
++
++struct module;
++
++struct device_node;
++struct videomode;
++struct dma_resv;
++struct dma_buf_attachment;
++
++struct pci_dev;
++struct pci_controller;
++
++
 +#include <drm/drm_mipi_dsi.h>
 +#include <drm/drm_panel.h>
 +
