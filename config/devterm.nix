@@ -5,12 +5,13 @@
   lib,
   nixos-hardware,
   system,
+  nix-packages,
   ...
 }: {
   networking.hostName = "devterm";
   networking.hostId = "b83a2c93";
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_rpi4;
+  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor nix-packages.packages.${system}.rpi4Kernel);
 
   boot.kernelPatches = [
     {
