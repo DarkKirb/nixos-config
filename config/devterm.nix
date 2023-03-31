@@ -11,7 +11,8 @@
   networking.hostName = "devterm";
   networking.hostId = "b83a2c93";
 
-  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor nix-packages.packages.${system}.rpi4Kernel);
+  #boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor nix-packages.packages.${system}.rpi4Kernel);
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_rpi4;
 
   hardware.deviceTree.overlays = [
     {
@@ -393,6 +394,11 @@
       name = "devterm-cm4";
       patch = ./workarounds/devterm-kernel.patch;
     }
+  ];
+
+  boot.kernelParams = [
+    "console=serial0,115200"
+    "fbcon=rotate:1"
   ];
 
   imports = [
