@@ -13,8 +13,8 @@
 
   boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor nix-packages.packages.${system}.rpi4Kernel);
 
-  hardware.deviceTree.overlays = {
-    devterm-bt = {
+  hardware.deviceTree.overlays = [
+    {
       name = "devterm-bt";
       dtsText = ''
         /dts-v1/;
@@ -58,9 +58,9 @@
           };
         };
       '';
-    };
+    }
 
-    devterm-misc = {
+    {
       name = "devterm-misc";
       dtsText = ''
         /dts-v1/;
@@ -158,9 +158,9 @@
 
         };
       '';
-    };
+    }
 
-    devterm-panel-overlay = {
+    {
       name = "devterm-panel-overlay";
       dtsText = ''
         /dts-v1/;
@@ -210,8 +210,8 @@
 
         };
       '';
-    };
-    devterm-pmu-overlay = {
+    }
+    {
       name = "devterm-pmu-overlay";
       dtsText = ''
         /dts-v1/;
@@ -339,9 +339,9 @@
 
         };
       '';
-    };
-    devterm-wifi-overlay = {
-      name = "devterm-pmu-overlay";
+    }
+    {
+      name = "devterm-wifi-overlay";
       dtsText = ''
 
         /plugin/;
@@ -385,8 +385,8 @@
 
         };
       '';
-    };
-  };
+    }
+  ];
 
   boot.kernelPatches = [
     {
