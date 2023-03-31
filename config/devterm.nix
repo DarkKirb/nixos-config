@@ -343,7 +343,7 @@
     {
       name = "devterm-wifi-overlay";
       dtsText = ''
-
+        /dts-v1/;
         /plugin/;
 
         /* Enable SDIO from MMC interface via various GPIO groups */
