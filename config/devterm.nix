@@ -71,16 +71,6 @@
           compatible = "brcm,bcm2835";
 
           fragment@0 {
-            target = <&pwm>;
-            __overlay__ {
-              pinctrl-names = "default";
-              pinctrl-0 = <&pwm_pins>;
-              assigned-clock-rates = <100000000>;
-              status = "okay";
-            };
-          };
-
-          fragment@1 {
             target = <&i2c1>;
             __overlay__ {
               #address-cells = <1>;
@@ -94,21 +84,29 @@
                 compatible = "ti,adc101c";
                 status = "okay";
               };
+            };
+          };
 
+          fragment@1 {
+            target = <&spi4>;
+            __overlay__ {
+              pinctrl-names = "default";
+              pinctrl-0 = <&spi4_pins &spi4_cs_pins>;
+              cs-gpios = <&gpio 4 1>;
+              status = "okay";
+
+              spidev4_0: spidev@0 {
+                compatible = "spidev";
+                reg = <0>;      /* CE0 */
+                #address-cells = <1>;
+                #size-cells = <0>;
+                spi-max-frequency = <125000000>;
+                status = "okay";
+              };
             };
           };
 
           fragment@2 {
-            target = <&spi0>;
-            __overlay__ {
-              pinctrl-names = "default";
-              pinctrl-0 = <&spi0_pins &spi0_cs_pins>;
-              cs-gpios = <&gpio 35 1>;
-              status = "okay";
-            };
-          };
-
-          fragment@3 {
             target = <&uart1>;
             __overlay__ {
               pinctrl-names = "default";
@@ -117,32 +115,27 @@
             };
           };
 
-          fragment@4 {
+          fragment@3 {
             target = <&gpio>;
             __overlay__ {
-
-              pwm_pins: pwm_pins {
-                brcm,pins = <12 13>;
-                brcm,function = <4>;
-              };
 
               i2c1_pins: i2c1 {
                 brcm,pins = <44 45>;
                 brcm,function = <6>;
               };
 
-              spi0_pins: spi0_pins {
-                brcm,pins = <38 39>;
-                brcm,function = <4>;
+              spi4_pins: spi4_pins {
+                brcm,pins = <6 7>;
+                brcm,function = <7>;
               };
 
-              spi0_cs_pins: spi0_cs_pins {
-                brcm,pins = <35>;
+              spi4_cs_pins: spi0_cs_pins {
+                brcm,pins = <4>;
                 brcm,function = <1>;
               };
 
               uart1_pins: uart1_pins {
-                brcm,pins = <32 33>;
+                brcm,pins = <14 15>;
                 brcm,function = <2>;
                 brcm,pull = <0 2>;
               };
@@ -150,7 +143,7 @@
             };
           };
 
-          fragment@5 {
+          fragment@4 {
             target-path = "/chosen";
             __overlay__ {
               bootargs = "8250.nr_uarts=1";
@@ -184,7 +177,7 @@
               };
 
               panel_cwd686: panel@0 {
-                compatible = "clockworkpi,cwd686";
+                compatible = "cw,cwd686";
                 reg = <0>;
                 reset-gpio = <&gpio 8 1>;
                 backlight = <&ocp8178_backlight>;
@@ -222,7 +215,7 @@
           compatible = "brcm,bcm2835";
 
           fragment@0 {
-            target = <&i2c0>;
+            target = <&i2c0if>;
             __overlay__ {
               #address-cells = <1>;
               #size-cells = <0>;
@@ -233,7 +226,7 @@
               axp22x: pmic@34 {
                 interrupt-controller;
                 #interrupt-cells = <1>;
-                compatible = "x-powers,axp221";
+                compatible = "x-powers,axp223";
                 reg = <0x34>; /* i2c address */
                 interrupt-parent = <&gpio>;
                 interrupts = <2 8>;  /* IRQ_TYPE_EDGE_FALLING */
@@ -251,23 +244,10 @@
                   };
 
                   reg_aldo2: aldo2 {
+                    regulator-always-on;
                     regulator-min-microvolt = <3300000>;
                     regulator-max-microvolt = <3300000>;
                     regulator-name = "display-vcc";
-                  };
-
-                  reg_aldo3: aldo3 {
-                    regulator-always-on;
-                    regulator-min-microvolt = <3300000>;
-                    regulator-max-microvolt = <3300000>;
-                    regulator-name = "wifi-vdd";
-                  };
-
-                  reg_dldo1: dldo1 {
-                    regulator-always-on;
-                    regulator-min-microvolt = <3300000>;
-                    regulator-max-microvolt = <3300000>;
-                    regulator-name = "wifi-vcc1";
                   };
 
                   reg_dldo2: dldo2 {
@@ -291,27 +271,6 @@
                     regulator-name = "dldo4";
                   };
 
-                  reg_eldo1: eldo1 {
-                    regulator-always-on;
-                    regulator-min-microvolt = <3300000>;
-                    regulator-max-microvolt = <3300000>;
-                    regulator-name = "wifi-vcc2";
-                  };
-
-                  reg_eldo2: eldo2 {
-                    regulator-always-on;
-                    regulator-min-microvolt = <3300000>;
-                    regulator-max-microvolt = <3300000>;
-                    regulator-name = "wifi-vcc3";
-                  };
-
-                  reg_eldo3: eldo3 {
-                    regulator-always-on;
-                    regulator-min-microvolt = <3300000>;
-                    regulator-max-microvolt = <3300000>;
-                    regulator-name = "wifi-vcc4";
-                  };
-
                 };
 
                 battery_power_supply: battery-power-supply {
@@ -319,8 +278,8 @@
                   monitored-battery = <&battery>;
                 };
 
-                usb_power_supply: usb_power_supply {
-                  compatible = "x-powers,axp221-usb-power-supply";
+                ac_power_supply: ac_power_supply {
+                  compatible = "x-powers,axp221-ac-power-supply";
                 };
 
               };
@@ -328,6 +287,20 @@
           };
 
           fragment@1 {
+            target = <&i2c0if>;
+            __overlay__ {
+              compatible = "brcm,bcm2708-i2c";
+            };
+          };
+
+          fragment@2 {
+            target-path = "/aliases";
+            __overlay__ {
+              i2c0 = "/soc/i2c@7e205000";
+            };
+          };
+
+          fragment@3 {
             target-path = "/";
             __overlay__  {
               battery: battery@0 {
