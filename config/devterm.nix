@@ -382,7 +382,7 @@
   hardware.raspberry-pi."4" = {
     dwc2.enable = true;
     i2c1.enable = true;
-    apply-overlays-dtmerge.enable = true;
+    #    apply-overlays-dtmerge.enable = true;
     pwm0.enable = true;
   };
 
