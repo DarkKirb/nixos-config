@@ -1,19 +1,19 @@
 diff --git a/arch/arm/boot/dts/overlays/Makefile b/arch/arm/boot/dts/overlays/Makefile
-index ef0a0cc3da99..8c3431aca11d 100644
+index bb9f5bf9d43a..eaedb8aad1a5 100644
 --- a/arch/arm/boot/dts/overlays/Makefile
 +++ b/arch/arm/boot/dts/overlays/Makefile
-@@ -31,6 +31,11 @@ dtbo-$(CONFIG_ARCH_BCM2835) += \
- 	audremap.dtbo \
- 	balena-fin.dtbo \
- 	cma.dtbo \
+@@ -44,6 +44,11 @@ dtbo-$(CONFIG_ARCH_BCM2835) += \
+ 	crystalfontz-cfa050_pi_m.dtbo \
+ 	cutiepi-panel.dtbo \
+ 	dacberry400.dtbo \
 +	devterm-bt.dtbo \
 +	devterm-misc.dtbo \
 +	devterm-panel.dtbo \
 +	devterm-pmu.dtbo \
 +	devterm-wifi.dtbo \
  	dht11.dtbo \
+ 	dionaudio-kiwi.dtbo \
  	dionaudio-loco.dtbo \
- 	dionaudio-loco-v2.dtbo \
 diff --git a/arch/arm/boot/dts/overlays/devterm-bt-overlay.dts b/arch/arm/boot/dts/overlays/devterm-bt-overlay.dts
 new file mode 100755
 index 000000000000..4b634fdd3bda
@@ -62,7 +62,7 @@ index 000000000000..4b634fdd3bda
 +};
 diff --git a/arch/arm/boot/dts/overlays/devterm-misc-overlay.dts b/arch/arm/boot/dts/overlays/devterm-misc-overlay.dts
 new file mode 100644
-index 000000000000..c080c835abfb
+index 000000000000..1eebe04480ac
 --- /dev/null
 +++ b/arch/arm/boot/dts/overlays/devterm-misc-overlay.dts
 @@ -0,0 +1,87 @@
@@ -363,10 +363,10 @@ index 000000000000..d5da786dc445
 +
 +};
 diff --git a/arch/arm/configs/bcm2711_defconfig b/arch/arm/configs/bcm2711_defconfig
-index b0e58d871a60..fc6d75f028e6 100644
+index d7c97010ab75..874f07394771 100644
 --- a/arch/arm/configs/bcm2711_defconfig
 +++ b/arch/arm/configs/bcm2711_defconfig
-@@ -680,7 +680,7 @@ CONFIG_I2C_MUX_GPMUX=m
+@@ -697,7 +697,7 @@ CONFIG_I2C_MUX_GPMUX=m
  CONFIG_I2C_MUX_PCA954x=m
  CONFIG_I2C_MUX_PINCTRL=m
  CONFIG_I2C_BCM2708=m
@@ -375,7 +375,7 @@ index b0e58d871a60..fc6d75f028e6 100644
  CONFIG_I2C_BRCMSTB=m
  CONFIG_I2C_GPIO=m
  CONFIG_I2C_ROBOTFUZZ_OSIF=m
-@@ -1524,3 +1524,15 @@ CONFIG_IRQSOFF_TRACER=y
+@@ -1593,3 +1593,15 @@ CONFIG_IRQSOFF_TRACER=y
  CONFIG_SCHED_TRACER=y
  CONFIG_BLK_DEV_IO_TRACE=y
  # CONFIG_UPROBE_EVENTS is not set
@@ -392,10 +392,10 @@ index b0e58d871a60..fc6d75f028e6 100644
 +CONFIG_DRM_PANEL_CWD686=m
 +CONFIG_TI_ADC081C=m
 diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index b9dbedf8f15e..9a18418d8287 100644
+index 59cb2e9026cd..dc1a4672b670 100644
 --- a/drivers/gpu/drm/panel/Kconfig
 +++ b/drivers/gpu/drm/panel/Kconfig
-@@ -499,4 +499,17 @@ config DRM_PANEL_XINPENG_XPP055C272
+@@ -643,4 +643,17 @@ config DRM_PANEL_XINPENG_XPP055C272
  	  Say Y here if you want to enable support for the Xinpeng
  	  XPP055C272 controller for 720x1280 LCD panels with MIPI/RGB/SPI
  	  system interfaces.
@@ -414,17 +414,18 @@ index b9dbedf8f15e..9a18418d8287 100644
 +
  endmenu
 diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 2ba560bca61d..865cca7f69c6 100644
+index b7810a7e7f86..59ef07efc25e 100644
 --- a/drivers/gpu/drm/panel/Makefile
 +++ b/drivers/gpu/drm/panel/Makefile
-@@ -53,3 +53,4 @@ obj-$(CONFIG_DRM_PANEL_TPO_TPG110) += panel-tpo-tpg110.o
- obj-$(CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA) += panel-truly-nt35597.o
+@@ -66,3 +66,4 @@ obj-$(CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA) += panel-truly-nt35597.o
  obj-$(CONFIG_DRM_PANEL_VISIONOX_RM69299) += panel-visionox-rm69299.o
+ obj-$(CONFIG_DRM_PANEL_WIDECHIPS_WS2401) += panel-widechips-ws2401.o
  obj-$(CONFIG_DRM_PANEL_XINPENG_XPP055C272) += panel-xinpeng-xpp055c272.o
 +obj-$(CONFIG_DRM_PANEL_CWD686) += panel-cwd686.o
+\ No newline at end of file
 diff --git a/drivers/gpu/drm/panel/panel-cwd686.c b/drivers/gpu/drm/panel/panel-cwd686.c
 new file mode 100644
-index 000000000000..09dd9424fa4e
+index 000000000000..0ec201b41a8d
 --- /dev/null
 +++ b/drivers/gpu/drm/panel/panel-cwd686.c
 @@ -0,0 +1,284 @@
@@ -713,10 +714,10 @@ index 000000000000..09dd9424fa4e
 +MODULE_DESCRIPTION("DRM Driver for cwd686 MIPI DSI panel");
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/mfd/axp20x.c b/drivers/mfd/axp20x.c
-index aa59496e4376..45b09ce38bb3 100644
+index 8161a5dc68e8..ec615b6463cb 100644
 --- a/drivers/mfd/axp20x.c
 +++ b/drivers/mfd/axp20x.c
-@@ -976,6 +976,7 @@ int axp20x_device_probe(struct axp20x_dev *axp20x)
+@@ -1000,6 +1000,7 @@ int axp20x_device_probe(struct axp20x_dev *axp20x)
  		return ret;
  	}
 
@@ -739,7 +740,7 @@ index ac360016b08a..c11024f3c6a1 100644
 
  	return IRQ_HANDLED;
 diff --git a/drivers/power/supply/axp20x_battery.c b/drivers/power/supply/axp20x_battery.c
-index e84b6e4da14a..b62c361e2589 100644
+index 335e12cc5e2f..849ac66cb652 100644
 --- a/drivers/power/supply/axp20x_battery.c
 +++ b/drivers/power/supply/axp20x_battery.c
 @@ -326,6 +326,42 @@ static int axp20x_battery_get_prop(struct power_supply *psy,
@@ -785,7 +786,7 @@ index e84b6e4da14a..b62c361e2589 100644
  	default:
  		return -EINVAL;
  	}
-@@ -486,6 +522,8 @@ static enum power_supply_property axp20x_battery_props[] = {
+@@ -497,6 +533,8 @@ static enum power_supply_property axp20x_battery_props[] = {
  	POWER_SUPPLY_PROP_VOLTAGE_MAX_DESIGN,
  	POWER_SUPPLY_PROP_VOLTAGE_MIN_DESIGN,
  	POWER_SUPPLY_PROP_CAPACITY,
@@ -794,7 +795,7 @@ index e84b6e4da14a..b62c361e2589 100644
  };
 
  static int axp20x_battery_prop_writeable(struct power_supply *psy,
-@@ -630,6 +668,12 @@ static int axp20x_power_probe(struct platform_device *pdev)
+@@ -642,6 +680,12 @@ static int axp20x_power_probe(struct platform_device *pdev)
  	axp20x_get_constant_charge_current(axp20x_batt,
  					   &axp20x_batt->max_ccc);
 
@@ -808,7 +809,7 @@ index e84b6e4da14a..b62c361e2589 100644
  }
 
 diff --git a/drivers/staging/vc04_services/bcm2835-audio/bcm2835.c b/drivers/staging/vc04_services/bcm2835-audio/bcm2835.c
-index 092ccbfd5243..571fd4afb35b 100644
+index ccda115ab9e0..5070ca58f30a 100644
 --- a/drivers/staging/vc04_services/bcm2835-audio/bcm2835.c
 +++ b/drivers/staging/vc04_services/bcm2835-audio/bcm2835.c
 @@ -11,9 +11,9 @@
@@ -825,10 +826,10 @@ index 092ccbfd5243..571fd4afb35b 100644
  module_param(enable_hdmi, bool, 0444);
  MODULE_PARM_DESC(enable_hdmi, "Enables HDMI virtual audio device");
 diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
-index ed22a119c992..81decd5e3f40 100644
+index 853ae0bd961d..9039fc615499 100644
 --- a/drivers/video/backlight/Kconfig
 +++ b/drivers/video/backlight/Kconfig
-@@ -463,6 +463,12 @@ config BACKLIGHT_LED
+@@ -471,6 +471,12 @@ config BACKLIGHT_LED
  	  If you have a LCD backlight adjustable by LED class driver, say Y
  	  to enable this driver.
 
@@ -842,10 +843,10 @@ index ed22a119c992..81decd5e3f40 100644
 
  endmenu
 diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
-index 836f0d0d1ca0..bf5b9f5c0141 100644
+index 30a17f4be040..4b616320b177 100644
 --- a/drivers/video/backlight/Makefile
 +++ b/drivers/video/backlight/Makefile
-@@ -58,3 +58,4 @@ obj-$(CONFIG_BACKLIGHT_WM831X)		+= wm831x_bl.o
+@@ -59,3 +59,4 @@ obj-$(CONFIG_BACKLIGHT_WM831X)		+= wm831x_bl.o
  obj-$(CONFIG_BACKLIGHT_ARCXCNN) 	+= arcxcnn_bl.o
  obj-$(CONFIG_BACKLIGHT_RAVE_SP)		+= rave-sp-backlight.o
  obj-$(CONFIG_BACKLIGHT_LED)		+= led_bl.o
