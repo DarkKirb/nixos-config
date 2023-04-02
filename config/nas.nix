@@ -48,7 +48,7 @@
   boot.supportedFilesystems = lib.mkForce ["bcachefs" "vfat"];
 
   fileSystems."/" = {
-    device = "/dev/nvme0n1p2:/dev/sda1:/dev/sdb1:/dev/sdc2";
+    device = "/dev/nvme0n1p2:/dev/sda1:/dev/sdb1:/dev/sdc1";
     fsType = "bcachefs";
   };
 
