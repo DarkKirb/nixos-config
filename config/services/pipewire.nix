@@ -38,23 +38,20 @@ _: {
       value = "99999";
     }
   ];
-  services.pipewire.config.pipewire-pulse = {
-    "pusle.rules" = [
+  environment.etc."pipewire/pipewire-pulse.conf.d/discord.conf".text = ''
+    pulse.rules = [
       {
+        # Discord notification sounds fix
         matches = [
-          {
-            "application.process.binary" = ".Discord-wrapped";
-          }
-          {
-            "application.process.binary" = "Discord";
-          }
-        ];
+          { application.process.binary = "Discord" }
+          { application.process.binary = ".Discord-wrapped" }
+        ]
         actions = {
-          update-props = {
-            "pulse.min.quantum" = "8192/48000";
-          };
-        };
+            update-props = {
+                pulse.min.quantum      = 1024/48000     # 21ms
+            }
+        }
       }
-    ];
-  };
+    ]
+  '';
 }
