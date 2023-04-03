@@ -99,18 +99,23 @@
     "ca-derivations"
   ];
   networking.firewall.allowedTCPPorts = [58913];
-  services.pipewire.config.pipewire."context.properties"."default.clock.rate" = 384000;
-  services.pipewire.config.pipewire."context.properties"."default.clock.allowed-rates" = [
-    44100
-    48000
-    88200
-    96000
-    176400
-    192000
-    352800
-    384000
-  ];
-  services.pipewire.config.pipewire."context.properties"."default.clock.quantum" = 8192;
+
+  environment.etc."pipewire/pipewire.conf.d/hi-res.conf".text = ''
+    context.properties = {
+      default.clock.rate = 384000
+      default.clock.allowedRates = [
+        44100
+        48000
+        88200
+        96000
+        176400
+        192000
+        352800
+        384000
+      ]
+      default.clock.quantum = 8192
+    }
+  '';
   nix.settings.substituters = lib.mkForce [
     "https://hydra.int.chir.rs/"
     "https://cache.nixos.org/"
