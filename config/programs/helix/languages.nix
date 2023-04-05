@@ -570,20 +570,20 @@
       roots = [];
       scope = "text.html.basic";
     }
-#    {
-#      comment-token = "#";
-#      file-types = ["py"];
-#      indent = {
-#        tab-width = 4;
-#        unit = "    ";
-#      };
-#      injection-regex = "python";
-#      language-server.command = "${pkgs.python3Packages.python-lsp-server}/bin/pylsp";
-#      name = "python";
-#      roots = [];
-#      scope = "source.python";
-#      shebangs = ["python"];
-#    }
+    #    {
+    #      comment-token = "#";
+    #      file-types = ["py"];
+    #      indent = {
+    #        tab-width = 4;
+    #        unit = "    ";
+    #      };
+    #      injection-regex = "python";
+    #      language-server.command = "${pkgs.python3Packages.python-lsp-server}/bin/pylsp";
+    #      name = "python";
+    #      roots = [];
+    #      scope = "source.python";
+    #      shebangs = ["python"];
+    #    }
     {
       comment-token = "#";
       file-types = ["ncl"];
@@ -1099,7 +1099,6 @@
         tab-width = 2;
         unit = "  ";
       };
-      max-line-length = 72;
       name = "git-commit";
       roots = [];
       rulers = [50 72];
