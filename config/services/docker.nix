@@ -6,7 +6,6 @@ _: {
       flags = ["--all"];
     };
     enable = true;
-    storageDriver = "zfs";
   };
   users.users.darkkirb.extraGroups = ["docker"];
 }
