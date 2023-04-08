@@ -1,0 +1,117 @@
+From 750978a19232583e17620a1bd80435e957e7213a Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Sandro=20J=C3=A4ckel?= <sandro.jaeckel@gmail.com>
+Date: Sat, 18 Jun 2022 13:22:42 +0200
+Subject: [PATCH 1/2] Add gitea push hook
+
+---
+ doc/manual/src/webhooks.md       | 20 +++++++++++++++++---
+ src/lib/Hydra/Controller/API.pm  | 16 ++++++++++++++++
+ src/lib/Hydra/Controller/Root.pm |  3 ++-
+ 3 files changed, 35 insertions(+), 4 deletions(-)
+
+diff --git a/doc/manual/src/webhooks.md b/doc/manual/src/webhooks.md
+index 2b26cd612..674e1064b 100644
+--- a/doc/manual/src/webhooks.md
++++ b/doc/manual/src/webhooks.md
+@@ -1,9 +1,12 @@
+ # Webhooks
+
+-Hydra can be notified by github's webhook to trigger a new evaluation when a
++Hydra can be notified by github or gitea with webhooks to trigger a new evaluation when a
+ jobset has a github repo in its input.
+-To set up a github webhook go to `https://github.com/<yourhandle>/<yourrepo>/settings` and in the `Webhooks` tab
+-click on `Add webhook`.
++
++## GitHub
++
++To set up a webhook for a GitHub repository go to `https://github.com/<yourhandle>/<yourrepo>/settings`
++and in the `Webhooks` tab click on `Add webhook`.
+
+ - In `Payload URL` fill in `https://<your-hydra-domain>/api/push-github`.
+ - In `Content type` switch to `application/json`.
+@@ -11,3 +14,14 @@ click on `Add webhook`.
+ - For `Which events would you like to trigger this webhook?` keep the default option for events on `Just the push event.`.
+
+ Then add the hook with `Add webhook`.
++
++## Gitea
++
++To set up a webhook for a Gitea repository go to the settings of the repository in your Gitea instance
++and in the `Webhooks` tab click on `Add Webhook` and choose `Gitea` in the drop down.
++
++- In `Target URL` fill in `https://<your-hydra-domain>/api/push-gitea`.
++- Keep HTTP method `POST`, POST Content Type `application/json` and Trigger On `Push Events`.
++- Change the branch filter to match the git branch hydra builds.
++
++Then add the hook with `Add webhook`.
+diff --git a/src/lib/Hydra/Controller/API.pm b/src/lib/Hydra/Controller/API.pm
+index 6f10ef575..120735955 100644
+--- a/src/lib/Hydra/Controller/API.pm
++++ b/src/lib/Hydra/Controller/API.pm
+@@ -285,6 +285,22 @@ sub push_github : Chained('api') PathPart('push-github') Args(0) {
+     $c->response->body("");
+ }
+
++sub push_gitea : Chained('api') PathPart('push-gitea') Args(0) {
++    my ($self, $c) = @_;
++
++    $c->{stash}->{json}->{jobsetsTriggered} = [];
++
++    my $in = $c->request->{data};
++    my $url = $in->{repository}->{clone_url} or die;
++    print STDERR "got push from Gitea repository $url\n";
++
++    triggerJobset($self, $c, $_, 0) foreach $c->model('DB::Jobsets')->search(
++        { 'project.enabled' => 1, 'me.enabled' => 1 },
++        { join => 'project'
++        , where => \ [ 'me.flake like ? or exists (select 1 from JobsetInputAlts where project = me.project and jobset = me.name and value like ?)', [ 'flake', "%$url%"], [ 'value', "%$url%" ] ]
++        });
++    $c->response->body("");
++}
+
+
+ 1;
+diff --git a/src/lib/Hydra/Controller/Root.pm b/src/lib/Hydra/Controller/Root.pm
+index c6843d296..1b33db2a6 100644
+--- a/src/lib/Hydra/Controller/Root.pm
++++ b/src/lib/Hydra/Controller/Root.pm
+@@ -32,6 +32,7 @@ sub noLoginNeeded {
+
+   return $whitelisted ||
+          $c->request->path eq "api/push-github" ||
++         $c->request->path eq "api/push-gitea" ||
+          $c->request->path eq "google-login" ||
+          $c->request->path eq "github-redirect" ||
+          $c->request->path eq "github-login" ||
+@@ -77,7 +78,7 @@ sub begin :Private {
+     $_->supportedInputTypes($c->stash->{inputTypes}) foreach @{$c->hydra_plugins};
+
+     # XSRF protection: require POST requests to have the same origin.
+-    if ($c->req->method eq "POST" && $c->req->path ne "api/push-github") {
++    if ($c->req->method eq "POST" && $c->req->path ne "api/push-github" && $c->req->path ne "api/push-gitea") {
+         my $referer = $c->req->header('Referer');
+         $referer //= $c->req->header('Origin');
+         my $base = $c->req->base;
+
+From a81c6a3a80d1055aa80934ab229e2dc49594edd2 Mon Sep 17 00:00:00 2001
+From: Sandro <sandro.jaeckel@gmail.com>
+Date: Fri, 1 Jul 2022 22:21:32 +0200
+Subject: [PATCH 2/2] Match URIs that don't end in .git
+
+Co-authored-by: Charlotte <lotte@chir.rs>
+---
+ src/lib/Hydra/Controller/API.pm | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/lib/Hydra/Controller/API.pm b/src/lib/Hydra/Controller/API.pm
+index 120735955..5eeb0c04b 100644
+--- a/src/lib/Hydra/Controller/API.pm
++++ b/src/lib/Hydra/Controller/API.pm
+@@ -292,6 +292,7 @@ sub push_gitea : Chained('api') PathPart('push-gitea') Args(0) {
+
+     my $in = $c->request->{data};
+     my $url = $in->{repository}->{clone_url} or die;
++    $url =~ s/.git$//;
+     print STDERR "got push from Gitea repository $url\n";
+
+     triggerJobset($self, $c, $_, 0) foreach $c->model('DB::Jobsets')->search(
