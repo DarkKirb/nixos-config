@@ -11,7 +11,7 @@
       WOODPECKER_SERVER_PROTO = "https";
       WOODPECKER_SERVER_PORT = ":47927";
     };
-    environmentFile = [config.sops.secrets."services/woodpecker".path];
+    environmentFile = config.sops.secrets."services/woodpecker".path;
   };
   sops.secrets."services/woodpecker" = {};
   services.caddy.virtualHosts."woodpecker.int.chir.rs" = {
