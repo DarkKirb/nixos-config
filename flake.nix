@@ -60,8 +60,8 @@ rec {
       #inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-packages = {
-      url = "github:DarkKirb/nix-packages";
-      #inputs.attic.follows = "attic";
+      url = "git+https://git.chir.rs/darkkirb/nix-packages.git?ref=main";
+      inputs.attic.follows = "attic";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
