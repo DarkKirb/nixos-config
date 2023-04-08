@@ -84,6 +84,12 @@
       "src": ["tag:devDevice"],
       "dst": ["tag:nas:8384", "tag:nas:631"]
     }
+    // Woodpecker agents
+    {
+      "action": "accept",
+      "src": ["tag:woodpeckerRunner"],
+      "dst": ["tag:nas:9000"]
+    }
   ],
 
   "tagOwners": {
@@ -97,6 +103,7 @@
     "tag:buildserver": ["DarkKirb@github"],
     "tag:devDevice": ["DarkKirb@github"],
     "tag:server": ["DarkKirb@github"],
-    "tag:syncthing": ["DarkKirb@github"]
+    "tag:syncthing": ["DarkKirb@github"],
+    "tag:woodpeckerRunner": ["DarkKirb@github"],
   }
 }

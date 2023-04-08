@@ -10,7 +10,7 @@
   services.woodpecker-agents.agents.main = {
     enable = true;
     environment = {
-      WOODPECKER_SERVER = "https://woodpecker.int.chir.rs/";
+      WOODPECKER_SERVER = "woodpecker.int.chir.rs:9000";
       WOODPECKER_BACKEND = "docker";
       DOCKER_HOST = "unix:///run/docker.sock";
     };
