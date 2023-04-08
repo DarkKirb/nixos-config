@@ -1247,11 +1247,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1680960082,
-        "narHash": "sha256-C+p1+NbNa51E5T0X0BjlK4ohiykGW/+w0HLfo3PgeYE=",
+        "lastModified": 1680978660,
+        "narHash": "sha256-W6c6wgZio/gk/hrfpWf3BTSpXoFEJ52fu4XrMSNA3qQ=",
         "ref": "main",
-        "rev": "585953d14969294eeae974d45ca387df7f62fcef",
-        "revCount": 567,
+        "rev": "71cc74d49d35c5dab7a37eb2148b3bdb2fd39a52",
+        "revCount": 571,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/nix-packages.git"
       },
