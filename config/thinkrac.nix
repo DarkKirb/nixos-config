@@ -35,7 +35,7 @@
   services.zfs.autoScrub.enable = true;
   services.zfs.autoScrub.pools = ["tank"];
 
-  virtualization.docker.storageDriver = "zfs";
+  virtualisation.docker.storageDriver = "zfs";
 
   boot.initrd.luks.devices = {
     disk = {
