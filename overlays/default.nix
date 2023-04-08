@@ -5,16 +5,19 @@ in
   with nixpkgs.legacyPackages.${system};
     {
       hydra-unstable = hydra.packages.${system}.hydra.overrideAttrs (_: {
-        patches = [./hydra-size-limit.patch];
+        patches = [
+          ./hydra-size-limit.patch
+          ./hydra-gitea-push-hook.patch
+        ];
         checkPhase = "true";
         installCheckPhase = "true";
       });
       mosh = prev.mosh.overrideAttrs (old: {
         patches = [
-          ./config/workarounds/mosh/ssh_path.patch
-          ./config/workarounds/mosh/mosh-client_path.patch
-          ./config/workarounds/mosh/utempter_path.patch
-          ./config/workarounds/mosh/bash_completion_datadir.patch
+          ./mosh/ssh_path.patch
+          ./mosh/mosh-client_path.patch
+          ./mosh/utempter_path.patch
+          ./mosh/bash_completion_datadir.patch
         ];
         postPatch = ''
           substituteInPlace scripts/mosh.pl \
