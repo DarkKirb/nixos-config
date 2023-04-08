@@ -56,13 +56,16 @@
       packages.ENABLED = true;
       federation.ENABLED = true;
       "repository.signing" = {
-        SIGNING_KEY = "C9974EDF9932B558";
+        SIGNING_KEY = "823566455E49DDC6AE5813048CA13817A54AAB38";
         SIGNING_NAME = "Gitea";
         SIGNING_EMAIL = "gitea@chir.rs";
         INITIAL_COMMIT = "always";
         WIKI = "always";
         CRUD_ACTIONS = "always";
         MERGES = "always";
+      };
+      git = {
+        HOME_PATH = "/var/lib/gitea";
       };
     };
   };

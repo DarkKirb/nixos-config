@@ -36,7 +36,7 @@ in {
       path = [pkgs.gnupg];
       serviceConfig = {
         SystemCallFilter = mkForce "~@clock @cpu-emulation @debug @module @mount @obsolete @raw-io @reboot @setuid @swap";
-        ReadOnlyPaths = ["/var/lib/gitea/.gnupg"];
+        ReadWritePaths = ["/var/lib/gitea/.gnupg"];
       };
       # In older versions the secret naming for JWT was kind of confusing.
       # The file jwt_secret hold the value for LFS_JWT_SECRET and JWT_SECRET
