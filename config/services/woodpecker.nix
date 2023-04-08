@@ -7,8 +7,7 @@
   services.woodpecker-server = {
     enable = true;
     environment = {
-      WOODPECKER_SERVER_HOST = "woodpecker.chir.rs";
-      WOODPECKER_SERVER_PROTO = "https";
+      WOODPECKER_HOST = "https://woodpecker.chir.rs";
       WOODPECKER_SERVER_PORT = ":47927";
     };
     environmentFile = config.sops.secrets."services/woodpecker".path;
