@@ -14,7 +14,7 @@
       WOODPECKER_BACKEND = "docker";
       DOCKER_HOST = "unix:///run/docker.sock";
     };
-    environmentFile = [sops.secrets."services/woodpecker-runner".path];
+    environmentFile = [config.sops.secrets."services/woodpecker-runner".path];
   };
   sops.secrets."services/woodpecker-runner" = {};
 }
