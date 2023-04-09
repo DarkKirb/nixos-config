@@ -44,7 +44,7 @@ pipeline:
     image: nixery.dev/shell/jq/curl
     commands:
       - |
-        echo '{}' | jq '.body = $body' --arg body "$(cat review)" | jq '.commit_id = $commit_id' --arg commit_id "$CI_COMMIT_SHA" | curl -XPOST  "https://git.chir.rs/api/v1/repos/$CI_REPO_OWNER/$CI_REPO_OWNER/pulls/$CI_COMMIT_PULL_REQUEST/reviews" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: token $GITEA_TOKEN" --data-binary @-
+        echo '{}' | jq '.body = $body' --arg body "$(cat review)" | jq '.commit_id = $commit_id' --arg commit_id "$CI_COMMIT_SHA" | curl -XPOST  "https://git.chir.rs/api/v1/repos/$CI_REPO_OWNER/$CI_REPO_NAME/pulls/$CI_COMMIT_PULL_REQUEST/reviews" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: token $GITEA_TOKEN" --data-binary @-
     secrets:
       - gitea_token
     when:
