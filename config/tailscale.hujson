@@ -87,8 +87,7 @@
     // Woodpecker agents
     {
       "action": "accept",
-      //"src": ["tag:woodpeckerRunner"], // todo: broken auth rn
-      "src": ["tag:nutty-noon", "tag:nas"],
+      "src": ["tag:woodpeckerRunner"],
       "dst": ["tag:nas:9000"]
     }
   ],

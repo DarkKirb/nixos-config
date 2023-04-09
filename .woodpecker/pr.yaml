@@ -1,0 +1,51 @@
+pipeline:
+  diff-pr:
+    image: nixos/nix
+    commands:
+      - mkdir -p /etc/nix
+      - |
+        cat > /etc/nix/nix.conf << EOF
+        # WARNING: this file is generated from the nix.* options in
+        # your NixOS configuration, typically
+        # /etc/nixos/configuration.nix.  Do not edit it!
+        build-users-group = nixbld
+        allowed-users = *
+        auto-optimise-store = true
+        builders-use-substitutes = true
+        require-sigs = true
+        sandbox = false
+        substituters = https://hydra.int.chir.rs/ https://cache.nixos.org/
+        system-features = big-parallel benchmark ca-derivations
+        trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs= chir-rs:AnwyFacopHSkprD6aXY4/R3J9JYzTbV2rosJCBPaB28=
+        trusted-substituters =
+        trusted-users = @wheel
+        experimental-features = nix-command flakes ca-derivations
+        EOF
+      - nix-env -i python3
+      - |
+          for job in nixos-8gb-fsn1-1.x86_64-linux nutty-noon.x86_64-linux thinkrac.x86_64-linux nas.x86_64-linux instance-20221213-1915.aarch64-linux devterm.aarch64-linux; do
+            nix show-derivation -r "github:DarkKirb/nixos-config/main#hydraJobs.$job" > old-$job.json
+          done
+
+          echo "Difference between this PR and main:" > review
+          echo "" >> review
+
+          for job in nixos-8gb-fsn1-1.x86_64-linux nutty-noon.x86_64-linux thinkrac.x86_64-linux nas.x86_64-linux instance-20221213-1915.aarch64-linux devterm.aarch64-linux; do
+            nix show-derivation -r ".#hydraJobs.$job" > new-$job.json
+
+            echo "## Changes for $job:" >> review
+            echo '```' >> review
+            python scripts/diff-drvs.py old-$job.json new-$job.json >> review
+            echo '```' >> review
+          done
+    when:
+      - event: pull_request
+  post-review:
+    image: nixery.dev/shell/jq/curl
+    commands:
+      - |
+        echo '{}' | jq '.body = $body' --arg body "$(cat review)" | jq '.commit_id = $commit_id' --arg commit_id "$CI_COMMIT_SHA" | curl -XPOST  "https://git.chir.rs/api/v1/repos/$CI_REPO_OWNER/$CI_REPO_NAME/pulls/$CI_COMMIT_PULL_REQUEST/reviews" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: token $GITEA_TOKEN" --data-binary @-
+    secrets:
+      - gitea_token
+    when:
+      - event: pull_request

@@ -4,7 +4,7 @@
     "description": "jobsets",
     "nixexprinput": "nixos-config",
     "nixexprpath": "hydra/jobsets.nix",
-    "checkinterval": 60,
+    "checkinterval": 3600,
     "schedulingshares": 100,
     "enableemail": false,
     "emailoverride": "",
@@ -12,7 +12,7 @@
     "inputs": {
         "nixos-config": {
             "type": "git",
-            "value": "https://github.com/DarkKirb/nixos-config main",
+            "value": "https://git.chir.rs/darkkirb/nixos-config.git switch-to-gitea",
             "emailresponsible": false
         },
         "nixpkgs": {
@@ -21,8 +21,8 @@
             "emailresponsible": false
         },
         "prsJSON": {
-            "type": "githubpulls",
-            "value": "DarkKirb nixos-config",
+            "type": "path",
+            "value": "https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/pulls",
             "emailresponsible": false
         }
     }

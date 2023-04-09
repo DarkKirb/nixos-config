@@ -4,18 +4,18 @@
 }: let
   pkgs = import nixpkgs {};
   prs = builtins.fromJSON (builtins.readFile prsJSON);
-
   jobsets =
-    (pkgs.lib.mapAttrs' (
-        num: info: {
-          name = "pr${num}";
+    (builtins.listToAttrs (
+      map (
+        info: {
+          name = "pr${toString info.number}";
           value = {
-            enabled = 1;
-            hidden = false;
-            description = "PR ${num}: ${info.title}";
+            enabled = info.state == "open";
+            hidden = info.state != "open";
+            description = "PR ${toString info.number}: ${info.title}";
             nixexprinput = "nixos-config";
             nixexprpath = "hydra/default.nix";
-            checkinterval = 300;
+            checkinterval = 3600;
             schedulingshares = 100;
             enableemail = false;
             emailoverride = "";
@@ -23,14 +23,35 @@
             inputs = {
               nixos-config = {
                 type = "git";
-                value = "https://github.com/${info.head.repo.owner.login}/${info.head.repo.name}.git ${info.head.ref}";
+                value = "${info.head.repo.clone_url} ${info.head.ref}";
+                emailresponsible = false;
+              };
+              nixpkgs = {
+                type = "git";
+                value = "https://github.com/NixOS/nixpkgs.git master";
+                emailresponsible = false;
+              };
+              gitea_status_repo = {
+                type = "string";
+                value = "nixos-config";
+                emailresponsible = false;
+              };
+              gitea_repo_owner = {
+                type = "string";
+                value = "${info.head.repo.owner.login}";
+                emailresponsible = false;
+              };
+              gitea_repo_name = {
+                type = "string";
+                value = "${info.head.repo.name}";
                 emailresponsible = false;
               };
             };
           };
         }
       )
-      prs)
+      prs
+    ))
     // {
       nixos-config = {
         enabled = 1;
@@ -38,7 +59,7 @@
         description = "Current nixos config";
         nixexprinput = "nixos-config";
         nixexprpath = "hydra/default.nix";
-        checkinterval = 300;
+        checkinterval = 0;
         schedulingshares = 100;
         enableemail = false;
         emailoverride = "";
@@ -46,7 +67,27 @@
         inputs = {
           nixos-config = {
             type = "git";
-            value = "https://github.com/DarkKirb/nixos-config.git main";
+            value = "https://git.chir.rs/darkkirb/nixos-config main";
+            emailresponsible = false;
+          };
+          nixpkgs = {
+            type = "git";
+            value = "https://github.com/NixOS/nixpkgs.git master";
+            emailresponsible = false;
+          };
+          gitea_status_repo = {
+            type = "string";
+            value = "nixos-config";
+            emailresponsible = false;
+          };
+          gitea_repo_owner = {
+            type = "string";
+            value = "darkkirb";
+            emailresponsible = false;
+          };
+          gitea_repo_name = {
+            type = "string";
+            value = "nix-packages";
             emailresponsible = false;
           };
         };
