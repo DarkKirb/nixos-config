@@ -15,6 +15,7 @@
       DOCKER_HOST = "unix:///run/docker.sock";
     };
     environmentFile = [config.sops.secrets."services/woodpecker-runner".path];
+    extraGroups = ["docker"];
   };
   sops.secrets."services/woodpecker-runner" = {};
 }
