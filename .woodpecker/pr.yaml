@@ -1,6 +1,6 @@
 pipeline:
   diff-pr:
-    image: nixpkgs/nix-unstable
+    image: nixos/nix
     commands:
       - mkdir -p /etc/nix
       - |
@@ -21,6 +21,7 @@ pipeline:
         trusted-users = @wheel
         experimental-features = nix-command flakes ca-derivations
         EOF
+      - nix-env -iA python
       - |
           for job in nixos-8gb-fsn1-1.x86_64-linux nutty-noon.x86_64-linux thinkrac.x86_64-linux nas.x86_64-linux instance-20221213-1915.aarch64-linux devterm.aarch64-linux; do
             nix show-derivation -r "github:DarkKirb/nixos-config/main#hydraJobs.$job" > old-$job.json
