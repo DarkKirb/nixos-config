@@ -28,7 +28,7 @@
               };
               nixpkgs = {
                 type = "git";
-                value = "https://github.com/NixOS/nixpkgs.git ${version}";
+                value = "https://github.com/NixOS/nixpkgs.git master";
                 emailresponsible = false;
               };
               gitea_status_repo = {
@@ -72,7 +72,7 @@
           };
           nixpkgs = {
             type = "git";
-            value = "https://github.com/NixOS/nixpkgs.git ${version}";
+            value = "https://github.com/NixOS/nixpkgs.git master";
             emailresponsible = false;
           };
           gitea_status_repo = {
