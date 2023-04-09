@@ -41,10 +41,10 @@ pipeline:
     when:
       - event: pull_request
   post-review:
-    image: nixery.dev/shell/curl
+    image: nixery.dev/shell/jq/curl
     commands:
       - |
-        echo '{ "assignee": "DarkKirb", "base": "main", "head": "update-flake", "title": "Update flake" }' | jq '.body = $body' --arg body "$(cat review)" | curl -XPOST  'https://git.chir.rs/api/v1/repos/DarkKirb/nixos-config/pulls' -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer $AUTHORISATION" --data-binary @-
+        echo '{ "assignee": "DarkKirb", "base": "main", "head": "update-flake", "title": "Update flake" }' | jq '.body = $body' --arg body "$(cat review)" | curl -XPOST  'https://git.chir.rs/api/v1/repos/DarkKirb/nixos-config/pulls' -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: token $GITEA_TOKEN" --data-binary @-
     secrets:
       - gitea_token
     when:
