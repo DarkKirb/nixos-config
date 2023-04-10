@@ -1,8 +1,3 @@
-clone:
-  git:
-    image: woodpeckerci/plugin-git
-    settings:
-      partial: false
 pipeline:
   clone:
     image: nixery.dev/shell/gitFull
@@ -11,6 +6,9 @@ pipeline:
       - rm -rf $CI_REPO_NAME
       - git clone https://git.chir.rs/$CI_REPO_OWNER/$CI_REPO_NAME
       - cd $CI_REPO_NAME
+    when:
+      - event: cron
+      - event: manual
   flake-update:
     image: nixpkgs/nix-unstable
     commands:
