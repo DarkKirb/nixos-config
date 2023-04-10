@@ -2,7 +2,6 @@ desktop: {pkgs, ...}: {
   imports =
     [
       (import ../programs/zsh.nix desktop)
-      (import ../programs/helix desktop)
       ../programs/tmux.nix
       ../programs/taskwarrior.nix
     ]
