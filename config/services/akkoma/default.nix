@@ -289,5 +289,8 @@ in {
   };
 
   services.postgresql.extraPlugins = with pkgs.postgresql_13.pkgs; [rum];
-  environment.etc."pleroma/static".target = static_dir;
+  environment.etc."pleroma/static" = {
+    source = static_dir;
+    mode = "symlink";
+  };
 }
