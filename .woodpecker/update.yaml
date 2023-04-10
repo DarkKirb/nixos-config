@@ -1,8 +1,11 @@
 pipeline:
-  unshallow:
+  clone2:
     image: nixery.dev/shell/gitfull
     commands:
-      - git fetch --unshallow
+      - cd ..
+      - rm -rf $CI_REPO_NAME
+      - git clone https://git.chir.rs/$CI_REPO_OWNER/$CI_REPO_NAME
+      - cd $CI_REPO_NAME
     when:
       - event: cron
       - event: manual
