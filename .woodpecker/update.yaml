@@ -4,6 +4,13 @@ clone:
     settings:
       partial: false
 pipeline:
+  clone:
+    image: nixery.dev/shell/gitFull
+    commands:
+      - cd ..
+      - rm -rf $CI_REPO_NAME
+      - git clone https://git.chir.rs/$CI_REPO_OWNER/$CI_REPO_NAME
+      - cd $CI_REPO_NAME
   flake-update:
     image: nixpkgs/nix-unstable
     commands:
@@ -59,7 +66,7 @@ pipeline:
     image: nixery.dev/shell/curl
     commands:
       - |
-        echo '{ "assignee": "darkkirb", "base": "main", "head": "update-flake, "title": "Update flake", "body": "" }' | curl -X POST -H "Authorization: token $GITEA_TOKEN" -H "Content-Type: application/json" --data-binary @- 'https://git.chir.rs/api/v1/repos/darkkirb/nix-packages/pulls'
+        echo '{ "assignee": "darkkirb", "base": "main", "head": "update-flake, "title": "Update flake", "body": "" }' | curl -X POST -H "Authorization: token $GITEA_TOKEN" -H "Content-Type: application/json" --data-binary @- 'https://git.chir.rs/api/v1/repos/$CI_REPO_OWNER/$CI_REPO_NAME/pulls'
     secrets:
       - gitea_token
     when:
