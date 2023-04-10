@@ -64,7 +64,7 @@ pipeline:
     image: nixery.dev/shell/curl
     commands:
       - |
-        echo '{ "assignee": "darkkirb", "base": "main", "head": "update-flake, "title": "Update flake", "body": "" }' | curl -X POST -H "Authorization: token $GITEA_TOKEN" -H "Content-Type: application/json" --data-binary @- "https://git.chir.rs/api/v1/repos/$CI_REPO_OWNER/$CI_REPO_NAME/pulls"
+        echo '{ "assignee": "darkkirb", "base": "main", "head": "update-flake", "title": "Update flake", "body": "" }' | curl -X POST -H "Authorization: token $GITEA_TOKEN" -H "Content-Type: application/json" --data-binary @- "https://git.chir.rs/api/v1/repos/$CI_REPO_OWNER/$CI_REPO_NAME/pulls"
     secrets:
       - gitea_token
     when:
