@@ -1,10 +1,11 @@
-clone:
-  git:
-    image: woodpeckerci/plugin-git
-    settings:
-      partial: false
-
 pipeline:
+  unshallow:
+    image: nixery.dev/shell/gitFull
+    commands:
+      - git fetch --unshallow
+    when:
+      - event: cron
+      - event: manual
   flake-update:
     image: nixpkgs/nix-unstable
     commands:
