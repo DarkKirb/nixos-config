@@ -1,6 +1,6 @@
 pipeline:
   unshallow:
-    image: nixery.dev/shell/gitFull
+    image: nixery.dev/shell/gitfull
     commands:
       - git fetch --unshallow
     when:
