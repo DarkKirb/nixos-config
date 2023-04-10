@@ -78,7 +78,7 @@
         invites_enabled = true;
         account_activation_required = true;
         account_approval_required = true;
-        static_dir = "${static_dir}";
+        static_dir = "/etc/pleroma/static";
         max_pinned_statuses = 10;
         attachment_links = true;
         max_report_comment_size = 58913;
@@ -177,16 +177,9 @@
         proxy_opts = {
           redirect_on_failure = true;
         };
-        invalidation = {
-          enabled = true;
-          provider = mkRaw "Pleroma.Web.MediaProxy.Invalidation.Script";
-        };
       };
       ":media_preview_proxy" = {
         enabled = true;
-      };
-      "Pleroma.Web.MediaProxy.Invalidation.Script" = {
-        script_path = "${purge_url_script}";
       };
       "Pleroma.Repo" = {
         adapter = mkRaw "Ecto.Adapters.Postgres";
@@ -296,4 +289,8 @@ in {
   };
 
   services.postgresql.extraPlugins = with pkgs.postgresql_13.pkgs; [rum];
+  environment.etc."pleroma/static" = {
+    source = static_dir;
+    mode = "symlink";
+  };
 }
