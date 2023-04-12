@@ -64,8 +64,5 @@ in
             maintainers = with maintainers; [ma27];
           };
         };
-      forgejo = prev.forgejo.overrideAttrs (prev: {
-        patches = prev.patches or [] ++ [./forgejo.patch];
-      });
     }
     // nix-packages.packages.${system}
