@@ -5,7 +5,6 @@
     clang-tools
     cmake-language-server
     dhall-lsp-server
-    nodePackages.diagnostic-languageserver
     nodePackages.dockerfile-language-server-nodejs
     elixir-ls
     gopls
@@ -28,7 +27,6 @@
     cmake = {};
     cssls = {};
     dhall_lsp_server = {};
-    diagnosticls = {};
     dockerls = {};
     elixirls.cmd = ["elixir-ls"];
     gopls = {};
