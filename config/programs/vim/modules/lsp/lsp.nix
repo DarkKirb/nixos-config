@@ -15,7 +15,7 @@ in {
       if config.isDesktop
       then ''
         local from_json = require('nix-neovim.utils').from_json
-        for k, v in pairs(from_json("${json_setup})) do
+        for k, v in pairs(from_json("${json_setup}")) do
           require("lspconfig")[k].setup(v)
         end
       ''
@@ -23,6 +23,10 @@ in {
     output.path.path =
       if config.isDesktop
       then config.lspconfigPath
+      else [];
+    output.plugins =
+      if config.isDesktop
+      then [pkgs.vimPlugins.nvim-lspconfig]
       else [];
   };
 

@@ -30,7 +30,7 @@
     dhall_lsp_server = {};
     diagnosticls = {};
     dockerls = {};
-    elixirls.cmd = "elixir-ls";
+    elixirls.cmd = ["elixir-ls"];
     gopls = {};
     hls.filetypes = ["haskell" "lhaskell" "cabal"];
     html = {};
