@@ -89,6 +89,8 @@ in {
       "config.undodir"
     ];
 
+    vim.g.isDesktop = config.isDesktop;
+
     output.path.path = with pkgs; [ripgrep];
   };
   options.isDesktop = lib.options.mkEnableOption "desktop integration and LSP";
