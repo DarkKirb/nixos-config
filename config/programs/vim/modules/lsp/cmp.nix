@@ -13,6 +13,7 @@
       cmp_luasnip
       cmp-git
       cmp-omni
+      lspkind-nvim
     ]
     ++ (
       if config.isDesktop

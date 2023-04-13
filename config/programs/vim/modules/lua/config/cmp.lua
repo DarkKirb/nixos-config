@@ -2,6 +2,8 @@
 local cmp = require'cmp'
 local compare = require('cmp.config.compare')
 
+local lspkind = require('lspkind')
+
 cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
@@ -28,7 +30,7 @@ cmp.setup({
         { name = 'buffer' },
     }),
 
-    {
+    sorting = {
         priority_weight = 2,
         comparators = {
             require('cmp_tabnine.compare'),
@@ -42,6 +44,62 @@ cmp.setup({
             compare.order,
         },
     },
+
+    formatting = {
+        format = function(entry, vim_item)
+            lspkind_format = lspkind.cmp_format({
+                mode = 'symbol_text', -- show only symbol annotations
+                maxwidth = 80, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+
+                symbol_map = {
+                    Text = "",
+                    Method = "",
+                    Function = "",
+                    Constructor = "",
+                    Field = "ﰠ",
+                    Variable = "",
+                    Class = "ﴯ",
+                    Interface = "",
+                    Module = "",
+                    Property = "ﰠ",
+                    Unit = "塞",
+                    Value = "",
+                    Enum = "",
+                    Keyword = "",
+                    Snippet = "",
+                    Color = "",
+                    File = "",
+                    Reference = "",
+                    Folder = "",
+                    EnumMember = "",
+                    Constant = "",
+                    Struct = "פּ",
+                    Event = "",
+                    Operator = "",
+                    TypeParameter = ""
+                },
+
+                -- The function below will be called before any actual modifications from lspkind
+                -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+                before = function (entry, vim_item)
+                    return vim_item
+                end
+            })
+            vim_item = lspkind_format(entry, vim_item)
+            if entry.source.name == "cmp_tabnine" then
+                vim_item.kind = ""
+                if detail and detail:find('.*%%.*') then
+                    vim_item.kind = vim_item.kind .. ' ' .. detail
+                end
+
+                if (entry.completion_item.data or {}).multiline then
+                    vim_item.kind = vim_item.kind .. ' ' .. '[ML]'
+                end
+            end
+            return vim_item
+        end
+    }
 })
 
 -- Set configuration for specific filetype.
