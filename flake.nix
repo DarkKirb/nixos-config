@@ -201,6 +201,7 @@ rec {
       pkgs = import nixpkgs {
         system = "x86_64-linux";
         overlays = [self.overlays.x86_64-linux];
+        config.allowUnfree = true;
       };
     in {
       neovim-base = args.nix-neovim.buildNeovim {
@@ -216,6 +217,7 @@ rec {
       pkgs = import nixpkgs {
         system = "aarch64-linux";
         overlays = [self.overlays.aarch64-linux];
+        config.allowUnfree = true;
       };
     in {
       neovim-base = args.nix-neovim.buildNeovim {

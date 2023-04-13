@@ -12,10 +12,11 @@
       cmp-buffer
       cmp_luasnip
       cmp-git
+      cmp-omni
     ]
     ++ (
       if config.isDesktop
-      then [cmp-nvim-lsp]
+      then [cmp-nvim-lsp cmp-tabnine]
       else []
     );
   extraLuaModules = ["config.cmp"];
