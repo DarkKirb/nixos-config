@@ -17,15 +17,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1680646146,
-        "narHash": "sha256-NH+EhLFYDwLQ01BqfTwGvZAjfmZynnP1xxPjqH0XJss=",
-        "owner": "zhaofengli",
+        "lastModified": 1681387009,
+        "narHash": "sha256-AHxLm9TzfZ75Obh4frGCX1raHdn8iBybvHJFwe9JD48=",
+        "owner": "DarkKirb",
         "repo": "attic",
-        "rev": "efa15b9788add910f6e8409dddfb7bb69c2ad201",
+        "rev": "618d6278a18e69dcd6dbe6325ee9f02b300b4cb4",
         "type": "github"
       },
       "original": {
-        "owner": "zhaofengli",
+        "owner": "DarkKirb",
         "repo": "attic",
         "type": "github"
       }
