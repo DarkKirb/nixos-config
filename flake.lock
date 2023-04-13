@@ -1232,6 +1232,26 @@
         "type": "github"
       }
     },
+    "nix-neovim": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1650651888,
+        "narHash": "sha256-2lC6oeQMTke7/bx8VxLNJr54A/WGkdAv2H0iebTmACY=",
+        "owner": "syberant",
+        "repo": "nix-neovim",
+        "rev": "6f03a1c206ff2c5bea209c73f861ebd8088de53b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "syberant",
+        "repo": "nix-neovim",
+        "type": "github"
+      }
+    },
     "nix-packages": {
       "inputs": {
         "attic": [
@@ -1767,6 +1787,7 @@
         "home-manager": "home-manager",
         "hosts-list": "hosts-list",
         "hydra": "hydra",
+        "nix-neovim": "nix-neovim",
         "nix-packages": "nix-packages",
         "nixos-config-for-netboot": "nixos-config-for-netboot",
         "nixos-hardware": "nixos-hardware_2",
