@@ -17,7 +17,12 @@
     ]
     ++ (
       if config.isDesktop
-      then [cmp-nvim-lsp cmp-tabnine]
+      then [cmp-nvim-lsp]
+      else []
+    )
+    ++ (
+      if config.isDesktop && pkgs.system == "x86_64-linux"
+      then [cmp-tabnine]
       else []
     );
   extraLuaModules = ["config.cmp"];

@@ -92,6 +92,7 @@ in {
     ];
 
     vim.g.isDesktop = config.isDesktop;
+    vim.g.nix_system = pkgs.system;
 
     output.path.path = with pkgs; [ripgrep];
   };

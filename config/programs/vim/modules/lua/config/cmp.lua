@@ -4,6 +4,16 @@ local compare = require('cmp.config.compare')
 
 local lspkind = require('lspkind')
 
+local with_tabnine = vim.g.isDesktop and (vim.g.nix_system == "x86_64-linux");
+
+function concat(a)
+    res = {}
+    for i,v in ipairs(a) do
+        table.foreach(v, function(k, v) table.insert(res, v) end)
+    end
+    return res
+end
+
 cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
@@ -23,7 +33,8 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources(
-    vim.g.isDesktop and {{ name = 'nvim_lsp' }, { name = 'cmp_tabnine' }} or {},
+    vim.g.isDesktop and {{ name = 'nvim_lsp' }} or {},
+    with_tabnine and {{ name = 'cmp_tabnine' }} or {},
     {
         { name = 'luasnip' },
     }, {
@@ -32,17 +43,19 @@ cmp.setup({
 
     sorting = {
         priority_weight = 2,
-        comparators = {
-            require('cmp_tabnine.compare'),
-            compare.offset,
-            compare.exact,
-            compare.score,
-            compare.recently_used,
-            compare.kind,
-            compare.sort_text,
-            compare.length,
-            compare.order,
-        },
+        comparators = concat({
+            with_tabnine and {require('cmp_tabnine.compare')} or {},
+            {
+                compare.offset,
+                compare.exact,
+                compare.score,
+                compare.recently_used,
+                compare.kind,
+                compare.sort_text,
+                compare.length,
+                compare.order,
+            }
+        })
     },
 
     formatting = {
@@ -129,17 +142,19 @@ cmp.setup.cmdline(':', {
     })
 })
 
-local tabnine = require('cmp_tabnine.config')
-tabnine:setup({
-    max_lines = 1000,
-    max_num_results = 20,
-    sort = true,
-    run_on_every_keystroke = true,
-    snippet_placeholder = '..',
-    ignored_file_types = {
-    -- default is not to ignore
-    -- uncomment to ignore in lua:
-    -- lua = true
-    },
-    show_prediction_strength = true
-})
+if with_tabnine then
+    local tabnine = require('cmp_tabnine.config')
+    tabnine:setup({
+        max_lines = 1000,
+        max_num_results = 20,
+        sort = true,
+        run_on_every_keystroke = true,
+        snippet_placeholder = '..',
+        ignored_file_types = {
+        -- default is not to ignore
+        -- uncomment to ignore in lua:
+        -- lua = true
+        },
+        show_prediction_strength = true
+    })
+end
