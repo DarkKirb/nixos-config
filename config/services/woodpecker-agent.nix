@@ -13,6 +13,7 @@
       WOODPECKER_SERVER = "woodpecker.int.chir.rs:9000";
       WOODPECKER_BACKEND = "docker";
       DOCKER_HOST = "unix:///run/docker.sock";
+      WOODPECKER_MAX_PROCS = toString config.nix.settings.cores;
     };
     environmentFile = [config.sops.secrets."services/woodpecker-runner".path];
     extraGroups = ["docker"];

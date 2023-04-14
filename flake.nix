@@ -5,7 +5,7 @@ rec {
   inputs = {
     # Sorted by name
     attic = {
-      url = "github:zhaofengli/attic";
+      url = "github:DarkKirb/attic";
       inputs.crane.follows = "crane";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs-for-crane";
