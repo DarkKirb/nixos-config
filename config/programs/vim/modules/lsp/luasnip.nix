@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   output.plugins = with pkgs.vimPlugins; [
     luasnip
+    vim-snippets
   ];
 
   extraLua = ''
