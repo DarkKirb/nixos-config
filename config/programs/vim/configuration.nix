@@ -36,6 +36,8 @@ in {
       EOF_991fbac8c1efc440
     '';
 
+    vim.keybindings.leader = " ";
+
     vim.opt = {
       # undo/backup directories
       undofile = true;
