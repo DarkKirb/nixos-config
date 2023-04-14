@@ -47,7 +47,7 @@ in {
       softtabstop = 4;
       shiftwidth = 4;
       expandtab = true;
-      matchpairs = "(:),{:},[:],<:>,「:」,『:』,【:】,“:”,‘:’,《:》,„:“,‚:‘,«:»,‹:›";
+      matchpairs = "(:),{:},[:],<:>,「:」,『:』,【:】,“:”,‘:’,《:》,«:»,‹:›";
       number = true;
       relativenumber = true;
       ignorecase = true;
