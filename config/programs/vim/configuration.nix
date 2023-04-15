@@ -89,6 +89,7 @@ in {
 
     extraLuaModules = [
       "config.undodir"
+      "custom_autocmd"
     ];
 
     vim.g.isDesktop = config.isDesktop;
