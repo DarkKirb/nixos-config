@@ -68,7 +68,7 @@ in
         patches =
           old.patches
           ++ [
-            ../../extra/kitty.patch
+            ../extra/kitty.patch
           ];
         installCheckPhase = "true";
       });
