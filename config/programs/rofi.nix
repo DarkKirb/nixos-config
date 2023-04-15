@@ -6,6 +6,6 @@
       display-drun = "   Apps ";
       display-run = "   Run ";
     };
-    terminal = "${pkgs.foot}/bin/foot";
+    terminal = "${pkgs.kitty}/bin/kitty";
   };
 }
