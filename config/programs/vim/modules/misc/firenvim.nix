@@ -13,4 +13,5 @@
       silent call firenvim#install(0)
     ''
     else "";
+  vim.opt.guifont = "Fira_Code_Mono_Nerd_Font_Mono:h9";
 }
