@@ -31,7 +31,7 @@ in {
     vim.keybindings.keybindings =
       if config.isDesktop
       then {
-        "<leader>".s = {
+        "<leader>".l = {
           e = {
             command = "<cmd>lua vim.diagnostic.open_float()<cr>";
             label = "Open diagnostic float";
