@@ -3,7 +3,7 @@
   config,
   ...
 }: {
-    # 
+  #
   output.plugins = with pkgs.vimPlugins; [
     vim-fugitive
     vim-flog
