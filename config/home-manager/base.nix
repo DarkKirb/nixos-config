@@ -39,17 +39,23 @@ desktop: {pkgs, ...}: {
     EDITOR = "nvim";
   };
   home = {
-    shellAliases = {
-      hx = "nvim";
-      vi = "nvim";
-      vim = "nvim";
-      cat = "bat";
-      less = "bat";
-    } // (if desktop then {
-      icat = "${pkgs.kitty}/bin/kitty +kitten icat";
-      d = "${pkgs.kitty}/bin/kitty +kitten diff";
-      hg = "${pkgs.kitty}/bin/kitty +kitten hyperlinked_grep";
-    } else {});
+    shellAliases =
+      {
+        hx = "nvim";
+        vi = "nvim";
+        vim = "nvim";
+        cat = "bat";
+        less = "bat";
+      }
+      // (
+        if desktop
+        then {
+          icat = "${pkgs.kitty}/bin/kitty +kitten icat";
+          d = "${pkgs.kitty}/bin/kitty +kitten diff";
+          hg = "${pkgs.kitty}/bin/kitty +kitten hyperlinked_grep";
+        }
+        else {}
+      );
     packages = with pkgs;
       [
         yubico-piv-tool

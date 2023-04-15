@@ -64,13 +64,13 @@ in
             maintainers = with maintainers; [ma27];
           };
         };
-        kitty = prev.kitty.overrideAttrs (old: {
-          patches =
-            old.patches
-            ++ [
-              ../../extra/kitty.patch
-            ];
-          installCheckPhase = "true";
-        });
+      kitty = prev.kitty.overrideAttrs (old: {
+        patches =
+          old.patches
+          ++ [
+            ../../extra/kitty.patch
+          ];
+        installCheckPhase = "true";
+      });
     }
     // nix-packages.packages.${system}
