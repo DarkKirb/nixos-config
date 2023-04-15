@@ -3,6 +3,18 @@
   plugin.setup.catppuccin = {
     flavour = "mocha";
     transparent_background = true;
+    integrations = {
+      dashboard = true;
+      gitsigns = true;
+      hop = true;
+      markdown = true;
+      cmp = true;
+      native_lsp = {
+        enabled = true;
+      };
+      nvimtree = true;
+      telescope = true;
+    };
   };
   output.extraConfig = ''
     colorscheme catppuccin
