@@ -2,9 +2,9 @@ desktop: {pkgs, ...}: {
   imports =
     [
       (import ../programs/zsh.nix desktop)
-      (import ../programs/helix desktop)
       ../programs/tmux.nix
       ../programs/taskwarrior.nix
+      (import ../programs/vim desktop)
     ]
     ++ (
       if desktop
@@ -31,13 +31,12 @@ desktop: {pkgs, ...}: {
   home.file.".p10k.zsh".source = ./.p10k.zsh;
 
   systemd.user.sessionVariables = {
-    EDITOR = "hx";
+    EDITOR = "vim";
   };
   home = {
     shellAliases = {
-      vi = "hx";
-      vim = "hx";
-      nvim = "hx";
+      vi = "nvim";
+      vim = "nvim";
       cat = "bat";
       less = "bat";
     };
