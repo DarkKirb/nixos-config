@@ -13,8 +13,8 @@ in {
   ];
 
   systemd.user.tmpfiles.rules = [
-    "d %h/.cache/nvim/undo-files 0700 %u %g  mM:1w -"
-    "d %h/.cache/nvim/swap-files 0700 %u %g  mM:1w -"
-    "d %h/.cache/nvim/backup-files 0700 %u %g  mM:1w -"
+    "d %h/.cache/nvim/undo-files 0700 - -  mM:1w -"
+    "d %h/.cache/nvim/swap-files 0700 - -  mM:1w -"
+    "d %h/.cache/nvim/backup-files 0700 - -  mM:1w -"
   ];
 }
