@@ -11,6 +11,10 @@
     if config.isDesktop
     then ''
       silent call firenvim#install(0)
+      if vim.g.started_by_firenvim then
+        vim.o.showtabline = 0
+        require("lualine").hide()
+      end
     ''
     else "";
   vim.opt.guifont = "Fira_Code_Mono_Nerd_Font_Mono:h9";
