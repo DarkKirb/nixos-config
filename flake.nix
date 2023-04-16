@@ -22,6 +22,7 @@ rec {
       inputs.cargo2nix.follows = "cargo2nix";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     crane = {
       url = "github:DarkKirb/crane";

@@ -59,7 +59,7 @@
           tooltip-format = "MPD (connected)";
           tooltip-format-disconnected = "MPD (disconnected)";
           on-click = "${pkgs.mpc-cli}/bin/mpc toggle";
-          on-click-middle = "${pkgs.foot}/bin/foot ${pkgs.ncmpcpp}/bin/ncmpcpp";
+          on-click-middle = "${pkgs.kitty}/bin/kitty ${pkgs.ncmpcpp}/bin/ncmpcpp";
           on-click-right = "${pkgs.mpc-cli}/bin/mpc stop";
           on-scroll-up = "${pkgs.mpc-cli}/bin/mpc seekthrough +00:00:01";
           on-scroll-down = "${pkgs.mpc-cli}/bin/mpc seekthrough -00:00:01";

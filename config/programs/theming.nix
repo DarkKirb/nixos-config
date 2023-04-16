@@ -51,6 +51,29 @@ in {
       Inherits=Vanilla-DMZ
     '';
   };
+  programs.kitty.settings = with theme; {
+    background_opacity = "0.9";
+    background = cssColor base;
+    foreground = cssColor text;
+    cursor = cssColor text;
+    selection_background = "#4f414c";
+    color0 = cssColor surface1;
+    color1 = cssColor red;
+    color2 = cssColor green;
+    color3 = cssColor yellow;
+    color4 = cssColor blue;
+    color5 = cssColor pink;
+    color6 = cssColor teal;
+    color7 = cssColor subtext1;
+    color8 = cssColor surface2;
+    color9 = cssColor red;
+    color10 = cssColor green;
+    color11 = cssColor yellow;
+    color12 = cssColor blue;
+    color13 = cssColor pink;
+    color14 = cssColor teal;
+    color15 = cssColor subtext0;
+  };
   # Taken from https://github.com/jakehamilton/dotfiles/blob/master/waybar/style.css
   programs.waybar.style = with theme; ''
     * {
@@ -201,28 +224,6 @@ in {
     seat seat0 xcursor_theme breeze-dark 24
   '';
   home.packages = with pkgs; [libsForQt5.breeze-icons libsForQt5.qt5ct vanilla-dmz];
-
-  programs.foot.settings.colors = with theme; {
-    alpha = 0.9;
-    background = base;
-    foreground = text;
-    regular0 = surface1;
-    regular1 = red;
-    regular2 = green;
-    regular3 = yellow;
-    regular4 = blue;
-    regular5 = pink;
-    regular6 = teal;
-    regular7 = subtext1;
-    bright0 = surface2;
-    bright1 = red;
-    bright2 = green;
-    bright3 = yellow;
-    bright4 = blue;
-    bright5 = pink;
-    bright6 = teal;
-    bright7 = subtext0;
-  };
 
   programs.rofi.theme = with theme; let
     element = {

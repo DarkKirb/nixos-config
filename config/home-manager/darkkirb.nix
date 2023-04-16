@@ -28,6 +28,7 @@
         ../programs/keepass.nix
         ../programs/kicad.nix
         ../programs/misc.nix
+        ../programs/kitty.nix
         ../programs/zk.nix
       ]
       else []

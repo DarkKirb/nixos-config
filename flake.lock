@@ -209,7 +209,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay"
+        "rust-overlay": [
+          "rust-overlay"
+        ]
       },
       "locked": {
         "lastModified": 1678614024,
@@ -239,7 +241,7 @@
           "nixos-config-for-netboot",
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_2"
+        "rust-overlay": "rust-overlay"
       },
       "locked": {
         "lastModified": 1678614024,
@@ -332,7 +334,7 @@
           "attic",
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_3"
+        "rust-overlay": "rust-overlay_2"
       },
       "locked": {
         "lastModified": 1677892403,
@@ -1354,7 +1356,7 @@
         "nixpkgs-noto-variable": "nixpkgs-noto-variable",
         "nur": "nur",
         "prismmc": "prismmc",
-        "rust-overlay": "rust-overlay_4",
+        "rust-overlay": "rust-overlay_3",
         "sops-nix": "sops-nix",
         "tomlplusplus": "tomlplusplus"
       },
@@ -1799,7 +1801,7 @@
         "nixpkgs-noto-variable": "nixpkgs-noto-variable_2",
         "nur": "nur_2",
         "prismmc": "prismmc_2",
-        "rust-overlay": "rust-overlay_5",
+        "rust-overlay": "rust-overlay_4",
         "sops-nix": "sops-nix_2",
         "tomlplusplus": "tomlplusplus_2"
       }
@@ -1807,10 +1809,12 @@
     "rust-overlay": {
       "inputs": {
         "flake-utils": [
+          "nixos-config-for-netboot",
           "chir-rs",
           "flake-utils"
         ],
         "nixpkgs": [
+          "nixos-config-for-netboot",
           "chir-rs",
           "nixpkgs"
         ]
@@ -1830,33 +1834,6 @@
       }
     },
     "rust-overlay_2": {
-      "inputs": {
-        "flake-utils": [
-          "nixos-config-for-netboot",
-          "chir-rs",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixos-config-for-netboot",
-          "chir-rs",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1678242776,
-        "narHash": "sha256-36K1Rg2vM+NLqORSBL4e3aZHmgkb6aS9upHsuG4Akns=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "ea311f10a5d51e7588799281bab0556b4e978d00",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "rust-overlay_3": {
       "inputs": {
         "flake-utils": [
           "nixos-config-for-netboot",
@@ -1887,7 +1864,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_4": {
+    "rust-overlay_3": {
       "inputs": {
         "flake-utils": [
           "nixos-config-for-netboot",
@@ -1912,7 +1889,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_5": {
+    "rust-overlay_4": {
       "inputs": {
         "flake-utils": [
           "flake-utils"
@@ -1922,11 +1899,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1681525152,
-        "narHash": "sha256-KzI+ILcmU03iFWtB+ysPqtNmp8TP8v1BBReTuPP8MJY=",
+        "lastModified": 1681611682,
+        "narHash": "sha256-gT4wfOdVyxtB3NV5U914uAOqzFYMdNK8ObPmtqHxlUg=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "b6f8d87208336d7cb85003b2e439fc707c38f92a",
+        "rev": "18cdcb7b4017f266117a4d164f9d71c0535ef5ec",
         "type": "github"
       },
       "original": {
