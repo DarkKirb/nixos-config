@@ -82,7 +82,7 @@ rec {
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs"; # TODO: remove
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
