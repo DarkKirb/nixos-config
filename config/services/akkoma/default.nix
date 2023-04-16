@@ -72,7 +72,7 @@
         description = "Small Akkoma Instance";
         limit = 58913;
         description_limit = 58913;
-        upload_limit = 134217728;
+        upload_limit = 256 * 1024 * 1024;
         languages = ["en" "tok"];
         registrations_open = true;
         invites_enabled = true;
@@ -92,7 +92,6 @@
         account_field_value_length = 58913;
         registration_reason_length = 621;
         external_user_synchronization = true;
-        cleanup_attachments = true;
       };
       ":markup" = {
         allow_headings = true;
