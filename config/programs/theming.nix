@@ -52,7 +52,7 @@ in {
     '';
   };
   programs.kitty.settings = with theme; {
-    background_opacity = 0.9;
+    background_opacity = "0.9";
     background = cssColor base;
     foreground = cssColor text;
     cursor = cssColor text;
