@@ -5,6 +5,7 @@ _: {
     settings = {
       disable_ligatures = "cursor";
       shell_integration = "disabled";
+      font_size = 8;
     };
     extraConfig = ''
       symbol_map U+F1900-U+F19FF Fairfax HD
