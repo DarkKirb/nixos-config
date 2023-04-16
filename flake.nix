@@ -19,9 +19,9 @@ rec {
     };
     chir-rs = {
       url = "github:DarkKirb/chir.rs";
-      inputs.cargo2nix.follows = "cargo2nix";
+      #inputs.cargo2nix.follows = "cargo2nix";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     crane = {
       url = "github:DarkKirb/crane";
@@ -82,7 +82,7 @@ rec {
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.flake-utils.follows = "flake-utils";
-      # inputs.nixpkgs.follows = "nixpkgs"; # TODO: remove
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
