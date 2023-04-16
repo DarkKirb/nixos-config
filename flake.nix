@@ -14,20 +14,21 @@ rec {
     cargo2nix = {
       url = "github:DarkKirb/cargo2nix/release-0.11.0";
       inputs.flake-utils.follows = "flake-utils";
-      #inputs.nixpkgs.follows = "nixpkgs";
-      #inputs.rust-overlay.follows = "rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     chir-rs = {
       url = "github:DarkKirb/chir.rs";
-      #inputs.cargo2nix.follows = "cargo2nix";
+      inputs.cargo2nix.follows = "cargo2nix";
       inputs.flake-utils.follows = "flake-utils";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     crane = {
       url = "github:DarkKirb/crane";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs-for-crane";
-      #inputs.rust-overlay.follows = "rust-overlay";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     dns = {
       url = "github:DarkKirb/dns.nix";
