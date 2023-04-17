@@ -92,9 +92,9 @@ in {
         systems = [
           "aarch64-linux"
         ];
-        maxJobs = 2;
+        maxJobs = 4;
         speedFactor = 1;
-        supportedFeatures = ["nixos-test" "benchmark" "ca-derivations" "gccarch-armv8-a" "gccarch-armv8.1-a" "gccarch-armv8.2-a"];
+        supportedFeatures = ["nixos-test" "benchmark" "ca-derivations" "gccarch-armv8-a" "gccarch-armv8.1-a" "gccarch-armv8.2-a" "big-parallel"];
       }
     ];
     distributedBuilds = true;
