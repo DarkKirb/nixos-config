@@ -27,7 +27,7 @@
         name = "Hrothiwulfus";
       }
     ];
-    properties.server-ip = "130.162.60.127"; # death
+    properties.server-ip = "172.16.154.251"; # death
     paper-yml = {
       world-settings.default = {
         max-auto-save-chunks-per-tick = 8;
@@ -228,7 +228,7 @@
     extraConfig = ''
       import baseConfig
 
-      reverse_proxy http://130.162.60.127:8123 {
+      reverse_proxy http://172.16.154.251:8123 {
         trusted_proxies private_ranges
       }
     '';
