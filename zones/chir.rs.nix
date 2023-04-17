@@ -144,7 +144,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 27;
+      serial = 28;
     };
     NS = [
       "ns1.chir.rs."
@@ -224,7 +224,7 @@ with dns.lib.combinators; let
       api = createZone {};
       git = createZone {};
       mail = createZone {};
-      mc = createZone {};
+      mc = createZone oracleBase;
       ns1 = createZone {};
       ns2 = createZone {};
       ns3 = createZone oracleBase;

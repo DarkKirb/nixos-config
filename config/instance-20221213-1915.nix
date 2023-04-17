@@ -18,6 +18,7 @@
     ./services/chir.rs
     ./users/remote-build.nix
     ./services/atticd.nix
+    ./services/minecraft.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
