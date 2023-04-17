@@ -12,6 +12,7 @@
 
   services.minecraft = {
     enable = true;
+    stateDir = "/persist/var/lib/minecraft";
     whitelist = [
       {
         uuid = "74e2502d-64db-4ac4-bac7-a0a2bc50ec9f";
@@ -26,7 +27,7 @@
         name = "Hrothiwulfus";
       }
     ];
-    properties.server-ip = "138.201.155.128"; # death
+    properties.server-ip = "130.162.60.127"; # death
     paper-yml = {
       world-settings.default = {
         max-auto-save-chunks-per-tick = 8;
@@ -227,7 +228,7 @@
     extraConfig = ''
       import baseConfig
 
-      reverse_proxy http://138.201.155.128:8123 {
+      reverse_proxy http://130.162.60.127:8123 {
         trusted_proxies private_ranges
       }
     '';
