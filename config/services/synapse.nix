@@ -178,18 +178,18 @@
 
   sops.secrets."synapse/mautrix-discord" = {
     key = "services/mautrix/discord.yaml";
-    owner = "mautrix-synapse";
+    owner = "matrix-synapse";
   };
   sops.secrets."synapse/mautrix-signal" = {
     key = "services/mautrix/signal.yaml";
-    owner = "mautrix-synapse";
+    owner = "matrix-synapse";
   };
   sops.secrets."synapse/mautrix-telegram" = {
     key = "services/mautrix/telegram.yaml";
-    owner = "mautrix-synapse";
+    owner = "matrix-synapse";
   };
   sops.secrets."synapse/mautrix-whatsapp" = {
     key = "services/mautrix/whatsapp.yaml";
-    owner = "mautrix-synapse";
+    owner = "mutrix-synapse";
   };
 }
