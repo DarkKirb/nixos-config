@@ -45,7 +45,11 @@
       "opcache.jit_buffer_size" = "128M";
     };
     poolSettings = {
+      pm = "dynamic";
       "pm.max_children" = 460;
+      "pm.start_servers" = 4;
+      "pm.min_spare_servers" = 4;
+      "pm.max_spare_servers" = 64;
     };
     webfinger = true;
     extraApps = with pkgs.nextcloud26Packages.apps; {
