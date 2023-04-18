@@ -19,6 +19,7 @@
     ./users/remote-build.nix
     ./services/atticd.nix
     ./services/minecraft.nix
+    ./services/postgresql.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
@@ -77,6 +78,7 @@
     "L /var/lib/acme - - - - /persist/var/lib/acme"
     "L /var/lib/tailscale/tailscaled.state - - - - /persist/var/lib/tailscale/tailscaled.state"
     "D /build - - - - -"
+    "L /var/lib/postgresql - - - - /persist/var/lib/postgresql"
   ];
 
   networking.wireguard.interfaces."wg0".ips = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453/64"];
@@ -114,4 +116,22 @@
   boot.loader.systemd-boot.configurationLimit = lib.mkForce 1;
   system.autoUpgrade.allowReboot = true;
   services.tailscale.useRoutingFeatures = "server";
+  services.postgresql.settings = {
+    max_connections = 200;
+    shared_buffers = "6GB";
+    effective_cache_size = "18GB";
+    maintenance_work_mem = "1536MB";
+    checkpoint_completion_target = 0.9;
+    wal_buffers = "16MB";
+    default_statistics_target = 100;
+    random_page_cost = 1.1;
+    effective_io_concurrency = 200;
+    work_mem = "15728kB";
+    min_wal_size = "1GB";
+    max_wal_size = "4GB";
+    max_worker_processes = 4;
+    max_parallel_workers_per_gather = 2;
+    max_parallel_workers = 4;
+    max_parallel_maintenance_workers = 2;
+  };
 }
