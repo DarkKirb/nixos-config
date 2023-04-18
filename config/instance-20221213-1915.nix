@@ -21,6 +21,10 @@
     ./services/minecraft.nix
     ./services/postgres.nix
     ./services/nextcloud.nix
+    ./services/mautrix-discord.nix
+    ./services/mautrix-telegram.nix
+    ./services/mautrix-whatsapp.nix
+    ./services/mautrix-signal.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];

@@ -20,10 +20,6 @@
     nixos-hardware.nixosModules.common-pc-ssd
     ./services/hostapd.nix
     ./services/synapse.nix
-    ./services/mautrix-discord.nix
-    ./services/mautrix-telegram.nix
-    ./services/mautrix-whatsapp.nix
-    ./services/mautrix-signal.nix
     ./services/router.nix
     ./services/syncthing.nix
     ../modules/tc-cake.nix

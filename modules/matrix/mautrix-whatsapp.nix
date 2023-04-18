@@ -8,10 +8,10 @@
 }:
 with lib; let
   dataDir = "/var/lib/mautrix-whatsapp";
-  registrationFile = "${dataDir}/whatsapp-registration.yaml";
+  registrationFile = config.sops.secrets."services/mautrix/whatsapp.yaml".path;
   cfg = config.services.mautrix-whatsapp;
   settingsFormat = pkgs.formats.yaml {};
-  settingsFileUnsubstituted = settingsFormat.generate "mautrix-telegram-whatsapp-unsubstituted.yaml" cfg.settings;
+  settingsFileUnsubstituted = settingsFormat.generate "mautrix-whatsapp-config-unsubstituted.yaml" cfg.settings;
   settingsFile = "${dataDir}/config.yaml";
   inherit (nix-packages.packages.${system}) mautrix-whatsapp;
 in {
@@ -23,7 +23,7 @@ in {
         inherit (settingsFormat) type;
         default = {
           appservice = {
-            address = "http://localhost:29318";
+            address = "http://mautrix-whatsapp.int.chir.rs:29318";
             hostname = "0.0.0.0";
             port = 29318;
             database = {
@@ -57,33 +57,16 @@ in {
     systemd.services.mautrix-whatsapp-genregistration = {
       description = "Mautrix-Whatsapp Registration";
 
-      requiredBy = ["matrix-synapse.service"];
-      before = ["matrix-synapse.service"];
       script = ''
         # Not all secrets can be passed as environment variable (yet)
         # https://github.com/tulir/mautrix-telegram/issues/584
         [ -f ${settingsFile} ] && rm -f ${settingsFile}
-        old_umask=$(umask)
-        umask 0177
-        export AS_TOKEN="This value is generated when generating the registration"
-        export HS_TOKEN="This value is generated when generating the registration"
-        ${pkgs.envsubst}/bin/envsubst \
-          -o ${settingsFile} \
-          -i ${settingsFileUnsubstituted}
-        umask $old_umask
-
-        [ -f ${registrationFile} ] && rm -f ${registrationFile}
-        ${mautrix-whatsapp}/bin/mautrix-whatsapp --generate-registration --config ${settingsFile} --registration ${registrationFile}
-        chmod 660 ${registrationFile}
-
-        # Extract the tokens from the registration
         export AS_TOKEN=$(${pkgs.yq}/bin/yq -r '.as_token' ${registrationFile})
         export HS_TOKEN=$(${pkgs.yq}/bin/yq -r '.hs_token' ${registrationFile})
         umask 0177
         ${pkgs.envsubst}/bin/envsubst \
           -o ${settingsFile} \
           -i ${settingsFileUnsubstituted}
-        umask $old_umask
       '';
       serviceConfig = {
         Type = "oneshot";
@@ -111,7 +94,7 @@ in {
         StateDirectory = baseNameOf dataDir;
         UMask = 0117;
         User = "mautrix-whatsapp";
-        Group = "matrix-synapse";
+        Group = "mautrix-whatsapp";
         EnvironmentFile = cfg.environmentFile;
       };
       restartTriggers = [settingsFileUnsubstituted cfg.environmentFile];
@@ -119,8 +102,8 @@ in {
     systemd.services.mautrix-whatsapp = {
       description = "Mautrix-Whatsapp";
       wantedBy = ["multi-user.target"];
-      wants = ["matrix-synapse.service" "mautrix-whatsapp-genregistration.service"];
-      after = ["matrix-synapse.service" "mautrix-whatsapp-genregistration.service"];
+      wants = ["mautrix-whatsapp-genregistration.service"];
+      after = ["mautrix-whatsapp-genregistration.service"];
       serviceConfig = {
         Type = "simple";
         Restart = "always";
@@ -148,7 +131,7 @@ in {
         StateDirectory = baseNameOf dataDir;
         UMask = 0117;
         User = "mautrix-whatsapp";
-        Group = "matrix-synapse";
+        Group = "mautrix-whatsapp";
         EnvironmentFile = cfg.environmentFile;
         ExecStart = ''
           ${mautrix-whatsapp}/bin/mautrix-whatsapp \
@@ -161,11 +144,10 @@ in {
       description = "Mautrix Whatsapp bridge";
       home = "${dataDir}";
       useDefaultShell = true;
-      group = "matrix-synapse";
+      group = "mautrix-whatsapp";
       isSystemUser = true;
     };
-    services.matrix-synapse.settings.app_service_config_files = [
-      registrationFile
-    ];
+    users.groups.mautrix-whatsapp = {};
+    sops.secrets."services/mautrix/whatsapp.yaml".owner = "mautrix-whatsapp";
   };
 }

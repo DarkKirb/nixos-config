@@ -8,10 +8,10 @@
 }:
 with lib; let
   dataDir = "/var/lib/mautrix-discord";
-  registrationFile = "${dataDir}/discord-registration.yaml";
+  registrationFile = config.sops.secrets."services/mautrix/discord.yaml".path;
   cfg = config.services.mautrix-discord;
   settingsFormat = pkgs.formats.yaml {};
-  settingsFileUnsubstituted = settingsFormat.generate "mautrix-telegram-discord-unsubstituted.yaml" cfg.settings;
+  settingsFileUnsubstituted = settingsFormat.generate "mautrix-discord-config-unsubstituted.yaml" cfg.settings;
   settingsFile = "${dataDir}/config.yaml";
   inherit (nix-packages.packages.${system}) mautrix-discord;
 in {
@@ -23,7 +23,7 @@ in {
         inherit (settingsFormat) type;
         default = {
           appservice = {
-            address = "http://localhost:29320";
+            address = "http://mautrix-discord.int.chir.rs:29320";
             hostname = "0.0.0.0";
             port = 29320;
             database = {
@@ -55,35 +55,21 @@ in {
   };
   config = mkIf cfg.enable {
     systemd.services.mautrix-discord-genregistration = {
-      description = "Mautrix-Whatsapp Registration";
+      description = "Mautrix-Discord Registration";
 
-      requiredBy = ["matrix-synapse.service"];
-      before = ["matrix-synapse.service"];
       script = ''
         # Not all secrets can be passed as environment variable (yet)
         # https://github.com/tulir/mautrix-telegram/issues/584
         [ -f ${settingsFile} ] && rm -f ${settingsFile}
-        old_umask=$(umask)
-        umask 0177
-        export AS_TOKEN="This value is generated when generating the registration"
-        export HS_TOKEN="This value is generated when generating the registration"
-        ${pkgs.envsubst}/bin/envsubst \
-          -o ${settingsFile} \
-          -i ${settingsFileUnsubstituted}
-        umask $old_umask
-
-        [ -f ${registrationFile} ] && rm -f ${registrationFile}
-        ${mautrix-discord}/bin/mautrix-discord --generate-registration --config ${settingsFile} --registration ${registrationFile}
-        chmod 660 ${registrationFile}
-
-        # Extract the tokens from the registration
         export AS_TOKEN=$(${pkgs.yq}/bin/yq -r '.as_token' ${registrationFile})
         export HS_TOKEN=$(${pkgs.yq}/bin/yq -r '.hs_token' ${registrationFile})
         umask 0177
         ${pkgs.envsubst}/bin/envsubst \
           -o ${settingsFile} \
           -i ${settingsFileUnsubstituted}
-        umask $old_umask
+        # Not all secrets can be passed as environment variable (yet)
+        # https://github.com/tulir/mautrix-telegram/issues/584
+        [ -f ${settingsFile} ] && rm -f ${settingsFile}
       '';
       serviceConfig = {
         Type = "oneshot";
@@ -111,16 +97,16 @@ in {
         StateDirectory = baseNameOf dataDir;
         UMask = 0117;
         User = "mautrix-discord";
-        Group = "matrix-synapse";
+        Group = "mautrix-discord";
         EnvironmentFile = cfg.environmentFile;
       };
       restartTriggers = [settingsFileUnsubstituted cfg.environmentFile];
     };
     systemd.services.mautrix-discord = {
-      description = "Mautrix-Whatsapp";
+      description = "Mautrix-Discord";
       wantedBy = ["multi-user.target"];
-      wants = ["matrix-synapse.service" "mautrix-discord-genregistration.service"];
-      after = ["matrix-synapse.service" "mautrix-discord-genregistration.service"];
+      wants = ["mautrix-discord-genregistration.service"];
+      after = ["mautrix-discord-genregistration.service"];
       serviceConfig = {
         Type = "simple";
         Restart = "always";
@@ -148,7 +134,7 @@ in {
         StateDirectory = baseNameOf dataDir;
         UMask = 0117;
         User = "mautrix-discord";
-        Group = "matrix-synapse";
+        Group = "mautrix-discord";
         EnvironmentFile = cfg.environmentFile;
         ExecStart = ''
           ${mautrix-discord}/bin/mautrix-discord \
@@ -161,11 +147,10 @@ in {
       description = "Mautrix Whatsapp bridge";
       home = "${dataDir}";
       useDefaultShell = true;
-      group = "matrix-synapse";
+      group = "mautrix-discord";
       isSystemUser = true;
     };
-    services.matrix-synapse.settings.app_service_config_files = [
-      registrationFile
-    ];
+    users.groups.mautrix-discord = {};
+    sops.secrets."services/mautrix/discord.yaml".owner = "mautrix-discord";
   };
 }

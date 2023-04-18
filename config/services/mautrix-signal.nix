@@ -12,7 +12,7 @@
     environmentFile = pkgs.emptyFile;
     settings = {
       homeserver = {
-        address = "https://matrix.int.chir.rs";
+        address = "https://matrix.chir.rs";
         domain = "chir.rs";
         http_retry_count = 1000;
       };

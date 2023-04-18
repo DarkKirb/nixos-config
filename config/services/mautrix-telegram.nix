@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   imports = [
     ../../modules/matrix/mautrix-telegram.nix
   ];
@@ -12,7 +7,7 @@
     environmentFile = config.sops.secrets."services/mautrix/telegram".path;
     settings = {
       homeserver = {
-        address = "https://matrix.int.chir.rs";
+        address = "https://matrix.chir.rs";
         domain = "chir.rs";
         http_retry_count = 1000;
       };
