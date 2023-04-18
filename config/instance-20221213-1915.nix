@@ -79,8 +79,10 @@
     "L /var/lib/acme - - - - /persist/var/lib/acme"
     "L /var/lib/tailscale/tailscaled.state - - - - /persist/var/lib/tailscale/tailscaled.state"
     "D /build - - - - -"
-    "L /var/lib/postgresql - - - - /persist/var/lib/postgresql"
   ];
+
+
+  services.postgresql.dataDir = "/persist/var/lib/postgresql/${config.services.postgresql.package.psqlSchema}";
 
   networking.wireguard.interfaces."wg0".ips = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453/64"];
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
