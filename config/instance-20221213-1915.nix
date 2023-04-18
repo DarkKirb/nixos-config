@@ -78,7 +78,9 @@
   systemd.tmpfiles.rules = [
     "L /var/lib/acme - - - - /persist/var/lib/acme"
     "L /var/lib/tailscale/tailscaled.state - - - - /persist/var/lib/tailscale/tailscaled.state"
-    "D /build - - - - -"
+    "d /build - - - - -"
+    "L /var/lib/nextcloud - - - - /persist/var/lib/nextcloud"
+    "d /persist/var/lib/nextcloud 0750 nextcloud nextcloud - -"
   ];
 
 
