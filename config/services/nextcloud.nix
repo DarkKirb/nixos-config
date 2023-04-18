@@ -14,7 +14,7 @@
       dbuser = "nextcloud";
       defaultPhoneRegion = "DE";
       objectstore.s3 = {
-        autocreate  = false;
+        autocreate = false;
         bucket = "nextcloud-chir-rs";
         enable = true;
         hostname = "s3.us-west-000.backblazeb2.com";
