@@ -4,7 +4,7 @@
   ...
 }: {
   services.nextcloud = {
-    cache.redis = true;
+    caching.redis = true;
     config = {
       adminpassFile = config.sops.secrets."services/nextcloud/adminpass".path;
       adminuser = "darkkirb";
@@ -27,14 +27,14 @@
     enable = true;
     enableImagemagick = true;
     extraAppsEnable = true;
-    extraConfig = {
+    extraOptions = {
       redis = {
         host = config.services.redis.servers.nextcloud.unixSocket;
         port = 0;
         dbindex = 0;
       };
     };
-    hostname = "cloud.chir.rs";
+    hostName = "cloud.chir.rs";
     https = true;
     package = pkgs.nextcloud26;
     phpOptions = {
