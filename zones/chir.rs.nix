@@ -144,7 +144,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 28;
+      serial = 29;
     };
     NS = [
       "ns1.chir.rs."
@@ -245,6 +245,7 @@ with dns.lib.combinators; let
       auth = createFullZone {};
       attic-nocdn = createFullZone {};
       attic.CNAME = ["attic-chir-rs.b-cdn.net."];
+      cloud = createZone oracleBase;
 
       int =
         delegateTo [
