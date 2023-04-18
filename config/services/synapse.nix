@@ -190,6 +190,6 @@
   };
   sops.secrets."synapse/mautrix-whatsapp" = {
     key = "services/mautrix/whatsapp.yaml";
-    owner = "mutrix-synapse";
+    owner = "matrix-synapse";
   };
 }
