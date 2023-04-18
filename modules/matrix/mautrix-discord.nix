@@ -23,7 +23,7 @@ in {
         inherit (settingsFormat) type;
         default = {
           appservice = {
-            address = "http://localhost:29320";
+            address = "http://mautrix-discord.int.chir.rs:29320";
             hostname = "0.0.0.0";
             port = 29320;
             database = {

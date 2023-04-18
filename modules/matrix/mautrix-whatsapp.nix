@@ -23,7 +23,7 @@ in {
         inherit (settingsFormat) type;
         default = {
           appservice = {
-            address = "http://localhost:29318";
+            address = "http://mautrix-whatsapp.int.chir.rs:29318";
             hostname = "0.0.0.0";
             port = 29318;
             database = {

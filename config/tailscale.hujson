@@ -89,6 +89,17 @@
       "action": "accept",
       "src": ["tag:woodpeckerRunner"],
       "dst": ["tag:nas:9000"]
+    },
+    // Mautrix bridges
+    {
+      "action": "accept",
+      "src": ["tag:nas"],
+      "dst": [
+        "tag:instance-20221213-1915:29320", // mautrix-discord
+        "tag:instance-20221213-1915:29328", // mautrix-signal
+        "tag:instance-20221213-1915:29317", // mautrix-telegram
+        "tag:instance-20221213-1915:29318", // mautrix-whatsapp
+      ]
     }
   ],
 

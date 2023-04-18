@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 22;
+    serial = 23;
   };
   NS = [
     "ns1.chir.rs."
@@ -289,6 +289,10 @@ in {
     woodpecker.CNAME = [(ttl zoneTTL (cname "nas"))];
     moa.CNAME = [(ttl zoneTTL (cname "nas"))];
     matrix-admin.CNAME = [(ttl zoneTTL (cname "nas"))];
+    mautrix-discord.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
+    mautrix-signal.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
+    mautrix-telegram.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
+    mautrix-whatsapp.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
     _acme-challenge = delegateTo [
       "ns1.chir.rs."
       "ns2.chir.rs."
