@@ -87,7 +87,7 @@
       import baseConfig
       reverse_proxy {
           to http://127.0.0.1:13286
-          header_up Host {upstream_hostport}
+          header_up Host cloud.chir.rs
       }
     '';
   };
