@@ -19,7 +19,7 @@
     ./users/remote-build.nix
     ./services/atticd.nix
     ./services/minecraft.nix
-    ./services/postgresql.nix
+    ./services/postgres.nix
     ./services/nextcloud.nix
   ];
 
