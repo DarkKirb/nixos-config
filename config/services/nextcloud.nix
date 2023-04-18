@@ -5,23 +5,25 @@
 }: {
   services.nextcloud = {
     cache.redis = true;
-    adminpassFile = config.sops.secrets."services/nextcloud/adminpass".path;
-    adminuser = "darkkirb";
-    dbhost = "/run/postgresql";
-    dbname = "nextcloud";
-    dbtype = "pgsql";
-    dbuser = "nextcloud";
-    defaultPhoneRegion = "DE";
-    objectstore.s3 = {
-      bucket = "nextcloud-chir-rs";
-      enable = true;
-      hostname = "s3.us-west-000.backblazeb2.com";
-      key = "000decd694f9e7d0000000021";
-      secretFile = config.sops.secrets."services/nextcloud/s3".path;
-      usePathStyle = true;
-      useSsl = true;
+    config = {
+      adminpassFile = config.sops.secrets."services/nextcloud/adminpass".path;
+      adminuser = "darkkirb";
+      dbhost = "/run/postgresql";
+      dbname = "nextcloud";
+      dbtype = "pgsql";
+      dbuser = "nextcloud";
+      defaultPhoneRegion = "DE";
+      objectstore.s3 = {
+        bucket = "nextcloud-chir-rs";
+        enable = true;
+        hostname = "s3.us-west-000.backblazeb2.com";
+        key = "000decd694f9e7d0000000021";
+        secretFile = config.sops.secrets."services/nextcloud/s3".path;
+        usePathStyle = true;
+        useSsl = true;
+      };
+      overwriteProtocol = "https";
     };
-    overwriteProtocol = "https";
     enable = true;
     enableImagemagick = true;
     extraAppsEnable = true;
