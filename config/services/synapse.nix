@@ -7,6 +7,12 @@
   services.matrix-synapse = {
     enable = true;
     settings = {
+      app_service_config_files = [
+        config.sops.secrets."synapse/mautrix-discord".path
+        config.sops.secrets."synapse/mautrix-signal".path
+        config.sops.secrets."synapse/mautrix-telegram".path
+        config.sops.secrets."synapse/mautrix-whatsapp".path
+      ];
       server_name = "chir.rs";
       public_baseurl = "https://matrix.chir.rs/";
       default_room_version = 10;
@@ -168,5 +174,22 @@
       root * ${pkgs.synapse-admin}
       file_server
     '';
+  };
+
+  sops.secrets."synapse/mautrix-discord" = {
+    key = "services/mautrix/discord.yaml";
+    owner = "mautrix-synapse";
+  };
+  sops.secrets."synapse/mautrix-signal" = {
+    key = "services/mautrix/signal.yaml";
+    owner = "mautrix-synapse";
+  };
+  sops.secrets."synapse/mautrix-telegram" = {
+    key = "services/mautrix/telegram.yaml";
+    owner = "mautrix-synapse";
+  };
+  sops.secrets."synapse/mautrix-whatsapp" = {
+    key = "services/mautrix/whatsapp.yaml";
+    owner = "mautrix-synapse";
   };
 }

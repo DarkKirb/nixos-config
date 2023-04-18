@@ -6,15 +6,15 @@
 }:
 with lib; let
   dataDir = "/var/lib/mautrix-signal";
-  registrationFile = "${dataDir}/signal-registration.yaml";
+  registrationFile = config.secrets."services/imautrix/signal.yaml".path;
   cfg = config.services.mautrix-signal;
   settingsFormat = pkgs.formats.yaml {};
-  settingsFileUnsubstituted = settingsFormat.generate "mautrix-telegram-signal-unsubstituted.yaml" cfg.settings;
+  settingsFileUnsubstituted = settingsFormat.generate "mautrix-signal-config-unsubstituted.yaml" cfg.settings;
   settingsFile = "${dataDir}/config.yaml";
 in {
   options = {
     services.mautrix-signal = {
-      enable = mkEnableOption "Mautrix-signal, a Matrix-signal hybrid puppeting/relaybot bridge";
+      enable = mkEnableOption "Mautrix-signal, a mautrix-signal hybrid puppeting/relaybot bridge";
       settings = mkOption rec {
         apply = recursiveUpdate default;
         inherit (settingsFormat) type;
@@ -72,27 +72,10 @@ in {
   config = mkIf cfg.enable {
     systemd.services.mautrix-signal-genregistration = {
       description = "Mautrix-signal Registration";
-
-      requiredBy = ["matrix-synapse.service"];
-      before = ["matrix-synapse.service"];
       script = ''
         # Not all secrets can be passed as environment variable (yet)
         # https://github.com/tulir/mautrix-telegram/issues/584
         [ -f ${settingsFile} ] && rm -f ${settingsFile}
-        old_umask=$(umask)
-        umask 0177
-        export AS_TOKEN="This value is generated when generating the registration"
-        export HS_TOKEN="This value is generated when generating the registration"
-        ${pkgs.envsubst}/bin/envsubst \
-          -o ${settingsFile} \
-          -i ${settingsFileUnsubstituted}
-        umask $old_umask
-
-        [ -f ${registrationFile} ] && rm -f ${registrationFile}
-        ${pkgs.mautrix-signal}/bin/mautrix-signal --generate-registration --config ${settingsFile} --registration ${registrationFile}
-        chmod 660 ${registrationFile}
-
-        # Extract the tokens from the registration
         export AS_TOKEN=$(${pkgs.yq}/bin/yq -r '.as_token' ${registrationFile})
         export HS_TOKEN=$(${pkgs.yq}/bin/yq -r '.hs_token' ${registrationFile})
         umask 0177
@@ -113,7 +96,7 @@ in {
         StateDirectory = baseNameOf dataDir;
         UMask = 0117;
         User = "mautrix-signal";
-        Group = "matrix-synapse";
+        Group = "mautrix-signal";
         EnvironmentFile = cfg.environmentFile;
       };
       restartTriggers = [settingsFileUnsubstituted cfg.environmentFile];
@@ -129,7 +112,7 @@ in {
 
         WorkingDirectory = dataDir;
         User = "mautrix-signal";
-        Group = "matrix-synapse";
+        Group = "mautrix-signal";
         EnvironmentFile = cfg.environmentFile;
         ExecStart = ''
           ${pkgs.mautrix-signal}/bin/mautrix-signal \
@@ -142,16 +125,15 @@ in {
       description = "Mautrix signal bridge";
       home = "${dataDir}";
       useDefaultShell = true;
-      group = "matrix-synapse";
+      group = "mautrix-signal";
       isSystemUser = true;
     };
-    services.matrix-synapse.settings.app_service_config_files = [
-      registrationFile
-    ];
+    users.groups.mautrix-signal = {};
     services.signald = {
       user = "mautrix-signal";
-      group = "matrix-synapse";
+      group = "mautrix-signal";
       enable = true;
     };
+    sops.secrets."services/mautrix/signal.yaml".owner = "mautrix-signal";
   };
 }
