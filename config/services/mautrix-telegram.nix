@@ -13,7 +13,7 @@
       };
       appservice = {
         address = "http://localhost:29317";
-        hostname = "127.0.0.1";
+        hostname = "0.0.0.0";
         port = 29317;
         max_body_size = 10;
         database = "postgres:///mautrix_telegram?sslmode=disable&host=/run/postgresql";
