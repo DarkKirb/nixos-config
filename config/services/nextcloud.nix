@@ -38,9 +38,9 @@
     https = true;
     package = pkgs.nextcloud26;
     phpOptions = {
-      "opcache.save_comments" = 1;
-      "opcache.validate_timestamps" = 0;
-      "opcache.jit" = 1255;
+      "opcache.save_comments" = "1";
+      "opcache.validate_timestamps" = "0";
+      "opcache.jit" = "1255";
       "opcache.jit_buffer_size" = "128M";
     };
     poolSettings = {
