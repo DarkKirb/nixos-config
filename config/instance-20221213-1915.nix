@@ -138,4 +138,6 @@
     max_parallel_workers = 4;
     max_parallel_maintenance_workers = 2;
   };
+
+  services.restic.backups.sysbackup.paths = ["/persist"];
 }
