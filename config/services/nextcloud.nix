@@ -14,6 +14,7 @@
       dbuser = "nextcloud";
       defaultPhoneRegion = "DE";
       objectstore.s3 = {
+        autocreate  = false;
         bucket = "nextcloud-chir-rs";
         enable = true;
         hostname = "s3.us-west-000.backblazeb2.com";
@@ -47,8 +48,8 @@
       "pm.max_children" = 460;
     };
     webfinger = true;
-    extraApps = with pkgs.nextclouud26Packages.apps; {
-      inherit bookmarks calendar contacts deck files_texteditor forms groupfolders mail news notes notify_push onlyoffice polls previewgenerator spreed taskks twofactor_webauthn unsplash;
+    extraApps = with pkgs.nextcloud26Packages.apps; {
+      inherit bookmarks calendar contacts deck files_texteditor forms groupfolders mail news notes notify_push onlyoffice polls previewgenerator spreed tasks twofactor_webauthn unsplash;
     };
   };
   sops.secrets."services/nextcloud/adminpass".owner = "nextcloud";
@@ -69,7 +70,7 @@
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     listen = [
       {
-        host = "127.0.0.1";
+        addr = "127.0.0.1";
         port = 13286;
       }
     ];
