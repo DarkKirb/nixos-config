@@ -104,8 +104,8 @@ in {
     systemd.services.mautrix-signal = {
       description = "Mautrix-signal";
       wantedBy = ["multi-user.target"];
-      wants = ["matrix-synapse.service" "mautrix-signal-genregistration.service" "signald.service"];
-      after = ["matrix-synapse.service" "mautrix-signal-genregistration.service" "signald.service"];
+      wants = ["mautrix-signal-genregistration.service" "signald.service"];
+      after = ["mautrix-signal-genregistration.service" "signald.service"];
       serviceConfig = {
         Type = "simple";
         Restart = "always";

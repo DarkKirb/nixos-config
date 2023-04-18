@@ -57,8 +57,6 @@ in {
     systemd.services.mautrix-discord-genregistration = {
       description = "Mautrix-Discord Registration";
 
-      requiredBy = ["matrix-synapse.service"];
-      before = ["matrix-synapse.service"];
       script = ''
         # Not all secrets can be passed as environment variable (yet)
         # https://github.com/tulir/mautrix-telegram/issues/584
@@ -107,8 +105,8 @@ in {
     systemd.services.mautrix-discord = {
       description = "Mautrix-Discord";
       wantedBy = ["multi-user.target"];
-      wants = ["matrix-synapse.service" "mautrix-discord-genregistration.service"];
-      after = ["matrix-synapse.service" "mautrix-discord-genregistration.service"];
+      wants = ["mautrix-discord-genregistration.service"];
+      after = ["mautrix-discord-genregistration.service"];
       serviceConfig = {
         Type = "simple";
         Restart = "always";

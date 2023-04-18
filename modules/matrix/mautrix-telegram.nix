@@ -104,8 +104,8 @@ in {
     systemd.services.mautrix-telegram = {
       description = "mautrix-telegram";
       wantedBy = ["multi-user.target"];
-      wants = ["matrix-synapse.service" "mautrix-telegram-genregistration.service"];
-      after = ["matrix-synapse.service" "mautrix-telegram-genregistration.service"];
+      wants = ["mautrix-telegram-genregistration.service"];
+      after = ["mautrix-telegram-genregistration.service"];
       serviceConfig = {
         Type = "simple";
         Restart = "always";
