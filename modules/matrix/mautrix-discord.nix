@@ -67,9 +67,6 @@ in {
         ${pkgs.envsubst}/bin/envsubst \
           -o ${settingsFile} \
           -i ${settingsFileUnsubstituted}
-        # Not all secrets can be passed as environment variable (yet)
-        # https://github.com/tulir/mautrix-telegram/issues/584
-        [ -f ${settingsFile} ] && rm -f ${settingsFile}
       '';
       serviceConfig = {
         Type = "oneshot";
