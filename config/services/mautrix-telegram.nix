@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}: {
+{config, ...}: {
   imports = [
     ../../modules/matrix/mautrix-telegram.nix
   ];
