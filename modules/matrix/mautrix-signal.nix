@@ -6,7 +6,7 @@
 }:
 with lib; let
   dataDir = "/var/lib/mautrix-signal";
-  registrationFile = config.secrets."services/imautrix/signal.yaml".path;
+  registrationFile = config.sops.secrets."services/mautrix/signal.yaml".path;
   cfg = config.services.mautrix-signal;
   settingsFormat = pkgs.formats.yaml {};
   settingsFileUnsubstituted = settingsFormat.generate "mautrix-signal-config-unsubstituted.yaml" cfg.settings;

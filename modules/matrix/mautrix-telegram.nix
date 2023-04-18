@@ -6,7 +6,7 @@
 }:
 with lib; let
   dataDir = "/var/lib/mautrix-telegram";
-  registrationFile = config.secrets."services/mautrix/telegram.yaml".path;
+  registrationFile = config.sops.secrets."services/mautrix/telegram.yaml".path;
   cfg = config.services.mautrix-telegram-2;
   settingsFormat = pkgs.formats.yaml {};
   settingsFileUnsubstituted = settingsFormat.generate "mautrix-telegram-config-unsubstituted.yaml" cfg.settings;

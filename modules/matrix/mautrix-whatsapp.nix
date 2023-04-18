@@ -8,7 +8,7 @@
 }:
 with lib; let
   dataDir = "/var/lib/mautrix-whatsapp";
-  registrationFile = config.secrets."services/mautrix/whatsapp.yaml".path;
+  registrationFile = config.sops.secrets."services/mautrix/whatsapp.yaml".path;
   cfg = config.services.mautrix-whatsapp;
   settingsFormat = pkgs.formats.yaml {};
   settingsFileUnsubstituted = settingsFormat.generate "mautrix-whatsapp-config-unsubstituted.yaml" cfg.settings;

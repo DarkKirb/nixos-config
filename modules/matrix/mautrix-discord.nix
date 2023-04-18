@@ -8,7 +8,7 @@
 }:
 with lib; let
   dataDir = "/var/lib/mautrix-discord";
-  registrationFile = config.secrets."services/mautrix/discord.yaml".path;
+  registrationFile = config.sops.secrets."services/mautrix/discord.yaml".path;
   cfg = config.services.mautrix-discord;
   settingsFormat = pkgs.formats.yaml {};
   settingsFileUnsubstituted = settingsFormat.generate "mautrix-discord-config-unsubstituted.yaml" cfg.settings;
