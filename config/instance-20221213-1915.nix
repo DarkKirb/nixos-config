@@ -83,7 +83,6 @@
     "d /persist/var/lib/nextcloud 0750 nextcloud nextcloud - -"
   ];
 
-
   services.postgresql.dataDir = "/persist/var/lib/postgresql/${config.services.postgresql.package.psqlSchema}";
 
   networking.wireguard.interfaces."wg0".ips = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453/64"];
