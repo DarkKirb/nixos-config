@@ -20,9 +20,9 @@ in {
         inherit (settingsFormat) type;
         default = {
           appservice = {
-            address = "http://mautrix-telegram.int.chir.rs:29328";
+            address = "http://mautrix-telegram.int.chir.rs:29317";
             hostname = "0.0.0.0";
-            port = 29328;
+            port = 29317;
             database = "sqlite:///${dataDir}/mautrix-telegram.db";
             as_token = "$AS_TOKEN";
             hs_token = "$HS_TOKEN";
