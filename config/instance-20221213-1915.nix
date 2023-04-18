@@ -20,6 +20,7 @@
     ./services/atticd.nix
     ./services/minecraft.nix
     ./services/postgresql.nix
+    ./services/nextcloud.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
