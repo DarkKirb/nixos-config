@@ -15,6 +15,7 @@
         address = "https://matrix.chir.rs";
         domain = "chir.rs";
         http_retry_count = 1000;
+        async_media = true;
       };
       appservice = {
         max_body_size = 10;
@@ -38,7 +39,7 @@
         sync_with_custom_puppets = true;
         encryption = {
           allow = true;
-          default = false;
+          default = true;
           require = false;
           allow_key_sharing = true;
         };
