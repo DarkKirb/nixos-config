@@ -139,6 +139,7 @@
         };
         followers_only = processMap {
           "vivaldi.net" = "Corporate instance; Registers nonconsensual accounts for Vivaldi Sync users";
+          "bird.makeup" = "Birdsite scraper with removed limitations and privacy considerations";
         };
         federated_timeline_removal = processMap {
           "mastodon.social" = "Too large to be moderated well";
