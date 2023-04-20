@@ -10,12 +10,14 @@
       homeserver = {
         address = "https://matrix.chir.rs";
         domain = "chir.rs";
+        async_media = true;
       };
       appservice = {
         database = {
           type = "postgres";
           uri = "postgres:///mautrix_whatsapp?sslmode=disable&host=/run/postgresql";
         };
+        async_transactions = true;
       };
       metrics = {
         enabled = true;
@@ -42,7 +44,7 @@
         url_previews = true;
         encryption = {
           allow = true;
-          default = false;
+          default = true;
           require = false;
           allow_key_sharing = true;
         };
