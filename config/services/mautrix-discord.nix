@@ -43,13 +43,13 @@
         channel_name_template = "{{if or (eq .Type 3) (eq .Type 4)}}{{.Name}} ({{.GuildName}} — {{.ParentName}}){{else}}#{{.Name}} ({{.GuildName}} — {{.ParentName}}){{end}}";
 
         backfill = {
-            forward_limits = {
-                initial.dm = 50;
-                initial.channel = 50;
+          forward_limits = {
+            initial.dm = 50;
+            initial.channel = 50;
 
-                missed.dm = -1;
-                missed.channel = -1;
-            };
+            missed.dm = -1;
+            missed.channel = -1;
+          };
         };
       };
     };
