@@ -121,6 +121,7 @@ rec {
           args.prismmc.overlay
         ];
         config.allowUnfree = true;
+        config.contentAddressedByDefault = true;
       };
     systems = [
       {
@@ -217,10 +218,11 @@ rec {
       };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
     packages.x86_64-linux = let
-      pkgs = import nixpkgs {
+      pkgs = import (nixpkgsFor "x86_64-linux") {
         system = "x86_64-linux";
         overlays = [self.overlays.x86_64-linux];
         config.allowUnfree = true;
+        config.contentAddressedByDefault = true;
       };
     in {
       neovim-base = args.nix-neovim.buildNeovim {
@@ -233,10 +235,11 @@ rec {
       };
     };
     packages.aarch64-linux = let
-      pkgs = import nixpkgs {
+      pkgs = import (nixpkgsFor "aarch64-linux") {
         system = "aarch64-linux";
         overlays = [self.overlays.aarch64-linux];
         config.allowUnfree = true;
+        config.contentAddressedByDefault = true;
       };
     in {
       neovim-base = args.nix-neovim.buildNeovim {
