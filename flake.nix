@@ -173,6 +173,7 @@ rec {
               args
               // {
                 inherit system;
+                nixpkgs = nixpkgs';
               };
             modules = [
               (./config + "/${configName}.nix")
@@ -183,9 +184,9 @@ rec {
                 nixpkgs.overlays = [
                   nur.overlay
                 ];
-                home-manager.extraSpecialArgs = args // {inherit system;};
+                home-manager.extraSpecialArgs = args // {inherit system; nixpkgs = nixpkgs';};
               })
-              (import utils/link-input.nix args)
+              (import utils/link-input.nix (args // {nixpkgs = nixpkgs';}))
               {
                 system.nixos.versionSuffix = ".${pkgs.lib.substring 0 8 (self.lastModifiedDate or self.lastModified or "19700101")}.${self.shortRev or "dirty"}";
                 system.nixos.revision = pkgs.lib.mkIf (nixpkgs ? rev) nixpkgs.rev;
