@@ -1,17 +1,9 @@
 inputs: system: self: prev: let
-  inherit (inputs) nixpkgs nixpkgs-noto-variable nix-packages hydra;
+  inherit (inputs) nixpkgs nixpkgs-noto-variable nix-packages;
   noto-variable = import nixpkgs-noto-variable {inherit system;};
 in
   with nixpkgs.legacyPackages.${system};
     {
-      hydra-unstable = hydra.packages.${system}.hydra.overrideAttrs (_: {
-        patches = [
-          ./hydra-size-limit.patch
-          ./hydra-gitea-push-hook.patch
-        ];
-        checkPhase = "true";
-        installCheckPhase = "true";
-      });
       mosh = prev.mosh.overrideAttrs (old: {
         patches = [
           ./mosh/ssh_path.patch
@@ -33,7 +25,7 @@ in
         };
       });
       inherit (noto-variable) noto-fonts-cjk;
-      nix = prev.nix.overrideAttrs (old: rec {
+      nix = prev.nix.overrideAttrs (old: {
         postPatchPhase = ''
           sed 's/getBoolAttr."allowSubstitutes", true./true/' src/libstore/parsed-derivations.cc
         '';
@@ -41,7 +33,7 @@ in
         installCheckPhase = "true";
       });
       rnix-lsp = with prev;
-        rustPlatform.buildRustPackage rec {
+        rustPlatform.buildRustPackage {
           pname = "rnix-lsp";
           version = "0.3.0-alejandra";
 
@@ -64,5 +56,6 @@ in
             maintainers = with maintainers; [ma27];
           };
         };
+      hydra-unsstable = nix-packages.packages.${system}.hydra;
     }
     // nix-packages.packages.${system}
