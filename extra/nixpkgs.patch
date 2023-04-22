@@ -53,10 +53,10 @@ index 94127fa9..5253e4bb 100644
 
    predicates = let
 diff --git a/pkgs/build-support/cc-wrapper/default.nix b/pkgs/build-support/cc-wrapper/default.nix
-index 33df804d..646a8a0b 100644
+index e0ee3dae41f..49dbbe56594 100644
 --- a/pkgs/build-support/cc-wrapper/default.nix
 +++ b/pkgs/build-support/cc-wrapper/default.nix
-@@ -89,6 +89,10 @@ let
+@@ -122,6 +122,10 @@ let
          znver1         = versionAtLeast ccVersion "6.0";
          znver2         = versionAtLeast ccVersion "9.0";
          znver3         = versionAtLeast ccVersion "11.0";
@@ -67,7 +67,7 @@ index 33df804d..646a8a0b 100644
        }.${arch} or true
      else if isClang then
        { # Intel
-@@ -99,6 +103,10 @@ let
+@@ -132,6 +136,10 @@ let
          # AMD
          znver1         = versionAtLeast ccVersion "4.0";
          znver2         = versionAtLeast ccVersion "9.0";
@@ -96,7 +96,7 @@ index bf410ec0..10b240b7 100644
      # It's OK to change the built-time dependencies
      allowCustomOverrides = true;
 diff --git a/pkgs/stdenv/generic/make-derivation.nix b/pkgs/stdenv/generic/make-derivation.nix
-index 08bd836e..af706805 100644
+index 6cb494d46e5..f53cfde3bad 100644
 --- a/pkgs/stdenv/generic/make-derivation.nix
 +++ b/pkgs/stdenv/generic/make-derivation.nix
 @@ -165,10 +165,8 @@ let
@@ -113,15 +113,13 @@ index 08bd836e..af706805 100644
    separateDebugInfo' = separateDebugInfo && stdenv.hostPlatform.isLinux;
    outputs' = outputs ++ lib.optional separateDebugInfo' "debug";
 diff --git a/pkgs/top-level/impure.nix b/pkgs/top-level/impure.nix
-index 4d847e28..fadd8836 100644
+index 4d847e280f4..874b776c1e1 100644
 --- a/pkgs/top-level/impure.nix
 +++ b/pkgs/top-level/impure.nix
-@@ -8,13 +8,16 @@ let
-
+@@ -9,12 +9,15 @@ let
    # Return ‘x’ if it evaluates, or ‘def’ if it throws an exception.
    try = x: def: let res = builtins.tryEval x; in if res.success then res.value else def;
--
-+
+
 +  configuredLocalSystem = if builtins.pathExists "/etc/nix/local-system.json" then builtins.fromJSON (builtins.readFile "/etc/nix/local-system.json") else { system = builtins.currentSystem; };
 +  localSystemOverriden = args: args ? system && (args.system != configuredLocalSystem);
 +  defaultLocalSystem = args: if localSystemOverriden args then { system = args.system; } else configuredLocalSystem;
@@ -131,7 +129,25 @@ index 4d847e28..fadd8836 100644
    # If neither is passed, assume we are building packages on the current
    # (build, in GNU Autotools parlance) platform.
 -  localSystem ? { system = args.system or builtins.currentSystem; }
-+  localSystem ? defaultLocalSystem
++  localSystem ? null
 
  # These are needed only because nix's `--arg` command-line logic doesn't work
  # with unnamed parameters allowed by ...
+@@ -78,6 +81,9 @@ in
+
+ , ...
+ } @ args:
++let
++  localSystem' = if localSystem == null then defaultLocalSystem args else localSystem;
++in
+
+ # If `localSystem` was explicitly passed, legacy `system` should
+ # not be passed, and vice-versa.
+@@ -85,5 +91,6 @@ assert args ? localSystem -> !(args ? system);
+ assert args ? system -> !(args ? localSystem);
+
+ import ./. (builtins.removeAttrs args [ "system" ] // {
+-  inherit config overlays localSystem;
++  inherit config overlays;
++  localSystem = localSystem';
+ })
