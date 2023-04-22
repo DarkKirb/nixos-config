@@ -7,14 +7,18 @@
 }:
 with lib; let
   cfg = config.services.gitea;
-  gitea = cfg.package;
+  opt = options.services.gitea;
+  exe = lib.getExe cfg.package;
+  pg = config.services.postgresql;
+  useMysql = cfg.database.type == "mysql";
+  usePostgresql = cfg.database.type == "postgres";
+  useSqlite = cfg.database.type == "sqlite3";
+  format = pkgs.formats.ini {};
   configFile = pkgs.writeText "app.ini" ''
     APP_NAME = ${cfg.appName}
     RUN_USER = ${cfg.user}
     RUN_MODE = prod
-
     ${generators.toINI {} cfg.settings}
-
     ${optionalString (cfg.extraConfig != null) cfg.extraConfig}
   '';
 in {
@@ -38,92 +42,72 @@ in {
         SystemCallFilter = mkForce "~@clock @cpu-emulation @debug @module @mount @obsolete @raw-io @reboot @setuid @swap";
         ReadWritePaths = ["/var/lib/gitea/.gnupg"];
       };
+
       # In older versions the secret naming for JWT was kind of confusing.
       # The file jwt_secret hold the value for LFS_JWT_SECRET and JWT_SECRET
-      # wasn't persistant at all.
+      # wasn't persistent at all.
       # To fix that, there is now the file oauth2_jwt_secret containing the
       # values for JWT_SECRET and the file jwt_secret gets renamed to
       # lfs_jwt_secret.
       # We have to consider this to stay compatible with older installations.
       preStart = let
-        runConfig = "${cfg.stateDir}/custom/conf/app.ini";
-        secretKey = "${cfg.stateDir}/custom/conf/secret_key";
-        oauth2JwtSecret = "${cfg.stateDir}/custom/conf/oauth2_jwt_secret";
-        oldLfsJwtSecret = "${cfg.stateDir}/custom/conf/jwt_secret"; # old file for LFS_JWT_SECRET
-        lfsJwtSecret = "${cfg.stateDir}/custom/conf/lfs_jwt_secret"; # new file for LFS_JWT_SECRET
-        internalToken = "${cfg.stateDir}/custom/conf/internal_token";
+        runConfig = "${cfg.customDir}/conf/app.ini";
+        secretKey = "${cfg.customDir}/conf/secret_key";
+        oauth2JwtSecret = "${cfg.customDir}/conf/oauth2_jwt_secret";
+        oldLfsJwtSecret = "${cfg.customDir}/conf/jwt_secret"; # old file for LFS_JWT_SECRET
+        lfsJwtSecret = "${cfg.customDir}/conf/lfs_jwt_secret"; # new file for LFS_JWT_SECRET
+        internalToken = "${cfg.customDir}/conf/internal_token";
+        replaceSecretBin = "${pkgs.replace-secret}/bin/replace-secret";
       in ''
-        # copy custom configuration and generate a random secret key if needed
+        # copy custom configuration and generate random secrets if needed
         ${optionalString (!cfg.useWizard) ''
           function gitea_setup {
-            cp -f ${configFile} ${runConfig}
-
-            if [ ! -e ${secretKey} ]; then
-                ${gitea}/bin/gitea generate secret SECRET_KEY > ${secretKey}
+            cp -f '${configFile}' '${runConfig}'
+            if [ ! -s '${secretKey}' ]; then
+                ${exe} generate secret SECRET_KEY > '${secretKey}'
             fi
-
             # Migrate LFS_JWT_SECRET filename
-            if [[ -e ${oldLfsJwtSecret} && ! -e ${lfsJwtSecret} ]]; then
-                mv ${oldLfsJwtSecret} ${lfsJwtSecret}
+            if [[ -s '${oldLfsJwtSecret}' && ! -s '${lfsJwtSecret}' ]]; then
+                mv '${oldLfsJwtSecret}' '${lfsJwtSecret}'
             fi
-
-            if [ ! -e ${oauth2JwtSecret} ]; then
-                ${gitea}/bin/gitea generate secret JWT_SECRET > ${oauth2JwtSecret}
+            if [ ! -s '${oauth2JwtSecret}' ]; then
+                ${exe} generate secret JWT_SECRET > '${oauth2JwtSecret}'
             fi
-
-            if [ ! -e ${lfsJwtSecret} ]; then
-                ${gitea}/bin/gitea generate secret LFS_JWT_SECRET > ${lfsJwtSecret}
+            ${lib.optionalString cfg.lfs.enable ''
+            if [ ! -s '${lfsJwtSecret}' ]; then
+                ${exe} generate secret LFS_JWT_SECRET > '${lfsJwtSecret}'
             fi
-
-            if [ ! -e ${internalToken} ]; then
-                ${gitea}/bin/gitea generate secret INTERNAL_TOKEN > ${internalToken}
+          ''}
+            if [ ! -s '${internalToken}' ]; then
+                ${exe} generate secret INTERNAL_TOKEN > '${internalToken}'
             fi
+            chmod u+w '${runConfig}'
+            ${replaceSecretBin} '#secretkey#' '${secretKey}' '${runConfig}'
+            ${replaceSecretBin} '#dbpass#' '${cfg.database.passwordFile}' '${runConfig}'
+            ${replaceSecretBin} '#oauth2jwtsecret#' '${oauth2JwtSecret}' '${runConfig}'
+            ${replaceSecretBin} '#internaltoken#' '${internalToken}' '${runConfig}'
+            ${lib.optionalString cfg.lfs.enable ''
+            ${replaceSecretBin} '#lfsjwtsecret#' '${lfsJwtSecret}' '${runConfig}'"
+          ''}
+            ${lib.optionalString (cfg.mailerPasswordFile != null) ''
+            ${replaceSecretBin} '#mailerpass#' '${cfg.mailerPasswordFile}' '${runConfig}'
+          ''}
 
-            SECRETKEY="$(head -n1 ${secretKey})"
-            DBPASS="$(head -n1 ${cfg.database.passwordFile})"
-            OAUTH2JWTSECRET="$(head -n1 ${oauth2JwtSecret})"
-            LFSJWTSECRET="$(head -n1 ${lfsJwtSecret})"
-            INTERNALTOKEN="$(head -n1 ${internalToken})"
-            ${
-            if (cfg.mailerPasswordFile == null)
-            then ''
-              MAILERPASSWORD="#mailerpass#"
-            ''
-            else ''
-              MAILERPASSWORD="$(head -n1 ${cfg.mailerPasswordFile} || :)"
-            ''
-          }
-            ${
-            if (cfg.storageSecretFile == "")
-            then ''
-              STORAGESECRET="#storageSecret#"
-            ''
-            else ''
-              STORAGESECRET="$(head -n1 ${cfg.storageSecretFile} || :)"
-            ''
-          }
-            sed -e "s,#secretkey#,$SECRETKEY,g" \
-                -e "s,#dbpass#,$DBPASS,g" \
-                -e "s,#oauth2jwtsecret#,$OAUTH2JWTSECRET,g" \
-                -e "s,#lfsjwtsecret#,$LFSJWTSECRET,g" \
-                -e "s,#internaltoken#,$INTERNALTOKEN,g" \
-                -e "s,#mailerpass#,$MAILERPASSWORD,g" \
-                -e "s,#storageSecret#,$STORAGESECRET,g" \
-                -i ${runConfig}
+            ${lib.optionalString (cfg.storageSecretFile != null) ''
+            ${replaceSecretBin} '#sstorageSecret#' '${cfg.storageSecretFile}' '${runConfig}'
+          ''}
+            chmod u-w '${runConfig}'
           }
           (umask 027; gitea_setup)
         ''}
-
         # run migrations/init the database
-        ${gitea}/bin/gitea migrate
-
+        ${exe} migrate
         # update all hooks' binary paths
-        ${gitea}/bin/gitea admin regenerate hooks
-
+        ${exe} admin regenerate hooks
         # update command option in authorized_keys
         if [ -r ${cfg.stateDir}/.ssh/authorized_keys ]
         then
-          ${gitea}/bin/gitea admin regenerate keys
+          ${exe} admin regenerate keys
         fi
       '';
     };
