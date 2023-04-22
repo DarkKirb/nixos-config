@@ -58,7 +58,7 @@ in {
         lfsJwtSecret = "${cfg.customDir}/conf/lfs_jwt_secret"; # new file for LFS_JWT_SECRET
         internalToken = "${cfg.customDir}/conf/internal_token";
         replaceSecretBin = "${pkgs.replace-secret}/bin/replace-secret";
-      in ''
+      in lib.mkForce ''
         # copy custom configuration and generate random secrets if needed
         ${optionalString (!cfg.useWizard) ''
           function gitea_setup {
@@ -87,14 +87,13 @@ in {
             ${replaceSecretBin} '#oauth2jwtsecret#' '${oauth2JwtSecret}' '${runConfig}'
             ${replaceSecretBin} '#internaltoken#' '${internalToken}' '${runConfig}'
             ${lib.optionalString cfg.lfs.enable ''
-            ${replaceSecretBin} '#lfsjwtsecret#' '${lfsJwtSecret}' '${runConfig}'"
+            ${replaceSecretBin} '#lfsjwtsecret#' '${lfsJwtSecret}' '${runConfig}'
           ''}
             ${lib.optionalString (cfg.mailerPasswordFile != null) ''
             ${replaceSecretBin} '#mailerpass#' '${cfg.mailerPasswordFile}' '${runConfig}'
           ''}
-
             ${lib.optionalString (cfg.storageSecretFile != null) ''
-            ${replaceSecretBin} '#sstorageSecret#' '${cfg.storageSecretFile}' '${runConfig}'
+            ${replaceSecretBin} '#storageSecret#' '${cfg.storageSecretFile}' '${runConfig}'
           ''}
             chmod u-w '${runConfig}'
           }
