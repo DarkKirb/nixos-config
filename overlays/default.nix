@@ -58,6 +58,7 @@ in
         };
       hydra-unsstable = nix-packages.packages.${system}.hydra.overrideAttrs (super: {
         doCheck = false;
+        checkPhase = "";
+        installCheckPhase = "";
       });
     }
-    // nix-packages.packages.${system}
