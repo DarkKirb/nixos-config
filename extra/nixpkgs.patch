@@ -95,23 +95,6 @@ index bf410ec0..10b240b7 100644
        vanillaPackages.stdenv.override { targetPlatform = crossSystem; };
      # It's OK to change the built-time dependencies
      allowCustomOverrides = true;
-diff --git a/pkgs/stdenv/generic/make-derivation.nix b/pkgs/stdenv/generic/make-derivation.nix
-index 6cb494d46e5..f53cfde3bad 100644
---- a/pkgs/stdenv/generic/make-derivation.nix
-+++ b/pkgs/stdenv/generic/make-derivation.nix
-@@ -165,10 +165,8 @@ let
- , ... } @ attrs:
-
- let
--  # TODO(@oxij, @Ericson2314): This is here to keep the old semantics, remove when
--  # no package has `doCheck = true`.
--  doCheck' = doCheck && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
--  doInstallCheck' = doInstallCheck && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
-+  doCheck' = config.doCheckByDefault && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
-+  doInstallCheck' = config.doCheckByDefault && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
-
-   separateDebugInfo' = separateDebugInfo && stdenv.hostPlatform.isLinux;
-   outputs' = outputs ++ lib.optional separateDebugInfo' "debug";
 diff --git a/pkgs/top-level/impure.nix b/pkgs/top-level/impure.nix
 index 4d847e280f4..874b776c1e1 100644
 --- a/pkgs/top-level/impure.nix
