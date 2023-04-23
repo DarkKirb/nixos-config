@@ -69,7 +69,7 @@ rec {
       inputs.attic.follows = "attic";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
-#      inputs.hydra.follows = "hydra";
+      #      inputs.hydra.follows = "hydra";
     };
     nixos-config-for-netboot.url = "github:DarkKirb/nixos-config/c9c3d16b23042a25f504a6d71e7075318f1137f8";
     nixos-hardware.url = "github:NixOS/nixos-hardware";

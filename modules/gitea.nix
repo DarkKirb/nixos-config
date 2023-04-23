@@ -58,57 +58,58 @@ in {
         lfsJwtSecret = "${cfg.customDir}/conf/lfs_jwt_secret"; # new file for LFS_JWT_SECRET
         internalToken = "${cfg.customDir}/conf/internal_token";
         replaceSecretBin = "${pkgs.replace-secret}/bin/replace-secret";
-      in lib.mkForce ''
-        # copy custom configuration and generate random secrets if needed
-        ${optionalString (!cfg.useWizard) ''
-          function gitea_setup {
-            cp -f '${configFile}' '${runConfig}'
-            if [ ! -s '${secretKey}' ]; then
-                ${exe} generate secret SECRET_KEY > '${secretKey}'
-            fi
-            # Migrate LFS_JWT_SECRET filename
-            if [[ -s '${oldLfsJwtSecret}' && ! -s '${lfsJwtSecret}' ]]; then
-                mv '${oldLfsJwtSecret}' '${lfsJwtSecret}'
-            fi
-            if [ ! -s '${oauth2JwtSecret}' ]; then
-                ${exe} generate secret JWT_SECRET > '${oauth2JwtSecret}'
-            fi
-            ${lib.optionalString cfg.lfs.enable ''
-            if [ ! -s '${lfsJwtSecret}' ]; then
-                ${exe} generate secret LFS_JWT_SECRET > '${lfsJwtSecret}'
-            fi
+      in
+        lib.mkForce ''
+          # copy custom configuration and generate random secrets if needed
+          ${optionalString (!cfg.useWizard) ''
+            function gitea_setup {
+              cp -f '${configFile}' '${runConfig}'
+              if [ ! -s '${secretKey}' ]; then
+                  ${exe} generate secret SECRET_KEY > '${secretKey}'
+              fi
+              # Migrate LFS_JWT_SECRET filename
+              if [[ -s '${oldLfsJwtSecret}' && ! -s '${lfsJwtSecret}' ]]; then
+                  mv '${oldLfsJwtSecret}' '${lfsJwtSecret}'
+              fi
+              if [ ! -s '${oauth2JwtSecret}' ]; then
+                  ${exe} generate secret JWT_SECRET > '${oauth2JwtSecret}'
+              fi
+              ${lib.optionalString cfg.lfs.enable ''
+              if [ ! -s '${lfsJwtSecret}' ]; then
+                  ${exe} generate secret LFS_JWT_SECRET > '${lfsJwtSecret}'
+              fi
+            ''}
+              if [ ! -s '${internalToken}' ]; then
+                  ${exe} generate secret INTERNAL_TOKEN > '${internalToken}'
+              fi
+              chmod u+w '${runConfig}'
+              ${replaceSecretBin} '#secretkey#' '${secretKey}' '${runConfig}'
+              ${replaceSecretBin} '#dbpass#' '${cfg.database.passwordFile}' '${runConfig}'
+              ${replaceSecretBin} '#oauth2jwtsecret#' '${oauth2JwtSecret}' '${runConfig}'
+              ${replaceSecretBin} '#internaltoken#' '${internalToken}' '${runConfig}'
+              ${lib.optionalString cfg.lfs.enable ''
+              ${replaceSecretBin} '#lfsjwtsecret#' '${lfsJwtSecret}' '${runConfig}'
+            ''}
+              ${lib.optionalString (cfg.mailerPasswordFile != null) ''
+              ${replaceSecretBin} '#mailerpass#' '${cfg.mailerPasswordFile}' '${runConfig}'
+            ''}
+              ${lib.optionalString (cfg.storageSecretFile != null) ''
+              ${replaceSecretBin} '#storageSecret#' '${cfg.storageSecretFile}' '${runConfig}'
+            ''}
+              chmod u-w '${runConfig}'
+            }
+            (umask 027; gitea_setup)
           ''}
-            if [ ! -s '${internalToken}' ]; then
-                ${exe} generate secret INTERNAL_TOKEN > '${internalToken}'
-            fi
-            chmod u+w '${runConfig}'
-            ${replaceSecretBin} '#secretkey#' '${secretKey}' '${runConfig}'
-            ${replaceSecretBin} '#dbpass#' '${cfg.database.passwordFile}' '${runConfig}'
-            ${replaceSecretBin} '#oauth2jwtsecret#' '${oauth2JwtSecret}' '${runConfig}'
-            ${replaceSecretBin} '#internaltoken#' '${internalToken}' '${runConfig}'
-            ${lib.optionalString cfg.lfs.enable ''
-            ${replaceSecretBin} '#lfsjwtsecret#' '${lfsJwtSecret}' '${runConfig}'
-          ''}
-            ${lib.optionalString (cfg.mailerPasswordFile != null) ''
-            ${replaceSecretBin} '#mailerpass#' '${cfg.mailerPasswordFile}' '${runConfig}'
-          ''}
-            ${lib.optionalString (cfg.storageSecretFile != null) ''
-            ${replaceSecretBin} '#storageSecret#' '${cfg.storageSecretFile}' '${runConfig}'
-          ''}
-            chmod u-w '${runConfig}'
-          }
-          (umask 027; gitea_setup)
-        ''}
-        # run migrations/init the database
-        ${exe} migrate
-        # update all hooks' binary paths
-        ${exe} admin regenerate hooks
-        # update command option in authorized_keys
-        if [ -r ${cfg.stateDir}/.ssh/authorized_keys ]
-        then
-          ${exe} admin regenerate keys
-        fi
-      '';
+          # run migrations/init the database
+          ${exe} migrate
+          # update all hooks' binary paths
+          ${exe} admin regenerate hooks
+          # update command option in authorized_keys
+          if [ -r ${cfg.stateDir}/.ssh/authorized_keys ]
+          then
+            ${exe} admin regenerate keys
+          fi
+        '';
     };
   };
 }
