@@ -4,7 +4,7 @@
   ...
 }: {
   services.nextcloud = {
-    appstoreEnable  = true;
+    appstoreEnable = true;
     caching.redis = true;
     config = {
       adminpassFile = config.sops.secrets."services/nextcloud/adminpass".path;
