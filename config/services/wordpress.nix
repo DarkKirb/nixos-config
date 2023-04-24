@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{lib, pkgs, config, ...}: {
+
+  imports = [../../modules/wordpress.nix];
   services.mysql = {
     enable = true;
     package = pkgs.mariadb;
@@ -15,5 +17,11 @@
     '';
   };
 
-  services.caddy.virtualHosts."lotte.chir.rs".useACMEHost = "chir.rs";
+  services.caddy.virtualHosts."lotte.chir.rs" = {
+    useACMEHost = "chir.rs";
+    logFormat = lib.mkForce "";
+    extraConfig = ''
+        import baseConfig
+    '';
+  };
 }
