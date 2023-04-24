@@ -53,9 +53,6 @@
       "pm.max_spare_servers" = 64;
     };
     webfinger = true;
-    extraApps = with pkgs.nextcloud26Packages.apps; {
-      inherit bookmarks calendar contacts deck files_texteditor forms groupfolders mail news notes notify_push onlyoffice polls previewgenerator spreed tasks twofactor_webauthn unsplash;
-    };
   };
   sops.secrets."services/nextcloud/adminpass".owner = "nextcloud";
   sops.secrets."services/nextcloud/s3".owner = "nextcloud";
