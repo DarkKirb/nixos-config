@@ -28,27 +28,6 @@
     ${pkgs.sway-contrib.grimshot}/bin/grimshot "$@"
     ${pkgs.sway}/bin/swaymsg mode default
   '';
-  bg-full-res = "${pkgs.lotte-art}/2022-06-21-sammythetanuki-lotteplushpride.jxl";
-  bg-1440p = pkgs.stdenvNoCC.mkDerivation {
-    name = "wayland-background-1440p.png";
-    nativeBuildInputs = [pkgs.imagemagick pkgs.libjxl];
-    src = pkgs.emptyDirectory;
-    buildPhase = ''
-      djxl ${bg-full-res} bg-full-res.png
-      convert bg-full-res.png -resize 2560x1440 $out
-    '';
-    installPhase = "true";
-  };
-  bg-1080p = pkgs.stdenvNoCC.mkDerivation {
-    name = "wayland-background-1080p.png";
-    nativeBuildInputs = [pkgs.imagemagick pkgs.libjxl];
-    src = pkgs.emptyDirectory;
-    buildPhase = ''
-      djxl ${bg-full-res} bg-full-res.png
-      convert bg-full-res.png -resize 1920x1080 $out
-    '';
-    installPhase = "true";
-  };
 in {
   imports = [
     ./wl-clipboard.nix
@@ -68,21 +47,16 @@ in {
         };
       };
       output = {
-        "eDP-1" = {
-          bg = "${bg-1080p} fill";
-        };
         "DP-1" = {
           mode = "2560x1440@74.971Hz";
           position = "0 0";
           subpixel = "rgb";
           adaptive_sync = "on";
-          bg = "${bg-1440p} fill";
         };
         "HDMI-A-1" = {
           mode = "1920x1080@60Hz";
           position = "2560 0";
           subpixel = "rgb";
-          bg = "${bg-1080p} fill";
         };
       };
       keybindings = let

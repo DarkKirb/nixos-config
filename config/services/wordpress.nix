@@ -1,5 +1,9 @@
-{lib, pkgs, config, ...}: {
-
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   imports = [../../modules/wordpress.nix];
   services.mysql = {
     enable = true;
@@ -21,7 +25,7 @@
     useACMEHost = "chir.rs";
     logFormat = lib.mkForce "";
     extraConfig = ''
-        import baseConfig
+      import baseConfig
     '';
   };
 }

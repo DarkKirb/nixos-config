@@ -257,6 +257,32 @@
         "type": "github"
       }
     },
+    "colorpickle": {
+      "inputs": {
+        "naersk": [
+          "naersk"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": [
+          "flake-utils"
+        ]
+      },
+      "locked": {
+        "lastModified": 1682020898,
+        "narHash": "sha256-XYSSFmqIjsvmgusWaOSD/WeaTyH8o83i+qma1BQgARU=",
+        "owner": "AgathaSorceress",
+        "repo": "colorpickle",
+        "rev": "2574b83cb0454a146a0346bf0d6a134d62241e60",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AgathaSorceress",
+        "repo": "colorpickle",
+        "type": "github"
+      }
+    },
     "crane": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -1281,6 +1307,27 @@
         "type": "github"
       }
     },
+    "naersk": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1679567394,
+        "narHash": "sha256-ZvLuzPeARDLiQUt6zSZFGOs+HZmE+3g4QURc8mkBsfM=",
+        "owner": "nix-community",
+        "repo": "naersk",
+        "rev": "88cd22380154a2c36799fe8098888f0f59861a15",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "master",
+        "repo": "naersk",
+        "type": "github"
+      }
+    },
     "nix": {
       "inputs": {
         "lowdown-src": "lowdown-src",
@@ -1903,6 +1950,7 @@
         "attic": "attic",
         "cargo2nix": "cargo2nix",
         "chir-rs": "chir-rs",
+        "colorpickle": "colorpickle",
         "crane": "crane",
         "dns": "dns",
         "emanote": "emanote",
@@ -1912,6 +1960,7 @@
         "home-manager": "home-manager",
         "hosts-list": "hosts-list",
         "hydra": "hydra",
+        "naersk": "naersk",
         "nix-neovim": "nix-neovim",
         "nix-packages": "nix-packages",
         "nixos-config-for-netboot": "nixos-config-for-netboot",
