@@ -1,12 +1,33 @@
 {
   pkgs,
   config,
+  colorpickle,
+  bg,
   ...
 }: let
   theme = import ../../extra/theme.nix;
   inherit (config.lib.formats.rasi) mkLiteral;
-  rasiColor = c: mkLiteral (theme.cssColor c);
+  color = n:
+    config.environment.graphical.colors.main."${builtins.toString n}";
+  color' = n: mkLiteral (color n);
+  bgPng = pkgs.stdenv.mkDerivation {
+    name = "bg.png";
+    src = pkgs.emptyDirectory;
+    nativeBuildInputs = [pkgs.imagemagick];
+    buildPhase = ''
+      convert ${bg} $out
+    '';
+    installPhase = "true";
+  };
 in {
+  imports = [
+    colorpickle.nixosModules.default
+  ];
+  environment.graphical.colorschemes.main = {
+    image = bgPng;
+    #params = ["--lighten" "0.1"];
+  };
+  wayland.windowManager.sway.config.output."*".bg = "${bgPng} fill";
   dconf.settings."org/gnome/desktop/interface" = {
     gtk-theme = "Breeze-Dark";
     icon-theme = "breeze-dark";
@@ -52,27 +73,27 @@ in {
     '';
   };
   programs.kitty.settings = with theme; {
-    background_opacity = "0.9";
-    background = cssColor base;
-    foreground = cssColor text;
-    cursor = cssColor text;
+    background_opacity = "0.85";
+    background = color 0;
+    foreground = color 15;
+    cursor = color 15;
     selection_background = "#4f414c";
-    color0 = cssColor surface1;
-    color1 = cssColor red;
-    color2 = cssColor green;
-    color3 = cssColor yellow;
-    color4 = cssColor blue;
-    color5 = cssColor pink;
-    color6 = cssColor teal;
-    color7 = cssColor subtext1;
-    color8 = cssColor surface2;
-    color9 = cssColor red;
-    color10 = cssColor green;
-    color11 = cssColor yellow;
-    color12 = cssColor blue;
-    color13 = cssColor pink;
-    color14 = cssColor teal;
-    color15 = cssColor subtext0;
+    color0 = color 0;
+    color1 = color 9;
+    color2 = color 10;
+    color3 = color 11;
+    color4 = color 12;
+    color5 = color 13;
+    color6 = color 14;
+    color7 = color 7;
+    color8 = color 8;
+    color9 = color 9;
+    color10 = color 10;
+    color11 = color 11;
+    color12 = color 12;
+    color13 = color 13;
+    color14 = color 14;
+    color15 = color 15;
   };
   # Taken from https://github.com/jakehamilton/dotfiles/blob/master/waybar/style.css
   programs.waybar.style = with theme; ''
@@ -82,11 +103,12 @@ in {
     	font-size: 14px;
     	min-height: 24px;
       font-family: "NotoSansDisplay Nerd Font", "Noto Sans Mono CJK JP";
-      color: ${cssColor base};
+      color: ${color 0};
     }
 
     window#waybar {
       background: transparent;
+      color: ${color 15};
       opacity: 0.9;
     }
 
@@ -107,7 +129,8 @@ in {
     	margin-left: 12px;
     	margin-bottom: 0;
     	border-radius: 24px;
-    	background: ${cssColor surface0};
+    	background-color: ${color 0};
+        color: ${color 15};
     	transition: none;
     }
 
@@ -115,17 +138,17 @@ in {
     	transition: none;
     	background: transparent;
     	font-size: 16px;
-      color: ${cssColor text};
+      color: ${color 15};
     }
 
     #workspaces button.focused {
-      background: ${cssColor mauve};
-      color: ${cssColor base};
+      background: ${color 13};
+      color: ${color 0};
     }
 
     #workspaces button:hover {
-      background: ${cssColor sapphire};
-      color: ${cssColor base};
+      background: ${color 10};
+      color: ${color 0};
     }
 
     #mpd {
@@ -135,13 +158,13 @@ in {
     	padding-right: 16px;
     	margin-bottom: 0;
     	border-radius: 24px;
-    	background: ${cssColor green};
+    	background: ${color 2};
     	transition: none;
     }
 
     #mpd.disconnected,
     #mpd.stopped {
-    	background: ${cssColor red};
+    	background: ${color 4};
     }
 
     #network {
@@ -152,7 +175,7 @@ in {
     	margin-bottom: 0;
     	border-radius: 24px;
     	transition: none;
-    	background: ${cssColor mauve};
+    	background: ${color 13};
     }
 
     #pulseaudio {
@@ -163,7 +186,7 @@ in {
     	margin-bottom: 0;
     	border-radius: 24px;
     	transition: none;
-    	background: ${cssColor teal};
+    	background: ${color 11};
     }
 
     #temperature, #battery {
@@ -174,7 +197,7 @@ in {
     	margin-bottom: 0;
     	border-radius: 24px;
     	transition: none;
-    	background: ${cssColor green};
+    	background: ${color 2};
     }
 
     #cpu, #backlight, #battery.warning {
@@ -185,7 +208,7 @@ in {
     	margin-bottom: 0;
     	border-radius: 24px;
     	transition: none;
-    	background: ${cssColor yellow};
+    	background: ${color 14};
     }
 
     #memory, #battery.critical {
@@ -196,7 +219,7 @@ in {
     	margin-bottom: 0;
     	border-radius: 24px;
     	transition: none;
-    	background: ${cssColor red};
+    	background: ${color 12};
     }
 
     #clock {
@@ -208,19 +231,19 @@ in {
     	margin-bottom: 0;
     	border-radius: 26px;
     	transition: none;
-    	background: ${cssColor surface0};
-      color: ${cssColor text};
+    	background: ${color 0};
+      color: ${color 15};
     }
   '';
 
   wayland.windowManager.sway.extraConfig = with theme; ''
     # target                 title                bg               text              indicator             border
-    client.focused           ${cssColor pink}     ${cssColor base} ${cssColor text}  ${cssColor rosewater} ${cssColor pink}
-    client.focused_inactive  ${cssColor mauve}    ${cssColor base} ${cssColor text}  ${cssColor rosewater} ${cssColor mauve}
-    client.unfocused         ${cssColor mauve}    ${cssColor base} ${cssColor text}  ${cssColor rosewater} ${cssColor mauve}
-    client.urgent            ${cssColor peach}    ${cssColor base} ${cssColor peach} ${cssColor overlay0}  ${cssColor peach}
-    client.placeholder       ${cssColor overlay0} ${cssColor base} ${cssColor text}  ${cssColor overlay0}  ${cssColor overlay0}
-    client.background        ${cssColor base}
+    client.focused           ${color 5}     ${color 0} ${color 15}  ${color 12} ${color 5}
+    client.focused_inactive  ${color 13}    ${color 0} ${color 15}  ${color 12} ${color 13}
+    client.unfocused         ${color 13}    ${color 0} ${color 15}  ${color 12} ${color 13}
+    client.urgent            ${color 14}    ${color 0} ${color 14} ${color 8}  ${color 14}
+    client.placeholder       ${color 8} ${color 0} ${color 15}  ${color 8}  ${color 8}
+    client.background        ${color 0}
     seat seat0 xcursor_theme breeze-dark 24
   '';
   home.packages = with pkgs; [libsForQt5.breeze-icons libsForQt5.qt5ct vanilla-dmz];
@@ -232,14 +255,14 @@ in {
     };
   in {
     "*" = {
-      bg-col = rasiColor base;
-      bg-col-light = rasiColor base;
-      border-col = rasiColor base;
-      selected-col = rasiColor base;
-      blue = rasiColor blue;
-      fg-col = rasiColor text;
-      fg-col2 = rasiColor red;
-      grey = rasiColor overlay0;
+      bg-col = color' 0;
+      bg-col-light = color' 0;
+      border-col = color' 0;
+      selected-col = color' 0;
+      blue = color' 1;
+      fg-col = color' 15;
+      fg-col2 = color' 12;
+      grey = color' 8;
       width = 600;
     };
     element-text = element;
