@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }: {
   imports = [../../modules/wordpress.nix];
@@ -27,7 +26,7 @@
         indieweb
         pubsubhubbub
         indieweb-post-kinds
-        indeiauth
+        indieauth
         syndication-links
         micropub
         webmention
