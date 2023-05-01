@@ -141,9 +141,9 @@
         followers_only = processMap {
           "vivaldi.net" = "Corporate instance; Registers nonconsensual accounts for Vivaldi Sync users";
           "bird.makeup" = "Birdsite scraper with removed limitations and privacy considerations";
+          "mastodon.social" = "Owner tries to monopolize the fediverse entirely on this instance.";
         };
         federated_timeline_removal = processMap {
-          "mastodon.social" = "Too large to be moderated well";
           "mastodon.online" = "Too large to be moderated well";
           "tumblr.com" = "Too large to be moderated well, corporate instance";
         };
