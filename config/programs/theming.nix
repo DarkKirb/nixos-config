@@ -10,7 +10,7 @@
 }: let
   theme = import ../../extra/theme.nix;
   inherit (config.lib.formats.rasi) mkLiteral;
-  
+
   prepBGs = [
     ["${pkgs.lotte-art}/2021-01-27-ceeza-lottedonut.jxl" "-crop" "2048x1152+0+106"]
     ["${pkgs.lotte-art}/2021-09-15-cloverhare-lotteplush.jxl" "-crop" "1774x997+0+173"]
@@ -29,16 +29,17 @@
     ["${pkgs.lotte-art}/2023-04-16-baltnwolf-lottediaperplushies-messy.jxl" "-gravity" "center" "-background" "white" "-extent" "5333x3000"]
   ];
 
-  fixupImage = instructions: pkgs.stdenv.mkDerivation {
-    name = "bg.jxl";
-    src = pkgs.emptyDirectory;
-    nativeBuildInputs = [pkgs.imagemagick];
-    buildPhase = ''
-      convert ${toString instructions} $out
-    '';
-    installPhase = "true";
-  };
-  
+  fixupImage = instructions:
+    pkgs.stdenv.mkDerivation {
+      name = "bg.jxl";
+      src = pkgs.emptyDirectory;
+      nativeBuildInputs = [pkgs.imagemagick];
+      buildPhase = ''
+        convert ${toString instructions} $out
+      '';
+      installPhase = "true";
+    };
+
   validBGs = ["${pkgs.lotte-art}/2020-07-24-urbankitsune-bna-ych.jxl" "${pkgs.lotte-art}/2022-05-02-anonfurryartist-giftart.jxl" "${pkgs.lotte-art}/2022-06-21-sammythetanuki-lotteplushpride.jxl"] ++ (map fixupImage prepBGs);
   validBGsNSFW = ["${pkgs.lotte-art}2021-10-29-butterskunk-lotte-scat-buffet.jxl" "${pkgs.lotte-art}/2022-08-12-deathtoaster-funpit-scat.jxl" "${pkgs.lotte-art}/2022-08-15-deathtoaster-funpit-mud.jxl"] ++ (map fixupImage prepBGsNSFW) ++ validBGs;
 
@@ -69,9 +70,15 @@
     "F" = 15;
   };
   hexToInt = s: lib.foldl (state: new: state * 16 + hexToIntList.${new}) 0 (lib.strings.stringToCharacters s);
-  
+
   seed = hexToInt (self.shortRev or nixpkgs.shortRev);
-  bg = choose (if withNSFW then validBGsNSFW else validBGs) seed;
+  bg =
+    choose (
+      if withNSFW
+      then validBGsNSFW
+      else validBGs
+    )
+    seed;
 
   color = n:
     config.environment.graphical.colors.main."${builtins.toString n}";
