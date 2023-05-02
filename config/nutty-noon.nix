@@ -121,5 +121,5 @@
     "https://cache.nixos.org/"
   ];
   services.tailscale.useRoutingFeatures = "client";
-  home-manager.users.darkkirb._module.args.bg = lib.mkForce "${pkgs.lotte-art}/2022-08-12-deathtoaster-funpit-scat.jxl";
+  home-manager.users.darkkirb._module.args.withNSFW = lib.mkForce true;
 }

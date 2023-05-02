@@ -99,5 +99,5 @@ desktop: {pkgs, ...}: {
   home.stateVersion = "22.05";
   manual.manpages.enable = false; # broken
 
-  _module.args.bg = "${pkgs.lotte-art}/2022-06-21-sammythetanuki-lotteplushpride.jxl";
+  _module.args.withNSFW = false;
 }
