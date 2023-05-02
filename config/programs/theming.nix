@@ -41,7 +41,7 @@
     };
 
   validBGs = ["${pkgs.lotte-art}/2020-07-24-urbankitsune-bna-ych.jxl" "${pkgs.lotte-art}/2022-05-02-anonfurryartist-giftart.jxl" "${pkgs.lotte-art}/2022-06-21-sammythetanuki-lotteplushpride.jxl"] ++ (map fixupImage prepBGs);
-  validBGsNSFW = ["${pkgs.lotte-art}2021-10-29-butterskunk-lotte-scat-buffet.jxl" "${pkgs.lotte-art}/2022-08-12-deathtoaster-funpit-scat.jxl" "${pkgs.lotte-art}/2022-08-15-deathtoaster-funpit-mud.jxl"] ++ (map fixupImage prepBGsNSFW) ++ validBGs;
+  validBGsNSFW = ["${pkgs.lotte-art}/2021-10-29-butterskunk-lotte-scat-buffet.jxl" "${pkgs.lotte-art}/2022-08-12-deathtoaster-funpit-scat.jxl" "${pkgs.lotte-art}/2022-08-15-deathtoaster-funpit-mud.jxl"] ++ (map fixupImage prepBGsNSFW) ++ validBGs;
 
   mod = a: b: a - (a / b * b);
   choose = l: rand: let len = builtins.length l; in builtins.elemAt l (mod rand len);
