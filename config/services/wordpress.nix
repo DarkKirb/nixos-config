@@ -38,9 +38,11 @@
         classic-editor
         wordpress-seo
         ilab-media-tools
-        translatepress-multilingual
         webp-express
         jetpack
+        modern-footnotes
+        polylang
+        the-plus-addons-for-block-editor
         ;
     };
     themes = {

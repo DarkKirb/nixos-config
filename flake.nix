@@ -87,9 +87,8 @@ rec {
     nixpkgs-for-crane.url = "github:NixOS/nixpkgs/3ae365afb80773c3bb67e52294a82e329a9e5be0";
     nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
     nur.url = "github:nix-community/NUR";
-    prismmc = {
-      url = "github:PrismLauncher/PrismLauncher";
-      inputs.nixpkgs.follows = "nixpkgs";
+    prismlauncher = {
+      url = "github:PrismLauncher/PrismLauncher/45b0367d14f38d40af5cc8603f7daab05d83af5f";
     };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -174,7 +173,9 @@ rec {
               ({pkgs, ...}: {
                 nixpkgs.overlays = [
                   nur.overlay
-                  args.prismmc.overlays.default
+                  (self: super: {
+                    inherit (args.prismlauncher.packages.${system}) prismlauncher;
+                  })
                 ];
                 home-manager.extraSpecialArgs = args // {inherit system;};
               })
