@@ -43,10 +43,10 @@ in {
         command = "${screen-off-script}";
         resumeCommand = "${resume-script}";
       }
-      {
-        timeout = 900;
-        command = "${suspend-script}";
-      }
+      #{
+      #  timeout = 900;
+      #  command = "${suspend-script}";
+      #}
     ];
   };
 }
