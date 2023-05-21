@@ -45,20 +45,18 @@
     fileSystems = ["/"];
   };
   services.snapper.configs.main = {
-    subvolume = "/";
-    extraConfig = ''
-        TIMELINE_LIMIT_HOURLY="5"
-        TIMELINE_LIMIT_DAILY="7"
-        TIMELINE_LIMIT_WEEKLY="4"
-        TIMELINE_LIMIT_MONTHLY="12"
-        TIMELINE_LIMIT_YEARLY="0"
-    '';
+    SUBVOLUME = "/";
+    TIMELINE_LIMIT_HOURLY = "5";
+    TIMELINE_LIMIT_DAILY = "7";
+    TIMELINE_LIMIT_WEEKLY = "4";
+    TIMELINE_LIMIT_MONTHLY = "12";
+    TIMELINE_LIMIT_YEARLY = "0";
   };
   services.beesd.filesystems.root = {
     spec = "LABEL=root";
     hashTableSizeMB = 2048;
     verbosity = "crit";
-    extraOptions = [ "--loadavg-target" "5.0" ];
+    extraOptions = ["--loadavg-target" "5.0"];
   };
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
