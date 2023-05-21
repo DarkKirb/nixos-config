@@ -60,5 +60,5 @@ in
       checkPhase = "";
       installCheckPhase = "";
     });
-    nodejs-16_x = super.nodejs-17_x;
+    nodejs-16_x = super.nodejs-18_x;
   }
