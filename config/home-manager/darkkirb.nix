@@ -27,6 +27,7 @@
         ../programs/keybase.nix
         ../programs/keepass.nix
         ../programs/kicad.nix
+        ../programs/vscode
         ../programs/misc.nix
         ../programs/kitty.nix
         ../programs/zk.nix

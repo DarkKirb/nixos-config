@@ -67,7 +67,7 @@ in {
     iptables -A FORWARD -i br0 -j ACCEPT
     iptables -t nat -A POSTROUTING -o enp2s0f0u4 -s 192.168.2.0/24 -j MASQUERADE
   '';
-  networking.interfaces.enp1s0f0u4.macAddress = "00:d8:61:d0:de:1e"; # fucking ISP
+  networking.interfaces.enp2s0f0u4.macAddress = "00:d8:61:d0:de:1e"; # fucking ISP
   boot.kernel.sysctl = {
     "net.ipv4.conf.all.forwarding" = true;
     "net.ipv6.conf.all.forwarding" = true;

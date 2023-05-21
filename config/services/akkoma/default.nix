@@ -111,6 +111,20 @@
         sign_object_fetches = true;
         authorized_fetch_mode = true;
       };
+      ":mrf_hellthread" = {
+        delist_threshold = 8;
+      };
+      ":mrf_keyword" = {
+        reject = [
+          "usdtenm.com"
+          (mkRaw "~r/Hi \\w+! New account: .* Do not share with anyone, official website:/i")
+          "dogeai.farm"
+          "ARB Doge"
+          "new meme token created by the latest neural network"
+          (mkRaw "~r/dogecoin.*airdrop/i")
+          (mkRaw "~r/airdrop.*dogecoin/i")
+        ];
+      };
       ":mrf_simple" = let
         processMap = m: map (k: mkTuple [k m.${k}]) (builtins.attrNames m);
       in {
@@ -149,7 +163,7 @@
         };
       };
       ":mrf" = {
-        policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "MediaProxyWarmingPolicy" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "TagPolicy" "RequireImageDescription" "BlockInvalidDatetime"];
+        policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "MediaProxyWarmingPolicy" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "KeywordPolicy" "TagPolicy" "RequireImageDescription" "BlockInvalidDatetime" "HellthreadPolicy"];
         transparency = true;
       };
       ":http_security" = {
