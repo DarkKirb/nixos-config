@@ -52,51 +52,58 @@ in {
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    buildMachines = [
-      {
-        hostName = "build-nas";
-        systems = [
-          "armv7l-linux"
-          "powerpc-linux"
-          "powerpc64-linux"
-          "powerpc64le-linux"
-          "riscv32-linux"
-          "riscv64-linux"
-          "wasm32-wasi"
-          "x86_64-linux"
-          "i686-linux"
-        ];
-        maxJobs = 12;
-        speedFactor = 1;
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver1" "gccarch-skylake" "ca-derivations"];
-      }
-      {
-        hostName = "build-pc";
-        systems = [
-          "armv7l-linux"
-          "powerpc-linux"
-          "powerpc64-linux"
-          "powerpc64le-linux"
-          "riscv32-linux"
-          "riscv64-linux"
-          "wasm32-wasi"
-          "x86_64-linux"
-          "i686-linux"
-        ];
-        maxJobs = 16;
-        speedFactor = 2;
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "gccarch-znver1" "gccarch-skylake" "ca-derivations"];
-      }
-      {
-        hostName = "build-aarch64";
-        systems = [
-          "aarch64-linux"
-        ];
-        maxJobs = 4;
-        speedFactor = 1;
-        supportedFeatures = ["nixos-test" "benchmark" "ca-derivations" "gccarch-armv8-a" "gccarch-armv8.1-a" "gccarch-armv8.2-a" "big-parallel"];
-      }
-    ];
+    buildMachines = with lib;
+      mkMerge [
+        (mkIf (config.networking.hostName != "nas") [
+          {
+            hostName = "build-nas";
+            systems = [
+              "armv7l-linux"
+              "powerpc-linux"
+              "powerpc64-linux"
+              "powerpc64le-linux"
+              "riscv32-linux"
+              "riscv64-linux"
+              "wasm32-wasi"
+              "x86_64-linux"
+              "i686-linux"
+            ];
+            maxJobs = 12;
+            speedFactor = 1;
+            supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver1" "gccarch-skylake" "ca-derivations"];
+          }
+        ])
+        (mkIf (config.networking.hostName != "nutty-noon") [
+          {
+            hostName = "build-pc";
+            systems = [
+              "armv7l-linux"
+              "powerpc-linux"
+              "powerpc64-linux"
+              "powerpc64le-linux"
+              "riscv32-linux"
+              "riscv64-linux"
+              "wasm32-wasi"
+              "x86_64-linux"
+              "i686-linux"
+            ];
+            maxJobs = 16;
+            speedFactor = 2;
+            supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark" "gccarch-znver2" "gccarch-znver1" "gccarch-skylake" "ca-derivations"];
+          }
+        ])
+        (mkIf (config.networking.hostName != "instance-20221213-1915") [
+          {
+            hostName = "build-aarch64";
+            systems = [
+              "aarch64-linux"
+            ];
+            maxJobs = 4;
+            speedFactor = 1;
+            supportedFeatures = ["nixos-test" "benchmark" "ca-derivations" "gccarch-armv8-a" "gccarch-armv8.1-a" "gccarch-armv8.2-a" "big-parallel"];
+          }
+        ])
+      ];
     distributedBuilds = true;
   };
   system.autoUpgrade = {

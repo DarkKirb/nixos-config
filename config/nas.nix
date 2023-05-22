@@ -33,54 +33,45 @@
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod"];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod" "bcache"];
   boot.initrd.kernelModules = ["igb"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [
     config.boot.kernelPackages.zenpower
   ];
 
+  services.btrfs.autoScrub = {
+    enable = true;
+    fileSystems = ["/"];
+  };
+  services.snapper.configs.main = {
+    SUBVOLUME = "/";
+    TIMELINE_LIMIT_HOURLY = "5";
+    TIMELINE_LIMIT_DAILY = "7";
+    TIMELINE_LIMIT_WEEKLY = "4";
+    TIMELINE_LIMIT_MONTHLY = "12";
+    TIMELINE_LIMIT_YEARLY = "0";
+  };
+  services.beesd.filesystems.root = {
+    spec = "LABEL=root";
+    hashTableSizeMB = 2048;
+    verbosity = "crit";
+    extraOptions = ["--loadavg-target" "5.0"];
+  };
+
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
-  boot.supportedFilesystems = lib.mkForce ["bcachefs" "vfat"];
+  boot.supportedFilesystems = lib.mkForce ["btrfs" "vfat"];
 
   fileSystems."/" = {
-    device = "/dev/nvme0n1p2:/dev/sda1:/dev/sdb1:/dev/sdc1";
-    fsType = "bcachefs";
+    device = "/dev/bcache0";
+    fsType = "btrfs";
   };
 
   fileSystems."/boot" = {
     device = "/dev/nvme0n1p1";
     fsType = "vfat";
   };
-  fileSystems."/boot1" = {
-    device = "/dev/disk/by-partuuid/b50f9cff-552d-4c6e-bda2-104723ee638e";
-    fsType = "vfat";
-  };
-  fileSystems."/boot2" = {
-    device = "/dev/disk/by-partuuid/6f365c6a-63a2-4fb9-976b-ec9e04c9cb13";
-    fsType = "vfat";
-  };
-  fileSystems."/boot3" = {
-    device = "/dev/disk/by-partuuid/324146ea-edb6-4f2e-b260-af8eddfb1eca";
-    fsType = "vfat";
-  };
 
-  /*
-    swapDevices = [
-    {
-      device = "/dev/disk/by-partuuid/3b652a7e-a550-4342-a0d7-d2ae47b3e9d1";
-      randomEncryption = true;
-    }
-    {
-      device = "/dev/disk/by-partuuid/59de36d4-6613-4b50-9643-8824e9a9b1f9";
-      randomEncryption = true;
-    }
-    {
-      device = "/dev/disk/by-partuuid/f6260d75-2b96-4f55-ba0f-050c58b84b78";
-      randomEncryption = true;
-    }
-  ];
-  */
   networking.interfaces.br0 = {
     ipv4 = {
       addresses = [
@@ -109,7 +100,6 @@
   nix.settings.cores = 12;
   boot.binfmt.emulatedSystems = [
     "armv7l-linux"
-    "aarch64-linux"
     "powerpc-linux"
     "powerpc64-linux"
     "powerpc64le-linux"
@@ -173,4 +163,5 @@
   };
   services.tailscale.useRoutingFeatures = "both";
   hardware.sane.brscan4.enable = true;
+  system.autoUpgrade.allowReboot = true;
 }

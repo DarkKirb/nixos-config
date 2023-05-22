@@ -14,6 +14,7 @@
     secrets.secretsFile = config.sops.secrets."services/peertube/secret".path;
     settings = {
       object_storage = {
+        upload_acl.public = "private";
         enabled = true;
         endpoint = "s3.us-west-000.backblazeb2.com";
         videos = {

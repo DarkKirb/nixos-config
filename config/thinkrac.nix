@@ -19,6 +19,7 @@
     nixos-hardware.nixosModules.common-cpu-intel-kaby-lake
     nixos-hardware.nixosModules.common-pc-ssd
     ./services/postgres.nix
+    ./services/kubo-local.nix
   ];
   hardware.cpu.intel.updateMicrocode = true;
 

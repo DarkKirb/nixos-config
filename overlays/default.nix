@@ -60,4 +60,9 @@ in
       checkPhase = "";
       installCheckPhase = "";
     });
+    nodejs-16_x = prev.nodejs-18_x;
+    neomutt = prev.neomutt.overrideAttrs (super: {
+        doCheck = false;
+        doInstallCheck = false;
+    });
   }

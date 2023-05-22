@@ -83,13 +83,10 @@ rec {
     };
     nixos-config-for-netboot.url = "github:DarkKirb/nixos-config/c9c3d16b23042a25f504a6d71e7075318f1137f8";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-for-crane.url = "github:NixOS/nixpkgs/3ae365afb80773c3bb67e52294a82e329a9e5be0";
     nixpkgs-noto-variable.url = "github:NixOS/nixpkgs/1988f9a17fc1c2ab11f5817adf34a4eb8d06454d";
     nur.url = "github:nix-community/NUR";
-    prismlauncher = {
-      url = "github:PrismLauncher/PrismLauncher/45b0367d14f38d40af5cc8603f7daab05d83af5f";
-    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.flake-utils.follows = "flake-utils";
@@ -173,9 +170,6 @@ rec {
               ({pkgs, ...}: {
                 nixpkgs.overlays = [
                   nur.overlay
-                  (self: super: {
-                    inherit (args.prismlauncher.packages.${system}) prismlauncher;
-                  })
                 ];
                 home-manager.extraSpecialArgs = args // {inherit system;};
               })

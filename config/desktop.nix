@@ -142,4 +142,9 @@ in {
       "i686-linux"
     ]
     else [];
+
+  virtualisation = {
+    waydroid.enable = true;
+    lxd.enable = true;
+  };
 }

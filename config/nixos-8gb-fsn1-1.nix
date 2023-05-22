@@ -1,6 +1,4 @@
 {
-  config,
-  pkgs,
   lib,
   modulesPath,
   ...
@@ -33,6 +31,7 @@
     ./services/chir.rs
     ./services/atticd.nix
     ./services/wordpress.nix
+    ./services/initrd-ssh.nix
   ];
 
   boot.initrd.availableKernelModules = ["ata_piix" "virtio_pci" "virtio_scsi" "xhci_pci" "sd_mod" "sr_mod"];
