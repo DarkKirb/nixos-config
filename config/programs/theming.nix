@@ -82,6 +82,11 @@
 
   color = n:
     config.environment.graphical.colors.main."${builtins.toString n}";
+  colorD = n:
+    config.environment.graphical.colors.disabled."${builtins.toString n}";
+  colorI = n:
+    config.environment.graphical.colors.inactive."${builtins.toString n}";
+
   color' = n: mkLiteral (color n);
   bgPng = pkgs.stdenv.mkDerivation {
     name = "bg.png";
@@ -98,11 +103,17 @@ in {
   ];
   environment.graphical.colorschemes.main = {
     image = bgPng;
-    #params = ["--lighten" "0.1"];
+  };
+  environment.graphical.colorschemes.disabled = {
+    image = bgPng;
+    params = ["--lighten" "-0.2" "--saturate" "-0.5"];
+  };
+  environment.graphical.colorschemes.inactive = {
+    image = bgPng;
+    params = ["--lighten" "-0.3"];
   };
   wayland.windowManager.sway.config.output."*".bg = "${bgPng} fill";
   dconf.settings."org/gnome/desktop/interface" = {
-    gtk-theme = "Breeze-Dark";
     icon-theme = "breeze-dark";
     cursor-theme = "Vanilla-DMZ";
   };
@@ -126,17 +137,121 @@ in {
       name = "breeze-dark";
     };
     theme = {
-      package = pkgs.libsForQt5.breeze-gtk;
-      name = "Breeze-Dark";
+      name = "Catppuccin-Mocha-Compact-Pink-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = ["pink"];
+        size = "compact";
+        tweaks = ["rimless" "black"];
+        variant = "mocha";
+      };
     };
   };
   qt = {
     enable = true;
     style = {
-      name = "Breeze";
-      package = pkgs.libsForQt5.breeze-qt5;
+      name = "lightly";
+      package = pkgs.plasma5Packages.lightly;
     };
   };
+  xdg.configFile."qt5ct/colors/Catppuccin-Custom.conf".text = ''
+    [ColorScheme]
+    active_colors=${color 15}, ${color 0}, #ffa6adc8, #ff9399b2, ${color 1}, #ff6c7086, ${color 15}, ${color 15}, ${color 15}, ${color 0}, ${colorD 0}, #ff7f849c, ${color 8}, ${color 0}, ${color 13}, ${color 5}, ${color 0}, ${color 15}, ${colorI 0}, ${color 5}, #807f849c
+    disabled_colors=${colorD 15}, ${colorD 0}, #ffa6adc8, #ff9399b2, ${colorD 1}, #ff6c7086, ${colorD 15}, ${colorD 15}, ${colorD 15}, ${colorD 0}, ${colorD 0}, #ff7f849c, ${colorD 8}, ${colorD 0}, ${colorD 13}, ${colorD 5}, ${colorD 0}, ${colorD 15}, ${colorI 0}, ${colorD 5}, #807f849c
+    inactive_colors=${colorI 15}, ${colorI 0}, #ffa6adc8, #ff9399b2, ${colorI 1}, #ff6c7086, ${colorI 15}, ${colorI 15}, ${colorI 15}, ${colorI 0}, ${colorD 0}, #ff7f849c, ${colorI 8}, ${colorI 0}, ${colorI 13}, ${colorI 5}, ${colorI 0}, ${colorI 15}, ${colorI 0}, ${colorI 5}, #807f849c
+  '';
+  systemd.user.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+  };
+  nixpkgs.overlays = [
+    (super: self: {
+      python3 = super.python.override {
+        packageOverrides = self: super: {
+          python3Packages = self.python3.pkgs;
+          catppuccin = super.catppuccin.overrideAttrs (super: {
+            patches =
+              super.patches
+              or []
+              ++ [
+                (pkgs.writeText "color.patch" ''
+                  diff --git a/catppuccin/colour.py b/catppuccin/colour.py
+                  index 193eea7..7620cf0 100644
+                  --- a/catppuccin/colour.py
+                  +++ b/catppuccin/colour.py
+                  @@ -43,6 +43,9 @@ class Colour:
+                       @classmethod
+                       def from_hex(cls, hex_string: str) -> Colour:
+                           """Create a colour from hex string."""
+                  +        if hex_string.startswith("#"):
+                  +            hex_string = hex_string[1:]
+                  +
+                           if len(hex_string) not in (6, 8):
+                               raise ValueError("Hex string must be 6 or 8 characters long.")
+
+                  diff --git a/catppuccin/flavour.py b/catppuccin/flavour.py
+                  index aa7df98..4bf849a 100644
+                  --- a/catppuccin/flavour.py
+                  +++ b/catppuccin/flavour.py
+                  @@ -138,30 +138,30 @@ class Flavour:  # pylint: disable=too-many-instance-attributes
+                       def mocha() -> "Flavour":
+                           """Mocha flavoured Catppuccin."""
+                           return Flavour(
+                  -            rosewater=Colour(245, 224, 220),
+                  -            flamingo=Colour(242, 205, 205),
+                  -            pink=Colour(245, 194, 231),
+                  -            mauve=Colour(203, 166, 247),
+                  -            red=Colour(243, 139, 168),
+                  -            maroon=Colour(235, 160, 172),
+                  -            peach=Colour(250, 179, 135),
+                  -            yellow=Colour(249, 226, 175),
+                  -            green=Colour(166, 227, 161),
+                  -            teal=Colour(148, 226, 213),
+                  -            sky=Colour(137, 220, 235),
+                  -            sapphire=Colour(116, 199, 236),
+                  -            blue=Colour(137, 180, 250),
+                  -            lavender=Colour(180, 190, 254),
+                  -            text=Colour(205, 214, 244),
+                  +            rosewater=Colour.from_hex("${color 1}"),
+                  +            flamingo=Colour.from_hex("${color 2}"),
+                  +            pink=Colour.from_hex("${color 3}"),
+                  +            mauve=Colour.from_hex("${color 4}"),
+                  +            red=Colour.from_hex("${color 5}"),
+                  +            maroon=Colour.from_hex("${color 6}"),
+                  +            peach=Colour.from_hex("${color 7}"),
+                  +            yellow=Colour.from_hex("${color 8}"),
+                  +            green=Colour.from_hex("${color 9}"),
+                  +            teal=Colour.from_hex("${color 10}"),
+                  +            sky=Colour.from_hex("${color 11}"),
+                  +            sapphire=Colour.from_hex("${color 12}"),
+                  +            blue=Colour.from_hex("${color 13}"),
+                  +            lavender=Colour.from_hex("${color 14}"),
+                  +            text=Colour.from_hex("${color 15}"),
+                               subtext1=Colour(186, 194, 222),
+                               subtext0=Colour(166, 173, 200),
+                               overlay2=Colour(147, 153, 178),
+                               overlay1=Colour(127, 132, 156),
+                               overlay0=Colour(108, 112, 134),
+                  -            surface2=Colour(88, 91, 112),
+                  -            surface1=Colour(69, 71, 90),
+                  -            surface0=Colour(49, 50, 68),
+                  -            base=Colour(30, 30, 46),
+                  -            mantle=Colour(24, 24, 37),
+                  -            crust=Colour(17, 17, 27),
+                  +            surface2=Colour.from_hex("${color 2}"),
+                  +            surface1=Colour.from_hex("${color 1}"),
+                  +            surface0=Colour.from_hex("${color 0}"),
+                  +            base=Colour.from_hex("${color 0}"),
+                  +            mantle=Colour.from_hex("${color 0}"),
+                  +            crust=Colour.from_hex("${color 0}"),
+                           )
+
+                '')
+              ];
+          });
+        };
+      };
+    })
+  ];
+
   home.file = {
     ".icons/default/index.theme".text = ''
       [Icon Theme]
@@ -319,7 +434,12 @@ in {
     client.background        ${color 0}
     seat seat0 xcursor_theme breeze-dark 24
   '';
-  home.packages = with pkgs; [libsForQt5.breeze-icons libsForQt5.qt5ct vanilla-dmz];
+  home.packages = with pkgs; [
+    libsForQt5.breeze-icons
+    libsForQt5.qt5ct
+    vanilla-dmz
+    pkgs.plasma5Packages.lightly
+  ];
 
   programs.rofi.theme = with theme; let
     element = {
@@ -490,14 +610,10 @@ in {
       text = color 15;
       base = color 0;
       surface0 = color 0;
-      surface1 = color 0;
-      surface2 = color 0;
+      surface1 = color 1;
+      surface2 = color 2;
       mantle = color 0;
       crust = color 0;
-    };
-    "catppuccin.customUIColors".all = {
-      "editor.selectionBackground" = "rosewater";
-      "editor.selectionHighlightBackground" = "rosewater";
     };
     "glassit.alpha" = 220;
     "glassit.force_sway" = true;
