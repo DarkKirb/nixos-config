@@ -20,6 +20,7 @@ in {
     ./services/cups.nix
     ./services/docker.nix
     ./services/cifs.nix
+    ./services/kubo-local.nix
   ];
   fonts = {
     fontDir.enable = true;

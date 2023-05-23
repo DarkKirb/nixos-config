@@ -85,6 +85,7 @@
     "d /build - - - - -"
     "L /var/lib/nextcloud - - - - /persist/var/lib/nextcloud"
     "d /persist/var/lib/nextcloud 0750 nextcloud nextcloud - -"
+    "L /var/lib/ipfs - - - - /persist/var/lib/ipfs"
   ];
 
   services.postgresql.dataDir = "/persist/var/lib/postgresql/${config.services.postgresql.package.psqlSchema}";
