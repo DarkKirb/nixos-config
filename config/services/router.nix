@@ -3,12 +3,33 @@
   pkgs,
   ...
 }: let
+  win11Iso = pkgs.stdenv.mkDerivation {
+    name = "win11.iso";
+    buildPhase = ''
+      echo "Manually add a win11.iso with the correct hash to your store"
+
+      exit 1
+    '';
+
+    outputHash = "0kmn7r8c4a46nldh50igbkscymvkjiwx5ic6n38vbx0sqvkwgijb";
+    outputHashMode = "flat";
+    outputHashAlgo = "sha256";
+  };
+  win11IsoDir = pkgs.stdenv.mkDerivation {
+    name = "win11";
+    buildPhase = "true";
+    installPhase = ''
+      mkdir $out
+      ln -sv ${win11Iso} $out/win11.iso
+    '';
+  };
   bootIpxeX86Script = pkgs.writeTextDir "boot.ipxe" ''
     #!ipxe
     :start
     menu iPXE boot menu
     item --gap -- ------------------------- Operating systems ------------------------------
     item --key n linux (N)ixOS (netboot)
+    item --key w windows (W)indows 11 (installer)
     item --gap -- ----------------------------- Utilities ----------------------------------
     item --key e ext (E)xit
     item --key s shell EFI (S)hell
@@ -16,6 +37,9 @@
 
     :linux
     chain http://192.168.2.1/x86_64/netboot.ipxe
+
+    :windows
+    sanboot http://192.168.2.1/x86_64/win11.iso
 
     :shell
     chain http://192.168.2.1/x86_64/shell.efi
@@ -32,6 +56,7 @@
       nixos-config-for-netboot.nixosConfigurations.netboot.config.system.build.netbootIpxeScript
       pkgs.edk2-uefi-shell
       bootIpxeX86Script
+      win11IsoDir
     ];
   };
   bootIpxeScript = pkgs.writeText "boot.ipxe" ''
