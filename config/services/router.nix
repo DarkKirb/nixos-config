@@ -5,6 +5,9 @@
 }: let
   win11Iso = pkgs.stdenv.mkDerivation {
     name = "win11.iso";
+
+    src = pkgs.emptyDirectory;
+
     buildPhase = ''
       echo "Manually add a win11.iso with the correct hash to your store"
 
@@ -17,6 +20,9 @@
   };
   win11IsoDir = pkgs.stdenv.mkDerivation {
     name = "win11";
+
+    src = pkgs.emptyDirectory;
+
     buildPhase = "true";
     installPhase = ''
       mkdir $out
