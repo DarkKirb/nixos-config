@@ -5,6 +5,7 @@
   ...
 }: {
   services.kubo = {
+    package = pkgs.kubo-orig;
     autoMigrate = true;
     emptyRepo = true;
     enable = true;
