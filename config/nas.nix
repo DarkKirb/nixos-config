@@ -30,6 +30,7 @@
     ./services/woodpecker-agent.nix
     ./services/docker.nix
     ./users/remote-build.nix
+    ./services/heisenbridge.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
