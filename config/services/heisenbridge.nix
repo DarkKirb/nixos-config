@@ -1,7 +1,7 @@
 {...}: {
   services.heisenbridge = {
     port = 30435;
-    admin = "@lotte:chir.rs";
+    owner = "@lotte:chir.rs";
     homeserver = "https://matrix.int.chir.rs";
     enable = true;
   };
