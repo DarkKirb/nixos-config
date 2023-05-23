@@ -28,6 +28,7 @@
     datastores = [
       {
         type = "s3";
+        id = "b003babbb86fecf56bb9ba6571f9adb0bd1e71c8";
         enabled = true;
         forKinds = ["all"];
         opts = {
