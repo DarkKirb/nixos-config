@@ -65,4 +65,5 @@ in
       doCheck = false;
       doInstallCheck = false;
     });
+    kubo-orig = kubo;
   }

@@ -5,5 +5,5 @@
     homeserver = "https://matrix.int.chir.rs";
     enable = true;
   };
-  services.matrix-synapse.settings.app_service_config_files = ["/var/lib/heisenbridge/registration.yaml"];
+  services.matrix-synapse.settings.app_service_config_files = ["/var/lib/heisenbridge/registration.yml"];
 }
