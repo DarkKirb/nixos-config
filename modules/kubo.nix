@@ -332,8 +332,12 @@ in {
         path = ["/run/wrappers" cfg.package];
         environment.IPFS_PATH = cfg.dataDir;
 
-        preStart =
+        preStart = let
+          datastore_spec = pkgs.writeText "datastore_spec" ''{"mounts":[{"bucket":"ipfs","mountpoint":"/"}],"type":"mount"}'';
+        in
           ''
+            # Update the datastore_spec
+            ln -svf ${datastore_spec} $IPFS_PATH/datastore_spec
             if [[ ! -f "$IPFS_PATH/config" ]]; then
               ipfs init ${optionalString cfg.emptyRepo "-e"}
             else
