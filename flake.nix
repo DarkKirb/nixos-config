@@ -81,7 +81,10 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
       #      inputs.hydra.follows = "hydra";
     };
-    nixos-config-for-netboot.url = "github:DarkKirb/nixos-config/c9c3d16b23042a25f504a6d71e7075318f1137f8";
+    nixos-config-for-netboot = {
+      url = "github:DarkKirb/nixos-config/09d7bc6e18f5570522c1c6ba1c6a9db27f933c7a";
+      inputs.nixos-config-for-netboot.follows = "nixos-config-for-netboot";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-for-crane.url = "github:NixOS/nixpkgs/3ae365afb80773c3bb67e52294a82e329a9e5be0";

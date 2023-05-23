@@ -3,6 +3,26 @@
   pkgs,
   ...
 }: let
+  bootIpxeX86Script = pkgs.writeTextDir "boot.ipxe" ''
+    #!ipxe
+    :start
+    menu iPXE boot menu
+    item --gap -- ------------------------- Operating systems ------------------------------
+    item --key n linux (N)ixOS (netboot)
+    item --gap -- ----------------------------- Utilities ----------------------------------
+    item --key e ext (E)xit
+    item --key s shell EFI (S)hell
+    choose version && goto ${"$"}{version} || goto start
+
+    :linux
+    chain http://192.168.2.1/x86_64/netboot.ipxe
+
+    :shell
+    chain http://192.168.2.1/x86_64/shell.efi
+
+    :ext
+    exit
+  '';
   netboot-x86_64 = pkgs.symlinkJoin {
     name = "netboot-x86_64";
     paths = [
@@ -10,10 +30,16 @@
       nixos-config-for-netboot.nixosConfigurations.netboot.config.system.build.kernel
       nixos-config-for-netboot.nixosConfigurations.netboot.config.system.build.netbootRamdisk
       nixos-config-for-netboot.nixosConfigurations.netboot.config.system.build.netbootIpxeScript
+      pkgs.edk2-uefi-shell
+      bootIpxeX86Script
     ];
   };
   bootIpxeScript = pkgs.writeText "boot.ipxe" ''
-    chain http://192.168.2.1/${"$"}{buildarch}/netboot.ipxe
+    #!ipxe
+    set arch ${"$"}{buildarch}
+    iseq ${"$"}{arch} i386 && cpuid --ext 29 && set arch x86_64 ||
+
+    chain http://192.168.2.1/${"$"}{arch}/boot.ipxe
   '';
   netboot = pkgs.stdenvNoCC.mkDerivation {
     name = "netboot";
@@ -41,20 +67,21 @@ in {
       if exists user-class and option user-class = "iPXE" {
         filename "http://192.168.2.1/boot.ipxe";
       } elsif substring (option vendor-class-identifier, 0, 10) = "HTTPClient" {
+        option vendor-class-identifier "HTTPClient";
         filename "http://192.168.2.1/x86_64/ipxe.efi";
       } elsif option client-arch != 00:00 {
-        filename "/ipxe.efi";
+        filename "ipxe.efi";
         next-server 192.168.2.1;
       } else {
-        filename "/undionly.kpxe";
+        filename "undionly.kpxe";
         next-server 192.168.2.1;
       }
     '';
     interfaces = ["br0"];
   };
-  services.tftpd = {
+  services.atftpd = {
     enable = true;
-    path = pkgs.ipxe;
+    root = pkgs.ipxe;
   };
   services.caddy.virtualHosts."http://192.168.2.1".extraConfig = ''
     import baseConfig
