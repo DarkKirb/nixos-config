@@ -23,7 +23,7 @@ _: {
       map to guest = bad user
     '';
     shares = {
-      winstall = {
+      install = {
         path = "/mnt/win";
         browseable = "yes";
         "read only" = "yes";
