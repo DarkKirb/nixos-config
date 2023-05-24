@@ -18,6 +18,31 @@
     outputHashMode = "flat";
     outputHashAlgo = "sha256";
   };
+  installBat = pkgs.writeText "install.bat" ''
+    wpeinit
+    ipconfig
+    net use i: \\192.168.2.1\INSTALL /user:none none
+
+    i:
+    setup.exe /AddBootMgrLast
+  '';
+  winpeshlIni = pkgs.writeText "winpeshl.ini" ''
+    [LaunchhApps]
+    "install.bat"
+  '';
+  win11SetupDir = pkgs.stdenv.mkDerivation {
+    name = "win11-boot";
+    src = pkgs.emptyDirectory;
+    nativeBuildInputs = [pkgs.p7zip];
+    buildPhase = "";
+    installPhase = ''
+      mkdir $out
+      cd $out
+      7z x ${win11Iso} boot efi sources/boot.wim
+      ln -sv ${installBat} install.bat
+      ln -sv ${winpeshlIni} winpeshl.ini
+    '';
+  };
   win11IsoDir = pkgs.stdenv.mkDerivation {
     name = "win11";
 
@@ -27,6 +52,7 @@
     installPhase = ''
       mkdir $out
       ln -sv ${win11Iso} $out/win11.iso
+      ln -sv ${win11SetupDir} $out/setup
     '';
   };
   bootIpxeX86Script = pkgs.writeTextDir "boot.ipxe" ''
@@ -45,7 +71,18 @@
     chain http://192.168.2.1/x86_64/netboot.ipxe
 
     :windows
-    sanboot http://192.168.2.1/x86_64/win11.iso
+    imgfree
+    kernel http://192.168.2.1/x86_64/share/wimboot/wimboot.x86_64.efi gui
+    initrd http://192.168.2.1/x86_64/setup/install.bat install.bat
+    initrd http://192.168.2.1/x86_64/setup/winpeshl.ini winpeshl.ini
+    initrd http://192.168.2.1/x86_64/setup/efi/microsoft/boot/bcd BCD
+    initrd http://192.168.2.1/x86_64/setup/boot/fonts/segmono_boot.ttf segmono_boot.ttf
+    initrd http://192.168.2.1/x86_64/setup/boot/fonts/segoe_slboot.ttf segoe_slboot.ttf
+    initrd http://192.168.2.1/x86_64/setup/boot/fonts/segoen_slboot.ttf segoen_slboot.ttf
+    initrd http://192.168.2.1/x86_64/setup/boot/fonts/wgl4_boot.ttf wgl4_boot.ttf
+    initrd http://192.168.2.1/x86_64/setup/boot/boot.sdi boot.sdi
+    initrd http://192.168.2.1/x86_64/setup/sources/boot.wim boot.wim
+    boot
 
     :shell
     chain http://192.168.2.1/x86_64/shell.efi
@@ -63,6 +100,7 @@
       pkgs.edk2-uefi-shell
       bootIpxeX86Script
       win11IsoDir
+      pkgs.wimboot
     ];
   };
   bootIpxeScript = pkgs.writeText "boot.ipxe" ''
@@ -129,5 +167,9 @@ in {
   boot.kernel.sysctl = {
     "net.ipv4.conf.all.forwarding" = true;
     "net.ipv6.conf.all.forwarding" = true;
+  };
+  fileSystems."/mnt/win" = {
+    device = "${win11Iso}";
+    options = ["loop" "ro"];
   };
 }
