@@ -9,6 +9,7 @@
     environment = {
       WOODPECKER_HOST = "https://woodpecker.chir.rs";
       WOODPECKER_SERVER_ADDR = ":47927";
+      WOODPECKER_ADMIN = "darkkirb";
     };
     environmentFile = config.sops.secrets."services/woodpecker".path;
   };
