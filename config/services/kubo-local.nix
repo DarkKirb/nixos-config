@@ -64,4 +64,8 @@
   networking.firewall.allowedUDPPorts = [
     4001
   ];
+  fileSystems."/var/lib/ipfs/root" = {
+    device = "/";
+    options = ["bind" "ro"];
+  };
 }
