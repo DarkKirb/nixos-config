@@ -68,6 +68,9 @@ desktop: {pkgs, ...}: {
         hexyl
         mc
         rclone
+        libarchive
+        p7zip
+        unrar
       ]
       ++ (
         if desktop
