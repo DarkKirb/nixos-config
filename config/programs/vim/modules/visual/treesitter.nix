@@ -1,6 +1,7 @@
 {pkgs, ...}: {
-  output.plugins = with pkgs.vimPlugins; [(nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))];
+  output.plugins = with pkgs.vimPlugins; [pkgs.vimPlugins.nvim-treesitter.withAllGrammars];
   plugin.setup."nvim-treesitter.configs" = {
     highlight.enable = true;
+    highlight.disable = ["bash"];
   };
 }
