@@ -4,7 +4,7 @@
   ...
 }: let
   win11Iso = pkgs.stdenv.mkDerivation {
-    name = "win11.iso";
+    name = "Win11_22H2_EnglishInternational_x64v2.iso";
 
     src = pkgs.emptyDirectory;
 
@@ -14,7 +14,7 @@
       exit 1
     '';
 
-    outputHash = "0kmn7r8c4a46nldh50igbkscymvkjiwx5ic6n38vbx0sqvkwgijb";
+    outputHash = "0dgv9vjv375d5jx80y67ljz5vvpnb0inmia0cifga1zlsp1sq9zz";
     outputHashMode = "flat";
     outputHashAlgo = "sha256";
   };
