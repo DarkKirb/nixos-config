@@ -14,7 +14,6 @@
     ./systemd-boot.nix
     ./desktop.nix
     ./services/tpm2.nix
-    ./secureboot.nix
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-gpu-amd
     nixos-hardware.nixosModules.common-pc-ssd
