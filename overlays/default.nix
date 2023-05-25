@@ -1,6 +1,5 @@
 inputs: system: self: prev: let
-  inherit (inputs) nixpkgs nixpkgs-noto-variable nix-packages;
-  noto-variable = import nixpkgs-noto-variable {inherit system;};
+  inherit (inputs) nixpkgs nix-packages;
 in
   with nixpkgs.legacyPackages.${system}; {
     mosh = prev.mosh.overrideAttrs (old: {
@@ -23,7 +22,6 @@ in
         sha256 = "09mvk9zxclkf4wrkkfzg0p2hx1f74gpymr0a0l3pckmk6za2n3d1";
       };
     });
-    inherit (noto-variable) noto-fonts-cjk;
     nix = prev.nix.overrideAttrs (old: {
       postPatchPhase = ''
         sed 's/getBoolAttr."allowSubstitutes", true./true/' src/libstore/parsed-derivations.cc
