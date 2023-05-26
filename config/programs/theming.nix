@@ -261,7 +261,6 @@ in {
     '';
   };
   programs.kitty.settings = with theme; {
-    background_opacity = "0.85";
     background = color 0;
     foreground = color 15;
     cursor = color 15;
@@ -464,7 +463,6 @@ in {
       border = mkLiteral "3px";
       border-color = mkLiteral "@border-col";
       background-color = mkLiteral "@bg-col";
-      opacity = mkLiteral "0.9";
     };
     mainbox = {
       background-color = mkLiteral "@bg-col";
@@ -615,7 +613,16 @@ in {
       mantle = color 0;
       crust = color 0;
     };
-    "glassit.alpha" = 220;
-    "glassit.force_sway" = true;
+  };
+  systemd.user.services.transparency = {
+    Unit = {
+      Description = "transparency";
+      After = ["graphical-session-pre.target"];
+      PartOf = ["graphical-session.target"];
+    };
+    Install.WantedBy = ["graphical-session.target"];
+    Service = {
+      ExecStart = "${./transparency.py}";
+    };
   };
 }
