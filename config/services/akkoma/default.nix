@@ -291,11 +291,15 @@ in {
         header Via BunnyCDN
       }
       route /media/* {
-        reverse_proxy @isbunny http://127.0.0.1:4000
+        reverse_proxy @isbunny http://127.0.0.1:4000 {
+          header_down Content-Security-Policy "script-src 'none';"
+        }
         respond "Use the cdn" 403
       }
       route /proxy/* {
-        reverse_proxy @isbunny http://127.0.0.1:4000
+        reverse_proxy @isbunny http://127.0.0.1:4000 {
+          header_down Content-Security-Policy "script-src 'none';"
+        }
         respond "Use the cdn" 403
       }
       handle {
