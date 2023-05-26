@@ -1284,11 +1284,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1685082044,
-        "narHash": "sha256-wRYxXRDl7U6B0CnDHCpv4WHfS1GIPOPIffkBcXEPtcY=",
+        "lastModified": 1685105719,
+        "narHash": "sha256-FhRfx5CNZe+pNXsAgxT9rxw5mi5aVVIPygccFVGhwrE=",
         "ref": "main",
-        "rev": "bff4b8ff70417d7a6e02f31190cfc25d280d8478",
-        "revCount": 857,
+        "rev": "d505ddee52bbf8d0d2e01372bba14060b5f78d3d",
+        "revCount": 859,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/nix-packages.git"
       },
@@ -1664,11 +1664,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1685081504,
-        "narHash": "sha256-udnAn7tYWkzNkxatZKpEsFknAkAvuaOV6BNiurUb8H0=",
+        "lastModified": 1685105382,
+        "narHash": "sha256-py5KWsaCt2Rg65N8u0JnJWN13fJM7qBDvE/uLlPS43Y=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ea35c9913bb7a1f710e58a9626102b6a0a42d386",
+        "rev": "b1dae64b54756a85d8e7df9afebb1f6cb79ececf",
         "type": "github"
       },
       "original": {
@@ -1694,11 +1694,11 @@
     },
     "nur_2": {
       "locked": {
-        "lastModified": 1685079564,
-        "narHash": "sha256-I41o1LR9rVnLUjd9R3IF1uxZItC9dF59OzJ0KJ+3fBg=",
+        "lastModified": 1685082753,
+        "narHash": "sha256-T/EZZ12KLCV+DmTSOAZElNqIv37EGsXsrYsppSYakKY=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "1975224eaef5d3f3b912ea9ade018e7e3c156dd1",
+        "rev": "6caf1df8f14553fa9295412c13776fb83e56bd4f",
         "type": "github"
       },
       "original": {
