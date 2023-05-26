@@ -261,9 +261,6 @@
     ":web_push_encryption".":vapid_details".subject = "lotte@chir.rs";
   });
 in {
-  imports = [
-    ./mediaproxy.nix
-  ];
   services.pleroma = {
     enable = true;
     package = nix-packages.packages.${pkgs.system}.akkoma;
@@ -290,10 +287,20 @@ in {
       handle /media_attachments/* {
         redir https://mastodon-assets.chir.rs{uri} permanent
       }
-      handle /proxy/* {
-        reverse_proxy {
-          to http://127.0.0.1:24154
+      @isbunny {
+        header Via BunnyCDN
+      }
+      route /media/* {
+        reverse_proxy @isbunny http://127.0.0.1:4000 {
+          header_down Content-Security-Policy "script-src 'none';"
         }
+        respond "Use the cdn" 403
+      }
+      route /proxy/* {
+        reverse_proxy @isbunny http://127.0.0.1:4000 {
+          header_down Content-Security-Policy "script-src 'none';"
+        }
+        respond "Use the cdn" 403
       }
       handle {
         reverse_proxy {
