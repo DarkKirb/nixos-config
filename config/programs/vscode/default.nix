@@ -57,7 +57,7 @@ in {
       "latex-workshop.latex.tools" = [
         {
           "name" = "latexmk";
-          "command" = "${pkgs.texlive.combined.scheme-medium}/bin/latexmk";
+          "command" = "${pkgs.texlive.combined.scheme-full}/bin/latexmk";
           "args" = [
             "-synctex=1"
             "-interaction=nonstopmode"
@@ -71,7 +71,7 @@ in {
         }
         {
           "name" = "lualatexmk";
-          "command" = "${pkgs.texlive.combined.scheme-medium}/bin/latexmk";
+          "command" = "${pkgs.texlive.combined.scheme-full}/bin/latexmk";
           "args" = [
             "-synctex=1"
             "-interaction=nonstopmode"
@@ -84,13 +84,13 @@ in {
         }
         {
           "name" = "latexmk_rconly";
-          "command" = "${pkgs.texlive.combined.scheme-medium}/bin/latexmk";
+          "command" = "${pkgs.texlive.combined.scheme-full}/bin/latexmk";
           "args" = ["%DOC%"];
           "env" = {};
         }
         {
           "name" = "pdflatex";
-          "command" = "${pkgs.texlive.combined.scheme-medium}/bin/pdflatex";
+          "command" = "${pkgs.texlive.combined.scheme-full}/bin/pdflatex";
           "args" = [
             "-synctex=1"
             "-interaction=nonstopmode"
@@ -101,7 +101,7 @@ in {
         }
         {
           "name" = "bibtex";
-          "command" = "${pkgs.texlive.combined.scheme-medium}/bin/bibtex";
+          "command" = "${pkgs.texlive.combined.scheme-full}/bin/bibtex";
           "args" = ["%DOCFILE%"];
           "env" = {};
         }
