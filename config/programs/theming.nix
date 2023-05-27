@@ -103,6 +103,7 @@ in {
   ];
   environment.graphical.colorschemes.main = {
     image = bgPng;
+    params = ["--lighten" "-0.1"];
   };
   environment.graphical.colorschemes.disabled = {
     image = bgPng;
