@@ -10,6 +10,7 @@
       homeserver = {
         address = "https://matrix.chir.rs";
         domain = "chir.rs";
+        async_media = true;
       };
       appservice = {
         database = {
@@ -26,33 +27,31 @@
         displayname_template = "{{if .PushName}}{{.PushName}}{{else if .BusinessName}}{{.BusinessName}}{{else}}{{.JID}}{{end}}";
         personal_filtering_spaces = true;
         delivery_receipts = true;
+        message_error_notices = true;
         identity_change_notices = true;
         hystory_sync = {
           backfill = true;
           request_full_sync = true;
         };
-        send_presence_on_typing = true;
-        double_puppet_server_map = {};
-        login_shared_secret_map = {};
-        private_chat_portal_meta = true;
-        mute_bridging = true;
+        user_avatar_sync = true;
+        sync_with_custom_puppets = true;
+        sync_direct_chat_list = true;
+        sync_manual_marked_unread = true;
+        private_chat_portal_meta = "always";
+        parallel_member_sync = true;
         pinned_tag = "m.favourite";
         archive_tag = "m.lowpriority";
         allow_user_invite = true;
-        disappearing_messages_in_groups = true;
         url_previews = true;
+        extev_polls = true;
+        cross_room_replies = true;
         encryption = {
           allow = true;
+          appservice = true;
           default = true;
           require = false;
           allow_key_sharing = true;
         };
-        sync_with_custom_puppets = true;
-        sync_manual_marked_unread = true;
-        force_active_delivery_receipts = true;
-        parallel_member_sync = true;
-        extev_polls = 2;
-        send_whatsapp_edits = true;
         permissions = {
           "*" = "relay";
           "@lotte:chir.rs" = "admin";
