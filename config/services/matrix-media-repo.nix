@@ -183,6 +183,7 @@ in {
     extraConfig = ''
       import baseConfig
       handle /_matrix/media/* {
+        uri * replace /unstable/fi.mau.msc2246/ /v1/
         reverse_proxy http://localhost:8008 {
           header_down Access-Control-Allow-Origin *
           header_down Access-Control-Allow-Headers *
