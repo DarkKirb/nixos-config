@@ -10,7 +10,6 @@
       homeserver = {
         address = "https://matrix.chir.rs";
         domain = "chir.rs";
-        async_media = true;
       };
       appservice = {
         database = {
@@ -29,7 +28,7 @@
         startup_private_channel_create_limit = 25;
         delivery_receipts = true;
         sync_direct_chat_list = true;
-        delete_portal_on_channel_delete  = true;
+        delete_portal_on_channel_delete = true;
         prefix_webhook_messages = true;
         cache_media = "always";
         backfill = {
@@ -42,16 +41,15 @@
           };
         };
         encryption = {
-            allow = true;
-            default = true;
-            appservice = true;
-            allow_key_sharing = true;
+          allow = true;
+          default = true;
+          appservice = true;
+          allow_key_sharing = true;
         };
         permissions = {
           "*" = "relay";
           "@lotte:chir.rs" = "admin";
         };
-
       };
     };
   };
