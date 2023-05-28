@@ -10,7 +10,6 @@
         address = "https://matrix.chir.rs";
         domain = "chir.rs";
         http_retry_count = 1000;
-        async_media = true;
       };
       appservice = {
         address = "http://localhost:29317";
@@ -42,7 +41,7 @@
 
         private_chat_portal_meta = "aways";
         delivery_receipts = true;
-        pinned_tag =  "m.favourite";
+        pinned_tag = "m.favourite";
         archive_tag = "m.lowpriority";
 
         backfill = {
