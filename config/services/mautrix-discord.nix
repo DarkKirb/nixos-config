@@ -10,6 +10,7 @@
       homeserver = {
         address = "https://matrix.chir.rs";
         domain = "chir.rs";
+        async_media = true;
       };
       appservice = {
         database = {
@@ -23,25 +24,14 @@
         listen = "[::]:29321";
       };
       bridge = {
+        channel_name_template = "{{if or (eq .Type 3) (eq .Type 4)}}{{.Name}} ({{.GuildName}} — {{.ParentName}}){{else}}#{{.Name}} ({{.GuildName}} — {{.ParentName}}){{end}}";
+        private_chat_portal_meta = "always";
         startup_private_channel_create_limit = 25;
         delivery_receipts = true;
-        double_puppet_server_map = {};
-        login_shared_secret_map = {};
-        private_chat_portal_meta = true;
         sync_direct_chat_list = true;
-        delete_portal_on_channel_delete = true;
-        encryption = {
-          allow = true;
-          default = true;
-          require = false;
-          allow_key_sharing = true;
-        };
-        permissions = {
-          "*" = "relay";
-          "@lotte:chir.rs" = "admin";
-        };
-        channel_name_template = "{{if or (eq .Type 3) (eq .Type 4)}}{{.Name}} ({{.GuildName}} — {{.ParentName}}){{else}}#{{.Name}} ({{.GuildName}} — {{.ParentName}}){{end}}";
-
+        delete_portal_on_channel_delete  = true;
+        prefix_webhook_messages = true;
+        cache_media = "always";
         backfill = {
           forward_limits = {
             initial.dm = 50;
@@ -51,6 +41,17 @@
             missed.channel = -1;
           };
         };
+        encryption = {
+            allow = true;
+            default = true;
+            appservice = true;
+            allow_key_sharing = true;
+        };
+        permissions = {
+          "*" = "relay";
+          "@lotte:chir.rs" = "admin";
+        };
+
       };
     };
   };

@@ -10,6 +10,7 @@
         address = "https://matrix.chir.rs";
         domain = "chir.rs";
         http_retry_count = 1000;
+        async_media = true;
       };
       appservice = {
         address = "http://localhost:29317";
@@ -22,40 +23,34 @@
       };
       bridge = {
         displayname_template = "{displayname}";
-        allow_avatar_remove = true;
         max_initial_member_sync = -1;
-        sync_create_limit = 0;
-        sync_direct_chats = true;
-        sync_direct_chat_list = true;
-        double_puppet_server_map = {};
-        login_shared_secret_map = {};
-        double_puppet_allow_discovery = true;
-        invite_link_resolve = true;
-        animated_sticker.target = "webm";
         sync_channel_members = true;
         startup_sync = true;
+        sync_create_limit = 0;
         sync_deferred_create_all = true;
+        public_portals = true;
         sync_with_custom_puppets = true;
+        sync_direct_chat_list = true;
+        invite_link_resolve = true;
         encryption = {
           allow = true;
+          appservice = true;
           default = true;
           require = false;
           allow_key_sharing = true;
         };
-        public_portals = true;
-        private_chat_portal_meta = true;
-        mute_bridging = true;
+
+        private_chat_portal_meta = "aways";
+        delivery_receipts = true;
+        pinned_tag =  "m.favourite";
+        archive_tag = "m.lowpriority";
+
         backfill = {
           msc2716 = true;
           normal_groups = true;
           unread_hours_threshold = -1;
           incremental.max_batches.supergroup = -1;
         };
-        delivery_receipts = true;
-        delivery_error_reports = true;
-        incoming_bridge_error_reports = true;
-        pinned_tag = "m.favourite";
-        archive_tag = "m.lowpriority";
         permissions = {
           "*" = "relaybot";
           "@lotte:chir.rs" = "admin";
