@@ -52,6 +52,32 @@
             "/ip6/fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b/udp/4001/quic/p2p/12D3KooWAFmukGRVqg54X97xzd2j1DvUzWQYUWx9Xbi6DQhai7uE"
           ];
         }
+        {
+          ID = "12D3KooWHY9DrTbuUe1gznxC8AYnX6TWmB3zBeTfA3MP4xFT67Vq";
+          Addrs = [
+            "/ip4/100.99.129.7/tcp/4001/p2p/12D3KooWHY9DrTbuUe1gznxC8AYnX6TWmB3zBeTfA3MP4xFT67Vq"
+            "/ip4/100.99.129.7/udp/4001/quic-v1/p2p/12D3KooWHY9DrTbuUe1gznxC8AYnX6TWmB3zBeTfA3MP4xFT67Vq"
+            "/ip4/100.99.129.7/udp/4001/quic-v1/webtransport/certhash/uEiDKdsFwl7AmtSQbXYxX-BZzbFpKbyAoVDPH1L4_r0OpFQ/certhash/uEiABeqMxri7X_qWstcpG8Ga1rpQ-P_nr-5AHhd2esVB7eQ/p2p/12D3KooWHY9DrTbuUe1gznxC8AYnX6TWmB3zBeTfA3MP4xFT67Vq"
+            "/ip4/100.99.129.7/udp/4001/quic/p2p/12D3KooWHY9DrTbuUe1gznxC8AYnX6TWmB3zBeTfA3MP4xFT67Vq"
+            "/ip6/fd7a:115c:a1e0:ab12:4843:cd96:6263:8107/tcp/4001/p2p/12D3KooWHY9DrTbuUe1gznxC8AYnX6TWmB3zBeTfA3MP4xFT67Vq"
+            "/ip6/fd7a:115c:a1e0:ab12:4843:cd96:6263:8107/udp/4001/quic-v1/p2p/12D3KooWHY9DrTbuUe1gznxC8AYnX6TWmB3zBeTfA3MP4xFT67Vq"
+            "/ip6/fd7a:115c:a1e0:ab12:4843:cd96:6263:8107/udp/4001/quic-v1/webtransport/certhash/uEiDKdsFwl7AmtSQbXYxX-BZzbFpKbyAoVDPH1L4_r0OpFQ/certhash/uEiABeqMxri7X_qWstcpG8Ga1rpQ-P_nr-5AHhd2esVB7eQ/p2p/12D3KooWHY9DrTbuUe1gznxC8AYnX6TWmB3zBeTfA3MP4xFT67Vq"
+            "/ip6/fd7a:115c:a1e0:ab12:4843:cd96:6263:8107/udp/4001/quic/p2p/12D3KooWHY9DrTbuUe1gznxC8AYnX6TWmB3zBeTfA3MP4xFT67Vq"
+          ];
+        }
+        {
+          ID = "12D3KooWNcWmCrzEEN4EmoRWjDfP6oZqCB3Lr14sfzy3wfjX73kg";
+          Addrs = [
+            "/ip4/100.75.9.4/tcp/4001/p2p/12D3KooWNcWmCrzEEN4EmoRWjDfP6oZqCB3Lr14sfzy3wfjX73kg"
+            "/ip4/100.75.9.4/udp/4001/quic-v1/p2p/12D3KooWNcWmCrzEEN4EmoRWjDfP6oZqCB3Lr14sfzy3wfjX73kg"
+            "/ip4/100.75.9.4/udp/4001/quic-v1/webtransport/certhash/uEiBVo-LYcJSM7AP1AfCT-6U1n0-YofIx79YEabL4OxSTNA/certhash/uEiDpXKor0LPuUqEiuvXuFo4SGs2_VQxtIV1Lg6MNVC9R1w/p2p/12D3KooWNcWmCrzEEN4EmoRWjDfP6oZqCB3Lr14sfzy3wfjX73kg"
+            "/ip4/100.75.9.4/udp/4001/quic/p2p/12D3KooWNcWmCrzEEN4EmoRWjDfP6oZqCB3Lr14sfzy3wfjX73kg"
+            "/ip6/fd7a:115c:a1e0:ab12:4843:cd96:624b:904/tcp/4001/p2p/12D3KooWNcWmCrzEEN4EmoRWjDfP6oZqCB3Lr14sfzy3wfjX73kg"
+            "/ip6/fd7a:115c:a1e0:ab12:4843:cd96:624b:904/udp/4001/quic-v1/p2p/12D3KooWNcWmCrzEEN4EmoRWjDfP6oZqCB3Lr14sfzy3wfjX73kg"
+            "/ip6/fd7a:115c:a1e0:ab12:4843:cd96:624b:904/udp/4001/quic-v1/webtransport/certhash/uEiBVo-LYcJSM7AP1AfCT-6U1n0-YofIx79YEabL4OxSTNA/certhash/uEiDpXKor0LPuUqEiuvXuFo4SGs2_VQxtIV1Lg6MNVC9R1w/p2p/12D3KooWNcWmCrzEEN4EmoRWjDfP6oZqCB3Lr14sfzy3wfjX73kg"
+            "/ip6/fd7a:115c:a1e0:ab12:4843:cd96:624b:904/udp/4001/quic/p2p/12D3KooWNcWmCrzEEN4EmoRWjDfP6oZqCB3Lr14sfzy3wfjX73kg"
+          ];
+        }
       ];
     };
   };
