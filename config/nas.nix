@@ -31,6 +31,7 @@
     ./services/docker.nix
     ./users/remote-build.nix
     ./services/heisenbridge.nix
+    ./services/kubo-local.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
@@ -165,4 +166,8 @@
   services.tailscale.useRoutingFeatures = "both";
   hardware.sane.brscan4.enable = true;
   system.autoUpgrade.allowReboot = true;
+  services.kubo.settings.Addresses.API = lib.mkForce [
+    "/ip4/0.0.0.0/tcp/5001"
+    "/ip6/::/tcp/5001"
+  ]; # Only exposed over the tailed scale
 }

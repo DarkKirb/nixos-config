@@ -306,14 +306,10 @@ in {
       ipfs.gid = config.ids.gids.ipfs;
     };
 
-    systemd.tmpfiles.rules =
-      [
-        "d '${cfg.dataDir}' - ${cfg.user} ${cfg.group} - -"
-      ]
-      ++ optionals cfg.autoMount [
-        "d '${cfg.ipfsMountDir}' - ${cfg.user} ${cfg.group} - -"
-        "d '${cfg.ipnsMountDir}' - ${cfg.user} ${cfg.group} - -"
-      ];
+    systemd.tmpfiles.rules = optionals cfg.autoMount [
+      "d '${cfg.ipfsMountDir}' - ${cfg.user} ${cfg.group} - -"
+      "d '${cfg.ipnsMountDir}' - ${cfg.user} ${cfg.group} - -"
+    ];
 
     # The hardened systemd unit breaks the fuse-mount function according to documentation in the unit file itself
     systemd.packages =

@@ -82,7 +82,7 @@
     {
       "action": "accept",
       "src": ["tag:devDevice"],
-      "dst": ["tag:nas:8384", "tag:nas:631"]
+      "dst": ["tag:nas:8384", "tag:nas:631", "tag:ipfs:5001"]
     },
     // Woodpecker agents
     {
@@ -98,8 +98,14 @@
         "tag:instance-20221213-1915:29320", // mautrix-discord
         "tag:instance-20221213-1915:29328", // mautrix-signal
         "tag:instance-20221213-1915:29317", // mautrix-telegram
-        "tag:instance-20221213-1915:29318", // mautrix-whatsapp
+        "tag:instance-20221213-1915:29318" // mautrix-whatsapp
       ]
+    },
+    // IPFS
+    {
+      "action": "accept",
+      "src": ["tag:ipfs"],
+      "dst": ["tag:ipfs:4001"]
     }
   ],
 
@@ -115,6 +121,7 @@
     "tag:devDevice": ["DarkKirb@github"],
     "tag:server": ["DarkKirb@github"],
     "tag:syncthing": ["DarkKirb@github"],
-    "tag:woodpeckerRunner": ["DarkKirb@github"]
+    "tag:woodpeckerRunner": ["DarkKirb@github"],
+    "tag:ipfs": ["DarkKirb@github"]
   }
 }
