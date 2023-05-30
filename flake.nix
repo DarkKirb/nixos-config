@@ -61,11 +61,6 @@ rec {
       url = "github:StevenBlack/hosts";
       flake = false;
     };
-    hydra = {
-      url = "github:NixOS/hydra";
-      #inputs.nix.follows = "nix";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    };
     naersk = {
       url = "github:nix-community/naersk/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -79,7 +74,6 @@ rec {
       inputs.attic.follows = "attic";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
-      #      inputs.hydra.follows = "hydra";
     };
     nixos-config-for-netboot = {
       url = "github:DarkKirb/nixos-config/09d7bc6e18f5570522c1c6ba1c6a9db27f933c7a";
