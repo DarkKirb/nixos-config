@@ -136,10 +136,6 @@ rec {
         name = "instance-20221213-1915"; # Oracle server
         system = "aarch64-linux";
       }
-      {
-        name = "devterm"; # devterm
-        system = "aarch64-linux";
-      }
     ];
   in rec {
     nixosConfigurations = builtins.listToAttrs (map
