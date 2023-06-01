@@ -97,6 +97,6 @@
   };
 
   nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1t" # used by cinny
+    "openssl-1.1.1u" # used by cinny
   ];
 }
