@@ -100,6 +100,15 @@
     HWMON_MODULES="it87"
   '';
   nix.settings.cores = 12;
+  nix.settings.system-features = [
+    "kvm"
+    "nixos-test"
+    "big-parallel"
+    "benchmark"
+    "gccarch-znver1"
+    "gccarch-skylake"
+    "ca-derivations"
+  ];
   boot.binfmt.emulatedSystems = [
     "armv7l-linux"
     "powerpc-linux"
