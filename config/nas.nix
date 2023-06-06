@@ -177,4 +177,25 @@
     "/ip4/0.0.0.0/tcp/5001"
     "/ip6/::/tcp/5001"
   ]; # Only exposed over the tailed scale
+
+  # Remove when https://nixpk.gs/pr-tracker.html?pr=235815 hits
+  nixpkgs.overlays = [
+    (self: super: {
+      util-linux = super.util-linux.overrideAttrs (super: {
+        patches =
+          super.patches
+          ++ [
+            # FIXME: backport bcache detection fixes, remove in next release
+            (fetchpatch {
+              url = "https://github.com/util-linux/util-linux/commit/158639a2a4c6e646fd4fa0acb5f4743e65daa415.diff";
+              hash = "sha256-9F1OQFxKuI383u6MVy/UM15B6B+tkZFRwuDbgoZrWME=";
+            })
+            (fetchpatch {
+              url = "https://github.com/util-linux/util-linux/commit/00a19fb8cdfeeae30a6688ac6b490e80371b2257.diff";
+              hash = "sha256-w1S6IKSoL6JhVew9t6EemNRc/nrJQ5oMqFekcx0kno8=";
+            })
+          ];
+      });
+    })
+  ];
 }
