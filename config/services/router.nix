@@ -38,7 +38,7 @@
     installPhase = ''
       mkdir $out
       cd $out
-      7z x ${win11Iso} boot efi sources/boot.wim
+      7z x ${win11Iso} efi/microsoft/boot/bcd boot/fonts/segmono_boot.ttf boot/fonts/segoe_slboot.ttf boot/fonts/segoen_slboot.ttf boot/fonts/wgl4_boot.ttf boot/boot.sdi sources/boot.wim
       ln -sv ${installBat} install.bat
       ln -sv ${winpeshlIni} winpeshl.ini
     '';
