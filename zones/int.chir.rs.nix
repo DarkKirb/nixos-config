@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 23;
+    serial = 24;
   };
   NS = [
     "ns1.chir.rs."
@@ -85,27 +85,27 @@ in {
         }
       ];
       /*
-      subdomains = {
-      _tcp.subdomains."*".TLSA = [
-      {
-      certUsage = "dane-ee";
-      selector = "spki";
-      match = "sha256";
-      certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-      ttl = zoneTTL;
-      }
-      ];
-      _udp.subdomains."*".TLSA = [
-      {
-      certUsage = "dane-ee";
-      selector = "spki";
-      match = "sha256";
-      certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
-      ttl = zoneTTL;
-      }
-      ];
-      };
-      */
+       subdomains = {
+       _tcp.subdomains."*".TLSA = [
+       {
+       certUsage = "dane-ee";
+       selector = "spki";
+       match = "sha256";
+       certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
+       ttl = zoneTTL;
+       }
+       ];
+       _udp.subdomains."*".TLSA = [
+       {
+       certUsage = "dane-ee";
+       selector = "spki";
+       match = "sha256";
+       certificate = "0b85bd8fd152ed8b29a25e7fd69c083138a7bd35d79aea62c111efcf17ede23f";
+       ttl = zoneTTL;
+       }
+       ];
+       };
+       */
       HTTPS = [
         {
           svcPriority = 1;
@@ -284,11 +284,11 @@ in {
     backup.CNAME = [(ttl zoneTTL (cname "nas"))];
     hydra.CNAME = [(ttl zoneTTL (cname "nas"))];
     mastodon.CNAME = [(ttl zoneTTL (cname "nas"))];
-    matrix.CNAME = [(ttl zoneTTL (cname "nas"))];
+    matrix.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
     rspamd.CNAME = [(ttl zoneTTL (cname "nixos-8gb-fsn1-1"))];
     woodpecker.CNAME = [(ttl zoneTTL (cname "nas"))];
     moa.CNAME = [(ttl zoneTTL (cname "nas"))];
-    matrix-admin.CNAME = [(ttl zoneTTL (cname "nas"))];
+    matrix-admin.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
     mautrix-discord.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
     mautrix-signal.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
     mautrix-telegram.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];

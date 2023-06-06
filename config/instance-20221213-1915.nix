@@ -25,6 +25,7 @@
     ./services/mautrix-whatsapp.nix
     ./services/mautrix-signal.nix
     ./services/kubo.nix
+    ./services/synapse.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];

@@ -19,7 +19,6 @@
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-pc-ssd
     ./services/hostapd.nix
-    ./services/synapse.nix
     ./services/router.nix
     ./services/syncthing.nix
     ../modules/tc-cake.nix

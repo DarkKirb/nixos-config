@@ -120,7 +120,6 @@
     withJemalloc = true;
   };
   sops.secrets."services/synapse/private_key" = {owner = "matrix-synapse";};
-  sops.secrets."services/synapse/discord-dev-registration.yaml" = {owner = "matrix-synapse";};
   services.postgresql.ensureDatabases = [
     "synapse"
   ];
