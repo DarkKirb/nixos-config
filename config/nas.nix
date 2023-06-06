@@ -60,7 +60,6 @@
     extraOptions = ["--loadavg-target" "5.0"];
   };
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
   boot.supportedFilesystems = lib.mkForce ["btrfs" "vfat"];
 
   fileSystems."/" = {
