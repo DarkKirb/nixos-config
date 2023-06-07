@@ -1,9 +1,10 @@
 {
   config,
-  pkgs,
   modulesPath,
   lib,
   nixos-hardware,
+  nixpkgs,
+  nix-packages,
   ...
 } @ args: {
   networking.hostName = "nas";
@@ -196,6 +197,8 @@
             })
           ];
       });
+      inherit (nixpkgs.legacyPackages.x86_64-linux) e2fsprogs openldap;
+      inherit (nix-packages.packages.x86_64-linux) hydra hydra-unstable;
     })
   ];
 }
