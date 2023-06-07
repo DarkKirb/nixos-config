@@ -151,6 +151,7 @@
           "mapsupport.de" = "Pedophile instance";
           "pedo.school" = "Pedophile instance";
           "baraag.net" = "porn involving (fictional) underage characters";
+          "eientei.org" = "fash";
         };
         followers_only = processMap {
           "vivaldi.net" = "Corporate instance; Registers nonconsensual accounts for Vivaldi Sync users";
