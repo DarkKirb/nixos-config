@@ -4,9 +4,7 @@
   config,
   ...
 }: {
-  nixpkgs.config.allowBroken = true; # test code…
   services.matrix-synapse = {
-    package = pkgs.matrix-synapse.override {python3 = pkgs.pypy3;};
     enable = true;
     settings = {
       app_service_config_files = [
