@@ -8,6 +8,16 @@ _: {
     extraBackupArgs = [
       "--exclude-caches"
       "--compression max"
+      "--exclude"
+      "/var/tmp"
+      "--exclude"
+      "/var/cache"
+      "--exclude"
+      "/root/.cache"
+      "--exclude"
+      "/home/darkkirb/.cache"
+      "--exclude"
+      "/var/lib/kubo/root"
     ];
     repository = "sftp:backup@backup.int.chir.rs:/backup";
   };
