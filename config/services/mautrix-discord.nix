@@ -42,7 +42,6 @@
         };
         encryption = {
           allow = true;
-          default = true;
           appservice = true;
           allow_key_sharing = true;
         };
