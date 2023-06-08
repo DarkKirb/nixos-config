@@ -31,6 +31,7 @@
         delete_portal_on_channel_delete = true;
         prefix_webhook_messages = true;
         cache_media = "always";
+        animated_sticker.target = "disable";
         backfill = {
           forward_limits = {
             initial.dm = 50;
