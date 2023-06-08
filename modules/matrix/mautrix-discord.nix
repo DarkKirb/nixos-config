@@ -101,6 +101,7 @@ in {
     };
     systemd.services.mautrix-discord = {
       description = "Mautrix-Discord";
+      path = with pkgs; [ffmpeg lottieconverter];
       wantedBy = ["multi-user.target"];
       wants = ["mautrix-discord-genregistration.service"];
       after = ["mautrix-discord-genregistration.service"];
