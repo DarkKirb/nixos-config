@@ -17,7 +17,7 @@ _: {
       "--exclude"
       "/home/darkkirb/.cache"
       "--exclude"
-      "/var/lib/kubo/root"
+      "/var/lib/ipfs/root"
     ];
     repository = "sftp:backup@backup.int.chir.rs:/backup";
   };
