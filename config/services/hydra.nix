@@ -49,7 +49,6 @@ in {
   ];
   services.hydra = {
     enable = true;
-    package = pkgs.hydra-unstable;
     hydraURL = "https://hydra.chir.rs/";
     notificationSender = "hydra@chir.rs";
     useSubstitutes = true;
