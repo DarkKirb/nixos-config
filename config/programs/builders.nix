@@ -23,6 +23,13 @@
         port = 22;
         user = "remote-build";
       };
+      "backup" = {
+        hostname = "backup.int.chir.rs";
+        identitiesOnly = true;
+        identityFile = "${config.home.homeDirectory}/.ssh/builder_id_ed25519";
+        port = 22;
+        user = "backup";
+      };
     };
   };
 }

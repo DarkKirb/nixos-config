@@ -1,9 +1,10 @@
 {
   config,
-  pkgs,
   modulesPath,
   lib,
   nixos-hardware,
+  nixpkgs,
+  nix-packages,
   ...
 } @ args: {
   networking.hostName = "nas";
@@ -60,7 +61,6 @@
     extraOptions = ["--loadavg-target" "5.0"];
   };
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
   boot.supportedFilesystems = lib.mkForce ["btrfs" "vfat"];
 
   fileSystems."/" = {
@@ -178,4 +178,33 @@
     "/ip4/0.0.0.0/tcp/5001"
     "/ip6/::/tcp/5001"
   ]; # Only exposed over the tailed scale
+
+  # Remove when https://nixpk.gs/pr-tracker.html?pr=235815 hits
+  nixpkgs.overlays = [
+    (self: super: {
+      util-linux = super.util-linux.overrideAttrs (super: {
+        patches =
+          super.patches
+          ++ [
+            # FIXME: backport bcache detection fixes, remove in next release
+            (self.fetchpatch {
+              url = "https://github.com/util-linux/util-linux/commit/158639a2a4c6e646fd4fa0acb5f4743e65daa415.diff";
+              hash = "sha256-9F1OQFxKuI383u6MVy/UM15B6B+tkZFRwuDbgoZrWME=";
+            })
+            (self.fetchpatch {
+              url = "https://github.com/util-linux/util-linux/commit/00a19fb8cdfeeae30a6688ac6b490e80371b2257.diff";
+              hash = "sha256-w1S6IKSoL6JhVew9t6EemNRc/nrJQ5oMqFekcx0kno8=";
+            })
+          ];
+      });
+      inherit (nixpkgs.legacyPackages.x86_64-linux) e2fsprogs openldap;
+      hydra-unstable = nix-packages.packages.x86_64-linux.hydra-unstable.overrideAttrs (super: {
+        doCheck = false;
+        doInstallCheck = false;
+        checkPhase = "true";
+        installCheckPhase = "true";
+      });
+      hydra = self.hydra-unstable;
+    })
+  ];
 }
