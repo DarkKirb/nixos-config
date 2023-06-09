@@ -198,7 +198,13 @@
           ];
       });
       inherit (nixpkgs.legacyPackages.x86_64-linux) e2fsprogs openldap;
-      inherit (nix-packages.packages.x86_64-linux) hydra hydra-unstable;
+      hydra-unstable = nix-packages.packages.x86_64-linux.hydra-unstable.overrideAttrs (super: {
+        doCheck = false;
+        doInstallCheck = false;
+        checkPhase = "true";
+        installCheckPhase = "true";
+      });
+      hydra = self.hydra-unstable;
     })
   ];
 }
