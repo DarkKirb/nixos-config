@@ -116,6 +116,11 @@ in {
         export MOZ_ENABLE_WAYLAND=1
         export _JAVA_AWT_WM_NONREPARENTING=1
         export QT_QPA_PLATFORMTHEME=qt5ct
+        export GTK_IM_MODULE=fcitx
+        export QT_IM_MODULE=fcitx
+        export XMODIFIERS=@im=fcitx
+        export GLFW_IM_MODULE=ibus
+        export SDL_IM_MODULE=fcitx
       ''
       + (
         if system == "x86_64-linux"
