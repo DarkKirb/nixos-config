@@ -75,4 +75,8 @@
       reverse_proxy http://127.0.0.1:41876
     '';
   };
+  fileSystems."/persist/var/lib/ipfs/root" = {
+    device = "/";
+    options = ["bind" "ro"];
+  };
 }
