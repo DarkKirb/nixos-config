@@ -31,6 +31,7 @@
         ../programs/misc.nix
         ../programs/kitty.nix
         ../programs/zk.nix
+        ../programs/fcitx.nix
       ]
       else []
     );
