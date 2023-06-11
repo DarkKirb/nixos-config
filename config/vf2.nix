@@ -71,12 +71,14 @@
       options = ["nofail" "noauto"];
     };
     "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
+      device = "192.168.2.1:/export/vf2";
+      fsType = "nfs";
+      options = ["nofail" "local_lock=all" "nfsvers=4.2"];
     };
   };
+  boot.initrd.network.enable = true;
   hardware.deviceTree.name = "starfive/jh7110-visionfive-v2.dtb";
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
     desktop = false;
     inherit args;
@@ -108,4 +110,9 @@
   system.autoUpgrade.allowReboot = true;
   services.tailscale.useRoutingFeatures = "server";
   boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
+
+  nixpkgs.buildPlatform = {
+    config = "x86_64-unknown-linux-gnu";
+    system = "x86_64-linux";
+  };
 }
