@@ -233,6 +233,23 @@ rec {
         configuration = import ./config/programs/vim/configuration.nix true;
       };
     };
+    packages.riscv64-linux = let
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        crossSystem = "riscv64-linux";
+        overlays = [self.overlays.riscv64-linux];
+        config.allowUnfree = true;
+      };
+    in {
+      neovim-base = args.nix-neovim.buildNeovim {
+        inherit pkgs;
+        configuration = import ./config/programs/vim/configuration.nix false;
+      };
+      neovim = args.nix-neovim.buildNeovim {
+        inherit pkgs;
+        configuration = import ./config/programs/vim/configuration.nix true;
+      };
+    };
     hydraJobs =
       (builtins.listToAttrs (map
         ({
