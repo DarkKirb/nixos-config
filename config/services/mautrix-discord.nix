@@ -41,6 +41,7 @@
             missed.channel = -1;
           };
         };
+        media_patterns.enabled = true;
         encryption = {
           allow = true;
           appservice = true;
