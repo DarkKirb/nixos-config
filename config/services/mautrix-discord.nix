@@ -41,7 +41,13 @@
             missed.channel = -1;
           };
         };
-        media_patterns.enabled = true;
+        media_patterns = {
+          enabled = true;
+          attachments = "mxc://matrix.chir.rs/discord_attachments|{{.ChannelID}}|{{.AttachmentID}}|{{.FileName}}";
+          emojis = "mxc://matrix.chir.rs/discord_emojis|{{.ID}}.{{.Ext}}";
+          stickers = "mxc://matrix.chir.rs/discord_stickers|{{.ID}}.{{.Ext}}";
+          avatars = "mxc://matrix.chir.rs/discord_avatars|{{.UserID}}|{{.AvatarID}}.{{.Ext}}";
+        };
         encryption = {
           allow = true;
           appservice = true;

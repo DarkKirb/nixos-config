@@ -182,64 +182,66 @@ in {
     logFormat = pkgs.lib.mkForce "";
     extraConfig = ''
       import baseConfig
-      handle /_matrix/media/*/download/example.com/discord_* {
-        header Access-Control-Allow-Origin *
-        # Remove path prefix
-        uri path_regexp ^/_matrix/media/.+/download/example\.com/discord_ /
-        # The mxc patterns use | instead of /, so replace it first turning it into attachments/1234/5678/filename.png
-        uri replace "%7C" /
-        reverse_proxy {
-          # reverse_proxy automatically includes the uri, so no {uri} at the end
-          to https://cdn.discordapp.com
-          # Caddy doesn't set the Host header automatically when reverse proxying
-          # (because usually reverse proxies are local and don't care about Host headers)
-          header_up Host cdn.discordapp.com
-        }
-      }
-      # Do the same for thumbnails, but redirect to media.discordapp.net (which is Discord's thumbnailing server, and happens to use similar width/height params as Matrix)
-      # Alternatively, you can point this at cdn.discordapp.com too. Clients shouldn't mind even if they get a bigger image than they asked for.
-      handle /_matrix/media/*/thumbnail/example.com/discord_* {
-        header Access-Control-Allow-Origin *
-        uri path_regexp ^/_matrix/media/.+/thumbnail/example\.com/discord_ /
-        uri replace "%7C" /
-        reverse_proxy {
-          to https://media.discordapp.net
-          header_up Host media.discordapp.net
-        }
-      }
-      handle /_matrix/media/* {
-        uri * replace /unstable/fi.mau.msc2246/ /v1/
-        reverse_proxy http://localhost:8008 {
-          header_down Access-Control-Allow-Origin *
-          header_down Access-Control-Allow-Headers *
-        }
-      }
-
-      handle /_matrix/client/v3/logout/* {
-        reverse_proxy http://localhost:8008
-      }
-
-      handle /_matrix/* {
-        reverse_proxy {
-          to https://matrix.int.chir.rs
-          header_up Host {upstream_hostport}
-
-          transport http {
-            versions 1.1 2 3
+      route {
+        handle /_matrix/media/*/download/matrix.chir.rs/discord_* {
+          header Access-Control-Allow-Origin *
+          # Remove path prefix
+          uri path_regexp ^/_matrix/media/.+/download/matrix\.chir\.rs/discord_ /
+          # The mxc patterns use | instead of /, so replace it first turning it into attachments/1234/5678/filename.png
+          uri replace "%7C" /
+          reverse_proxy {
+            # reverse_proxy automatically includes the uri, so no {uri} at the end
+            to https://cdn.discordapp.com
+            # Caddy doesn't set the Host header automatically when reverse proxying
+            # (because usually reverse proxies are local and don't care about Host headers)
+            header_up Host cdn.discordapp.com
           }
         }
-      }
+        # Do the same for thumbnails, but redirect to media.discordapp.net (which is Discord's thumbnailing server, and happens to use similar width/height params as Matrix)
+        # Alternatively, you can point this at cdn.discordapp.com too. Clients shouldn't mind even if they get a bigger image than they asked for.
+        handle /_matrix/media/*/thumbnail/matrix.chir.rs/discord_* {
+          header Access-Control-Allow-Origin *
+          uri path_regexp ^/_matrix/media/.+/thumbnail/matrix\.chir\.rs/discord_ /
+          uri replace "%7C" /
+          reverse_proxy {
+            to https://media.discordapp.net
+            header_up Host media.discordapp.net
+          }
+        }
+        handle /_matrix/media/* {
+          uri * replace /unstable/fi.mau.msc2246/ /v1/
+          reverse_proxy http://localhost:8008 {
+            header_down Access-Control-Allow-Origin *
+            header_down Access-Control-Allow-Headers *
+          }
+        }
 
-      handle /.well-known/matrix/server {
-        header Access-Control-Allow-Origin *
-        header Content-Type application/json
-        respond "{ \"m.server\": \"matrix.chir.rs:443\" }" 200
-      }
+        handle /_matrix/client/v3/logout/* {
+          reverse_proxy http://localhost:8008
+        }
 
-      handle /.well-known/matrix/client {
-        header Access-Control-Allow-Origin *
-        header Content-Type application/json
-        respond "{ \"m.homeserver\": { \"base_url\": \"https://matrix.chir.rs\" } }" 200
+        handle /_matrix/* {
+          reverse_proxy {
+            to https://matrix.int.chir.rs
+            header_up Host {upstream_hostport}
+
+            transport http {
+              versions 1.1 2 3
+            }
+          }
+        }
+
+        handle /.well-known/matrix/server {
+          header Access-Control-Allow-Origin *
+          header Content-Type application/json
+          respond "{ \"m.server\": \"matrix.chir.rs:443\" }" 200
+        }
+
+        handle /.well-known/matrix/client {
+          header Access-Control-Allow-Origin *
+          header Content-Type application/json
+          respond "{ \"m.homeserver\": { \"base_url\": \"https://matrix.chir.rs\" } }" 200
+        }
       }
     '';
   };
