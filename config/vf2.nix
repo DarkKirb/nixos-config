@@ -3,6 +3,7 @@
   nix-packages,
   config,
   pkgs,
+  nixpkgs,
   ...
 } @ args: {
   networking.hostName = "vf2";
@@ -111,8 +112,13 @@
   services.tailscale.useRoutingFeatures = "server";
   boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
 
-  nixpkgs.buildPlatform = {
-    config = "x86_64-unknown-linux-gnu";
-    system = "x86_64-linux";
+  nixpkgs = {
+    buildPlatform.config = "x86_64-linux";
+    hostPlatform.config = "riscv64-linux";
+    pkgs = lib.mkForce (import nixpkgs {
+      system = "x86_64-linux";
+      crossSystem = "riscv64-linux";
+      inherit (config.nixpkgs) config overlays;
+    });
   };
 }
