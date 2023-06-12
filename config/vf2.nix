@@ -104,10 +104,6 @@
     owner = "root";
     path = "/root/.ssh/id_ed25519";
   };
-  sops.secrets."services/ssh/host-key" = {
-    owner = "root";
-    path = "/etc/secrets/initrd/ssh_host_ed25519_key";
-  };
   system.autoUpgrade.allowReboot = true;
   services.tailscale.useRoutingFeatures = "server";
   boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
