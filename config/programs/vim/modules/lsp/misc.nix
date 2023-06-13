@@ -9,7 +9,6 @@
       nodePackages.dockerfile-language-server-nodejs
       elixir-ls
       gopls
-      haskell-language-server
       nodePackages.vscode-css-languageserver-bin
       nodePackages.vscode-html-languageserver-bin
       nodePackages.vscode-json-languageserver
@@ -22,7 +21,12 @@
     ]
     ++ (
       if pkgs.system != "riscv64-linux"
-      then with pkgs; [ltex-ls marksman]
+      then
+        with pkgs; [
+          haskell-language-server
+          ltex-ls
+          marksman
+        ]
       else []
     );
   lspconfig =
@@ -35,7 +39,6 @@
       dockerls = {};
       elixirls.cmd = ["elixir-ls"];
       gopls = {};
-      hls.filetypes = ["haskell" "lhaskell" "cabal"];
       html = {};
       jsonls = {};
       lua_ls = {};
@@ -47,6 +50,7 @@
     // (
       if pkgs.system != "riscv64-linux"
       then {
+        hls.filetypes = ["haskell" "lhaskell" "cabal"];
         ltex = {};
         marksman = {};
       }
