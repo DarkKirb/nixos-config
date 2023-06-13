@@ -84,11 +84,6 @@ desktop: {pkgs, ...}: {
           easytag
         ]
         else []
-      )
-      ++ (
-        if pkgs.stdenv.hostPlatform == pkgs.stdenv.buildPlatform
-        then with pkgs; [ncdu]
-        else []
       );
   };
 
