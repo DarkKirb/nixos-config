@@ -24,7 +24,11 @@
   nix.settings.substituters = ["https://beam.attic.rs/riscv"];
   boot = {
     supportedFilesystems = lib.mkForce ["vfat" "ext4"];
-    kernelPackages = pkgs.vf2KernelPackages;
+    kernelPackages = pkgs.linuxPackagesFor (pkgs.vf2Kernel.override {
+      structuredExtraConfig = with lib.kernel; {
+        DRM_VERISILICON = no;
+      };
+    });
     initrd.includeDefaultModules = false;
     initrd.availableKernelModules = [
       "dw_mmc-pltfm"
