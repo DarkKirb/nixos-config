@@ -4,6 +4,7 @@
   lib,
   nix-packages,
   system,
+  pkgs,
   ...
 }: {
   imports = [attic.nixosModules.atticd];

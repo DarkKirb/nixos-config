@@ -14,7 +14,6 @@
       nodePackages.vscode-html-languageserver-bin
       nodePackages.vscode-json-languageserver
       lua-language-server
-      marksman
       nil
       pyright
       nodePackages.typescript
@@ -23,7 +22,7 @@
     ]
     ++ (
       if pkgs.system != "riscv64-linux"
-      then with pkgs; [ltex-ls]
+      then with pkgs; [ltex-ls marksman]
       else []
     );
   lspconfig =
@@ -40,7 +39,6 @@
       html = {};
       jsonls = {};
       lua_ls = {};
-      marksman = {};
       nil_ls = {};
       pyright = {};
       tsserver = {};
@@ -50,6 +48,7 @@
       if pkgs.system != "riscv64-linux"
       then {
         ltex = {};
+        marksman = {};
       }
       else {}
     );
