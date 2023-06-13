@@ -245,10 +245,6 @@ rec {
         inherit pkgs;
         configuration = import ./config/programs/vim/configuration.nix false;
       };
-      neovim = args.nix-neovim.buildNeovim {
-        inherit pkgs;
-        configuration = import ./config/programs/vim/configuration.nix true;
-      };
     };
     hydraJobs =
       (builtins.listToAttrs (map

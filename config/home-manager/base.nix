@@ -65,7 +65,6 @@ desktop: {pkgs, ...}: {
         gh
         htop
         sops
-        ncdu
         progress
         hexyl
         mc
@@ -84,6 +83,11 @@ desktop: {pkgs, ...}: {
           picard
           easytag
         ]
+        else []
+      )
+      ++ (
+        if pkgs.stdenv.hostPlatform == pkgs.stdenv.buildPlatform
+        then with pkgs; [ncdu]
         else []
       );
   };
