@@ -17,11 +17,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1684915894,
-        "narHash": "sha256-3uCrHQSNloX/DHJritGlTuaNwnZiJWDqagtw/LFUKsc=",
+        "lastModified": 1686653338,
+        "narHash": "sha256-TbpExe63fbCyn8vXKSKZfPs5zxO1Bde/moOZPU2TtVE=",
         "owner": "DarkKirb",
         "repo": "attic",
-        "rev": "4b8abfaafad22590ed9e3bbb11cc47f905283a43",
+        "rev": "da6d29dd919f0bb573fccd5a09db41f8456a2646",
         "type": "github"
       },
       "original": {
