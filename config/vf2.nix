@@ -25,39 +25,18 @@
   boot = {
     supportedFilesystems = lib.mkForce ["vfat" "ext4"];
     kernelPackages = pkgs.vf2KernelPackages;
-    kernelParams = [
-      "console=tty0"
-      "console=ttyS0,115200"
-      "earlycon=sbi"
-      "boot.shell_on_fail"
-    ];
-    blacklistedKernelModules = [
-      # Last thing to log before crash...
-      "axp15060-regulator"
-      # Also sus
-      "at24"
-      # Also also sus
-      "jh7110-vin"
-      # Maybe??
-      "starfive-jh7110-regulator"
-
-      # This one stopped the crashing
-      "starfivecamss"
-    ];
-
     initrd.includeDefaultModules = false;
     initrd.availableKernelModules = [
       "dw_mmc-pltfm"
       "dw_mmc-starfive"
-      "dwmac-starfive-plat"
+      "dwmac-starfive"
       "spi-dw-mmio"
       "mmc_block"
       "nvme"
-      "sdhci" #?
-      "sdhci-pci" #?
+      "sdhci"
+      "sdhci-pci"
       "sdhci-of-dwcmshc"
     ];
-
     loader = {
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
@@ -106,6 +85,16 @@
   system.autoUpgrade.allowReboot = true;
   services.tailscale.useRoutingFeatures = "server";
   boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
+
+  systemd.services."serial-getty@hvc0".enable = false;
+
+  # If getty is not explicitly enabled, it will not start automatically.
+  # https://github.com/NixOS/nixpkgs/issues/84105
+  systemd.services."serial-getty@ttyS0" = {
+    enable = true;
+    wantedBy = ["getty.target"];
+    serviceConfig.Restart = "always";
+  };
 
   nixpkgs = {
     buildPlatform.config = "x86_64-linux";
