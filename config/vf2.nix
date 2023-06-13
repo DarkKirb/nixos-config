@@ -11,7 +11,6 @@
   imports = [
     ./services/caddy
     ./services/acme.nix
-    ./services/fail2ban.nix
     ./users/remote-build.nix
   ];
 
