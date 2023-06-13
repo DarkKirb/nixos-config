@@ -53,7 +53,7 @@ in
           maintainers = with maintainers; [ma27];
         };
       };
-    hydra-unsstable = nix-packages.packages.${system}.hydra.overrideAttrs (super: {
+    hydra-unstable = nix-packages.packages.${system}.hydra.overrideAttrs (super: {
       doCheck = false;
       checkPhase = "";
       installCheckPhase = "";

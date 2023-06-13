@@ -31,8 +31,8 @@
     name = "akkoma-static";
     src = pkgs.emptyDirectory;
     nativeBuildInputs = with pkgs; [xorg.lndir];
-    akkoma_fe = nix-packages.packages.${pkgs.system}.pleroma-fe;
-    akkoma_admin_fe = nix-packages.packages.${pkgs.system}.admin-fe;
+    akkoma_fe = pkgs.pleroma-fe;
+    akkoma_admin_fe = pkgs.admin-fe;
     inherit fedibird_fe;
     tos = ./terms-of-service.html;
     dontUnpack = false;
@@ -264,7 +264,7 @@
 in {
   services.pleroma = {
     enable = true;
-    package = nix-packages.packages.${pkgs.system}.akkoma;
+    package = pkgs.akkoma;
     configs = [(builtins.readFile akkconfig)];
     user = "akkoma";
     group = "akkoma";

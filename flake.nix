@@ -41,18 +41,7 @@ rec {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emanote = {
-      url = "github:EmaApps/emanote";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.haskell-flake.follows = "haskell-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
     flake-utils.url = "github:DarkKirb/flake-utils";
-    haskell-flake.url = "github:srid/haskell-flake";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

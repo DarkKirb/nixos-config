@@ -10,7 +10,7 @@
     #!${pkgs.bash}/bin/bash
     set -euf
     export IFS=' '
-    until ${attic.packages.${system}.attic-client}/bin/attic push chir-rs $OUT_PATHS; do
+    until ${pkgs.attic-client}/bin/attic push chir-rs $OUT_PATHS; do
         sleep 5
         echo "Retrying..."
     done

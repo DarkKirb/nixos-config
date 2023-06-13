@@ -34,7 +34,7 @@
     extraConfig = ''
       import baseConfig
 
-      root * ${nix-packages.packages.${system}.miifox-net}
+      root * ${pkgs.miifox-net}
       file_server
     '';
   };

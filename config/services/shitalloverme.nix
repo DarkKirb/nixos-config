@@ -4,7 +4,7 @@
   nix-packages,
   ...
 }: let
-  input = "${nix-packages.packages.${system}.lotte-art}/2022-12-27-rexyi-scatych.jxl";
+  input = "${pkgs.lotte-art}/2022-12-27-rexyi-scatych.jxl";
   sizes = [1 2 4 8 16 32 64 128 256 512 1024 2000];
   formats = ["jxl" "avif" "heic" "webp" "jpeg" "png"];
   mkImage = format: size: let
