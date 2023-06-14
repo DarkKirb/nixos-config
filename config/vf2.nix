@@ -132,4 +132,6 @@
       inherit (config.nixpkgs) config overlays;
     });
   };
+
+  nix.settings.post-build-hook = lib.mkForce "true";
 }
