@@ -24,34 +24,7 @@
   nix.settings.substituters = ["https://beam.attic.rs/riscv"];
   boot = {
     supportedFilesystems = lib.mkForce ["vfat" "ext4"];
-    kernelPackages = pkgs.linuxPackagesFor (pkgs.vf2Kernel.override {
-      argsOverride.structuredExtraConfig = with lib.kernel; {
-        DRM_VERISILICON = no;
-        V4L_PLATFORM_DRIVERS = no;
-        ARCH_STARFIVE = yes;
-        SOC_STARFIVE = yes;
-
-        SERIAL_8250 = yes;
-
-        NO_HZ_IDLE = yes;
-        CPU_FREQ = yes;
-        CPUFREQ_DT = yes;
-        CPUFREQ_DT_PLATDEV = yes;
-        HIBERNATION = yes;
-
-        GPIO_SYSFS = yes;
-        POWER_RESET_GPIO_RESET = yes;
-
-        PROC_KCORE = yes;
-
-        PWM = yes;
-        PWM_STARFIVE_PTC = yes;
-
-        SIFIVE_CCACHE = yes;
-
-        PL330_DMA = no;
-      };
-    });
+    kernelPackages = pkgs.linuxPackagesFor pkgs.vf2Kernel;
     initrd.includeDefaultModules = false;
     initrd.availableKernelModules = [
       "dw_mmc-pltfm"
