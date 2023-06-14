@@ -4,13 +4,18 @@
   config,
   system,
   attic,
+  nix-packages,
   ...
 }: let
+  attic-client =
+    if system == "aarch64-linux"
+    then nix-packages.packages.${system}.attic-client
+    else pkgs.attic-client;
   post-build-hook = pkgs.writeScript "post-build-hook" ''
     #!${pkgs.bash}/bin/bash
     set -euf
     export IFS=' '
-    until ${pkgs.attic-client}/bin/attic push chir-rs $OUT_PATHS; do
+    until ${attic-client}/bin/attic push chir-rs $OUT_PATHS; do
         sleep 5
         echo "Retrying..."
     done
