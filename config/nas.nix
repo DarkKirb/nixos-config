@@ -32,6 +32,7 @@
     ./users/remote-build.nix
     ./services/heisenbridge.nix
     ./services/kubo-local.nix
+    ./services/nfs.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
