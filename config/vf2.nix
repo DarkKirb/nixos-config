@@ -27,6 +27,7 @@
     kernelPackages = pkgs.linuxPackagesFor (pkgs.vf2Kernel.override {
       structuredExtraConfig = with lib.kernel; {
         DRM_VERISILICON = no;
+        V4L_PLATFORM_DRIVERS = no;
       };
     });
     initrd.includeDefaultModules = false;
