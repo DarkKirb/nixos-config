@@ -113,7 +113,11 @@
       "phy-jh7110-pcie"
       "pcie-starfive"
       "nvme"
+      "nfsv4"
     ];
+    initrd.extraUtilsCommands = ''
+      copy_bin_and_libs ${pkgs.nfs-utils}/bin/mount.nfs
+    '';
     blacklistedKernelModules = [
       "clk-starfive-jh7110-vout"
     ];
