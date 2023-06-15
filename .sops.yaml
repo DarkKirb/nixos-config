@@ -5,7 +5,7 @@ keys:
   - &thinkrac age15c2dquc22epmmndpmd8pa3077fdl8nyr5qehr7y0c9uvavrledsq326ak9
   - &nas age1c7y687sxh428wk34s8ws6kemu62mggafpt40rmanevgkuj5xa59q6f7tlc
   - &instance-20221213-1915 age1elra3uklw8rmwkevqms2l4tsd06d5utqda9d2w4qvqpz898uzuesugxkhc
-  - &vf2 age1j67v2az4egf38qaj9c6p5d38eataxtg9xee8vw527c5hnz9u744q3mr033
+  - &vf2 age1gtezxkkfhpkv788x9dek6s6s342n9tkl40zvsa48m9a7yqn25fnsmd3wy0
 creation_rules:
   - path_regex: secrets/shared\.yaml$
     key_groups:

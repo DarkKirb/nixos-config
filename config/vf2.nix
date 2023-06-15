@@ -24,7 +24,7 @@
 
   nix.settings.substituters = ["https://beam.attic.rs/riscv"];
   boot = {
-    supportedFilesystems = lib.mkForce ["vfat" "ext4"];
+    supportedFilesystems = lib.mkForce ["vfat" "ext4" "nfs"];
     kernelPackages = pkgs.linuxPackagesFor pkgs.vf2Kernel;
     kernelParams = [
       "console=tty0"
