@@ -44,10 +44,10 @@
   };
 
   fileSystems = {
-    "/boot/firmware" = {
+    "/boot" = {
       device = "/dev/disk/by-label/FIRMWARE";
       fsType = "vfat";
-      options = ["nofail" "noauto"];
+      options = ["nofail"];
     };
     "/" = {
       device = "192.168.2.1:/export/vf2";
