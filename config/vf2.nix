@@ -12,6 +12,7 @@
     ./services/caddy
     ./services/acme.nix
     ./users/remote-build.nix
+    ./systemd-boot.nix
   ];
 
   environment.noXlibs = true;
@@ -25,22 +26,43 @@
   boot = {
     supportedFilesystems = lib.mkForce ["vfat" "ext4"];
     kernelPackages = pkgs.linuxPackagesFor pkgs.vf2Kernel;
-    initrd.includeDefaultModules = false;
-    initrd.availableKernelModules = [
-      "dw_mmc-pltfm"
-      "dw_mmc-starfive"
-      "dwmac-starfive"
-      "spi-dw-mmio"
-      "mmc_block"
-      "nvme"
-      "sdhci"
-      "sdhci-pci"
-      "sdhci-of-dwcmshc"
+    kernelParams = [
+      "console=tty0"
+      "console=ttyS0,115200"
+      "earlycon=sbi"
+      "boot.shell_on_fail"
     ];
-    loader = {
-      grub.enable = false;
-      generic-extlinux-compatible.enable = true;
-    };
+    consoleLogLevel = 7;
+    initrd.availableKernelModules = [
+      "dw_mmc-starfive"
+      "motorcomm"
+      "dwmac-starfive"
+      "cdns3-starfive"
+      "jh7110-trng"
+      "jh7110-crypto"
+      "phy-jh7110-usb"
+      "phy-starfive-dphy-rx"
+      "clk-starfive-jh7110-aon"
+      "clk-starfive-jh7110-stg"
+      # "clk-starfive-jh7110-vout"
+      "clk-starfive-jh7110-isp"
+      # "clk-starfive-jh7100-audio"
+      "phy-jh7110-pcie"
+      "pcie-starfive"
+      "nvme"
+    ];
+    blacklistedKernelModules = [
+      "clk-starfive-jh7110-vout"
+    ];
+    loader.systemd-boot.extraInstallCommands = ''
+      set -euo pipefail
+      cp --no-preserve=mode -r ${config.hardware.deviceTree.package} ${config.boot.loader.efi.efiSysMountPoint}/
+      for filename in ${config.boot.loader.efi.efiSysMountPoint}/loader/entries/nixos*-generation-[1-9]*.conf; do
+        if ! ${pkgs.gnugrep}/bin/grep -q 'devicetree' $filename; then
+          echo "devicetree /dtbs/${config.hardware.deviceTree.name}" >> $filename
+        fi
+      done
+    '';
   };
 
   fileSystems = {
@@ -56,7 +78,7 @@
     };
   };
   boot.initrd.network.enable = true;
-  hardware.deviceTree.name = "starfive/jh7110-visionfive-v2.dtb";
+  hardware.deviceTree.name = "starfive/jh7110-starfive-visionfive-2-v1.3b.dtb";
   system.stateVersion = "23.05";
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
     desktop = false;
@@ -85,16 +107,6 @@
   system.autoUpgrade.allowReboot = true;
   services.tailscale.useRoutingFeatures = "server";
   boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
-
-  systemd.services."serial-getty@hvc0".enable = false;
-
-  # If getty is not explicitly enabled, it will not start automatically.
-  # https://github.com/NixOS/nixpkgs/issues/84105
-  systemd.services."serial-getty@ttyS0" = {
-    enable = true;
-    wantedBy = ["getty.target"];
-    serviceConfig.Restart = "always";
-  };
 
   nixpkgs = {
     buildPlatform.config = "x86_64-linux";
