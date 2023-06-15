@@ -30,6 +30,13 @@
         port = 22;
         user = "backup";
       };
+      "build-riscv" = {
+        hostname = "vf2.int.chir.rs";
+        identitiesOnly = true;
+        identityFile = "${config.home.homeDirectory}/.ssh/builder_id_ed25519";
+        port = 22;
+        user = "remote-build";
+      };
     };
   };
 }

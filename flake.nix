@@ -51,7 +51,7 @@ rec {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.url = "github:DarkKirb/flake-utils";
     haskell-flake.url = "github:srid/haskell-flake";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -136,6 +136,10 @@ rec {
         name = "instance-20221213-1915"; # Oracle server
         system = "aarch64-linux";
       }
+      {
+        name = "vf2"; # VisionFive 2
+        system = "riscv64-linux";
+      }
     ];
   in rec {
     nixosConfigurations = builtins.listToAttrs (map
@@ -173,6 +177,7 @@ rec {
     overlays = {
       x86_64-linux = import ./overlays args "x86_64-linux";
       aarch64-linux = import ./overlays args "aarch64-linux";
+      riscv64-linux = import ./overlays args "riscv64-linux";
     };
     devShell.x86_64-linux = let
       pkgs = import nixpkgs {
@@ -226,6 +231,19 @@ rec {
       neovim = args.nix-neovim.buildNeovim {
         inherit pkgs;
         configuration = import ./config/programs/vim/configuration.nix true;
+      };
+    };
+    packages.riscv64-linux = let
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        crossSystem = "riscv64-linux";
+        overlays = [self.overlays.riscv64-linux];
+        config.allowUnfree = true;
+      };
+    in {
+      neovim-base = args.nix-neovim.buildNeovim {
+        inherit pkgs;
+        configuration = import ./config/programs/vim/configuration.nix false;
       };
     };
     hydraJobs =

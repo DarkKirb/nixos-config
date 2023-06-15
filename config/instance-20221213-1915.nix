@@ -105,7 +105,6 @@
     "gccarch-armv8-a"
     "gccarch-armv8.1-a"
     "gccarch-armv8.2-a"
-    "gccarch-skylake"
     "ca-derivations"
   ];
   nix.daemonCPUSchedPolicy = "idle";

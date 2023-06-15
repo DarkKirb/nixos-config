@@ -32,6 +32,7 @@
     ./users/remote-build.nix
     ./services/heisenbridge.nix
     ./services/kubo-local.nix
+    ./services/nfs.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
@@ -121,6 +122,7 @@
   nix.settings.substituters = lib.mkForce [
     "https://attic.chir.rs/chir-rs/"
     "https://cache.nixos.org/"
+    "https://beam.attic.rs/riscv"
   ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";

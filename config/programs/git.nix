@@ -1,7 +1,10 @@
-{pkgs, ...}: {
+desktop: {pkgs, ...}: {
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.gitFull;
+    package =
+      if desktop
+      then pkgs.gitAndTools.gitFull
+      else pkgs.git;
     lfs.enable = true;
     signing.signByDefault = true;
     signing.key = "AB2BD8DAF2E37122";
@@ -13,5 +16,5 @@
     };
     delta.enable = true;
   };
-  programs.gitui.enable = true;
+  programs.gitui.enable = desktop;
 }

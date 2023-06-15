@@ -42,8 +42,8 @@ in {
       noto-fonts-emoji
       noto-fonts-extra
       (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Noto"];})
-      nix-packages.packages.${system}.nasin-nanpa
-      nix-packages.packages.${system}.fairfax-hd
+      nasin-nanpa
+      fairfax-hd
     ];
   };
   fonts.fontconfig.localConf = ''
@@ -147,5 +147,10 @@ in {
   virtualisation = {
     waydroid.enable = true;
     lxd.enable = true;
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
   };
 }

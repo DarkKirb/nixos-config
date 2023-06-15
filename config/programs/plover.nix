@@ -21,7 +21,7 @@
     ]
     ++ (map (module: {
         enabled = true;
-        path = "${nix-packages.packages.${system}.plover-dict-didoesdigital}/dictionaries/${module}.json";
+        path = "${pkgs.plover-dict-didoesdigital}/dictionaries/${module}.json";
       }) [
         #Put this first
         "fingerspelling"

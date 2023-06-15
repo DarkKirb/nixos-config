@@ -6,7 +6,7 @@
   lib,
   ...
 }: let
-  inherit (nix-packages.packages.${system}) matrix-media-repo;
+  inherit (pkgs) matrix-media-repo;
   config-yml = pkgs.writeText "matrix-media-repo.yaml" (lib.generators.toYAML {} {
     repo = {
       bindAddress = "127.0.0.1";

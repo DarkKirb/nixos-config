@@ -13,7 +13,7 @@ with lib; let
   settingsFormat = pkgs.formats.yaml {};
   settingsFileUnsubstituted = settingsFormat.generate "mautrix-discord-config-unsubstituted.yaml" cfg.settings;
   settingsFile = "${dataDir}/config.yaml";
-  inherit (nix-packages.packages.${system}) mautrix-discord;
+  inherit (pkgs) mautrix-discord;
 in {
   options = {
     services.mautrix-discord = {

@@ -6,11 +6,15 @@
   attic,
   ...
 }: let
+  attic-client =
+    if system == "aarch64-linux"
+    then attic.packages.${system}.attic-client
+    else pkgs.attic-client;
   post-build-hook = pkgs.writeScript "post-build-hook" ''
     #!${pkgs.bash}/bin/bash
     set -euf
     export IFS=' '
-    until ${attic.packages.${system}.attic-client}/bin/attic push chir-rs $OUT_PATHS; do
+    until ${attic-client}/bin/attic push chir-rs $OUT_PATHS; do
         sleep 5
         echo "Retrying..."
     done
@@ -40,6 +44,7 @@ in {
         "nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg="
         "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
         "chir-rs:AnwyFacopHSkprD6aXY4/R3J9JYzTbV2rosJCBPaB28="
+        "riscv:TZX1ReuoIGt7QiSQups+92ym8nKJUSV0O2NkS4HAqH8="
       ];
       post-build-hook = "${post-build-hook}";
       auto-optimise-store = true;
@@ -102,6 +107,18 @@ in {
             maxJobs = 4;
             speedFactor = 1;
             supportedFeatures = ["nixos-test" "benchmark" "ca-derivations" "gccarch-armv8-a" "gccarch-armv8.1-a" "gccarch-armv8.2-a" "big-parallel"];
+          }
+        ])
+        (mkIf (config.networking.hostName != "vf2") [
+          {
+            hostName = "build-riscv64";
+            systems = [
+              "riscv32-linux"
+              "riscv64-linux"
+            ];
+            maxJobs = 4;
+            speedFactor = 1;
+            supportedFeatures = ["nixos-test" "benchmark" "ca-derivations"];
           }
         ])
       ];

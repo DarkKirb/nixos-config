@@ -6,8 +6,7 @@
     [
       (import ./base.nix desktop)
       ../programs/ssh.nix
-      ../programs/gpg.nix
-      ../programs/git.nix
+      (import ../programs/git.nix desktop)
       ../programs/direnv.nix
     ]
     ++ (
@@ -32,6 +31,7 @@
         ../programs/kitty.nix
         ../programs/zk.nix
         ../programs/fcitx.nix
+        ../programs/gpg.nix
       ]
       else []
     );

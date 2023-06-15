@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (nix-packages.packages.${system}) old-homepage;
+  inherit (pkgs) old-homepage;
 in {
   systemd.services.homepage-old = {
     enable = true;
