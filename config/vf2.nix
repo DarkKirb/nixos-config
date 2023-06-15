@@ -145,6 +145,7 @@
     };
   };
   boot.initrd.network.enable = true;
+  boot.initrd.network.flushBeforeStage2 = false;
   hardware.deviceTree.name = "starfive/jh7110-starfive-visionfive-2-v1.3b.dtb";
   system.stateVersion = "23.05";
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
