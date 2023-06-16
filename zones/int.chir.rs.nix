@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 24;
+    serial = 25;
   };
   NS = [
     "ns1.chir.rs."
@@ -275,6 +275,12 @@ in {
       A = [(ttl zoneTTL (a "100.99.173.107"))];
       AAAA = [
         (ttl zoneTTL (aaaa "fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b"))
+      ];
+    };
+    vf2 = {
+      A = [(ttl zoneTTL (a "100.90.87.132"))];
+      AAAA = [
+        (ttl zoneTTL (aaaa "fd7a:115c:a1e0:ab12:4843:cd96:625a:5784"))
       ];
     };
 
