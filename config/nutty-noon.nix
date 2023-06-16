@@ -65,12 +65,9 @@
   nix.settings.cores = 16;
   boot.binfmt.emulatedSystems = [
     "armv7l-linux"
-    "aarch64-linux"
     "powerpc-linux"
     "powerpc64-linux"
     "powerpc64le-linux"
-    "riscv32-linux"
-    "riscv64-linux"
     "wasm32-wasi"
   ];
   hardware.enableRedistributableFirmware = true;
