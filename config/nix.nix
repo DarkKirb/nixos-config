@@ -45,6 +45,7 @@ in {
         "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
         "chir-rs:AnwyFacopHSkprD6aXY4/R3J9JYzTbV2rosJCBPaB28="
         "riscv:TZX1ReuoIGt7QiSQups+92ym8nKJUSV0O2NkS4HAqH8="
+        "cache.ztier.link-1:3P5j2ZB9dNgFFFVkCQWT3mh0E+S3rIWtZvoql64UaXM="
       ];
       post-build-hook = "${post-build-hook}";
       auto-optimise-store = true;

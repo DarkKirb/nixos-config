@@ -121,6 +121,7 @@
     "https://attic.chir.rs/chir-rs/"
     "https://cache.nixos.org/"
     "https://beam.attic.rs/riscv"
+    "https://cache.ztier.in"
   ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";

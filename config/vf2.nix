@@ -22,7 +22,11 @@
     (import ../overlays/riscv.nix)
   ];
 
-  nix.settings.substituters = ["https://beam.attic.rs/riscv"];
+  nix.settings.substituters = lib.mkForce [
+    "https://beam.attic.rs/riscv"
+    "https://cache.ztier.in"
+    "https://hydra.int.chir.rs"
+  ];
   boot = {
     supportedFilesystems = lib.mkForce ["vfat" "ext4" "nfs"];
     kernelPackages = pkgs.linuxPackagesFor (pkgs.vf2Kernel.override {
