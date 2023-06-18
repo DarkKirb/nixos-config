@@ -19,7 +19,7 @@
   nixpkgs.config.allowUnsupportedSystem = true;
 
   nixpkgs.overlays = [
-    (import ../overlays/riscv.nix)
+    (import ../overlays/riscv.nix args)
   ];
 
   nix.settings.substituters = ["https://beam.attic.rs/riscv"];
