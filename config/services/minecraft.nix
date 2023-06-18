@@ -30,6 +30,10 @@
         uuid = "6253c244-cdf6-41b9-9187-62ad7552ca5c";
         name = "BL4CKM1ND";
       }
+      {
+        uuid = "7ee66be7-c8a7-44c9-8f2b-8dae22afbf09";
+        name = "blackmind";
+      }
     ];
     properties.server-ip = "172.16.154.251"; # death
     paper-yml = {
