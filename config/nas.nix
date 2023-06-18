@@ -180,6 +180,16 @@
     "/ip6/::/tcp/5001"
   ]; # Only exposed over the tailed scale
 
+  nix.settings.system-features = [
+    "kvm"
+    "nixos-test"
+    "big-parallel"
+    "benchmark"
+    "gccarch-znver1"
+    "gccarch-skylake"
+    "ca-derivations"
+  ];
+
   # Remove when https://nixpk.gs/pr-tracker.html?pr=235815 hits
   nixpkgs.overlays = [
     (self: super: {
