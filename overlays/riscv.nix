@@ -6,5 +6,5 @@ args: self: prev: let
     config.allowUnfree = true;
   };
 in {
-  inherit (pkgsX86) pandoc;
+  inherit (pkgsX86) pandoc gccgo gfortran;
 }
