@@ -115,7 +115,19 @@ in {
             ];
             maxJobs = 4;
             speedFactor = 1;
-            supportedFeatures = ["nixos-test" "benchmark" "ca-derivations"];
+            supportedFeatures = [
+              "nixos-test"
+              "benchmark"
+              "gccarch-rv64gc_zba_zbb"
+              "gccarch-rv64gc_zba"
+              "gccarch-rv64gc_zbb"
+              "gccarch-rv64gc"
+              "gccarch-rv32gc_zba_zbb"
+              "gccarch-rv32gc_zba"
+              "gccarch-rv32gc_zbb"
+              "gccarch-rv32gc"
+              "ca-derivations"
+            ];
           }
         ])
       ];

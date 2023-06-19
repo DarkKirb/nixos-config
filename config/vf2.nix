@@ -163,12 +163,15 @@
     "big-parallel"
     "benchmark"
     "ca-derivations"
-    "gccarch-riscv-i"
-    "gccarch-riscv-m"
-    "gccarch-riscv-a"
-    "gccarch-riscv-f"
-    "gccarch-riscv-d"
-    "gccarch-riscv-c"
+    # There are many more combinations but i simply do not care lol
+    "gccarch-rv64gc_zba_zbb"
+    "gccarch-rv64gc_zba"
+    "gccarch-rv64gc_zbb"
+    "gccarch-rv64gc"
+    "gccarch-rv32gc_zba_zbb"
+    "gccarch-rv32gc_zba"
+    "gccarch-rv32gc_zbb"
+    "gccarch-rv32gc"
   ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
