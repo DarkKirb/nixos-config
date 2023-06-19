@@ -17,6 +17,7 @@
               "nas.int.chir.rs:${toString config.services.prometheus.exporters.node.port}"
               "thinkrac.int.chir.rs:${toString config.services.prometheus.exporters.node.port}"
               "instance-20221213-1915.int.chir.rs:${toString config.services.prometheus.exporters.node.port}"
+              "vf2.int.chir.rs:${toString config.services.prometheus.exporters.node.port}"
             ];
           }
         ];
@@ -38,6 +39,7 @@
             targets = [
               "nixos-8gb-fsn1-1.int.chir.rs:${toString config.services.prometheus.exporters.postgres.port}"
               "nas.int.chir.rs:${toString config.services.prometheus.exporters.postgres.port}"
+              "instance-20221213-1915.int.chir.rs:${toString config.services.prometheus.exporters.postgres.port}"
             ];
           }
         ];
