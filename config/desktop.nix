@@ -110,6 +110,7 @@ in {
   environment.systemPackages = with pkgs; [
     pinentry-qt
     dolphinEmuMaster
+    kitty.terminfo
   ];
   programs.gnupg.agent.pinentryFlavor = "qt";
 

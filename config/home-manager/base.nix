@@ -20,15 +20,23 @@ desktop: {pkgs, ...}: {
         enable = true;
       };
       initExtraBeforeCompInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      initExtra = ''
-        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+      initExtra =
+        ''
+          [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-        test -n "$KITTY_INSTALLATION_DIR" || export KITTY_INSTALLATION_DIR=${pkgs.kitty}/lib/kitty
-        export KITTY_SHELL_INTEGRATION=enabled
-        autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
-        kitty-integration
-        unfunction kitty-integration
-      '';
+        ''
+        + (
+          if desktop
+          then ''
+
+            test -n "$KITTY_INSTALLATION_DIR" || export KITTY_INSTALLATION_DIR=${pkgs.kitty}/lib/kitty
+            export KITTY_SHELL_INTEGRATION=enabled
+            autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+            kitty-integration
+            unfunction kitty-integration
+          ''
+          else ""
+        );
       plugins = [
       ];
     };
@@ -42,16 +50,23 @@ desktop: {pkgs, ...}: {
     EDITOR = "nvim";
   };
   home = {
-    shellAliases = {
-      hx = "nvim";
-      vi = "nvim";
-      vim = "nvim";
-      cat = "bat";
-      less = "bat";
-      icat = "${pkgs.kitty}/bin/kitty +kitten icat";
-      d = "${pkgs.kitty}/bin/kitty +kitten diff";
-      hg = "${pkgs.kitty}/bin/kitty +kitten hyperlinked_grep";
-    };
+    shellAliases =
+      {
+        hx = "nvim";
+        vi = "nvim";
+        vim = "nvim";
+        cat = "bat";
+        less = "bat";
+      }
+      // (
+        if desktop
+        then {
+          icat = "${pkgs.kitty}/bin/kitty +kitten icat";
+          d = "${pkgs.kitty}/bin/kitty +kitten diff";
+          hg = "${pkgs.kitty}/bin/kitty +kitten hyperlinked_grep";
+        }
+        else {}
+      );
     packages = with pkgs;
       [
         yubico-piv-tool
