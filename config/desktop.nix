@@ -75,11 +75,12 @@ in {
   };
   services.udev.extraRules = ''
     ACTION=="remove", ENV{ID_VENDOR_ID}=="1050", ENV{ID_MODEL_ID}=="0407", RUN+="${lockscreen-all}"
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="e621", ATTRS{idProduct}=="0000", TAG+="uaccess"
-    SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="e621", ATTRS{idProduct}=="0000", TAG+="uaccess"
-    SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", TAG+="uaccess"
-    SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0306", TAG+="uaccess"
-    SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0330", TAG+="uaccess"
+    ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="e621", ATTRS{idProduct}=="0000", TAG+="uaccess"
+    ACTION=="add", SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="e621", ATTRS{idProduct}=="0000", TAG+="uaccess"
+    ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", TAG+="uaccess"
+    ACTION=="add", SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0306", TAG+="uaccess"
+    ACTION=="add", SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0330", TAG+="uaccess"
+    ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS={idProduct}=="6010", OWNER="user", MODE="0777", GROUP="dialout"
   '';
   services.udev.packages = [pkgs.dolphinEmuMaster];
   programs.steam.enable = system == "x86_64-linux";
