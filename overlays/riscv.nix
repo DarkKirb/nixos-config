@@ -8,4 +8,8 @@ args: self: prev: let
 in {
   pandoc = self.writeScriptBin "pandoc" "true";
   inherit (pkgsX86) gccgo gfortran;
+  meson = super.meson.overrideAttrs (_: {
+    doCheck = false;
+    doInstallCheck = false;
+  });
 }
