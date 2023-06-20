@@ -236,7 +236,7 @@ rec {
     packages.riscv64-linux = let
       pkgs = import nixpkgs {
         system = "riscv64-linux";
-        overlays = [self.overlays.riscv64-linux];
+        overlays = [self.overlays.riscv64-linux (import ./overlays/riscv.nix args)];
         config.allowUnfree = true;
       };
     in {
