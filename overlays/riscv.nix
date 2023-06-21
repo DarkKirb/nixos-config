@@ -16,4 +16,8 @@ in {
     doCheck = false;
     doInstallCheck = false;
   });
+  openldap = prev.openldap.overrideAttrs (_: {
+    doCheck = false;
+    doInstallCheck = false;
+  });
 }
