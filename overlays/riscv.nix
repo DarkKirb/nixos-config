@@ -12,4 +12,8 @@ in {
     doCheck = false;
     doInstallCheck = false;
   });
+  libarchive = prev.libarchive.overrideAttrs (_: {
+    doCheck = false;
+    doInstallCheck = false;
+  });
 }
