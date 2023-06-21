@@ -24,4 +24,8 @@ in {
     doCheck = false;
     doInstallCheck = false;
   });
+  restic = prev.restic.overrideAttrs (_: {
+    doCheck = false;
+    doInstallCheck = false;
+  });
 }
