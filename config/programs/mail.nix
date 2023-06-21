@@ -43,7 +43,7 @@ in {
         '';
         smtp = {
           host = "mail.chir.rs";
-          port = 465;
+          port = 587;
           tls.enable = true;
           tls.useStartTls = true;
         };
