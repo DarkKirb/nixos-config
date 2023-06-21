@@ -20,4 +20,8 @@ in {
     doCheck = false;
     doInstallCheck = false;
   });
+  bind = prev.bind.overrideAttrs (_: {
+    doCheck = false;
+    doInstallCheck = false;
+  });
 }
