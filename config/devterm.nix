@@ -79,7 +79,7 @@
         /plugin/;
 
         /{
-        	compatible = "brcm,bcm2835";
+        	compatible = "brcm,bcm2711";
 
         	fragment@0 {
         		target = <&i2c1>;
@@ -170,7 +170,7 @@
         /plugin/;
 
         / {
-        	compatible = "brcm,bcm2835";
+        	compatible = "brcm,bcm2711";
 
         	fragment@0 {
         		target=<&dsi1>;
@@ -221,7 +221,7 @@
         /plugin/;
 
         / {
-        	compatible = "brcm,bcm2835";
+        	compatible = "brcm,bcm2711";
 
         	fragment@0 {
         		target = <&i2c0if>;
@@ -332,7 +332,7 @@
         /* Enable SDIO from MMC interface via various GPIO groups */
 
         /{
-        	compatible = "brcm,bcm2835";
+        	compatible = "brcm,bcm2711";
 
         	fragment@0 {
         		target = <&mmc>;
@@ -383,11 +383,11 @@
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
+      fsType = "btrfs";
       options = ["noatime"];
     };
   };
-  boot.supportedFilesystems = lib.mkForce ["ext4" "vfat"];
+  boot.supportedFilesystems = lib.mkForce ["btrfs" "vfat"];
   system.stateVersion = "22.11";
   nix.settings.cores = 4;
   networking.networkmanager.enable = true;
