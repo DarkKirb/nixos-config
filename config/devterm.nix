@@ -20,11 +20,20 @@
     dwc2.enable = true;
     #i2c0.enable = true;
     #i2c1.enable = true;
-    #fkms-3d.enable = true;
+    fkms-3d.enable = true;
     apply-overlays-dtmerge.enable = true;
     pwm0.enable = true;
     #tc358743.enable = true;
   };
+
+  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor (pkgs.linux_rpi4.override {
+    kernelPatches = [
+      {
+        name = "devterm";
+        patch = ../overlays/rpi.patch;
+      }
+    ];
+  }));
 
   fileSystems = {
     "/" = {
