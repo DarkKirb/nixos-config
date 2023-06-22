@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.firefox = {
-    package = pkgs.latest.firefox-nightly-bin;
+    package = pkgs.firefox-wayland;
     enable = true;
     profiles = {
       unhardened = {
