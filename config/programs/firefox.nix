@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.firefox = {
-    package = pkgs.latest.firefox-nightly-bin;
+    package = pkgs.firefox-wayland;
     enable = true;
     profiles = {
       unhardened = {
@@ -36,7 +36,7 @@
           keepassxc-browser
           privacy-badger
           privacy-possum
-          sponsorblock
+          #sponsorblock
           stylus
           tree-style-tab
           ublock-origin
