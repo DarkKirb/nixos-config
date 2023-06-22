@@ -6,6 +6,7 @@ keys:
   - &nas age1c7y687sxh428wk34s8ws6kemu62mggafpt40rmanevgkuj5xa59q6f7tlc
   - &instance-20221213-1915 age1elra3uklw8rmwkevqms2l4tsd06d5utqda9d2w4qvqpz898uzuesugxkhc
   - &vf2 age1gtezxkkfhpkv788x9dek6s6s342n9tkl40zvsa48m9a7yqn25fnsmd3wy0
+  - &devterm age1z5ryq3pehydapv0s90ljak3yct3qwwtt43wjp9kv48q2235s252s6fq4kc
 creation_rules:
   - path_regex: secrets/shared\.yaml$
     key_groups:
@@ -16,6 +17,7 @@ creation_rules:
           - *nas
           - *instance-20221213-1915
           - *vf2
+          - *devterm
         pgp:
           - *lotte
   - path_regex: secrets/nixos-8gb-fsn1-1\.yaml$
@@ -51,6 +53,7 @@ creation_rules:
       - age:
           - *nutty-noon
           - *thinkrac
+          - *devterm
         pgp:
           - *lotte
   - path_regex: secrets/instance-20221213-1915\.yaml$
@@ -63,5 +66,11 @@ creation_rules:
     key_groups:
       - age:
           - *vf2
+        pgp:
+          - *lotte
+  - path_regex: secrets/devterm\.yaml$
+    key_groups:
+      - age:
+          - *devterm
         pgp:
           - *lotte

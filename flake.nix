@@ -140,6 +140,10 @@ rec {
         name = "vf2"; # VisionFive 2
         system = "riscv64-linux";
       }
+      {
+        name = "devterm"; # devterm
+        system = "aarch64-linux";
+      }
     ];
   in rec {
     nixosConfigurations = builtins.listToAttrs (map
