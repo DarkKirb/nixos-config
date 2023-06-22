@@ -1439,6 +1439,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-mozilla": {
+      "locked": {
+        "lastModified": 1684487559,
+        "narHash": "sha256-SZcJEM+NnLr8ctzeQf1BGAqBHzJ3jn+tdSeO7lszIJc=",
+        "owner": "mozilla",
+        "repo": "nixpkgs-mozilla",
+        "rev": "e6ca26fe8b9df914d4567604e426fbc185d9ef3e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mozilla",
+        "repo": "nixpkgs-mozilla",
+        "type": "github"
+      }
+    },
     "nixpkgs-noto-variable": {
       "locked": {
         "lastModified": 1648877644,
@@ -1617,6 +1632,7 @@
         "nixos-hardware": "nixos-hardware_2",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-for-crane": "nixpkgs-for-crane_2",
+        "nixpkgs-mozilla": "nixpkgs-mozilla",
         "nur": "nur_2",
         "rust-overlay": "rust-overlay_2",
         "sops-nix": "sops-nix_2",

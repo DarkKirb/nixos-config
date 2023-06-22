@@ -82,6 +82,7 @@ rec {
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:NixOS/nixpkgs";
     nixpkgs-for-crane.url = "github:NixOS/nixpkgs/3ae365afb80773c3bb67e52294a82e329a9e5be0";
+    nixpkgs-mozilla.url = "github:mozilla/nixpkgs-mozilla";
     nur.url = "github:nix-community/NUR";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -166,6 +167,7 @@ rec {
               ({pkgs, ...}: {
                 nixpkgs.overlays = [
                   nur.overlay
+                  args.nixpkgs-mozilla.overlay
                 ];
                 home-manager.extraSpecialArgs = args // {inherit system;};
               })
