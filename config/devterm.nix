@@ -12,19 +12,21 @@
 
   imports = [
     ./desktop.nix
-    nixos-hardware.nixosModules.raspberry-pi-4
+    #nixos-hardware.nixosModules.raspberry-pi-4
   ];
 
-  hardware.raspberry-pi."4" = {
-    #audio.enable = true;
-    dwc2.enable = true;
-    #i2c0.enable = true;
-    #i2c1.enable = true;
-    #fkms-3d.enable = true;
-    apply-overlays-dtmerge.enable = true;
-    pwm0.enable = true;
-    #tc358743.enable = true;
-  };
+  /*
+     hardware.raspberry-pi."4" = {
+     #audio.enable = true;
+     dwc2.enable = true;
+     #i2c0.enable = true;
+     #i2c1.enable = true;
+     #fkms-3d.enable = true;
+     apply-overlays-dtmerge.enable = true;
+     pwm0.enable = true;
+     #tc358743.enable = true;
+   };
+   */
 
   hardware.deviceTree.filter = "bcm2711-rpi-cm4.dtb";
 
@@ -380,6 +382,12 @@
         patch = ../overlays/rpi.patch;
       }
     ];
+    argsOverride.source = pkgs.fetchFromGitHub {
+      owner = "raspberrypi";
+      repo = "linux";
+      rev = "3a33f11c48572b9dd0fecac164b3990fc9234da8";
+      sha256 = "154aicn2cd4a6kpnifcb899px6jijg2abavjm3y4w5lfwpipmqck";
+    };
   }));
 
   fileSystems = {
