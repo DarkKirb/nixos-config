@@ -382,13 +382,32 @@
         patch = ../overlays/rpi.patch;
       }
     ];
-    argsOverride.source = pkgs.fetchFromGitHub {
-      owner = "raspberrypi";
-      repo = "linux";
-      rev = "3a33f11c48572b9dd0fecac164b3990fc9234da8";
-      sha256 = "154aicn2cd4a6kpnifcb899px6jijg2abavjm3y4w5lfwpipmqck";
+    argsOverride = {
+      src = pkgs.fetchFromGitHub {
+        owner = "raspberrypi";
+        repo = "linux";
+        rev = "3a33f11c48572b9dd0fecac164b3990fc9234da8";
+        sha256 = "154aicn2cd4a6kpnifcb899px6jijg2abavjm3y4w5lfwpipmqck";
+      };
+      version = "5.10.17-devterm";
+      modDirVersion = "5.10.17";
     };
   }));
+
+  boot = {
+    initrd.availableKernelModules = [
+      "usbhid"
+      "usb_storage"
+      "vc4"
+      "pcie_brcmstb" # required for the pcie bus to work
+      "reset-raspberrypi" # required for vl805 firmware to load
+    ];
+
+    loader = {
+      grub.enable = lib.mkDefault false;
+      generic-extlinux-compatible.enable = lib.mkDefault true;
+    };
+  };
 
   fileSystems = {
     "/" = {
