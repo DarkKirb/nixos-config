@@ -26,6 +26,8 @@
     #tc358743.enable = true;
   };
 
+  hardware.deviceTree.filter = "bcm2711-rpi-cm4.dtb";
+
   hardware.deviceTree.overlays = [
     {
       name = "devterm-bt";
