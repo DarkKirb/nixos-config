@@ -375,24 +375,40 @@
     }
   ];
 
-  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor (pkgs.linux_rpi4.override {
-    kernelPatches = [
-      {
-        name = "devterm";
-        patch = ../overlays/rpi.patch;
-      }
-    ];
-    argsOverride = {
-      src = pkgs.fetchFromGitHub {
-        owner = "raspberrypi";
-        repo = "linux";
-        rev = "3a33f11c48572b9dd0fecac164b3990fc9234da8";
-        sha256 = "154aicn2cd4a6kpnifcb899px6jijg2abavjm3y4w5lfwpipmqck";
+  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor ((pkgs.linux_rpi4.override {
+      kernelPatches = [
+        {
+          name = "devterm";
+          patch = ../overlays/rpi.patch;
+        }
+      ];
+      structuredExtraConfig = with lib.kernel; {
+        WERROR = no;
       };
-      version = "5.10.17-devterm";
-      modDirVersion = "5.10.17";
-    };
-  }));
+      argsOverride = {
+        src = pkgs.fetchFromGitHub {
+          owner = "raspberrypi";
+          repo = "linux";
+          rev = "rpi-5.10.y";
+          sha256 = "154aicn2cd4a6kpnifcb899px6jijg2abavjm3y4w5lfwpipmqck";
+        };
+        version = "5.10.17-devterm";
+        modDirVersion = "5.10.17";
+        extraMeta.branch = "5.10";
+      };
+    })
+    .overrideDerivation
+    (super: {
+      nativeBuildInputs = super.nativeBuildInputs ++ [pkgs.python3];
+      buildInputs = super.buildInputs ++ [pkgs.python3];
+      patchPhase =
+        super.patchPhase
+        or ""
+        + ''
+          find tools -name Makefile -exec sed -i 's/-Werror//g' {} '+'
+          patchShebangs --host .
+        '';
+    })));
 
   boot = {
     initrd.availableKernelModules = [
