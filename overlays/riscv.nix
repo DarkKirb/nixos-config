@@ -7,7 +7,7 @@ args: self: prev: let
   };
 in {
   pandoc = self.writeScriptBin "pandoc" "true";
-  inherit (pkgsX86) gccgo gfortran;
+  inherit (pkgsX86) gccgo gfortran nix;
   meson = prev.meson.overrideAttrs (_: {
     doCheck = false;
     doInstallCheck = false;
@@ -25,11 +25,6 @@ in {
     doInstallCheck = false;
   });
   restic = prev.restic.overrideAttrs (_: {
-    doCheck = false;
-    doInstallCheck = false;
-  });
-  nix = prev.nix.overrideAttrs (prev: {
-    patches = prev.patches or [] ++ [./nix-no-docs.patch];
     doCheck = false;
     doInstallCheck = false;
   });
