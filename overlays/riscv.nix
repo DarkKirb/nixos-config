@@ -8,6 +8,7 @@ args: self: prev: let
 in {
   pandoc = self.writeScriptBin "pandoc" "true";
   inherit (pkgsX86) gccgo gfortran nix;
+  inherit (args.attic.packages.x86_64-linux) attic-client;
   meson = prev.meson.overrideAttrs (_: {
     doCheck = false;
     doInstallCheck = false;
