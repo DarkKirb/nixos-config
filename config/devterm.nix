@@ -385,6 +385,7 @@
       structuredExtraConfig = with lib.kernel; {
         WERROR = no;
         DRM_AST = no;
+        DEBUG_INFO_BTF = lib.mkForce no;
       };
       argsOverride = {
         src = pkgs.fetchFromGitHub {
