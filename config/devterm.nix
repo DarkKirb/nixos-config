@@ -410,6 +410,7 @@
           find tools -name Makefile -exec sed -i 's/-Werror//g' {} '+'
           patchShebangs --host .
         '';
+      postFixup = "";
     })));
 
   boot = {
