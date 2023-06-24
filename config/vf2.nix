@@ -124,4 +124,8 @@
     discoverPortal = "192.168.2.1";
     enable = true;
   };
+
+  boot.binfmt.emulatedSystems = [
+    "x86_64-linux"
+  ];
 }
