@@ -5,6 +5,7 @@ args: self: prev: let
     overlays = [args.self.overlays.riscv64-linux];
     config.allowUnfree = true;
   };
+  lib = pkgsX86.lib;
 in {
   pandoc = self.writeScriptBin "pandoc" "true";
   inherit (pkgsX86) gccgo gfortran nix;
@@ -26,6 +27,18 @@ in {
     doInstallCheck = false;
   });
   restic = prev.restic.overrideAttrs (_: {
+    doCheck = false;
+    doInstallCheck = false;
+  });
+  libopus = prev.libopus.overrideAttrs (_: {
+    mesonFlags = [
+      (lib.mesonBool "fixed-point" false)
+      (lib.mesonBool "custom-modes" true)
+      (lib.mesonEnable "intrinsics" false)
+      (lib.mesonEnable "rtcd" false)
+      (lib.mesonEnable "asm" false)
+      (lib.mesonEnable "docs" false)
+    ];
     doCheck = false;
     doInstallCheck = false;
   });
