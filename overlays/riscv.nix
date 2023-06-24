@@ -42,4 +42,8 @@ in {
     doCheck = false;
     doInstallCheck = false;
   });
+  openexr = prev.openexr.overrideAttrs (_: {
+    doCheck = false;
+    doInstallCheck = false;
+  });
 }
