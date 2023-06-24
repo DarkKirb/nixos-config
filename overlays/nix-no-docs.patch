@@ -1,0 +1,16 @@
+diff --git a/doc/manual/local.mk b/doc/manual/local.mk
+index b4b7283ef..8cb689d46 100644
+--- a/doc/manual/local.mk
++++ b/doc/manual/local.mk
+@@ -140,8 +140,9 @@ $(d)/builtins.json: $(bindir)/nix
+ 
+ # Generate the HTML manual.
+ .PHONY: manual-html
+-manual-html: $(docdir)/manual/index.html
+-install: $(docdir)/manual/index.html
++manual-html:
++	true
++#install: $(docdir)/manual/index.html
+ 
+ # Generate 'nix' manpages.
+ install: $(mandir)/man1/nix3-manpages
