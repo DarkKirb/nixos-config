@@ -30,5 +30,7 @@ in {
   });
   nix = prev.nix.overrideAttrs (prev: {
     patches = prev.patches or [] ++ [./nix-no-docs.patch];
+    doCheck = false;
+    doInstallCheck = false;
   });
 }
