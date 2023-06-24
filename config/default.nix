@@ -19,17 +19,9 @@
     ./tailscale.nix
   ];
   services.openssh.enable = true;
-  environment.systemPackages = with pkgs;
-    [
-      git
-    ]
-    ++ (
-      if system != "riscv64-linux"
-      then [
-        kitty.terminfo
-      ]
-      else []
-    );
+  environment.systemPackages = with pkgs; [
+    git
+  ];
   networking.firewall.allowedTCPPorts = [22];
   networking.firewall.allowedUDPPortRanges = [
     {

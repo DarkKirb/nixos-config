@@ -23,10 +23,12 @@ desktop: {pkgs, ...}: {
       initExtra =
         ''
           [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
         ''
         + (
-          if pkgs.system != "riscv64-linux"
+          if desktop
           then ''
+
             test -n "$KITTY_INSTALLATION_DIR" || export KITTY_INSTALLATION_DIR=${pkgs.kitty}/lib/kitty
             export KITTY_SHELL_INTEGRATION=enabled
             autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
@@ -57,7 +59,7 @@ desktop: {pkgs, ...}: {
         less = "bat";
       }
       // (
-        if pkgs.system != "riscv64-linux"
+        if desktop
         then {
           icat = "${pkgs.kitty}/bin/kitty +kitten icat";
           d = "${pkgs.kitty}/bin/kitty +kitten diff";

@@ -6,7 +6,7 @@
   x86_64-linux-pkgs = import nixpkgs {system = "x86_64-linux";};
 in {
   home.packages = with pkgs; [
-    x86_64-linux-pkgs.anki-bin
+    anki
     mdcat
     gimp
     krita

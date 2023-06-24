@@ -1,13 +1,15 @@
 {pkgs, ...}: {
   output.plugins =
     if pkgs.system != "riscv64-linux"
-    then (with pkgs.vimPlugins; [pkgs.vimPlugins.nvim-treesitter.withAllGrammars])
+    then with pkgs.vimPlugins; [pkgs.vimPlugins.nvim-treesitter.withAllGrammars]
     else [];
-  plugin.setup."nvim-treesitter.configs" =
+  plugin.setup =
     if pkgs.system != "riscv64-linux"
     then {
-      highlight.enable = true;
-      highlight.disable = ["bash"];
+      "nvim-treesitter.configs" = {
+        highlight.enable = true;
+        highlight.disable = ["bash"];
+      };
     }
     else {};
 }
