@@ -1,7 +1,7 @@
 {fetchurl}: {
   core = fetchurl {
-    url = "https://dev.bukkit.org/projects/dynmap/files/4371728/download";
-    sha256 = "12n0s4qhc5gbsw649jpjyn7x4g4ilkbqq188l2r4wpwp38l134a0";
+    url = "https://dev.bukkit.org/projects/dynmap/files/4600162/download";
+    sha256 = "a49b03ea1fd6ad4fbd94fdb1b8ec25a1d8b989744740ef82cc4145222fb326bd";
     name = "Dynmap.jar";
   };
 }

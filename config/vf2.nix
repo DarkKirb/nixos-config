@@ -81,14 +81,13 @@
 
   fileSystems = {
     "/boot" = {
-      device = "/dev/disk/by-label/FIRMWARE";
+      device = "/dev/disk/by-uuid/1234-ABCD";
       fsType = "vfat";
       options = ["nofail"];
     };
     "/" = {
-      device = "192.168.2.1:/export/vf2";
-      fsType = "nfs";
-      options = ["nofail" "local_lock=all" "nfsvers=4.2"];
+      device = "/dev/disk/by-uuid/b4e8cbe8-a233-444f-920b-c253339a44d6";
+      fsType = "ext4";
     };
   };
   hardware.deviceTree.name = "starfive/jh7110-starfive-visionfive-2-v1.3b.dtb";
@@ -135,4 +134,5 @@
   boot.binfmt.emulatedSystems = [
     "x86_64-linux"
   ];
+  boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
 }

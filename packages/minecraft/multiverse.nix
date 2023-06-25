@@ -10,9 +10,9 @@
     name = "Multiverse-NetherPortals-4.2.2.jar";
   };
   sign-portals = fetchurl {
-    url = "https://dev.bukkit.org/projects/multiverse-signportals/files/3074605/download";
-    sha256 = "f4eb45039884a9cad891cef6f7b0a27f36f8bf62b2cb64dd2eb43837146c2dd9";
-    name = "Multiverse-SignPortals-4.2.0.jar";
+    url = "https://dev.bukkit.org/projects/multiverse-signportals/files/4414231/download";
+    sha256 = "5170c1d0265a6a9e1da70fb331957e0c55e38eb8846e57b1ed272791bf5eb332";
+    name = "Multiverse-SignPortals-4.2.1.jar";
   };
   inventories = fetchurl {
     url = "https://dev.bukkit.org/projects/multiverse-inventories/files/3687469/download";
