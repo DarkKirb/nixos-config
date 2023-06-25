@@ -19,7 +19,7 @@ _: {
       "--exclude"
       "/var/lib/ipfs/root"
     ];
-    repository = "sftp:backup@backup.int.chir.rs:/backup";
+    repository = "sftp:backup:/backup";
   };
   sops.secrets."security/restic/password" = {};
 }

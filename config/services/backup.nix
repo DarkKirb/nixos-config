@@ -3,71 +3,11 @@
   pkgs,
   ...
 }: let
-  resticPrunePre = pkgs.writeScript "resticPrunePre" ''
-    #!/bin/sh
-    set -ex
-
-    # Recover from an unclean shutdown
-    if ${pkgs.zfs}/bin/zfs list tank/backup-old; then
-      ${pkgs.zfs}/bin/zfs list tank/backup || ${pkgs.zfs}/bin/zfs rename tank/backup-old tank/backup
-    fi
-
-    # Undo a prune that has been aborted
-    ${pkgs.zfs}/bin/zfs destroy tank/backup-prune || true
-    ${pkgs.zfs}/bin/zfs destroy tank/backup@prune || true
-    ${pkgs.zfs}/bin/zfs destroy tank/backup-old || true
-
-    # remove old backups
-    ${pkgs.restic}/bin/restic forget --keep-daily 14 --keep-weekly 8 --keep-monthly 24 --keep-yearly 10
-
-    # Wait for the restic repository to be unlocked
-    while [ -n "$(${pkgs.restic}/bin/restic list locks)" ]; do
-      sleep 10
-    done
-
-    # Clone the Dataset
-    ${pkgs.zfs}/bin/zfs snapshot tank/backup@prune
-    ${pkgs.zfs}/bin/zfs clone -o mountpoint=/backup-prune tank/backup@prune tank/backup-prune
-    chown backup:backup /backup-prune
-  '';
   resticPrune = pkgs.writeScript "resticPrune" ''
     #!/bin/sh
     export RESTIC_REPOSITORY="$RESTIC_REPOSITORY-prune"
     ${pkgs.restic}/bin/restic prune --no-cache --max-unused 0
     ${pkgs.restic}/bin/restic check --read-data-subset 10%
-  '';
-  resticPrunePost = pkgs.writeScript "resticPrunePost" ''
-    #!/bin/sh
-    set -ex
-
-    export PATH="${pkgs.openssh}/bin:$PATH"
-
-    # Wait for the restic repository to be unlocked
-    while [ -n "$(${pkgs.restic}/bin/restic list locks)" ]; do
-      sleep 10
-    done
-
-    # make the original read-only
-    ${pkgs.zfs}/bin/zfs set readonly=on tank/backup
-
-    # Copy new data over
-    ${pkgs.restic}/bin/restic copy --no-cache --no-lock
-
-    # Promote the pruned dataset
-    ${pkgs.zfs}/bin/zfs promote tank/backup-prune
-
-    # Change the dataset names
-    ${pkgs.zfs}/bin/zfs rename tank/backup tank/backup-old
-    ${pkgs.zfs}/bin/zfs rename tank/backup-prune tank/backup
-
-    # Change the mount point
-    ${pkgs.zfs}/bin/zfs set mountpoint=/backup tank/backup
-
-    # Destroy the old dataset
-    sleep 15
-    ${pkgs.zfs}/bin/zfs destroy -rf tank/backup-old
-    ${pkgs.zfs}/bin/zfs destroy tank/backup@prune
-    ${pkgs.zfs}/bin/zfs mount tank/backup
   '';
 in {
   users.users.backup = {
@@ -85,9 +25,7 @@ in {
     enable = true;
     description = "Cleaning up restic backups";
     serviceConfig = {
-      ExecStartPre = "!${resticPrunePre}";
       ExecStart = "${resticPrune}";
-      ExecStartPost = "!${resticPrunePost}";
 
       User = "backup";
       Group = "backup";
@@ -128,7 +66,7 @@ in {
     enable = true;
     description = "Upload backup to remote";
     requires = ["backup-rclone.service"];
-    wantedBy = ["multi-user.target"];
+    wantedBy = ["network-online.target"];
     timerConfig = {
       OnCalendar = "weekly";
       RandomizedDelaySec = 604800;
