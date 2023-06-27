@@ -375,6 +375,12 @@
     }
   ];
 
+  nixpkgs.overlays = [
+    (self: super: {
+      deviceTree.applyOverlays = self.callPackage "${nixos-hardware}/raspberry-pi/4/apply-overlays-dtmerge.nix" {};
+    })
+  ];
+
   boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor ((pkgs.linux_rpi4.override {
       kernelPatches = [
         {
