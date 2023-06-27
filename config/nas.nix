@@ -30,7 +30,6 @@
     ./services/woodpecker-agent.nix
     ./services/docker.nix
     ./users/remote-build.nix
-    ./services/heisenbridge.nix
     ./services/kubo-local.nix
     ./services/nfs.nix
   ];
