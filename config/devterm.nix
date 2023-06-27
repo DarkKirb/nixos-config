@@ -32,7 +32,7 @@
 
   hardware.deviceTree.overlays = [
     {
-      name = "devterm-bt";
+      name = "dwc-overlay";
       dtsText = ''
         /dts-v1/;
         /plugin/;
@@ -41,129 +41,251 @@
           compatible = "brcm,bcm2711";
 
           fragment@0 {
-            target = <&uart0>;
-            __overlay__ {
-              pinctrl-names = "default";
-              pinctrl-0 = <&uart0_pins &bt_pins>;
+            target = <&usb>;
+            #address-cells = <1>;
+            #size-cells = <1>;
+            dwc2_usb: __overlay__ {
+              compatible = "brcm,bcm2835-usb";
+              dr_mode = "host";
+              g-np-tx-fifo-size = <32>;
+              g-rx-fifo-size = <558>;
+              g-tx-fifo-size = <512 512 512 512 512 256 256>;
               status = "okay";
             };
           };
 
-          fragment@1 {
-            target = <&gpio>;
-            __overlay__ {
-              uart0_pins: uart0_pins {
-                brcm,pins = <14 15 16 17>;
-                brcm,function = <4 4 7 7>;
-                brcm,pull = <0 2 0 2>;
-              };
-
-              bt_pins: bt_pins {
-                brcm,pins = <5 6 7>;
-                brcm,function = <1 0 1>;
-                brcm,pull = <0 2 0>;
-              };
-            };
-          };
-
-          fragment@2 {
-            target-path = "/aliases";
-            __overlay__ {
-              serial1 = "/soc/serial@7e201000";
-              serial0 = "/soc/serial@7e215040";
-            };
+          __overrides__ {
+            dr_mode = <&dwc2_usb>, "dr_mode";
+            g-np-tx-fifo-size = <&dwc2_usb>,"g-np-tx-fifo-size:0";
+            g-rx-fifo-size = <&dwc2_usb>,"g-rx-fifo-size:0";
           };
         };
       '';
     }
     {
-      name = "devterm-misc-overlay";
+      name = "cma-overlay";
       dtsText = ''
         /dts-v1/;
         /plugin/;
 
-        /{
-        	compatible = "brcm,bcm2711";
+        / {
+          compatible = "brcm,bcm2711";
 
-        	fragment@0 {
-        		target = <&i2c1>;
-        		__overlay__ {
-        			#address-cells = <1>;
-        			#size-cells = <0>;
-        			pinctrl-names = "default";
-        			pinctrl-0 = <&i2c1_pins>;
-        			status = "okay";
+          fragment@0 {
+            target = <&cma>;
+            frag0: __overlay__ {
+              /*
+               * The default size when using this overlay is 256 MB
+               * and should be kept as is for backwards
+               * compatibility.
+               */
+              size = <0x18000000>;
+            };
+          };
 
-        			adc101c: adc@54 {
-        				reg = <0x54>;
-        				compatible = "ti,adc101c";
-        				status = "okay";
-        			};
-        		};
-        	};
+          __overrides__ {
+            cma-512 = <&frag0>,"size:0=",<0x20000000>;
+            cma-448 = <&frag0>,"size:0=",<0x1c000000>;
+            cma-384 = <&frag0>,"size:0=",<0x18000000>;
+            cma-320 = <&frag0>,"size:0=",<0x14000000>;
+            cma-256 = <&frag0>,"size:0=",<0x10000000>;
+            cma-192 = <&frag0>,"size:0=",<0xC000000>;
+            cma-128 = <&frag0>,"size:0=",<0x8000000>;
+            cma-96  = <&frag0>,"size:0=",<0x6000000>;
+            cma-64  = <&frag0>,"size:0=",<0x4000000>;
+            cma-size = <&frag0>,"size:0"; /* in bytes, 4MB aligned */
+            cma-default = <0>,"-0";
+          };
+        };
+      '';
+    }
+    {
+      name = "vc4-kms-v3d-pi4-overlay";
+      dtsText = ''
+        /dts-v1/;
+        /plugin/;
 
-        	fragment@1 {
-        		target = <&spi4>;
-        		__overlay__ {
-        			pinctrl-names = "default";
-        			pinctrl-0 = <&spi4_pins &spi4_cs_pins>;
-        			cs-gpios = <&gpio 4 1>;
-        			status = "okay";
+        / {
+          compatible = "brcm,bcm2711";
 
-        			spidev4_0: spidev@0 {
-        				compatible = "spidev";
-        				reg = <0>;      /* CE0 */
-        				#address-cells = <1>;
-        				#size-cells = <0>;
-        				spi-max-frequency = <125000000>;
-        				status = "okay";
-        			};
-        		};
-        	};
+          fragment@1 {
+            target = <&ddc0>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
 
-        	fragment@2 {
-        		target = <&uart1>;
-        		__overlay__ {
-        			pinctrl-names = "default";
-        			pinctrl-0 = <&uart1_pins>;
-        			status = "okay";
-        		};
-        	};
+          fragment@2 {
+            target = <&ddc1>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
 
-        	fragment@3 {
-        		target = <&gpio>;
-        		__overlay__ {
+          fragment@3 {
+            target = <&hdmi0>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
 
-        			i2c1_pins: i2c1 {
-        				brcm,pins = <44 45>;
-        				brcm,function = <6>;
-        			};
+          fragment@4 {
+            target = <&hdmi1>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
 
-        			spi4_pins: spi4_pins {
-        				brcm,pins = <6 7>;
-        				brcm,function = <7>;
-        			};
+          fragment@5 {
+            target = <&hvs>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
 
-        			spi4_cs_pins: spi0_cs_pins {
-        				brcm,pins = <4>;
-        				brcm,function = <1>;
-        			};
+          fragment@6 {
+            target = <&pixelvalve0>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
 
-        			uart1_pins: uart1_pins {
-        				brcm,pins = <14 15>;
-        				brcm,function = <2>;
-        				brcm,pull = <0 2>;
-        			};
+          fragment@7 {
+            target = <&pixelvalve1>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
 
-        		};
-        	};
+          fragment@8 {
+            target = <&pixelvalve2>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
 
-        	fragment@4 {
-        		target-path = "/chosen";
-        		__overlay__ {
-        			bootargs = "8250.nr_uarts=1";
-        		};
-        	};
+          fragment@9 {
+            target = <&pixelvalve3>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
+
+          fragment@10 {
+            target = <&pixelvalve4>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
+
+          fragment@11 {
+            target = <&v3d>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
+
+          fragment@12 {
+            target = <&vc4>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
+
+          fragment@13 {
+            target = <&txp>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
+
+          fragment@14 {
+            target = <&fb>;
+            __overlay__  {
+              status = "disabled";
+            };
+          };
+
+          fragment@15 {
+            target = <&firmwarekms>;
+            __overlay__  {
+              status = "disabled";
+            };
+          };
+
+          fragment@16 {
+            target = <&vec>;
+            __overlay__  {
+              status = "disabled";
+            };
+          };
+
+          fragment@17 {
+            target = <&hdmi0>;
+            __dormant__  {
+              dmas;
+            };
+          };
+
+          fragment@18 {
+            target = <&hdmi1>;
+            __dormant__  {
+              dmas;
+            };
+          };
+
+          fragment@19 {
+            target = <&audio>;
+            __overlay__  {
+                brcm,disable-hdmi;
+            };
+          };
+
+          fragment@20 {
+            target = <&dvp>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
+
+          fragment@21 {
+            target = <&pixelvalve3>;
+            __dormant__  {
+              status = "okay";
+            };
+          };
+
+          fragment@22 {
+            target = <&vec>;
+            __dormant__  {
+              status = "okay";
+            };
+          };
+
+          fragment@23 {
+            target = <&aon_intr>;
+            __overlay__  {
+              status = "okay";
+            };
+          };
+
+          __overrides__ {
+            audio   = <0>,"!17";
+            audio1   = <0>,"!18";
+            noaudio = <0>,"=17", <0>,"=18";
+            composite = <0>, "!1",
+                  <0>, "!2",
+                  <0>, "!3",
+                  <0>, "!4",
+                  <0>, "!6",
+                  <0>, "!7",
+                  <0>, "!8",
+                  <0>, "!9",
+                  <0>, "!10",
+                  <0>, "!16",
+                  <0>, "=21",
+                  <0>, "=22";
+          };
         };
       '';
     }
@@ -174,46 +296,46 @@
         /plugin/;
 
         / {
-        	compatible = "brcm,bcm2711";
+          compatible = "brcm,bcm2711";
 
-        	fragment@0 {
-        		target=<&dsi1>;
-        		__overlay__ {
-        			#address-cells = <1>;
-        			#size-cells = <0>;
-        			status = "okay";
+          fragment@0 {
+            target=<&dsi1>;
+            __overlay__ {
+              #address-cells = <1>;
+              #size-cells = <0>;
+              status = "okay";
 
-        			port {
-        				dsi_out_port: endpoint {
-        					remote-endpoint = <&panel_dsi_port>;
-        				};
-        			};
+              port {
+                dsi_out_port: endpoint {
+                  remote-endpoint = <&panel_dsi_port>;
+                };
+              };
 
-        			panel_cwd686: panel@0 {
-        				compatible = "cw,cwd686";
-        				reg = <0>;
-        				reset-gpio = <&gpio 8 1>;
-        				backlight = <&ocp8178_backlight>;
+              panel_cwd686: panel@0 {
+                compatible = "cw,cwd686";
+                reg = <0>;
+                reset-gpio = <&gpio 8 1>;
+                backlight = <&ocp8178_backlight>;
 
-        				port {
-        					panel_dsi_port: endpoint {
-        						remote-endpoint = <&dsi_out_port>;
-        					};
-        				};
-        			};
-        		};
-        	};
+                port {
+                  panel_dsi_port: endpoint {
+                    remote-endpoint = <&dsi_out_port>;
+                  };
+                };
+              };
+            };
+          };
 
-        	fragment@1 {
-        		target-path = "/";
-        		__overlay__  {
-        			ocp8178_backlight: backlight@0 {
-        				compatible = "ocp8178-backlight";
-        				backlight-control-gpios = <&gpio 9 0>;
-        				default-brightness = <5>;
-        			};
-        		};
-        	};
+          fragment@1 {
+            target-path = "/";
+            __overlay__  {
+              ocp8178_backlight: backlight@0 {
+                compatible = "ocp8178-backlight";
+                backlight-control-gpios = <&gpio 9 0>;
+                default-brightness = <5>;
+              };
+            };
+          };
 
         };
       '';
@@ -225,154 +347,260 @@
         /plugin/;
 
         / {
-        	compatible = "brcm,bcm2711";
+          compatible = "brcm,bcm2711";
 
-        	fragment@0 {
-        		target = <&i2c0if>;
-        		__overlay__ {
-        			#address-cells = <1>;
-        			#size-cells = <0>;
-        			pinctrl-0 = <&i2c0_pins>;
-        			pinctrl-names = "default";
-        			status = "okay";
+          fragment@0 {
+            target = <&i2c0if>;
+            __overlay__ {
+              #address-cells = <1>;
+              #size-cells = <0>;
+              pinctrl-0 = <&i2c0_pins>;
+              pinctrl-names = "default";
+              status = "okay";
 
-        			axp22x: pmic@34 {
-        				interrupt-controller;
-        				#interrupt-cells = <1>;
-        				compatible = "x-powers,axp223";
-        				reg = <0x34>; /* i2c address */
-        				interrupt-parent = <&gpio>;
-        				interrupts = <2 8>;  /* IRQ_TYPE_EDGE_FALLING */
-        				irq-gpios = <&gpio 2 0>;
+              axp22x: pmic@34 {
+                interrupt-controller;
+                #interrupt-cells = <1>;
+                compatible = "x-powers,axp223";
+                reg = <0x34>; /* i2c address */
+                interrupt-parent = <&gpio>;
+                interrupts = <2 8>;  /* IRQ_TYPE_EDGE_FALLING */
+                irq-gpios = <&gpio 2 0>;
 
-        				regulators {
+                regulators {
 
-        					x-powers,dcdc-freq = <3000>;
+                  x-powers,dcdc-freq = <3000>;
 
-        					reg_aldo1: aldo1 {
-        						regulator-always-on;
-        						regulator-min-microvolt = <3300000>;
-        						regulator-max-microvolt = <3300000>;
-        						regulator-name = "audio-vdd";
-        					};
+                  reg_aldo1: aldo1 {
+                    regulator-always-on;
+                    regulator-min-microvolt = <3300000>;
+                    regulator-max-microvolt = <3300000>;
+                    regulator-name = "audio-vdd";
+                  };
 
-        					reg_aldo2: aldo2 {
-        						regulator-always-on;
-        						regulator-min-microvolt = <3300000>;
-        						regulator-max-microvolt = <3300000>;
-        						regulator-name = "display-vcc";
-        					};
+                  reg_aldo2: aldo2 {
+                    regulator-always-on;
+                    regulator-min-microvolt = <3300000>;
+                    regulator-max-microvolt = <3300000>;
+                    regulator-name = "display-vcc";
+                  };
 
-        					reg_dldo2: dldo2 {
-        						regulator-always-on;
-        						regulator-min-microvolt = <3300000>;
-        						regulator-max-microvolt = <3300000>;
-        						regulator-name = "dldo2";
-        					};
+                  reg_dldo2: dldo2 {
+                    regulator-always-on;
+                    regulator-min-microvolt = <3300000>;
+                    regulator-max-microvolt = <3300000>;
+                    regulator-name = "dldo2";
+                  };
 
-        					reg_dldo3: dldo3 {
-        						regulator-always-on;
-        						regulator-min-microvolt = <3300000>;
-        						regulator-max-microvolt = <3300000>;
-        						regulator-name = "dldo3";
-        					};
+                  reg_dldo3: dldo3 {
+                    regulator-always-on;
+                    regulator-min-microvolt = <3300000>;
+                    regulator-max-microvolt = <3300000>;
+                    regulator-name = "dldo3";
+                  };
 
-        					reg_dldo4: dldo4 {
-        						regulator-always-on;
-        						regulator-min-microvolt = <3300000>;
-        						regulator-max-microvolt = <3300000>;
-        						regulator-name = "dldo4";
-        					};
+                  reg_dldo4: dldo4 {
+                    regulator-always-on;
+                    regulator-min-microvolt = <3300000>;
+                    regulator-max-microvolt = <3300000>;
+                    regulator-name = "dldo4";
+                  };
 
-        				};
+                };
 
-        				battery_power_supply: battery-power-supply {
-        					compatible = "x-powers,axp221-battery-power-supply";
-        					monitored-battery = <&battery>;
-        				};
+                battery_power_supply: battery-power-supply {
+                  compatible = "x-powers,axp221-battery-power-supply";
+                  monitored-battery = <&battery>;
+                };
 
-        				ac_power_supply: ac_power_supply {
-        					compatible = "x-powers,axp221-ac-power-supply";
-        				};
+                ac_power_supply: ac_power_supply {
+                  compatible = "x-powers,axp221-ac-power-supply";
+                };
 
-        			};
-        		};
-        	};
+              };
+            };
+          };
 
-        	fragment@1 {
-        		target = <&i2c0if>;
-        		__overlay__ {
-        			compatible = "brcm,bcm2708-i2c";
-        		};
-        	};
+          fragment@1 {
+            target = <&i2c0if>;
+            __overlay__ {
+              compatible = "brcm,bcm2708-i2c";
+            };
+          };
 
-        	fragment@2 {
-        		target-path = "/aliases";
-        		__overlay__ {
-        			i2c0 = "/soc/i2c@7e205000";
-        		};
-        	};
+          fragment@2 {
+            target-path = "/aliases";
+            __overlay__ {
+              i2c0 = "/soc/i2c@7e205000";
+            };
+          };
 
-        	fragment@3 {
-        		target-path = "/";
-        		__overlay__  {
-        			battery: battery@0 {
-        				compatible = "simple-battery";
-        				constant_charge_current_max_microamp = <2100000>;
-        				voltage-min-design-microvolt = <3300000>;
-        			};
-        		};
-        	};
+          fragment@3 {
+            target-path = "/";
+            __overlay__  {
+              battery: battery@0 {
+                compatible = "simple-battery";
+                constant_charge_current_max_microamp = <2100000>;
+                voltage-min-design-microvolt = <3300000>;
+              };
+            };
+          };
 
         };
       '';
     }
     {
-      name = "devterm-wifi-overlay";
+      name = "audremap-overlay";
       dtsText = ''
         /dts-v1/;
         /plugin/;
+        / {
+                compatible = "brcm,bcm2711";
 
-        /* Enable SDIO from MMC interface via various GPIO groups */
+                fragment@0 {
+                        target = <&audio_pins>;
+                        frag0: __overlay__ {
+                        };
+                };
 
-        /{
-        	compatible = "brcm,bcm2711";
+          fragment@1 {
+                        target = <&audio_pins>;
+                        __overlay__ {
+                                brcm,pins = < 12 13 >;
+                                brcm,function = < 4 >; /* alt0 alt0 */
+                        };
+                };
 
-        	fragment@0 {
-        		target = <&mmc>;
-        		sdio_ovl: __overlay__ {
-        			pinctrl-0 = <&sdio_ovl_pins>;
-        			pinctrl-names = "default";
-        			non-removable;
-        			bus-width = <4>;
-        			status = "okay";
-        		};
-        	};
+          fragment@2 {
+            target = <&audio_pins>;
+            __dormant__ {
+                                brcm,pins = < 18 19 >;
+                                brcm,function = < 2 >; /* alt5 alt5 */
+            };
+          };
 
-        	fragment@1 {
-        		target = <&gpio>;
-        		__overlay__ {
-        			sdio_ovl_pins: sdio_ovl_pins {
-        				brcm,pins = <22 23 24 25 26 27>;
-        				brcm,function = <7>; /* ALT3 = SD1 */
-        				brcm,pull = <0 2 2 2 2 2>;
-        			};
-        		};
-        	};
+          fragment@3 {
+            target = <&audio>;
+            __overlay__  {
+              brcm,disable-headphones = <0>;
+            };
+          };
 
-        	fragment@2 {
-        		target-path = "/";
-        		__overlay__  {
-        			wifi_pwrseq: wifi-pwrseq {
-        				compatible = "mmc-pwrseq-simple";
-        				reset-gpios = <&gpio 3 0>;
-        			};
-        		};
-        	};
-
+          __overrides__ {
+            swap_lr = <&frag0>, "swap_lr?";
+            enable_jack = <&frag0>, "enable_jack?";
+            pins_12_13 = <0>,"+1-2";
+            pins_18_19 = <0>,"-1+2";
+          };
         };
       '';
     }
+    {
+      name = "gpio-fan-overlay";
+      dtsText = ''
+        /*
+         * Overlay for the Raspberry Pi GPIO Fan @ BCM GPIO12.
+         * References:
+         *  - https://www.raspberrypi.org/forums/viewtopic.php?f=107&p=1367135#p1365084
+         *
+         * Optional parameters:
+         *  - "gpiopin"  - BCM number of the pin driving the fan, default 12 (GPIO12);
+         *   - "temp"  - CPU temperature at which fan is started in millicelsius, default 55000;
+         *
+         * Requires:
+         *  - kernel configurations: CONFIG_SENSORS_GPIO_FAN=m;
+         *  - kernel rebuild;
+         *  - N-MOSFET connected to gpiopin, 2N7002-[https://en.wikipedia.org/wiki/2N7000];
+         *  - DC Fan connected to N-MOSFET Drain terminal, a 12V fan is working fine and quite silently;
+         *    [https://www.tme.eu/en/details/ee40101s1-999-a/dc12v-fans/sunon/ee40101s1-1000u-999/]
+         *
+         *                   ┌─────────────────────┐
+         *                   │Fan negative terminal│
+         *                   └┬────────────────────┘
+         *                    │D
+         *             G   │──┘
+         * [GPIO12]──────┤ │<─┐  2N7002
+         *                 │──┤
+         *                    │S
+         *                   ─┴─
+         *                   GND
+         *
+         * Build:
+         *   - `sudo dtc -W no-unit_address_vs_reg -@ -I dts -O dtb -o /boot/overlays/gpio-fan.dtbo gpio-fan-overlay.dts`
+         * Activate:
+         *  - sudo nano /boot/config.txt add "dtoverlay=gpio-fan" or "dtoverlay=gpio-fan,gpiopin=12,temp=45000"
+         *   or
+         *  - sudo sh -c 'printf "\n# Enable PI GPIO-Fan Default\ndtoverlay=gpio-fan\n" >> /boot/config.txt'
+         *  - sudo sh -c 'printf "\n# Enable PI GPIO-Fan Custom\ndtoverlay=gpio-fan,gpiopin=12,temp=45000\n" >> /boot/config.txt'
+         *
+         */
+        /dts-v1/;
+        /plugin/;
+
+        / {
+          compatible = "brcm,bcm2835";
+
+          fragment@0 {
+            target-path = "/";
+            __overlay__ {
+              fan0: gpio-fan@0 {
+                compatible = "gpio-fan";
+                gpios = <&gpio 12 0>;
+                gpio-fan,speed-map = <0    0>,
+                           <5000 1>;
+                #cooling-cells = <2>;
+              };
+            };
+          };
+
+          fragment@1 {
+            target = <&cpu_thermal>;
+            polling-delay = <2000>;  /* milliseconds */
+            __overlay__ {
+              trips {
+                cpu_hot: trip-point@0 {
+                  temperature = <55000>;  /* (millicelsius) Fan started at 55°C */
+                  hysteresis = <10000>;  /* (millicelsius) Fan stopped at 45°C */
+                  type = "active";
+                };
+              };
+              cooling-maps {
+                map0 {
+                  trip = <&cpu_hot>;
+                  cooling-device = <&fan0 1 1>;
+                };
+              };
+            };
+          };
+          __overrides__ {
+            gpiopin = <&fan0>,"gpios:4", <&fan0>,"brcm,pins:0";
+            temp = <&cpu_hot>,"temperature:0";
+          };
+        };
+      '';
+    }
+    {
+      name = "audio-on-overlay";
+      dtsText = ''
+        /dts-v1/;
+        /plugin/;
+        / {
+          compatible = "brcm,bcm2711";
+          fragment@0 {
+            target = <&audio>;
+
+            __overlay__ {
+              status = "okay";
+            };
+          };
+        };
+      '';
+    }
+  ];
+
+  services.xserver.videoDrivers = lib.mkBefore [
+    "modesetting" # Prefer the modesetting driver in X11
+    "fbdev" # Fallback to fbdev
   ];
 
   nixpkgs.overlays = [
@@ -392,6 +620,8 @@
         WERROR = no;
         DRM_AST = no;
         DEBUG_INFO_BTF = lib.mkForce no;
+        DRM_PANEL_CWD686 = module;
+        BACKLIGHT_OCP8178 = module;
       };
       argsOverride = {
         src = pkgs.fetchFromGitHub {
@@ -426,6 +656,17 @@
       "vc4"
       "pcie_brcmstb" # required for the pcie bus to work
       "reset-raspberrypi" # required for vl805 firmware to load
+      "axp20x_adc"
+      "axp20x_ac_power"
+      "axp20x_battery"
+      "axp20x_usb_power"
+      "axp20x_regulator"
+      "axp20x-pek"
+      "axp20x-i2c"
+      "i2c-bcm2835"
+      "ti-adc081c"
+      "ocp8178"
+      "cwd686"
     ];
 
     loader = {
@@ -453,4 +694,7 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.tailscale.useRoutingFeatures = "client";
+  hardware.pulseaudio.configFile = lib.mkOverride 990 (pkgs.runCommand "default.pa" {} ''
+    sed 's/module-udev-detect$/module-udev-detect tsched=0/' ${config.hardware.pulseaudio.package}/etc/pulse/default.pa > $out
+  '');
 }
