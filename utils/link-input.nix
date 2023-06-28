@@ -14,6 +14,6 @@ in {
       name = "nix/inputs/${name}";
       value = {source = value.outPath;};
     })
-    inputs;
+    flakes;
   nix.nixPath = ["/etc/nix/inputs"];
 }
