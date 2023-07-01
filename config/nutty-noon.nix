@@ -20,6 +20,7 @@
     ./services/postgres.nix
     ./services/woodpecker-agent.nix
     ./users/remote-build.nix
+    ../modules/bcachefs.nix
   ];
   hardware.cpu.amd.updateMicrocode = true;
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "k10temp"];
@@ -29,7 +30,7 @@
     config.boot.kernelPackages.zenpower
   ];
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
+  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux-bcachefs);
   boot.supportedFilesystems = lib.mkForce ["bcachefs" "vfat"];
 
   fileSystems."/" = {
@@ -118,4 +119,5 @@
   ];
   services.tailscale.useRoutingFeatures = "client";
   home-manager.users.darkkirb._module.args.withNSFW = lib.mkForce true;
+  system.autoUpgrade.allowReboot = true;
 }
