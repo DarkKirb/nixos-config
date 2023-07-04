@@ -152,6 +152,7 @@
           "pedo.school" = "Pedophile instance";
           "baraag.net" = "porn involving (fictional) underage characters";
           "eientei.org" = "fash";
+          "threads.net" = "there is so much wrong with facebook it would just fill up the whole page";
         };
         followers_only = processMap {
           "vivaldi.net" = "Corporate instance; Registers nonconsensual accounts for Vivaldi Sync users";
