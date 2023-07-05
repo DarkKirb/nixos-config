@@ -204,7 +204,10 @@ rec {
     packages.x86_64-linux = let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
-        overlays = [self.overlays.x86_64-linux];
+        overlays = [
+          self.overlays.x86_64-linux
+          args.nix-packages.overlays.x86_64-linux.default
+        ];
         config.allowUnfree = true;
       };
     in {
@@ -220,7 +223,10 @@ rec {
     packages.aarch64-linux = let
       pkgs = import nixpkgs {
         system = "aarch64-linux";
-        overlays = [self.overlays.aarch64-linux];
+        overlays = [
+          self.overlays.aarch64-linux
+          args.nix-packages.overlays.aarch64-linux.default
+        ];
         config.allowUnfree = true;
       };
     in {
@@ -236,7 +242,11 @@ rec {
     packages.riscv64-linux = let
       pkgs = import nixpkgs {
         system = "riscv64-linux";
-        overlays = [self.overlays.riscv64-linux (import ./overlays/riscv.nix args)];
+        overlays = [
+          self.overlays.riscv64-linux
+          (import ./overlays/riscv.nix args)
+          args.nix-packages.overlays.riscv64-linux.default
+        ];
         config.allowUnfree = true;
       };
     in {

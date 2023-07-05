@@ -8,20 +8,8 @@ args: self: prev: let
   lib = pkgsX86.lib;
 in {
   pandoc = self.writeScriptBin "pandoc" "true";
-  inherit (pkgsX86) gccgo gfortran nix;
+  inherit (pkgsX86) nix;
   inherit (args.attic.packages.x86_64-linux) attic-client;
-  meson = prev.meson.overrideAttrs (_: {
-    doCheck = false;
-    doInstallCheck = false;
-  });
-  libarchive = prev.libarchive.overrideAttrs (_: {
-    doCheck = false;
-    doInstallCheck = false;
-  });
-  openldap = prev.openldap.overrideAttrs (_: {
-    doCheck = false;
-    doInstallCheck = false;
-  });
   bind = prev.bind.overrideAttrs (_: {
     doCheck = false;
     doInstallCheck = false;
@@ -30,20 +18,22 @@ in {
     doCheck = false;
     doInstallCheck = false;
   });
-  libopus = prev.libopus.overrideAttrs (_: {
-    mesonFlags = [
-      (lib.mesonBool "fixed-point" false)
-      (lib.mesonBool "custom-modes" true)
-      (lib.mesonEnable "intrinsics" false)
-      (lib.mesonEnable "rtcd" false)
-      (lib.mesonEnable "asm" false)
-      (lib.mesonEnable "docs" false)
-    ];
-    doCheck = false;
-    doInstallCheck = false;
-  });
-  openexr = prev.openexr.overrideAttrs (_: {
-    doCheck = false;
-    doInstallCheck = false;
-  });
+  python3 = prev.python3.override {
+    packageOverrides = final: prev: {
+      pytest-xdist = prev.pytest-xdist.overrideAttrs (_: {
+        doCheck = false;
+        doInstallCheck = false;
+      });
+    };
+  };
+  python3Packages = self.python3.pkgs;
+  python310 = prev.python310.override {
+    packageOverrides = final: prev: {
+      pytest-xdist = prev.pytest-xdist.overrideAttrs (_: {
+        doCheck = false;
+        doInstallCheck = false;
+      });
+    };
+  };
+  python310Packages = self.python310.pkgs;
 }
