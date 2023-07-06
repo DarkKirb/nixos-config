@@ -44,7 +44,6 @@
         archive_tag = "m.lowpriority";
 
         backfill = {
-          msc2716 = true;
           normal_groups = true;
           unread_hours_threshold = -1;
           incremental.max_batches.supergroup = -1;
