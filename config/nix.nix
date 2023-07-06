@@ -5,30 +5,10 @@
   system,
   attic,
   ...
-}: let
-  attic-client =
-    if system == "aarch64-linux"
-    then attic.packages.${system}.attic-client
-    else pkgs.attic-client;
-  post-build-hook = pkgs.writeScript "post-build-hook" ''
-    #!${pkgs.bash}/bin/bash
-    set -euf
-    export IFS=' '
-    until ${attic-client}/bin/attic push chir-rs $OUT_PATHS; do
-        sleep 5
-        echo "Retrying..."
-    done
-  '';
-in {
+}: {
   imports = [
     ./workarounds
   ];
-  sops.secrets."attic/config.toml" = {
-    sopsFile = ../secrets/shared.yaml;
-    owner = "root";
-    key = "attic/config.toml";
-    path = "/root/.config/attic/config.toml";
-  };
   nixpkgs.config.allowUnfree = true;
   nix = {
     settings = {
@@ -47,7 +27,6 @@ in {
         "riscv:TZX1ReuoIGt7QiSQups+92ym8nKJUSV0O2NkS4HAqH8="
         "cache.ztier.link-1:3P5j2ZB9dNgFFFVkCQWT3mh0E+S3rIWtZvoql64UaXM="
       ];
-      post-build-hook = "${post-build-hook}";
       auto-optimise-store = true;
     };
     package = pkgs.nix;
