@@ -44,9 +44,9 @@
         archive_tag = "m.lowpriority";
 
         backfill = {
-          normal_groups = true;
+          enable = false;
+          normal_groups = false;
           unread_hours_threshold = -1;
-          incremental.max_batches.supergroup = -1;
         };
         permissions = {
           "*" = "relaybot";
