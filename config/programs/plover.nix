@@ -3,6 +3,8 @@
   pkgs,
   system,
   nix-packages,
+  emily-modifiers,
+  emily-symbols,
   ...
 }: let
   inherit (pkgs) plover plover-plugins-manager plover-plugin-emoji plover-plugin-tapey-tape plover-plugin-yaml-dictionary plover-plugin-rkb1-hid;
@@ -17,6 +19,14 @@
       {
         enabled = true;
         path = ../../extra/user.yaml;
+      }
+      {
+        enabled = true;
+        path = "${emily-modifiers}/emily-modifiers.py";
+      }
+      {
+        enabled = true;
+        path = "${emily-symbols}/emily-modifiers.py";
       }
     ]
     ++ (map (module: {
@@ -67,15 +77,4 @@ in {
     $DRY_RUN_CMD cp $VERBOSE_ARG ${plover-cfg} $HOME/.config/plover/plover.cfg
     $DRY_RUN_CMD chmod +w $VERBOSE_ARG $HOME/.config/plover/plover.cfg
   '';
-  systemd.user.services.plover = {
-    Unit = {
-      Description = "plover";
-      After = ["graphical-session-pre.target"];
-      PartOf = ["graphical-session.target"];
-    };
-    Install.WantedBy = ["graphical-session.target"];
-    Service = {
-      ExecStart = "${plover-env}/bin/plover";
-    };
-  };
 }

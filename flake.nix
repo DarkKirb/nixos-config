@@ -47,6 +47,14 @@ rec {
       inputs.haskell-flake.follows = "haskell-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emily-modifiers = {
+      url = "github:EPLHREU/emily-modifiers";
+      flake = false;
+    };
+    emily-symbols = {
+      url = "github:EPLHREU/emily-symbols";
+      flake = false;
+    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -92,10 +100,6 @@ rec {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
-    };
-    tomlplusplus = {
-      url = "github:marzer/tomlplusplus";
-      flake = false;
     };
   };
 
