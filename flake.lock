@@ -528,6 +528,38 @@
         "type": "github"
       }
     },
+    "emily-modifiers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1627979543,
+        "narHash": "sha256-6fd7JMNvFLEljLGf35pj/e06WqNAT+qIHsOb90ZL+m0=",
+        "owner": "EPLHREU",
+        "repo": "emily-modifiers",
+        "rev": "0dae8085c2cbcb30e4dc0a44e74354acf7978d06",
+        "type": "github"
+      },
+      "original": {
+        "owner": "EPLHREU",
+        "repo": "emily-modifiers",
+        "type": "github"
+      }
+    },
+    "emily-symbols": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1630434755,
+        "narHash": "sha256-cGVWcBerMu9B88liHte3fOcUDa3TZQIdVgcdUIbWGEc=",
+        "owner": "EPLHREU",
+        "repo": "emily-symbols",
+        "rev": "4935106154855a08a65186b01d19d8e19bded8fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "EPLHREU",
+        "repo": "emily-symbols",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -846,11 +878,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1688538658,
-        "narHash": "sha256-clmdd/NB9jqhuB9TlSyj9nI1dW2rqroPQCsHGYfD1jU=",
+        "lastModified": 1688552611,
+        "narHash": "sha256-pV/1/AU1l5CNFeKmdJ1jofcaKHhtKAbxY4gazeCyoSo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2f78e6fcba61ce81536d19e6c662e55ab272d539",
+        "rev": "b23c7501f7e0a001486c9a5555a6c53ac7b08e85",
         "type": "github"
       },
       "original": {
@@ -1167,11 +1199,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1688538768,
-        "narHash": "sha256-VTQtGq0JJfTqzHDj90KP30U9JM82xAXvmqMzljoabPg=",
+        "lastModified": 1688631187,
+        "narHash": "sha256-v8PBx1ZLP0XMveIsI8sVli3mt0geEUliBPt3QF3eFdg=",
         "ref": "main",
-        "rev": "2b545b653cc72bc873e556b55da28e9d8b3b4f5a",
-        "revCount": 935,
+        "rev": "9f5e0a98df845547c37b07eccf79c00bac8eddf3",
+        "revCount": 937,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/nix-packages.git"
       },
@@ -1422,11 +1454,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1688538453,
-        "narHash": "sha256-vki/B5J0XgqEXq+K1OYcr4T8RDZ9E67Ph6odG6fIEjc=",
+        "lastModified": 1688630341,
+        "narHash": "sha256-trdbPVqcU/jJLf9V6yxQeFyGf0L32yznsc0OQEQf1Fc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a7fcb2ed122004a1d7677196da1497c43eb1eedf",
+        "rev": "dd05cbb4bd2d408c75725c241da6a41b6a28450a",
         "type": "github"
       },
       "original": {
@@ -1452,11 +1484,11 @@
     },
     "nur_2": {
       "locked": {
-        "lastModified": 1688538499,
-        "narHash": "sha256-w1YeJb1E1pMis/4GgSFEA4+XCK2a6lcqMjb7cQpjTUU=",
+        "lastModified": 1688629594,
+        "narHash": "sha256-7dpUsrydgVjkribOriZDqcdbt8Y7Ma0ClF7usu9C3fQ=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "beae51d0fb37c31127965c5699b1b08ae8e44c55",
+        "rev": "93cbcca5a419225a6e516bbaa1b607ecb7ac96fa",
         "type": "github"
       },
       "original": {
@@ -1474,6 +1506,8 @@
         "crane": "crane",
         "dns": "dns",
         "emanote": "emanote",
+        "emily-modifiers": "emily-modifiers",
+        "emily-symbols": "emily-symbols",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "haskell-flake": "haskell-flake",
@@ -1488,8 +1522,7 @@
         "nixpkgs-for-crane": "nixpkgs-for-crane_2",
         "nur": "nur_2",
         "rust-overlay": "rust-overlay_2",
-        "sops-nix": "sops-nix_2",
-        "tomlplusplus": "tomlplusplus_2"
+        "sops-nix": "sops-nix_2"
       }
     },
     "rust-overlay": {
@@ -1527,11 +1560,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1688524421,
-        "narHash": "sha256-EFauqXKKjbJKPWv3kbzl1lm1GnXl0+DBK4RcLuFndZQ=",
+        "lastModified": 1688610886,
+        "narHash": "sha256-Ir5FaBvhBtZ5OGZ3g9rgy4twUcEnyuGEz4QLmxAn9FE=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "ab050286f18ea354bfe7a49ca8ddcbd633cae1ca",
+        "rev": "358d7155300cd64357f9afd14aa3383c2323e5fc",
         "type": "github"
       },
       "original": {
@@ -1619,22 +1652,6 @@
       }
     },
     "tomlplusplus": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1686746673,
-        "narHash": "sha256-klbvLhbtq6/h2sd/5ldd5GSgKRd9qKx0Ldis/L5g4zM=",
-        "owner": "marzer",
-        "repo": "tomlplusplus",
-        "rev": "4a28c36c435d813ddbd39a9a48a79d8c862c547f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "marzer",
-        "repo": "tomlplusplus",
-        "type": "github"
-      }
-    },
-    "tomlplusplus_2": {
       "flake": false,
       "locked": {
         "lastModified": 1686746673,
