@@ -26,7 +26,7 @@
       }
       {
         enabled = true;
-        path = "${emily-symbols}/emily-modifiers.py";
+        path = "${emily-symbols}/emily-symbols.py";
       }
     ]
     ++ (map (module: {
@@ -38,23 +38,13 @@
         # put these in alphabetical order
         "abbreviations"
         "briefs"
-        "computer-use"
         "currency"
         "dict"
-        "modifiers-single-stroke"
-        "navigation"
         "nouns"
         "numbers"
         "numbers-powerups"
         "plover-use"
         "proper-nouns"
-        "punctuation-powerups"
-        "punctuation-unspaced"
-        "punctuation"
-        "symbols"
-        "symbols-briefs"
-        "symbols-currency"
-        "tabbing"
         "top-level-domains"
         # Put these last
         "condensed-strokes"
