@@ -38,7 +38,7 @@
     };
     hostName = "cloud.chir.rs";
     https = true;
-    package = pkgs.nextcloud26;
+    package = pkgs.nextcloud27;
     phpOptions = {
       "opcache.save_comments" = "1";
       "opcache.validate_timestamps" = "0";
