@@ -206,5 +206,5 @@
   services.resolved.enable = false;
   services.bind.forwarders = lib.mkForce [];
   services.tailscale.useRoutingFeatures = "server";
-  systemd.services.nixos-upgrade.script = ../extra/update.sh;
+  systemd.services.nixos-upgrade.script = lib.mkForce "${../extra/update.sh}";
 }

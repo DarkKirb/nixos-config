@@ -133,7 +133,7 @@
       curl
     ];
 
-    script = lib.mkDefault ../extra/update-reboot.sh;
+    script = lib.mkDefault "${../extra/update-reboot.sh}";
     after = ["network-online.target"];
     wants = ["network-online.target"];
   };
