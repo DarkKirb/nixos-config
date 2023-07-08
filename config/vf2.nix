@@ -119,7 +119,6 @@
     owner = "root";
     path = "/root/.ssh/id_ed25519";
   };
-  system.autoUpgrade.allowReboot = true;
   services.tailscale.useRoutingFeatures = "server";
   boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
   networking.useNetworkd = lib.mkForce false;

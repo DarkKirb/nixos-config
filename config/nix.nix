@@ -112,15 +112,45 @@
       ];
     distributedBuilds = true;
   };
-  system.autoUpgrade = {
-    enable = true;
-    flake = "git+https://git.chir.rs/darkkirb/nixos-config?ref=main";
-    flags = [
-      "--no-write-lock-file"
-      "-L" # print build logs
-    ];
-    dates = "hourly";
-    randomizedDelaySec = "1h";
-  };
   systemd.services.nix-daemon.environment.TMPDIR = "/build";
+  systemd.services.nixos-upgrade = {
+    description = "NixOS Upgrade";
+
+    restartIfChanged = false;
+    unitConfig.X-StopOnRemoval = false;
+
+    serviceConfig.Type = "oneshot";
+
+    path = with pkgs; [
+      coreutils
+      gnutar
+      xz.bin
+      gzip
+      gitMinimal
+      config.nix.package.out
+      config.programs.ssh.package
+      jq
+      curl
+    ];
+
+    script = lib.mkDefault ../extra/update-reboot.sh;
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
+  };
+  systemd.timers.nixos-upgrade = {
+    timerConfig = {
+      OnBootSec = 300;
+      RandomizedDelaySec = 3600;
+      OnUnitActiveSecond = 3600;
+    };
+    requires = ["upload-hydra-results.service"];
+    wantedBy = ["multi-user.target"];
+  };
+  systemd.sockets.nixos-upgrade = {
+    socketConfig = {
+      Service = "nixos-upgrade.service";
+      BindIPv6Only = true;
+      ListenDatagram = "[::]:15553";
+    };
+  };
 }
