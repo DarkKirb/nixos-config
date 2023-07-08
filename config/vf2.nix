@@ -135,4 +135,5 @@
     "x86_64-linux"
   ];
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+  system.requiredKernelConfig = lib.mkForce [];
 }
