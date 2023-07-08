@@ -143,7 +143,7 @@
       RandomizedDelaySec = 3600;
       OnUnitActiveSecond = 3600;
     };
-    requires = ["upload-hydra-results.service"];
+    requires = ["nixos-upgrade.service"];
     wantedBy = ["multi-user.target"];
   };
   systemd.sockets.nixos-upgrade = {
