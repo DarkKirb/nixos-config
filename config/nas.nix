@@ -173,7 +173,6 @@
   };
   services.tailscale.useRoutingFeatures = "both";
   hardware.sane.brscan4.enable = true;
-  system.autoUpgrade.allowReboot = true;
   services.kubo.settings.Addresses.API = lib.mkForce [
     "/ip4/0.0.0.0/tcp/5001"
     "/ip6/::/tcp/5001"
