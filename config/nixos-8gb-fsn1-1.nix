@@ -1,6 +1,9 @@
 {
   lib,
   modulesPath,
+  pkgs,
+  config,
+  system,
   ...
 } @ args: {
   networking.hostName = "nixos-8gb-fsn1-1";
@@ -206,5 +209,23 @@
   services.resolved.enable = false;
   services.bind.forwarders = lib.mkForce [];
   services.tailscale.useRoutingFeatures = "server";
-  systemd.services.nixos-upgrade.script = lib.mkForce "${../extra/update.sh}";
+  systemd.services.nixos-upgrade.script = lib.mkForce ''
+    #!${pkgs.bash}/bin/bash
+
+    set -ex
+
+    builds=$(${pkgs.curl}/bin/curl -H 'accept: application/json' https://hydra.int.chir.rs/jobset/nixos-config/nixos-config/evals | ${pkgs.jq}/bin/jq -r '.evals[0].builds[]')
+
+    for build in $builds; do
+        doc=$(${pkgs.curl}/bin/curl -H 'accept: application/json' https://hydra.int.chir.rs/build/$build)
+        jobname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.job')
+        if [ "$jobname" = "${config.networking.hostName}.${system}" ]; then
+            drvname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.drvpath')
+            output=$(${pkgs.nix}/bin/nix-store -r $drvname)
+            $output/bin/switch-to-configuration switch
+            exit
+        fi
+    done
+
+  '';
 }
