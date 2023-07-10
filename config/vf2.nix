@@ -40,25 +40,10 @@
     initrd = {
       network.enable = true;
       network.flushBeforeStage2 = false;
-      availableKernelModules = [
-        "dw_mmc-starfive"
-        "motorcomm"
-        "dwmac-starfive"
-        "cdns3-starfive"
-        "jh7110-trng"
-        "jh7110-crypto"
-        "phy-jh7110-usb"
-        "phy-starfive-dphy-rx"
-        "clk-starfive-jh7110-aon"
-        "clk-starfive-jh7110-stg"
-        # "clk-starfive-jh7110-vout"
-        "clk-starfive-jh7110-isp"
-        # "clk-starfive-jh7100-audio"
-        "phy-jh7110-pcie"
-        "pcie-starfive"
-        "nvme"
-        "nfsv4"
-      ];
+      availableKernelModules =
+        lib.mkForce [
+        ];
+      kernelModules = lib.mkForce [];
     };
     blacklistedKernelModules = [
       "clk-starfive-jh7110-vout"
@@ -134,4 +119,5 @@
     "x86_64-linux"
   ];
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+  system.requiredKernelConfig = lib.mkForce [];
 }
