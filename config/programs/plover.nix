@@ -7,9 +7,18 @@
   emily-symbols,
   ...
 }: let
-  inherit (pkgs) plover plover-plugins-manager plover-plugin-emoji plover-plugin-tapey-tape plover-plugin-yaml-dictionary plover-plugin-rkb1-hid plover-plugin-python-dictionary;
-  plover-env = plover.pythonModule.withPackages (_: [plover plover-plugins-manager plover-plugin-emoji plover-plugin-tapey-tape plover-plugin-yaml-dictionary plover-plugin-rkb1-hid plover-plugin-python-dictionary]);
-  plover-src = plover.src;
+  plover-env = pkgs.plover.pythonModule.withPackages (_:
+    with pkgs; [
+      plover
+      plover-plugins-manager
+      plover-plugin-emoji
+      plover-plugin-tapey-tape
+      plover-plugin-yaml-dictionary
+      plover-plugin-rkb1-hid
+      plover-plugin-python-dictionary
+      plover-plugin-stenotype-extended
+    ]);
+  plover-src = pkgs.plover.src;
   plover-dictionaries-english =
     [
       {
