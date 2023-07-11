@@ -166,7 +166,7 @@
     timerConfig = {
       OnBootSec = 300;
       RandomizedDelaySec = 3600;
-      OnUnitActiveSecond = 3600;
+      OnUnitActiveSec = 3600;
     };
     requires = ["nixos-upgrade.service"];
     wantedBy = ["multi-user.target"];
