@@ -47,14 +47,6 @@ rec {
       inputs.haskell-flake.follows = "haskell-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emily-modifiers = {
-      url = "github:EPLHREU/emily-modifiers";
-      flake = false;
-    };
-    emily-symbols = {
-      url = "github:EPLHREU/emily-symbols";
-      flake = false;
-    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
