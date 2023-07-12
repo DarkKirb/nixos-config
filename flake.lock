@@ -528,38 +528,6 @@
         "type": "github"
       }
     },
-    "emily-modifiers": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1627979543,
-        "narHash": "sha256-6fd7JMNvFLEljLGf35pj/e06WqNAT+qIHsOb90ZL+m0=",
-        "owner": "EPLHREU",
-        "repo": "emily-modifiers",
-        "rev": "0dae8085c2cbcb30e4dc0a44e74354acf7978d06",
-        "type": "github"
-      },
-      "original": {
-        "owner": "EPLHREU",
-        "repo": "emily-modifiers",
-        "type": "github"
-      }
-    },
-    "emily-symbols": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1630434755,
-        "narHash": "sha256-cGVWcBerMu9B88liHte3fOcUDa3TZQIdVgcdUIbWGEc=",
-        "owner": "EPLHREU",
-        "repo": "emily-symbols",
-        "rev": "4935106154855a08a65186b01d19d8e19bded8fe",
-        "type": "github"
-      },
-      "original": {
-        "owner": "EPLHREU",
-        "repo": "emily-symbols",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -1506,8 +1474,6 @@
         "crane": "crane",
         "dns": "dns",
         "emanote": "emanote",
-        "emily-modifiers": "emily-modifiers",
-        "emily-symbols": "emily-symbols",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "haskell-flake": "haskell-flake",
