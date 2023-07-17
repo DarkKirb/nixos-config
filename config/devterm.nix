@@ -647,6 +647,7 @@
           patchShebangs --host .
         '';
       postFixup = "";
+      V = "1";
     })));
 
   boot = {
