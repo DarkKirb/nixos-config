@@ -44,6 +44,20 @@ in {
       (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Noto"];})
       nasin-nanpa
       fairfax-hd
+      (pkgs.stdenvNoCC.mkDerivation rec {
+        pname = "zbalermorna";
+        version = "920b28d798ae1c06885c674bbf02b08ffed12b2f";
+        src = pkgs.fetchFromGitHub {
+          owner = "jackhumbert";
+          repo = pname;
+          rev = version;
+          sha256 = "00sl3f1x4frh166mq85lwl9v1f5r3ckkfg8id5fibafymick5vyp";
+        };
+        installPhase = ''
+          mkdir -p $out/share/fonts
+          cp -r $src/fonts/*.otf $out/share/fonts
+        '';
+      })
     ];
   };
   fonts.fontconfig.localConf = ''

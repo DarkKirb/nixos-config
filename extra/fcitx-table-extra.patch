@@ -1,0 +1,331 @@
+diff --git a/tables/CMakeLists.txt b/tables/CMakeLists.txt
+index 9980fba..0ff6ee7 100644
+--- a/tables/CMakeLists.txt
++++ b/tables/CMakeLists.txt
+@@ -5,6 +5,7 @@ set(TABLE_NAME
+   wubi-large zhengma-large zhengma-pinyin
+   t9
+   wubi98 wubi98-pinyin wubi98-single
++  sitelen-pona zlm
+   )
+ 
+ set(MB_FILE)
+diff --git a/tables/sitelen-pona.conf.in b/tables/sitelen-pona.conf.in
+new file mode 100644
+index 0000000..faf00bf
+--- /dev/null
++++ b/tables/sitelen-pona.conf.in
+@@ -0,0 +1,40 @@
++[InputMethod]
++Name=sitelen pona
++Icon=fcitx-sitelen-pona
++Label=󱥬
++LangCode=tok
++Addon=table
++Configurable=True
++
++[Table]
++File=table/sitelen-pona.main.dict
++OrderPolicy=No
++PinyinKey=[
++AutoSelect=False
++MatchingKey=@
++ExactMatch=False
++Hint=True
++DisplayCustomHint=True
++IgnorePunc=True
++PageSize=9
++CandidateLayoutHint=Vertical
++
++[Table/Selection]
++0=Alt+1
++1=Alt+2
++2=Alt+3
++3=Alt+4
++4=Alt+5
++5=Alt+6
++6=Alt+7
++7=Alt+8
++8=Alt+9
++9=Alt+0
++
++[Table/PrevPage]
++0=Up
++1=Page_Up
++
++[Table/NextPage]
++0=Down
++1=Page_Down
+diff --git a/tables/sitelen-pona.txt b/tables/sitelen-pona.txt
+new file mode 100644
+index 0000000..e2ea155
+--- /dev/null
++++ b/tables/sitelen-pona.txt
+@@ -0,0 +1,149 @@
++Length=20
++KeyCode=abcdefghijklmnopqrstuvwxyz[]_'
++[Data]
++a 󱤀
++akesi 󱤁
++ala 󱤂
++alasa 󱤃
++ale 󱤄
++anpa 󱤅
++ante 󱤆
++anu 󱤇
++awen 󱤈
++e 󱤉
++en 󱤊
++esun 󱤋
++ijo 󱤌
++ike 󱤍
++ilo 󱤎
++insa 󱤏
++jaki 󱤐
++jan 󱤑
++jelo 󱤒
++jo 󱤓
++kala 󱤔
++kalama 󱤕
++kama 󱤖
++kasi 󱤗
++ken 󱤘
++kepeken 󱤙
++kili 󱤚
++kiwen 󱤛
++ko 󱤜
++kon 󱤝
++kule 󱤞
++kulupu 󱤟
++kute 󱤠
++la 󱤡
++lape 󱤢
++laso 󱤣
++lawa 󱤤
++len 󱤥
++lete 󱤦
++li 󱤧
++lili 󱤨
++linja 󱤩
++lipu 󱤪
++loje 󱤫
++lon 󱤬
++luka 󱤭
++lukin 󱤮
++lupa 󱤯
++ma 󱤰
++mama 󱤱
++mani 󱤲
++meli 󱤳
++mi 󱤴
++mije 󱤵
++moku 󱤶
++moli 󱤷
++monsi 󱤸
++mu 󱤹
++mun 󱤺
++musi 󱤻
++mute 󱤼
++nanpa 󱤽
++nasa 󱤾
++nasin 󱤿
++nena 󱥀
++ni 󱥁
++nimi 󱥂
++noka 󱥃
++o 󱥄
++olin 󱥅
++ona 󱥆
++open 󱥇
++pakala 󱥈
++pali 󱥉
++palisa 󱥊
++pan 󱥋
++pana 󱥌
++pi 󱥍
++pilin 󱥎
++pimeja 󱥏
++pini 󱥐
++pipi 󱥑
++poka 󱥒
++poki 󱥓
++pona 󱥔
++pu 󱥕
++sama 󱥖
++seli 󱥗
++selo 󱥘
++seme 󱥙
++sewi 󱥚
++sijelo 󱥛
++sike 󱥜
++sin 󱥝
++sina 󱥞
++sinpin 󱥟
++sitelen 󱥠
++sona 󱥡
++soweli 󱥢
++suli 󱥣
++suno 󱥤
++supa 󱥥
++suwi 󱥦
++tan 󱥧
++taso 󱥨
++tawa 󱥩
++telo 󱥪
++tenpo 󱥫
++toki 󱥬
++tomo 󱥭
++tu 󱥮
++unpa 󱥯
++uta 󱥰
++utala 󱥱
++walo 󱥲
++wan 󱥳
++waso 󱥴
++wawa 󱥵
++weka 󱥶
++wile 󱥷
++namako 󱥸
++kin 󱥹
++oko 󱥺
++kipisi 󱥻
++leko 󱥼
++monsuta 󱥽
++tonsi 󱥾
++jasima 󱥿
++kijetesantakalu 󱦀
++soko 󱦁
++meso 󱦂
++epiku 󱦃
++kokosila 󱦄
++lanpan 󱦅
++n 󱦆
++misikeke 󱦇
++ku 󱦈
++pake 󱦠
++apeja 󱦡
++majuna 󱦢
++powe 󱦣
++[ 󱦐
++] 󱦑
++_ 󱦒
++pi_ 󱦓
++' 󱦔
+diff --git a/tables/zlm.conf.in b/tables/zlm.conf.in
+new file mode 100644
+index 0000000..08b95bf
+--- /dev/null
++++ b/tables/zlm.conf.in
+@@ -0,0 +1,40 @@
++[InputMethod]
++Name=zbalermorna
++Icon=fcitx-zbalermorna
++Label=
++LangCode=jbo
++Addon=table
++Configurable=True
++
++[Table]
++File=table/zlm.main.dict
++OrderPolicy=No
++PinyinKey=[
++AutoSelect=False
++MatchingKey=@
++ExactMatch=False
++Hint=True
++DisplayCustomHint=True
++IgnorePunc=True
++PageSize=9
++CandidateLayoutHint=Vertical
++
++[Table/Selection]
++0=Alt+1
++1=Alt+2
++2=Alt+3
++3=Alt+4
++4=Alt+5
++5=Alt+6
++6=Alt+7
++7=Alt+8
++8=Alt+9
++9=Alt+0
++
++[Table/PrevPage]
++0=Up
++1=Page_Up
++
++[Table/NextPage]
++0=Down
++1=Page_Down
+diff --git a/tables/zlm.txt b/tables/zlm.txt
+new file mode 100644
+index 0000000..529811e
+--- /dev/null
++++ b/tables/zlm.txt
+@@ -0,0 +1,66 @@
++Length=20
++KeyCode=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.?!1234567890()"!:;#/'~-_`
++[Data]
++. 
++h 
++p 
++t 
++k 
++f 
++l 
++s 
++c 
++m 
++x 
++b 
++d 
++g 
++v 
++r 
++z 
++j 
++n 
++q 
++w 
++a 
++e 
++i 
++o 
++u 
++y 
++H 
++P 
++T 
++K 
++F 
++L 
++S 
++C 
++M 
++X 
++B 
++D 
++G 
++V 
++R 
++Z 
++J 
++N 
++Q 
++W 
++A 
++E 
++I 
++O 
++U 
++Y 
++' 
++, 
++~ 
++` 
++_ 
++- 
++1 
++2 
++3 
++4 
