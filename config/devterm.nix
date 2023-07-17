@@ -665,8 +665,8 @@
       "axp20x-i2c"
       "i2c-bcm2835"
       "ti-adc081c"
-      "ocp8178"
-      "cwd686"
+      "ocp8178_bl"
+      "panel-cwd686"
     ];
 
     loader = {
