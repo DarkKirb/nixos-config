@@ -58,13 +58,12 @@ index 0000000..faf00bf
 +1=Page_Down
 diff --git a/tables/sitelen-pona.txt b/tables/sitelen-pona.txt
 new file mode 100644
-index 0000000..d9cee2a
+index 0000000..e2ea155
 --- /dev/null
 +++ b/tables/sitelen-pona.txt
-@@ -0,0 +1,150 @@
+@@ -0,0 +1,149 @@
 +Length=20
 +KeyCode=abcdefghijklmnopqrstuvwxyz[]_'
-+Prompt=toki
 +[Data]
 +a 󱤀
 +akesi 󱤁
@@ -260,13 +259,12 @@ index 0000000..08b95bf
 +1=Page_Down
 diff --git a/tables/zlm.txt b/tables/zlm.txt
 new file mode 100644
-index 0000000..11f94ce
+index 0000000..529811e
 --- /dev/null
 +++ b/tables/zlm.txt
-@@ -0,0 +1,67 @@
+@@ -0,0 +1,66 @@
 +Length=20
 +KeyCode=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.?!1234567890()"!:;#/'~-_`
-+Prompt=zlm
 +[Data]
 +. 
 +h 
