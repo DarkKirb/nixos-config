@@ -12,7 +12,7 @@
     "inputs": {
         "nixos-config": {
             "type": "git",
-            "value": "https://git.chir.rs/darkkirb/nixos-config.git switch-to-gitea",
+            "value": "https://git.chir.rs/darkkirb/nixos-config.git main",
             "emailresponsible": false
         },
         "nixpkgs": {
