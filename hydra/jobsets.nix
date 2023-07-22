@@ -57,14 +57,24 @@
         enabled = 1;
         hidden = false;
         description = "Current nixos config";
-        flake = "git+https://git.chir.rs/darkkirb/nixos-config.git?ref=main";
-        nixexprpath = "";
+        nixexprinput = "nixos-config";
+        nixexprpath = "hydra/default.nix";
         checkinterval = 0;
         schedulingshares = 100;
         enableemail = false;
         emailoverride = "";
         keepnr = 1;
         inputs = {
+          nixos-config = {
+            type = "git";
+            value = "https://git.chir.rs/darkkirb/nixos-config main";
+            emailresponsible = false;
+          };
+          nixpkgs = {
+            type = "git";
+            value = "https://github.com/NixOS/nixpkgs.git master";
+            emailresponsible = false;
+          };
           gitea_status_repo = {
             type = "string";
             value = "nixos-config";
