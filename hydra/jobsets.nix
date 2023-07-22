@@ -58,6 +58,7 @@
         hidden = false;
         description = "Current nixos config";
         flake = "git+https://git.chir.rs/darkkirb/nixos-config.git?ref=main";
+        nixexprpath = "";
         checkinterval = 0;
         schedulingshares = 100;
         enableemail = false;
