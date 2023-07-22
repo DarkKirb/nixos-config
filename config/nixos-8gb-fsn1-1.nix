@@ -42,7 +42,7 @@
   boot.kernelModules = [];
   boot.extraModulePackages = [];
   boot.supportedFilesystems = ["zfs"];
-  boot.loader.grub.devices = ["/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-0-0-0"];
+  boot.loader.grub.devices = ["/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_16151622"];
   boot.loader.timeout = 5;
   boot.initrd.luks.devices = {
     disk0 = {
