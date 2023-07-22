@@ -41,6 +41,7 @@ in {
       serviceConfig = {
         SystemCallFilter = mkForce "~@clock @cpu-emulation @debug @module @mount @obsolete @raw-io @reboot @setuid @swap";
         ReadWritePaths = ["/var/lib/gitea/.gnupg"];
+        TimeoutSec = "infinity";
       };
 
       # In older versions the secret naming for JWT was kind of confusing.
