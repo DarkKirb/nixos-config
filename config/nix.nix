@@ -138,7 +138,7 @@
 
       set -ex
 
-      builds=$(${pkgs.curl}/bin/curl -H 'accept: application/json' https://hydra.int.chir.rs/jobset/nixos-config/nixos-config/evals | ${pkgs.jq}/bin/jq -r '.evals[0].builds[]')
+      builds=$(${pkgs.curl}/bin/curl -H 'accept: application/json' https://hydra.int.chir.rs/jobset/flakes/nixos-config/evals | ${pkgs.jq}/bin/jq -r '.evals[0].builds[]')
 
       for build in $builds; do
           doc=$(${pkgs.curl}/bin/curl -H 'accept: application/json' https://hydra.int.chir.rs/build/$build)
