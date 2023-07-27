@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [emanote.homeManagerModule];
-  home.packages = [pkgs.zk];
+  home.packages = [pkgs.zk pkgs.obsidian];
   services.emanote = {
     enable = true;
     notes = [
