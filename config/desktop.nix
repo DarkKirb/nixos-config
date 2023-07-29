@@ -142,6 +142,11 @@ in {
     layout = "de";
     xkbVariant = "neo";
     displayManager.lightdm.enable = lib.mkForce false;
+    extraLayouts.zlr = {
+      description = "lojban layout";
+      languages = ["jbo"];
+      symbolsFile = ../extra/keyboard/symbols;
+    };
   };
   boot.kernelPackages = pkgs.zfsUnstable.latestCompatibleLinuxPackages;
   i18n.inputMethod = {
