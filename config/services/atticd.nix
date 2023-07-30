@@ -14,8 +14,8 @@
     credentialsFile = config.sops.secrets."services/attic".path;
     settings = {
       listen = "[::1]:57448";
-      allowed-hosts = ["attic.chir.rs" "attic-nocdn.chir.rs"];
-      api-endpoint = "https://attic-nocdn.chir.rs/";
+      allowed-hosts = ["attic.chir.rs"];
+      api-endpoint = "https://attic.chir.rs/";
       database = lib.mkForce {};
       storage = {
         type = "s3";
@@ -48,7 +48,7 @@
       };
     }
   ];
-  services.caddy.virtualHosts."attic-nocdn.chir.rs" = {
+  services.caddy.virtualHosts."attic.chir.rs" = {
     useACMEHost = "chir.rs";
     logFormat = lib.mkForce "";
     extraConfig = ''
