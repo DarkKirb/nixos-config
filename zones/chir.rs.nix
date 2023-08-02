@@ -144,7 +144,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 34;
+      serial = 35;
     };
     NS = [
       "ns1.chir.rs."
@@ -245,7 +245,7 @@ with dns.lib.combinators; let
       lotte = createZone {};
       ipfs-nocdn = createZone oracleBase;
       ipfs.CNAME = ["ipfs-chir-rs.b-cdn.net."];
-      uptime = createZone oracleBase;
+      status = createZone oracleBase;
 
       int =
         delegateTo [
