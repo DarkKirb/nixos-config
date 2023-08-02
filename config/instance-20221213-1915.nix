@@ -27,6 +27,7 @@
     ./services/kubo.nix
     ./services/synapse.nix
     ./services/heisenbridge.nix
+    ./services/uptime-kuma.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
