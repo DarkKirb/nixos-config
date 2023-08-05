@@ -14,4 +14,5 @@
   boot.supportedFilesystems = lib.mkForce ["bcachefs" "vfat"];
   boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux-bcachefs);
   networking.hostId = "8425e349";
+  nix.settings.post-build-hook = lib.mkForce "true";
 }
