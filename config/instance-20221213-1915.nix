@@ -14,7 +14,6 @@
     ./wireguard/public-server.nix
     ./services/named-submissive.nix
     ./services/shitalloverme.nix
-    ./services/chir.rs
     ./users/remote-build.nix
     ./services/atticd.nix
     ./services/minecraft.nix

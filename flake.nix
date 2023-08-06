@@ -11,19 +11,6 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs-for-crane";
       inputs.nixpkgs-stable.follows = "nixpkgs-for-crane";
     };
-    cargo2nix = {
-      url = "github:DarkKirb/cargo2nix/release-0.11.0";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
-    };
-    chir-rs = {
-      url = "github:DarkKirb/chir.rs";
-      inputs.cargo2nix.follows = "cargo2nix";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
-    };
     colorpickle = {
       url = "github:AgathaSorceress/colorpickle";
       inputs.naersk.follows = "naersk";

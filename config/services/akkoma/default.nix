@@ -31,7 +31,7 @@
     name = "akkoma-static";
     src = pkgs.emptyDirectory;
     nativeBuildInputs = with pkgs; [xorg.lndir];
-    akkoma_fe = pkgs.pleroma-fe;
+    akkoma_fe = pkgs.akkoma-fe;
     akkoma_admin_fe = pkgs.admin-fe;
     inherit fedibird_fe;
     tos = ./terms-of-service.html;
