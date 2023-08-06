@@ -769,11 +769,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1691225770,
-        "narHash": "sha256-O5slH8nW8msTAqVAS5rkvdHSkjmrO+JauuSDzZCmv2M=",
+        "lastModified": 1691312444,
+        "narHash": "sha256-J9e9dGwAPTX+UlAn8jehoyaEq6fwK+L+gunfx0cYT4E=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0a014a729cdd54d9919ff36b714d047909d7a4c8",
+        "rev": "903e06d734bcae48efb79b9afd51b406d2744179",
         "type": "github"
       },
       "original": {
@@ -1090,11 +1090,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1691311850,
-        "narHash": "sha256-o3sH1tqo/qDG8U0/2V2aYwwL0njluRzqJGvLlsI+HIQ=",
+        "lastModified": 1691326155,
+        "narHash": "sha256-EpwqVXJnsCwQgkA91KVWy6H9X9YfowNFEqJclMh4kZ0=",
         "ref": "main",
-        "rev": "a07d703ffd3ec1a6f0061cb0abc9e2fdadba5589",
-        "revCount": 976,
+        "rev": "99d480c862b58cf377def519350304ae474ce7a0",
+        "revCount": 978,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/nix-packages.git"
       },
@@ -1345,11 +1345,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1691311929,
-        "narHash": "sha256-Nj0aStA+zzENk+epxUMyymbmcX7wizMHc3oCfx8n0bY=",
+        "lastModified": 1691326156,
+        "narHash": "sha256-dHU6PNk+KzXb2DKld/ooTWPBMYzY4lz+ftKxBc1k4PQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4d590fb4e09fc8d0fa8417203b948addb36bb660",
+        "rev": "8f5f44b9055be7ef3363899d9773306f124a070a",
         "type": "github"
       },
       "original": {
@@ -1375,11 +1375,11 @@
     },
     "nur_2": {
       "locked": {
-        "lastModified": 1691311438,
-        "narHash": "sha256-7ADj2e5jmp01vAY9fCR8w1h8ppoYghzsOjbgN7xW6e0=",
+        "lastModified": 1691318782,
+        "narHash": "sha256-UP1w2BAIBthDhCLpxrteyFZYk6SL8VdpjwwNHsfntaM=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "d8db2ba5c97665fe7ccbb8e307155b77b0c9e72f",
+        "rev": "9ce7b351a3fb6ffd2ab2270d68545ac37781af5e",
         "type": "github"
       },
       "original": {
