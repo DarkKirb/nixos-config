@@ -11,12 +11,6 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs-for-crane";
       inputs.nixpkgs-stable.follows = "nixpkgs-for-crane";
     };
-    colorpickle = {
-      url = "github:AgathaSorceress/colorpickle";
-      inputs.naersk.follows = "naersk";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "flake-utils";
-    };
     crane = {
       url = "github:DarkKirb/crane";
       inputs.flake-utils.follows = "flake-utils";
@@ -47,10 +41,6 @@ rec {
     hosts-list = {
       url = "github:StevenBlack/hosts";
       flake = false;
-    };
-    naersk = {
-      url = "github:nix-community/naersk/master";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-neovim = {
       url = "github:syberant/nix-neovim";
