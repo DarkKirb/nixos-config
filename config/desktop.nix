@@ -131,6 +131,7 @@ in {
 
   xdg.portal = {
     enable = true;
+    xdgOpenUsePortal = true;
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
@@ -141,7 +142,9 @@ in {
     libinput.enable = true;
     layout = "de";
     xkbVariant = "neo";
-    displayManager.lightdm.enable = lib.mkForce false;
+    displayManager.sddm.enable = true;
+    desktopManager.plasma5.enable = true;
+    displayManager.defaultSession = "plasmawayland";
     extraLayouts.zlr = {
       description = "lojban layout";
       languages = ["jbo"];

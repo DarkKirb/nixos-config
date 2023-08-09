@@ -161,32 +161,6 @@
     "colorpickle": {
       "inputs": {
         "naersk": [
-          "naersk"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "utils": [
-          "flake-utils"
-        ]
-      },
-      "locked": {
-        "lastModified": 1686221213,
-        "narHash": "sha256-9Uc1jBc5a3EaOH80P6YPILL+GXlul7lEJIKAZ/BXELw=",
-        "owner": "AgathaSorceress",
-        "repo": "colorpickle",
-        "rev": "d1c210c494c0eaf69426ec411c2cf74c79b0129d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AgathaSorceress",
-        "repo": "colorpickle",
-        "type": "github"
-      }
-    },
-    "colorpickle_2": {
-      "inputs": {
-        "naersk": [
           "nixos-config-for-netboot",
           "naersk"
         ],
@@ -971,27 +945,6 @@
     "naersk": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1690373729,
-        "narHash": "sha256-e136hTT7LqQ2QjOTZQMW+jnsevWwBpMj78u6FRUsH9I=",
-        "owner": "nix-community",
-        "repo": "naersk",
-        "rev": "d9a33d69a9c421d64c8d925428864e93be895dcc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "ref": "master",
-        "repo": "naersk",
-        "type": "github"
-      }
-    },
-    "naersk_2": {
-      "inputs": {
-        "nixpkgs": [
           "nixos-config-for-netboot",
           "nixpkgs"
         ]
@@ -1164,7 +1117,7 @@
         "attic": "attic_2",
         "cargo2nix": "cargo2nix",
         "chir-rs": "chir-rs",
-        "colorpickle": "colorpickle_2",
+        "colorpickle": "colorpickle",
         "crane": "crane_2",
         "dns": "dns_2",
         "emanote": "emanote_2",
@@ -1173,7 +1126,7 @@
         "haskell-flake": "haskell-flake_2",
         "home-manager": "home-manager_2",
         "hosts-list": "hosts-list_2",
-        "naersk": "naersk_2",
+        "naersk": "naersk",
         "nix-neovim": "nix-neovim_2",
         "nix-packages": "nix-packages_2",
         "nixos-config-for-netboot": [
@@ -1391,7 +1344,6 @@
     "root": {
       "inputs": {
         "attic": "attic",
-        "colorpickle": "colorpickle",
         "crane": "crane",
         "dns": "dns",
         "emanote": "emanote",
@@ -1400,7 +1352,6 @@
         "haskell-flake": "haskell-flake",
         "home-manager": "home-manager",
         "hosts-list": "hosts-list",
-        "naersk": "naersk",
         "nix-neovim": "nix-neovim",
         "nix-packages": "nix-packages",
         "nixos-config-for-netboot": "nixos-config-for-netboot",
