@@ -27,6 +27,7 @@
     ./services/synapse.nix
     ./services/heisenbridge.nix
     ./services/uptime-kuma.nix
+    ./services/matrix-sliding-sync.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
