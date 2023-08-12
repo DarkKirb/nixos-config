@@ -161,7 +161,7 @@ in {
         handle /.well-known/matrix/client {
           header Access-Control-Allow-Origin *
           header Content-Type application/json
-          respond "{ \"m.homeserver\": { \"base_url\": \"https://matrix.chir.rs\" } }" 200
+          respond "{ \"m.homeserver\": { \"base_url\": \"https://matrix.chir.rs\" }, \"org.matrix.msc3575.proxy\": {\"url\": \"https://sliding-sync.chir.rs\"} }" 200
         }
       '';
     };

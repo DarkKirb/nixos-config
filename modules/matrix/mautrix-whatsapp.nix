@@ -15,6 +15,7 @@ with lib; let
   settingsFile = "${dataDir}/config.yaml";
   inherit (pkgs) mautrix-whatsapp;
 in {
+  disabledModules = ["services/matrix/mautrix-whatsapp.nix"];
   options = {
     services.mautrix-whatsapp = {
       enable = mkEnableOption "Mautrix-Whatsapp, a Matrix-Whatsapp hybrid puppeting/relaybot bridge";
