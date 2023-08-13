@@ -151,7 +151,6 @@ in {
       symbolsFile = ../extra/keyboard/symbols;
     };
   };
-  boot.kernelPackages = pkgs.zfsUnstable.latestCompatibleLinuxPackages;
   i18n.inputMethod = {
     enabled = "ibus";
     ibus.engines = with pkgs.ibus-engines; [anthy];

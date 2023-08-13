@@ -1,10 +1,7 @@
 {
-  config,
-  pkgs,
   modulesPath,
-  lib,
   nixos-hardware,
-  system,
+  config,
   ...
 }: {
   networking.hostName = "thinkrac";
@@ -26,7 +23,7 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
-  boot.zfs.enableUnstable = true;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   boot.supportedFilesystems = ["zfs"];
   boot.zfs.devNodes = "/dev/";
