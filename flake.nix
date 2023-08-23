@@ -9,7 +9,6 @@ rec {
       inputs.crane.follows = "crane";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs-for-crane";
-      inputs.nixpkgs-stable.follows = "nixpkgs-for-crane";
     };
     crane = {
       url = "github:DarkKirb/crane";
@@ -48,7 +47,6 @@ rec {
     };
     nix-packages = {
       url = "git+https://git.chir.rs/darkkirb/nix-packages.git?ref=main";
-      inputs.attic.follows = "attic";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };

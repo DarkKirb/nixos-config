@@ -6,10 +6,7 @@
   attic,
   ...
 }: let
-  attic-client =
-    if system == "aarch64-linux"
-    then attic.packages.${system}.attic-client
-    else pkgs.attic-client;
+  attic-client = attic.packages.${system}.attic-client;
   post-build-hook = pkgs.writeScript "post-build-hook" ''
     #!${pkgs.bash}/bin/bash
     set -euf
