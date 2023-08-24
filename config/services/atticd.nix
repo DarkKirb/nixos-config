@@ -10,7 +10,7 @@
   imports = [attic.nixosModules.atticd];
   services.atticd = {
     enable = true;
-    package = pkgs.attic-server;
+    package = attic.packages.${system}.attic-server;
     credentialsFile = config.sops.secrets."services/attic".path;
     settings = {
       listen = "[::1]:57448";
