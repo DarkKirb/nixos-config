@@ -34,6 +34,14 @@
         uuid = "7ee66be7-c8a7-44c9-8f2b-8dae22afbf09";
         name = "blackmind";
       }
+      {
+        uuid = "64315aa6-b996-4e9a-95d0-c6b567c2a2e6";
+        name = "_KleineMio_";
+      }
+      {
+        uuid = "7df86b33-1987-4b99-8290-d23440c13bc2";
+        name = "DaTsHeePiii";
+      }
     ];
     properties.server-ip = "172.16.154.251"; # death
     paper-yml = {

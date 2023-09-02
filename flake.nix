@@ -6,9 +6,16 @@ rec {
     # Sorted by name
     attic = {
       url = "github:DarkKirb/attic";
+      inputs.cargo2nix.follows = "cargo2nix";
       inputs.crane.follows = "crane";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs-for-crane";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
+    cargo2nix = {
+      url = "github:DarkKirb/cargo2nix/release-0.11.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     crane = {
       url = "github:DarkKirb/crane";
