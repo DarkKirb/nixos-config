@@ -8,5 +8,6 @@ in {
   home.packages = [
     x86_64-linux-pkgs.wineWowPackages.staging
     pkgs.prismlauncher
+    pkgs.mgba
   ];
 }
