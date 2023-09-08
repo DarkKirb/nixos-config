@@ -15,6 +15,7 @@
         address = "https://matrix.chir.rs";
         domain = "chir.rs";
         http_retry_count = 1000;
+        async_media = true;
       };
       appservice = {
         max_body_size = 10;

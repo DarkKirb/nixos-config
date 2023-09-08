@@ -10,6 +10,7 @@
       homeserver = {
         address = "https://matrix.chir.rs";
         domain = "chir.rs";
+        async_media = true;
       };
       appservice = {
         database = {
