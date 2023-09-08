@@ -33,7 +33,7 @@ in {
         serif = ["Noto Serif" "Font Awesome 5 Free"];
       };
     };
-    fonts = with pkgs; [
+    packages = with pkgs; [
       fira-code
       fira-code-symbols
       font-awesome

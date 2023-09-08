@@ -9,7 +9,7 @@ rec {
       inputs.cargo2nix.follows = "cargo2nix";
       inputs.crane.follows = "crane";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs-for-crane";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
     cargo2nix = {
@@ -20,7 +20,7 @@ rec {
     crane = {
       url = "github:DarkKirb/crane";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs-for-crane";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
     dns = {
@@ -44,10 +44,6 @@ rec {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hosts-list = {
-      url = "github:StevenBlack/hosts";
-      flake = false;
-    };
     nix-neovim = {
       url = "github:syberant/nix-neovim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,7 +59,6 @@ rec {
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:NixOS/nixpkgs";
-    nixpkgs-for-crane.url = "github:NixOS/nixpkgs/3ae365afb80773c3bb67e52294a82e329a9e5be0";
     nur.url = "github:nix-community/NUR";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";

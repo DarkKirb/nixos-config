@@ -21,10 +21,6 @@
       number = false;
       relativenumber = false;
       signcolumn = "yes";
-      mappings = {
-        custom_only = false;
-        list = [];
-      };
     };
     renderer = {
       indent_markers = {

@@ -4,7 +4,7 @@ desktop: _: {
       enable = true;
       enableAutosuggestions = true;
       enableCompletion = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting.enable = true;
       enableVteIntegration = desktop;
       autocd = true;
     };
