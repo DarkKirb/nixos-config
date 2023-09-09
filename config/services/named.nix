@@ -2,13 +2,11 @@
   pkgs,
   config,
   dns,
-  hosts-list,
   ...
 }: let
   darkkirb-de = import ../../zones/darkkirb.de.nix {inherit dns;};
   chir-rs = import ../../zones/chir.rs.nix {inherit dns;};
   int-chir-rs = import ../../zones/int.chir.rs.nix {inherit dns;};
-  rpz-int-chir-rs = import ../../zones/rpz.int.chir.rs.nix {inherit pkgs hosts-list;};
   signzone = import ../../zones/signzone.nix;
   shitallover-me = import ../../zones/shitallover.me.nix {inherit dns;};
 in {
@@ -105,12 +103,6 @@ in {
             grant certbot. name _acme-challenge.shitallover.me. txt;
           };
         '';
-      };
-      "rpz.int.chir.rs" = {
-        master = true;
-        file = "${rpz-int-chir-rs}";
-        slaves = ["fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b" "100.99.173.107"];
-        extraConfig = "also-notify {fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b; 100.99.173.107;};";
       };
     };
     extraConfig = ''

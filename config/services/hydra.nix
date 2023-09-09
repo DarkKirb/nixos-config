@@ -148,7 +148,6 @@ in {
     chown -Rv hydra-queue-runner /var/lib/hydra/queue-runner
     ln -svf ${sshConfig} /var/lib/hydra/queue-runner/.ssh/config
   '';
-<<<<<<< HEAD
   sops.secrets."attic/config.toml" = {
     owner = "hydra-queue-runner";
     key = "attic/config.toml";
@@ -183,41 +182,4 @@ in {
       OnUnitActiveSec = 300;
     };
   };
-||||||| 15708fb6 (move attic push to hydra runcommand hook)
-  sops.secrets."attic/config.toml" = {
-    owner = "hydra-queue-runner";
-    key = "attic/config.toml";
-    path = "/var/lib/hydra/queue-runner/.config/attic/config.toml";
-  };
-
-  systemd.services."upload-hydra-results" = {
-    description = "Upload hydra build results";
-    serviceConfig = {
-      Type = "oneshot";
-      User = "hydra-queue-runner";
-      Group = "hydra";
-    };
-    script = ''
-      set -ex
-      if [ -e /var/lib/hydra/queue-runner/uploading ]; then
-        cat /var/lib/hydra/queue-runner/uploading | xargs ${pkgs.nix}/bin/nix-store -r | xargs ${pkgs.attic-client}/bin/attic push chir-rs
-        rm /var/lib/hydra/queue-runner/uploading
-      fi
-      mv /var/lib/hydra/queue-runner/upload-queue /var/lib/hydra/queue-runner/uploading
-      cat /var/lib/hydra/queue-runner/uploading | xargs ${pkgs.nix}/bin/nix-store -r | xargs ${pkgs.attic-client}/bin/attic push chir-rs
-      rm /var/lib/hydra/queue-runner/uploading
-    '';
-  };
-  systemd.timers.upload-hydra-results = {
-    enable = true;
-    description = "Upload hydra build results";
-    requires = ["upload-hydra-results.service"];
-    wantedBy = ["multi-user.target"];
-    timerConfig = {
-      OnBootSec = 300;
-      OnUnitActiveSec = 300;
-    };
-  };
-=======
->>>>>>> parent of 15708fb6 (move attic push to hydra runcommand hook)
 }

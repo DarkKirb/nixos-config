@@ -32,17 +32,15 @@
         webmention
         activitypub
         friends
-        hum
         webfinger
         nodeinfo
         classic-editor
         wordpress-seo
-        ilab-media-tools
-        webp-express
-        jetpack
         modern-footnotes
-        polylang
         the-plus-addons-for-block-editor
+        shortcoder
+        wp-dark-mode
+        wp-super-cache
         ;
     };
     themes = {
@@ -51,6 +49,13 @@
         sempress
         twentytwentythree
         ;
+    };
+    poolConfig = {
+      pm = "dynamic";
+      "pm.max_children" = 460;
+      "pm.start_servers" = 4;
+      "pm.min_spare_servers" = 4;
+      "pm.max_spare_servers" = 64;
     };
   };
 

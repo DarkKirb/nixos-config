@@ -39,6 +39,7 @@
           ssl = true;
           bucketName = "matrix-chir-rs";
           region = "us-west-000";
+          useMD5 = true;
         };
       }
     ];

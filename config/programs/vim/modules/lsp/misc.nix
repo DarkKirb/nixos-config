@@ -16,8 +16,6 @@
     nodePackages.typescript
     nodePackages.typescript-language-server
     nodePackages.vim-language-server
-
-    haskell-language-server
     ltex-ls
     marksman
   ];
