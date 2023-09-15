@@ -24,6 +24,7 @@
         csApi = "https://matrix.chir.rs";
       }
     ];
+    accessTokens.maxCacheTimeSeconds = 43200;
     admins = ["@lotte:chir.rs"];
     datastores = [
       {
@@ -32,7 +33,7 @@
         enabled = true;
         forKinds = ["all"];
         opts = {
-          tempPath = "/tmp/mediarepo_s3_upload";
+          tempPath = "/var/lib/matrix-media-repo";
           endpoint = "s3.us-west-000.backblazeb2.com";
           accessKeyId = "#ACCESS_KEY_ID#";
           accessSecret = "#SECRET_ACCESS_KEY#";
@@ -71,11 +72,15 @@
       expireAfterDays = 7;
     };
     featureSupport = {
-      MSC2448.enabled = true;
-      MSC2246 = {
+    };
+    redis = {
         enabled = true;
-        asyncUploadExpirySecs = 120;
-      };
+        shards = [
+            {
+                name = "localhost";
+                port = "localhost:${toString config.services.redis.servers.matrix-media-repo.port}";
+            }
+        ];
     };
     sentry = {
       enable = true;
@@ -245,5 +250,11 @@ in {
         }
       }
     '';
+  };
+  services.redis.servers.matrix-media-repo = {
+    enable = true;
+    bind = "127.0.0.1";
+    databases = 1;
+    port = 36659;
   };
 }

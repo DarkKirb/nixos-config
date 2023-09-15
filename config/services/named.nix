@@ -122,7 +122,6 @@ in {
       dnssec-validation yes;
       allow-transfer {fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b; 100.99.173.107;};
       notify-delay 0;
-      response-policy {zone "rpz.int.chir.rs";};
     '';
   };
   networking.firewall.allowedTCPPorts = [53];
