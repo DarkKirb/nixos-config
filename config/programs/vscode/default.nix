@@ -27,7 +27,6 @@ in {
   '';
   programs.vscode = {
     enable = true;
-    enableUpdateCheck = false;
     extensions = with x86_64-linux-pkgs.vscode-extensions; [
     ];
   };
