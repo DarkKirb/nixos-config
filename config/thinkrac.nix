@@ -31,6 +31,7 @@
   services.zfs.trim.enable = true;
   services.zfs.autoScrub.enable = true;
   services.zfs.autoScrub.pools = ["tank"];
+  boot.zfs.enableUnstable = true;
 
   virtualisation.docker.storageDriver = "zfs";
 
@@ -151,6 +152,7 @@
     options usbcore autosuspend=2
     # Fan control for thinkpads
     options thinkpad_acpi fan_control=1
+    options zfs zfs_arc_max=4294967296
   '';
   boot.kernel.sysctl = {
     # Probably unnecessary
