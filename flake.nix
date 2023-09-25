@@ -17,6 +17,11 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
+    chir-rs = {
+      url = "github:DarkKirb/chir.rs";
+      inputs.nix-packages.follows = "nix-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     crane = {
       url = "github:DarkKirb/crane";
       inputs.flake-utils.follows = "flake-utils";
