@@ -55,9 +55,10 @@
 
   in  Config::{
       , listenPort = 62936
-      , database = PostgresConfig::{ connectionString }
+      , database = PostgresConfig::{ connectionString = secretsFile.connectionString }
       , logLevel = LogLevel.Type.LogLevelInfo
-      , signUpKey
+      , signUpKey = secretsFile.signUpKey
       , rpId = "lotte-test.chir.rs"
-      , staticDir
+      , staticDir = secretsFile.staticDir
+      , nodeName = secretsFile.nodeName
       }
