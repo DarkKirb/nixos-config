@@ -12,13 +12,12 @@ let staticDir = pkgs.stdenvNoCC.mkDerivation {
   '';
 };
 auxCfg = pkgs.writeText "config.dhall" ''
-${./chir-rs.dhall}
-{
-  staticDir = "${staticDir}",
-  connectionString = "postgres://chir_rs:" ++ (${config.sops.secrets."services/chir-rs/database-password".path} as Text) ++ @nixos-8gb-fsn1-1.int.chir.rs/chir_rs",
-  signUpKey = ${config.sops.secrets."services/chir-rs/signup-secret".path} as Text,
-  nodeName = "${config.networking.hostName}"
-}
+${./chir-rs.dhall} {
+    staticDir = "${staticDir}",
+    connectionString = "postgres://chir_rs:" ++ (${config.sops.secrets."services/chir-rs/database-password".path} as Text) ++ "@nixos-8gb-fsn1-1.int.chir.rs/chir_rs",
+    signUpKey = ${config.sops.secrets."services/chir-rs/signup-secret".path} as Text,
+    nodeName = "${config.networking.hostName}"
+  }
 '';
 in
 {
@@ -52,9 +51,12 @@ in
       RestrictSUIDSGID = true;
       SystemCallArchitectures = "native";
       UMask = "0077";
-      ExeStart = ''
-        ${chir-rs.packages.${system}.chir-rs} ${auxCfg}
+      ExecStart = ''
+        ${chir-rs.packages.${system}.chir-rs}/bin/chir-rs
       '';
+    };
+    environment = {
+      CHIR_RS_CONFIG="${auxCfg}";
     };
   };
   sops.secrets."services/chir-rs/database-password".owner = "chir-rs";
@@ -76,7 +78,7 @@ in
     extraConfig = ''
       import baseConfig
 
-      reverse_proxy http://[::1]:57448 {
+      reverse_proxy http://127.0.0.1:62936 {
         trusted_proxies private_ranges
       }
     '';
