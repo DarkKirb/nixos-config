@@ -47,8 +47,9 @@
         cross_room_replies = true;
         encryption = {
           allow = true;
-          appservice = true;
-          require = false;
+          default = true;
+          appservice = false;
+          require = true;
           allow_key_sharing = true;
         };
         permissions = {

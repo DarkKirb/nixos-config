@@ -18,8 +18,8 @@
         autocreate = false;
         bucket = "nextcloud-chir-rs";
         enable = true;
-        hostname = "s3.us-west-000.backblazeb2.com";
-        key = "000decd694f9e7d0000000021";
+        hostname = "ams1.vultrobjects.com";
+        key = "X86D3HKJ3Y92IASK0XIG";
         secretFile = config.sops.secrets."services/nextcloud/s3".path;
         usePathStyle = true;
         useSsl = true;

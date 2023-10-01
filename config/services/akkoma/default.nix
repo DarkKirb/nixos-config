@@ -59,7 +59,7 @@
         base_url = "https://mastodon-assets.chir.rs/";
       };
       "Pleroma.Uploaders.S3" = {
-        bucket = "mastodon-chir-rs";
+        bucket = "mastodon-assets-chir-rs";
         truncated_namespace = "";
       };
       "Pleroma.Upload.Filter.Mogrify" = {

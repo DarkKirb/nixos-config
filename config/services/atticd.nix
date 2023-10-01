@@ -21,7 +21,7 @@
         type = "s3";
         region = "us-east-1";
         bucket = "attic-chir-rs";
-        endpoint = "https://s3.us-west-000.backblazeb2.com/";
+        endpoint = "https://ams1.vultrobjects.com/";
       };
       compression = {
         type = "zstd";

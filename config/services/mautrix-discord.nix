@@ -17,6 +17,7 @@
           type = "postgres";
           uri = "postgres:///mautrix_discord?sslmode=disable&host=/run/postgresql";
         };
+        ephemeral_events = true;
         async_transactions = true;
       };
       metrics = {
@@ -37,21 +38,19 @@
           forward_limits = {
             initial.dm = 50;
             initial.channel = 50;
+            initial.thread = 50;
 
             missed.dm = -1;
             missed.channel = -1;
+            missed.thread = -1;
           };
-        };
-        media_patterns = {
-          enabled = true;
-          attachments = "mxc://matrix.chir.rs/discord_attachments|{{.ChannelID}}|{{.AttachmentID}}|{{.FileName}}";
-          emojis = "mxc://matrix.chir.rs/discord_emojis|{{.ID}}.{{.Ext}}";
-          stickers = "mxc://matrix.chir.rs/discord_stickers|{{.ID}}.{{.Ext}}";
-          avatars = "mxc://matrix.chir.rs/discord_avatars|{{.UserID}}|{{.AvatarID}}.{{.Ext}}";
         };
         encryption = {
           allow = true;
-          appservice = true;
+          default = true;
+          appservice = false;
+          require = true;
+          plaintext_mentions = true;
           allow_key_sharing = true;
         };
         permissions = {

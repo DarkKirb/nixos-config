@@ -34,8 +34,9 @@
         invite_link_resolve = true;
         encryption = {
           allow = true;
-          appservice = true;
-          require = false;
+          default = true;
+          appservice = false;
+          require = true;
           allow_key_sharing = true;
         };
 
@@ -45,8 +46,8 @@
         archive_tag = "m.lowpriority";
 
         backfill = {
-          enable = false;
-          normal_groups = false;
+          enable = true;
+          normal_groups = true;
           unread_hours_threshold = -1;
         };
         permissions = {
