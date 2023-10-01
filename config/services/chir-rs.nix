@@ -1,26 +1,32 @@
-{ lib, pkgs, config, chir-rs, system, ... }: 
-let staticDir = pkgs.stdenvNoCC.mkDerivation {
-  name = "static";
-  buildPhase = "true";
-  src = pkgs.emptyDirectory;
-  installPhase = ''
-    mkdir $out
-    for f in ${chir-rs.packages.${system}.chir-rs-fe}/*; do
-      ln -sv $f $out
-    done
-    ln -sv ${chir-rs.packages.${system}.art-assets} $out/img
-  '';
-};
-auxCfg = pkgs.writeText "config.dhall" ''
-${./chir-rs.dhall} {
-    staticDir = "${staticDir}",
-    connectionString = "postgres://chir_rs:" ++ (${config.sops.secrets."services/chir-rs/database-password".path} as Text) ++ "@nixos-8gb-fsn1-1.int.chir.rs/chir_rs",
-    signUpKey = ${config.sops.secrets."services/chir-rs/signup-secret".path} as Text,
-    nodeName = "${config.networking.hostName}"
-  }
-'';
-in
 {
+  lib,
+  pkgs,
+  config,
+  chir-rs,
+  system,
+  ...
+}: let
+  staticDir = pkgs.stdenvNoCC.mkDerivation {
+    name = "static";
+    buildPhase = "true";
+    src = pkgs.emptyDirectory;
+    installPhase = ''
+      mkdir $out
+      for f in ${chir-rs.packages.${system}.chir-rs-fe}/*; do
+        ln -sv $f $out
+      done
+      ln -sv ${chir-rs.packages.${system}.art-assets} $out/img
+    '';
+  };
+  auxCfg = pkgs.writeText "config.dhall" ''
+    ${./chir-rs.dhall} {
+        staticDir = "${staticDir}",
+        connectionString = "postgres://chir_rs:" ++ (${config.sops.secrets."services/chir-rs/database-password".path} as Text) ++ "@nixos-8gb-fsn1-1.int.chir.rs/chir_rs",
+        signUpKey = ${config.sops.secrets."services/chir-rs/signup-secret".path} as Text,
+        nodeName = "${config.networking.hostName}"
+      }
+  '';
+in {
   systemd.services.chir-rs = {
     enable = true;
     wantedBy = ["multi-user.target"];
@@ -56,12 +62,12 @@ in
       '';
     };
     environment = {
-      CHIR_RS_CONFIG="${auxCfg}";
+      CHIR_RS_CONFIG = "${auxCfg}";
     };
   };
   sops.secrets."services/chir-rs/database-password".owner = "chir-rs";
   sops.secrets."services/chir-rs/signup-secret".owner = "chir-rs";
-    services.postgresql.ensureDatabases = [
+  services.postgresql.ensureDatabases = [
     "chir_rs"
   ];
   services.postgresql.ensureUsers = [

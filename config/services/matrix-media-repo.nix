@@ -34,13 +34,12 @@
         forKinds = ["all"];
         opts = {
           tempPath = "/var/lib/matrix-media-repo";
-          endpoint = "s3.us-west-000.backblazeb2.com";
+          endpoint = "ams1.vultrobjects.com";
           accessKeyId = "#ACCESS_KEY_ID#";
           accessSecret = "#SECRET_ACCESS_KEY#";
           ssl = true;
           bucketName = "matrix-chir-rs";
-          region = "us-west-000";
-          useMD5 = true;
+          region = "ams1";
         };
       }
     ];
@@ -72,15 +71,6 @@
       expireAfterDays = 7;
     };
     featureSupport = {
-    };
-    redis = {
-        enabled = true;
-        shards = [
-            {
-                name = "localhost";
-                port = "localhost:${toString config.services.redis.servers.matrix-media-repo.port}";
-            }
-        ];
     };
     sentry = {
       enable = true;
@@ -189,31 +179,6 @@ in {
     extraConfig = ''
       import baseConfig
       route {
-        handle /_matrix/media/*/download/matrix.chir.rs/discord_* {
-          header Access-Control-Allow-Origin *
-          # Remove path prefix
-          uri path_regexp ^/_matrix/media/.+/download/matrix\.chir\.rs/discord_ /
-          # The mxc patterns use | instead of /, so replace it first turning it into attachments/1234/5678/filename.png
-          uri replace "%7C" /
-          reverse_proxy {
-            # reverse_proxy automatically includes the uri, so no {uri} at the end
-            to https://cdn.discordapp.com
-            # Caddy doesn't set the Host header automatically when reverse proxying
-            # (because usually reverse proxies are local and don't care about Host headers)
-            header_up Host cdn.discordapp.com
-          }
-        }
-        # Do the same for thumbnails, but redirect to media.discordapp.net (which is Discord's thumbnailing server, and happens to use similar width/height params as Matrix)
-        # Alternatively, you can point this at cdn.discordapp.com too. Clients shouldn't mind even if they get a bigger image than they asked for.
-        handle /_matrix/media/*/thumbnail/matrix.chir.rs/discord_* {
-          header Access-Control-Allow-Origin *
-          uri path_regexp ^/_matrix/media/.+/thumbnail/matrix\.chir\.rs/discord_ /
-          uri replace "%7C" /
-          reverse_proxy {
-            to https://media.discordapp.net
-            header_up Host media.discordapp.net
-          }
-        }
         handle /_matrix/media/* {
           uri * replace /unstable/fi.mau.msc2246/ /v1/
           reverse_proxy http://localhost:8008 {
@@ -250,11 +215,5 @@ in {
         }
       }
     '';
-  };
-  services.redis.servers.matrix-media-repo = {
-    enable = true;
-    bind = "127.0.0.1";
-    databases = 1;
-    port = 36659;
   };
 }

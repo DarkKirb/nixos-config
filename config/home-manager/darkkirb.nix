@@ -25,6 +25,7 @@
         ../programs/zk.nix
         ../programs/fcitx.nix
         ../programs/gpg.nix
+        ../programs/kdeconnect.nix
       ]
       else []
     );

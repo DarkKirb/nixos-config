@@ -17,6 +17,7 @@
       plover-plugin-rkb1-hid
       plover-plugin-python-dictionary
       plover-plugin-stenotype-extended
+      plover-plugin-dotool-output
     ]);
   plover-src = pkgs.plover.src;
   plover-dictionaries-english =

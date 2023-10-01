@@ -16,14 +16,14 @@
       object_storage = {
         upload_acl.public = "private";
         enabled = true;
-        endpoint = "s3.us-west-000.backblazeb2.com";
+        endpoint = "ams1.vultrobjects.com";
         videos = {
-          bucket_name = "mastodon-chir-rs";
+          bucket_name = "mastodon-assets-chir-rs";
           prefix = "peertube/videos/";
           base_url = "https://mastodon-assets.chir.rs";
         };
         streaming_playlists = {
-          bucket_name = "mastodon-chir-rs";
+          bucket_name = "mastodon-assets-chir-rs";
           prefix = "peertube/streaming-playlists/";
           base_url = "https://mastodon-assets.chir.rs";
         };

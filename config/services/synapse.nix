@@ -84,6 +84,7 @@
       enable_registration = false;
       signing_key_path = config.sops.secrets."services/synapse/private_key".path;
       enable_metrics = true;
+      encryption_enabled_by_default_for_room_type = "all";
       experimental_features = {
         msc3026_enabled = true;
         msc2716_enabled = true;

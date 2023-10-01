@@ -7,12 +7,14 @@
 in {
   nixpkgs.overlays = [
     (curr: prev: {
-      dovecot = (prev.dovecot.override {
-        withPgSQL = true;
-      }).overrideAttrs (super: {
-        doCheck = false;
-        doInstallCheck = false;
-      });
+      dovecot =
+        (prev.dovecot.override {
+          withPgSQL = true;
+        })
+        .overrideAttrs (super: {
+          doCheck = false;
+          doInstallCheck = false;
+        });
     })
   ];
   services.dovecot2 = {

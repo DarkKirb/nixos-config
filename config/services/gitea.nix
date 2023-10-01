@@ -25,8 +25,8 @@
     settings = rec {
       storage = {
         STORAGE_TYPE = "minio";
-        MINIO_ENDPOINT = "s3.us-west-000.backblazeb2.com";
-        MINIO_ACCESS_KEY_ID = "000decd694f9e7d0000000020";
+        MINIO_ENDPOINT = "ams1.vultrobjects.com";
+        MINIO_ACCESS_KEY_ID = "X86D3HKJ3Y92IASK0XIG";
         MINIO_SECRET_ACCESS_KEY = "#storageSecret#";
         MINIO_BUCKET = "git-chir-rs";
         MINIO_USE_SSL = "true";

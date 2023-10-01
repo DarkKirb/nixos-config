@@ -38,8 +38,9 @@
         sync_direct_chat_list = true;
         encryption = {
           allow = true;
-          appservice = true;
-          require = false;
+          default = true;
+          appservice = false;
+          require = true;
           allow_key_sharing = true;
         };
         private_chat_portal_meta = true;
