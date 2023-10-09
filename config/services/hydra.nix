@@ -1,6 +1,6 @@
 {
   system,
-  nix-packages,
+  attic,
   lib,
   config,
   pkgs,
@@ -168,11 +168,11 @@ in {
     script = ''
       set -ex
       if [ -e /var/lib/hydra/queue-runner/uploading ]; then
-        cat /var/lib/hydra/queue-runner/uploading | xargs ${pkgs.attic-client}/bin/attic push chir-rs
+        cat /var/lib/hydra/queue-runner/uploading | xargs ${attic.packages.${system}.attic-client}/bin/attic push chir-rs
         rm /var/lib/hydra/queue-runner/uploading
       fi
       mv /var/lib/hydra/queue-runner/upload-queue /var/lib/hydra/queue-runner/uploading
-      cat /var/lib/hydra/queue-runner/uploading | xargs ${pkgs.attic-client}/bin/attic push chir-rs
+      cat /var/lib/hydra/queue-runner/uploading | xargs ${attic.packages.${system}.attic-client}/bin/attic push chir-rs
       rm /var/lib/hydra/queue-runner/uploading
     '';
   };
