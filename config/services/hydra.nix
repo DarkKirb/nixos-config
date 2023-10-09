@@ -80,6 +80,10 @@ in {
       <git-input>
         timeout = 3600
       </git-input>
+      <runcommand>
+        job = *:*:*
+        command = cat $HYDRA_JSON | ${pkgs.jq}/bin/jq -r '.drvPath' | xargs ${pkgs.nix}/bin/nix-store -q -R --include-outputs >> /var/lib/hydra/queue-runner/upload-queue
+      </runcommand>
       max_concurrent_evals = 1
     '';
     giteaTokenFile = "/run/secrets/services/hydra/gitea_token";
