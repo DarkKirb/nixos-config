@@ -5,27 +5,10 @@
   system,
   attic,
   ...
-}: let
-  attic-client = attic.packages.${system}.attic-client;
-  post-build-hook = pkgs.writeScript "post-build-hook" ''
-    #!${pkgs.bash}/bin/bash
-    set -euf
-    export IFS=' '
-    until ${attic-client}/bin/attic push chir-rs $OUT_PATHS; do
-        sleep 5
-        echo "Retrying..."
-    done
-  '';
-in {
+}: {
   imports = [
     ./workarounds
   ];
-  sops.secrets."attic/config.toml" = {
-    sopsFile = ../secrets/shared.yaml;
-    owner = "root";
-    key = "attic/config.toml";
-    path = "/root/.config/attic/config.toml";
-  };
   nixpkgs.config.allowUnfree = true;
   nix = {
     settings = {
@@ -40,11 +23,10 @@ in {
       trusted-public-keys = [
         "nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg="
         "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
-        "chir-rs:AnwyFacopHSkprD6aXY4/R3J9JYzTbV2rosJCBPaB28="
+        "chir-rs:/iTDNHmQw1HklELHTBAVDFVAFaJ3ACGu3eezVUtplKc="
         "riscv:TZX1ReuoIGt7QiSQups+92ym8nKJUSV0O2NkS4HAqH8="
         "cache.ztier.link-1:3P5j2ZB9dNgFFFVkCQWT3mh0E+S3rIWtZvoql64UaXM="
       ];
-      post-build-hook = "${post-build-hook}";
       auto-optimise-store = true;
     };
     package = pkgs.nix;

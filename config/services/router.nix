@@ -122,32 +122,32 @@
   };
 in {
   networking.dhcpcd.allowInterfaces = ["enp2s0f0u4"]; # yes a usb network card don’t judge
-  services.dhcpd4 = {
-    enable = true;
-    extraConfig = ''
-      option subnet-mask 255.255.255.0;
-      option broadcast-address 192.168.2.255;
-      option routers 192.168.2.1;
-      option domain-name-servers 1.1.1.1;
-      subnet 192.168.2.0 netmask 255.255.255.0 {
-        range 192.168.2.100 192.168.2.200;
+  services.kea.dhcp4.settings = {
+    interfaces-config = {
+      interfaces = [
+        "br0"
+      ];
+    };
+    lease-database = {
+      name = "/var/lib/kea/dhcp4.leases";
+      persist = true;
+      type = "memfile";
+    };
+    rebind-timer = 2000;
+    renew-timer = 1000;
+    subnet4 = [
+      {
+        pools = [
+          {
+            pool = "192.0.2.100 - 192.0.2.240";
+          }
+        ];
+        subnet = "192.0.2.0/24";
       }
-      option client-arch code 93 = unsigned integer 16;
-      if exists user-class and option user-class = "iPXE" {
-        filename "http://192.168.2.1/boot.ipxe";
-      } elsif substring (option vendor-class-identifier, 0, 10) = "HTTPClient" {
-        option vendor-class-identifier "HTTPClient";
-        filename "http://192.168.2.1/x86_64/ipxe.efi";
-      } elsif option client-arch != 00:00 {
-        filename "ipxe.efi";
-        next-server 192.168.2.1;
-      } else {
-        filename "undionly.kpxe";
-        next-server 192.168.2.1;
-      }
-    '';
-    interfaces = ["br0"];
+    ];
+    valid-lifetime = 4000;
   };
+  services.kea.dhcp4.enable = true;
   services.atftpd = {
     enable = true;
     root = pkgs.ipxe;

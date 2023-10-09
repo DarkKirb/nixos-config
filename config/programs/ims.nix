@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    # element-desktop # TODO
-    cinny
+    (element-desktop.override (_: {
+        electron = pkgs.electron-bin;
+    }))
   ];
 }
