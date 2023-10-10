@@ -8,22 +8,30 @@ rec {
       url = "github:DarkKirb/attic";
       inputs.cargo2nix.follows = "cargo2nix";
       inputs.crane.follows = "crane";
+      inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
     cargo2nix = {
       url = "github:DarkKirb/cargo2nix/release-0.11.0";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
     chir-rs = {
       url = "github:DarkKirb/chir.rs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.haskell-flake.follows = "haskell-flake";
       inputs.nix-packages.follows = "nix-packages";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+      inputs.treefmt-nix.follows = "treefmt-nix";
     };
     crane = {
       url = "github:DarkKirb/crane";
+      inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
@@ -33,17 +41,44 @@ rec {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:DarkKirb/flake-utils";
+    firefox = {
+      url = "github:nix-community/flake-firefox-nightly";
+      inputs.cachix.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.lib-aggregate.follows = "lib-aggregate";
+      inputs.mozilla.follows = "mozilla";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+    haskell-flake.url = "github:srid/haskell-flake";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lib-aggregate = {
+      url = "github:nix-community/lib-aggregate";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    mozilla.url = "github:mozilla/nixpkgs-mozilla";
     nix-neovim = {
       url = "github:syberant/nix-neovim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-packages = {
       url = "git+https://git.chir.rs/darkkirb/nix-packages.git?ref=main";
+      inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -63,6 +98,11 @@ rec {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
+    systems.url = "github:nix-systems/default";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

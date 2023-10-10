@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   output.plugins = with pkgs.vimPlugins; [indent-blankline-nvim];
-  plugin.setup.indent_blankline = {
+  plugin.setup.ibl = {
     show_end_of_line = true;
     char = "▏";
     char_highlight_list = [
