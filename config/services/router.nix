@@ -139,10 +139,20 @@ in {
       {
         pools = [
           {
-            pool = "192.0.2.100 - 192.0.2.240";
+            pool = "192.168.2.100 - 192.168.2.240";
           }
         ];
-        subnet = "192.0.2.0/24";
+        subnet = "192.168.2.0/24";
+        option-data = [
+          {
+            name = "routers";
+            data = "192.168.2.1";
+          }
+          {
+            name = "domain-name-servers";
+            data = "1.1.1.1";
+          }
+        ];
       }
     ];
     valid-lifetime = 4000;
