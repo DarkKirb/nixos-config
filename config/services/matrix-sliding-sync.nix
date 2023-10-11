@@ -8,7 +8,7 @@
     after = ["network.target" "matrix-synapse.service"];
     wantedBy = ["multi-user.target"];
     environment = {
-      SYNCV3_SERVER = "https://matrix.int.chir.rs/";
+      SYNCV3_SERVER = "https://matrix.chir.rs";
       SYNCV3_DB = "postgresql:///sliding_sync?sslmode=disable&host=/run/postgresql";
       SYNCV3_BINDADDR = "127.0.0.1:45587";
     };
