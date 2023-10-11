@@ -26,6 +26,7 @@
         ../programs/fcitx.nix
         ../programs/gpg.nix
         ../programs/kdeconnect.nix
+        ../programs/zoom.nix
       ]
       else []
     );
