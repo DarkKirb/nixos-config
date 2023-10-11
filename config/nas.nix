@@ -177,4 +177,25 @@
     "/ip4/0.0.0.0/tcp/5001"
     "/ip6/::/tcp/5001"
   ]; # Only exposed over the tailed scale
+
+  swapDevices = [
+    {
+      device = "/dev/sda2";
+    }
+    {
+      device = "/dev/sdb2";
+    }
+    {
+      device = "/dev/sdc2";
+    }
+    {
+      device = "/dev/sda3";
+    }
+    {
+      device = "/dev/sdb3";
+    }
+    {
+      device = "/dev/sdc3";
+    }
+  ];
 }
