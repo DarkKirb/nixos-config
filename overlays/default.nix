@@ -66,10 +66,14 @@ in
     kubo-orig = kubo;
     fcitx5-table-extra = prev.fcitx5-table-extra.overrideAttrs (super: {
       patches =
-        prev.patches
+        super.patches
         or []
         ++ [
           ../extra/fcitx-table-extra.patch
         ];
+    });
+    bat = prev.bat.overrideAttrs (_: {
+        doCheck = false;
+        doInstallCheck = false;
     });
   }
