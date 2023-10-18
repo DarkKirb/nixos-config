@@ -1,0 +1,30 @@
+name: update-flake-lock
+on:
+  workflow_dispatch: # allows manual triggering
+  schedule:
+    - cron: "3 18 * * *"
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v23
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            substituters = https://cache.nixos.org/ https://attic.chir.rs/chir-rs/ https://hydra.chir.rs/
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= chir-rs:/iTDNHmQw1HklELHTBAVDFVAFaJ3ACGu3eezVUtplKc=
+            experimental-features = nix-command flakes
+      - name: update flake lock
+        run: nix flake update
+      - name: run nix fmt
+        run: nix fmt
+      - name: Commit and push
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: "Automatic Update"
+          title: Run automatic update
+          author: GitHub <noreply@github.com>

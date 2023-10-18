@@ -77,7 +77,7 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-packages = {
-      url = "git+https://git.chir.rs/darkkirb/nix-packages.git?ref=main";
+      url = "github:DarkKirb/nix-packages/main";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";

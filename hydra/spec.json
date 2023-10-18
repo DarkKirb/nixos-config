@@ -12,7 +12,7 @@
     "inputs": {
         "nixos-config": {
             "type": "git",
-            "value": "https://git.chir.rs/darkkirb/nixos-config.git main",
+            "value": "https://github.com/DarkKirb/nixos-config.git main",
             "emailresponsible": false
         },
         "nixpkgs": {
@@ -24,6 +24,18 @@
             "type": "path",
             "value": "https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/pulls",
             "emailresponsible": false
+        },
+        "github_input": {
+            "type": "string",
+            "value": "nixos-config"
+        },
+        "github_repo_owner": {
+            "type": "string",
+            "value": "DarkKirb"
+        },
+        "github_repo_name": {
+            "type": "string",
+            "value": "nixos-config"
         }
     }
 }

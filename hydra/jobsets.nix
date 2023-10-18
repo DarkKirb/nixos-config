@@ -6,8 +6,8 @@
   prs = builtins.fromJSON (builtins.readFile prsJSON);
   jobsets =
     (builtins.listToAttrs (
-      map (
-        info: {
+      pkgs.lib.attrsets.mapAttrsToList (
+        _: info: {
           name = "pr${toString info.number}";
           value = {
             enabled = info.state == "open";
@@ -31,20 +31,17 @@
                 value = "https://github.com/NixOS/nixpkgs.git master";
                 emailresponsible = false;
               };
-              gitea_status_repo = {
+              github_input = {
                 type = "string";
                 value = "nixos-config";
-                emailresponsible = false;
               };
-              gitea_repo_owner = {
+              github_repo_owner = {
                 type = "string";
-                value = "${info.head.repo.owner.login}";
-                emailresponsible = false;
+                value = info.head.repo.owner.login;
               };
-              gitea_repo_name = {
+              github_repo_name = {
                 type = "string";
-                value = "${info.head.repo.name}";
-                emailresponsible = false;
+                value = info.head.repo.name;
               };
             };
           };
@@ -67,7 +64,7 @@
         inputs = {
           nixos-config = {
             type = "git";
-            value = "https://git.chir.rs/darkkirb/nixos-config main";
+            value = "https://github.com/DarkKirb/nixos-config main";
             emailresponsible = false;
           };
           nixpkgs = {
@@ -75,20 +72,17 @@
             value = "https://github.com/NixOS/nixpkgs.git master";
             emailresponsible = false;
           };
-          gitea_status_repo = {
+          github_input = {
             type = "string";
             value = "nixos-config";
-            emailresponsible = false;
           };
-          gitea_repo_owner = {
+          github_repo_owner = {
             type = "string";
-            value = "darkkirb";
-            emailresponsible = false;
+            value = "DarkKirb";
           };
-          gitea_repo_name = {
+          github_repo_name = {
             type = "string";
-            value = "nix-packages";
-            emailresponsible = false;
+            value = "nixos-config";
           };
         };
       };

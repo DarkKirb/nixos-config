@@ -1,5 +1,0 @@
-pipeline:
-  check-format:
-    image: nixery.dev/shell/alejandra
-    commands:
-      - alejandra -c .

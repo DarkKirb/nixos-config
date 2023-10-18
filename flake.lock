@@ -1060,18 +1060,18 @@
         ]
       },
       "locked": {
-        "lastModified": 1697545478,
-        "narHash": "sha256-pAnwaVOMDFOohuGEIvCSX5epquUrf1PjS8k9ZVcTUVA=",
-        "ref": "main",
-        "rev": "7255c1605ce7018b95a9d62bcc56d78ccaebd0f7",
-        "revCount": 1038,
-        "type": "git",
-        "url": "https://git.chir.rs/darkkirb/nix-packages.git"
+        "lastModified": 1697613610,
+        "narHash": "sha256-P62L7FVvQvo4D6GWFEDqPLMkZZhqh1Jds/dMB074DyU=",
+        "owner": "DarkKirb",
+        "repo": "nix-packages",
+        "rev": "81698741a1b9283fb181ed9813656a275a299c3c",
+        "type": "github"
       },
       "original": {
+        "owner": "DarkKirb",
         "ref": "main",
-        "type": "git",
-        "url": "https://git.chir.rs/darkkirb/nix-packages.git"
+        "repo": "nix-packages",
+        "type": "github"
       }
     },
     "nix-packages_2": {
