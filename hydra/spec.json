@@ -21,8 +21,8 @@
             "emailresponsible": false
         },
         "prsJSON": {
-            "type": "path",
-            "value": "https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/pulls",
+            "type": "githubpulls",
+            "value": "DarkKirb nixos-config",
             "emailresponsible": false
         },
         "github_input": {
