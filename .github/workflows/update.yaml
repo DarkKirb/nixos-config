@@ -23,7 +23,7 @@ jobs:
       - name: run nix fmt
         run: nix fmt
       - name: Commit and push
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           commit-message: "Automatic Update"
           title: Run automatic update
