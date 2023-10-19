@@ -113,6 +113,10 @@
   ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
+  boot.binfmt.emulatedSystems = [
+    "riscv32-linux"
+    "riscv64-linux"
+  ];
 
   system.stateVersion = "22.11";
 

@@ -114,6 +114,8 @@
     "powerpc64-linux"
     "powerpc64le-linux"
     "wasm32-wasi"
+    "riscv32-linux"
+    "riscv64-linux"
   ];
   hardware.enableRedistributableFirmware = true;
   nix.settings.substituters = lib.mkForce [
