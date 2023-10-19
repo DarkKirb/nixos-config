@@ -97,6 +97,7 @@
     "gccarch-rv32gc_zba"
     "gccarch-rv32gc_zbb"
     "gccarch-rv32gc"
+    "native-riscv"
   ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
