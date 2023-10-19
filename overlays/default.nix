@@ -73,7 +73,7 @@ in
         ];
     });
     bat = prev.bat.overrideAttrs (_: {
-        doCheck = false;
-        doInstallCheck = false;
+      doCheck = false;
+      doInstallCheck = false;
     });
   }
