@@ -450,11 +450,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1697718944,
-        "narHash": "sha256-ud8UXj+x7XM+4yrbybCevzNPpbSO6vb6P13405HQ9X4=",
+        "lastModified": 1697805298,
+        "narHash": "sha256-kKvxMllN96NOQHWTZa9oMgFaL2MnyJhUmX4UbremkRA=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "e5d76d208f39299df4fcdd8958696bededde8a54",
+        "rev": "f250cc016b85dc7adf947526d26981aa5c79aee2",
         "type": "github"
       },
       "original": {
@@ -784,11 +784,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1697622824,
-        "narHash": "sha256-FxNwdUAiay/Z14oNTwAJuWyL17AHhzhCafW9FN42scA=",
+        "lastModified": 1697704332,
+        "narHash": "sha256-XDDllf7VLpSuQcBxv4v2BGoeKhbqDqISAu8r48eqc3Y=",
         "ref": "refs/heads/master",
-        "rev": "afdb26a0efb042308d32a5397fa85c24c87a1c1f",
-        "revCount": 4072,
+        "rev": "30ba162924d53d4daafb09414b86241e7ecaa9ab",
+        "revCount": 4073,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/hydra"
       },
@@ -1060,11 +1060,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1697695329,
-        "narHash": "sha256-uGAWGAYMfhj70+k+iABAhjWCsnUS+LqPgGXIGBEwOZs=",
+        "lastModified": 1697790083,
+        "narHash": "sha256-QP4uUBYVvwUi3PoWnCSlVShvbf8MNQplxP2RF2zsSIU=",
         "owner": "DarkKirb",
         "repo": "nix-packages",
-        "rev": "0a866e4a47d08c2d89ac19d6b339d20b02c678f3",
+        "rev": "a2b76af03d2b6ff65956aa6536c01f6795605f93",
         "type": "github"
       },
       "original": {
@@ -1189,11 +1189,11 @@
     },
     "nixos-hardware_2": {
       "locked": {
-        "lastModified": 1697100850,
-        "narHash": "sha256-qSAzJVzNRIo+r3kBjL8TcpJctcgcHlnZyqdzpWgtg0M=",
+        "lastModified": 1697748412,
+        "narHash": "sha256-5VSB63UE/O191cuZiGHbCJ9ipc7cGKB8cHp0cfusuyo=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "fb6af288f6cf0f00d3af60cf9d5110433b954565",
+        "rev": "72d53d51704295f1645d20384cd13aecc182f624",
         "type": "github"
       },
       "original": {
@@ -1299,11 +1299,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1697737930,
-        "narHash": "sha256-i8Ox1jppUwE0vKYu39VggsppajDHDtL9YePaXlDLUvM=",
+        "lastModified": 1697825045,
+        "narHash": "sha256-Y4TUFlCAM4/jXetvvP/YeKFRok2tozQM4L+EIr8ZzN0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3f84dd89b87f5d648d015eb3a2ac59e1c36b3e70",
+        "rev": "c5ada8b4ca8975d380020a085425a2cc7bbbb300",
         "type": "github"
       },
       "original": {
@@ -1329,11 +1329,11 @@
     },
     "nur_2": {
       "locked": {
-        "lastModified": 1697730338,
-        "narHash": "sha256-4Ba1Ihc0BK9MkCLKBQ/ztURZ4rwiXYJwL8E7uRDovKI=",
+        "lastModified": 1697824384,
+        "narHash": "sha256-CVtPGCWLz8VhqViW8AT7ivP7+/6YWJRwd5VbwKb6Oy0=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "9d27b2c59eac77c1b04e2193312d444fdb1d2beb",
+        "rev": "f5c11de6afaad87dc9922df25dfbd73201f6c75f",
         "type": "github"
       },
       "original": {
@@ -1404,11 +1404,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1697681535,
-        "narHash": "sha256-vVkqg+qTgTQ/YEreZyi/eyxoj26yyowI4/5ffTGT90w=",
+        "lastModified": 1697767917,
+        "narHash": "sha256-9+FjCVE1Y7iUKohBF43yD05KoQB+FPcw/XL2rlKkjqY=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "d5977a020c216526144dbf08ab0825b6c1121593",
+        "rev": "679ea0878edc749f23516ea6d7ffa974c6304bf5",
         "type": "github"
       },
       "original": {
