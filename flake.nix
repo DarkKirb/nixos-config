@@ -87,7 +87,7 @@ rec {
       inputs.nixos-config-for-netboot.follows = "nixos-config-for-netboot";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
