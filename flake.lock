@@ -1003,6 +1003,29 @@
         "type": "github"
       }
     },
+    "nix-gaming": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1698541868,
+        "narHash": "sha256-oaNUQMJ/zYvKkB1wI/pcPq4cf/a+c5etZWKZ8ZAg2V0=",
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "rev": "53ca82dfa2c65ddbf857ef07889ff39c8f80a35a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "type": "github"
+      }
+    },
     "nix-neovim": {
       "inputs": {
         "nixpkgs": [
@@ -1358,6 +1381,7 @@
         "home-manager": "home-manager",
         "lib-aggregate": "lib-aggregate",
         "mozilla": "mozilla",
+        "nix-gaming": "nix-gaming",
         "nix-neovim": "nix-neovim",
         "nix-packages": "nix-packages",
         "nixos-config-for-netboot": "nixos-config-for-netboot",
