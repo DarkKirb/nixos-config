@@ -72,6 +72,11 @@ rec {
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     mozilla.url = "github:mozilla/nixpkgs-mozilla";
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     nix-neovim = {
       url = "github:syberant/nix-neovim";
       inputs.nixpkgs.follows = "nixpkgs";
