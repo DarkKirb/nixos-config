@@ -21,6 +21,7 @@ in {
     ./services/docker.nix
     ./services/cifs.nix
     ./services/kubo-local.nix
+    ./games/system.nix
   ];
   fonts = {
     fontDir.enable = true;
