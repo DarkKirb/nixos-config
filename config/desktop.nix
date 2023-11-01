@@ -97,7 +97,6 @@ in {
     ACTION=="add", SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0330", TAG+="uaccess"
     ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS={idProduct}=="6010", OWNER="user", MODE="0777", GROUP="dialout"
   '';
-  services.udev.packages = [pkgs.dolphinEmuMaster];
   programs.steam.enable = system == "x86_64-linux";
   nixpkgs.overlays = [
     (curr: prev: {
@@ -137,7 +136,6 @@ in {
 
   environment.systemPackages = with pkgs; [
     pinentry-qt
-    dolphinEmuMaster
     dotool
     wl-clipboard
     plasma5Packages.thirdParty.lightly
