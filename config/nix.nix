@@ -3,7 +3,6 @@
   lib,
   config,
   system,
-  attic,
   ...
 }: {
   imports = [
@@ -17,7 +16,7 @@
       require-sigs = true;
       builders-use-substitutes = true;
       substituters = [
-        "https://attic.chir.rs/chir-rs/"
+        "https://cache.chir.rs/"
         "https://hydra.int.chir.rs"
       ];
       trusted-public-keys = [

@@ -2,41 +2,6 @@
   "nodes": {
     "attic": {
       "inputs": {
-        "cargo2nix": [
-          "cargo2nix"
-        ],
-        "crane": [
-          "crane"
-        ],
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rust-overlay": [
-          "rust-overlay"
-        ]
-      },
-      "locked": {
-        "lastModified": 1694160842,
-        "narHash": "sha256-KqzSSagAay+qBhXlDGHc05dpio9PZ/ZFVmQcuJum/qU=",
-        "owner": "DarkKirb",
-        "repo": "attic",
-        "rev": "9460d742caf366a1f999936dacd4d6e9274d956b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DarkKirb",
-        "repo": "attic",
-        "type": "github"
-      }
-    },
-    "attic_2": {
-      "inputs": {
         "crane": [
           "nixos-config-for-netboot",
           "crane"
@@ -70,36 +35,6 @@
       }
     },
     "cargo2nix": {
-      "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rust-overlay": [
-          "rust-overlay"
-        ]
-      },
-      "locked": {
-        "lastModified": 1691655399,
-        "narHash": "sha256-hVfFMu27OMaUPxpyovnxYNrzDYFCbQaFu+XCAIPeoAk=",
-        "owner": "DarkKirb",
-        "repo": "cargo2nix",
-        "rev": "1a37221e07295f7d5a8842717e94229af72f1c20",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DarkKirb",
-        "ref": "release-0.11.0",
-        "repo": "cargo2nix",
-        "type": "github"
-      }
-    },
-    "cargo2nix_2": {
       "inputs": {
         "flake-compat": "flake-compat_3",
         "flake-utils": [
@@ -244,35 +179,6 @@
       }
     },
     "crane": {
-      "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rust-overlay": [
-          "rust-overlay"
-        ]
-      },
-      "locked": {
-        "lastModified": 1674934931,
-        "narHash": "sha256-TmGfRDBK7EkR0VY8Jr0WU4WdyzZxiXDGVGUzIXPFXRI=",
-        "owner": "DarkKirb",
-        "repo": "crane",
-        "rev": "42c3f329daa267857c6bc6d21c9eec468e97e2d7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DarkKirb",
-        "repo": "crane",
-        "type": "github"
-      }
-    },
-    "crane_2": {
       "inputs": {
         "flake-compat": "flake-compat_4",
         "flake-utils": [
@@ -1154,11 +1060,11 @@
     },
     "nixos-config-for-netboot": {
       "inputs": {
-        "attic": "attic_2",
-        "cargo2nix": "cargo2nix_2",
+        "attic": "attic",
+        "cargo2nix": "cargo2nix",
         "chir-rs": "chir-rs_2",
         "colorpickle": "colorpickle",
-        "crane": "crane_2",
+        "crane": "crane",
         "dns": "dns_2",
         "emanote": "emanote",
         "flake-parts": "flake-parts_2",
@@ -1368,10 +1274,7 @@
     },
     "root": {
       "inputs": {
-        "attic": "attic",
-        "cargo2nix": "cargo2nix",
         "chir-rs": "chir-rs",
-        "crane": "crane",
         "dns": "dns",
         "firefox": "firefox",
         "flake-compat": "flake-compat",
@@ -1388,7 +1291,6 @@
         "nixos-hardware": "nixos-hardware_2",
         "nixpkgs": "nixpkgs_4",
         "nur": "nur_2",
-        "rust-overlay": "rust-overlay_2",
         "sops-nix": "sops-nix_2",
         "systems": "systems_2",
         "treefmt-nix": "treefmt-nix_2"
@@ -1411,29 +1313,6 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "rev": "b3bd1d49f1ae609c1d68a66bba7a95a9a4256031",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "rust-overlay_2": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1698891127,
-        "narHash": "sha256-HuhQGsvBX1CdD+wvyK7J8aANYxvABhkPsiY97aT4+/w=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "6bc508466396bc6e24a7e4236ece9cb95b72582e",
         "type": "github"
       },
       "original": {

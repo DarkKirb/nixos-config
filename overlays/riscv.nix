@@ -9,7 +9,6 @@ args: self: prev: let
 in {
   pandoc = self.writeScriptBin "pandoc" "true";
   inherit (pkgsX86) nix;
-  inherit (args.attic.packages.x86_64-linux) attic-client;
   bind = prev.bind.overrideAttrs (_: {
     doCheck = false;
     doInstallCheck = false;
