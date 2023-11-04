@@ -20,7 +20,6 @@
     ./services/postgres.nix
     ./services/woodpecker-agent.nix
     ./users/remote-build.nix
-    ../modules/bcachefs.nix
   ];
   hardware.cpu.amd.updateMicrocode = true;
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "k10temp"];
@@ -30,17 +29,56 @@
     config.boot.kernelPackages.zenpower
   ];
 
-  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux-bcachefs);
-  boot.supportedFilesystems = lib.mkForce ["bcachefs" "vfat"];
+  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux_xanmod);
 
   fileSystems."/" = {
-    device = "/dev/disk/by-partuuid/d4c6a94f-2ae9-e446-9613-2596c564078c:/dev/disk/by-partuuid/53773b73-fb8a-4de8-ac58-d9d8ff1be430";
-    fsType = "bcachefs";
+    device = "/dev/disk/by-partuuid/53773b73-fb8a-4de8-ac58-d9d8ff1be430";
+    fsType = "btrfs";
+    options = ["compress=zstd"];
+  };
+
+  fileSystems."/home/darkkirb/hdd" = {
+    device = "/dev/disk/by-partuuid/d4c6a94f-2ae9-e446-9613-2596c564078c";
+    fsType = "btrfs";
+    options = ["compress=zstd"];
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/CA0B-E049";
     fsType = "vfat";
+  };
+
+  services.btrfs.autoScrub = {
+    enable = true;
+    fileSystems = ["/" "/home/darkkirb/hdd"];
+  };
+  services.snapper.configs.main = {
+    SUBVOLUME = "/";
+    TIMELINE_LIMIT_HOURLY = "5";
+    TIMELINE_LIMIT_DAILY = "7";
+    TIMELINE_LIMIT_WEEKLY = "4";
+    TIMELINE_LIMIT_MONTHLY = "12";
+    TIMELINE_LIMIT_YEARLY = "0";
+  };
+  services.snapper.configs.hdd = {
+    SUBVOLUME = "/home/darkkirb/hdd";
+    TIMELINE_LIMIT_HOURLY = "5";
+    TIMELINE_LIMIT_DAILY = "7";
+    TIMELINE_LIMIT_WEEKLY = "4";
+    TIMELINE_LIMIT_MONTHLY = "12";
+    TIMELINE_LIMIT_YEARLY = "0";
+  };
+  services.beesd.filesystems.root = {
+    spec = "/";
+    hashTableSizeMB = 2048;
+    verbosity = "crit";
+    extraOptions = ["--loadavg-target" "5.0"];
+  };
+  services.beesd.filesystems.hdd = {
+    spec = "/home/darkkirb/hdd";
+    hashTableSizeMB = 2048;
+    verbosity = "crit";
+    extraOptions = ["--loadavg-target" "5.0"];
   };
 
   networking.interfaces.enp34s0.useDHCP = true;
