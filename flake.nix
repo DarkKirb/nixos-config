@@ -4,22 +4,6 @@ rec {
   # Use NixOS unstable
   inputs = {
     # Sorted by name
-    attic = {
-      url = "github:DarkKirb/attic";
-      inputs.cargo2nix.follows = "cargo2nix";
-      inputs.crane.follows = "crane";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
-    };
-    cargo2nix = {
-      url = "github:DarkKirb/cargo2nix/release-0.11.0";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
-    };
     chir-rs = {
       url = "github:DarkKirb/chir.rs";
       inputs.flake-parts.follows = "flake-parts";
@@ -28,13 +12,6 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
       inputs.treefmt-nix.follows = "treefmt-nix";
-    };
-    crane = {
-      url = "github:DarkKirb/crane";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
     };
     dns = {
       url = "github:DarkKirb/dns.nix";
@@ -94,11 +71,6 @@ rec {
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";

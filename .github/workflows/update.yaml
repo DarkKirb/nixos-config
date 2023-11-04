@@ -15,7 +15,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            substituters = https://cache.nixos.org/ https://attic.chir.rs/chir-rs/ https://hydra.chir.rs/
+            substituters = https://cache.nixos.org/ https://cache.chir.rs/ https://hydra.chir.rs/
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg= chir-rs:/iTDNHmQw1HklELHTBAVDFVAFaJ3ACGu3eezVUtplKc=
             experimental-features = nix-command flakes
       - name: update flake lock
