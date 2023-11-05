@@ -153,10 +153,6 @@
       default.clock.quantum = 8192
     }
   '';
-  nix.settings.substituters = lib.mkForce [
-    "https://hydra.int.chir.rs/"
-    "https://cache.nixos.org/"
-  ];
   services.tailscale.useRoutingFeatures = "client";
   home-manager.users.darkkirb._module.args.withNSFW = lib.mkForce true;
 }
