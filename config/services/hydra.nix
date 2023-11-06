@@ -183,11 +183,11 @@ in {
     script = ''
       set -ex
       if [ -e /var/lib/hydra/queue-runner/uploading ]; then
-        cat /var/lib/hydra/queue-runner/uploading | xargs ${pkgs.nix}/bin/nix copy --to s3://cache-chir-rs?scheme=https&endpoint=ams1.vultrobjects.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15 -vvv
+        cat /var/lib/hydra/queue-runner/uploading | xargs ${pkgs.nix}/bin/nix copy --to 's3://cache-chir-rs?scheme=https&endpoint=ams1.vultrobjects.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15' -vv
         rm /var/lib/hydra/queue-runner/uploading
       fi
       mv /var/lib/hydra/queue-runner/upload-queue /var/lib/hydra/queue-runner/uploading
-      cat /var/lib/hydra/queue-runner/uploading | xargs ${pkgs.nix}/bin/nix copy --to s3://cache-chir-rs?scheme=https&endpoint=ams1.vultrobjects.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15 -vvv
+      cat /var/lib/hydra/queue-runner/uploading | xargs ${pkgs.nix}/bin/nix copy --to 's3://cache-chir-rs?scheme=https&endpoint=ams1.vultrobjects.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15' -vv
       rm /var/lib/hydra/queue-runner/uploading
     '';
   };
