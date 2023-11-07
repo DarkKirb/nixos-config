@@ -133,69 +133,14 @@
     distributedBuilds = true;
   };
   systemd.services.nix-daemon.environment.TMPDIR = "/build";
-  systemd.services.nixos-upgrade = {
-    description = "NixOS Upgrade";
-
-    restartIfChanged = false;
-    unitConfig.X-StopOnRemoval = false;
-
-    serviceConfig.Type = "oneshot";
-
-    path = with pkgs; [
-      coreutils
-      gnutar
-      xz.bin
-      gzip
-      gitMinimal
-      config.nix.package.out
-      config.programs.ssh.package
-      jq
-      curl
-    ];
-
-    script = lib.mkDefault ''
-      #!${pkgs.bash}/bin/bash
-
-      set -ex
-
-      builds=$(${pkgs.curl}/bin/curl -H 'accept: application/json' https://hydra.int.chir.rs/jobset/flakes/nixos-config/evals | ${pkgs.jq}/bin/jq -r '.evals[0].builds[]')
-
-      for build in $builds; do
-          doc=$(${pkgs.curl}/bin/curl -H 'accept: application/json' https://hydra.int.chir.rs/build/$build)
-          jobname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.job')
-          if [ "$jobname" = "${config.networking.hostName}.${system}" ]; then
-              drvname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.drvpath')
-              output=$(${pkgs.nix}/bin/nix-store -r $drvname)
-              $output/bin/switch-to-configuration boot
-              booted="$(${pkgs.coreutils}/bin/readlink /run/booted-system/{initrd,kernel,kernel-modules})"
-              built="$(${pkgs.coreutils}/bin/readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
-              if [ "$booted" = "$built" ]; then
-                  $output/bin/switch-to-configuration switch
-              else
-                  ${pkgs.systemd}/bin/shutdown -r +1
-              fi
-              exit
-          fi
-      done
-
-    '';
-    after = ["network-online.target"];
-    wants = ["network-online.target"];
-  };
-  systemd.timers.nixos-upgrade = {
-    timerConfig = {
-      OnBootSec = 300;
-      RandomizedDelaySec = 3600;
-      OnUnitActiveSec = 3600;
-    };
-    requires = ["nixos-upgrade.service"];
-    wantedBy = ["multi-user.target"];
-  };
-  systemd.sockets.nixos-upgrade = {
-    socketConfig = {
-      Service = "nixos-upgrade.service";
-      BindIPv6Only = true;
-      ListenDatagram = "[::]:15553";
-    };
+  system.autoUpgrade = {
+    enable = true;
+    flake = "git+https://git.chir.rs/darkkirb/nixos-config?ref=main";
+    flags = [
+      "--no-write-lock-file"
+      "-L" # print build logs
+      ];
+    dates = "hourly";
+    randomizedDelaySec = "1h";
   };
 }

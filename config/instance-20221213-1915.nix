@@ -151,4 +151,5 @@
   };
 
   services.restic.backups.sysbackup.paths = ["/persist"];
+  system.autoUpgrade.allowReboot = true;
 }

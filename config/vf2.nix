@@ -121,4 +121,5 @@
   ];
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
   system.requiredKernelConfig = lib.mkForce [];
+  system.autoUpgrade.allowReboot = true;
 }

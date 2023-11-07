@@ -200,4 +200,5 @@
       device = "/dev/sdc3";
     }
   ];
+  system.autoUpgrade.allowReboot = true;
 }
