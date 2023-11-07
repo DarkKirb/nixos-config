@@ -8,5 +8,6 @@ args: {
     pkgs.xivlauncher
     pkgs.prismlauncher
     pkgs.mgba
+    pkgs.citra
   ];
 }
