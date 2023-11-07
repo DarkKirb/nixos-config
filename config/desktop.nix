@@ -22,6 +22,7 @@ in {
     ./services/cifs.nix
     ./services/kubo-local.nix
     ./games/system.nix
+    ./programs/virtualbox.nix
   ];
   fonts = {
     fontDir.enable = true;
