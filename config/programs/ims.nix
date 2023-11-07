@@ -3,5 +3,6 @@
     (element-desktop.override (_: {
       electron = pkgs.electron-bin;
     }))
+    simplex-chat-desktop
   ];
 }
