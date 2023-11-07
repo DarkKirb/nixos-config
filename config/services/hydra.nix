@@ -173,32 +173,4 @@ in {
       OnUnitActiveSec = 604800;
     };
   };
-  systemd.services."upload-hydra-results" = {
-    description = "Upload hydra build results";
-    serviceConfig = {
-      Type = "oneshot";
-      User = "hydra-queue-runner";
-      Group = "hydra";
-    };
-    script = ''
-      set -ex
-      if [ -e /var/lib/hydra/queue-runner/uploading ]; then
-        cat /var/lib/hydra/queue-runner/uploading | xargs ${pkgs.nix}/bin/nix copy --to 's3://cache-chir-rs?scheme=https&endpoint=ams1.vultrobjects.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15' -vv
-        rm /var/lib/hydra/queue-runner/uploading
-      fi
-      mv /var/lib/hydra/queue-runner/upload-queue /var/lib/hydra/queue-runner/uploading
-      cat /var/lib/hydra/queue-runner/uploading | xargs ${pkgs.nix}/bin/nix copy --to 's3://cache-chir-rs?scheme=https&endpoint=ams1.vultrobjects.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15' -vv
-      rm /var/lib/hydra/queue-runner/uploading
-    '';
-  };
-  systemd.timers.upload-hydra-results = {
-    enable = true;
-    description = "Upload hydra build results";
-    requires = ["upload-hydra-results.service"];
-    wantedBy = ["multi-user.target"];
-    timerConfig = {
-      OnBootSec = 300;
-      OnUnitActiveSec = 300;
-    };
-  };
 }
