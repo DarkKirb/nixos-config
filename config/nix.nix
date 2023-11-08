@@ -135,7 +135,7 @@
   systemd.services.nix-daemon.environment.TMPDIR = "/build";
   system.autoUpgrade = {
     enable = true;
-    flake = "git+https://git.chir.rs/darkkirb/nixos-config?ref=main";
+    flake = "github:DarkKirb/nixos-config";
     flags = [
       "--no-write-lock-file"
       "-L" # print build logs
