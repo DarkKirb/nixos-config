@@ -139,7 +139,7 @@
     flags = [
       "--no-write-lock-file"
       "-L" # print build logs
-      ];
+    ];
     dates = "hourly";
     randomizedDelaySec = "1h";
   };
