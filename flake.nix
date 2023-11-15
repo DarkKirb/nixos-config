@@ -65,7 +65,7 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-config-for-netboot = {
-      url = "github:DarkKirb/nixos-config/6ed9cdc5bd473f0cf4860ff001a11b7ea4b769f4";
+      url = "github:DarkKirb/nixos-config/94eee4a4f65dca742dc6bbf0e37860af1d2442f8";
       inputs.nixos-config-for-netboot.follows = "nixos-config-for-netboot";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
