@@ -1,7 +1,4 @@
-{
-  nixpkgs,
-  ...
-}: {
+{nixpkgs, ...}: {
   imports = [
     "${nixpkgs}/nixos/modules/installer/netboot/netboot-base.nix"
   ];
