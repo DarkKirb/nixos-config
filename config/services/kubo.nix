@@ -27,18 +27,14 @@
           mounts = [
             {
               child = {
-                type = "storjds";
-                dbURI = "postgres:///kubo_storjds?sslmode=disable&host=/run/postgresql";
-                bucket = "ipfs";
-                nodeConnectionPoolCapacity = "100";
-                nodeConnectionPoolKeyCapacity = "5";
-                nodeConnectionPoolIdleExpiration = "2m";
-                satelliteConnectionPoolCapacity = "10";
-                satelliteConnectionPoolKeyCapacity = "0";
-                satelliteConnectionPoolIdleExpiration = "2m";
+                type = "s3ds";
+                region = "ams1";
+                bucket = "ipfs-chir-rs";
+                rootDirectory = "/";
+                regionEndpoint = "ams1.vultrobjects.com";
               };
-              mountpoint = "/";
-              prefix = "storj.datastore";
+              mountpoint = "/blocks";
+              prefix = "s3.datastore";
               type = "measure";
             }
           ];
@@ -48,18 +44,8 @@
     };
   };
 
-  sops.secrets."services/ipfs/access_grant".owner = "ipfs";
-  services.postgresql.ensureDatabases = [
-    "kubo_storjds"
-  ];
-  services.postgresql.ensureUsers = [
-    {
-      name = "ipfs";
-      ensurePermissions = {
-        "DATABASE kubo_storjds" = "ALL PRIVILEGES";
-      };
-    }
-  ];
+  sops.secrets."services/ipfs/accessKey".owner = "ipfs";
+  sops.secrets."services/ipfs/secretKey".owner = "ipfs";
   networking.firewall.allowedTCPPorts = [
     4001
     4002
