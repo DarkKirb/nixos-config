@@ -65,11 +65,11 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-config-for-netboot = {
-      url = "github:DarkKirb/nixos-config/6ed9cdc5bd473f0cf4860ff001a11b7ea4b769f4";
+      url = "github:DarkKirb/nixos-config/70a88984c0362fc5dad723173f38e11490f8d34e";
       inputs.nixos-config-for-netboot.follows = "nixos-config-for-netboot";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs";
     nur.url = "github:nix-community/NUR";
     sops-nix = {
       url = "github:Mic92/sops-nix";
