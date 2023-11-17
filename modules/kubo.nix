@@ -332,6 +332,8 @@ in {
           datastore_spec = pkgs.writeText "datastore_spec" ''{"mounts":[{"bucket":"ipfs","mountpoint":"/"}],"type":"mount"}'';
         in
           ''
+            mkdir -pv $IPFS_PATH/.ipfs/plugins
+            ln -svf ${pkgs.go-ds-s3}/bin/go-ds-s3-plugin $IPFS_PATH/.ipfs/plugins
             # Update the datastore_spec
             ln -svf ${datastore_spec} $IPFS_PATH/datastore_spec
             if [[ ! -f "$IPFS_PATH/config" ]]; then
@@ -347,7 +349,8 @@ in {
             fi
             ipfs --offline config show |
               ${pkgs.jq}/bin/jq -s '.[0].Pinning as $Pinning | .[0].Identity as $Identity | .[1] + {$Identity,$Pinning}' - '${configFile}' |
-              ${pkgs.jq}/bin/jq ".Datastore.Spec.mounts[0].child.accessGrant = \"$(cat ${config.sops.secrets."services/ipfs/access_grant".path})\"" |
+              ${pkgs.jq}/bin/jq ".Datastore.Spec.mounts[0].child.accessKey = \"$(cat ${config.sops.secrets."services/ipfs/accessKey".path})\"" |
+              ${pkgs.jq}/bin/jq ".Datastore.Spec.mounts[0].child.secretKey = \"$(cat ${config.sops.secrets."services/ipfs/secretKey".path})\"" |
 
               # This command automatically injects the private key and other secrets from
               # the old config file back into the new config file.
