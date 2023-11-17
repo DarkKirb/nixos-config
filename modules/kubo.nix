@@ -329,11 +329,12 @@ in {
         environment.IPFS_PATH = cfg.dataDir;
 
         preStart = let
-          datastore_spec = pkgs.writeText "datastore_spec" ''{"mounts":[{"bucket":"ipfs","mountpoint":"/"}],"type":"mount"}'';
+          datastore_spec = pkgs.writeText "datastore_spec" ''{"mounts":[{"bucket":"ipfs-chir-rs","mountpoint":"/blocks","region":"ams1","rootDirectory":"/"},{"mountpoint":"/","path":"datastore","type":"levelds"}],"type":"mount"}'';
         in
           ''
-            mkdir -pv $IPFS_PATH/.ipfs/plugins
-            ln -svf ${pkgs.go-ds-s3}/bin/go-ds-s3-plugin $IPFS_PATH/.ipfs/plugins
+            mkdir -pv $IPFS_PATH/plugins
+            cp ${pkgs.go-ds-s3}/go-ds-s3-plugin $IPFS_PATH/plugins
+            chmod +w $IPFS_PATH/plugins/go-ds-s3-plugin
             # Update the datastore_spec
             ln -svf ${datastore_spec} $IPFS_PATH/datastore_spec
             if [[ ! -f "$IPFS_PATH/config" ]]; then

@@ -15,7 +15,7 @@
       };
       API.HTTPHeaders = {
         Access-Control-Allow-Origin = [
-          "http://bafybeic4gops3d3lyrisqku37uio33nvt6fqxvkxihrwlqsuvf76yln4fm.ipfs.localhost:41876"
+          "http://bafybeiamycmd52xvg6k3nzr6z3n33de6a2teyhquhj4kspdtnvetnkrfim.ipfs.localhost:41876"
           "http://localhost:3000"
           "http://127.0.0.1:5001"
           "https://webui.ipfs.io"
@@ -36,6 +36,16 @@
               mountpoint = "/blocks";
               prefix = "s3.datastore";
               type = "measure";
+            }
+            {
+                child = {
+                    compression = "none";
+                    path = "datastore";
+                    type = "levelds";
+                };
+                mountpoint = "/";
+                prefix = "leveldb.datastore";
+                type = "measure";
             }
           ];
           type = "mount";
