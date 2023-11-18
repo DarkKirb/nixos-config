@@ -180,4 +180,5 @@ in {
     enable = true;
     enableSSHSupport = true;
   };
+  programs.gamemode.enable = true;
 }
