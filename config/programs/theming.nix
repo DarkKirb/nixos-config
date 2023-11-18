@@ -601,7 +601,7 @@ in {
     };
     Install.WantedBy = ["graphical-session.target"];
     Service = {
-      ExecStart = "${pkgs.python3.withPackages (ps: with ps; [i3-ipc])}/bin/python ${./transparency.py}";
+      ExecStart = "${pkgs.python3.withPackages (ps: with ps; [i3ipc])}/bin/python ${./transparency.py}";
     };
   };
 }
