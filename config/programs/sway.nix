@@ -25,7 +25,20 @@
     ${pkgs.sway-contrib.grimshot}/bin/grimshot "$@"
     ${pkgs.sway}/bin/swaymsg mode default
   '';
-in {
+  mkKeybind = combo: number: [
+    {
+        name = "Mod4+${combo}";
+        value = "workspace number ${toString number}";
+    }
+    {
+        name = "Mod4+Shift+${combo}";
+        value = "move container to workspace number ${toString number}";
+    }
+  ];
+  keys = ["0" "1" "2" "3" "4" "5" "6" "7" "8" "9" "f1" "f2" "f3" "f4" "f5" "f6" "f7" "f8" "f9" "f10" "f11" "f12"];
+  combos = lib.concatMap (k: map (s: "${k}${s}") keys) ["" "ctrl+" "alt+" "ctrl+alt+"];
+  keybinds = lib.flatten (lib.zipListsWith mkKeybind combos (lib.lists.range 0 ((lib.lists.length combos) - 1)));
+  in {
   imports = [
     ./wl-clipboard.nix
     ./mako.nix
@@ -61,7 +74,7 @@ in {
       keybindings = let
         inherit (config.wayland.windowManager.sway.config) modifier;
       in
-        lib.mkOptionDefault {
+        lib.mkOptionDefault ({
           "${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";
           "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
           "Print" = "mode screenshot";
@@ -76,7 +89,7 @@ in {
           "XF86AudioPrev" = "exec ${pkgs.mpc-cli}/bin/mpc prev";
           "XF86AudioStop" = "exec ${pkgs.mpc-cli}/bin/mpc stop";
           "Mod1+Tab" = "exec ${switch_window}";
-        };
+        } // (lib.listToAttrs keybinds));
       bars = [
         {
           command = "${pkgs.waybar}/bin/waybar";
