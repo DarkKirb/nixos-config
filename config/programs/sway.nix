@@ -32,6 +32,7 @@ in {
     ./swayidle.nix
     ./rofi.nix
     ./fcitx.nix
+    ./pass-secret-service.nix
   ];
   wayland.windowManager.sway = {
     enable = true;
