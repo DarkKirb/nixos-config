@@ -13,6 +13,12 @@ rec {
       inputs.systems.follows = "systems";
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
+    colorpickle = {
+      url = "github:AgathaSorceress/colorpickle";
+      inputs.naersk.follows = "naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
+    };
     dns = {
       url = "github:DarkKirb/dns.nix";
       inputs.flake-utils.follows = "flake-utils";
@@ -49,6 +55,10 @@ rec {
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     mozilla.url = "github:mozilla/nixpkgs-mozilla";
+    naersk = {
+      url = "github:nix-community/naersk/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
