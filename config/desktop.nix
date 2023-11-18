@@ -82,7 +82,6 @@ in {
 
   security.pam = {
     services.login.u2fAuth = true;
-    services.sddm.u2fAuth = true;
     services.swaylock.u2fAuth = true;
     u2f = {
       enable = true;
@@ -139,7 +138,6 @@ in {
     pinentry-qt
     dotool
     wl-clipboard
-    plasma5Packages.thirdParty.lightly
   ];
   programs.gnupg.agent.pinentryFlavor = "qt";
 
@@ -156,18 +154,11 @@ in {
     libinput.enable = true;
     layout = "de";
     xkbVariant = "neo";
-    displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
-    displayManager.defaultSession = "plasmawayland";
     extraLayouts.zlr = {
       description = "lojban layout";
       languages = ["jbo"];
       symbolsFile = ../extra/keyboard/symbols;
     };
-  };
-  i18n.inputMethod = {
-    enabled = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [anthy];
   };
   security.polkit.enable = true;
   services.dbus.enable = true;

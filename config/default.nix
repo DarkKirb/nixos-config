@@ -21,6 +21,7 @@
   services.openssh.enable = true;
   environment.systemPackages = with pkgs; [
     git
+    kitty.terminfo
   ];
   networking.firewall.allowedTCPPorts = [22];
   networking.firewall.allowedUDPPortRanges = [
