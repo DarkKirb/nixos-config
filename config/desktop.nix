@@ -21,7 +21,6 @@ in {
     ./services/docker.nix
     ./services/cifs.nix
     ./services/kubo-local.nix
-    ./games/system.nix
     ./programs/virtualbox.nix
   ];
   fonts = {
