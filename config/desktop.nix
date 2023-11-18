@@ -152,7 +152,7 @@ in {
     libinput.enable = true;
     layout = "de";
     xkbVariant = "neo";
-    displaymanager.lightdm.enable = false;
+    displayManager.lightdm.enable = false;
     extraLayouts.zlr = {
       description = "lojban layout";
       languages = ["jbo"];
