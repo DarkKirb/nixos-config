@@ -3,8 +3,7 @@ args: {
   nixpkgs,
   nix-gaming,
   ...
-}: 
-let
+}: let
   wine = nix-gaming.packages.x86_64-linux.wine-ge.overrideAttrs (super: {
     patches =
       super.patches
@@ -19,8 +18,7 @@ let
         ./wine/server-default_integrity/0007-ntdll-Elevate-processes-if-requested-in-RtlCreateUse.patch
       ];
   });
-in
-{
+in {
   home.packages = [
     pkgs.xivlauncher
     pkgs.prismlauncher

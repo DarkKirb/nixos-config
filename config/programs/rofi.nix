@@ -7,5 +7,6 @@
       display-run = "   Run ";
     };
     terminal = "${pkgs.kitty}/bin/kitty";
+    plugins = [pkgs.rofi-calc pkgs.rofi-emoji];
   };
 }
