@@ -24,19 +24,12 @@ desktop: {pkgs, ...}: {
         ''
           [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-        ''
-        + (
-          if desktop
-          then ''
-
             test -n "$KITTY_INSTALLATION_DIR" || export KITTY_INSTALLATION_DIR=${pkgs.kitty}/lib/kitty
             export KITTY_SHELL_INTEGRATION=enabled
             autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
             kitty-integration
             unfunction kitty-integration
-          ''
-          else ""
-        );
+          '';
       plugins = [
       ];
     };
