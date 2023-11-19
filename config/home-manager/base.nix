@@ -64,6 +64,7 @@ desktop: {pkgs, ...}: {
           icat = "${pkgs.kitty}/bin/kitty +kitten icat";
           d = "${pkgs.kitty}/bin/kitty +kitten diff";
           hg = "${pkgs.kitty}/bin/kitty +kitten hyperlinked_grep";
+          cargo = "${pkgs.cargo-mommy}/bin/cargo-mommy";
         }
         else {}
       );
