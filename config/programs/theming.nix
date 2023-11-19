@@ -153,6 +153,7 @@ in {
       name = "lightly";
       package = pkgs.plasma5Packages.lightly;
     };
+    platformTheme = "qtct";
   };
   xdg.configFile."qt5ct/colors/Catppuccin-Custom.conf".text = ''
     [ColorScheme]
@@ -160,9 +161,6 @@ in {
     disabled_colors=${colorD 15}, ${colorD 0}, #ffa6adc8, #ff9399b2, ${colorD 1}, #ff6c7086, ${colorD 15}, ${colorD 15}, ${colorD 15}, ${colorD 0}, ${colorD 0}, #ff7f849c, ${colorD 8}, ${colorD 0}, ${colorD 13}, ${colorD 5}, ${colorD 0}, ${colorD 15}, ${colorI 0}, ${colorD 5}, #807f849c
     inactive_colors=${colorI 15}, ${colorI 0}, #ffa6adc8, #ff9399b2, ${colorI 1}, #ff6c7086, ${colorI 15}, ${colorI 15}, ${colorI 15}, ${colorI 0}, ${colorD 0}, #ff7f849c, ${colorI 8}, ${colorI 0}, ${colorI 13}, ${colorI 5}, ${colorI 0}, ${colorI 15}, ${colorI 0}, ${colorI 5}, #807f849c
   '';
-  systemd.user.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = "qt5ct";
-  };
   nixpkgs.overlays = [
     (super: self: {
       python3 = super.python.override {
