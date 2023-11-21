@@ -85,10 +85,6 @@ rec {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-config-for-netboot = {
-      url = "github:DarkKirb/nixos-config/70a88984c0362fc5dad723173f38e11490f8d34e";
-      inputs.nixos-config-for-netboot.follows = "nixos-config-for-netboot";
-    };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:NixOS/nixpkgs";
     nur.url = "github:nix-community/NUR";
@@ -131,10 +127,6 @@ rec {
       }
       {
         name = "installer"; # Installer iso
-        system = "x86_64-linux";
-      }
-      {
-        name = "netboot"; # Installer netboot
         system = "x86_64-linux";
       }
       {
