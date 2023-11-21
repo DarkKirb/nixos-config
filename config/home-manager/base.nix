@@ -20,16 +20,15 @@ desktop: {pkgs, ...}: {
         enable = true;
       };
       initExtraBeforeCompInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      initExtra =
-        ''
-          [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+      initExtra = ''
+        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-            test -n "$KITTY_INSTALLATION_DIR" || export KITTY_INSTALLATION_DIR=${pkgs.kitty}/lib/kitty
-            export KITTY_SHELL_INTEGRATION=enabled
-            autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
-            kitty-integration
-            unfunction kitty-integration
-          '';
+          test -n "$KITTY_INSTALLATION_DIR" || export KITTY_INSTALLATION_DIR=${pkgs.kitty}/lib/kitty
+          export KITTY_SHELL_INTEGRATION=enabled
+          autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+          kitty-integration
+          unfunction kitty-integration
+      '';
       plugins = [
       ];
     };

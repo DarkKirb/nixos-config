@@ -603,14 +603,16 @@ in {
     };
   };
 
-  programs.zsh.initExtra = 
-  if withNSFW then ''
-    export CARGO_MOMMYS_MOODS=chill/thirshty/yikes
-    export CARGO_MOMMYS_LITTLE=racc/plush
-    export CARGO_MOMMYS_PARTS=shit/pee
-    export CARGO_MOMMYS_FUCKING="pet/toy/toilet/shitslut/septic tank"
-  '' else ''
-    export CARGO_MOMMYS_MOODS=chill
-    export CARGO_MOMMYS_LITTLE=racc/plush
-  '';
+  programs.zsh.initExtra =
+    if withNSFW
+    then ''
+      export CARGO_MOMMYS_MOODS=chill/thirshty/yikes
+      export CARGO_MOMMYS_LITTLE=racc/plush
+      export CARGO_MOMMYS_PARTS=shit/pee
+      export CARGO_MOMMYS_FUCKING="pet/toy/toilet/shitslut/septic tank"
+    ''
+    else ''
+      export CARGO_MOMMYS_MOODS=chill
+      export CARGO_MOMMYS_LITTLE=racc/plush
+    '';
 }
