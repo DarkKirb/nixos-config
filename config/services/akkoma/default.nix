@@ -1,9 +1,10 @@
 {
   pkgs,
-  nix-packages,
   config,
-  lib,
   system,
+  akkoma,
+  admin-fe,
+  akkoma-fe,
   ...
 }: let
   purge_url_script = pkgs.writeScript "purge-url" ''
@@ -31,8 +32,8 @@
     name = "akkoma-static";
     src = pkgs.emptyDirectory;
     nativeBuildInputs = with pkgs; [xorg.lndir];
-    akkoma_fe = pkgs.akkoma-fe;
-    akkoma_admin_fe = pkgs.admin-fe;
+    akkoma_fe = akkoma-fe.packages.${system}.akkoma-fe;
+    akkoma_admin_fe = admin-fe.packages.${system}.admin-fe;
     inherit fedibird_fe;
     tos = ./terms-of-service.html;
     dontUnpack = false;
@@ -165,7 +166,7 @@
         };
       };
       ":mrf" = {
-        policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "MediaProxyWarmingPolicy" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "KeywordPolicy" "TagPolicy" "RequireImageDescription" "BlockInvalidDatetime" "HellthreadPolicy"];
+        policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "KeywordPolicy" "TagPolicy" "RequireImageDescription" "BlockInvalidDatetime" "HellthreadPolicy"];
         transparency = true;
       };
       ":http_security" = {
@@ -265,7 +266,7 @@
 in {
   services.pleroma = {
     enable = true;
-    package = pkgs.akkoma;
+    package = akkoma.packages.${system}.akkoma;
     configs = [(builtins.readFile akkconfig)];
     user = "akkoma";
     group = "akkoma";
