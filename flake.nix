@@ -4,6 +4,24 @@ rec {
   # Use NixOS unstable
   inputs = {
     # Sorted by name
+    admin-fe = {
+      url = "github:DarkKirb/admin-fe";
+      inputs.devshell.follows = "devshell";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    akkoma = {
+      url = "github:DarkKirb/akkoma";
+      inputs.devshell.follows = "devshell";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    akkoma-fe = {
+      url = "github:DarkKirb/akkoma-fe";
+      inputs.devshell.follows = "devshell";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     chir-rs = {
       url = "github:DarkKirb/chir.rs";
       inputs.flake-parts.follows = "flake-parts";

@@ -1,5 +1,83 @@
 {
   "nodes": {
+    "admin-fe": {
+      "inputs": {
+        "devshell": [
+          "devshell"
+        ],
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1700639864,
+        "narHash": "sha256-W1+4cVzuekz4OrovA000lx4rzHWWhKI63hOcPtnVieo=",
+        "owner": "DarkKirb",
+        "repo": "admin-fe",
+        "rev": "de3883a401702e0c6470f8860938aa2192794f70",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DarkKirb",
+        "repo": "admin-fe",
+        "type": "github"
+      }
+    },
+    "akkoma": {
+      "inputs": {
+        "devshell": [
+          "devshell"
+        ],
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1700639746,
+        "narHash": "sha256-FZXk0HnyLOsJiKNYrJWKF6/I/AFMc0dilH9Ju5rIUD4=",
+        "owner": "DarkKirb",
+        "repo": "akkoma",
+        "rev": "cc74701120b3cfc5d4d192ce21a12f071e05a366",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DarkKirb",
+        "repo": "akkoma",
+        "type": "github"
+      }
+    },
+    "akkoma-fe": {
+      "inputs": {
+        "devshell": [
+          "devshell"
+        ],
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1700585174,
+        "narHash": "sha256-RjsH6JAiklvMZF0+prp2LPpmunZbTV4A/w/5ZlhhNxo=",
+        "owner": "DarkKirb",
+        "repo": "akkoma-fe",
+        "rev": "6f26545f71e16e9a233caad6b88f257c94bcc49c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DarkKirb",
+        "repo": "akkoma-fe",
+        "type": "github"
+      }
+    },
     "chir-rs": {
       "inputs": {
         "flake-parts": [
@@ -659,6 +737,9 @@
     },
     "root": {
       "inputs": {
+        "admin-fe": "admin-fe",
+        "akkoma": "akkoma",
+        "akkoma-fe": "akkoma-fe",
         "chir-rs": "chir-rs",
         "colorpickle": "colorpickle",
         "devshell": "devshell",
