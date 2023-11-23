@@ -156,4 +156,5 @@
   services.tailscale.useRoutingFeatures = "client";
   home-manager.users.darkkirb._module.args.withNSFW = lib.mkForce true;
   system.autoUpgrade.allowReboot = true;
+  networking.extra-hosts = "192.168.2.1 speedport.ip";
 }
