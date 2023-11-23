@@ -4,7 +4,6 @@ desktop: _: {
       enable = true;
       enableAutosuggestions = true;
       enableCompletion = true;
-      syntaxHighlighting.enable = true;
       enableVteIntegration = desktop;
       autocd = true;
       loginExtra =
