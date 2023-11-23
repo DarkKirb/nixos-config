@@ -166,7 +166,7 @@
         };
       };
       ":mrf" = {
-        policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "KeywordPolicy" "TagPolicy" "RequireImageDescription" "BlockInvalidDatetime" "HellthreadPolicy"];
+        policies = map (v: mkRaw ("Pleroma.Web.ActivityPub.MRF." + v)) ["SimplePolicy" "EnsureRePrepended" "ForceBotUnlistedPolicy" "AntiFollowbotPolicy" "ObjectAgePolicy" "KeywordPolicy" "TagPolicy" "RequireImageDescription" "HellthreadPolicy"];
         transparency = true;
       };
       ":http_security" = {
