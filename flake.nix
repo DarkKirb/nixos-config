@@ -22,15 +22,6 @@ rec {
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    chir-rs = {
-      url = "github:DarkKirb/chir.rs";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.haskell-flake.follows = "haskell-flake";
-      inputs.nix-packages.follows = "nix-packages";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-    };
     colorpickle = {
       url = "github:AgathaSorceress/colorpickle";
       inputs.naersk.follows = "naersk";
@@ -73,7 +64,6 @@ rec {
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
     };
-    haskell-flake.url = "github:srid/haskell-flake";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -112,10 +102,6 @@ rec {
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     systems.url = "github:nix-systems/default";
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
