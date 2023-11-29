@@ -2,6 +2,8 @@
   modulesPath,
   nixos-hardware,
   config,
+  lib,
+  pkgs,
   ...
 }: {
   networking.hostName = "thinkrac";
@@ -23,111 +25,51 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-
-  boot.supportedFilesystems = ["zfs"];
-  boot.zfs.devNodes = "/dev/";
-
-  services.zfs.trim.enable = true;
-  services.zfs.autoScrub.enable = true;
-  services.zfs.autoScrub.pools = ["tank"];
-  boot.zfs.enableUnstable = true;
-
-  virtualisation.docker.storageDriver = "zfs";
-
-  boot.initrd.luks.devices = {
-    disk = {
-      device = "/dev/disk/by-uuid/2100a2e1-d874-4aaa-a89f-0b01665445b4";
-      allowDiscards = true;
-    };
-  };
-
+  
+  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux_xanmod_latest);
+  
   fileSystems."/" = {
-    device = "tank/nixos";
-    fsType = "zfs";
-    options = ["zfsutil"];
+    device = "/dev/nvme0n1p2";
+    fsType = "btrfs";
+    options = ["compress=zstd"];
   };
-
-  fileSystems."/nix" = {
-    device = "tank/nixos/nix";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/etc" = {
-    device = "tank/nixos/etc";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/var" = {
-    device = "tank/nixos/var";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/var/lib" = {
-    device = "tank/nixos/var/lib";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/var/log" = {
-    device = "tank/nixos/var/log";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/var/spool" = {
-    device = "tank/nixos/var/spool";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/home" = {
-    device = "tank/userdata/home";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/root" = {
-    device = "tank/userdata/home/root";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/home/darkkirb" = {
-    device = "tank/userdata/home/darkkirb";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/build" = {
-    device = "tank/build";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
+  
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/EE61-E55F";
+    device = "/dev/nvme0n1p1";
     fsType = "vfat";
   };
 
+  services.btrfs.autoScrub = {
+    enable = true;
+    fileSystems = ["/"];
+  };
+  services.snapper.configs.main = {
+    SUBVOLUME = "/";
+    TIMELINE_LIMIT_HOURLY = "5";
+    TIMELINE_LIMIT_DAILY = "7";
+    TIMELINE_LIMIT_WEEKLY = "4";
+    TIMELINE_LIMIT_MONTHLY = "12";
+    TIMELINE_LIMIT_YEARLY = "0";
+  };
+  services.beesd.filesystems.root = {
+    spec = "/";
+    hashTableSizeMB = 2048;
+    verbosity = "crit";
+    extraOptions = ["--loadavg-target" "5.0"];
+  };
+
+  swapDevices = [{
+    device = "/dev/nvme0n1p3";
+  }];
+
   networking.interfaces.enp0s31f6.useDHCP = true;
-  system.stateVersion = "22.05";
+  system.stateVersion = "23.11";
   networking.wireguard.interfaces."wg0".ips = [
     "fd0d:a262:1fa6:e621:f45a:db9f:eb7c:1a3f/64"
   ];
   services.xserver.videoDrivers = ["modesetting"];
   nix.settings.cores = 4;
 
-  # Disable kernel mitigations
-  #
-  # Rationale:
-  # - device has a limited workload, consisting mostly of running trusted code and visiting trusted websites with an advertisement blocker
-  # - device is battery powered (we want to spend more time in an idle state, as opposed to running user code or mitigating cpu bugs)
-  # - device is also not involved in any sort of virtualization
-  boot.kernelParams = ["mitigations=off"];
   # use the lowest frequency possible, to save power
   powerManagement.cpuFreqGovernor = "powersave";
   # lm_sensors who cares
