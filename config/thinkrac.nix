@@ -25,15 +25,15 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
-  
+
   boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux_xanmod_latest);
-  
+
   fileSystems."/" = {
     device = "/dev/nvme0n1p2";
     fsType = "btrfs";
     options = ["compress=zstd"];
   };
-  
+
   fileSystems."/boot" = {
     device = "/dev/nvme0n1p1";
     fsType = "vfat";
@@ -58,9 +58,11 @@
     extraOptions = ["--loadavg-target" "5.0"];
   };
 
-  swapDevices = [{
-    device = "/dev/nvme0n1p3";
-  }];
+  swapDevices = [
+    {
+      device = "/dev/nvme0n1p3";
+    }
+  ];
 
   networking.interfaces.enp0s31f6.useDHCP = true;
   system.stateVersion = "23.11";
