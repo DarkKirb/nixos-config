@@ -28,8 +28,8 @@
     ["${pkgs.lotte-art}/2023-04-16-baltnwolf-lottediaperplushies.jxl" "-gravity" "center" "-background" "white" "-extent" "5333x3000"]
     ["${pkgs.lotte-art}/2023-04-16-baltnwolf-lottediaperplushies-messy.jxl" "-gravity" "center" "-background" "white" "-extent" "5333x3000"]
     ["${pkgs.lotte-art}/2023-08-09-coldquarantine-lotte-eating-trash.jxl" "-crop" "6000x3375+0+312"]
-    ["${pkgs.lotte-art}/2023-08-09-coldquarantine-lotte-eating-trash-clean.jxl" "-crop" "6000x3375+0+312"]
-    ["${pkgs.lotte-art}/2023-08-09-coldquarantine-lotte-eating-trash-diapers.jxl" "-crop" "6000x3375+0+312"]
+    ["${pkgs.lotte-art}/2023-08-20-coldquarantine-lotte-eating-trash-clean.jxl" "-crop" "6000x3375+0+312"]
+    ["${pkgs.lotte-art}/2023-08-10-coldquarantine-lotte-eating-trash-diapers.jxl" "-crop" "6000x3375+0+312"]
   ];
 
   fixupImage = instructions:
