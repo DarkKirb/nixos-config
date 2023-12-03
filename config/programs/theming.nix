@@ -569,31 +569,6 @@ in {
     color sidebar_new       color10 default   # Mailboxes with new mail are Green
   '';
   home.file.".local/share/mc/skins/catppuccin.ini".source = ../../extra/mc-catppuccin.ini;
-  programs.vscode.userSettings = {
-    "catppuccin.colorOverrides".all = {
-      rosewater = color 1;
-      flamingo = color 2;
-      pink = color 3;
-      mauve = color 4;
-      red = color 5;
-      maroon = color 6;
-      peach = color 7;
-      yellow = color 8;
-      green = color 9;
-      teal = color 10;
-      sky = color 11;
-      sapphire = color 12;
-      blue = color 13;
-      lavender = color 14;
-      text = color 15;
-      base = color 0;
-      surface0 = color 0;
-      surface1 = color 1;
-      surface2 = color 2;
-      mantle = color 0;
-      crust = color 0;
-    };
-  };
   systemd.user.services.transparency = {
     Unit = {
       Description = "transparency";
