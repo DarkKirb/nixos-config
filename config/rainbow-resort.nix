@@ -22,11 +22,10 @@
   hardware.cpu.amd.updateMicrocode = true;
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "k10temp"];
   boot.initrd.kernelModules = ["amdgpu"];
-  boot.kernelModules = ["kvm-amd"];
+  boot.kernelModules = ["kvm-amd" "i2c-dev" "i2c-piix4"];
   boot.extraModulePackages = [
     config.boot.kernelPackages.zenpower
   ];
-  boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
   services.hardware.openrgb = {
     enable = true;
     package = pkgs.openrgb-with-all-plugins;
