@@ -102,6 +102,32 @@
             ];
           }
         ])
+        (mkIf (config.networking.hostName != "rainbow-resort") [
+          {
+            hostName = "build-rainbow-resort";
+            systems = [
+              "armv7l-linux"
+              "powerpc-linux"
+              "powerpc64-linux"
+              "powerpc64le-linux"
+              "wasm32-wasi"
+              "riscv32-linux"
+              "riscv64-linux"
+            ];
+            maxJobs = 16;
+            speedFactor = 1;
+            supportedFeatures = [
+              "kvm"
+              "nixos-test"
+              "big-parallel"
+              "benchmark"
+              "gccarch-znver2"
+              "gccarch-znver1"
+              "gccarch-skylake"
+              "ca-derivations"
+            ];
+          }
+        ])
         (mkIf (config.networking.hostName != "vf2") [
           {
             hostName = "build-riscv";

@@ -122,8 +122,8 @@ in {
       Type = "oneshot";
     };
     script = ''
-      if ${pkgs.iputils}/bin/ping -c 1 nutty-noon.int.chir.rs; then
-        echo "build-pc armv7l-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,wasm32-wasi,x86_64-linux,i686-linux,riscv32-linux,riscv64-linux - 16 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver2,gccarch-znver1,gccarch-skylake,ca-derivations  -" > /run/hydra-machines
+      if ${pkgs.iputils}/bin/ping -c 1 rainbow-resort.int.chir.rs; then
+        echo "build-rainbow-resort armv7l-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,wasm32-wasi,x86_64-linux,i686-linux,riscv32-linux,riscv64-linux - 16 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver4,gccarch-znver3,gccarch-znver2,gccarch-znver1,gccarch-skylake,gccarch-skylake-avx512,ca-derivations  -" > /run/hydra-machines
       else
         rm -f /run/hydra-machines
       fi
