@@ -7,6 +7,7 @@
   ...
 }: {
   networking.hostName = "rainbow-resort";
+  networking.hostId = "776736c6";
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
