@@ -33,6 +33,7 @@
     ./services/shitalloverme.nix
     ./services/wordpress.nix
     ./services/initrd-ssh.nix
+    ./wireguard
   ];
 
   boot.initrd.availableKernelModules = ["ata_piix" "virtio_pci" "virtio_scsi" "xhci_pci" "sd_mod" "sr_mod"];

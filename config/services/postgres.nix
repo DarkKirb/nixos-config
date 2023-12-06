@@ -21,5 +21,4 @@
     user = "postgres";
     listenAddress = "0.0.0.0";
   };
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [9187 5432];
 }

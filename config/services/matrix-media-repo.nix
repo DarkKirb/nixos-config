@@ -102,7 +102,6 @@
     };
   });
 in {
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [9000];
   systemd.services.matrix-media-repo = {
     description = "Matrix Media Repo";
     after = ["network.target"];

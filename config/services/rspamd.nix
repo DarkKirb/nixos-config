@@ -194,11 +194,5 @@
   sops.secrets."services/rspamd/dkim/darkkirb.de" = {owner = "rspamd";};
   sops.secrets."services/rspamd/dkim/miifox.net" = {owner = "rspamd";};
   sops.secrets."services/rspamd/dkim/chir.rs" = {owner = "rspamd";};
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [
-    11332
-    11333
-    11334
-    7980
-  ];
   services.prometheus.exporters.rspamd.enable = true;
 }

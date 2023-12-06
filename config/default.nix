@@ -10,7 +10,6 @@
     ./users/root.nix
     ./nix.nix
     ./sops.nix
-    ./wireguard
     ./home.nix
     ./services/restic.nix
     ./specialization.nix
@@ -48,7 +47,6 @@
     ];
     listenAddress = "0.0.0.0";
   };
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [config.services.prometheus.exporters.node.port];
 
   environment.pathsToLink = ["/share/zsh"];
 
@@ -80,7 +78,6 @@
     key = "ssh/builder_id_ed25519";
     path = "/home/darkkirb/.ssh/builder_id_ed25519";
   };
-  networking.nameservers = ["fd0d:a262:1fa6:e621:b4e1:08ff:e658:6f49" "fd0d:a262:1fa6:e621:746d:4523:5c04:1453"];
 
   programs.ssh.knownHosts = {
     "nas.int.chir.rs".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDhao1I1Kd1gK5bERUdjMxP9yHDrSHYZsTN2TcSk0K/U";
