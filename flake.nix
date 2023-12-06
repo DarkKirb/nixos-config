@@ -141,6 +141,10 @@ rec {
         name = "vf2"; # VisionFive 2
         system = "riscv64-linux";
       }
+      {
+        name = "rainbow-resort"; # PC
+        system = "x86_64-linux";
+      }
     ];
   in rec {
     nixosConfigurations = builtins.listToAttrs (map

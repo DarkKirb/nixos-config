@@ -10,7 +10,6 @@
     ./users/root.nix
     ./nix.nix
     ./sops.nix
-    ./wireguard
     ./home.nix
     ./services/restic.nix
     ./specialization.nix
