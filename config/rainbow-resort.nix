@@ -26,11 +26,17 @@
   boot.extraModulePackages = [
     config.boot.kernelPackages.zenpower
   ];
+  boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
+  services.hardware.openrgb = {
+    enable = true;
+    package = pkgs.openrgb-with-all-plugins;
+    motherboard = "amd";
+  };
 
   boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux_xanmod_latest);
 
   fileSystems."/" = {
-    device = "/dev/disk/by-partuuid/23690ff2-7a65-431e-a6ee-fea0878e0bb1";
+    device = "/dev/disk/by-uuid/23690ff2-7a65-431e-a6ee-fea0878e0bb1";
     fsType = "btrfs";
     options = ["compress=zstd"];
   };
