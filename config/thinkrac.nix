@@ -66,9 +66,6 @@
 
   networking.interfaces.enp0s31f6.useDHCP = true;
   system.stateVersion = "23.11";
-  networking.wireguard.interfaces."wg0".ips = [
-    "fd0d:a262:1fa6:e621:f45a:db9f:eb7c:1a3f/64"
-  ];
   services.xserver.videoDrivers = ["modesetting"];
   nix.settings.cores = 4;
 

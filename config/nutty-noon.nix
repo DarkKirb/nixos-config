@@ -85,8 +85,6 @@
 
   system.stateVersion = "21.11";
 
-  networking.wireguard.interfaces."wg0".ips = ["fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437/64"];
-
   services.xserver.videoDrivers = ["amdgpu"];
 
   environment.etc."sysconfig/lm_sensors".text = ''
@@ -114,17 +112,7 @@
   hardware.enableRedistributableFirmware = true;
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
-  networking.wireguard.interfaces.wg0.peers = [
-    # nas
-    {
-      publicKey = "RuQImASPojufJMoJ+zZ4FceC+mMN5vhxNR+i+m7g9Bc=";
-      allowedIPs = [
-        "fd0d:a262:1fa6:e621:bc9b:6a33:86e4:873b/128"
-      ];
-      endpoint = "192.168.2.1:51820";
-    }
-  ];
-
+  
   nix.settings.system-features = [
     "kvm"
     "nixos-test"
