@@ -112,7 +112,7 @@
   hardware.enableRedistributableFirmware = true;
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
-  
+
   nix.settings.system-features = [
     "kvm"
     "nixos-test"
