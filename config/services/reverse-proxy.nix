@@ -141,7 +141,6 @@ in {
         }
       '';
     };
-    "woodpecker.chir.rs" = mkConfig "https://woodpecker.int.chir.rs";
     "moa.chir.rs" = mkConfig "https://moa.int.chir.rs";
     "chir.rs" = {
       useACMEHost = "chir.rs";

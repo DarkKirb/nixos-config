@@ -24,8 +24,6 @@
     ./services/cups.nix
     ./services/iscsi.nix
     ./services/samba.nix
-    ./services/woodpecker.nix
-    ./services/woodpecker-agent.nix
     ./services/docker.nix
     ./users/remote-build.nix
     ./services/kubo-local.nix

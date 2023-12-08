@@ -144,7 +144,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 41;
+      serial = 42;
     };
     NS = [
       "ns1.chir.rs."
@@ -235,7 +235,6 @@ with dns.lib.combinators; let
         "assets-chir-rs.b-cdn.net."
       ];
       matrix = createZone {};
-      woodpecker = createZone {};
       akko = createZone {};
       peertube = createZone {};
       mediaproxy.CNAME = ["mediaproxy-chir-rs.b-cdn.net."];
