@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  home.packages = [pkgs.zk pkgs.obsidian];
+  home.packages = [pkgs.zk];
 }
