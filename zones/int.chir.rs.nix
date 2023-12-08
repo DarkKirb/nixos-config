@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 27;
+    serial = 28;
   };
   NS = [
     "ns1.chir.rs."
@@ -298,7 +298,6 @@ in {
     mastodon.CNAME = [(ttl zoneTTL (cname "nas"))];
     matrix.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
     rspamd.CNAME = [(ttl zoneTTL (cname "nixos-8gb-fsn1-1"))];
-    woodpecker.CNAME = [(ttl zoneTTL (cname "nas"))];
     moa.CNAME = [(ttl zoneTTL (cname "nas"))];
     matrix-admin.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
     mautrix-discord.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];

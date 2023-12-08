@@ -18,7 +18,6 @@
     nixos-hardware.nixosModules.common-gpu-amd
     nixos-hardware.nixosModules.common-pc-ssd
     ./services/postgres.nix
-    ./services/woodpecker-agent.nix
     ./users/remote-build.nix
   ];
   hardware.cpu.amd.updateMicrocode = true;
@@ -112,7 +111,7 @@
   hardware.enableRedistributableFirmware = true;
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
-  
+
   nix.settings.system-features = [
     "kvm"
     "nixos-test"
