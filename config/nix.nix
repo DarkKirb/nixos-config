@@ -27,9 +27,9 @@
       ];
       auto-optimise-store = true;
     };
-    package = pkgs.nix;
     extraOptions = ''
       experimental-features = nix-command flakes ca-derivations
+      builders-use-substitutes = true
     '';
     gc = {
       automatic = true;
@@ -55,6 +55,8 @@
           {
             hostName = "build-nas";
             systems = [
+              "i686-linux"
+              "x86_64-linux"
               "armv7l-linux"
               "powerpc-linux"
               "powerpc64-linux"
@@ -76,36 +78,12 @@
             ];
           }
         ])
-        (mkIf (config.networking.hostName != "nutty-noon") [
-          {
-            hostName = "build-pc";
-            systems = [
-              "armv7l-linux"
-              "powerpc-linux"
-              "powerpc64-linux"
-              "powerpc64le-linux"
-              "wasm32-wasi"
-              "riscv32-linux"
-              "riscv64-linux"
-            ];
-            maxJobs = 16;
-            speedFactor = 1;
-            supportedFeatures = [
-              "kvm"
-              "nixos-test"
-              "big-parallel"
-              "benchmark"
-              "gccarch-znver2"
-              "gccarch-znver1"
-              "gccarch-skylake"
-              "ca-derivations"
-            ];
-          }
-        ])
         (mkIf (config.networking.hostName != "rainbow-resort") [
           {
             hostName = "build-rainbow-resort";
             systems = [
+              "i686-linux"
+              "x86_64-linux"
               "armv7l-linux"
               "powerpc-linux"
               "powerpc64-linux"
@@ -121,6 +99,8 @@
               "nixos-test"
               "big-parallel"
               "benchmark"
+              "gccarch-skylake-avx512"
+              "gccarch-znver3"
               "gccarch-znver2"
               "gccarch-znver1"
               "gccarch-skylake"
