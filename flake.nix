@@ -207,7 +207,7 @@ rec {
           python3Packages.yapf
           github-cli
           statix
-          backblaze-b2
+          alejandra
         ];
       };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
