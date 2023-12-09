@@ -29,6 +29,12 @@
       User remote-build
       HostName nutty-noon.int.chir.rs
       IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
+    Host build-rainbow-resort
+      Port 22
+      IdentitiesOnly yes
+      User remote-build
+      HostName rainbow-resort.int.chir.rs
+      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
     Host build-riscv
       Port 22
       IdentitiesOnly yes
