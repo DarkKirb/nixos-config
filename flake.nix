@@ -68,6 +68,10 @@ rec {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hydra = {
+      url = "github:DarkKirb/hydra";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     lib-aggregate = {
       url = "github:nix-community/lib-aggregate";
       inputs.flake-utils.follows = "flake-utils";
@@ -92,6 +96,7 @@ rec {
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hydra.follows = "hydra";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-vscode-server = {
