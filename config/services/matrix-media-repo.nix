@@ -46,7 +46,7 @@
     metrics = {
       enabled = true;
       bindAddress = "::";
-      port = 9000;
+      port = 20855;
     };
     urlPreviews = {
       enabled = true;
@@ -216,16 +216,4 @@ in {
       }
     '';
   };
-  services.prometheus.scrapeConfigs = [
-    {
-      job_name = "matrix-media-repo";
-      static_configs = [
-        {
-          targets = [
-            "127.0.0.1:9000"
-          ];
-        }
-      ];
-    }
-  ];
 }

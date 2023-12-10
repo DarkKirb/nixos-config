@@ -95,16 +95,4 @@
     port = 6379;
   };
   sops.secrets."services/gitea" = {owner = "gitea";};
-  services.prometheus.scrapeConfigs = [
-    {
-      job_name = "forgejo";
-      static_configs = [
-        {
-          targets = [
-            "127.0.0.1:${toString config.services.gitea.httpPort}"
-          ];
-        }
-      ];
-    }
-  ];
 }

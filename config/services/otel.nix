@@ -1,6 +1,11 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   services.opentelemetry-collector = {
     enable = true;
+    package = pkgs.opentelemetry-collector-contrib;
     settings = {
       receivers = {
         otlp.protocols = {
@@ -12,6 +17,9 @@
       exporters = {
         "otlp".endpoint = "nas.int.chir.rs:4317";
         otlp.tls.insecure = true;
+        loki = {
+          endpoint = "https://nas.int.chir.rs:3100/loki/api/v1/push";
+        };
       };
       extensions = {
         zpages = {};
@@ -32,7 +40,7 @@
           logs = {
             receivers = ["otlp"];
             processors = ["batch"];
-            exporters = ["otlp"];
+            exporters = ["loki"];
           };
         };
         telemetry = {
@@ -46,16 +54,4 @@
       };
     };
   };
-  services.prometheus.scrapeConfigs = [
-    {
-      job_name = "opentelemetry-collector";
-      static_configs = [
-        {
-          targets = [
-            "127.0.0.1:63174"
-          ];
-        }
-      ];
-    }
-  ];
 }

@@ -22,7 +22,7 @@
           tls = false;
           type = "http";
           x_forwarded = true;
-          bind_addresses = ["::1" "127.0.0.1"];
+          bind_addresses = ["::" "0.0.0.0"];
           resources = [
             {
               names = ["client" "federation" "metrics"];
@@ -193,16 +193,5 @@
     owner = "matrix-synapse";
   };
   services.prometheus.scrapeConfigs = [
-    {
-      job_name = "matrix-synapse";
-      metrics_path = "/_synapse/metrics";
-      static_configs = [
-        {
-          targets = [
-            "127.0.0.1:8008"
-          ];
-        }
-      ];
-    }
   ];
 }

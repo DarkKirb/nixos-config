@@ -4,6 +4,7 @@
   lib,
   ...
 }: {
+  systemd.services.kubo.environment.OTEL_TRACES_EXPORTER = "otlp";
   services.kubo = {
     autoMigrate = true;
     emptyRepo = true;
@@ -12,8 +13,8 @@
     settings = {
       Addresses = {
         API = [
-          "/ip4/127.0.0.1/tcp/5001"
-          "/ip6/::1/tcp/5001"
+          "/ip4/0.0.0.0/tcp/5001"
+          "/ip6/::/tcp/5001"
         ];
         Gateway = "/ip4/127.0.0.1/tcp/41876";
       };
@@ -88,18 +89,5 @@
   ];
   networking.firewall.allowedUDPPorts = [
     4001
-  ];
-  services.prometheus.scrapeConfigs = [
-    {
-      job_name = "kubo";
-      metrics_path = "/debug/metrics/prometheus";
-      static_configs = [
-        {
-          targets = [
-            "127.0.0.1:5001"
-          ];
-        }
-      ];
-    }
   ];
 }

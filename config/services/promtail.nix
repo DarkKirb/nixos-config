@@ -11,7 +11,7 @@
       };
       clients = [
         {
-          url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
+          url = "http://nas.int.chir.rs:24545/loki/api/v1/push";
         }
       ];
       scrape_configs = [

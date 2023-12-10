@@ -198,16 +198,4 @@
     enable = true;
     port = 58636;
   };
-  services.prometheus.scrapeConfigs = [
-    {
-      job_name = "rspamd";
-      static_configs = [
-        {
-          targets = [
-            "127.0.0.1:58636"
-          ];
-        }
-      ];
-    }
-  ];
 }

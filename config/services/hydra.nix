@@ -77,8 +77,8 @@ in {
       </githubstatus>
       <hydra_notify>
         <prometheus>
-          listen_address = 127.0.0.1
-          port = 9199
+          listen_address = 0.0.0.0
+          port = 8905
         </prometheus>
       </hydra_notify>
       binary_cache_secret_key_file = ${config.sops.secrets."services/hydra/cache-key".path}
@@ -178,16 +178,4 @@ in {
       OnUnitActiveSec = 604800;
     };
   };
-  services.prometheus.scrapeConfigs = [
-    {
-      job_name = "hydra";
-      static_configs = [
-        {
-          targets = [
-            "127.0.0.1:9199"
-          ];
-        }
-      ];
-    }
-  ];
 }
