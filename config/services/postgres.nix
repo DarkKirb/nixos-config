@@ -19,7 +19,7 @@
   services.prometheus.exporters.postgres = {
     enable = true;
     user = "postgres";
-    port = "1589";
+    port = 1589;
   };
   services.prometheus.scrapeConfigs = [
     {
