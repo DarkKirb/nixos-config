@@ -29,6 +29,7 @@
     ./services/kubo-local.nix
     ./services/nfs.nix
     ./services/tempo.nix
+    ./services/loki.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
