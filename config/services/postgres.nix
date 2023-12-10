@@ -19,6 +19,19 @@
   services.prometheus.exporters.postgres = {
     enable = true;
     user = "postgres";
-    listenAddress = "0.0.0.0";
+    port = "1589"
   };
+  services.prometheus.scrapeConfigs = [
+    {
+      job_name = "postgresql";
+      static_configs = [
+        {
+          targets = [
+            "127.0.0.1:1589"
+          ];
+        }
+      ];
+    }
+  ];
+
 }

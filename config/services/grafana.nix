@@ -4,9 +4,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./prometheus.nix
-  ];
   services.grafana = {
     enable = true;
     domain = "grafana.int.chir.rs";

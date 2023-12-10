@@ -178,4 +178,16 @@ in {
       OnUnitActiveSec = 604800;
     };
   };
+  services.prometheus.scrapeConfigs = [
+    {
+      job_name = "hydra";
+      static_configs = [
+        {
+          targets = [
+            "127.0.0.1:9199"
+          ];
+        }
+      ];
+    }
+  ];
 }

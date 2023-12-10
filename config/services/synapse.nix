@@ -192,4 +192,17 @@
     key = "services/mautrix/whatsapp.yaml";
     owner = "matrix-synapse";
   };
+  services.prometheus.scrapeConfigs = [
+    {
+      job_name = "matrix-synapse";
+      metrics_path = "/_synapse/metrics";
+      static_configs = [
+        {
+          targets = [
+            "127.0.0.1:8008"
+          ];
+        }
+      ];
+    }
+  ];
 }

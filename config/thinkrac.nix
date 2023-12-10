@@ -121,4 +121,5 @@
   services.blueman.enable = true;
   services.tailscale.useRoutingFeatures = "client";
   system.autoUpgrade.allowReboot = true;
+  services.prometheus.exporters.node.enabledCollectors = ["wifi"];
 }
