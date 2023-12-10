@@ -7,7 +7,7 @@
         http_listen_port = 2144;
         graceful_shutdown_timeout = "10s";
       };
-      distrubtor.receiver = {
+      distributor.receivers = {
         otlp.protocols = {
           grpc = {};
           http = {};
@@ -19,8 +19,13 @@
           thrift_compact = {};
         };
       };
-      storage.trace.backend = "local";
+      storage.trace = {
+        backend = "local";
+        wal.path = "/var/lib/tempo/wal";
+        local.path = "/var/lib/tempo/blocks";
+      };
     };
   };
   services.opentelemetry-collector.enable = lib.mkForce false;
+  services.loki.enable = lib.mkForce false;
 }
