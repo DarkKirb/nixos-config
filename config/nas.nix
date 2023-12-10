@@ -28,6 +28,7 @@
     ./users/remote-build.nix
     ./services/kubo-local.nix
     ./services/nfs.nix
+    ./services/tempo.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
