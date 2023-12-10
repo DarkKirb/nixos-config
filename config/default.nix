@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    ./zfs.nix
     ./users/darkkirb.nix
     ./users/root.nix
     ./nix.nix
@@ -14,8 +13,11 @@
     ./services/restic.nix
     ./specialization.nix
     ./services/promtail.nix
+    ./services/loki.nix
+    ./services/prometheus.nix
     ./env.nix
     ./tailscale.nix
+    ./services/otel.nix
   ];
   services.openssh.enable = true;
   environment.systemPackages = with pkgs; [
@@ -32,22 +34,6 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  # Prometheus node exporter
-  services.prometheus.exporters.node = {
-    enable = true;
-    enabledCollectors = [
-      "interrupts"
-      "lnstat"
-      "mountstats"
-      "network_route"
-      "ntp"
-      "processes"
-      "systemd"
-      "tcpstat"
-    ];
-    listenAddress = "0.0.0.0";
-  };
-
   environment.pathsToLink = ["/share/zsh"];
 
   console.keyMap = "neo";
@@ -58,7 +44,6 @@
 
   programs.zsh.enable = true;
   users.mutableUsers = false;
-  boot.kernelParams = ["nohibernate"];
 
   sops.secrets."root/aws/credentials" = {
     sopsFile = ../secrets/shared.yaml;

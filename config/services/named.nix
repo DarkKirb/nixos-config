@@ -130,6 +130,19 @@ in {
     enable = true;
     bindGroups = ["server" "view" "tasks"];
     bindURI = "http://127.0.0.1:8653/";
+    port = 1533;
   };
+  services.prometheus.scrapeConfigs = [
+    {
+      job_name = "bind";
+      static_configs = [
+        {
+          targets = [
+            "127.0.0.1:${toString config.services.prometheus.exporters.bind.port}"
+          ];
+        }
+      ];
+    }
+  ];
   sops.secrets."services/dns/named-keys" = {owner = "named";};
 }

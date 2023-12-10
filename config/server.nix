@@ -3,6 +3,5 @@
   imports = [
     ./services/caddy
     ./services/acme.nix
-    ./services/fail2ban.nix
   ];
 }

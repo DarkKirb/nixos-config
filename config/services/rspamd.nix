@@ -194,5 +194,20 @@
   sops.secrets."services/rspamd/dkim/darkkirb.de" = {owner = "rspamd";};
   sops.secrets."services/rspamd/dkim/miifox.net" = {owner = "rspamd";};
   sops.secrets."services/rspamd/dkim/chir.rs" = {owner = "rspamd";};
-  services.prometheus.exporters.rspamd.enable = true;
+  services.prometheus.exporters.rspamd = {
+    enable = true;
+    port = 58636;
+  };
+  services.prometheus.scrapeConfigs = [
+    {
+      job_name = "rspamd";
+      static_configs = [
+        {
+          targets = [
+            "127.0.0.1:58636"
+          ];
+        }
+      ];
+    }
+  ];
 }

@@ -89,4 +89,17 @@
   networking.firewall.allowedUDPPorts = [
     4001
   ];
+  services.prometheus.scrapeConfigs = [
+    {
+      job_name = "kubo";
+      metrics_path = "/debug/metrics/prometheus";
+      static_configs = [
+        {
+          targets = [
+            "127.0.0.1:5001"
+          ];
+        }
+      ];
+    }
+  ];
 }
