@@ -3,6 +3,7 @@ _: {
     enable = true;
     configuration = {
       server.http_listen_port = 24545;
+      server.grpc_listen_port = 24546;
       auth_enabled = false;
 
       ingester = {

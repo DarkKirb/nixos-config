@@ -27,5 +27,4 @@
     };
   };
   services.opentelemetry-collector.enable = lib.mkForce false;
-  services.loki.enable = lib.mkForce false;
 }
