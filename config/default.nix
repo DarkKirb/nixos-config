@@ -13,7 +13,6 @@
     ./services/restic.nix
     ./specialization.nix
     ./services/promtail.nix
-    ./services/prometheus.nix
     ./env.nix
     ./tailscale.nix
     ./services/otel.nix

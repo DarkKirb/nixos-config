@@ -30,6 +30,7 @@
     ./services/nfs.nix
     ./services/tempo.nix
     ./services/loki.nix
+    ./services/prometheus.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;

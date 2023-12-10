@@ -1,127 +1,154 @@
 // This file is managed in the nixos-config repo
 {
-  // Declare static groups of users beyond those in the identity service.
-  "groups": {
-    "group:admins": ["DarkKirb@github"]
-  },
+	// Declare static groups of users beyond those in the identity service.
+	"groups": {
+		"group:admins": ["DarkKirb@github"],
+	},
 
-  // Access control lists.
-  "acls": [
-    // Allow DNS access to the DNS servers
-    {
-      "action": "accept",
-      "src": ["*"],
-      "dst": ["tag:dnsserver:53"]
-    },
-    // Allow ssh access to build devices
-    {
-      "action": "accept",
-      "src": ["*"],
-      "dst": ["tag:buildserver:22"]
-    },
-    // Allow all development devices to connect via ssh
-    {
-      "action": "accept",
-      "src": ["tag:devDevice"],
-      "dst": ["*:22"]
-    },
+	// Access control lists.
+	"acls": [
+		// Allow DNS access to the DNS servers
+		{
+			"action": "accept",
+			"src":    ["*"],
+			"dst":    ["tag:dnsserver:53"],
+		},
+		// Allow ssh access to build devices
+		{
+			"action": "accept",
+			"src":    ["*"],
+			"dst":    ["tag:buildserver:22"],
+		},
+		// Allow all development devices to connect via ssh
+		{
+			"action": "accept",
+			"src":    ["tag:devDevice"],
+			"dst":    ["*:22"],
+		},
 
-    // http servers running on the servers can be accessed
-    {
-      "action": "accept",
-      "src": ["*"],
-      "dst": ["tag:server:80", "tag:server:443"]
-    },
+		// http servers running on the servers can be accessed
+		{
+			"action": "accept",
+			"src":    ["*"],
+			"dst":    ["tag:server:80", "tag:server:443"],
+		},
 
-    // members can access email server
-    {
-      "action": "accept",
-      "src": ["*"],
-      "dst": [
-        "tag:nixos-8gb-fsn1-1:25", // SMTP
-        "tag:nixos-8gb-fsn1-1:110", // POP3
-        "tag:nixos-8gb-fsn1-1:143", // IMAP
-        "tag:nixos-8gb-fsn1-1:465", // Submission
-        "tag:nixos-8gb-fsn1-1:587", // SMTPS
-        "tag:nixos-8gb-fsn1-1:993", // IMAPS
-        "tag:nixos-8gb-fsn1-1:995" // POP3S
-      ]
-    },
+		// members can access email server
+		{
+			"action": "accept",
+			"src":    ["*"],
+			"dst": [
+				"tag:nixos-8gb-fsn1-1:25", // SMTP
+				"tag:nixos-8gb-fsn1-1:110", // POP3
+				"tag:nixos-8gb-fsn1-1:143", // IMAP
+				"tag:nixos-8gb-fsn1-1:465", // Submission
+				"tag:nixos-8gb-fsn1-1:587", // SMTPS
+				"tag:nixos-8gb-fsn1-1:993", // IMAPS
+				"tag:nixos-8gb-fsn1-1:995", // POP3S
+			],
+		},
 
-    // Prometheus scrapers
-    {
-      "action": "accept",
-      "src": ["tag:nixos-8gb-fsn1-1"],
-      "dst": [
-        "*:9100", // node exporter
-        "*:28183",
-        "*:41115", // promtail
-        "tag:dnsserver:9119", // bind
-        "tag:nixos-8gb-fsn1-1:9000", // matrix mediaa repo
-        "tag:nas:9102", // statsd-exporter
-        "tag:nixos-8gb-fsn1-1:3100", // loki
-        "tag:server:9187", // postgres
-        "tag:nutty-noon:9187"
-      ]
-    },
+		// opentelemetry stuff
+		{
+			"action": "accept",
+			"src":    ["*"],
+			"dst": [
+        "tag:nas:26678", // prometheus
+        "tag:nas:24545", // loki
+				"tag:nas:4317", // otel
+			],
+		},
 
-    // postgres and redis
-    {
-      "action": "accept",
-      "src": ["tag:instance-20221213-1915"],
-      "dst": ["tag:nixos-8gb-fsn1-1:5432", "tag:nixos-8gb-fsn1-1:53538"]
-    },
-
-    // syncthing
-    {
-      "action": "accept",
-      "src": ["tag:syncthing"],
-      "dst": ["tag:syncthing:22000"]
-    },
-    // syncthing admin panel, cups
-    {
-      "action": "accept",
-      "src": ["tag:devDevice"],
-      "dst": ["tag:nas:8384", "tag:nas:631", "tag:ipfs:5001"]
-    },
-    // Woodpecker agents
-    {
-      "action": "accept",
-      "src": ["tag:woodpeckerRunner"],
-      "dst": ["tag:nas:9000"]
-    },
-    // Mautrix bridges
+    // prometheus stuff
     {
       "action": "accept",
       "src": ["tag:nas"],
       "dst": [
-        "tag:instance-20221213-1915:29320", // mautrix-discord
-        "tag:instance-20221213-1915:29328", // mautrix-signal
-        "tag:instance-20221213-1915:29317", // mautrix-telegram
-        "tag:instance-20221213-1915:29318" // mautrix-whatsapp
+        "*:31941",
+        "*:35496",
+        "*:6379",
+        "*:8905",
+        "*:5001",
+        "*:20855",
+        "*:58636",
+        "*:8008",
+        "*:63174",
       ]
     },
-    // IPFS
-    {
-      "action": "accept",
-      "src": ["tag:ipfs"],
-      "dst": ["tag:ipfs:4001"]
-    }
-  ],
 
-  "tagOwners": {
-    "tag:instance-20221213-1915": ["DarkKirb@github"],
-    "tag:nixos-8gb-fsn1-1": ["DarkKirb@github"],
-    "tag:nas": ["DarkKirb@github"],
-    "tag:moto-g82-5g": ["DarkKirb@github"],
-    "tag:nutty-noon": ["DarkKirb@github"],
-    "tag:thinkrac": ["DarkKirb@github"],
-    "tag:dnsserver": ["DarkKirb@github"],
-    "tag:buildserver": ["DarkKirb@github"],
-    "tag:devDevice": ["DarkKirb@github"],
-    "tag:server": ["DarkKirb@github"],
-    "tag:syncthing": ["DarkKirb@github"],
-    "tag:woodpeckerRunner": ["DarkKirb@github"],
-    "tag:ipfs": ["DarkKirb@github"]
-  }
+		// postgres and redis
+		{
+			"action": "accept",
+			"src":    ["tag:instance-20221213-1915"],
+			"dst":    ["tag:nixos-8gb-fsn1-1:5432", "tag:nixos-8gb-fsn1-1:53538"],
+		},
+
+		// syncthing
+		{
+			"action": "accept",
+			"src":    ["tag:syncthing"],
+			"dst":    ["tag:syncthing:22000"],
+		},
+		// syncthing admin panel, cups
+		{
+			"action": "accept",
+			"src":    ["tag:devDevice"],
+			"dst":    ["tag:nas:8384", "tag:nas:631", "tag:ipfs:5001"],
+		},
+		// Woodpecker agents
+		{
+			"action": "accept",
+			"src":    ["tag:woodpeckerRunner"],
+			"dst":    ["tag:nas:9000"],
+		},
+		// IPFS
+		{
+			"action": "accept",
+			"src":    ["tag:ipfs"],
+			"dst":    ["tag:ipfs:4001"],
+		},
+		// KDE Connect
+		{
+			"action": "accept",
+			"src":    ["tag:kdeconnect"],
+			"dst":    ["tag:kdeconnect:1714-1764"],
+		},
+	],
+
+	"tagOwners": {
+		"tag:instance-20221213-1915": ["DarkKirb@github"],
+		"tag:nixos-8gb-fsn1-1":       ["DarkKirb@github"],
+		"tag:nas":                    ["DarkKirb@github"],
+		"tag:moto-g82-5g":            ["DarkKirb@github"],
+		"tag:nutty-noon":             ["DarkKirb@github"],
+		"tag:thinkrac":               ["DarkKirb@github"],
+		"tag:dnsserver":              ["DarkKirb@github"],
+		"tag:buildserver":            ["DarkKirb@github"],
+		"tag:devDevice":              ["DarkKirb@github"],
+		"tag:server":                 ["DarkKirb@github"],
+		"tag:syncthing":              ["DarkKirb@github"],
+		"tag:woodpeckerRunner":       ["DarkKirb@github"],
+		"tag:ipfs":                   ["DarkKirb@github"],
+		"tag:kdeconnect":             ["DarkKirb@github"],
+	},
+	"nodeAttrs": [
+		{
+			// Funnel policy, which lets tailnet members control Funnel
+			// for their own devices.
+			// Learn more at https://tailscale.com/kb/1223/tailscale-funnel/
+			"target": ["autogroup:member"],
+			"attr":   ["funnel"],
+		},
+		{"target": ["100.75.9.4"], "attr": ["funnel"]},
+	],
+	"ssh": [
+		// The default SSH policy, which lets users SSH into devices they own.
+		// Learn more at https://tailscale.com/kb/1193/tailscale-ssh/
+		{
+			"action": "check",
+			"src":    ["autogroup:member"],
+			"dst":    ["autogroup:self"],
+			"users":  ["autogroup:nonroot", "root"],
+		},
+	],
 }

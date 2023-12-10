@@ -141,18 +141,6 @@ in {
     enable = true;
     port = 35496;
   };
-  services.prometheus.scrapeConfigs = [
-    {
-      job_name = "dovecot";
-      static_configs = [
-        {
-          targets = [
-            "127.0.0.1:${toString config.services.prometheus.exporters.dovecot.port}"
-          ];
-        }
-      ];
-    }
-  ];
   sops.secrets."services/dovecot/rspamd_password" = {owner = "dovecot";};
   sops.secrets."services/dovecot/dovecot-sql.conf.ext" = {owner = "dovecot";};
   services.postgresql.ensureUsers = [
