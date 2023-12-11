@@ -11,7 +11,8 @@
       SYNCV3_SERVER = "https://matrix.chir.rs";
       SYNCV3_DB = "postgresql:///sliding_sync?sslmode=disable&host=/run/postgresql";
       SYNCV3_BINDADDR = "127.0.0.1:45587";
-      SYNCV3_PROM = "127.0.0.1:50372";
+      SYNCV3_PROM = "0.0.0.0:50372";
+      SYNCV3_OTLP_URL = "http://localhost:4317";
     };
     serviceConfig = {
       Type = "simple";
@@ -48,16 +49,4 @@
       reverse_proxy http://127.0.0.1:45587
     '';
   };
-  services.prometheus.scrapeConfigs = [
-    {
-      job_name = "matrix-sliding-sync";
-      static_configs = [
-        {
-          targets = [
-            "127.0.0.1:50372"
-          ];
-        }
-      ];
-    }
-  ];
 }
