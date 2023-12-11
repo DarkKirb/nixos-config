@@ -69,4 +69,15 @@
   boot.kernel.sysctl = {
     "fs.inotify.max_user_watches" = 524288;
   };
+  services.prometheus.exporters.node = {
+      port = 31941;
+      enabledCollectors = [
+        "buddyinfo"
+        "cgroups"
+        "systemd"
+        "ethtool"
+      ];
+      enable = true;
+    };
+  };
 }

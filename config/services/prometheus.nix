@@ -3,19 +3,6 @@
     port = 26678;
     enable = true;
 
-    exporters = {
-      node = {
-        port = 31941;
-        enabledCollectors = [
-          "buddyinfo"
-          "cgroups"
-          "systemd"
-          "ethtool"
-        ];
-        enable = true;
-      };
-    };
-
     # ingest the published nodes
     scrapeConfigs = [
       {
@@ -117,6 +104,20 @@
               "instance-20221213-1915.int.chir.rs:63174"
               "rainbow-resort.int.chir.rs:63174"
               "thinkrac.int.chir.rs:63174"
+            ];
+          }
+        ];
+      }
+      {
+        job_name = "postgresql";
+        static_configs = [
+          {
+            targets = [
+              "nas.int.chir.rs:1589"
+              "nixos-8gb-fsn1-1.int.chir.rs:1589"
+              "instance-20221213-1915.int.chir.rs:1589"
+              "thinkrac.int.chir.rs:1589"
+              "rainbow-resort.int.chir.rs:1589"
             ];
           }
         ];
