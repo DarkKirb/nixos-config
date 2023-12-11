@@ -22,13 +22,7 @@ rec {
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    colorpickle = {
-      url = "github:AgathaSorceress/colorpickle";
-      inputs.naersk.follows = "naersk";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "flake-utils";
-    };
-    devshell = {
+devshell = {
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
@@ -78,10 +72,6 @@ rec {
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     mozilla.url = "github:mozilla/nixpkgs-mozilla";
-    naersk = {
-      url = "github:nix-community/naersk/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
