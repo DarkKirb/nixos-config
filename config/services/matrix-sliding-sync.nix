@@ -13,6 +13,7 @@
       SYNCV3_BINDADDR = "127.0.0.1:45587";
       SYNCV3_PROM = "0.0.0.0:50372";
       SYNCV3_OTLP_URL = "http://localhost:4317";
+      SYNCV3_SENTRY_DSN = "https://18e36e6f16b5490c83364101717cddba@o253952.ingest.sentry.io/6449283";
     };
     serviceConfig = {
       Type = "simple";
