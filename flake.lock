@@ -78,32 +78,6 @@
         "type": "github"
       }
     },
-    "colorpickle": {
-      "inputs": {
-        "naersk": [
-          "naersk"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "utils": [
-          "flake-utils"
-        ]
-      },
-      "locked": {
-        "lastModified": 1700940986,
-        "narHash": "sha256-+7eo8Y0YkuQeGDIHtEGPpoJQNGSxpzkg4UPR63xJiss=",
-        "owner": "AgathaSorceress",
-        "repo": "colorpickle",
-        "rev": "61c77e71b5586412b6deecc2389fc39072e4b60f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AgathaSorceress",
-        "repo": "colorpickle",
-        "type": "github"
-      }
-    },
     "devshell": {
       "inputs": {
         "nixpkgs": [
@@ -473,27 +447,6 @@
         "type": "github"
       }
     },
-    "naersk": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1698420672,
-        "narHash": "sha256-/TdeHMPRjjdJub7p7+w55vyABrsJlt5QkznPYy55vKA=",
-        "owner": "nix-community",
-        "repo": "naersk",
-        "rev": "aeb58d5e8faead8980a807c840232697982d47b9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "ref": "master",
-        "repo": "naersk",
-        "type": "github"
-      }
-    },
     "nix": {
       "inputs": {
         "lowdown-src": "lowdown-src",
@@ -695,7 +648,6 @@
         "admin-fe": "admin-fe",
         "akkoma": "akkoma",
         "akkoma-fe": "akkoma-fe",
-        "colorpickle": "colorpickle",
         "devshell": "devshell",
         "dns": "dns",
         "element-web": "element-web",
@@ -707,7 +659,6 @@
         "hydra": "hydra",
         "lib-aggregate": "lib-aggregate",
         "mozilla": "mozilla",
-        "naersk": "naersk",
         "nix-gaming": "nix-gaming",
         "nix-neovim": "nix-neovim",
         "nix-packages": "nix-packages",
