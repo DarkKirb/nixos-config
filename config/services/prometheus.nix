@@ -3,6 +3,8 @@
     port = 26678;
     enable = true;
 
+    retentionTime = "90d";
+
     # ingest the published nodes
     scrapeConfigs = [
       {
