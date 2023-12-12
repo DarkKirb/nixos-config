@@ -66,7 +66,7 @@
         "fc00::/7"
       ];
       # user agent header was a mistake
-      userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0, matrix-media-repo (like twitterbot; like telegrambot; like discordbot; like facebook; like whatsapp; like firefox/92; like vkshare) +https://github.com/DarkKirb/nixos-config/pull/264"; 
+      userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0, matrix-media-repo (like twitterbot; like telegrambot; like discordbot; like facebook; like whatsapp; like firefox/92; like vkshare) +https://github.com/DarkKirb/nixos-config/pull/264";
     };
     downloads = {
       expireAfterDays = 7;

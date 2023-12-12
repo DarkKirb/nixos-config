@@ -38,14 +38,14 @@
               type = "measure";
             }
             {
-                child = {
-                    compression = "none";
-                    path = "datastore";
-                    type = "levelds";
-                };
-                mountpoint = "/";
-                prefix = "leveldb.datastore";
-                type = "measure";
+              child = {
+                compression = "none";
+                path = "datastore";
+                type = "levelds";
+              };
+              mountpoint = "/";
+              prefix = "leveldb.datastore";
+              type = "measure";
             }
           ];
           type = "mount";
