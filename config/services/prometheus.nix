@@ -127,7 +127,7 @@
       {
         job_name = "akkoma";
         metrics_path = "/api/v1/akkoma/metrics";
-        authorization.credentials_file = config.sops.secrets."secrets/akkoma-key".path;
+        authorization.credentials_file = config.sops.secrets."services/akkoma-key".path;
         scheme = "https";
         static_configs = [
           {
