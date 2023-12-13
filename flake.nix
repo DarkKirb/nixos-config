@@ -118,10 +118,6 @@ rec {
         system = "x86_64-linux";
       }
       {
-        name = "nutty-noon"; # PC
-        system = "x86_64-linux";
-      }
-      {
         name = "thinkrac"; # Thinkpad T470
         system = "x86_64-linux";
       }
