@@ -1,7 +1,6 @@
 keys:
   - &lotte 46C6A7E14BC7812E86C2700737FE303AAC2D06CD
   - &nixos-8gb-fsn1-1 age1273ps5thcy70ckdt0270s2nysqgu48t38pq3wq975v3y7mf4eavsw38wsl
-  - &nutty-noon age1c96dd2hj7qg7sl8wq277q7a4na36krd4dmu50jz5mvw4ls9grcps28zhdl
   - &thinkrac age1p400545a482fma40yfgytu40p6wr5a75v4f8yeudvgf7eh5erufqxhgynr
   - &nas age1c7y687sxh428wk34s8ws6kemu62mggafpt40rmanevgkuj5xa59q6f7tlc
   - &instance-20221213-1915 age1elra3uklw8rmwkevqms2l4tsd06d5utqda9d2w4qvqpz898uzuesugxkhc
@@ -12,7 +11,6 @@ creation_rules:
     key_groups:
       - age:
           - *nixos-8gb-fsn1-1
-          - *nutty-noon
           - *thinkrac
           - *nas
           - *instance-20221213-1915
@@ -24,12 +22,6 @@ creation_rules:
     key_groups:
       - age:
           - *nixos-8gb-fsn1-1
-        pgp:
-          - *lotte
-  - path_regex: secrets/nutty-noon\.yaml$
-    key_groups:
-      - age:
-          - *nutty-noon
         pgp:
           - *lotte
   - path_regex: secrets/thinkrac\.yaml$
@@ -51,7 +43,6 @@ creation_rules:
   - path_regex: secrets/desktop\.yaml$
     key_groups:
       - age:
-          - *nutty-noon
           - *thinkrac
           - *rainbow-resort
         pgp:

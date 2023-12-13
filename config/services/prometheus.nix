@@ -149,4 +149,5 @@
       }
     ];
   };
+  sops.secrets."services/akkoma-key".owner = "prometheus";
 }

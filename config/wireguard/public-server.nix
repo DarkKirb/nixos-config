@@ -36,13 +36,6 @@
           "fd0d:a262:1fa6:e621:66b6:3f04:5583:db63/128"
         ];
       }
-      # nutty-noon
-      {
-        publicKey = "YYQmSJwipRkZJUsPV5DxhfyRBMdj/O1XzN+cGYtUi1s=";
-        allowedIPs = [
-          "fd0d:a262:1fa6:e621:47e6:24d4:2acb:9437/128"
-        ];
-      }
       # thinkrac
       {
         publicKey = "iKW9nomLyLY2f90UY66POzY8CfDhQrqOLqchERlR3TY=";

@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 28;
+    serial = 29;
   };
   NS = [
     "ns1.chir.rs."
@@ -113,71 +113,6 @@ in {
           alpn = ["http/1.1" "h2" "h3"];
           ipv4hint = ["100.119.226.33"];
           ipv6hint = ["fd7a:115c:a1e0:ab12:4843:cd96:6277:e221"];
-          ttl = zoneTTL;
-        }
-      ];
-      CAA = [
-        {
-          issuerCritical = false;
-          tag = "issue";
-          value = "letsencrypt.org";
-          ttl = zoneTTL;
-        }
-        {
-          issuerCritical = false;
-          tag = "issuewild";
-          value = "letsencrypt.org";
-          ttl = zoneTTL;
-        }
-        {
-          issuerCritical = false;
-          tag = "iodef";
-          value = "mailto:lotte@chir.rs";
-          ttl = zoneTTL;
-        }
-      ];
-    };
-    nutty-noon = {
-      A = [
-        (ttl zoneTTL (a "100.105.131.79"))
-      ];
-      AAAA = [
-        (ttl zoneTTL (aaaa "fd7a:115c:a1e0:ab12:4843:cd96:6269:834f"))
-      ];
-      SSHFP = [
-        {
-          algorithm = "rsa";
-          mode = "sha1";
-          fingerprint = "02e148adb73781d6c60202de7f17a164d3a8e1a4";
-          ttl = zoneTTL;
-        }
-        {
-          algorithm = "rsa";
-          mode = "sha256";
-          fingerprint = "9d7f38a6c8bed75a9bacb253aa172dd4b4a1291ba77c1f07e5b9a0c38a353040";
-          ttl = zoneTTL;
-        }
-        {
-          algorithm = "ed25519";
-          mode = "sha1";
-          fingerprint = "932070039e800bf2ae259b8dbf253342e7ee0da6";
-          ttl = zoneTTL;
-        }
-        {
-          algorithm = "ed25519";
-          mode = "sha256";
-          fingerprint = "78c585ece995f82bd0c23890c7fd59e0fa7d2c1741f303dc9e301b0161e9e2c3";
-          ttl = zoneTTL;
-        }
-      ];
-      # TODO: add TLSA
-      HTTPS = [
-        {
-          svcPriority = 1;
-          targetName = ".";
-          alpn = ["http/1.1" "h2" "h3"];
-          ipv4hint = ["100.105.131.79"];
-          ipv6hint = ["fd7a:115c:a1e0:ab12:4843:cd96:6269:834f"];
           ttl = zoneTTL;
         }
       ];

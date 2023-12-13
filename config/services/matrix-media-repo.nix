@@ -51,7 +51,7 @@
     urlPreviews = {
       enabled = true;
       numWorkers = 10;
-      oEmbed = true;
+      oEmbed = false;
       allowedNetworks = [
         "0.0.0.0/0"
         "::/0"

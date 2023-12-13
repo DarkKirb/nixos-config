@@ -9,13 +9,6 @@
         port = 22;
         user = "remote-build";
       };
-      "build-pc" = {
-        hostname = "nutty-noon.int.chir.rs";
-        identitiesOnly = true;
-        identityFile = "${config.home.homeDirectory}/.ssh/builder_id_ed25519";
-        port = 22;
-        user = "remote-build";
-      };
       "build-rainbow-resort" = {
         hostname = "rainbow-resort.int.chir.rs";
         identitiesOnly = true;

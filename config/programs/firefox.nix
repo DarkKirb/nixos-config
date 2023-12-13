@@ -46,6 +46,7 @@
           ublock-origin
           umatrix
           unpaywall
+          plasma-integration
           tampermonkey
         ];
       };
