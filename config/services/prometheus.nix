@@ -5,6 +5,8 @@
 
     retentionTime = "90d";
 
+    checkConfig = false;
+
     # ingest the published nodes
     scrapeConfigs = [
       {
