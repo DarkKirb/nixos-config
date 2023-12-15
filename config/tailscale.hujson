@@ -53,28 +53,30 @@
 			"action": "accept",
 			"src":    ["*"],
 			"dst": [
-        "tag:nas:26678", // prometheus
-        "tag:nas:24545", // loki
+				"tag:nas:26678", // prometheus
+				"tag:nas:24545", // loki
 				"tag:nas:4317", // otel
+				"tag:nas:2144", // tempo
 			],
 		},
 
-    // prometheus stuff
-    {
-      "action": "accept",
-      "src": ["tag:nas"],
-      "dst": [
-        "*:31941",
-        "*:35496",
-        "*:6379",
-        "*:8905",
-        "*:5001",
-        "*:20855",
-        "*:58636",
-        "*:8008",
-        "*:63174",
-      ]
-    },
+		// prometheus stuff
+		{
+			"action": "accept",
+			"src":    ["tag:nas"],
+			"dst": [
+				"*:31941",
+				"*:35496",
+				"*:6379",
+				"*:8905",
+				"*:5001",
+				"*:20855",
+				"*:58636",
+				"*:8008",
+				"*:63174",
+				"*:1589",
+			],
+		},
 
 		// postgres and redis
 		{

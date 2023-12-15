@@ -3,18 +3,9 @@
     port = 26678;
     enable = true;
 
-    exporters = {
-      node = {
-        port = 31941;
-        enabledCollectors = [
-          "buddyinfo"
-          "cgroups"
-          "systemd"
-          "ethtool"
-        ];
-        enable = true;
-      };
-    };
+    retentionTime = "90d";
+
+    checkConfig = false;
 
     # ingest the published nodes
     scrapeConfigs = [
@@ -121,6 +112,44 @@
           }
         ];
       }
+      {
+        job_name = "postgresql";
+        static_configs = [
+          {
+            targets = [
+              "nas.int.chir.rs:1589"
+              "nixos-8gb-fsn1-1.int.chir.rs:1589"
+              "instance-20221213-1915.int.chir.rs:1589"
+              "thinkrac.int.chir.rs:1589"
+              "rainbow-resort.int.chir.rs:1589"
+            ];
+          }
+        ];
+      }
+      {
+        job_name = "akkoma";
+        metrics_path = "/api/v1/akkoma/metrics";
+        authorization.credentials_file = config.sops.secrets."services/akkoma-key".path;
+        scheme = "https";
+        static_configs = [
+          {
+            targets = [
+              "akko.chir.rs"
+            ];
+          }
+        ];
+      }
+      {
+        job_name = "matrix-sliding-sync";
+        static_configs = [
+          {
+            targets = [
+              "instance-20221213-1915.int.chir.rs:50372"
+            ];
+          }
+        ];
+      }
     ];
   };
+  sops.secrets."services/akkoma-key".owner = "prometheus";
 }

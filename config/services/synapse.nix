@@ -116,7 +116,7 @@
         msc3967_enabled = true;
         msc2659_enabled = true;
       };
-      #sentry.dsn = "https://18e36e6f16b5490c83364101717cddba@o253952.ingest.sentry.io/6449283";
+      sentry.dsn = "https://18e36e6f16b5490c83364101717cddba@o253952.ingest.sentry.io/6449283";
     };
     withJemalloc = true;
   };
@@ -192,6 +192,4 @@
     key = "services/mautrix/whatsapp.yaml";
     owner = "matrix-synapse";
   };
-  services.prometheus.scrapeConfigs = [
-  ];
 }
