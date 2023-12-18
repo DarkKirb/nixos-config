@@ -30,6 +30,7 @@
     ./services/rspamd.nix
     ./wireguard/public-server.nix
     ./services/shitalloverme.nix
+    ./services/atticd.nix
     ./services/wordpress.nix
     ./services/initrd-ssh.nix
     ./wireguard

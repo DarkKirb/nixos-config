@@ -65,7 +65,7 @@
     {
       name = "nextcloud";
       ensurePermissions = {
-        "DATABASE nextcloud" = "ALL PRIVILEGES";
+        "DATABASE attic" = "ALL PRIVILEGES";
       };
     }
   ];

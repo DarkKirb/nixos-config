@@ -104,7 +104,7 @@
   ];
   hardware.enableRedistributableFirmware = true;
   nix.settings.substituters = lib.mkForce [
-    "https://cache.chir.rs/"
+    "https://attic.chir.rs/chir-rs/"
     "https://cache.nixos.org/"
     "https://beam.attic.rs/riscv"
     "https://cache.ztier.in"

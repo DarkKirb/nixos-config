@@ -15,6 +15,7 @@
     ./services/named-submissive.nix
     ./services/shitalloverme.nix
     ./users/remote-build.nix
+    ./services/atticd.nix
     ./services/minecraft.nix
     ./services/postgres.nix
     ./services/nextcloud.nix
