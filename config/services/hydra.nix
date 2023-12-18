@@ -1,5 +1,6 @@
 {
   system,
+  attic,
   lib,
   config,
   pkgs,
@@ -76,7 +77,6 @@ in {
         </prometheus>
       </hydra_notify>
       binary_cache_secret_key_file = ${config.sops.secrets."services/hydra/cache-key".path}
-      store_uri = s3://cache-chir-rs?scheme=https&endpoint=ams1.vultrobjects.com&secret-key=${config.sops.secrets."services/hydra/cache-key".path}&multipart-upload=true&compression=zstd&compression-level=15
       <git-input>
         timeout = 3600
       </git-input>
@@ -114,7 +114,7 @@ in {
   sops.secrets."services/hydra/aws_credentials" = {
     owner = "hydra-queue-runner";
     path = "/var/lib/hydra/queue-runner/.aws/credentials";
-    restartUnits = ["hydra-notify.service" "hydra-queue-runner.service"];
+    restartUnits = ["hydra-notify.service"];
   };
   systemd.services.update-hydra-hosts = {
     description = "Update hydra hosts";
@@ -151,25 +151,38 @@ in {
     chown -Rv hydra-queue-runner /var/lib/hydra/queue-runner
     ln -svf ${sshConfig} /var/lib/hydra/queue-runner/.ssh/config
   '';
-  systemd.services.clean-s3-cache = let
-    clean-cache = pkgs.callPackage ../../packages/clean-s3-cache.nix {};
-  in {
-    enable = true;
-    description = "Clean up S3 cache";
+  sops.secrets."attic/config.toml" = {
+    owner = "hydra-queue-runner";
+    key = "attic/config.toml";
+    path = "/var/lib/hydra/queue-runner/.config/attic/config.toml";
+  };
+
+  systemd.services."upload-hydra-results" = {
+    description = "Upload hydra build results";
     serviceConfig = {
-      ExecStart = "${clean-cache}/bin/clean-s3-cache.py";
+      Type = "oneshot";
       User = "hydra-queue-runner";
       Group = "hydra";
     };
+    script = ''
+      set -ex
+      if [ -e /var/lib/hydra/queue-runner/uploading ]; then
+        cat /var/lib/hydra/queue-runner/uploading | xargs ${attic.packages.${system}.attic-client}/bin/attic push chir-rs
+        rm /var/lib/hydra/queue-runner/uploading
+      fi
+      mv /var/lib/hydra/queue-runner/upload-queue /var/lib/hydra/queue-runner/uploading
+      cat /var/lib/hydra/queue-runner/uploading | xargs ${attic.packages.${system}.attic-client}/bin/attic push chir-rs
+      rm /var/lib/hydra/queue-runner/uploading
+    '';
   };
-  systemd.timers.clean-s3-cache = {
+  systemd.timers.upload-hydra-results = {
     enable = true;
-    description = "Clean up S3 cache";
-    requires = ["clean-s3-cache.service"];
+    description = "Upload hydra build results";
+    requires = ["upload-hydra-results.service"];
     wantedBy = ["multi-user.target"];
     timerConfig = {
       OnBootSec = 300;
-      OnUnitActiveSec = 604800;
+      OnUnitActiveSec = 300;
     };
   };
 }
