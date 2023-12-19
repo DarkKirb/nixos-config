@@ -86,7 +86,7 @@ in {
       </git-input>
       <runcommand>
         job = *:*:*
-        command = cat $HYDRA_JSON | ${pkgs.jq}/bin/jq -r '.drvPath' | xargs ${pkgs.nix}/bin/nix-store -q -R --include-outputs >> /var/lib/hydra/queue-runner/upload
+        command = cat $HYDRA_JSON | ${pkgs.jq}/bin/jq -r '.drvPath' >> /var/lib/hydra/queue-runner/upload
       </runcommand>
       max_concurrent_evals = 1
     '';

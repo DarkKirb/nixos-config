@@ -100,11 +100,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1703013115,
-        "narHash": "sha256-8n5iemY1R1Q6lzOObxBxSUlV5wyB/TRf2t9RNkDtnEg=",
+        "lastModified": 1703017416,
+        "narHash": "sha256-N0sqBaMHn9JHR7izSF2P1YDOqTdQpklgQbKGAXn3GsI=",
         "owner": "DarkKirb",
         "repo": "attic",
-        "rev": "ce8532ac1bdfb5f667c65842961837536b7225c1",
+        "rev": "7f24aa9cf1a9bab44914483dfab69bdfff34c869",
         "type": "github"
       },
       "original": {
