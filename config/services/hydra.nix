@@ -97,7 +97,7 @@ in {
       "/run/hydra-machines"
     ];
   };
-  nix.settings.allowed-uris = ["https://github.com/" "https://git.chir.rs/" "https://darkkirb.de/" "https://git.neo-layout.org/" "https://static.darkkirb.de/" "https://gist.github.com/" "https://git.kescher.at/" "https://akkoma.dev/" "https://gitlab.com/" "https://api.github.com/" "https://git.sr.ht/"];
+  nix.settings.allowed-uris = ["git+https://github.com" "https://github.com/" "git+https://git.chir.rs" "https://git.chir.rs/" "https://darkkirb.de/" "https://git.neo-layout.org/" "https://static.darkkirb.de/" "https://gist.github.com/" "https://git.kescher.at/" "https://akkoma.dev/" "https://gitlab.com/" "https://api.github.com/" "https://git.sr.ht/"];
   sops.secrets."services/hydra/gitea_token" = {};
   sops.secrets."services/hydra/github_token" = {};
   sops.secrets."services/hydra/cache-key" = {
