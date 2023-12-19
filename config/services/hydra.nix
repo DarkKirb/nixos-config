@@ -57,8 +57,8 @@ in {
   services.hydra = {
     enable = true;
     package = hydra.packages.${system}.hydra.overrideAttrs (_: {
-        doCheck = false;
-        doInstallCheck = false;
+      doCheck = false;
+      doInstallCheck = false;
     });
     hydraURL = "https://hydra.chir.rs/";
     notificationSender = "hydra@chir.rs";
@@ -163,8 +163,8 @@ in {
 
   systemd.services."attic-queue" = {
     description = "Upload build results";
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
-      Type = "oneshot";
       User = "hydra-queue-runner";
       Group = "hydra";
     };
