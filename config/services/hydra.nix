@@ -4,6 +4,7 @@
   lib,
   config,
   pkgs,
+  hydra,
   ...
 }: let
   machines = pkgs.writeText "machines" ''
@@ -55,7 +56,10 @@ in {
   ];
   services.hydra = {
     enable = true;
-    package = pkgs.hydra-unstable;
+    package = hydra.packages.${system}.hydra.overrideAttrs (_: {
+        doCheck = false;
+        doInstallCheck = false;
+    });
     hydraURL = "https://hydra.chir.rs/";
     notificationSender = "hydra@chir.rs";
     useSubstitutes = true;
@@ -82,7 +86,7 @@ in {
       </git-input>
       <runcommand>
         job = *:*:*
-        command = cat $HYDRA_JSON | ${pkgs.jq}/bin/jq -r '.drvPath' | xargs ${pkgs.nix}/bin/nix-store -q -R --include-outputs >> /var/lib/hydra/queue-runner/upload-queue
+        command = cat $HYDRA_JSON | ${pkgs.jq}/bin/jq -r '.drvPath' | xargs ${pkgs.nix}/bin/nix-store -q -R --include-outputs >> /var/lib/hydra/queue-runner/upload
       </runcommand>
       max_concurrent_evals = 1
     '';
@@ -157,32 +161,17 @@ in {
     path = "/var/lib/hydra/queue-runner/.config/attic/config.toml";
   };
 
-  systemd.services."upload-hydra-results" = {
-    description = "Upload hydra build results";
+  systemd.services."attic-queue" = {
+    description = "Upload build results";
     serviceConfig = {
       Type = "oneshot";
       User = "hydra-queue-runner";
       Group = "hydra";
     };
     script = ''
-      set -ex
-      if [ -e /var/lib/hydra/queue-runner/uploading ]; then
-        cat /var/lib/hydra/queue-runner/uploading | xargs ${attic.packages.${system}.attic-client}/bin/attic push chir-rs
-        rm /var/lib/hydra/queue-runner/uploading
-      fi
-      mv /var/lib/hydra/queue-runner/upload-queue /var/lib/hydra/queue-runner/uploading
-      cat /var/lib/hydra/queue-runner/uploading | xargs ${attic.packages.${system}.attic-client}/bin/attic push chir-rs
-      rm /var/lib/hydra/queue-runner/uploading
+      export QUEUE_PATH=/var/lib/hydra/queue-runner/upload
+      export SLED_PATH=/var/lib/hydra/queue-runner/queue-db
+      exec ${attic.packages.${system}.attic-queue}/bin/attic-queue
     '';
-  };
-  systemd.timers.upload-hydra-results = {
-    enable = true;
-    description = "Upload hydra build results";
-    requires = ["upload-hydra-results.service"];
-    wantedBy = ["multi-user.target"];
-    timerConfig = {
-      OnBootSec = 300;
-      OnUnitActiveSec = 300;
-    };
   };
 }
