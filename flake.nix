@@ -86,7 +86,7 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hydra = {
-      url = "github:thufschmitt/hydra/nix-ca";
+      url = "github:DarkKirb/hydra";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lib-aggregate = {
