@@ -403,16 +403,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1702321565,
-        "narHash": "sha256-RVTM37NcfrIGjnA35d2rlTmXntCWdwUQiEfKMYqZLQk=",
-        "owner": "thufschmitt",
+        "lastModified": 1703070768,
+        "narHash": "sha256-xKv6g4VveZ/RZSse5iXER5d9DMnCoyrZk18QLe8JlM8=",
+        "owner": "DarkKirb",
         "repo": "hydra",
-        "rev": "7f3e2c807651f312d37d59b3fb1402407dff8d5e",
+        "rev": "055c0bf30fea6e7eac7e0ecf4a27cfcd19a43345",
         "type": "github"
       },
       "original": {
-        "owner": "thufschmitt",
-        "ref": "nix-ca",
+        "owner": "DarkKirb",
         "repo": "hydra",
         "type": "github"
       }
