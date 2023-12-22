@@ -315,5 +315,5 @@ in {
     '';
   };
 
-  services.postgresql.extraPlugins = with pkgs.postgresql_13.pkgs; [rum];
+  services.postgresql.extraPlugins = with config.services.postgresql.package.pkgs; [rum];
 }
