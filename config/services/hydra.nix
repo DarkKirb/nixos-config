@@ -97,7 +97,7 @@ in {
       "/run/hydra-machines"
     ];
   };
-  nix.settings.allowed-uris = ["git+https://github.com" "https://github.com/" "git+https://git.chir.rs" "https://git.chir.rs/" "https://darkkirb.de/" "https://git.neo-layout.org/" "https://static.darkkirb.de/" "https://gist.github.com/" "https://git.kescher.at/" "https://akkoma.dev/" "https://gitlab.com/" "https://api.github.com/" "https://git.sr.ht/"];
+  nix.settings.allowed-uris = ["github:" "https://" "http://"];
   sops.secrets."services/hydra/gitea_token" = {};
   sops.secrets."services/hydra/github_token" = {};
   sops.secrets."services/hydra/cache-key" = {
@@ -171,6 +171,7 @@ in {
     script = ''
       export QUEUE_PATH=/var/lib/hydra/queue-runner/upload
       export SLED_PATH=/var/lib/hydra/queue-runner/queue-db
+      export RUST_LOG=info
       exec ${attic.packages.${system}.attic-queue}/bin/attic-queue
     '';
   };
