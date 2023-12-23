@@ -79,7 +79,7 @@
         invites_enabled = true;
         account_activation_required = true;
         account_approval_required = true;
-        static_dir = "/etc/pleroma/static";
+        static_dir = "${static_dir}";
         max_pinned_statuses = 10;
         attachment_links = true;
         max_report_comment_size = 58913;
@@ -267,7 +267,7 @@ in {
   services.pleroma = {
     enable = true;
     package = akkoma.packages.${system}.akkoma;
-    configs = [(builtins.readFile akkconfig)];
+    configs = ["import_config \"${akkconfig}\""];
     user = "akkoma";
     group = "akkoma";
     secretConfigFile = config.sops.secrets."services/akkoma.exs".path;
@@ -315,9 +315,5 @@ in {
     '';
   };
 
-  services.postgresql.extraPlugins = with pkgs.postgresql_13.pkgs; [rum];
-  environment.etc."pleroma/static" = {
-    source = static_dir;
-    mode = "symlink";
-  };
+  services.postgresql.extraPlugins = with config.services.postgresql.package.pkgs; [rum];
 }
