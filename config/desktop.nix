@@ -21,7 +21,7 @@ in {
     ./services/docker.nix
     ./services/cifs.nix
     ./services/kubo-local.nix
-    ./programs/virtualbox.nix
+    #    ./programs/virtualbox.nix
   ];
   fonts = {
     fontDir.enable = true;
