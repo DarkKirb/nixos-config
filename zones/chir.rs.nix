@@ -242,7 +242,6 @@ with dns.lib.combinators; let
       attic = createFullZone {};
       cloud = createZone oracleBase;
       lotte.CNAME = ["lotte-chir-rs.b-cdn.net."];
-      lotte-nocdn = createZone {};
       ipfs-nocdn = createZone oracleBase;
       ipfs.CNAME = ["ipfs-chir-rs.b-cdn.net."];
       status = createZone oracleBase;
