@@ -90,15 +90,15 @@ in rec {
     '';
   };
   essentialsx = fetchurl {
-    url = "https://github.com/EssentialsX/Essentials/releases/download/2.20.0/EssentialsX-2.20.0.jar";
-    sha256 = "2c55dafb9350bebec21b530aba18a51f770d95356b218427ba9b5840e4aabbc8";
+    url = "https://github.com/EssentialsX/Essentials/releases/download/2.20.1/EssentialsX-2.20.1.jar";
+    sha256 = "802ea30bda460ca4597e818925816933c123b08d8126a814fac28d03a61bf542";
   };
   essentialsx-chat = fetchurl {
-    url = "https://github.com/EssentialsX/Essentials/releases/download/2.20.0/EssentialsXChat-2.20.0.jar";
-    sha256 = "095a6c95183ecf900efd7007554a2caea00eb7851cf8965893dab1483f00fd81";
+    url = "https://github.com/EssentialsX/Essentials/releases/download/2.20.1/EssentialsXChat-2.20.1.jar";
+    sha256 = "40aa5c20241ceb3007ebcb5cfbf19bf2c467b0c090ae50e70653ee87ab775ca6";
   };
   essentialsx-spawn = fetchurl {
-    url = "https://github.com/EssentialsX/Essentials/releases/download/2.20.0/EssentialsXSpawn-2.20.0.jar";
-    sha256 = "df3203cf052cdaf15554d5cbebec889b049b1e5b4d33bf497ea8b4a91e37e10c";
+    url = "https://github.com/EssentialsX/Essentials/releases/download/2.20.1/EssentialsXSpawn-2.20.1.jar";
+    sha256 = "650d7c6a33865a02c5ffa4eb710def28e73d972c9aef85b2b1f4e71b9bd261a0";
   };
 }

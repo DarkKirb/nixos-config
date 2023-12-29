@@ -42,6 +42,10 @@
         uuid = "7df86b33-1987-4b99-8290-d23440c13bc2";
         name = "DaTsHeePiii";
       }
+      {
+        name = "crafted2cc";
+        uuid = "894a8cfe-4066-4a68-be7d-2b01a62a1ed6";
+      }
     ];
     properties.server-ip = "172.16.154.251"; # death
     paper-yml = {
