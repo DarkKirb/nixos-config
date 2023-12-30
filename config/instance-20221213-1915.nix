@@ -23,7 +23,6 @@
     ./services/mautrix-telegram.nix
     ./services/mautrix-whatsapp.nix
     ./services/mautrix-signal.nix
-    ./services/kubo.nix
     ./services/synapse.nix
     ./services/heisenbridge.nix
     ./services/uptime-kuma.nix

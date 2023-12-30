@@ -26,7 +26,6 @@
     ./services/samba.nix
     ./services/docker.nix
     ./users/remote-build.nix
-    ./services/kubo-local.nix
     ./services/nfs.nix
     ./services/tempo.nix
     ./services/loki.nix
@@ -151,10 +150,6 @@
   };
   services.tailscale.useRoutingFeatures = "both";
   hardware.sane.brscan4.enable = true;
-  services.kubo.settings.Addresses.API = lib.mkForce [
-    "/ip4/0.0.0.0/tcp/5001"
-    "/ip6/::/tcp/5001"
-  ]; # Only exposed over the tailed scale
 
   swapDevices = [
     {

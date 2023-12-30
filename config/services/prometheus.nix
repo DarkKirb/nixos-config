@@ -54,20 +54,6 @@
         ];
       }
       {
-        job_name = "kubo";
-        metrics_path = "/debug/metrics/prometheus";
-        static_configs = [
-          {
-            targets = [
-              "instance-20221213-1915.int.chir.rs:5001"
-              "nas.int.chir.rs:5001"
-              "rainbow-road.int.chir.rs:5001"
-              "thinkrac.int.chir.rs:5001"
-            ];
-          }
-        ];
-      }
-      {
         job_name = "matrix-media-repo";
         static_configs = [
           {

@@ -62,7 +62,6 @@ in
       doCheck = false;
       doInstallCheck = false;
     });
-    kubo-orig = kubo;
     fcitx5-table-extra = prev.fcitx5-table-extra.overrideAttrs (super: {
       patches =
         super.patches
