@@ -118,7 +118,6 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs";
-    nur.url = "github:nix-community/NUR";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.flake-utils.follows = "flake-utils";
@@ -137,7 +136,6 @@ rec {
     nixpkgs,
     sops-nix,
     home-manager,
-    nur,
     ...
   } @ args: let
     systems = [
@@ -160,10 +158,6 @@ rec {
       {
         name = "instance-20221213-1915"; # Oracle server
         system = "aarch64-linux";
-      }
-      {
-        name = "vf2"; # VisionFive 2
-        system = "riscv64-linux";
       }
       {
         name = "rainbow-resort"; # PC
@@ -193,9 +187,6 @@ rec {
               sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               ({pkgs, ...}: {
-                nixpkgs.overlays = [
-                  nur.overlay
-                ];
                 home-manager.extraSpecialArgs = args // {inherit system;};
               })
               (import utils/link-input.nix args)
@@ -206,7 +197,6 @@ rec {
     overlays = {
       x86_64-linux = import ./overlays args "x86_64-linux";
       aarch64-linux = import ./overlays args "aarch64-linux";
-      riscv64-linux = import ./overlays args "riscv64-linux";
     };
     devShell.x86_64-linux = let
       pkgs = import nixpkgs {
@@ -266,22 +256,6 @@ rec {
       neovim = args.nix-neovim.buildNeovim {
         inherit pkgs;
         configuration = import ./config/programs/vim/configuration.nix true;
-      };
-    };
-    packages.riscv64-linux = let
-      pkgs = import nixpkgs {
-        system = "riscv64-linux";
-        overlays = [
-          self.overlays.riscv64-linux
-          (import ./overlays/riscv.nix args)
-          args.nix-packages.overlays.riscv64-linux.default
-        ];
-        config.allowUnfree = true;
-      };
-    in {
-      neovim-base = args.nix-neovim.buildNeovim {
-        inherit pkgs;
-        configuration = import ./config/programs/vim/configuration.nix false;
       };
     };
     hydraJobs =

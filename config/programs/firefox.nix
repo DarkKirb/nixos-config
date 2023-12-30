@@ -31,24 +31,6 @@
           "font.name-list.serif.x-western" = "sans-serif, nasin-nanpa";
         };
         id = 0;
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          clearurls
-          consent-o-matic
-          darkreader
-          decentraleyes
-          don-t-fuck-with-paste
-          keepassxc-browser
-          privacy-badger
-          privacy-possum
-          sponsorblock
-          stylus
-          tree-style-tab
-          ublock-origin
-          umatrix
-          unpaywall
-          plasma-integration
-          tampermonkey
-        ];
       };
     };
   };
