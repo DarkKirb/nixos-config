@@ -144,7 +144,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 45;
+      serial = 46;
     };
     NS = [
       "ns1.chir.rs."
@@ -238,7 +238,6 @@ with dns.lib.combinators; let
       mediaproxy.CNAME = ["mediaproxy-chir-rs.b-cdn.net."];
       cache.CNAME = ["cache-chir-rs.b-cdn.net."];
       attic = createFullZone {};
-      cloud = createZone oracleBase;
       lotte.CNAME = ["lotte-chir-rs.b-cdn.net."];
       status = createZone oracleBase;
       sliding-sync = createZone oracleBase;
