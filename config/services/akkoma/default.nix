@@ -267,10 +267,12 @@ in {
   services.pleroma = {
     enable = true;
     package = akkoma.packages.${system}.akkoma;
-    configs = ['''
-      import Config
-      import_config "${akkconfig}"
-    '''];
+    configs = [
+      ''
+        import Config
+        import_config "${akkconfig}"
+      ''
+    ];
     user = "akkoma";
     group = "akkoma";
     secretConfigFile = config.sops.secrets."services/akkoma.exs".path;
