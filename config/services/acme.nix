@@ -22,6 +22,7 @@
       extraDomainNames = ["shitallover.me"];
       dnsProvider = "gcloud";
       credentialsFile = config.sops.secrets."security/acme/gcloud".path;
+      dnsResolver = "1.1.1.1:53";
     };
     certs."miifox.net" = {
       dnsProvider = "cloudflare";
