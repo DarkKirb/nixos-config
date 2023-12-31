@@ -8,7 +8,6 @@
   chir-rs = import ../../zones/chir.rs.nix {inherit dns;};
   int-chir-rs = import ../../zones/int.chir.rs.nix {inherit dns;};
   signzone = import ../../zones/signzone.nix;
-  shitallover-me = import ../../zones/shitallover.me.nix {inherit dns;};
 in {
   imports = [
     (signzone {
@@ -31,13 +30,6 @@ in {
       zsk = "services/dns/de/darkkirb/61825";
       zone = darkkirb-de;
       zonename = "darkkirb.de";
-    })
-    (signzone {
-      inherit dns;
-      zsk = "services/dns/me/shitallover/30477";
-      ksk = "services/dns/me/shitallover/38310";
-      zone = shitallover-me;
-      zonename = "shitallover.me";
     })
   ];
 
@@ -86,21 +78,6 @@ in {
         extraConfig = ''
           update-policy {
             grant certbot. name _acme-challenge.int.chir.rs. txt;
-          };
-        '';
-      };
-      "shitallover.me" = {
-        master = true;
-        file = "/var/lib/named/shitallover.me";
-        slaves = ["fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b" "100.99.173.107"];
-        extraConfig = "also-notify {fd7a:115c:a1e0:ab12:4843:cd96:6263:ad6b; 100.99.173.107;};";
-      };
-      "_acme-challenge.shitallover.me" = {
-        master = true;
-        file = "/var/lib/named/_acme-challenge.shitallover.me";
-        extraConfig = ''
-          update-policy {
-            grant certbot. name _acme-challenge.shitallover.me. txt;
           };
         '';
       };
