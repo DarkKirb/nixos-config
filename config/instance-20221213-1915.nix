@@ -18,7 +18,6 @@
     ./services/atticd.nix
     ./services/minecraft.nix
     ./services/postgres.nix
-    ./services/nextcloud.nix
     ./services/mautrix-discord.nix
     ./services/mautrix-telegram.nix
     ./services/mautrix-whatsapp.nix
@@ -87,8 +86,6 @@
     "L /var/lib/acme - - - - /persist/var/lib/acme"
     "L /var/lib/tailscale/tailscaled.state - - - - /persist/var/lib/tailscale/tailscaled.state"
     "d /build - - - - -"
-    "L /var/lib/nextcloud - - - - /persist/var/lib/nextcloud"
-    "d /persist/var/lib/nextcloud 0750 nextcloud nextcloud - -"
     "L /var/lib/ipfs - - - - /persist/var/lib/ipfs"
     "L /var/lib/uptime-kuma - - - - /persist/var/lib/uptime-kuma"
   ];
