@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 29;
+    serial = 30;
   };
   NS = [
     "ns1.chir.rs."
@@ -24,8 +24,6 @@ in {
     "ns4.chir.rs."
     "ns1.darkkirb.de."
     "ns2.darkkirb.de."
-    "ns1.shitallover.me."
-    "ns2.shitallover.me."
   ];
   DNSKEY = [
     {

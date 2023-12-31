@@ -144,7 +144,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 44;
+      serial = 45;
     };
     NS = [
       "ns1.chir.rs."
@@ -153,8 +153,6 @@ with dns.lib.combinators; let
       "ns4.chir.rs."
       "ns1.darkkirb.de."
       "ns2.darkkirb.de."
-      "ns1.shitallover.me."
-      "ns2.shitallover.me."
     ];
     MX = [
       (ttl zoneTTL (mx.mx 10 "mail.chir.rs."))
@@ -254,8 +252,6 @@ with dns.lib.combinators; let
           "ns4.chir.rs."
           "ns1.darkkirb.de."
           "ns2.darkkirb.de."
-          "ns1.shitallover.me."
-          "ns2.shitallover.me."
         ]
         // {
           DS = [
