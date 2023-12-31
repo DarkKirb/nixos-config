@@ -16,7 +16,7 @@
       listen = "[::1]:57448";
       allowed-hosts = ["attic.chir.rs"];
       api-endpoint = "https://attic.chir.rs/";
-      database = lib.mkForce {};
+      database.url = "postgresql:///attic?sslmode=disable&host=/run/postgresql";
       storage = {
         type = "s3";
         region = "us-east-1";
@@ -42,7 +42,7 @@
   ];
   services.postgresql.ensureUsers = [
     {
-      name = "attic";
+      name = "atticd";
       ensurePermissions = {
         "DATABASE attic" = "ALL PRIVILEGES";
       };
