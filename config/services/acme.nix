@@ -32,5 +32,5 @@
   sops.secrets."security/acme/dns" = {};
   sops.secrets."security/acme/cloudflare" = {};
   sops.secrets."security/acme/gcloud" = {};
-  sops.secrets."security/acme/gcloud.json" = {};
+  sops.secrets."security/acme/gcloud.json".owner = "acme";
 }
