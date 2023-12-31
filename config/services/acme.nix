@@ -1,4 +1,4 @@
-_: {
+{config, ...}: {
   security.acme = {
     acceptTerms = true;
     defaults = {
@@ -20,6 +20,8 @@ _: {
     certs."shitallover.me" = {
       domain = "*.shitallover.me";
       extraDomainNames = ["shitallover.me"];
+      dnsProvider = "gcloud";
+      credentialsFile = config.sops.secrets."security/acme/gcloud".path;
     };
     certs."miifox.net" = {
       dnsProvider = "cloudflare";
@@ -29,4 +31,6 @@ _: {
   };
   sops.secrets."security/acme/dns" = {};
   sops.secrets."security/acme/cloudflare" = {};
+  sops.secrets."security/acme/gcloud" = {};
+  sops.secrets."security/acme/gcloud.json" = {};
 }
