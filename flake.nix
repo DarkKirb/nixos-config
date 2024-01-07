@@ -195,11 +195,11 @@ rec {
                 home-manager.extraSpecialArgs = args // {inherit system;};
                 nixpkgs.config.contentAddressedByDefault = true;
                 nixpkgs.overlays = [
-                    (import "${args.nixtoo}/overlay.nix")
-                    args.admin-fe.overlays.default
-                    args.akkoma.overlays.default
-                    args.akkoma-fe.overlays.default
-                    args.element-web.overlays.default
+                  (import "${args.nixtoo}/overlay.nix")
+                  args.admin-fe.overlays.default
+                  args.akkoma.overlays.default
+                  args.akkoma-fe.overlays.default
+                  args.element-web.overlays.default
                 ];
               })
               (import utils/link-input.nix args)

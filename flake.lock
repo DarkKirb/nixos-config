@@ -627,11 +627,11 @@
         "nixtoo": "nixtoo"
       },
       "locked": {
-        "lastModified": 1704543471,
-        "narHash": "sha256-MgzkDaoGj+EYXt/L34EDSc96AfrfKCXvicSyG8TzhOU=",
+        "lastModified": 1704655812,
+        "narHash": "sha256-P64q8k+lLFkUWl7NOfbHjTzJQjqOEXU0WlmMtdGnNoY=",
         "owner": "DarkKirb",
         "repo": "nix-packages",
-        "rev": "d97d21b7c0eaef9298a72b68703481ce9783be04",
+        "rev": "60012ff698d12e8ef88126b9069ce5ebce8872f5",
         "type": "github"
       },
       "original": {
@@ -729,11 +729,11 @@
     "nixtoo_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1704464048,
-        "narHash": "sha256-ZJySuNQpvURl7c2OpAHVs7AUeRRjDTpjK4Gf6yDsRKM=",
+        "lastModified": 1705305545,
+        "narHash": "sha256-MVRHAg37r26AsGhzfAi8Vbx0Feg55ry8Xvh/o+tgn88=",
         "owner": "DarkKirb",
         "repo": "nixtoo",
-        "rev": "b61d1a9b163813e27998484ff5bc4d018e3cdced",
+        "rev": "3497ab586c6ad35d2cd7ed30b74c1299130ef10a",
         "type": "github"
       },
       "original": {
