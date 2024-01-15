@@ -193,9 +193,7 @@ rec {
               home-manager.nixosModules.home-manager
               ({pkgs, ...}: {
                 home-manager.extraSpecialArgs = args // {inherit system;};
-                nixpkgs.config.contentAddressedByDefault = true;
                 nixpkgs.overlays = [
-                  (import "${args.nixtoo}/overlay.nix")
                   args.admin-fe.overlays.default
                   args.akkoma.overlays.default
                   args.akkoma-fe.overlays.default
