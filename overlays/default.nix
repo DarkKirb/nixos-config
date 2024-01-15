@@ -74,5 +74,4 @@ in
       doCheck = false;
       doInstallCheck = false;
     });
-    inherit (inputs.element-web.packages.${system}) element-web;
   }

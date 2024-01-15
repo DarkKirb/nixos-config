@@ -144,7 +144,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 47;
+      serial = 49;
     };
     NS = [
       "ns1.chir.rs."
@@ -155,7 +155,9 @@ with dns.lib.combinators; let
       "ns2.darkkirb.de."
     ];
     MX = [
-      (ttl zoneTTL (mx.mx 10 "mail.chir.rs."))
+      (ttl zoneTTL (mx.mx 10 "mx.zoho.eu."))
+      (ttl zoneTTL (mx.mx 20 "mx2.zoho.eu."))
+      (ttl zoneTTL (mx.mx 50 "mx3.zoho.eu."))
     ];
     SRV = [
       {
@@ -190,8 +192,9 @@ with dns.lib.combinators; let
       }
     ];
     TXT = [
-      (ttl zoneTTL (txt "v=spf1 ip4:138.201.155.128 ip6:2a01:4f8:1c17:d953::/64 -all"))
+      (ttl zoneTTL (txt "v=spf1 include:zoho.eu ~all"))
       (ttl zoneTTL (txt "google-site-verification=qXjyR8La2S_BMayWYxan-9PB16aChjgKMRI2NGSTAds"))
+      (ttl zoneTTL (txt "zoho-verification=zb25156608.zmverify.zoho.eu"))
     ];
     DNSKEY = [
       {
@@ -209,10 +212,13 @@ with dns.lib.combinators; let
     ];
     subdomains = {
       _dmarc.TXT = [
-        (ttl zoneTTL (txt "v=DMARC1; p=reject; rua=mailto:postmaster@chir.rs;"))
+        (ttl zoneTTL (txt "v=DMARC1; p=reject; rua=mailto:dmarc@chir.rs; ruf=mailto:dmarc@chir.rs; sp=reject; adkim=s; aspf=s"))
       ];
       _domainkey.subdomains.mail.TXT = [
         (ttl zoneTTL (txt "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDTZvuDWFmZOOMr9pogMK5lFBjV3nRAjUpFv3o0d4KhbRW/zVrOOdfdt83F6zSLzUqrxSOG3uKVG+J0KR4kX4BbYflSLZ++y91C0Uu5d+o3A8Y/z2vUSe5YVt44IaDQoPCCpuWEYyqKIEaKGXNFPvlsO6y551biM3raNjq5kEpb3wIDAQAB"))
+      ];
+      _domainkey.subdomains.zmail.TXT = [
+        (ttl zoneTTL (txt "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCYVA1GcJ+JSl/Qv3hHtnge+FwAMn0+4KXWH3Ut4Ma6li3jT3ibO3d7sk7D4jmqwSQH+vCh/HC7+0PI8PYM9TQIecVwdwBF/29yMpiyVDyEc8ppRfU5KeYJsPxSAS/quFHy3M24qfckXb5aor6aI0mOtq8Bvh+v+69CpJUGSkNLUQIDAQAB"))
       ];
       _keybase.TXT = [
         (ttl zoneTTL (txt "keybase-site-verification=r044cwg0wOTW-ws35BA5MMRLNwjdTNJ4uOu6kgdTopI"))
