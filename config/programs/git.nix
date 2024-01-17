@@ -13,6 +13,8 @@ desktop: {pkgs, ...}: {
     extraConfig = {
       init.defaultBranch = "main";
       merge.conflictstyle = "diff3";
+      push.autoSetupRemote = true;
+      rerere.enabled = true;
     };
     delta.enable = true;
   };
