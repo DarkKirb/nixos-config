@@ -756,22 +756,6 @@
         "type": "github"
       }
     },
-    "nixtoo_2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1705305545,
-        "narHash": "sha256-MVRHAg37r26AsGhzfAi8Vbx0Feg55ry8Xvh/o+tgn88=",
-        "owner": "DarkKirb",
-        "repo": "nixtoo",
-        "rev": "3497ab586c6ad35d2cd7ed30b74c1299130ef10a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DarkKirb",
-        "repo": "nixtoo",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "admin-fe": "admin-fe",
@@ -797,7 +781,6 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs",
-        "nixtoo": "nixtoo_2",
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",
         "systems": "systems_2"

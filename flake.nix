@@ -9,21 +9,18 @@ rec {
       inputs.devshell.follows = "devshell";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixtoo.follows = "nixtoo";
     };
     akkoma = {
       url = "github:DarkKirb/akkoma";
       inputs.devshell.follows = "devshell";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixtoo.follows = "nixtoo";
     };
     akkoma-fe = {
       url = "github:DarkKirb/akkoma-fe";
       inputs.devshell.follows = "devshell";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixtoo.follows = "nixtoo";
     };
     attic = {
       url = "github:DarkKirb/attic";
@@ -63,7 +60,6 @@ rec {
       inputs.devshell.follows = "devshell";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixtoo.follows = "nixtoo";
     };
     firefox = {
       url = "github:nix-community/flake-firefox-nightly";
@@ -121,8 +117,6 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs";
-    nixtoo.url = "github:DarkKirb/nixtoo";
-    nixtoo.flake = false;
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.flake-utils.follows = "flake-utils";
