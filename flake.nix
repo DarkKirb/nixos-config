@@ -187,12 +187,6 @@ rec {
               home-manager.nixosModules.home-manager
               ({pkgs, ...}: {
                 home-manager.extraSpecialArgs = args // {inherit system;};
-                nixpkgs.overlays = [
-                  args.admin-fe.overlays.default
-                  args.akkoma.overlays.default
-                  args.akkoma-fe.overlays.default
-                  args.element-web.overlays.default
-                ];
               })
               (import utils/link-input.nix args)
             ];
@@ -225,6 +219,44 @@ rec {
         ];
       };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    packages.x86_64-linux = let
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [
+          self.overlays.x86_64-linux
+          args.nix-packages.overlays.x86_64-linux.default
+        ];
+        config.allowUnfree = true;
+      };
+    in {
+      neovim-base = args.nix-neovim.buildNeovim {
+        inherit pkgs;
+        configuration = import ./config/programs/vim/configuration.nix false;
+      };
+      neovim = args.nix-neovim.buildNeovim {
+        inherit pkgs;
+        configuration = import ./config/programs/vim/configuration.nix true;
+      };
+    };
+    packages.aarch64-linux = let
+      pkgs = import nixpkgs {
+        system = "aarch64-linux";
+        overlays = [
+          self.overlays.aarch64-linux
+          args.nix-packages.overlays.aarch64-linux.default
+        ];
+        config.allowUnfree = true;
+      };
+    in {
+      neovim-base = args.nix-neovim.buildNeovim {
+        inherit pkgs;
+        configuration = import ./config/programs/vim/configuration.nix false;
+      };
+      neovim = args.nix-neovim.buildNeovim {
+        inherit pkgs;
+        configuration = import ./config/programs/vim/configuration.nix true;
+      };
+    };
     hydraJobs =
       (builtins.listToAttrs (map
         ({
@@ -240,6 +272,7 @@ rec {
         systems))
       // {
         inherit devShell;
+        inherit packages;
         # Uncomment the line to build an installer image
         # This is EXTREMELY LARGE and will make builds take forever
         # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
