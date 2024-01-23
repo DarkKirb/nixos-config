@@ -1,18 +1,19 @@
 diff --git a/tables/CMakeLists.txt b/tables/CMakeLists.txt
-index 9980fba..95eb97d 100644
+index f24f528..2810887 100644
 --- a/tables/CMakeLists.txt
 +++ b/tables/CMakeLists.txt
-@@ -5,6 +5,7 @@ set(TABLE_NAME
-   wubi-large zhengma-large zhengma-pinyin
+@@ -6,6 +6,7 @@
    t9
    wubi98 wubi98-pinyin wubi98-single
+   wubi98-large
 +  sitelen-pona
    )
  
  set(MB_FILE)
+
 diff --git a/tables/sitelen-pona.conf.in b/tables/sitelen-pona.conf.in
 new file mode 100644
-index 0000000..faf00bf
+index 0000000..2f5cd3b
 --- /dev/null
 +++ b/tables/sitelen-pona.conf.in
 @@ -0,0 +1,40 @@
@@ -58,7 +59,7 @@ index 0000000..faf00bf
 +1=Page_Down
 diff --git a/tables/sitelen-pona.txt b/tables/sitelen-pona.txt
 new file mode 100644
-index 0000000..1b8c911
+index 0000000..3eea26e
 --- /dev/null
 +++ b/tables/sitelen-pona.txt
 @@ -0,0 +1,915 @@
@@ -77,7 +78,7 @@ index 0000000..1b8c911
 +e 󱤉
 +en 󱤊
 +esun 󱤋
-+ijo 󱤌
++ijo ��
 +ike 󱤍
 +ilo 󱤎
 +insa 󱤏
@@ -94,7 +95,7 @@ index 0000000..1b8c911
 +kili 󱤚
 +kiwen 󱤛
 +ko 󱤜
-+kon 󱤝
++kon ��
 +kule 󱤞
 +kulupu 󱤟
 +kute 󱤠
@@ -128,7 +129,7 @@ index 0000000..1b8c911
 +mute 󱤼
 +nanpa 󱤽
 +nasa 󱤾
-+nasin 󱤿
++nasin ��
 +nena 󱥀
 +ni 󱥁
 +nimi 󱥂
@@ -156,7 +157,7 @@ index 0000000..1b8c911
 +selo 󱥘
 +seme 󱥙
 +sewi 󱥚
-+sijelo 󱥛
++sijelo ��
 +sike 󱥜
 +sin 󱥝
 +sina 󱥞
@@ -172,7 +173,7 @@ index 0000000..1b8c911
 +taso 󱥨
 +tawa 󱥩
 +telo 󱥪
-+tenpo 󱥫
++tenpo ��
 +toki 󱥬
 +tomo 󱥭
 +tu 󱥮
@@ -339,7 +340,7 @@ index 0000000..1b8c911
 +ike-lili 󿥽
 +ike-lukin 󿥾
 +ilo-kipisi 󿥿
-+ilo-lape 󿦀
++ilo-lape ��
 +ilo-lukin 󿦁
 +ilo-moli 󿦂
 +ilo-musi 󿦃
@@ -358,7 +359,7 @@ index 0000000..1b8c911
 +jan-kasi 󿦐
 +jan-kulupu 󿦑
 +jan-lawa 󿦒
-+jan-lili 󿦓
++jan-lili ��
 +jan-monsuta 󿦔
 +jan-mute 󿦕
 +jan-nasa 󿦖
@@ -412,11 +413,11 @@ index 0000000..1b8c911
 +ko-kasi 󿧆
 +ko-kule 󿧇
 +ko-laso 󿧈
-+ko-lete 󿧉
++ko-lete ��
 +ko-lili 󿧊
 +ko-loje 󿧋
 +ko-nasa 󿧌
-+ko-pimeja 󿧍
++ko-pimeja ��
 +ko-seli 󿧎
 +ko-walo 󿧏
 +kon-lete 󿧐
@@ -566,7 +567,7 @@ index 0000000..1b8c911
 +linja> 󿩢
 +lon> 󿩣
 +<lon 󿩤
-+<lon> 󿩥
++<lon> ��
 +luka> 󿩦
 +meli> 󿩧
 +<meli 󿩨
@@ -694,7 +695,7 @@ index 0000000..1b8c911
 +likujo 󿫢
 +neja 󿫣
 +oke 󿫤
-+pata 󿫥
++pata ��
 +peto 󿫦
 +po 󿫧
 +polinpin 󿫨
@@ -770,7 +771,7 @@ index 0000000..1b8c911
 +nu 󿬮
 +su 󿬯
 +u 󿬰
-+jami 󿬱
++jami ��
 +melome 󿬲
 +melome> 󿬳
 +<melome 󿬴
@@ -825,12 +826,12 @@ index 0000000..1b8c911
 +owe 󿭥
 +pa 󿭦
 +pasila 󿭧
-+pasila> 󿭨
++pasila> ��
 +peta 󿭩
 +pika 󿭪
 +pipo 󿭫
 +sikomo 󿭬
-+sikomo> 󿭭
++sikomo> ��
 +<sikomo 󿭮
 +<sikomo> 󿭯
 +tokana 󿭰
@@ -844,13 +845,13 @@ index 0000000..1b8c911
 +lijokuku1 󿭸
 +lijokuku2 󿭹
 +lo 󿭺
-+lo> 󿭻
++lo> ��
 +me 󿭼
 +nele 󿭽
 +nu 󿭾
 +nuwa 󿭿
 +poni 󿮀
-+sipi 󿮁
++sipi ��
 +wi 󿮂
 +wi> 󿮃
 +oki 󿮄
@@ -865,7 +866,7 @@ index 0000000..1b8c911
 +slape 󿮍
 +jans 󿮎
 +jew 󿮏
-+a-suli 󿮐
++a-suli ��
 +asuto 󿮑
 +eko 󿮒
 +jan-jan 󿮓
@@ -926,7 +927,7 @@ index 0000000..1b8c911
 +luka-luka-luka-tu-wan 󿯊
 +luka-luka-luka-wan 󿯋
 +luka-luka-luka-wan-tu 󿯌
-+luka-tu 󿯍
++luka-tu ��
 +luka-wan 󿯎
 +lupa-meli 󿯏
 +mama-meli2 󿯐
@@ -943,7 +944,7 @@ index 0000000..1b8c911
 +meli2-wawa 󿯛
 +mije2-ike 󿯜
 +mije2-lili 󿯝
-+mije2-pona 󿯞
++mije2-pona ��
 +mije2-sama 󿯟
 +mije-tonsi 󿯠
 +mije2-tonsi 󿯡
@@ -953,7 +954,7 @@ index 0000000..1b8c911
 +tonsi-ike 󿯥
 +tonsi-lili 󿯦
 +tonsi-pona 󿯧
-+tonsi-sama 󿯨
++tonsi-sama ��
 +tonsi-sin 󿯩
 +tonsi-unpa 󿯪
 +tonsi-wawa 󿯫

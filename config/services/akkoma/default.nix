@@ -2,6 +2,9 @@
   pkgs,
   config,
   system,
+  akkoma,
+  admin-fe,
+  akkoma-fe,
   ...
 }: let
   purge_url_script = pkgs.writeScript "purge-url" ''
@@ -29,8 +32,8 @@
     name = "akkoma-static";
     src = pkgs.emptyDirectory;
     nativeBuildInputs = with pkgs; [xorg.lndir];
-    akkoma_fe = pkgs.akkoma-fe;
-    akkoma_admin_fe = pkgs.admin-fe;
+    akkoma_fe = akkoma-fe.packages.${system}.akkoma-fe;
+    akkoma_admin_fe = admin-fe.packages.${system}.admin-fe;
     inherit fedibird_fe;
     tos = ./terms-of-service.html;
     dontUnpack = false;
@@ -263,7 +266,7 @@
 in {
   services.pleroma = {
     enable = true;
-    package = pkgs.akkoma;
+    package = akkoma.packages.${system}.akkoma;
     configs = [
       ''
         import Config
