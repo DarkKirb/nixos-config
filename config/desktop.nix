@@ -162,10 +162,6 @@ in {
       symbolsFile = ../extra/keyboard/symbols;
     };
   };
-  i18n.inputMethod = {
-    enabled = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [anthy];
-  };
   security.polkit.enable = true;
   services.dbus.enable = true;
   services.dbus.packages = with pkgs; [dconf];
