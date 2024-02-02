@@ -188,4 +188,5 @@ in {
     enableSSHSupport = true;
   };
   programs.gamemode.enable = true;
+  nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
 }
