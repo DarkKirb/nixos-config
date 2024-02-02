@@ -54,7 +54,7 @@ in {
     enable = true;
     description = "Upload backup to remote";
     script = ''
-      ${pkgs.rclone}/bin/rclone sync /backup backup:backup-darkkirb-de/backup
+      ${pkgs.rclone}/bin/rclone sync /backup backup:backup-chir-rs/backup
     '';
     serviceConfig = {
       User = "backup";
