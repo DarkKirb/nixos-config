@@ -97,17 +97,16 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nixtoo": "nixtoo",
         "rust-overlay": [
           "rust-overlay"
         ]
       },
       "locked": {
-        "lastModified": 1704627086,
-        "narHash": "sha256-HDj80BnLIgx4hq0uJ0KNbDakH5Gw2D9gU+Po1egMZtE=",
+        "lastModified": 1709226986,
+        "narHash": "sha256-JGRQs/HNRSx1l72nFcRyx3yHLSytkvod4UvfVUOaMDM=",
         "owner": "DarkKirb",
         "repo": "attic",
-        "rev": "481ee7f6edfddd12cc22d9afed319b78c693e0fb",
+        "rev": "6afe6b8280e5bf9d3178171b403df9ab107593c0",
         "type": "github"
       },
       "original": {
@@ -845,22 +844,6 @@
       "original": {
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixtoo": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1704619189,
-        "narHash": "sha256-o1XsJ7Q9KhjHAJNyJmYT9or4Haha97QgZBREMWXJ1ms=",
-        "owner": "DarkKirb",
-        "repo": "nixtoo",
-        "rev": "65cf8c4b42aad2f908ec96e0196920047f1e0b2e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DarkKirb",
-        "repo": "nixtoo",
         "type": "github"
       }
     },
