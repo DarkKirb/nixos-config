@@ -38,7 +38,8 @@ _: {
       value = "99999";
     }
   ];
-  /*environment.etc."pipewire/pipewire-pulse.conf.d/discord.conf".text = ''
+  /*
+    environment.etc."pipewire/pipewire-pulse.conf.d/discord.conf".text = ''
     pulse.rules = [
       {
         # Discord notification sounds fix
@@ -53,5 +54,6 @@ _: {
         }
       }
     ]
-  '';*/
+  '';
+  */
 }
