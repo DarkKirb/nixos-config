@@ -137,7 +137,7 @@ in {
     pinentry-qt
     dotool
     wl-clipboard
-    plasma5Packages.thirdParty.lightly
+    #plasma5Packages.thirdParty.lightly
   ];
   programs.gnupg.agent.pinentryFlavor = "qt";
 
@@ -154,8 +154,9 @@ in {
     layout = "de";
     xkbVariant = "neo";
     displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
-    displayManager.defaultSession = "plasmawayland";
+    displayManager.sddm.wayland.enable = true;
+    desktopManager.plasma6.enable = true;
+    displayManager.defaultSession = "plasma";
     extraLayouts.zlr = {
       description = "lojban layout";
       languages = ["jbo"];
