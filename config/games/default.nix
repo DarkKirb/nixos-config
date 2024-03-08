@@ -23,7 +23,6 @@ in {
     pkgs.xivlauncher
     pkgs.prismlauncher
     pkgs.mgba
-    pkgs.citra
     wine
     nix-gaming.packages.x86_64-linux.osu-lazer-bin
   ];
