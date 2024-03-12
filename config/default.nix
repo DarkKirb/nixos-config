@@ -78,4 +78,5 @@
     ];
     enable = true;
   };
+  i18n.defaultLocale = "nl_NL.UTF-8";
 }
