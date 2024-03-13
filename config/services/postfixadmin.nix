@@ -27,14 +27,6 @@
     owner = "postfixadmin";
   };
   services.postgresql.ensureDatabases = ["postfix"];
-  services.postgresql.ensureUsers = [
-    {
-      name = "postfixadmin";
-      ensurePermissions = {
-        "DATABASE \"postfix\"" = "ALL PRIVILEGES";
-      };
-    }
-  ];
   services.caddy.virtualHosts."mail.chir.rs" = {
     useACMEHost = "chir.rs";
     logFormat = pkgs.lib.mkForce "";

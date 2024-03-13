@@ -143,14 +143,6 @@ in {
   };
   sops.secrets."services/dovecot/rspamd_password" = {owner = "dovecot";};
   sops.secrets."services/dovecot/dovecot-sql.conf.ext" = {owner = "dovecot";};
-  services.postgresql.ensureUsers = [
-    {
-      name = "dovecot";
-      ensurePermissions = {
-        "DATABASE \"postfix\"" = "CONNECT";
-      };
-    }
-  ];
   networking.firewall.allowedTCPPorts = [
     110 # POP3
     143 # IMAP

@@ -63,12 +63,4 @@
   services.postgresql.ensureDatabases = [
     "mautrix_discord"
   ];
-  services.postgresql.ensureUsers = [
-    {
-      name = "mautrix-discord";
-      ensurePermissions = {
-        "DATABASE mautrix_discord" = "ALL PRIVILEGES";
-      };
-    }
-  ];
 }

@@ -32,14 +32,6 @@
   };
   users.groups.sliding-sync = {};
   services.postgresql.ensureDatabases = ["sliding_sync"];
-  services.postgresql.ensureUsers = [
-    {
-      name = "sliding-sync";
-      ensurePermissions = {
-        "DATABASE sliding_sync" = "ALL PRIVILEGES";
-      };
-    }
-  ];
 
   services.caddy.virtualHosts."sliding-sync.chir.rs" = {
     useACMEHost = "chir.rs";

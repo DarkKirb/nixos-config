@@ -165,14 +165,6 @@ in {
   services.postgresql.ensureDatabases = [
     "matrix_media_repo"
   ];
-  services.postgresql.ensureUsers = [
-    {
-      name = "matrix-media-repo";
-      ensurePermissions = {
-        "DATABASE matrix_media_repo" = "ALL PRIVILEGES";
-      };
-    }
-  ];
   services.caddy.virtualHosts."matrix.chir.rs" = {
     useACMEHost = "chir.rs";
     logFormat = pkgs.lib.mkForce "";

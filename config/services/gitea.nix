@@ -81,12 +81,6 @@
   };
 
   services.postgresql.ensureDatabases = ["gitea"];
-  services.postgresql.ensureUsers = [
-    {
-      name = "gitea";
-      ensurePermissions = {"DATABASE gitea" = "ALL PRIVILEGES";};
-    }
-  ];
 
   services.redis.servers.gitea = {
     enable = true;

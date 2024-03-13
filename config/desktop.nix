@@ -139,7 +139,6 @@ in {
     wl-clipboard
     #plasma5Packages.thirdParty.lightly
   ];
-  programs.gnupg.agent.pinentryFlavor = "qt";
 
   xdg.portal = {
     enable = true;

@@ -40,14 +40,6 @@
   services.postgresql.ensureDatabases = [
     "attic"
   ];
-  services.postgresql.ensureUsers = [
-    {
-      name = "atticd";
-      ensurePermissions = {
-        "DATABASE attic" = "ALL PRIVILEGES";
-      };
-    }
-  ];
   services.caddy.virtualHosts."attic.chir.rs" = {
     useACMEHost = "chir.rs";
     logFormat = lib.mkForce "";
