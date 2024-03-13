@@ -47,9 +47,9 @@
         };
         encryption = {
           allow = true;
-          default = true;
+          default = false;
           appservice = false;
-          require = true;
+          require = false;
           plaintext_mentions = true;
           allow_key_sharing = true;
         };
