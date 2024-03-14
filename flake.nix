@@ -55,12 +55,6 @@ rec {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    element-web = {
-      url = "github:DarkKirb/element-web";
-      inputs.devshell.follows = "devshell";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     firefox = {
       url = "github:nix-community/flake-firefox-nightly";
       inputs.cachix.follows = "nixpkgs";
