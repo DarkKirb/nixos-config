@@ -123,14 +123,6 @@
   services.postgresql.ensureDatabases = [
     "synapse"
   ];
-  services.postgresql.ensureUsers = [
-    {
-      name = "matrix-synapse";
-      ensurePermissions = {
-        "DATABASE synapse" = "ALL PRIVILEGES";
-      };
-    }
-  ];
   systemd.services.matrix-synapse.serviceConfig.ExecStartPre = lib.mkForce (pkgs.writeShellScript "dummy" "true");
 
   services.caddy.virtualHosts."matrix.int.chir.rs" = {

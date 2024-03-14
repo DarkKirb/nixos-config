@@ -63,12 +63,4 @@
   services.postgresql.ensureDatabases = [
     "mautrix_whatsapp"
   ];
-  services.postgresql.ensureUsers = [
-    {
-      name = "mautrix-whatsapp";
-      ensurePermissions = {
-        "DATABASE mautrix_whatsapp" = "ALL PRIVILEGES";
-      };
-    }
-  ];
 }

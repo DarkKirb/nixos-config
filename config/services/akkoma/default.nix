@@ -279,12 +279,6 @@ in {
   };
   systemd.services.pleroma.path = with pkgs; [exiftool imagemagick ffmpeg];
   services.postgresql.ensureDatabases = ["akkoma"];
-  services.postgresql.ensureUsers = [
-    {
-      name = "akkoma";
-      ensurePermissions = {"DATABASE akkoma" = "ALL PRIVILEGES";};
-    }
-  ];
   sops.secrets."services/akkoma.exs" = {owner = "akkoma";};
   sops.secrets."services/bunny-key".owner = "akkoma";
   services.caddy.virtualHosts."akko.chir.rs" = {

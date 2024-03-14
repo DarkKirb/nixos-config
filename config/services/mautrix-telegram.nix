@@ -67,12 +67,4 @@
   services.postgresql.ensureDatabases = [
     "mautrix_telegram"
   ];
-  services.postgresql.ensureUsers = [
-    {
-      name = "mautrix-telegram";
-      ensurePermissions = {
-        "DATABASE mautrix_telegram" = "ALL PRIVILEGES";
-      };
-    }
-  ];
 }

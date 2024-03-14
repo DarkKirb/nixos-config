@@ -22,12 +22,6 @@
     MemoryMax = "1.1G";
   };
   services.postgresql.ensureDatabases = ["miifox"];
-  services.postgresql.ensureUsers = [
-    {
-      name = "miifox";
-      ensurePermissions = {"DATABASE miifox" = "ALL PRIVILEGES";};
-    }
-  ];
   services.caddy.virtualHosts."miifox.net" = {
     useACMEHost = "miifox.net";
     logFormat = pkgs.lib.mkForce "";

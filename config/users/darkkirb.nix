@@ -22,10 +22,4 @@
     neededForUsers = true;
   };
   services.postgresql.ensureDatabases = ["darkkirb"];
-  services.postgresql.ensureUsers = [
-    {
-      name = "darkkirb";
-      ensurePermissions = {"DATABASE darkkirb" = "ALL PRIVILEGES";};
-    }
-  ];
 }

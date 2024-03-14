@@ -54,14 +54,6 @@
       smtputf8_enable = "yes";
     };
   };
-  services.postgresql.ensureUsers = [
-    {
-      name = "postfix";
-      ensurePermissions = {
-        "DATABASE \"postfix\"" = "CONNECT";
-      };
-    }
-  ];
   sops.secrets."services/postfix/virtual_alias_domains.cf" = {owner = "postfix";};
   sops.secrets."services/postfix/virtual_alias_maps.cf" = {owner = "postfix";};
   sops.secrets."services/postfix/virtual_mailbox_domains.cf" = {owner = "postfix";};

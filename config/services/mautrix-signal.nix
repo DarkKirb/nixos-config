@@ -57,12 +57,4 @@
   services.postgresql.ensureDatabases = [
     "mautrix_signal"
   ];
-  services.postgresql.ensureUsers = [
-    {
-      name = "mautrix-signal";
-      ensurePermissions = {
-        "DATABASE mautrix_signal" = "ALL PRIVILEGES";
-      };
-    }
-  ];
 }
