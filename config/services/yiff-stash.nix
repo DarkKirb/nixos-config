@@ -2,6 +2,7 @@
   config,
   system,
   nix-packages,
+  ...
 }: {
   users.users.yiffstash = {
     group = "yiffstash";
@@ -10,7 +11,7 @@
   users.groups.yiffstash = {};
 
   systemd.services.yiffstash = {
-    enable = "true";
+    enable = true;
     description = "Post yiff to telegram";
     serviceConfig = {
       ExecStart = "${nix-packages.packages.${system}.yiffstash}";
@@ -23,11 +24,11 @@
     enable = true;
     description = "Post yiff to telegram";
     requires = ["yiffstash.service"];
-    wantedBy = "multi-user.target";
+    wantedBy = ["multi-user.target"];
     timerConfig = {
       OnUnitActiveSec = "30m";
       RandomizedDelaySec = "1h";
     };
-    sops.secrets."caroline/yiffstash/bot-token" = {};
   };
+  sops.secrets."caroline/yiffstash/bot-token" = {};
 }
