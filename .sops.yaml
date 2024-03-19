@@ -1,5 +1,5 @@
 keys:
-  - &lotte 46C6A7E14BC7812E86C2700737FE303AAC2D06CD
+  - &lotte age1tltjgexkp5fz3rum4j0k66ty5q4u8ptvkgkepumd20zal24g2qfs5xgw76
   - &nixos-8gb-fsn1-1 age1273ps5thcy70ckdt0270s2nysqgu48t38pq3wq975v3y7mf4eavsw38wsl
   - &thinkrac age1p400545a482fma40yfgytu40p6wr5a75v4f8yeudvgf7eh5erufqxhgynr
   - &nas age1c7y687sxh428wk34s8ws6kemu62mggafpt40rmanevgkuj5xa59q6f7tlc
@@ -16,52 +16,44 @@ creation_rules:
           - *instance-20221213-1915
           - *vf2
           - *rainbow-resort
-        pgp:
-          - *lotte
+          - *lotte          
   - path_regex: secrets/nixos-8gb-fsn1-1\.yaml$
     key_groups:
       - age:
           - *nixos-8gb-fsn1-1
-        pgp:
           - *lotte
   - path_regex: secrets/thinkrac\.yaml$
     key_groups:
       - age:
           - *thinkrac
-        pgp:
           - *lotte
   - path_regex: secrets/nixos\.yaml$
     key_groups:
-      - pgp:
+      - age:
           - *lotte
   - path_regex: secrets/nas\.yaml$
     key_groups:
       - age:
           - *nas
-        pgp:
           - *lotte
   - path_regex: secrets/desktop\.yaml$
     key_groups:
       - age:
           - *thinkrac
           - *rainbow-resort
-        pgp:
           - *lotte
   - path_regex: secrets/instance-20221213-1915\.yaml$
     key_groups:
       - age:
           - *instance-20221213-1915
-        pgp:
           - *lotte
   - path_regex: secrets/vf2\.yaml$
     key_groups:
       - age:
           - *vf2
-        pgp:
           - *lotte
   - path_regex: secrets/rainbow-resort\.yaml$
     key_groups:
       - age:
           - *rainbow-resort
-        pgp:
           - *lotte
