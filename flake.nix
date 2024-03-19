@@ -199,6 +199,7 @@ rec {
     in
       pkgs.mkShell {
         nativeBuildInputs = with pkgs; [
+          age
           sops
           ssh-to-age
           nix-prefetch
