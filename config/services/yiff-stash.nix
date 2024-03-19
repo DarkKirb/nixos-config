@@ -14,7 +14,7 @@
     enable = true;
     description = "Post yiff to telegram";
     serviceConfig = {
-      ExecStart = "${nix-packages.packages.${system}.yiffstash}";
+      ExecStart = "/bin/sh ${nix-packages.packages.${system}.yiffstash}";
       User = "yiffstash";
       Group = "yiffstash";
       Type = "oneshot";
@@ -30,5 +30,5 @@
       RandomizedDelaySec = "1h";
     };
   };
-  sops.secrets."caroline/yiffstash/bot-token" = {};
+  sops.secrets."caroline/yiffstash/bot-token".owner = "yiffstash";
 }
