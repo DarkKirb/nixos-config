@@ -189,4 +189,5 @@ in {
   };
   programs.gamemode.enable = true;
   nixpkgs.config.permittedInsecurePackages = ["electron-26.3.0"];
+  programs.gnupg.agent.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
 }

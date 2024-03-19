@@ -30,6 +30,7 @@
     ./services/tempo.nix
     ./services/loki.nix
     ./services/prometheus.nix
+    ./services/yiff-stash.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
