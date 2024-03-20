@@ -74,14 +74,4 @@ in
       doCheck = false;
       doInstallCheck = false;
     });
-    xivlauncher = prev.xivlauncher.overrideAttrs (_: {
-      version = "1.0.8";
-      src = self.fetchFromGitHub {
-        owner = "goatcorp";
-        repo = "XIVLauncher.Core";
-        rev = "1.0.8";
-        hash = "sha256-x4W5L4k+u0MYKDWJu82QcXARW0zjmqqwGiueR1IevMk=";
-        fetchSubmodules = true;
-      };
-    });
   }
