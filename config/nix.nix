@@ -27,7 +27,6 @@
         "riscv:TZX1ReuoIGt7QiSQups+92ym8nKJUSV0O2NkS4HAqH8="
         "cache.ztier.link-1:3P5j2ZB9dNgFFFVkCQWT3mh0E+S3rIWtZvoql64UaXM="
       ];
-      auto-optimise-store = true;
     };
     extraOptions = ''
       experimental-features = nix-command flakes ca-derivations
