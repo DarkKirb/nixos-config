@@ -26,6 +26,7 @@
     ./services/heisenbridge.nix
     ./services/uptime-kuma.nix
     ./services/matrix-sliding-sync.nix
+    ./services/reverse-proxy.nix
     ./wireguard
     ./zfs.nix
   ];

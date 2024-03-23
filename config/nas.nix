@@ -31,6 +31,7 @@
     ./services/loki.nix
     ./services/prometheus.nix
     ./services/yiff-stash.nix
+    ./services/reverse-proxy.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
