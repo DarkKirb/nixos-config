@@ -26,6 +26,8 @@
 in {
   services.caddy.virtualHosts = {
     "hydra.chir.rs" = mkConfig "https://hydra.int.chir.rs";
+    "weblate.chir.rs" = mkConfig "https://weblate.int.chir.rs";
+    "weblate.int.chir.rs" = mkConfig "http://localhost:23432"; 
     "mastodon.chir.rs" = {
       useACMEHost = "chir.rs";
       logFormat = pkgs.lib.mkForce "";
