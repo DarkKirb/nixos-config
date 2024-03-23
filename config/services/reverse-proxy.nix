@@ -28,18 +28,18 @@ in {
     "hydra.chir.rs" = mkConfig "https://hydra.int.chir.rs";
     "weblate.chir.rs" = mkConfig "https://weblate.int.chir.rs";
     "weblate.int.chir.rs" = {
-        useACMEHost = "int.chir.rs";
-        logFormat = pkgs.lib.mkForce "";
-        extraConfig = ''
-            import baseConfig
-            reverse_proxy {
-                to http://localhost:23432
-                header_up Host weblate.chir.rs
-                transport http {
-                    versions 1.1 2 3
-                }
+      useACMEHost = "int.chir.rs";
+      logFormat = pkgs.lib.mkForce "";
+      extraConfig = ''
+        import baseConfig
+        reverse_proxy {
+            to http://localhost:23432
+            header_up Host weblate.chir.rs
+            transport http {
+                versions 1.1 2 3
             }
-        '';
+        }
+      '';
     };
     "mastodon.chir.rs" = {
       useACMEHost = "chir.rs";
