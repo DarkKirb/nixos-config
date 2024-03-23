@@ -144,7 +144,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 49;
+      serial = 50;
     };
     NS = [
       "ns1.chir.rs."
@@ -247,6 +247,7 @@ with dns.lib.combinators; let
       lotte.CNAME = ["lotte-chir-rs.b-cdn.net."];
       status = createZone oracleBase;
       sliding-sync = createZone oracleBase;
+      weblate = createFullZone {};
 
       int =
         delegateTo [
