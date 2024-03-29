@@ -47,7 +47,4 @@
       auto-key-locate = ["local" "dane" "cert" "wkd"];
     };
   };
-  services.gpg-agent = {
-    enable = true;
-  };
 }
