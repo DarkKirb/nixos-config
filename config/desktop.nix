@@ -183,11 +183,6 @@ in {
     lxd.enable = true;
   };
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
   programs.gamemode.enable = true;
   nixpkgs.config.permittedInsecurePackages = ["electron-26.3.0"];
-  programs.gnupg.agent.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
 }
