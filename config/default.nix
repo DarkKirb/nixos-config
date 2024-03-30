@@ -2,6 +2,7 @@
   config,
   pkgs,
   system,
+  nixpkgs-staging-next,
   ...
 }: {
   imports = [
@@ -79,4 +80,12 @@
     enable = true;
   };
   i18n.defaultLocale = "nl_NL.UTF-8";
+
+  # TODO: workaround for https://github.com/NixOS/nixpkgs/pull/300028
+  system.replaceRuntimeDependencies = [
+    {
+      original = pkgs.xz;
+      replacement = nixpkgs-staging-next.legacyPackages.${system}.xz;
+    }
+  ];
 }
