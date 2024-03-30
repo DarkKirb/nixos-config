@@ -678,6 +678,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-staging-next": {
+      "locked": {
+        "lastModified": 1711778457,
+        "narHash": "sha256-L6uaSIPJyqOyaSY8VGdbhMyiaCKSdGDvmpQtVCMoYTo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "459f861224e8517134b4c5a104cf44aa0bd14c22",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "staging-next",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1711200738,
@@ -733,6 +749,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_3",
+        "nixpkgs-staging-next": "nixpkgs-staging-next",
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",
         "systems": "systems_2"
