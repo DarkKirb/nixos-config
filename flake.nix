@@ -38,6 +38,12 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
+    colorpickle = {
+      url = "github:AgathaSorceress/colorpickle";
+      inputs.naersk.follows = "naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
+    };
     crane = {
       url = "github:DarkKirb/crane";
       inputs.flake-compat.follows = "flake-compat";
@@ -89,6 +95,10 @@ rec {
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     mozilla.url = "github:mozilla/nixpkgs-mozilla";
+    naersk = {
+      url = "github:nix-community/naersk/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       #inputs.nixpkgs.follows = "nixpkgs";

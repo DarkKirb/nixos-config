@@ -185,15 +185,6 @@
     after = ["network-online.target"];
     wants = ["network-online.target"];
   };
-  systemd.timers.nixos-upgrade = {
-    timerConfig = {
-      OnBootSec = 300;
-      RandomizedDelaySec = 3600;
-      OnUnitActiveSec = 3600;
-    };
-    requires = ["nixos-upgrade.service"];
-    wantedBy = ["multi-user.target"];
-  };
   systemd.sockets.nixos-upgrade = {
     socketConfig = {
       Service = "nixos-upgrade.service";

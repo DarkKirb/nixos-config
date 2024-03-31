@@ -6,6 +6,14 @@ desktop: _: {
       enableCompletion = true;
       enableVteIntegration = desktop;
       autocd = true;
+      loginExtra =
+        if desktop
+        then ''
+          if [[ -z "$DISPLAY" ]] && [[ $(tty) = "/dev/tty1" ]]; then
+            exec sway
+          fi
+        ''
+        else "";
     };
   };
 }

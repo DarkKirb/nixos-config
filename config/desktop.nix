@@ -80,7 +80,6 @@ in {
 
   security.pam = {
     services.login.u2fAuth = true;
-    services.sddm.u2fAuth = true;
     services.swaylock.u2fAuth = true;
     u2f = {
       enable = true;
@@ -152,10 +151,7 @@ in {
     libinput.enable = true;
     layout = "de";
     xkbVariant = "neo";
-    displayManager.sddm.enable = true;
-    displayManager.sddm.wayland.enable = true;
-    desktopManager.plasma6.enable = true;
-    displayManager.defaultSession = "plasma";
+    displayManager.lightdm.enable = false;
     extraLayouts.zlr = {
       description = "lojban layout";
       languages = ["jbo"];
