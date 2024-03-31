@@ -106,15 +106,15 @@ in {
   ];
   environment.graphical.colorschemes.main = {
     image = bgPng;
-    params = ["--lighten" "-0.1"];
+    params = ["--lighten" "0.3"];
   };
   environment.graphical.colorschemes.disabled = {
     image = bgPng;
-    params = ["--lighten" "-0.2" "--saturate" "-0.5"];
+    params = ["--lighten" "0.1" "--saturate" "-0.5"];
   };
   environment.graphical.colorschemes.inactive = {
     image = bgPng;
-    params = ["--lighten" "-0.3"];
+    params = [];
   };
   wayland.windowManager.sway.config.output."*".bg = "${bgPng} fill";
   dconf.settings."org/gnome/desktop/interface" = {
@@ -160,9 +160,9 @@ in {
   };
   xdg.configFile."qt5ct/colors/Catppuccin-Custom.conf".text = ''
     [ColorScheme]
-    active_colors=${color 15}, ${color 0}, #ffa6adc8, #ff9399b2, ${color 1}, #ff6c7086, ${color 15}, ${color 15}, ${color 15}, ${color 0}, ${colorD 0}, #ff7f849c, ${color 8}, ${color 0}, ${color 13}, ${color 5}, ${color 0}, ${color 15}, ${colorI 0}, ${color 5}, #807f849c
-    disabled_colors=${colorD 15}, ${colorD 0}, #ffa6adc8, #ff9399b2, ${colorD 1}, #ff6c7086, ${colorD 15}, ${colorD 15}, ${colorD 15}, ${colorD 0}, ${colorD 0}, #ff7f849c, ${colorD 8}, ${colorD 0}, ${colorD 13}, ${colorD 5}, ${colorD 0}, ${colorD 15}, ${colorI 0}, ${colorD 5}, #807f849c
-    inactive_colors=${colorI 15}, ${colorI 0}, #ffa6adc8, #ff9399b2, ${colorI 1}, #ff6c7086, ${colorI 15}, ${colorI 15}, ${colorI 15}, ${colorI 0}, ${colorD 0}, #ff7f849c, ${colorI 8}, ${colorI 0}, ${colorI 13}, ${colorI 5}, ${colorI 0}, ${colorI 15}, ${colorI 0}, ${colorI 5}, #807f849c
+    active_colors=${color 15}, ${color 0}, #ffa6adc8, #ff9399b2, ${color 1}, #ff6c7086, ${color 15}, ${color 15}, ${color 15}, #ff1e1e2e, ${colorD 0}, #ff7f849c, ${color 8}, ${color 15}, ${color 13}, ${color 5}, ${color 0}, ${color 15}, ${colorI 0}, ${color 5}, #807f849c
+    disabled_colors=${colorD 15}, ${colorD 0}, #ffa6adc8, #ff9399b2, ${colorD 1}, #ff6c7086, ${colorD 15}, ${colorD 15}, ${colorD 15}, #ff1e1e2e, ${colorD 0}, #ff7f849c, ${colorD 8}, ${colorD 15}, ${colorD 13}, ${colorD 5}, ${colorD 0}, ${colorD 15}, ${colorI 0}, ${colorD 5}, #807f849c
+    inactive_colors=${colorI 15}, ${colorI 0}, #ffa6adc8, #ff9399b2, ${colorI 1}, #ff6c7086, ${colorI 15}, ${colorI 15}, ${colorI 15}, #ff1e1e2e, ${colorD 0}, #ff7f849c, ${colorI 8}, ${colorI 15}, ${colorI 13}, ${colorI 5}, ${colorI 0}, ${colorI 15}, ${colorI 0}, ${colorI 5}, #807f849c
   '';
   nixpkgs.overlays = [
     (super: self: {
@@ -266,13 +266,13 @@ in {
     cursor = color 15;
     selection_background = "#4f414c";
     color0 = color 0;
-    color1 = color 1;
-    color2 = color 2;
-    color3 = color 3;
-    color4 = color 4;
-    color5 = color 5;
-    color6 = color 6;
-    color7 = color 7;
+    color1 = color 9;
+    color2 = color 10;
+    color3 = color 11;
+    color4 = color 12;
+    color5 = color 13;
+    color6 = color 14;
+    color7 = color 15;
     color8 = color 8;
     color9 = color 9;
     color10 = color 10;
