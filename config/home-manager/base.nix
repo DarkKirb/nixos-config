@@ -62,6 +62,7 @@ desktop: {pkgs, ...}: {
       );
     packages = with pkgs;
       [
+        mosh
         yubico-piv-tool
         ripgrep
         gh
