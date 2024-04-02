@@ -2,26 +2,6 @@ inputs: system: self: prev: let
   inherit (inputs) nixpkgs nix-packages;
 in
   with nixpkgs.legacyPackages.${system}; {
-    mosh = prev.mosh.overrideAttrs (old: {
-      patches = [
-        ./mosh/ssh_path.patch
-        ./mosh/mosh-client_path.patch
-        ./mosh/utempter_path.patch
-        ./mosh/bash_completion_datadir.patch
-      ];
-      postPatch = ''
-        substituteInPlace scripts/mosh.pl \
-          --subst-var-by ssh "${openssh}/bin/ssh" \
-          --subst-var-by mosh-client "$out/bin/mosh-client"
-      '';
-      version = "2022-02-04";
-      src = prev.fetchFromGitHub {
-        owner = "mobile-shell";
-        repo = "mosh";
-        rev = "dbe419d0e069df3fedc212d456449f64d0280c76";
-        sha256 = "09mvk9zxclkf4wrkkfzg0p2hx1f74gpymr0a0l3pckmk6za2n3d1";
-      };
-    });
     nix = prev.nix.overrideAttrs (old: {
       postPatchPhase = ''
         sed 's/getBoolAttr."allowSubstitutes", true./true/' src/libstore/parsed-derivations.cc
