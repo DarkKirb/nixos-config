@@ -45,7 +45,6 @@ in {
     ./swayidle.nix
     ./rofi.nix
     ./fcitx.nix
-    ./pass-secret-service.nix
     ./kitty.nix
     ./mpd.nix
   ];
@@ -147,6 +146,7 @@ in {
       default_border none
       gaps outer 8
       gaps inner 4
+      exec_always ${pkgs.xorg.xrandr}/bin/xrandr --output DP-1 --primary
     '';
   };
   home.file.".XCompose".source = ../../extra/.XCompose;
