@@ -9,10 +9,12 @@
       persist = {
         mountPoint = "/persist";
         hostPath = "/persist/postgresql";
+        isReadOnly = false;
       };
       backup = {
         mountPoint = "/backup";
         hostPath = "/persist/backup/postgresql";
+        isReadOnly = false;
       };
     };
 
