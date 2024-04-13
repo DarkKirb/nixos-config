@@ -35,6 +35,14 @@
         enable = true;
       };
       system.stateVersion = "24.05";
+      systemd.tmpfiles.rules = [
+        "d /persist - postgresql postgresql - -"
+        "d /backup - postgresql postgresql - -"
+      ];
     };
   };
+  systemd.tmpfiles.rules = [
+    "d /persist/postgresql - - - - -"
+    "d /persist/backup/postgresql - - - - -"
+  ];
 }

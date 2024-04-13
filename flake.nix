@@ -284,6 +284,17 @@ rec {
         # Uncomment the line to build an installer image
         # This is EXTREMELY LARGE and will make builds take forever
         # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
+        tests = let
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [
+              self.overlays.x86_64-linux
+              args.nix-packages.overlays.x86_64-linux.default
+            ];
+          };
+        in {
+          postgresql = pkgs.callPackage ./new-infra/containers/postgresql/test.nix {};
+        };
       };
   };
 }

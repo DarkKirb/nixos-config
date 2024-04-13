@@ -1,5 +1,5 @@
 {
   imports = [
-    ../containers/postgresql.nix # TODO
+    ../containers/postgresql/default.nix # TODO
   ];
 }
