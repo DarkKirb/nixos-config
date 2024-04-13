@@ -27,6 +27,7 @@
         enable = true;
         package = pkgs.postgresql_16;
         dataDir = "/persist/16";
+        enableTCPIP = true;
       };
       services.postgresqlBackup = {
         enable = true;
