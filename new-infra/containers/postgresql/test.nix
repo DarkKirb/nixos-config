@@ -14,5 +14,7 @@ pkgs.testers.runNixOSTest {
   };
   testScript = ''
     postgresql.wait_for_unit("container@postgresql.service")
+    postgresql.succeed("nixos-container run postgresql -- systemctl start postgresqlBackup.service")
+    postgresql.succeed("stat /persist/backup/postgresql/all.sql.zstd")
   '';
 }
