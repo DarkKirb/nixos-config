@@ -33,6 +33,7 @@
     ./services/yiff-stash.nix
     ./services/reverse-proxy.nix
     ./services/jellyfin.nix
+    ../new-infra/devices/nas.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
