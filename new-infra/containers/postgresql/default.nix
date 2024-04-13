@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  containers.postgresql = {
+  containers.postgresql = rec {
     autoStart = true;
     privateNetwork = true;
     hostAddress6 = "fc00::1";
@@ -18,7 +18,11 @@
       };
     };
 
-    config = {pkgs, ...}: {
+    config = {
+      config,
+      pkgs,
+      ...
+    }: {
       services.postgresql = {
         enable = true;
         package = pkgs.postgresql_16;
@@ -39,6 +43,10 @@
         "d /persist - postgres postgres - -"
         "d /backup - postgres postgres - -"
       ];
+      services.prometheus.exporters.postgres.enable = true;
+      networking.firewall.extraCommands = ''
+        ip6tables -A nixos-fw -p tcp -s _gateway -m tcp --dport ${toString config.services.prometheus.exporters.postgres.port} -m comment --comment postgres-exporter -j nixos-fw-accept
+      '';
     };
   };
   systemd.tmpfiles.rules = [
