@@ -4,6 +4,7 @@
   ...
 }: let
   config' = config;
+  keycloakIP = config'.containers.keycloak.localAddress6;
 in {
   imports = [
     ../postgresql/default.nix
@@ -21,7 +22,7 @@ in {
       ...
     }: {
       networking.firewall.extraCommands = ''
-        ip6tables -A nixos-fw -p tcp -s ${config'.containers.keycloak.localAddress6} -m tcp --dport 5432 -m comment --comment keycloak-db -j nixos-fw-accept
+        ip6tables -A nixos-fw -p tcp -s ${keycloakIP} -m tcp --dport 5432 -m comment --comment keycloak-db -j nixos-fw-accept
       '';
       services.postgresql = {
         ensureDatabases = [
@@ -33,6 +34,9 @@ in {
             ensureDBOwnership = true;
           }
         ];
+        authentication = ''
+          host keycloak keycloak ${keycloakIP} scram-sha-256
+        '';
       };
       systemd.services.postgresql.postStart = lib.mkAfter ''
         $PSQL -c "ALTER USER keycloak PASSWORD '$(cat /secrets/keycloak-db-password)';"
