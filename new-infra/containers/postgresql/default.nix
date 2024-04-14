@@ -23,6 +23,12 @@
       pkgs,
       ...
     }: {
+      networking.interfaces.eth0.ipv6.routes = [
+        {
+          address = "fc00::";
+          prefixLength = 64;
+        }
+      ];
       services.postgresql = {
         enable = true;
         package = pkgs.postgresql_16;
