@@ -31,6 +31,9 @@
       systemd.services.postgresql.postStart = lib.mkAfter ''
         $PSQL -c "ALTER USER keycloak PASSWORD '$(cat /secrets/keycloak-db-password)';"
       '';
+      systemd.tmpfiles.rules = [
+        "f /secrets/keycloak-db-password - postgres postgres - -"
+      ];
     };
   };
 
