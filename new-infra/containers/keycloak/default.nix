@@ -61,6 +61,12 @@ in {
       pkgs,
       ...
     }: {
+      networking.interfaces.eth0.ipv6.routes = [
+        {
+          address = "fc00::";
+          prefixLength = 64;
+        }
+      ];
       services.keycloak = {
         database = {
           host = config'.containers.postgresql.localAddress6;
