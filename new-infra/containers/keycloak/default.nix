@@ -109,6 +109,9 @@ in {
   systemd.services."container@keycloak.service".requires = [
     "container@postgresql.service"
   ];
+  systemd.services."container@postgresql.service".partOf = [
+    "container@keycloak.service"
+  ];
 
   networking.bridges.keycloak.interfaces = [
     "ve-postgresql"
