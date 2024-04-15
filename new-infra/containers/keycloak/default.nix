@@ -35,7 +35,7 @@ in {
           }
         ];
         authentication = ''
-          host keycloak keycloak ${keycloakIP} scram-sha-256
+          host keycloak keycloak ${keycloakIP}/128 scram-sha-256
         '';
       };
       systemd.services.postgresql.postStart = lib.mkAfter ''
