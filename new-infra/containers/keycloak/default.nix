@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   config,
   ...
@@ -84,15 +85,20 @@ in {
           hostname = "keycloak.chir.rs";
           hostname-strict-backchannel = true;
           proxy = "edge";
+          proxy-headers = "xforwarded";
           hostname-admin = "keycloak-admin.int.chir.rs";
           http-enabled = true;
           health-enabled = true;
           metrics-enabled = true;
           http-port = 8080;
           https-port = 8443;
+          hostname-strict = false;
         };
       };
       system.stateVersion = "24.05";
+      networking.firewall.extraCommands = ''
+        ip6tables -A nixos-fw -p tcp -s fc00::1 -m tcp --dport 8080 -m comment --comment caddy -j nixos-fw-accept
+      '';
     };
   };
 
@@ -118,4 +124,27 @@ in {
   systemd.services."container@postgresql".requires = [
     "keycloak-db-password.service"
   ];
+
+  services.caddy.virtualHosts = {
+    "keycloak-admin.int.chir.rs" = {
+      useACMEHost = "int.chir.rs";
+      logFormat = lib.mkForce "";
+      extraConfig = ''
+        import baseConfig
+
+        reverse_proxy http://keycloak:8080
+      '';
+    };
+    "keycloak.int.chir.rs" = {
+      useACMEHost = "int.chir.rs";
+      logFormat = lib.mkForce "";
+      extraConfig = ''
+        import baseConfig
+
+        @public path /js/* /realms/* /resources/* /robots.txt
+
+        reverse_proxy @public http://keycloak:8080
+      '';
+    };
+  };
 }
