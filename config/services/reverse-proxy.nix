@@ -179,6 +179,7 @@ in {
         }
       '';
     };
+    "keycloak.chir.rs" = mkConfig "https://keycloak.chir.rs";
   };
   services.nginx.virtualHosts."mastodon-assets.chir.rs" = {
     listen = [
