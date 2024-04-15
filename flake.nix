@@ -294,6 +294,7 @@ rec {
           };
         in {
           postgresql = pkgs.callPackage ./new-infra/containers/postgresql/test.nix {};
+          keycloak = pkgs.callPackage ./new-infra/containers/keycloak/test.nix {};
         };
       };
   };

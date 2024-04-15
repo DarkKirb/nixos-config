@@ -9,6 +9,7 @@ pkgs.testers.runNixOSTest {
   }: {
     imports = [
       ./default.nix
+      ../../default.nix
     ];
     system.stateVersion = "23.11";
   };

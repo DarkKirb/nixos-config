@@ -51,7 +51,7 @@ in {
   containers.keycloak = rec {
     autoStart = true;
     privateNetwork = true;
-    hostAddress6 = "fc00::1";
+    hostBridge = "containers";
     localAddress6 = "fc00::3";
     ephemeral = true;
     bindMounts = {
@@ -88,6 +88,8 @@ in {
           http-enabled = true;
           health-enabled = true;
           metrics-enabled = true;
+          http-port = 8080;
+          https-port = 8443;
         };
       };
       system.stateVersion = "24.05";
@@ -95,10 +97,6 @@ in {
   };
 
   systemd.services.keycloak-db-password = {
-    requiredBy = [
-      "container@postgresql.service"
-      "container@keycloak.service"
-    ];
     script = ''
       umask 077
       mkdir -pv /run/generated-secrets
@@ -106,15 +104,18 @@ in {
     '';
   };
 
-  systemd.services."container@keycloak.service".requires = [
+  systemd.services."container@keycloak".requires = [
     "container@postgresql.service"
+    "keycloak-db-password.service"
   ];
-  systemd.services."container@postgresql.service".partOf = [
+  systemd.services."container@keycloak".after = [
+    "container@postgresql.service"
+    "keycloak-db-password.service"
+  ];
+  systemd.services."container@postgresql".partOf = [
     "container@keycloak.service"
   ];
-
-  networking.bridges.keycloak.interfaces = [
-    "ve-postgresql"
-    "ve-keycloak"
+  systemd.services."container@postgresql".requires = [
+    "keycloak-db-password.service"
   ];
 }

@@ -2,7 +2,7 @@
   containers.postgresql = rec {
     autoStart = true;
     privateNetwork = true;
-    hostAddress6 = "fc00::1";
+    hostBridge = "containers";
     localAddress6 = "fc00::2";
     ephemeral = true;
     bindMounts = {
