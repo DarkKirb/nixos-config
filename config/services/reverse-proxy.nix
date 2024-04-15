@@ -179,7 +179,20 @@ in {
         }
       '';
     };
-    "keycloak.chir.rs" = mkConfig "https://keycloak.chir.rs";
+    "keycloak.chir.rs" = {
+      useACMEHost = "chir.rs";
+      logFormat = pkgs.lib.mkForce "";
+      extraConfig = ''
+        import baseConfig
+          reverse_proxy {
+            to https://keycloak.int.chir.rs
+            header_up Host {upstream_hostport}
+            transport http {
+              versions 1.1 2 3
+            }
+        }
+      '';
+    };
   };
   services.nginx.virtualHosts."mastodon-assets.chir.rs" = {
     listen = [
