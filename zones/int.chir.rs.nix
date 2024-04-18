@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 32;
+    serial = 33;
   };
   NS = [
     "ns1.chir.rs."
@@ -239,6 +239,8 @@ in {
     mautrix-whatsapp.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
     weblate.CNAME = [(ttl zoneTTL (cname "nas"))];
     jellyfin.CNAME = [(ttl zoneTTL (cname "nas"))];
+    keycloak.CNAME = [(ttl zoneTTL (cname "nas"))];
+    keycloak-admin.CNAME = [(ttl zoneTTL (cname "nas"))];
     _acme-challenge = delegateTo [
       "ns1.chir.rs."
       "ns2.chir.rs."

@@ -89,6 +89,9 @@ rec {
       url = "github:DarkKirb/hydra";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
     lib-aggregate = {
       url = "github:nix-community/lib-aggregate";
       inputs.flake-utils.follows = "flake-utils";
@@ -281,6 +284,18 @@ rec {
         # Uncomment the line to build an installer image
         # This is EXTREMELY LARGE and will make builds take forever
         # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
+        tests = let
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [
+              self.overlays.x86_64-linux
+              args.nix-packages.overlays.x86_64-linux.default
+            ];
+          };
+        in {
+          postgresql = pkgs.callPackage ./new-infra/containers/postgresql/test.nix {};
+          keycloak = pkgs.callPackage ./new-infra/containers/keycloak/test.nix {};
+        };
       };
   };
 }
