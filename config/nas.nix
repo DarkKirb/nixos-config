@@ -44,30 +44,11 @@
     config.boot.kernelPackages.zenpower
   ];
 
-  services.btrfs.autoScrub = {
-    enable = true;
-    fileSystems = ["/"];
-  };
-  services.snapper.configs.main = {
-    SUBVOLUME = "/";
-    TIMELINE_LIMIT_HOURLY = "5";
-    TIMELINE_LIMIT_DAILY = "7";
-    TIMELINE_LIMIT_WEEKLY = "4";
-    TIMELINE_LIMIT_MONTHLY = "12";
-    TIMELINE_LIMIT_YEARLY = "0";
-  };
-  services.beesd.filesystems.root = {
-    spec = "/";
-    hashTableSizeMB = 2048;
-    verbosity = "crit";
-    extraOptions = ["--loadavg-target" "5.0"];
-  };
-
-  boot.supportedFilesystems = lib.mkForce ["btrfs" "vfat"];
+  boot.supportedFilesystems = lib.mkForce ["bcachefs" "vfat"];
 
   fileSystems."/" = {
-    device = "/dev/bcache0";
-    fsType = "btrfs";
+    device = "/dev/nvme0n1p2:/dev/sda1:/dev/sdb1:/dev/sdc1";
+    fsType = "bcachefs";
   };
 
   fileSystems."/boot" = {
@@ -164,15 +145,6 @@
     }
     {
       device = "/dev/sdc2";
-    }
-    {
-      device = "/dev/sda3";
-    }
-    {
-      device = "/dev/sdb3";
-    }
-    {
-      device = "/dev/sdc3";
     }
   ];
 
