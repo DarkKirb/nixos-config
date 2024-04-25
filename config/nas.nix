@@ -44,16 +44,44 @@
     config.boot.kernelPackages.zenpower
   ];
 
-  boot.supportedFilesystems = lib.mkForce ["bcachefs" "vfat"];
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   fileSystems."/" = {
-    device = "/dev/nvme0n1p2:/dev/sda1:/dev/sdb1:/dev/sdc1";
-    fsType = "bcachefs";
+    device = "tank/system/root";
+    fsType = "zfs";
+  };
+
+  fileSystems."/etc" = {
+    device = "tank/system/etc";
+    fsType = "zfs";
+  };
+
+  fileSystems."/nix" = {
+    device = "tank/system/nix";
+    fsType = "zfs";
+  };
+
+  fileSystems."/var" = {
+    device = "tank/data/var";
+    fsType = "zfs";
   };
 
   fileSystems."/boot" = {
     device = "/dev/nvme0n1p1";
     fsType = "vfat";
+  };
+
+  services.sanoid = {
+    enable = true;
+    datasets."tank/data" = {
+      yearly = 1;
+      recursive = true;
+      monthly = 12;
+      hourly = 24;
+      daily = 30;
+      autosnap = true;
+      autoprune = true;
+    };
   };
 
   environment.etc."sysconfig/lm_sensors".text = ''
