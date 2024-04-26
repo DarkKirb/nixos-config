@@ -4,7 +4,6 @@
       electron = pkgs.electron-bin;
     }))
     twinkle
-    telegram-desktop
     discord
   ];
 }
