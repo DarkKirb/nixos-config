@@ -81,6 +81,11 @@ rec {
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
     };
+    gomod2nix = {
+      url = "github:DarkKirb/gomod2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -109,12 +114,6 @@ rec {
     };
     nix-neovim = {
       url = "github:syberant/nix-neovim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-packages = {
-      url = "github:DarkKirb/nix-packages/main";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
@@ -170,6 +169,81 @@ rec {
         system = "x86_64-linux";
       }
     ];
+    mkPackages = system: let
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          args.gomod2nix.overlays.default
+          self.overlays.${system}
+        ];
+        config.allowUnfree = true;
+      };
+    in {
+      neovim-base = args.nix-neovim.buildNeovim {
+        inherit pkgs;
+        configuration = import ./config/programs/vim/configuration.nix false;
+      };
+      neovim = args.nix-neovim.buildNeovim {
+        inherit pkgs;
+        configuration = import ./config/programs/vim/configuration.nix true;
+      };
+      inherit
+        (pkgs)
+        emoji-lotte
+        emoji-volpeon-blobfox
+        emoji-volpeon-blobfox-flip
+        emoji-volpeon-bunhd
+        emoji-volpeon-bunhd-flip
+        emoji-volpeon-drgn
+        emoji-volpeon-fox
+        emoji-volpeon-gphn
+        emoji-volpeon-raccoon
+        emoji-volpeon-vlpn
+        emoji-volpeon-neofox
+        emoji-volpeon-neocat
+        emoji-caro
+        lotte-art
+        alco-sans
+        constructium
+        fairfax
+        fairfax-hd
+        kreative-square
+        nasin-nanpa
+        matrix-media-repo
+        mautrix-discord
+        mautrix-whatsapp
+        mautrix-telegram
+        python-mautrix
+        python-tulir-telethon
+        papermc
+        python-plover-stroke
+        python-rtf-tokenize
+        plover
+        plover-plugins-manager
+        python-simplefuzzyset
+        plover-plugin-emoji
+        plover-plugin-tapey-tape
+        plover-plugin-yaml-dictionary
+        plover-plugin-machine-hid
+        plover-plugin-rkb1-hid
+        plover-plugin-dotool-output
+        plover-dict-didoesdigital
+        miifox-net
+        old-homepage
+        plover-plugin-python-dictionary
+        plover-plugin-stenotype-extended
+        asar-asm
+        bsnes-plus
+        sliding-sync
+        yiffstash
+        rosaflags
+        plover-plugin-dict-commands
+        plover-plugin-last-translation
+        plover-plugin-modal-dictionary
+        plover-plugin-stitching
+        plover-plugin-lapwing-aio
+        ;
+    };
   in rec {
     nixosConfigurations = builtins.listToAttrs (map
       ({
@@ -207,7 +281,10 @@ rec {
     devShell.x86_64-linux = let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
-        overlays = [self.overlays.x86_64-linux];
+        overlays = [
+          args.gomod2nix.overlays.default
+          self.overlays.x86_64-linux
+        ];
       };
     in
       pkgs.mkShell {
@@ -227,44 +304,8 @@ rec {
         ];
       };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-    packages.x86_64-linux = let
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        overlays = [
-          self.overlays.x86_64-linux
-          args.nix-packages.overlays.x86_64-linux.default
-        ];
-        config.allowUnfree = true;
-      };
-    in {
-      neovim-base = args.nix-neovim.buildNeovim {
-        inherit pkgs;
-        configuration = import ./config/programs/vim/configuration.nix false;
-      };
-      neovim = args.nix-neovim.buildNeovim {
-        inherit pkgs;
-        configuration = import ./config/programs/vim/configuration.nix true;
-      };
-    };
-    packages.aarch64-linux = let
-      pkgs = import nixpkgs {
-        system = "aarch64-linux";
-        overlays = [
-          self.overlays.aarch64-linux
-          args.nix-packages.overlays.aarch64-linux.default
-        ];
-        config.allowUnfree = true;
-      };
-    in {
-      neovim-base = args.nix-neovim.buildNeovim {
-        inherit pkgs;
-        configuration = import ./config/programs/vim/configuration.nix false;
-      };
-      neovim = args.nix-neovim.buildNeovim {
-        inherit pkgs;
-        configuration = import ./config/programs/vim/configuration.nix true;
-      };
-    };
+    packages.x86_64-linux = mkPackages "x86_64-linux";
+    packages.aarch64-linux = mkPackages "aarch64-linux";
     hydraJobs =
       (builtins.listToAttrs (map
         ({
@@ -289,7 +330,6 @@ rec {
             system = "x86_64-linux";
             overlays = [
               self.overlays.x86_64-linux
-              args.nix-packages.overlays.x86_64-linux.default
             ];
           };
         in {

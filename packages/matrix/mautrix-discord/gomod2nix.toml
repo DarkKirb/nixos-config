@@ -1,0 +1,100 @@
+schema = 3
+
+[mod]
+  [mod."github.com/bwmarrin/discordgo"]
+    version = "v0.0.0-20231013182643-f333f2578a3c"
+    hash = "sha256-5S/9DqVPRZSjaKkqjnr23vJHk1iMY0QepIbwFBWvAgw="
+    replaced = "github.com/beeper/discordgo"
+  [mod."github.com/coreos/go-systemd/v22"]
+    version = "v22.5.0"
+    hash = "sha256-E2zXikbmIQImghstLUWuey1YgA0Folu3F+fi5k4hCxA="
+  [mod."github.com/davecgh/go-spew"]
+    version = "v1.1.1"
+    hash = "sha256-nhzSUrE1fCkN0+RL04N4h8jWmRFPPPWbCuDc7Ss0akI="
+  [mod."github.com/gabriel-vasile/mimetype"]
+    version = "v1.4.3"
+    hash = "sha256-EDmlRi3av27dq/ISVTglv08z4yZzMQ/SxL1c46EJro0="
+  [mod."github.com/google/shlex"]
+    version = "v0.0.0-20191202100458-e7afc7fbc510"
+    hash = "sha256-1f392pCmS7AXVKXIC1SvKlYtK/rvW47F5CCkGT2G6JM="
+  [mod."github.com/gorilla/mux"]
+    version = "v1.8.0"
+    hash = "sha256-s905hpzMH9bOLue09E2JmzPXfIS4HhAlgT7g13HCwKE="
+  [mod."github.com/gorilla/websocket"]
+    version = "v1.5.0"
+    hash = "sha256-EYVgkSEMo4HaVrsWKqnsYRp8SSS8gNf7t+Elva02Ofc="
+  [mod."github.com/lib/pq"]
+    version = "v1.10.9"
+    hash = "sha256-Gl6dLtL+yk6UrTTWfas43aM4lP/pNa2l7+ITXnjQyKs="
+  [mod."github.com/mattn/go-colorable"]
+    version = "v0.1.13"
+    hash = "sha256-qb3Qbo0CELGRIzvw7NVM1g/aayaz4Tguppk9MD2/OI8="
+  [mod."github.com/mattn/go-isatty"]
+    version = "v0.0.19"
+    hash = "sha256-wYQqGxeqV3Elkmn26Md8mKZ/viw598R4Ych3vtt72YE="
+  [mod."github.com/mattn/go-sqlite3"]
+    version = "v1.14.19"
+    hash = "sha256-mP4cW7TGoe2ERgVZhHxrjYesjEENLYnY60V0xOrync4="
+  [mod."github.com/pmezard/go-difflib"]
+    version = "v1.0.0"
+    hash = "sha256-/FtmHnaGjdvEIKAJtrUfEhV7EVo5A/eYrtdnUkuxLDA="
+  [mod."github.com/rs/zerolog"]
+    version = "v1.31.0"
+    hash = "sha256-OF4VM+Rv6M5EAaUVD2nOzcbZLQ4b7OAMteyyTqIoU0M="
+  [mod."github.com/skip2/go-qrcode"]
+    version = "v0.0.0-20200617195104-da1b6568686e"
+    hash = "sha256-ST9t4/b7WFXUb8wra4ZYVDNZJGrEykw8dkWhLrxp8F0="
+  [mod."github.com/stretchr/testify"]
+    version = "v1.8.4"
+    hash = "sha256-MoOmRzbz9QgiJ+OOBo5h5/LbilhJfRUryvzHJmXAWjo="
+  [mod."github.com/tidwall/gjson"]
+    version = "v1.17.0"
+    hash = "sha256-eS+Ble3UZClAH/XpulH+MuxyZFsF7/yvWeBIn1D9ryk="
+  [mod."github.com/tidwall/match"]
+    version = "v1.1.1"
+    hash = "sha256-M2klhPId3Q3T3VGkSbOkYl/2nLHnsG+yMbXkPkyrRdg="
+  [mod."github.com/tidwall/pretty"]
+    version = "v1.2.0"
+    hash = "sha256-esRQGsn2Ee/CiySlwyuOICSLdqUkH4P7u8qXszos8Yc="
+  [mod."github.com/tidwall/sjson"]
+    version = "v1.2.5"
+    hash = "sha256-OYGNolkmL7E1Qs2qrQ3IVpQp5gkcHNU/AB/z2O+Myps="
+  [mod."github.com/yuin/goldmark"]
+    version = "v1.6.0"
+    hash = "sha256-0PeGjGxxM7lUSx2dn8yPUBpilPQzEN9nkgf3s+5zGTY="
+  [mod."go.mau.fi/util"]
+    version = "v0.2.1"
+    hash = "sha256-ueWv/RjYieBavfIFJsDR6KoGn/6K5RI7X2m9YU8U14E="
+  [mod."go.mau.fi/zeroconfig"]
+    version = "v0.1.2"
+    hash = "sha256-xf4p2Z5Pl9In3ne9BVmy7YvtooSRBzqxP4Pl2jdVN8w="
+  [mod."golang.org/x/crypto"]
+    version = "v0.15.0"
+    hash = "sha256-ABytl19ORbe9xcY4Ao76AcAkqqPduUCd8OrD4Sl5jyU="
+  [mod."golang.org/x/exp"]
+    version = "v0.0.0-20231219180239-dc181d75b848"
+    hash = "sha256-K35MT3O16IlvqhDZBVBF4lJZIM7T/15PxOmeyGYv01A="
+  [mod."golang.org/x/net"]
+    version = "v0.18.0"
+    hash = "sha256-7c3GBByVmRjd7CXf4STGTAnnUWtHVH4S0HjSYUHCcCA="
+  [mod."golang.org/x/sync"]
+    version = "v0.5.0"
+    hash = "sha256-EAKeODSsct5HhXPmpWJfulKSCkuUu6kkDttnjyZMNcI="
+  [mod."golang.org/x/sys"]
+    version = "v0.14.0"
+    hash = "sha256-ReIRQmONicRW9idzGVPCBx5TTcKacmQTF1vPC3L4SxY="
+  [mod."gopkg.in/natefinch/lumberjack.v2"]
+    version = "v2.2.1"
+    hash = "sha256-GaXWRDxhGy4Z4mgE+bJ8OE9SVvYUa9TnNiydnp2s1Ms="
+  [mod."gopkg.in/yaml.v3"]
+    version = "v3.0.1"
+    hash = "sha256-FqL9TKYJ0XkNwJFnq9j0VvJ5ZUU1RvH/52h/f5bkYAU="
+  [mod."maunium.net/go/mauflag"]
+    version = "v1.0.0"
+    hash = "sha256-fYc/WwqE0ev0dvnu5qGmHJsYiSTuWeOTiAVzmQIKWyY="
+  [mod."maunium.net/go/maulogger/v2"]
+    version = "v2.4.1"
+    hash = "sha256-OstOCC7Bib6mbcUG2X3YafEBikFhPQ8lN6jPK5c/Ah8="
+  [mod."maunium.net/go/mautrix"]
+    version = "v0.16.3-0.20240218195727-4ceb1123b660"
+    hash = "sha256-IMwwA03kHfNAMFDOzhS/NPo10N/2xht4/qPH+nnoOxs="

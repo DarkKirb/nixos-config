@@ -1,5 +1,6 @@
 # Configuration file configuring specialization
 {
+  gomod2nix,
   pkgs,
   config,
   lib,
@@ -15,5 +16,6 @@
         extraConfig = import (../extra/linux/config- + "${config.networking.hostName}.nix");
       });
     })
+    gomod2nix.overlays.default
   ];
 }

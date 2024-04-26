@@ -1,0 +1,12 @@
+{
+  "url": "https://git.chir.rs/DarkKirb/lotte-art",
+  "rev": "636cd7cea3d54763bed5691c3052d94ad0de8bb1",
+  "date": "2024-04-02T08:09:53+01:00",
+  "path": "/nix/store/qb0k70sdm1xyk5rqdc7si707jsmm84fa-lotte-art",
+  "sha256": "0w5i5zknnh772m6nghd5hf6h9br2hd2zbppxn05sqra816pm2yr2",
+  "hash": "sha256-IntRrwlIZawLsP3e9UWDIq8EjYOlwWdNFedAa+cvsXA=",
+  "fetchLFS": true,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

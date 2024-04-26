@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/turt2live/matrix-media-repo",
+  "rev": "743e974b691d205a92a69adc504489c30a1c5be7",
+  "date": "2024-04-19T14:16:38-06:00",
+  "path": "/nix/store/bixi361lvy0wpg7635skl2fik0wp0kr6-matrix-media-repo",
+  "sha256": "1js0xa8z7a2imyb7m0ad242ycj10cnzdz6yqpl7mc6q3435clb9z",
+  "hash": "sha256-Py3KyiADG1YPvdib375lIEjmBRFNgXqWr1Go85HqQMs=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

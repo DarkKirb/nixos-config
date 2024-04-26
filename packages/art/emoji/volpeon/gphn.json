@@ -1,0 +1,10 @@
+{
+  "gphn": {
+    "description": "Character by @volpeon@is-a.wyvern.rip",
+    "files": "gphn.json",
+    "homepage": "https://volpeon.ink/emojis/gphn/",
+    "src": "https://volpeon.ink/emojis/gphn/gphn.zip",
+    "src_sha256": "810e5ce897918dd669c17a712276840562b901fc9f725383301175709442372a",
+    "license": "CC BY-NC-SA 4.0"
+  }
+}

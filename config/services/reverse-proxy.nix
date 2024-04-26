@@ -1,5 +1,4 @@
 {
-  nix-packages,
   system,
   pkgs,
   config,

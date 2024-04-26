@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -euf
-export IFS=' '
-export XDG_CONFIG_HOME=/home/runner/.config
-until /nix/var/nix/profiles/default/bin/nix run 'github:DarkKirb/nix-packages#attic-client' -- push chir-rs $OUT_PATHS; do
-    sleep 5
-    echo "Retrying..."
-done

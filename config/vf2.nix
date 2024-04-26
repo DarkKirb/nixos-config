@@ -1,6 +1,5 @@
 {
   lib,
-  nix-packages,
   config,
   pkgs,
   nixpkgs,

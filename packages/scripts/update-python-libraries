@@ -1,0 +1,6 @@
+#!/bin/sh
+set -x
+build=`nix-build -E "with import <nixpkgs> {}; python3.withPackages(ps: with ps; [ packaging requests toolz ])"`
+python=${build}/bin/python
+exec ${python} scripts/update-python-libraries.py $@
+
