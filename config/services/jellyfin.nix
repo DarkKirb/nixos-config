@@ -1,4 +1,31 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  rffmpegConfig = pkgs.writeText "rffmpeg-config.yaml" (lib.generators.toYAML {} {
+    rffmpeg = {
+      directories = {
+        state = "/var/lib/jellyfin/rffmpeg";
+        persist = "/dev/shm";
+        group = "wheel";
+      };
+      remote = {
+        user = "remote-build";
+        args = [
+          "-i"
+          config.sops.secrets."jellyfin/ssh/builder_id_ed25519".path
+        ];
+      };
+      commands = {
+        ssh = "${pkgs.openssh}/bin/ssh";
+        ffmpeg = "${pkgs.ffmpeg}/bin/ffmpeg";
+        ffprobe = "${pkgs.ffmpeg}/bin/ffprobe";
+      };
+    };
+  });
+in {
   services.jellyfin.enable = true;
   environment.systemPackages = [
     pkgs.jellyfin
@@ -16,5 +43,14 @@
         trusted_proxies private_ranges
       }
     '';
+  };
+  systemd.services.jellyfin = {
+    path = lib.mkBefore [pkgs.rffmpeg];
+    environment.RFFMPEG_CONFIG = rffmpegConfig;
+  };
+  sops.secrets."jellyfin/ssh/builder_id_ed25519" = {
+    sopsFile = ../../secrets/shared.yaml;
+    owner = "jellyfin";
+    key = "ssh/builder_id_ed25519";
   };
 }

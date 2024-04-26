@@ -63,4 +63,5 @@ in
     sliding-sync = self.callPackage ../packages/matrix/sliding-sync {};
     yiffstash = self.python3Packages.callPackage ../packages/python/yiffstash.nix {};
     rosaflags = self.callPackage ../packages/art/emoji/rosaflags.nix {};
+    rffmpeg = self.python3Packages.callPackage ../packages/python/rffmpeg.nix {};
   }

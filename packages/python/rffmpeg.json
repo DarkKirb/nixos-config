@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/joshuaboniface/rffmpeg",
+  "rev": "a2422187b10f9bd9125d837cc60d3aa066cbcbe1",
+  "date": "2023-08-16T22:00:43-04:00",
+  "path": "/nix/store/g8407ssh9dsl1hjg69hnw10d8rf2vwc1-rffmpeg",
+  "sha256": "1snag46hrg45dw9pz6mlnpv42hsp110npkqf403gzadcfcjf84j6",
+  "hash": "sha256-RhLkJHOsqf8GIA7Pa0EIV0NB9rW0mn8Tb4W8DA15yuo=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

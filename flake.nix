@@ -242,6 +242,7 @@ rec {
         plover-plugin-modal-dictionary
         plover-plugin-stitching
         plover-plugin-lapwing-aio
+        rffmpeg
         ;
     };
   in rec {
