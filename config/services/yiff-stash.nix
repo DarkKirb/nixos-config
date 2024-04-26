@@ -1,7 +1,7 @@
 {
   config,
   system,
-  nix-packages,
+  pkgs,
   ...
 }: {
   users.users.yiffstash = {
@@ -14,7 +14,7 @@
     enable = true;
     description = "Post yiff to telegram";
     serviceConfig = {
-      ExecStart = "/bin/sh ${nix-packages.packages.${system}.yiffstash}";
+      ExecStart = "/bin/sh ${pkgs.yiffstash}";
       User = "yiffstash";
       Group = "yiffstash";
       Type = "oneshot";

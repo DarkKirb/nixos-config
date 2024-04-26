@@ -1,0 +1,10 @@
+{
+  "drgn": {
+    "description": "Character by @volpeon@is-a.wyvern.rip",
+    "files": "drgn.json",
+    "homepage": "https://volpeon.ink/emojis/drgn/",
+    "src": "https://volpeon.ink/emojis/drgn/drgn.zip",
+    "src_sha256": "93db046c56699d3bda223e765778e2e6969fa2df9788f074772d3ed40df3a2af",
+    "license": "CC BY-NC-SA 4.0"
+  }
+}

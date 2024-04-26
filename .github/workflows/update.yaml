@@ -20,6 +20,10 @@ jobs:
             experimental-features = nix-command flakes
       - name: update flake lock
         run: nix flake update
+      - name: run update script
+        run: |
+          cd packages
+          yes "" | ./update.sh
       - name: run nix fmt
         run: nix fmt
       - name: Commit and push

@@ -1,6 +1,5 @@
 {
   system,
-  nix-packages,
   config,
   pkgs,
   lib,

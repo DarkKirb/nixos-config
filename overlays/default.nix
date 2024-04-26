@@ -1,47 +1,7 @@
 inputs: system: self: prev: let
-  inherit (inputs) nixpkgs nix-packages;
+  inherit (inputs) nixpkgs;
 in
   with nixpkgs.legacyPackages.${system}; {
-    nix = prev.nix.overrideAttrs (old: {
-      postPatchPhase = ''
-        sed 's/getBoolAttr."allowSubstitutes", true./true/' src/libstore/parsed-derivations.cc
-      '';
-      checkPhase = "true";
-      installCheckPhase = "true";
-    });
-    rnix-lsp = with prev;
-      rustPlatform.buildRustPackage {
-        pname = "rnix-lsp";
-        version = "0.3.0-alejandra";
-
-        src = fetchFromGitHub {
-          owner = "nix-community";
-          repo = "rnix-lsp";
-          # https://github.com/nix-community/rnix-lsp/pull/89
-          rev = "9189b50b34285b2a9de36a439f6c990fd283c9c7";
-          sha256 = "sha256-ZnUtvwkcz7QlAiqQxhI4qVUhtVR+thLhG3wQlle7oZg=";
-        };
-
-        cargoSha256 = "sha256-VhE+DspQ0IZKf7rNkERA/gD7iMzjW4TnRSnYy1gdV0s=";
-        cargoBuildFlags = ["--no-default-features" "--features" "alejandra"];
-
-        checkPhase = "true";
-
-        meta = with lib; {
-          description = "A work-in-progress language server for Nix, with syntax checking and basic completion";
-          license = licenses.mit;
-          maintainers = with maintainers; [ma27];
-        };
-      };
-    hydra-unstable = nix-packages.packages.${system}.hydra.overrideAttrs (super: {
-      doCheck = false;
-      checkPhase = "";
-      installCheckPhase = "";
-    });
-    neomutt = prev.neomutt.overrideAttrs (super: {
-      doCheck = false;
-      doInstallCheck = false;
-    });
     fcitx5-table-extra = prev.fcitx5-table-extra.overrideAttrs (super: {
       patches =
         super.patches
@@ -50,8 +10,57 @@ in
           ../extra/fcitx-table-extra.patch
         ];
     });
-    bat = prev.bat.overrideAttrs (_: {
-      doCheck = false;
-      doInstallCheck = false;
-    });
+    emoji-lotte = self.callPackage ../packages/art/emoji/lotte {};
+    emoji-volpeon-blobfox = self.callPackage ../packages/art/emoji/volpeon/blobfox.nix {};
+    emoji-volpeon-blobfox-flip = self.callPackage ../packages/art/emoji/volpeon/blobfox_flip.nix {};
+    emoji-volpeon-bunhd = self.callPackage ../packages/art/emoji/volpeon/bunhd.nix {};
+    emoji-volpeon-bunhd-flip = self.callPackage ../packages/art/emoji/volpeon/bunhd_flip.nix {};
+    emoji-volpeon-drgn = self.callPackage ../packages/art/emoji/volpeon/drgn.nix {};
+    emoji-volpeon-fox = self.callPackage ../packages/art/emoji/volpeon/fox.nix {};
+    emoji-volpeon-gphn = self.callPackage ../packages/art/emoji/volpeon/gphn.nix {};
+    emoji-volpeon-raccoon = self.callPackage ../packages/art/emoji/volpeon/raccoon.nix {};
+    emoji-volpeon-vlpn = self.callPackage ../packages/art/emoji/volpeon/vlpn.nix {};
+    emoji-volpeon-neofox = self.callPackage ../packages/art/emoji/volpeon/neofox.nix {};
+    emoji-volpeon-neocat = self.callPackage ../packages/art/emoji/volpeon/neocat.nix {};
+    emoji-caro = self.callPackage ../packages/art/emoji/caro {};
+    lotte-art = self.callPackage ../packages/art/lotte {};
+    alco-sans = self.callPackage ../packages/fonts/kreative/alco-sans.nix {};
+    constructium = self.callPackage ../packages/fonts/kreative/constructium.nix {};
+    fairfax = self.callPackage ../packages/fonts/kreative/fairfax.nix {};
+    fairfax-hd = self.callPackage ../packages/fonts/kreative/fairfax-hd.nix {};
+    kreative-square = self.callPackage ../packages/fonts/kreative/kreative-square.nix {};
+    nasin-nanpa = self.callPackage ../packages/fonts/nasin-nanpa {};
+    matrix-media-repo = self.callPackage ../packages/matrix/matrix-media-repo {};
+    mautrix-discord = self.callPackage ../packages/matrix/mautrix-discord {};
+    mautrix-whatsapp = self.callPackage ../packages/matrix/mautrix-whatsapp {};
+    mautrix-telegram = self.callPackage ../packages/matrix/mautrix-telegram {};
+    python-mautrix = self.python3Packages.callPackage ../packages/python/mautrix.nix {};
+    python-tulir-telethon = self.python3Packages.callPackage ../packages/python/tulir-telethon.nix {};
+    papermc = self.callPackage ../packages/minecraft/papermc {};
+    python-plover-stroke = self.python3Packages.callPackage ../packages/plover/plover-stroke.nix {};
+    python-rtf-tokenize = self.python3Packages.callPackage ../packages/python/rtf-tokenize.nix {};
+    plover = self.python3Packages.callPackage ../packages/plover/plover {};
+    plover-plugins-manager = self.python3Packages.callPackage ../packages/plover/plover-plugins-manager.nix {};
+    python-simplefuzzyset = self.python3Packages.callPackage ../packages/python/simplefuzzyset.nix {};
+    plover-plugin-emoji = self.python3Packages.callPackage ../packages/plover/plover-emoji.nix {};
+    plover-plugin-tapey-tape = self.python3Packages.callPackage ../packages/plover/plover-tapey-tape.nix {};
+    plover-plugin-yaml-dictionary = self.python3Packages.callPackage ../packages/plover/plover-yaml-dictionary.nix {};
+    plover-plugin-python-dictionary = self.python3Packages.callPackage ../packages/plover/plover-python-dictionary.nix {};
+    plover-plugin-stenotype-extended = self.python3Packages.callPackage ../packages/plover/plover-stenotype-extended.nix {};
+    plover-plugin-machine-hid = self.python3Packages.callPackage ../packages/plover/plover-machine-hid.nix {};
+    plover-plugin-rkb1-hid = self.python3Packages.callPackage ../packages/plover/plover-rkb1-hid.nix {};
+    plover-plugin-dotool-output = self.python3Packages.callPackage ../packages/plover/plover-dotool-output.nix {};
+    plover-plugin-dict-commands = self.python3Packages.callPackage ../packages/plover/plover-dict-commands.nix {};
+    plover-plugin-last-translation = self.python3Packages.callPackage ../packages/plover/plover-last-translation.nix {};
+    plover-plugin-modal-dictionary = self.python3Packages.callPackage ../packages/plover/plover-modal-dictionary.nix {};
+    plover-plugin-stitching = self.python3Packages.callPackage ../packages/plover/plover-stitching.nix {};
+    plover-plugin-lapwing-aio = self.python3Packages.callPackage ../packages/plover/plover-lapwing-aio.nix {};
+    plover-dict-didoesdigital = self.callPackage ../packages/plover/didoesdigital-dictionary.nix {};
+    miifox-net = self.python3Packages.callPackage ../packages/web/miifox-net.nix {};
+    old-homepage = self.callPackage ../packages/web/old-homepage.nix {};
+    asar-asm = self.callPackage ../packages/compiler/asar {};
+    bsnes-plus = self.libsForQt5.callPackage ../packages/emulator/bsnes-plus {};
+    sliding-sync = self.callPackage ../packages/matrix/sliding-sync {};
+    yiffstash = self.python3Packages.callPackage ../packages/python/yiffstash.nix {};
+    rosaflags = self.callPackage ../packages/art/emoji/rosaflags.nix {};
   }

@@ -1,7 +1,6 @@
 {
   system,
   pkgs,
-  nix-packages,
   ...
 }: let
   input = "${pkgs.lotte-art}/2022-12-27-rexyi-scatych.jxl";

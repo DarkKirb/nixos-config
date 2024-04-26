@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/matrix-org/sliding-sync",
+  "rev": "abf5aeff82069c7d180d007d2a3c64d13c05a234",
+  "date": "2024-04-24T16:55:25+01:00",
+  "path": "/nix/store/f7prlvm7qz1j61c91dq2gjw06shys810-sliding-sync",
+  "sha256": "03h18iv1zdwxvlwf0ma54kkk95xvg80c7gwi77blgamlfk6rc01r",
+  "hash": "sha256-OQCWzXS0qkfXOZG/wwB6u5c05yRFVeA43Z23H3ZEAQ4=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

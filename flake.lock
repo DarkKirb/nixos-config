@@ -415,11 +415,9 @@
     "gomod2nix": {
       "inputs": {
         "nixpkgs": [
-          "nix-packages",
           "nixpkgs"
         ],
         "utils": [
-          "nix-packages",
           "flake-utils"
         ]
       },
@@ -530,31 +528,6 @@
         "type": "github"
       }
     },
-    "mautrix-cleanup": {
-      "inputs": {
-        "flake-utils": [
-          "nix-packages",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nix-packages",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1678395415,
-        "narHash": "sha256-l7upZ8y8SobYtv+RYD7DodRU74DGvDRjvaKfj8VmAow=",
-        "owner": "DarkKirb",
-        "repo": "mautrix-cleanup",
-        "rev": "5f5f51ce8b7560d18ddae1824bc253a9e896ab0b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DarkKirb",
-        "repo": "mautrix-cleanup",
-        "type": "github"
-      }
-    },
     "mozilla": {
       "locked": {
         "lastModified": 1704373101,
@@ -659,35 +632,6 @@
         "type": "github"
       }
     },
-    "nix-packages": {
-      "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "gomod2nix": "gomod2nix",
-        "mautrix-cleanup": "mautrix-cleanup",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1714022439,
-        "narHash": "sha256-0S5xSjWn7lkF8b2N6IxicOB8hG6HlFrxHtZiCDCQNTE=",
-        "owner": "DarkKirb",
-        "repo": "nix-packages",
-        "rev": "00ef51460a431f963756424172b772462b3508ac",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DarkKirb",
-        "ref": "main",
-        "repo": "nix-packages",
-        "type": "github"
-      }
-    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1713864415,
@@ -788,6 +732,7 @@
         "flake-compat": "flake-compat_4",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils_2",
+        "gomod2nix": "gomod2nix",
         "home-manager": "home-manager",
         "hydra": "hydra",
         "impermanence": "impermanence",
@@ -796,7 +741,6 @@
         "naersk": "naersk",
         "nix-gaming": "nix-gaming",
         "nix-neovim": "nix-neovim",
-        "nix-packages": "nix-packages",
         "nixos-hardware": "nixos-hardware",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_2",

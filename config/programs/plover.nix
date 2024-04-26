@@ -2,7 +2,6 @@
   lib,
   pkgs,
   system,
-  nix-packages,
   emily-modifiers,
   emily-symbols,
   ...

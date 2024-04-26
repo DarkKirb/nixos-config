@@ -1,6 +1,5 @@
 {
   pkgs,
-  nix-packages,
   system,
   ...
 }: {

@@ -2,7 +2,6 @@
   attic,
   config,
   lib,
-  nix-packages,
   system,
   pkgs,
   ...

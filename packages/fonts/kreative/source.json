@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/kreativekorp/open-relay.git",
+  "rev": "bd13c51cf56cec4cc204124faa9f11b7c5f7ba83",
+  "date": "2024-04-10T14:51:02-07:00",
+  "path": "/nix/store/q94p115lbg8pd3fyd2lb54gaa4czj71s-open-relay",
+  "sha256": "16kwwf9ri21qb9y88x3s9833gaqrg6dyzbd68c98r1vicw590f8n",
+  "hash": "sha256-FjmQCmdxh4wSQ6at75t5Gas3Bkp6dIR8WjiImJPjfJo=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

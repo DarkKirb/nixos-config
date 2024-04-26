@@ -4,7 +4,6 @@
   lib,
   nixos-hardware,
   nixpkgs,
-  nix-packages,
   ...
 } @ args: {
   networking.hostName = "nas";

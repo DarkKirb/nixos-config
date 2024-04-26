@@ -1,0 +1,86 @@
+From b740c2f77c7e3b10ff77ebade90afa58f79f6267 Mon Sep 17 00:00:00 2001
+From: Travis Ralston <travpc@gmail.com>
+Date: Sat, 10 Jun 2023 15:04:48 -0600
+Subject: [PATCH] Make using MD5 hashing a config option on the datastore
+
+---
+ config.sample.yaml   | 4 ++++
+ datastores/s3.go     | 8 ++++++++
+ datastores/upload.go | 6 +++++-
+ 3 files changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/config.sample.yaml b/config.sample.yaml
+index d0d9543..24774b7 100644
+--- a/config.sample.yaml
++++ b/config.sample.yaml
+@@ -191,6 +191,10 @@ datastores:
+       # An optional storage class for tuning how the media is stored at s3.
+       # See https://aws.amazon.com/s3/storage-classes/ for details; uncomment to use.
+       #storageClass: STANDARD
++      # If you're seeing errors relating to 'z-amz-checksum-algorithm CRC32C not implemented',
++      # set this to `true`. This will reduce performance, but will allow uploads to be possible.
++      # It is common that you need to enable this with Backblaze B2 and CloudFlare R2.
++      useMD5: false
+ 
+ # Options for controlling archives. Archives are exports of a particular user's content for
+ # the purpose of GDPR or moving media to a different server.
+diff --git a/datastores/s3.go b/datastores/s3.go
+index 0517188..828f6e5 100644
+--- a/datastores/s3.go
++++ b/datastores/s3.go
+@@ -19,6 +19,7 @@ type s3 struct {
+ 	client       *minio.Client
+ 	storageClass string
+ 	bucket       string
++	putWithMd5   bool
+ }
+ 
+ func ResetS3Clients() {
+@@ -37,6 +38,7 @@ func getS3(ds config.DatastoreConfig) (*s3, error) {
+ 	region := ds.Options["region"]
+ 	storageClass, hasStorageClass := ds.Options["storageClass"]
+ 	useSslStr, hasSsl := ds.Options["ssl"]
++	useMd5Str, hasMd5 := ds.Options["useMD5"]
+ 
+ 	if !hasStorageClass {
+ 		storageClass = "STANDARD"
+@@ -47,6 +49,11 @@ func getS3(ds config.DatastoreConfig) (*s3, error) {
+ 		useSsl, _ = strconv.ParseBool(useSslStr)
+ 	}
+ 
++	useMd5 := false
++	if hasMd5 && useMd5Str != "" {
++		useMd5, _ = strconv.ParseBool(useMd5Str)
++	}
++
+ 	var err error
+ 	var client *minio.Client
+ 	client, err = minio.New(endpoint, &minio.Options{
+@@ -62,6 +69,7 @@ func getS3(ds config.DatastoreConfig) (*s3, error) {
+ 		client:       client,
+ 		storageClass: storageClass,
+ 		bucket:       bucket,
++		putWithMd5:   useMd5,
+ 	}
+ 	s3clients.Store(ds.Id, s3c)
+ 	return s3c, nil
+diff --git a/datastores/upload.go b/datastores/upload.go
+index a06bc0e..f011752 100644
+--- a/datastores/upload.go
++++ b/datastores/upload.go
+@@ -40,7 +40,11 @@ func Upload(ctx rcontext.RequestContext, ds config.DatastoreConfig, data io.Read
+ 
+ 		metrics.S3Operations.With(prometheus.Labels{"operation": "PutObject"}).Inc()
+ 		var info minio.UploadInfo
+-		info, err = s3c.client.PutObject(ctx.Context, s3c.bucket, objectName, tee, size, minio.PutObjectOptions{StorageClass: s3c.storageClass, ContentType: contentType})
++		info, err = s3c.client.PutObject(ctx.Context, s3c.bucket, objectName, tee, size, minio.PutObjectOptions{
++			StorageClass:   s3c.storageClass,
++			ContentType:    contentType,
++			SendContentMd5: s3c.putWithMd5,
++		})
+ 		uploadedBytes = info.Size
+ 	} else if ds.Type == "file" {
+ 		basePath := ds.Options["path"]
+-- 
+2.41.0
+
