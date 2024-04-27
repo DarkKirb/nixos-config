@@ -30,7 +30,7 @@ in
     passthru.updateScript = writeScript "update-sliding-sync" ''
       ${../../scripts/update-git.sh} "https://github.com/matrix-org/sliding-sync" matrix/sliding-sync/source.json
       if [ "$(git diff -- matrix/sliding-sync/source.json)" ]; then
-        SRC_PATH=$(nix-build -E '(import ./. {}).${pname}.src')
+        SRC_PATH=$(nix-build -E '(import ../.).packages.x86_64-linux.${pname}.src')
         ${../../scripts/update-go.sh} $SRC_PATH matrix/sliding-sync/
       fi
     '';
