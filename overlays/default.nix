@@ -1,5 +1,5 @@
 inputs: system: self: prev: let
-  inherit (inputs) nixpkgs;
+  inherit (inputs) nixpkgs element-web;
 in
   with nixpkgs.legacyPackages.${system}; {
     fcitx5-table-extra = prev.fcitx5-table-extra.overrideAttrs (super: {
@@ -63,4 +63,5 @@ in
     sliding-sync = self.callPackage ../packages/matrix/sliding-sync {};
     yiffstash = self.python3Packages.callPackage ../packages/python/yiffstash.nix {};
     rosaflags = self.callPackage ../packages/art/emoji/rosaflags.nix {};
+    element-web = element-web.packages.${system}.element-web;
   }
