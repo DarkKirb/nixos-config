@@ -54,12 +54,20 @@ rec {
     devshell = {
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
     };
     dns = {
       url = "github:DarkKirb/dns.nix";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    element-web = {
+      url = "github:DarkKirb/element-web";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.matrix-react-sdk.follows = "matrix-react-sdk";
+      inputs.matrix-js-sdk.follows = "matrix-js-sdk";
+      inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
     };
     firefox = {
       url = "github:nix-community/flake-firefox-nightly";
@@ -101,6 +109,21 @@ rec {
       url = "github:nix-community/lib-aggregate";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    matrix-react-sdk = {
+      url = "github:DarkKirb/matrix-react-sdk";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.matrix-js-sdk.follows = "matrix-js-sdk";
+      inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
+    };
+    matrix-js-sdk = {
+      url = "github:DarkKirb/matrix-js-sdk";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
     };
     mozilla.url = "github:mozilla/nixpkgs-mozilla";
     naersk = {
