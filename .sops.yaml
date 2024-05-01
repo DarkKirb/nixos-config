@@ -5,7 +5,7 @@ keys:
   - &nas age1c7y687sxh428wk34s8ws6kemu62mggafpt40rmanevgkuj5xa59q6f7tlc
   - &instance-20221213-1915 age1elra3uklw8rmwkevqms2l4tsd06d5utqda9d2w4qvqpz898uzuesugxkhc
   - &vf2 age1gtezxkkfhpkv788x9dek6s6s342n9tkl40zvsa48m9a7yqn25fnsmd3wy0
-  - &rainbow-resort age12ermm5afdu7a3humlf5wlun5rjm33u6tvzu06l7s8u59h0qd0yxs5mgjuh
+  - &rainbow-resort age19vzypddhexvvsf8xylstxc9znnkd8rxmamhjlt7elvz4j3zaf5tqqura6f
 creation_rules:
   - path_regex: secrets/shared\.yaml$
     key_groups:
