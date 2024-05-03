@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 34;
+    serial = 35;
   };
   NS = [
     "ns1.chir.rs."
@@ -229,14 +229,14 @@ in {
     backup.CNAME = [(ttl zoneTTL (cname "nas"))];
     hydra.CNAME = [(ttl zoneTTL (cname "nas"))];
     mastodon.CNAME = [(ttl zoneTTL (cname "nas"))];
-    matrix.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
+    matrix.CNAME = [(ttl zoneTTL (cname "nas"))];
     rspamd.CNAME = [(ttl zoneTTL (cname "nixos-8gb-fsn1-1"))];
     moa.CNAME = [(ttl zoneTTL (cname "nas"))];
-    matrix-admin.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
-    mautrix-discord.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
-    mautrix-signal.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
-    mautrix-telegram.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
-    mautrix-whatsapp.CNAME = [(ttl zoneTTL (cname "instance-20221213-1915"))];
+    matrix-admin.CNAME = [(ttl zoneTTL (cname "nas"))];
+    mautrix-discord.CNAME = [(ttl zoneTTL (cname "nas"))];
+    mautrix-signal.CNAME = [(ttl zoneTTL (cname "nas"))];
+    mautrix-telegram.CNAME = [(ttl zoneTTL (cname "nas"))];
+    mautrix-whatsapp.CNAME = [(ttl zoneTTL (cname "nas"))];
     weblate.CNAME = [(ttl zoneTTL (cname "nas"))];
     jellyfin.CNAME = [(ttl zoneTTL (cname "nas"))];
     keycloak.CNAME = [(ttl zoneTTL (cname "nas"))];

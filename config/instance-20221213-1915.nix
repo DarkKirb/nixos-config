@@ -18,14 +18,7 @@
     ./services/atticd.nix
     ./services/minecraft.nix
     ./services/postgres.nix
-    ./services/mautrix-discord.nix
-    ./services/mautrix-telegram.nix
-    ./services/mautrix-whatsapp.nix
-    ./services/mautrix-signal.nix
-    ./services/synapse.nix
-    ./services/heisenbridge.nix
     ./services/uptime-kuma.nix
-    ./services/matrix-sliding-sync.nix
     ./services/reverse-proxy.nix
     ./wireguard
     ./zfs.nix

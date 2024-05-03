@@ -33,6 +33,13 @@
     ./services/reverse-proxy.nix
     ./services/jellyfin.nix
     ../new-infra/devices/nas.nix
+    ./services/mautrix-discord.nix
+    ./services/mautrix-telegram.nix
+    ./services/mautrix-whatsapp.nix
+    ./services/mautrix-signal.nix
+    ./services/synapse.nix
+    ./services/heisenbridge.nix
+    ./services/matrix-sliding-sync.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
