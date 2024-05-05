@@ -170,7 +170,7 @@ in {
     };
     script = ''
       export QUEUE_PATH=/var/lib/hydra/queue-runner/upload
-      export SLED_PATH=/var/lib/hydra/queue-runner/queue-db
+      export DATABASE_PATH=/var/lib/hydra/queue-runner/queue.db
       export RUST_LOG=info
       exec ${attic.packages.${system}.attic-queue}/bin/attic-queue
     '';
