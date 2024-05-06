@@ -224,6 +224,7 @@ rec {
         emoji-volpeon-vlpn
         emoji-volpeon-neofox
         emoji-volpeon-neocat
+        emoji-volpeon-floof
         emoji-caro
         lotte-art
         alco-sans

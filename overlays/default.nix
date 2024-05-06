@@ -22,6 +22,7 @@ in
     emoji-volpeon-vlpn = self.callPackage ../packages/art/emoji/volpeon/vlpn.nix {};
     emoji-volpeon-neofox = self.callPackage ../packages/art/emoji/volpeon/neofox.nix {};
     emoji-volpeon-neocat = self.callPackage ../packages/art/emoji/volpeon/neocat.nix {};
+    emoji-volpeon-floof = self.callPackage ../packages/art/emoji/volpeon/floof.nix {};
     emoji-caro = self.callPackage ../packages/art/emoji/caro {};
     lotte-art = self.callPackage ../packages/art/lotte {};
     alco-sans = self.callPackage ../packages/fonts/kreative/alco-sans.nix {};
