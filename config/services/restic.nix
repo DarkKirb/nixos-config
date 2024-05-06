@@ -1,6 +1,11 @@
-_: {
+{config, ...}: {
   services.restic.backups."sysbackup" = {
-    passwordFile = "/run/secrets/security/restic/password";
+    timerConfig = {
+      OnUnitActiveSec = "12h";
+      RandomizedDelaySec = "1d";
+      Persistent = true;
+    };
+    environmentFile = config.sops.secrets."security/restic/env".path;
     paths = [
       "/var"
       "/home"
@@ -21,5 +26,7 @@ _: {
     ];
     repository = "sftp:backup:/backup";
   };
-  sops.secrets."security/restic/password" = {};
+  sops.secrets."security/restic/env" = {
+    sopsFile = ../../secrets/shared.yaml;
+  };
 }

@@ -15,7 +15,6 @@
     ./services/tpm2.nix
     ./server.nix
     ./services/hydra.nix
-    ./services/backup.nix
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-pc-ssd
     ./services/syncthing.nix
@@ -197,5 +196,14 @@
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+  services.restic.backups.sysbackup = {
+    paths = ["/persist"];
+    pruneOpts = [
+      "--keep-daily 7"
+      "--keep-weekly 4"
+      "--keep-monthly 12"
+      "--keep-yearly 10"
+    ];
   };
 }
