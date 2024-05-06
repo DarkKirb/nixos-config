@@ -39,7 +39,6 @@
     ./services/mautrix-signal.nix
     ./services/synapse.nix
     ./services/heisenbridge.nix
-    ./services/matrix-sliding-sync.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
