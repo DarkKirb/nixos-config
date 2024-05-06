@@ -19,6 +19,7 @@
       substituters = [
         "https://attic.chir.rs/chir-rs/"
         "https://hydra.int.chir.rs"
+        "https://cache.lix.systems"
       ];
       trusted-public-keys = [
         "nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg="
@@ -26,6 +27,7 @@
         "chir-rs:rzK1Czm3RqBbZLnXYrLM6JyOhfr6Z/8lhACIPO/LNFQ="
         "riscv:TZX1ReuoIGt7QiSQups+92ym8nKJUSV0O2NkS4HAqH8="
         "cache.ztier.link-1:3P5j2ZB9dNgFFFVkCQWT3mh0E+S3rIWtZvoql64UaXM="
+        "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
       ];
     };
     extraOptions = ''
