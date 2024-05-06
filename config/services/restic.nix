@@ -24,9 +24,13 @@
       "--exclude"
       "/var/lib/ipfs/root"
     ];
-    repository = "sftp:backup:/backup";
+    repository = "s3://ams1.vultrobjects.com/backup-chir-rs";
+    passwordFile = config.sops.secrets."security/restic/password".path;
   };
   sops.secrets."security/restic/env" = {
+    sopsFile = ../../secrets/shared.yaml;
+  };
+  sops.secrets."security/restic/password" = {
     sopsFile = ../../secrets/shared.yaml;
   };
 }
