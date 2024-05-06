@@ -1,6 +1,11 @@
-_: {
+{config, ...}: {
   services.restic.backups."sysbackup" = {
-    passwordFile = "/run/secrets/security/restic/password";
+    timerConfig = {
+      OnUnitActiveSec = "12h";
+      RandomizedDelaySec = "1d";
+      Persistent = true;
+    };
+    environmentFile = config.sops.secrets."security/restic/env".path;
     paths = [
       "/var"
       "/home"
@@ -19,7 +24,13 @@ _: {
       "--exclude"
       "/var/lib/ipfs/root"
     ];
-    repository = "sftp:backup:/backup";
+    repository = "s3://ams1.vultrobjects.com/backup-chir-rs";
+    passwordFile = config.sops.secrets."security/restic/password".path;
   };
-  sops.secrets."security/restic/password" = {};
+  sops.secrets."security/restic/env" = {
+    sopsFile = ../../secrets/shared.yaml;
+  };
+  sops.secrets."security/restic/password" = {
+    sopsFile = ../../secrets/shared.yaml;
+  };
 }
