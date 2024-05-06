@@ -22,6 +22,7 @@
     ./services/reverse-proxy.nix
     ./wireguard
     ./zfs.nix
+    ./services/matrix-sliding-sync.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
@@ -143,4 +144,5 @@
   };
 
   services.restic.backups.sysbackup.paths = ["/persist"];
+  system.autoUpgrade.allowReboot = true;
 }

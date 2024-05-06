@@ -38,7 +38,6 @@
     ./services/mautrix-signal.nix
     ./services/synapse.nix
     ./services/heisenbridge.nix
-    ./services/matrix-sliding-sync.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
@@ -206,4 +205,5 @@
       "--keep-yearly 10"
     ];
   };
+  system.autoUpgrade.allowReboot = true;
 }
