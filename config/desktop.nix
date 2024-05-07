@@ -20,6 +20,7 @@ in {
     ./services/docker.nix
     ./services/cifs.nix
     #    ./programs/virtualbox.nix
+    ./kde.nix
   ];
   fonts = {
     fontDir.enable = true;
