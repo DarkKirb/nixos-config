@@ -9,7 +9,6 @@
     settings = {
       app_service_config_files = [
         config.sops.secrets."synapse/mautrix-discord".path
-        config.sops.secrets."synapse/mautrix-signal".path
         config.sops.secrets."synapse/mautrix-telegram".path
         config.sops.secrets."synapse/mautrix-whatsapp".path
       ];
