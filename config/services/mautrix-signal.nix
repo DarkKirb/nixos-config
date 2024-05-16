@@ -3,10 +3,6 @@
   config,
   ...
 }: {
-  imports = [
-    ../../modules/matrix/mautrix-signal.nix
-  ];
-
   services.mautrix-signal = {
     enable = true;
     environmentFile = pkgs.emptyFile;
@@ -24,11 +20,6 @@
       metrics = {
         enabled = true;
         listen = "[::]:29329";
-      };
-      signal = {
-        socket_path = config.services.signald.socketPath;
-        avatar_dir = "/var/lib/signald/avatars";
-        data_dir = "/var/lib/signald/data";
       };
       bridge = {
         displayname_template = "{displayname}";
