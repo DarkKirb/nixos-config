@@ -47,13 +47,14 @@
         cross_room_replies = true;
         encryption = {
           allow = true;
-          default = false;
+          default = true;
           appservice = false;
           require = false;
           allow_key_sharing = true;
         };
         permissions = {
           "*" = "relay";
+          "@miifox:chir.rs" = "user";
           "@lotte:chir.rs" = "admin";
         };
         relay.enabled = true;

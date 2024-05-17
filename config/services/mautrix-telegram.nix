@@ -34,7 +34,7 @@
         invite_link_resolve = true;
         encryption = {
           allow = true;
-          default = false;
+          default = true;
           appservice = false;
           require = false;
           allow_key_sharing = true;
@@ -52,6 +52,7 @@
         };
         permissions = {
           "*" = "relaybot";
+          "@miifox:chir.rs" = "full";
           "@lotte:chir.rs" = "admin";
         };
       };

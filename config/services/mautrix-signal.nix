@@ -29,7 +29,7 @@
         sync_direct_chat_list = true;
         encryption = {
           allow = true;
-          default = false;
+          default = true;
           appservice = false;
           require = false;
           allow_key_sharing = true;
@@ -39,6 +39,7 @@
         periodic_sync = 86400;
         permissions = {
           "*" = "relay";
+          "@miifox:chir.rs" = "user";
           "@lotte:chir.rs" = "admin";
         };
         relay.enabled = true;

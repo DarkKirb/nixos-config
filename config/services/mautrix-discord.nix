@@ -47,7 +47,7 @@
         };
         encryption = {
           allow = true;
-          default = false;
+          default = true;
           appservice = false;
           require = false;
           plaintext_mentions = true;
@@ -55,6 +55,7 @@
         };
         permissions = {
           "*" = "relay";
+          "@miifox:chir.rs" = "user";
           "@lotte:chir.rs" = "admin";
         };
       };
