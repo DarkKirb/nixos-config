@@ -19,7 +19,7 @@ in {
     ./services/cups.nix
     ./services/docker.nix
     ./services/cifs.nix
-    #    ./programs/virtualbox.nix
+    ./programs/virtualbox.nix
     ./kde.nix
   ];
   fonts = {
