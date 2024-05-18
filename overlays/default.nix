@@ -24,6 +24,7 @@ in
     emoji-volpeon-neocat = self.callPackage ../packages/art/emoji/volpeon/neocat.nix {};
     emoji-volpeon-floof = self.callPackage ../packages/art/emoji/volpeon/floof.nix {};
     emoji-rosaflags = self.callPackage ../packages/art/emoji/rosaflags.nix {};
+    emoji-raccoon = self.callPackage ../packages/art/emoji/rosaflags.nix {};
     emoji-caro = self.callPackage ../packages/art/emoji/caro {};
     lotte-art = self.callPackage ../packages/art/lotte {};
     alco-sans = self.callPackage ../packages/fonts/kreative/alco-sans.nix {};
@@ -64,6 +65,5 @@ in
     bsnes-plus = self.libsForQt5.callPackage ../packages/emulator/bsnes-plus {};
     sliding-sync = self.callPackage ../packages/matrix/sliding-sync {};
     yiffstash = self.python3Packages.callPackage ../packages/python/yiffstash.nix {};
-    rosaflags = self.callPackage ../packages/art/emoji/rosaflags.nix {};
     element-web = element-web.packages.${system}.element-web;
   }
