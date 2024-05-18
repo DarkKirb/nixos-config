@@ -29,6 +29,7 @@
     "volpeon-neocat"
     "rosaflags"
     "volpeon-floof"
+    "raccoon"
   ];
   emoji_sets = builtins.listToAttrs (map (name: {
       inherit name;

@@ -235,6 +235,8 @@ rec {
         emoji-volpeon-neofox
         emoji-volpeon-neocat
         emoji-volpeon-floof
+        emoji-rosaflags
+        emoji-raccoon
         emoji-caro
         lotte-art
         alco-sans
@@ -270,7 +272,6 @@ rec {
         bsnes-plus
         sliding-sync
         yiffstash
-        rosaflags
         plover-plugin-dict-commands
         plover-plugin-last-translation
         plover-plugin-modal-dictionary
