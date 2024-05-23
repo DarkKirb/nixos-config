@@ -4,6 +4,7 @@
   lib,
   nixos-hardware,
   nixpkgs,
+  pkgs,
   ...
 } @ args: {
   networking.hostName = "nas";
@@ -38,6 +39,7 @@
     ./services/mautrix-signal.nix
     ./services/synapse.nix
     ./services/heisenbridge.nix
+    ./services/kubernetes.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
@@ -207,4 +209,9 @@
     ];
   };
   system.autoUpgrade.allowReboot = true;
+  virtualisation.docker = {
+    enable = true;
+    enableNvidia = true;
+  };
+  environment.systemPackages = with pkgs; [docker runc];
 }
