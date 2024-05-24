@@ -16,7 +16,7 @@ creation_rules:
           - *instance-20221213-1915
           - *vf2
           - *rainbow-resort
-          - *lotte          
+          - *lotte
   - path_regex: secrets/nixos-8gb-fsn1-1\.yaml$
     key_groups:
       - age:
@@ -55,5 +55,13 @@ creation_rules:
   - path_regex: secrets/rainbow-resort\.yaml$
     key_groups:
       - age:
+          - *rainbow-resort
+          - *lotte
+  - path_regex: secrets/kubernetes\.yaml$
+    key_groups:
+      - age:
+          - *nixos-8gb-fsn1-1
+          - *nas
+          - *instance-20221213-1915
           - *rainbow-resort
           - *lotte

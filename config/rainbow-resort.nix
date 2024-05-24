@@ -18,6 +18,7 @@
     nixos-hardware.nixosModules.common-gpu-amd
     nixos-hardware.nixosModules.common-pc-ssd
     ./users/remote-build.nix
+    ./services/kubernetes.nix
   ];
   hardware.cpu.amd.updateMicrocode = true;
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "k10temp"];
@@ -102,4 +103,5 @@
   home-manager.users.darkkirb._module.args.withNSFW = lib.mkForce true;
   system.autoUpgrade.allowReboot = true;
   services.prometheus.exporters.node.enabledCollectors = ["drm"];
+  services.k3s.role = lib.mkForce "agent";
 }
