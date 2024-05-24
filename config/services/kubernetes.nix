@@ -25,7 +25,7 @@ in {
       else "https://100.99.173.107:6443";
     extraFlags =
       if config.networking.hostName == "rainbow-resort"
-      then "--container-runtime-endpoint unix:///run/containerd/containerd.sock --advertise-address ${nodeIPs.${config.networking.hostName}} --node-ip ${nodeIPs.${config.networking.hostName}} --node-external-ip ${nodeIPs.${config.networking.hostName}} --flannel-iface tailscale0"
+      then "--container-runtime-endpoint unix:///run/containerd/containerd.sock --node-ip ${nodeIPs.${config.networking.hostName}} --node-external-ip ${nodeIPs.${config.networking.hostName}} --flannel-iface tailscale0"
       else "--tls-san ${config.networking.hostName}.int.chir.rs --container-runtime-endpoint unix:///run/containerd/containerd.sock --advertise-address ${nodeIPs.${config.networking.hostName}}  --node-ip ${nodeIPs.${config.networking.hostName}} --node-external-ip ${nodeIPs.${config.networking.hostName}} --flannel-iface tailscale0 --cluster-cidr=10.42.0.0/16 --service-cidr=10.43.0.0/16";
   };
   virtualisation.containerd = {
@@ -50,7 +50,7 @@ in {
       # };
     };
   };
-  environment.systemPackages = [pkgs.nfs-utils];
+  environment.systemPackages = [pkgs.nfs-utils pkgs.kubernetes-helm];
   services.openiscsi = {
     enable = true;
     name = "${config.networking.hostName}-initiatorhost";
