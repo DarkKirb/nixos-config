@@ -23,7 +23,7 @@
     ./wireguard
     ./zfs.nix
     ./services/matrix-sliding-sync.nix
-    ./services/kubernetes.nix
+    #./services/kubernetes.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];

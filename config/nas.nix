@@ -39,7 +39,7 @@
     ./services/mautrix-signal.nix
     ./services/synapse.nix
     ./services/heisenbridge.nix
-    ./services/kubernetes.nix
+    #./services/kubernetes.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;

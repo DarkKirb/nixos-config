@@ -33,7 +33,7 @@
     ./services/initrd-ssh.nix
     ./wireguard
     ./zfs.nix
-    ./services/kubernetes.nix
+    #./services/kubernetes.nix
   ];
 
   boot.initrd.availableKernelModules = ["ata_piix" "virtio_pci" "virtio_scsi" "xhci_pci" "sd_mod" "sr_mod"];
