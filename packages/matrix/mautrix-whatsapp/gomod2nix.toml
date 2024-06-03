@@ -41,8 +41,8 @@ schema = 3
     version = "v1.14.22"
     hash = "sha256-CWF2Hjg43658NhaePWbGzS19gHJXjuTroG5c0W3hgYQ="
   [mod."github.com/prometheus/client_golang"]
-    version = "v1.19.0"
-    hash = "sha256-YV8sxMPR+xorTUCriTfcFsaV2b7PZfPJDQmOgUYOZJo="
+    version = "v1.19.1"
+    hash = "sha256-MSLsMDi89uQc7Pa2fhqeamyfPJpenGj3r+eB/UotK7w="
   [mod."github.com/prometheus/client_model"]
     version = "v0.5.0"
     hash = "sha256-/sXlngf8AoEIeLIiaLg6Y7uYPVq7tI0qnLt0mUyKid4="
@@ -56,8 +56,8 @@ schema = 3
     version = "v1.5.0"
     hash = "sha256-u0QLm2YFMJqEjUhpWcLwfoS9lNHUxc2A79MObsqVbVU="
   [mod."github.com/rs/zerolog"]
-    version = "v1.32.0"
-    hash = "sha256-9dZjtsES+wLp1cFiSVMuEUbdeXVFcgT0dgg5ACZkILk="
+    version = "v1.33.0"
+    hash = "sha256-jT/Y/izhZiCdrDbC/ty83FGs8UQavTU+OW03O4vKFkY="
   [mod."github.com/skip2/go-qrcode"]
     version = "v0.0.0-20200617195104-da1b6568686e"
     hash = "sha256-ST9t4/b7WFXUb8wra4ZYVDNZJGrEykw8dkWhLrxp8F0="
@@ -86,8 +86,8 @@ schema = 3
     version = "v0.1.0"
     hash = "sha256-KIP/Onw0t/o10oBuvmRQDff7GF8G5lsMaDXpe0fjvNg="
   [mod."go.mau.fi/whatsmeow"]
-    version = "v0.0.0-20240520180327-81f8f07f1dfb"
-    hash = "sha256-5hEYJyWSFV7G3LEnBeEgT3SaaPZzIq1tVyDhMvwhmRY="
+    version = "v0.0.0-20240603101645-64bc969fbe78"
+    hash = "sha256-MBDcxTHM+ZxxzIrendWWEhNdkPA7cLgkduC424+j+fU="
   [mod."go.mau.fi/zeroconfig"]
     version = "v0.1.2"
     hash = "sha256-xf4p2Z5Pl9In3ne9BVmy7YvtooSRBzqxP4Pl2jdVN8w="
@@ -98,8 +98,8 @@ schema = 3
     version = "v0.0.0-20240409090435-93d18d7e34b8"
     hash = "sha256-yJ9KBMmck/gGGTwPx26kZzqBHlh3sn3kKVjwBI1OB0w="
   [mod."golang.org/x/image"]
-    version = "v0.15.0"
-    hash = "sha256-8VvBDVh7MjaZNi5hERxKyHUrOYEmTsAylxj3fkE1QVA="
+    version = "v0.16.0"
+    hash = "sha256-+BOLefaFM/c+AV3kmnNvztbhZ+a9GCNwkEya8hZSKYg="
   [mod."golang.org/x/net"]
     version = "v0.25.0"
     hash = "sha256-IjFfXLYNj27WLF7vpkZ6mfFXBnp+7QER3OQ0RgjxN54="
@@ -113,8 +113,8 @@ schema = 3
     version = "v0.15.0"
     hash = "sha256-pBnj0AEkfkvZf+3bN7h6epCD2kurw59clDP7yWvxKlk="
   [mod."google.golang.org/protobuf"]
-    version = "v1.33.0"
-    hash = "sha256-cWwQjtUwSIEkAlAadrlxK1PYZXTRrV4NKzt7xDpJgIU="
+    version = "v1.34.1"
+    hash = "sha256-qnHqY6KLZiZDbTVTN6uzF4jedxROYlPCYHoiv6XI0sc="
   [mod."gopkg.in/natefinch/lumberjack.v2"]
     version = "v2.2.1"
     hash = "sha256-GaXWRDxhGy4Z4mgE+bJ8OE9SVvYUa9TnNiydnp2s1Ms="
