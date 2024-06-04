@@ -27,7 +27,7 @@ in
     };
     postConfigure = ''
       chmod -R +w vendor/
-      for f in $(find vendor/go.mau.fi/webp/internal/ -type l) vendor/go.mau.fi/util/variationselector/*.json vendor/golang.org/x/net/publicsuffix/data/* vendor/maunium.net/go/mautrix/crypto/sql_store_upgrade/*.sql vendor/maunium.net/go/mautrix/sqlstatestore/*.sql $(find vendor/go.mau.fi/whatsmeow/binary/ -type l) vendor/google.golang.org/protobuf/internal/editiondefaults/editions_defaults.binpb; do
+      for f in $(find vendor/go.mau.fi/webp/internal/ vendor/go.mau.fi/whatsmeow/proto/ -type l) vendor/go.mau.fi/util/variationselector/*.json vendor/golang.org/x/net/publicsuffix/data/* vendor/maunium.net/go/mautrix/crypto/sql_store_upgrade/*.sql vendor/maunium.net/go/mautrix/sqlstatestore/*.sql $(find vendor/go.mau.fi/whatsmeow/binary/ -type l) vendor/google.golang.org/protobuf/internal/editiondefaults/editions_defaults.binpb; do
           cp -v --remove-destination -f `readlink $f` $f
       done
     '';
