@@ -16,7 +16,7 @@
         header_up Host {upstream_hostport}
 
         transport http {
-          versions 1.1 2 3
+          versions 1.1
         }
       }
     '';
@@ -35,7 +35,7 @@ in {
             to http://localhost:23432
             header_up Host weblate.chir.rs
             transport http {
-                versions 1.1 2 3
+                versions 1.1
             }
         }
       '';
@@ -49,7 +49,7 @@ in {
             to https://mastodon.int.chir.rs
             header_up Host {upstream_hostport}
             transport http {
-              versions 1.1 2 3
+              versions 1.1
             }
         }
       '';
@@ -86,7 +86,7 @@ in {
           header_up -Set-Cookie
 
           transport http {
-            versions 1.1 2 3
+            versions 1.1
           }
         }
         respond @options 204
@@ -118,7 +118,7 @@ in {
           header_up -Set-Cookie
 
           transport http {
-            versions 1.1 2 3
+            versions 1.1
           }
         }
 
@@ -136,7 +136,7 @@ in {
               header_up -Set-Cookie
 
               transport http {
-                versions 1.1 2 3
+                versions 1.1
               }
             }
           }
@@ -150,7 +150,7 @@ in {
           header_up -Set-Cookie
 
           transport http {
-            versions 1.1 2 3
+            versions 1.1
           }
         }
       '';
@@ -187,7 +187,7 @@ in {
             to https://keycloak.int.chir.rs
             header_up Host {upstream_hostport}
             transport http {
-              versions 1.1 2 3
+              versions 1.1
             }
         }
       '';

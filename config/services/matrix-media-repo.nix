@@ -188,7 +188,7 @@ in {
             header_up Host {upstream_hostport}
 
             transport http {
-              versions 1.1 2 3
+              versions 1.1
             }
           }
         }
