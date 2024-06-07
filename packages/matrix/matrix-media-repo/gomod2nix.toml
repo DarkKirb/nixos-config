@@ -370,6 +370,9 @@ schema = 3
   [mod."github.com/strukturag/libheif"]
     version = "v1.17.6"
     hash = "sha256-oNl+LgOyVpA1WxiUAE2TGQfgnHVJhbNXAIMZHjOXG3I="
+  [mod."github.com/t2bot/go-leaky-bucket"]
+    version = "v1.0.0"
+    hash = "sha256-EoWDLvrjolaNtiNtloPrA2PnwKJIyS8ASe7ojuecST0="
   [mod."github.com/t2bot/go-singleflight-streams"]
     version = "v1.0.0"
     hash = "sha256-JJk0EpBHQZ8wYI66grgP745woDtoYwOBAqgV5WBmcgk="
