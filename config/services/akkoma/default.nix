@@ -172,13 +172,13 @@
           "threads.net" = "there is so much wrong with facebook it would just fill up the whole page";
         };
         followers_only = processMap {
-          "vivaldi.net" = "Corporate instance; Registers nonconsensual accounts for Vivaldi Sync users";
           "bird.makeup" = "Birdsite scraper with removed limitations and privacy considerations";
-          "mastodon.social" = "Owner tries to monopolize the fediverse entirely on this instance.";
         };
         federated_timeline_removal = processMap {
           "mastodon.online" = "Too large to be moderated well";
           "tumblr.com" = "Too large to be moderated well, corporate instance";
+          "vivaldi.net" = "Corporate instance; Registers nonconsensual accounts for Vivaldi Sync users";
+          "mastodon.social" = "Too large to be moderated well";
         };
       };
       ":mrf" = {
