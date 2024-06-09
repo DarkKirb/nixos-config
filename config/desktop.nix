@@ -75,7 +75,7 @@ in {
     </fontconfig>
   '';
 
-  time.timeZone = "Etc/GMT-1"; # Confusing naming, it's 1 hour east of GMT
+  time.timeZone = "Europe/Berlin";
   services.pcscd.enable = true;
 
   security.pam = {
