@@ -85,6 +85,7 @@ desktop: {pkgs, ...}: {
           jpegoptim
           picard
           easytag
+          alejandra
         ]
         else []
       );
