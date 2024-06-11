@@ -211,7 +211,7 @@
   system.autoUpgrade.allowReboot = true;
   virtualisation.docker = {
     enable = true;
-    enableNvidia = true;
+    #enableNvidia = true;
   };
   environment.systemPackages = with pkgs; [docker runc];
 }
