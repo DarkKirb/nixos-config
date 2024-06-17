@@ -13,15 +13,20 @@
     fi
   '';
 in {
-  imports = [
-    ./services/pipewire.nix
-    ./desktop-secrets.nix
-    ./services/cups.nix
-    ./services/docker.nix
-    ./services/cifs.nix
-    ./programs/virtualbox.nix
-    ./kde.nix
-  ];
+  imports =
+    [
+      ./services/pipewire.nix
+      ./desktop-secrets.nix
+      ./services/cups.nix
+      ./services/docker.nix
+      ./services/cifs.nix
+      ./kde.nix
+    ]
+    ++ (
+      if system == "x86_64-linux"
+      then [./programs/virtualbox.nix]
+      else []
+    );
   fonts = {
     fontDir.enable = true;
     fontconfig = {

@@ -69,14 +69,6 @@ rec {
       inputs.devshell.follows = "devshell";
       inputs.flake-compat.follows = "flake-compat";
     };
-    firefox = {
-      url = "github:nix-community/flake-firefox-nightly";
-      inputs.cachix.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.lib-aggregate.follows = "lib-aggregate";
-      inputs.mozilla.follows = "mozilla";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -135,7 +127,6 @@ rec {
       inputs.devshell.follows = "devshell";
       inputs.flake-compat.follows = "flake-compat";
     };
-    mozilla.url = "github:mozilla/nixpkgs-mozilla";
     naersk = {
       url = "github:nix-community/naersk/master";
       inputs.nixpkgs.follows = "nixpkgs";

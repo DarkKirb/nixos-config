@@ -18,7 +18,7 @@
     };
     deviceTree = {
       enable = true;
-      filter = "*rpi-4-*.dtb";
+      #filter = "*rpi-4-*.dtb";
     };
   };
   console.enable = false;

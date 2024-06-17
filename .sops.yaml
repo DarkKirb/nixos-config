@@ -57,6 +57,10 @@ creation_rules:
       - age:
           - *rainbow-resort
           - *lotte
+  - path_regex: secrets/devterm\.yaml$
+    key_groups:
+      - age:
+          - *lotte
   - path_regex: secrets/kubernetes\.yaml$
     key_groups:
       - age:

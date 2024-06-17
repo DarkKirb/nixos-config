@@ -278,38 +278,6 @@
         "type": "github"
       }
     },
-    "firefox": {
-      "inputs": {
-        "cachix": [
-          "nixpkgs"
-        ],
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "lib-aggregate": [
-          "lib-aggregate"
-        ],
-        "mozilla": [
-          "mozilla"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1717975029,
-        "narHash": "sha256-wN4CJc3bgmbCS3/+KZ0SxynUI6HXanBrMmzT7xqtqqM=",
-        "owner": "nix-community",
-        "repo": "flake-firefox-nightly",
-        "rev": "12e9e043bb4ba19493f82c5d905e63af9eb6230c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "flake-firefox-nightly",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "locked": {
         "lastModified": 1696426674,
@@ -681,21 +649,6 @@
         "type": "github"
       }
     },
-    "mozilla": {
-      "locked": {
-        "lastModified": 1704373101,
-        "narHash": "sha256-+gi59LRWRQmwROrmE1E2b3mtocwueCQqZ60CwLG+gbg=",
-        "owner": "mozilla",
-        "repo": "nixpkgs-mozilla",
-        "rev": "9b11a87c0cc54e308fa83aac5b4ee1816d5418a2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mozilla",
-        "repo": "nixpkgs-mozilla",
-        "type": "github"
-      }
-    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -882,7 +835,6 @@
         "devshell": "devshell",
         "dns": "dns",
         "element-web": "element-web",
-        "firefox": "firefox",
         "flake-compat": "flake-compat_4",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils_2",
@@ -895,7 +847,6 @@
         "lix-module": "lix-module",
         "matrix-js-sdk": "matrix-js-sdk",
         "matrix-react-sdk": "matrix-react-sdk",
-        "mozilla": "mozilla",
         "naersk": "naersk",
         "nix-gaming": "nix-gaming",
         "nix-neovim": "nix-neovim",
