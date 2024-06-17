@@ -201,6 +201,10 @@ rec {
         name = "rainbow-resort"; # PC
         system = "x86_64-linux";
       }
+      {
+        name = "devterm";
+        system = "aarch64-linux";
+      }
     ];
     mkPackages = system: let
       pkgs = import nixpkgs {
