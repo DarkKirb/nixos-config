@@ -9,18 +9,26 @@
   networking.hostName = "devterm";
   imports = [
     ./desktop.nix
-    nixos-hardware.nixosModules.raspberry-pi-4
   ];
-  hardware = {
-    raspberry-pi."4" = {
-      #apply-overlays-dtmerge.enable = true;
-      #fkms-3d.enable = true;
-      #audio.enable = true;
-    };
-    deviceTree = {
-      enable = true;
-      #filter = "*rpi-4-*.dtb";
-    };
+  boot.loader = {
+    grub.enable = lib.mkDefault false;
+    generic-extlinux-compatible.enable = lib.mkDefault true;
+  };
+  boot.initrd = {
+    includeDefaultModules = false;
+    availableKernelModules = [
+      "usbhid"
+      "usb_storage"
+      "vc4"
+      "pcie_brcmstb" # required for the pcie bus to work
+      "reset-raspberrypi" # required for vl805 firmware to load
+      "mmc_block"
+      "usbhid"
+      "hid_generic"
+      "panel_cwd686"
+      "ocp8178_bl"
+      "ti_adc081c"
+    ];
   };
   console.enable = false;
   environment.systemPackages = with pkgs; [
