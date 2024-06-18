@@ -5,6 +5,7 @@
   pkgs,
   ...
 }: {
+  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux-devterm;
   networking.hostName = "devterm";
   imports = [
     ./desktop.nix
