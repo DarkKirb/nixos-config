@@ -12,9 +12,9 @@
   ];
   hardware = {
     raspberry-pi."4" = {
-      apply-overlays-dtmerge.enable = true;
-      fkms-3d.enable = true;
-      audio.enable = true;
+      #apply-overlays-dtmerge.enable = true;
+      #fkms-3d.enable = true;
+      #audio.enable = true;
     };
     deviceTree = {
       enable = true;
