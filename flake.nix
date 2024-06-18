@@ -32,11 +32,11 @@ rec {
       inputs.rust-overlay.follows = "rust-overlay";
     };
     cargo2nix = {
-      url = "github:DarkKirb/cargo2nix/release-0.11.0";
+      url = "github:cargo2nix/cargo2nix/main";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
-      #inputs.rust-overlay.follows = "rust-overlay";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     colorpickle = {
       url = "github:AgathaSorceress/colorpickle";
