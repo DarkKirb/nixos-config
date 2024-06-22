@@ -109,7 +109,6 @@ in {
   ];
   services.flatpak.enable = true;
   programs.java.enable = true;
-  hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = lib.mkForce (system == "x86_64-linux");
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
     desktop = true;
