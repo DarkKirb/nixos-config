@@ -124,9 +124,6 @@
   nix.settings.substituters = lib.mkForce [
     "https://attic.chir.rs/chir-rs/"
     "https://cache.nixos.org/"
-    "https://beam.attic.rs/riscv"
-    "https://cache.ztier.in"
-    "https://cache.lix.systems"
   ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
@@ -185,7 +182,6 @@
 
   hardware.opengl = {
     enable = true;
-    driSupport = true;
     driSupport32Bit = true;
   };
 
