@@ -32,7 +32,6 @@
     ./services/yiff-stash.nix
     ./services/reverse-proxy.nix
     ./services/jellyfin.nix
-    ../new-infra/devices/nas.nix
     ./services/mautrix-discord.nix
     ./services/mautrix-telegram.nix
     ./services/mautrix-whatsapp.nix
