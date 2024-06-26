@@ -55,6 +55,9 @@
           "@miifox:chir.rs" = "full";
           "@lotte:chir.rs" = "admin";
         };
+        login_shared_secret_map = {
+          "chir.rs" = "as_token:$SHARED_AS_TOKEN";
+        };
       };
       telegram = {
         api_id = "$API_ID";

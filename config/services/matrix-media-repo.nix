@@ -72,10 +72,6 @@
     };
     featureSupport = {
     };
-    sentry = {
-      enabled = true;
-      dsn = "https://18e36e6f16b5490c83364101717cddba@o253952.ingest.sentry.io/6449283";
-    };
     rateLimit.enabled = false;
     thumbnails = {
       maxSourceBytes = 0;
@@ -122,35 +118,8 @@ in {
       ExecStart = "${matrix-media-repo}/bin/media_repo -config /var/lib/matrix-media-repo/config.yml";
     };
   };
-  systemd.services.purge-old-media = {
-    path = [pkgs.curl];
-    description = "Purge unused media";
-    script = ''
-      export MATRIX_TOKEN=$(cat ${config.sops.secrets."services/matrix-media-repo/matrix-token".path})
-      for i in $(seq 1000); do
-        curl -H "Authorization: Bearer $MATRIX_TOKEN" -X POST https://matrix.chir.rs/_matrix/media/unstable/admin/purge/old\?before_ts=$(date -d "3 months ago" +%s%3N)\&include_local=true && exit 0
-      done
-    '';
-
-    serviceConfig = {
-      Type = "oneshot";
-      User = "matrix-media-repo";
-      Group = "matrix-media-repo";
-    };
-  };
-  systemd.timers.purge-old-media = {
-    description = "Purge unused media";
-    after = ["network.target" "matrix-media-repo.service"];
-    requires = ["purge-old-media.service"];
-    wantedBy = ["multi-user.target"];
-    timerConfig = {
-      OnUnitInactiveSec = 300;
-      RandomizedDelaySec = 300;
-    };
-  };
   sops.secrets."services/matrix-media-repo/access-key-id".owner = "matrix-media-repo";
   sops.secrets."services/matrix-media-repo/secret-access-key".owner = "matrix-media-repo";
-  sops.secrets."services/matrix-media-repo/matrix-token".owner = "matrix-media-repo";
   users.users.matrix-media-repo = {
     description = "Matrix Media Repository";
     home = "/var/lib/matrix-media-repo";
