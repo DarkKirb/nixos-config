@@ -11,6 +11,7 @@
         config.sops.secrets."synapse/mautrix-discord".path
         config.sops.secrets."synapse/mautrix-telegram".path
         config.sops.secrets."synapse/mautrix-whatsapp".path
+        config.sops.secrets."synapse/doublepuppet".path
       ];
       server_name = "chir.rs";
       public_baseurl = "https://matrix.chir.rs/";
@@ -33,11 +34,6 @@
       admin_contact = "mailto:lotte@chir.rs";
       retention = {
         enabled = true;
-        default_policy = {
-          max_lifetime = "12w";
-        };
-        max_lifetime = "12w";
-        allowed_lifetime_max = "12w";
         purge_jobs = [
           {
             longest_max_lifetime = "3d";
@@ -114,7 +110,6 @@
         msc3967_enabled = true;
         msc2659_enabled = true;
       };
-      sentry.dsn = "https://18e36e6f16b5490c83364101717cddba@o253952.ingest.sentry.io/6449283";
     };
     withJemalloc = true;
   };
@@ -180,6 +175,10 @@
   };
   sops.secrets."synapse/mautrix-whatsapp" = {
     key = "services/mautrix/whatsapp.yaml";
+    owner = "matrix-synapse";
+  };
+  sops.secrets."synapse/doublepuppet" = {
+    key = "services/mautrix/doublepuppet.yaml";
     owner = "matrix-synapse";
   };
 }
