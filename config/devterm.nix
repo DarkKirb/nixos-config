@@ -90,5 +90,9 @@
       name = "audremap";
       dtsFile = ./devterm/audremap-overlay.dts;
     }
+    {
+      name = "spi";
+      dtsFile = ./devterm/spi0-overlay.dts;
+    }
   ];
 }

@@ -3,12 +3,12 @@
 /plugin/;
 
 / {
-    compatible = "brcm,bcm2711";
-
-    fragment@0 {
-    target = <&cma>;
-    __overlay__ {
-        size = <(384 * 1024 * 1024)>;
-    };
-    };
+	compatible = "brcm,bcm2711";
+	
+	fragment@0 {
+		target = <&cma>;
+		__overlay__ {
+			size = <(384 * 1024 * 1024)>;
+		};
+	};
 };

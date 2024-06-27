@@ -3,26 +3,26 @@
 
 / {
 	compatible = "brcm,bcm2711";
-
+	
 	fragment@0 {
 		target=<&dsi1>;
 		__overlay__ {
 			#address-cells = <1>;
 			#size-cells = <0>;
 			status = "okay";
-
+			
 			port {
 				dsi_out_port: endpoint {
 					remote-endpoint = <&panel_dsi_port>;
 				};
 			};
-
+			
 			panel_cwd686: panel@0 {
 				compatible = "cw,cwd686";
 				reg = <0>;
 				reset-gpio = <&gpio 8 1>;
 				backlight = <&ocp8178_backlight>;
-
+				
 				port {
 					panel_dsi_port: endpoint {
 						remote-endpoint = <&dsi_out_port>;
@@ -31,7 +31,7 @@
 			};
 		};
 	};
-
+	
 	fragment@1 {
 		target-path = "/";
 		__overlay__  {
@@ -42,5 +42,5 @@
 			};
 		};
 	};
-
+	
 };
