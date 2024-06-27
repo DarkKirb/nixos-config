@@ -61,4 +61,34 @@
   };
   networking.networkmanager.enable = true;
   users.users.darkkirb.extraGroups = ["networkmanager"];
+  hardware.deviceTree.overlays = [
+    {
+      name = "dwc2";
+      dtsFile = ./devterm/dwc2-overlay.dts;
+    }
+    {
+      name = "cma";
+      dtsFile = ./devterm/cma-overlay.dts;
+    }
+    {
+      name = "vc4-kms-v3d-pi4";
+      dtsFile = ./devterm/vc4-kms-v3d-pi4-overlay.dts;
+    }
+    {
+      name = "devterm-pmu";
+      dtsFile = ./devterm/devterm-pmu-overlay.dts;
+    }
+    {
+      name = "devterm-panel";
+      dtsFile = ./devterm/devterm-panel-overlay.dts;
+    }
+    {
+      name = "devterm-misc";
+      dtsFile = ./devterm/devterm-misc-overlay.dts;
+    }
+    {
+      name = "audremap";
+      dtsFile = ./devterm/audremap-overlay.dts;
+    }
+  ];
 }

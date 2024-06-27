@@ -1,0 +1,22 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2711";
+
+    fragment@0 {
+    target = <&usb>;
+    #address-cells = <0x01>;
+    #size-cells = <0x01>;
+
+    __overlay__ {
+        compatible = "brcm,bcm2835-usb";
+        dr_mode = "host";
+        g-np-tx-fifo-size = <0x20>;
+        g-rx-fifo-size = <0x22e>;
+        g-tx-fifo-size = <0x200 0x200 0x200 0x200 0x200 0x100 0x100>;
+        status = "okay";
+        phandle = <0x01>;
+    };
+    };
+};
