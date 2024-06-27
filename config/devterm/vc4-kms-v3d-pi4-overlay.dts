@@ -15,7 +15,7 @@
 	fragment@2 {
 		target = <&firmwarekms>;
 		__overlay__ {
-			status = "okay";
+			status = "disabled";
 		};
 	};
 	
