@@ -46,4 +46,19 @@
     device = "/dev/mmcblk0p1";
     fsType = "vfat";
   };
+  security.pam = {
+    services.login.u2fAuth = lib.mkForce false;
+    services.swaylock.u2fAuth = lib.mkForce false;
+    u2f.enable = lib.mkForce false;
+    services.sddm.u2fAuth = lib.mkForce false;
+  };
+  console.keyMap = lib.mkForce "us";
+  services.xserver.layout = lib.mkForce "us";
+  services.xserver.xkbVariant = lib.mkForce "";
+  services.displayManager.sddm = {
+    autoLogin.enable = true;
+    autoLogin.user = "darkkirb";
+  };
+  networking.networkmanager.enable = true;
+  users.users.darkkirb.extraGroups = ["networkmanager"];
 }
