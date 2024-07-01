@@ -30,6 +30,7 @@ in
             DRM_PANEL_CWD686 = module;
             TI_ADC081C = module;
             I2C_BCM2835 = yes;
+            FW_LOADER_COMPRESS = yes;
           };
         }
         {
