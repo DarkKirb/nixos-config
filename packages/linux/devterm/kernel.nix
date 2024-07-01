@@ -12,6 +12,7 @@ in
       src = callPackage ./kernel-source.nix {};
       version = "5.10.17-v8";
       defconfig = "bcm2711_defconfig";
+      autoModules = false;
       kernelPatches = [
         {
           name = "devterm";
@@ -38,5 +39,6 @@ in
           extraConfig = "";
         }
       ];
+      enableCommonConfig = false;
     }
   )
