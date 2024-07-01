@@ -32,11 +32,11 @@ rec {
       inputs.rust-overlay.follows = "rust-overlay";
     };
     cargo2nix = {
-      url = "github:DarkKirb/cargo2nix/release-0.11.0";
+      url = "github:cargo2nix/cargo2nix/main";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
-      #inputs.rust-overlay.follows = "rust-overlay";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     colorpickle = {
       url = "github:AgathaSorceress/colorpickle";
@@ -101,16 +101,6 @@ rec {
       url = "github:nix-community/lib-aggregate";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-    lix = {
-      url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
-      flake = false;
-    };
-    lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module";
-      inputs.lix.follows = "lix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
     };
     matrix-react-sdk = {
       url = "github:DarkKirb/matrix-react-sdk";
@@ -307,7 +297,6 @@ rec {
                 home-manager.extraSpecialArgs = args // {inherit system;};
               })
               (import utils/link-input.nix args)
-              args.lix-module.nixosModules.default
             ];
           };
       })
@@ -363,17 +352,6 @@ rec {
         # Uncomment the line to build an installer image
         # This is EXTREMELY LARGE and will make builds take forever
         # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
-        tests = let
-          pkgs = import nixpkgs {
-            system = "x86_64-linux";
-            overlays = [
-              self.overlays.x86_64-linux
-            ];
-          };
-        in {
-          postgresql = pkgs.callPackage ./new-infra/containers/postgresql/test.nix {};
-          keycloak = pkgs.callPackage ./new-infra/containers/keycloak/test.nix {};
-        };
       };
   };
 }

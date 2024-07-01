@@ -1,11 +1,15 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../modules/matrix/mautrix-whatsapp.nix
   ];
 
   services.mautrix-whatsapp = {
     enable = true;
-    environmentFile = pkgs.emptyFile;
+    environmentFile = config.sops.secrets."services/mautrix/shared_secret".path;
     settings = {
       homeserver = {
         address = "https://matrix.chir.rs";
@@ -58,9 +62,13 @@
           "@lotte:chir.rs" = "admin";
         };
         relay.enabled = true;
+        login_shared_secret_map = {
+          "chir.rs" = "as_token:$SHARED_AS_TOKEN";
+        };
       };
     };
   };
+  sops.secrets."services/mautrix/shared_secret" = {};
   services.postgresql.ensureDatabases = [
     "mautrix_whatsapp"
   ];

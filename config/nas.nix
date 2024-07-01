@@ -32,7 +32,6 @@
     ./services/yiff-stash.nix
     ./services/reverse-proxy.nix
     ./services/jellyfin.nix
-    ../new-infra/devices/nas.nix
     ./services/mautrix-discord.nix
     ./services/mautrix-telegram.nix
     ./services/mautrix-whatsapp.nix
@@ -124,9 +123,6 @@
   nix.settings.substituters = lib.mkForce [
     "https://attic.chir.rs/chir-rs/"
     "https://cache.nixos.org/"
-    "https://beam.attic.rs/riscv"
-    "https://cache.ztier.in"
-    "https://cache.lix.systems"
   ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
@@ -185,7 +181,6 @@
 
   hardware.opengl = {
     enable = true;
-    driSupport = true;
     driSupport32Bit = true;
   };
 

@@ -14,10 +14,10 @@
 in
   buildPythonPackage rec {
     pname = "plover_lapwing_aio";
-    version = "1.1.12";
+    version = "1.1.16";
     src = fetchPypi {
       inherit pname version;
-      sha256 = "sha256-/JymR13kwpr7sykq1vizg2Wqc0g55rGAY7hmtuI2Weo=";
+      sha256 = "sha256-dSMHjt/Yzof4M5qrJIGNSEiLsOtShIGjqu6ezpr1b3o=";
     };
 
     postPatch = ''
