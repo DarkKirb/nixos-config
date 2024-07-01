@@ -3,18 +3,21 @@
   config,
   pkgs,
   nixpkgs,
+  nixos-hardware,
   ...
 } @ args: {
-  networking.hostName = "vf2";
-  networking.hostId = "ad325df9";
+  #networking.hostName = "vf2";
+  #networking.hostId = "ad325df9";
   imports = [
-    ./services/caddy
-    ./services/acme.nix
-    ./users/remote-build.nix
-    ./systemd-boot.nix
+    #./services/caddy
+    #./services/acme.nix
+    #./users/remote-build.nix
+    #./systemd-boot.nix
+    "${nixos-hardware}/starfive/visionfive/v2/sd-image-installer.nix"
   ];
 
-  environment.noXlibs = true;
+  /*
+    environment.noXlibs = true;
   nixpkgs.config.allowUnsupportedSystem = true;
 
   nixpkgs.overlays = [
@@ -121,4 +124,14 @@
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
   system.requiredKernelConfig = lib.mkForce [];
   system.autoUpgrade.allowReboot = true;
+  */
+
+  sdImage.compressImage = false;
+
+  nixpkgs.crossSystem = {
+    config = "riscv64-unknown-linux-gnu";
+    system = "riscv64-linux";
+  };
+
+  system.stateVersion = "24.05";
 }

@@ -191,6 +191,10 @@ rec {
         name = "rainbow-resort"; # PC
         system = "x86_64-linux";
       }
+      {
+        name = "vf2"; # vision five 2
+        system = "x86_64-linux"; # not a typo!
+      }
     ];
     mkPackages = system: let
       pkgs = import nixpkgs {
