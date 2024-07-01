@@ -1,7 +1,6 @@
 inputs: system: self: prev: let
   inherit (inputs) nixpkgs element-web;
-in
-  with nixpkgs.legacyPackages.${system}; {
+  common = with nixpkgs.legacyPackages.${system}; {
     fcitx5-table-extra = prev.fcitx5-table-extra.overrideAttrs (super: {
       patches =
         super.patches
@@ -66,4 +65,11 @@ in
     sliding-sync = self.callPackage ../packages/matrix/sliding-sync {};
     yiffstash = self.python3Packages.callPackage ../packages/python/yiffstash.nix {};
     element-web = element-web.packages.${system}.element-web;
-  }
+  };
+  perSystem = {
+    aarch64-linux = {
+      linux-devterm = self.callPackage ../packages/linux/devterm/kernel.nix {};
+    };
+  };
+in
+  common // perSystem.${system} or {}

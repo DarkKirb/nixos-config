@@ -280,38 +280,6 @@
         "type": "github"
       }
     },
-    "firefox": {
-      "inputs": {
-        "cachix": [
-          "nixpkgs"
-        ],
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "lib-aggregate": [
-          "lib-aggregate"
-        ],
-        "mozilla": [
-          "mozilla"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1719750385,
-        "narHash": "sha256-AEXF+QxsnGmrwqURcH4KqcTXFOTRnfblKr6gxcaWg4A=",
-        "owner": "nix-community",
-        "repo": "flake-firefox-nightly",
-        "rev": "a6d3430728df1867fd50a10c832547b90e623f2e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "flake-firefox-nightly",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "locked": {
         "lastModified": 1696426674,
@@ -624,21 +592,6 @@
         "type": "github"
       }
     },
-    "mozilla": {
-      "locked": {
-        "lastModified": 1704373101,
-        "narHash": "sha256-+gi59LRWRQmwROrmE1E2b3mtocwueCQqZ60CwLG+gbg=",
-        "owner": "mozilla",
-        "repo": "nixpkgs-mozilla",
-        "rev": "9b11a87c0cc54e308fa83aac5b4ee1816d5418a2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mozilla",
-        "repo": "nixpkgs-mozilla",
-        "type": "github"
-      }
-    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -825,7 +778,6 @@
         "devshell": "devshell",
         "dns": "dns",
         "element-web": "element-web",
-        "firefox": "firefox",
         "flake-compat": "flake-compat_4",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils_2",
@@ -836,7 +788,6 @@
         "lib-aggregate": "lib-aggregate",
         "matrix-js-sdk": "matrix-js-sdk",
         "matrix-react-sdk": "matrix-react-sdk",
-        "mozilla": "mozilla",
         "naersk": "naersk",
         "nix-gaming": "nix-gaming",
         "nix-neovim": "nix-neovim",

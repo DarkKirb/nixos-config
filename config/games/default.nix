@@ -2,6 +2,7 @@ args: {
   pkgs,
   nixpkgs,
   nix-gaming,
+  system,
   ...
 }: let
   wine = nix-gaming.packages.x86_64-linux.wine-ge.overrideAttrs (super: {
@@ -19,11 +20,18 @@ args: {
       ];
   });
 in {
-  home.packages = [
-    pkgs.xivlauncher
-    pkgs.prismlauncher
-    pkgs.mgba
-    wine
-    nix-gaming.packages.x86_64-linux.osu-lazer-bin
-  ];
+  home.packages =
+    [
+      pkgs.prismlauncher
+      pkgs.mgba
+    ]
+    ++ (
+      if system == "x86_64-linux"
+      then [
+        pkgs.xivlauncher
+        nix-gaming.packages.x86_64-linux.osu-lazer-bin
+        wine
+      ]
+      else []
+    );
 }
