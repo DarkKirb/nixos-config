@@ -22,6 +22,7 @@
 				reg = <0>;
 				reset-gpio = <&gpio 8 1>;
 				backlight = <&ocp8178_backlight>;
+				rotation = <0x5a>;
 				
 				port {
 					panel_dsi_port: endpoint {
