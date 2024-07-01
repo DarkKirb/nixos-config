@@ -99,4 +99,5 @@
       dtsFile = ./devterm/devterm-overlay.dts;
     }
   ];
+  hardware.enableRedistributableFirmware = true;
 }
