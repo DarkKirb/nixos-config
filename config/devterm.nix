@@ -94,5 +94,9 @@
       name = "spi";
       dtsFile = ./devterm/spi0-overlay.dts;
     }
+    {
+      name = "devterm-overlay";
+      dtsFile = ./devterm/devterm-overlay.dts;
+    }
   ];
 }

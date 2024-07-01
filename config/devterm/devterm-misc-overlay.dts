@@ -77,11 +77,4 @@
 		};
 	};
 	
-	fragment@4 {
-		target-path = "/chosen";
-		__overlay__ {
-			bootargs = "8250.nr_uarts=1";
-		};
-	};
-	
 };
