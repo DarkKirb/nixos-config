@@ -308,6 +308,7 @@ rec {
     overlays = {
       x86_64-linux = import ./overlays args "x86_64-linux";
       aarch64-linux = import ./overlays args "aarch64-linux";
+      riscv64-linux = import ./overlays args "riscv64-linux";
     };
     devShell.x86_64-linux = let
       pkgs = import nixpkgs {
