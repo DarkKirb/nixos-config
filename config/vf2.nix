@@ -76,7 +76,7 @@
   boot.binfmt.emulatedSystems = [
     "x86_64-linux"
   ];
-  boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+  boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.generic-extlinux-compatible.enable = false;
   #system.requiredKernelConfig = lib.mkForce [];
   system.autoUpgrade.allowReboot = true;
