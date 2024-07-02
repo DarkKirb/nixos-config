@@ -98,4 +98,5 @@
       fi
     done
   '';
+  hardware.deviceTree.name = "starfive/jh7110-starfive-visionfive-2-v1.3b.dtb";
 }
