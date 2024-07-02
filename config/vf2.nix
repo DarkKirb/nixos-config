@@ -80,6 +80,7 @@
   boot.loader.generic-extlinux-compatible.enable = false;
   #system.requiredKernelConfig = lib.mkForce [];
   system.autoUpgrade.allowReboot = true;
+  networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.crossSystem = {
     config = "riscv64-unknown-linux-gnu";
