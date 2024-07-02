@@ -1,5 +1,8 @@
 {pkgs, ...}: {
-  output.plugins = with pkgs.vimPlugins; [LeaderF];
+  output.plugins =
+    if pkgs.system != "riscv64-linux"
+    then with pkgs.vimPlugins; [LeaderF]
+    else [];
   vim.g = {
     Lf_UseCache = 0;
     Lf_UseMemoryCache = 0;
