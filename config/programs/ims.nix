@@ -9,6 +9,7 @@
         electron = pkgs.electron-bin;
       }))
       twinkle
+      tokodon
     ]
     ++ (
       if system == "x86_64-linux"
