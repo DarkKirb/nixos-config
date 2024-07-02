@@ -71,14 +71,7 @@
   ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
-  sops.secrets."root/.ssh/id_ed25519" = {
-    owner = "root";
-    path = "/root/.ssh/id_ed25519";
-  };
   services.tailscale.useRoutingFeatures = "server";
-  boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
-  networking.useNetworkd = lib.mkForce false;
-  networking.interfaces.end0.useDHCP = true;
 
   boot.binfmt.emulatedSystems = [
     "x86_64-linux"
