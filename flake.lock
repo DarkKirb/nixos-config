@@ -245,41 +245,6 @@
         "type": "github"
       }
     },
-    "element-web": {
-      "inputs": {
-        "devshell": [
-          "devshell"
-        ],
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "matrix-js-sdk": [
-          "matrix-js-sdk"
-        ],
-        "matrix-react-sdk": [
-          "matrix-react-sdk"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1719124928,
-        "narHash": "sha256-HQIKemMotlGSuvpm5jqQUWw4hO5AT5m4G8vWpA2e+0g=",
-        "owner": "DarkKirb",
-        "repo": "element-web",
-        "rev": "f19601a28f62135d6980398c0fece18204e63eb0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DarkKirb",
-        "repo": "element-web",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "locked": {
         "lastModified": 1696426674,
@@ -531,67 +496,6 @@
         "type": "github"
       }
     },
-    "matrix-js-sdk": {
-      "inputs": {
-        "devshell": [
-          "devshell"
-        ],
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1719207207,
-        "narHash": "sha256-wcccEps6IEwjKMy7dhvqXV2eGWDoIM2AcyrN1vLJYe4=",
-        "owner": "DarkKirb",
-        "repo": "matrix-js-sdk",
-        "rev": "60222f9109b1d93dd36ce50976e2b3a1bab66a55",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DarkKirb",
-        "repo": "matrix-js-sdk",
-        "type": "github"
-      }
-    },
-    "matrix-react-sdk": {
-      "inputs": {
-        "devshell": [
-          "devshell"
-        ],
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "matrix-js-sdk": [
-          "matrix-js-sdk"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1719246851,
-        "narHash": "sha256-Mgw3dnYDg8dFy6ORe4qRgs0DGAPexux0MWC0XwHvo5Y=",
-        "owner": "DarkKirb",
-        "repo": "matrix-react-sdk",
-        "rev": "74c6b4121bf868bb6d7422bba7743fdd696fdc09",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DarkKirb",
-        "repo": "matrix-react-sdk",
-        "type": "github"
-      }
-    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -777,7 +681,6 @@
         "crane": "crane",
         "devshell": "devshell",
         "dns": "dns",
-        "element-web": "element-web",
         "flake-compat": "flake-compat_4",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils_2",
@@ -786,8 +689,6 @@
         "hydra": "hydra",
         "impermanence": "impermanence",
         "lib-aggregate": "lib-aggregate",
-        "matrix-js-sdk": "matrix-js-sdk",
-        "matrix-react-sdk": "matrix-react-sdk",
         "naersk": "naersk",
         "nix-gaming": "nix-gaming",
         "nix-neovim": "nix-neovim",

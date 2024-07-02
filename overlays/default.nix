@@ -64,7 +64,6 @@ inputs: system: self: prev: let
     bsnes-plus = self.libsForQt5.callPackage ../packages/emulator/bsnes-plus {};
     sliding-sync = self.callPackage ../packages/matrix/sliding-sync {};
     yiffstash = self.python3Packages.callPackage ../packages/python/yiffstash.nix {};
-    element-web = element-web.packages.${system}.element-web;
   };
   perSystem = {
     aarch64-linux = {
