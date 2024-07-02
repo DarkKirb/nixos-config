@@ -6,18 +6,17 @@
   nixos-hardware,
   ...
 } @ args: {
-  #networking.hostName = "vf2";
-  #networking.hostId = "ad325df9";
+  networking.hostName = "vf2";
+  networking.hostId = "ad325df9";
   imports = [
-    #./services/caddy
-    #./services/acme.nix
-    #./users/remote-build.nix
-    #./systemd-boot.nix
-    "${nixos-hardware}/starfive/visionfive/v2/sd-image-installer.nix"
+    ./services/caddy
+    ./services/acme.nix
+    ./users/remote-build.nix
+    ./systemd-boot.nix
+    "${nixos-hardware}/starfive/visionfive/v2/default.nix"
   ];
 
-  /*
-    environment.noXlibs = true;
+  environment.noXlibs = true;
   nixpkgs.config.allowUnsupportedSystem = true;
 
   nixpkgs.overlays = [
@@ -29,56 +28,25 @@
     "https://cache.ztier.in"
     "https://hydra.int.chir.rs"
   ];
-  boot = {
-    supportedFilesystems = lib.mkForce ["vfat" "ext4"];
-    kernelPackages = pkgs.linuxPackagesFor pkgs.vf2Kernel;
-    kernelParams = [
-      "console=tty0"
-      "console=ttyS0,115200"
-      "earlycon=sbi"
-      "boot.shell_on_fail"
-    ];
-    consoleLogLevel = 7;
-    initrd = {
-      network.enable = true;
-      network.flushBeforeStage2 = false;
-      availableKernelModules =
-        lib.mkForce [
-        ];
-      kernelModules = lib.mkForce [];
-    };
-    blacklistedKernelModules = [
-      "clk-starfive-jh7110-vout"
-    ];
-    loader.systemd-boot.extraInstallCommands = ''
-      set -euo pipefail
-      cp --no-preserve=mode -r ${config.hardware.deviceTree.package} ${config.boot.loader.efi.efiSysMountPoint}/
-      for filename in ${config.boot.loader.efi.efiSysMountPoint}/loader/entries/nixos*-generation-[1-9]*.conf; do
-        if ! ${pkgs.gnugrep}/bin/grep -q 'devicetree' $filename; then
-          echo "devicetree /dtbs/${config.hardware.deviceTree.name}" >> $filename
-        fi
-      done
-    '';
-    iscsi-initiator = {
-      discoverPortal = "192.168.2.1";
-      name = "iqn.2023-06.rs.chir:rs.chir.int.vf2";
-      target = "iqn.2023-06.rs.chir:rs.chir.int.nas.vf2";
-    };
-  };
 
   fileSystems = {
     "/boot" = {
-      device = "/dev/disk/by-uuid/1234-ABCD";
+      device = "/dev/nvme0n1p1";
       fsType = "vfat";
       options = ["nofail"];
     };
     "/" = {
-      device = "/dev/disk/by-uuid/b4e8cbe8-a233-444f-920b-c253339a44d6";
-      fsType = "ext4";
+      device = "/dev/nvme0n1p2";
+      fsType = "btrfs";
+      options = ["compress=zstd"];
     };
   };
-  hardware.deviceTree.name = "starfive/jh7110-starfive-visionfive-2-v1.3b.dtb";
-  system.stateVersion = "23.05";
+  swapDevices = [
+    {
+      device = "/dev/nvme0n1p3";
+    }
+  ];
+  #  hardware.deviceTree.name = "starfive/jh7110-starfive-visionfive-2-v1.3b.dtb";
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
     desktop = false;
     inherit args;
@@ -112,21 +80,12 @@
   networking.useNetworkd = lib.mkForce false;
   networking.interfaces.end0.useDHCP = true;
 
-  services.openiscsi = {
-    name = "iqn.2023-06.rs.chir:rs.chir.int.vf2";
-    discoverPortal = "192.168.2.1";
-    enable = true;
-  };
-
   boot.binfmt.emulatedSystems = [
     "x86_64-linux"
   ];
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
-  system.requiredKernelConfig = lib.mkForce [];
+  #system.requiredKernelConfig = lib.mkForce [];
   system.autoUpgrade.allowReboot = true;
-  */
-
-  sdImage.compressImage = false;
 
   nixpkgs.crossSystem = {
     config = "riscv64-unknown-linux-gnu";
