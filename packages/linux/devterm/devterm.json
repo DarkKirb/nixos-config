@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/clockworkpi/DevTerm.git",
+  "rev": "9a0598e0877f4bdca207074b2c0e7cb229d290f0",
+  "date": "2024-06-10T08:02:03-07:00",
+  "path": "/nix/store/nwfg32dz37g5dmnd5xvcsmp9wh7jq0qq-DevTerm",
+  "sha256": "1461vicaqnnvfczgxzvq8chkcjk2l178n668dixyx6kfp7rf0b31",
+  "hash": "sha256-YSzg8rlumu57bMgYi06gYko2IUN4//4+c9tarFjcwZA=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

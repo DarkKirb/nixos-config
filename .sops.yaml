@@ -6,6 +6,7 @@ keys:
   - &instance-20221213-1915 age1elra3uklw8rmwkevqms2l4tsd06d5utqda9d2w4qvqpz898uzuesugxkhc
   - &vf2 age1gtezxkkfhpkv788x9dek6s6s342n9tkl40zvsa48m9a7yqn25fnsmd3wy0
   - &rainbow-resort age19vzypddhexvvsf8xylstxc9znnkd8rxmamhjlt7elvz4j3zaf5tqqura6f
+  - &devterm age1sqvl2cwvzeztuelpwppaestqufzeap8uf0vgy7t5mzr9rwc3dpxqhx8ly9
 creation_rules:
   - path_regex: secrets/shared\.yaml$
     key_groups:
@@ -17,6 +18,7 @@ creation_rules:
           - *vf2
           - *rainbow-resort
           - *lotte
+          - *devterm
   - path_regex: secrets/nixos-8gb-fsn1-1\.yaml$
     key_groups:
       - age:
@@ -42,6 +44,7 @@ creation_rules:
           - *thinkrac
           - *rainbow-resort
           - *lotte
+          - *devterm
   - path_regex: secrets/instance-20221213-1915\.yaml$
     key_groups:
       - age:
@@ -56,6 +59,11 @@ creation_rules:
     key_groups:
       - age:
           - *rainbow-resort
+          - *lotte
+  - path_regex: secrets/devterm\.yaml$
+    key_groups:
+      - age:
+          - *devterm
           - *lotte
   - path_regex: secrets/kubernetes\.yaml$
     key_groups:

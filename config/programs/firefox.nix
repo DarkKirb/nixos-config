@@ -4,7 +4,6 @@
   ...
 }: {
   programs.firefox = {
-    package = firefox.packages.${pkgs.system}.firefox-nightly-bin;
     enable = true;
     profiles = {
       unhardened = {

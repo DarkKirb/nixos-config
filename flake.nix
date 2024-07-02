@@ -69,14 +69,6 @@ rec {
       inputs.devshell.follows = "devshell";
       inputs.flake-compat.follows = "flake-compat";
     };
-    firefox = {
-      url = "github:nix-community/flake-firefox-nightly";
-      inputs.cachix.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.lib-aggregate.follows = "lib-aggregate";
-      inputs.mozilla.follows = "mozilla";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -125,7 +117,6 @@ rec {
       inputs.devshell.follows = "devshell";
       inputs.flake-compat.follows = "flake-compat";
     };
-    mozilla.url = "github:mozilla/nixpkgs-mozilla";
     naersk = {
       url = "github:nix-community/naersk/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -195,6 +186,10 @@ rec {
         name = "vf2"; # vision five 2
         system = "x86_64-linux"; # not a typo!
       }
+      {
+        name = "devterm";
+        system = "aarch64-linux";
+      }
     ];
     mkPackages = system: let
       pkgs = import nixpkgs {
@@ -205,74 +200,81 @@ rec {
         ];
         config.allowUnfree = true;
       };
-    in {
-      neovim-base = args.nix-neovim.buildNeovim {
-        inherit pkgs;
-        configuration = import ./config/programs/vim/configuration.nix false;
+      common = {
+        neovim-base = args.nix-neovim.buildNeovim {
+          inherit pkgs;
+          configuration = import ./config/programs/vim/configuration.nix false;
+        };
+        neovim = args.nix-neovim.buildNeovim {
+          inherit pkgs;
+          configuration = import ./config/programs/vim/configuration.nix true;
+        };
+        inherit
+          (pkgs)
+          emoji-lotte
+          emoji-volpeon-blobfox
+          emoji-volpeon-blobfox-flip
+          emoji-volpeon-bunhd
+          emoji-volpeon-bunhd-flip
+          emoji-volpeon-drgn
+          emoji-volpeon-fox
+          emoji-volpeon-gphn
+          emoji-volpeon-raccoon
+          emoji-volpeon-vlpn
+          emoji-volpeon-neofox
+          emoji-volpeon-neocat
+          emoji-volpeon-floof
+          emoji-rosaflags
+          emoji-raccoon
+          emoji-caro
+          lotte-art
+          alco-sans
+          constructium
+          fairfax
+          fairfax-hd
+          kreative-square
+          nasin-nanpa
+          matrix-media-repo
+          mautrix-discord
+          mautrix-whatsapp
+          mautrix-telegram
+          python-mautrix
+          python-tulir-telethon
+          papermc
+          python-plover-stroke
+          python-rtf-tokenize
+          plover
+          plover-plugins-manager
+          python-simplefuzzyset
+          plover-plugin-emoji
+          plover-plugin-tapey-tape
+          plover-plugin-yaml-dictionary
+          plover-plugin-machine-hid
+          plover-plugin-rkb1-hid
+          plover-plugin-dotool-output
+          plover-dict-didoesdigital
+          miifox-net
+          old-homepage
+          plover-plugin-python-dictionary
+          plover-plugin-stenotype-extended
+          asar-asm
+          bsnes-plus
+          sliding-sync
+          yiffstash
+          plover-plugin-dict-commands
+          plover-plugin-last-translation
+          plover-plugin-modal-dictionary
+          plover-plugin-stitching
+          plover-plugin-lapwing-aio
+          ;
       };
-      neovim = args.nix-neovim.buildNeovim {
-        inherit pkgs;
-        configuration = import ./config/programs/vim/configuration.nix true;
+      perSystem = {
+        aarch64-linux = {
+          inherit (pkgs) linux-devterm;
+        };
       };
-      inherit
-        (pkgs)
-        emoji-lotte
-        emoji-volpeon-blobfox
-        emoji-volpeon-blobfox-flip
-        emoji-volpeon-bunhd
-        emoji-volpeon-bunhd-flip
-        emoji-volpeon-drgn
-        emoji-volpeon-fox
-        emoji-volpeon-gphn
-        emoji-volpeon-raccoon
-        emoji-volpeon-vlpn
-        emoji-volpeon-neofox
-        emoji-volpeon-neocat
-        emoji-volpeon-floof
-        emoji-rosaflags
-        emoji-raccoon
-        emoji-caro
-        lotte-art
-        alco-sans
-        constructium
-        fairfax
-        fairfax-hd
-        kreative-square
-        nasin-nanpa
-        matrix-media-repo
-        mautrix-discord
-        mautrix-whatsapp
-        mautrix-telegram
-        python-mautrix
-        python-tulir-telethon
-        papermc
-        python-plover-stroke
-        python-rtf-tokenize
-        plover
-        plover-plugins-manager
-        python-simplefuzzyset
-        plover-plugin-emoji
-        plover-plugin-tapey-tape
-        plover-plugin-yaml-dictionary
-        plover-plugin-machine-hid
-        plover-plugin-rkb1-hid
-        plover-plugin-dotool-output
-        plover-dict-didoesdigital
-        miifox-net
-        old-homepage
-        plover-plugin-python-dictionary
-        plover-plugin-stenotype-extended
-        asar-asm
-        bsnes-plus
-        sliding-sync
-        yiffstash
-        plover-plugin-dict-commands
-        plover-plugin-last-translation
-        plover-plugin-modal-dictionary
-        plover-plugin-stitching
-        plover-plugin-lapwing-aio
-        ;
-    };
+    in
+      common // perSystem.${system} or {};
   in rec {
     nixosConfigurations = builtins.listToAttrs (map
       ({
