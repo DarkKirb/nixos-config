@@ -8,7 +8,7 @@
     vim-fugitive
     vim-flog
     gitlinker-nvim
-    gitsigns-nvim
+    #gitsigns-nvim # TODO: currently broken
     committia-vim
   ];
   vim.keybindings.keybindings."<leader>".g = {
@@ -51,40 +51,4 @@
     };
   };
   plugin.setup.gitlinker = {};
-  plugin.setup.gitsigns = {
-    signs = {
-      add = {
-        hl = "GitSignsAdd";
-        text = "+";
-        numhl = "GitSignsAddNr";
-        linehl = "GitSignsAddLn";
-      };
-      change = {
-        hl = "GitSignsChange";
-        text = "~";
-        numhl = "GitSignsChangeNr";
-        linehl = "GitSignsChangeLn";
-      };
-      delete = {
-        hl = "GitSignsDelete";
-        text = "_";
-        numhl = "GitSignsDeleteNr";
-        linehl = "GitSignsDeleteLn";
-      };
-      topdelete = {
-        hl = "GitSignsDelete";
-        text = "‾";
-        numhl = "GitSignsDeleteNr";
-        linehl = "GitSignsDeleteLn";
-      };
-      changedelete = {
-        hl = "GitSignsChange";
-        text = "│";
-        numhl = "GitSignsChangeNr";
-        linehl = "GitSignsChangeLn";
-      };
-    };
-    word_diff = true;
-  };
-  extraLuaModules = ["config.gitsigns"];
 }
