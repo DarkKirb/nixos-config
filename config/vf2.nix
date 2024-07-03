@@ -81,11 +81,6 @@
   #system.requiredKernelConfig = lib.mkForce [];
   system.autoUpgrade.allowReboot = true;
 
-  nixpkgs.crossSystem = {
-    config = "riscv64-unknown-linux-gnu";
-    system = "riscv64-linux";
-  };
-
   system.stateVersion = "24.05";
 
   boot.loader.systemd-boot.extraInstallCommands = ''
