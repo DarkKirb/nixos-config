@@ -99,22 +99,20 @@
   '';
   hardware.deviceTree.name = "starfive/jh7110-starfive-visionfive-2-v1.3b.dtb";
   boot.initrd.kernelModules = [
+    "dw_mmc-starfive"
+    "motorcomm"
+    "dwmac-starfive"
+    "cdns3-starfive"
+    "jh7110-trng"
+    "phy-jh7110-usb"
+    "clk-starfive-jh7110-aon"
+    "clk-starfive-jh7110-stg"
+    "clk-starfive-jh7110-vout"
+    "clk-starfive-jh7110-isp"
+    "clk-starfive-jh7100-audio"
+    "phy-jh7110-pcie"
+    "pcie-starfive"
     "nvme"
-    "pcie_starfive"
-    "phy_jh7110_pcie"
-    "dwmac_starfive"
-    "stmmac_platform"
-    "clk_starfive_jh7110_vout"
-    "cdns3_starfive"
-    "clk_starfive_jh7110_isp"
-    "clk_starfive_jh7110_aon"
-    "clk_starfive_jh7110_stg"
-    "dw_mmc_starfive"
-    "jh7110_pwmdac"
-    "jh7110_tdm"
-    "jh7110_trng"
-    "phy_jh7110_dphy_rx"
-    "phy_jh7110_usb"
   ];
   systemd.network.enable = true;
   networking.useNetworkd = true;
