@@ -80,7 +80,6 @@
   boot.loader.generic-extlinux-compatible.enable = false;
   #system.requiredKernelConfig = lib.mkForce [];
   system.autoUpgrade.allowReboot = true;
-  networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.crossSystem = {
     config = "riscv64-unknown-linux-gnu";
@@ -99,4 +98,23 @@
     done
   '';
   hardware.deviceTree.name = "starfive/jh7110-starfive-visionfive-2-v1.3b.dtb";
+  boot.initrd.kernelModules = [
+    "nvme"
+    "pcie_starfive"
+    "phy_jh7110_pcie"
+    "dwmac_starfive"
+    "stmmac_platform"
+    "clk_starfive_jh7110_vout"
+    "cdns3_starfive"
+    "clk_starfive_jh7110_isp"
+    "clk_starfive_jh7110_aon"
+    "clk_starfive_jh7110_stg"
+    "dw_mmc_starfive"
+    "jh7110_pwmdac"
+    "jh7110_tdm"
+    "jh7110_trng"
+    "phy_jh7110_dphy_rx"
+    "phy_jh7110_usb"
+  ];
+  systemd.network.enable = true;
 }
