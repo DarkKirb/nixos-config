@@ -5,9 +5,12 @@ args: self: prev: let
     overlays = [args.self.overlays.riscv64-linux];
     config.allowUnfree = true;
   };
+  /*
   lib = pkgsX86.lib;
+  */
 in {
   pandoc = self.writeScriptBin "pandoc" "true";
+  /*
   inherit (pkgsX86) nix;
   inherit (args.attic.packages.x86_64-linux) attic-client;
   bind = prev.bind.overrideAttrs (_: {
@@ -36,4 +39,5 @@ in {
     };
   };
   python310Packages = self.python310.pkgs;
+  */
 }

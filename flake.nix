@@ -184,7 +184,7 @@ rec {
       }
       {
         name = "vf2"; # vision five 2
-        system = "x86_64-linux"; # not a typo!
+        system = "riscv64-linux";
       }
       {
         name = "devterm";
