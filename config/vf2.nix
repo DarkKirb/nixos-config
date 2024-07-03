@@ -117,4 +117,5 @@
     "phy_jh7110_usb"
   ];
   systemd.network.enable = true;
+  networking.useNetworkd = true;
 }
