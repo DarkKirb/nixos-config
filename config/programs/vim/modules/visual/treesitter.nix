@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   output.plugins =
-    if pkgs.system != "riscv64-linux"
+    if pkgs.system != "riscv64-linux" || pkgs.system != "armv7l-linux"
     then with pkgs.vimPlugins; [pkgs.vimPlugins.nvim-treesitter.withAllGrammars]
     else [];
   plugin.setup =
