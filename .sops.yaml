@@ -55,6 +55,11 @@ creation_rules:
       - age:
           - *vf2
           - *lotte
+  - path_regex: secrets/rpi2\.yaml$
+    key_groups:
+      - age:
+          - *vf2
+          - *lotte
   - path_regex: secrets/rainbow-resort\.yaml$
     key_groups:
       - age:
