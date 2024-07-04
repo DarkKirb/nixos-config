@@ -5,7 +5,6 @@
 }: {
   output.plugins = with pkgs.vimPlugins;
     [
-      tabular
       vim-markdown
     ]
     ++ (
