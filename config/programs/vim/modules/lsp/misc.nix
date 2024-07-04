@@ -7,9 +7,6 @@
     nodePackages.dockerfile-language-server-nodejs
     elixir-ls
     gopls
-    nodePackages.vscode-css-languageserver-bin
-    nodePackages.vscode-html-languageserver-bin
-    nodePackages.vscode-json-languageserver
     lua-language-server
     nil
     pyright
@@ -23,12 +20,9 @@
     bashls = {};
     clangd = {};
     cmake = {};
-    cssls = {};
     dockerls = {};
     elixirls.cmd = ["elixir-ls"];
     gopls = {};
-    html = {};
-    jsonls = {};
     lua_ls = {};
     nil_ls = {};
     pyright = {};
