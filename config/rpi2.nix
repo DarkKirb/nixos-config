@@ -21,7 +21,7 @@
   };
   boot = {
     consoleLogLevel = lib.mkDefault 7;
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_rpi2;
+    #kernelPackages = lib.mkDefault pkgs.linuxPackages_rpi2;
     kernelParams = [
       "dwc_otg.lpm_enable=0"
       "console=ttyAMA0,115200"
