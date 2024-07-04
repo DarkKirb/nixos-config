@@ -16,7 +16,7 @@ in {
       then [
         pkgs.xivlauncher
         nix-gaming.packages.x86_64-linux.osu-lazer-bin
-        pkgs.wineWowPackages.stagingFull
+        (pkgs.wineWowPackages.stagingFull.override {waylandSupport = true;})
       ]
       else []
     );
