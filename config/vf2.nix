@@ -4,6 +4,7 @@
   pkgs,
   nixpkgs,
   nixos-hardware,
+  riscv-overlay,
   ...
 } @ args: {
   networking.hostName = "vf2";
@@ -20,7 +21,7 @@
   nixpkgs.config.allowUnsupportedSystem = true;
 
   nixpkgs.overlays = [
-    (import ../overlays/riscv.nix args)
+    riscv-overlay.overlays.default
   ];
 
   nix.settings.substituters = lib.mkForce [

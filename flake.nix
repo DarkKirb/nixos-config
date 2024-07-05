@@ -137,6 +137,10 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs";
+    riscv-overlay = {
+      url = "github:DarkKirb/riscv-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.flake-utils.follows = "flake-utils";
@@ -223,23 +227,7 @@ rec {
           emoji-volpeon-vlpn
           emoji-volpeon-neofox
           emoji-volpeon-neocat
-          emoji-volpeon-floof
-          emoji-rosaflags
-          emoji-raccoon
-          emoji-caro
-          lotte-art
-          alco-sans
-          constructium
-          fairfax
-          fairfax-hd
-          kreative-square
-          nasin-nanpa
-          matrix-media-repo
-          mautrix-discord
-          mautrix-whatsapp
-          mautrix-telegram
-          python-mautrix
-          python-tulir-telethon
+          emoji-volpeon-floofentries
           papermc
           python-plover-stroke
           python-rtf-tokenize
