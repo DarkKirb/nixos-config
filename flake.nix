@@ -227,7 +227,7 @@ rec {
           emoji-volpeon-vlpn
           emoji-volpeon-neofox
           emoji-volpeon-neocat
-          emoji-volpeon-floofentries
+          emoji-volpeon-floof
           papermc
           python-plover-stroke
           python-rtf-tokenize
