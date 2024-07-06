@@ -104,4 +104,12 @@
   system.autoUpgrade.allowReboot = true;
   services.prometheus.exporters.node.enabledCollectors = ["drm"];
   services.k3s.role = lib.mkForce "agent";
+
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm";
+    # Thank you amd for not supporting 11.0.1
+    environmentVariables.HCC_AMDGPU_TARGET = "gfx1100";
+    rocmOverrideGfx = "11.0.0";
+  };
 }
