@@ -8,7 +8,7 @@ rec {
       url = "github:DarkKirb/admin-fe";
       inputs.devshell.follows = "devshell";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     akkoma = {
       url = "github:DarkKirb/akkoma";
