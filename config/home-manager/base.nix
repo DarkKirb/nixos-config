@@ -83,7 +83,7 @@ desktop: {pkgs, ...}: {
           yt-dlp
           oxipng
           jpegoptim
-          picard
+          #picard
           easytag
           alejandra
         ]

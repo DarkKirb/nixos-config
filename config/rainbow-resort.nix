@@ -52,11 +52,11 @@
   };
   services.snapper.configs.main = {
     SUBVOLUME = "/";
-    TIMELINE_LIMIT_HOURLY = "5";
-    TIMELINE_LIMIT_DAILY = "7";
-    TIMELINE_LIMIT_WEEKLY = "4";
-    TIMELINE_LIMIT_MONTHLY = "12";
-    TIMELINE_LIMIT_YEARLY = "0";
+    TIMELINE_LIMIT_HOURLY = 5;
+    TIMELINE_LIMIT_DAILY = 7;
+    TIMELINE_LIMIT_WEEKLY = 4;
+    TIMELINE_LIMIT_MONTHLY = 12;
+    TIMELINE_LIMIT_YEARLY = 0;
   };
   services.beesd.filesystems.root = {
     spec = "/";
@@ -106,7 +106,7 @@
   services.k3s.role = lib.mkForce "agent";
 
   services.ollama = {
-    enable = true;
+    #enable = true; # broken. lol
     acceleration = "rocm";
     # Thank you amd for not supporting 11.0.1
     environmentVariables.HCC_AMDGPU_TARGET = "gfx1100";
