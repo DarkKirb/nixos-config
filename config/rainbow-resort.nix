@@ -106,7 +106,7 @@
   services.k3s.role = lib.mkForce "agent";
 
   services.ollama = {
-    enable = true;
+    #enable = true; # broken. lol
     acceleration = "rocm";
     # Thank you amd for not supporting 11.0.1
     environmentVariables.HCC_AMDGPU_TARGET = "gfx1100";
