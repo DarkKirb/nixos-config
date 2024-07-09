@@ -204,6 +204,22 @@ rec {
           emoji-volpeon-neofox
           emoji-volpeon-neocat
           emoji-volpeon-floof
+          emoji-rosaflags
+          emoji-raccoon
+          emoji-caro
+          lotte-art
+          alco-sans
+          constructium
+          fairfax
+          fairfax-hd
+          kreative-square
+          nasin-nanpa
+          matrix-media-repo
+          mautrix-discord
+          mautrix-whatsapp
+          mautrix-telegram
+          python-mautrix
+          python-tulir-telethon
           papermc
           python-plover-stroke
           python-rtf-tokenize
