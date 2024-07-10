@@ -271,7 +271,7 @@ index 8459dff1c892..94af55aed3ba 100644
  
    postInstall = lib.optionalString (!useOpenCL && !useCPU) ''
 diff --git a/pkgs/development/rocm-modules/6/rocblas/default.nix b/pkgs/development/rocm-modules/6/rocblas/default.nix
-index f93cceddd68a..a972019604c4 100644
+index f93cceddd68a..d693e9e658a2 100644
 --- a/pkgs/development/rocm-modules/6/rocblas/default.nix
 +++ b/pkgs/development/rocm-modules/6/rocblas/default.nix
 @@ -7,7 +7,7 @@
@@ -320,7 +320,7 @@ index f93cceddd68a..a972019604c4 100644
      (lib.cmakeFeature "CMAKE_C_COMPILER" "hipcc")
      (lib.cmakeFeature "CMAKE_CXX_COMPILER" "hipcc")
 -    (lib.cmakeFeature "python" "python3")
-+    (lib.cmakeFeature "python" "python311")
++    (lib.cmakeFeature "python" "${python311}/bin/python3")
      (lib.cmakeFeature "AMDGPU_TARGETS" (lib.concatStringsSep ";" gpuTargets))
      (lib.cmakeBool "BUILD_WITH_TENSILE" buildTensile)
      (lib.cmakeBool "ROCM_SYMLINK_LIBS" false)
