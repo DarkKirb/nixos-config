@@ -1,5 +1,17 @@
 inputs: system: self: prev: let
   inherit (inputs) nixpkgs element-web;
+  nixpkgsPatched = self.applyPatches {
+    name = "nixpkgs-patched";
+    src = inputs.nixpkgs;
+    patches = [./fix-rocm-python.patch];
+  };
+  python311Scope = self.lib.makeScope self.newScope (scope: {
+        python3 = self.python311;
+        python3Packages = self.python311Packages;
+        sphinx = scope.python3Packages.toPythonApplication scope.python3Packages.sphinx;
+
+        rocmPackages = self.recurseIntoAttrs (scope.callPackage "${nixpkgsPatched}/pkgs/development/rocm-modules/6" { });
+      });
   common = with nixpkgs.legacyPackages.${system}; {
     fcitx5-table-extra = prev.fcitx5-table-extra.overrideAttrs (super: {
       patches =
@@ -64,6 +76,7 @@ inputs: system: self: prev: let
     bsnes-plus = self.libsForQt5.callPackage ../packages/emulator/bsnes-plus {};
     sliding-sync = self.callPackage ../packages/matrix/sliding-sync {};
     yiffstash = self.python3Packages.callPackage ../packages/python/yiffstash.nix {};
+    rocmPackages = python311Scope.rocmPackages;
   };
   perSystem = {
     aarch64-linux = {
