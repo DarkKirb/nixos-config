@@ -35,7 +35,6 @@ in
       Mako
       # optional
       cryptg
-      cchardet
       aiodns
       brotli
       pillow
@@ -43,7 +42,6 @@ in
       phonenumbers
       prometheus-client
       aiosqlite
-      moviepy
       python-olm
       pycryptodome
       unpaddedbase64
