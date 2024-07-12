@@ -157,7 +157,7 @@ if utils.executable("pylsp") then
     capabilities = capabilities,
   }
 else
-  vim.notify("pylsp not found!", vim.log.levels.WARN, { title = "Nvim-config" })
+  --vim.notify("pylsp not found!", vim.log.levels.WARN, { title = "Nvim-config" })
 end
 
 -- if utils.executable('pyright') then
@@ -204,7 +204,7 @@ if utils.executable("vim-language-server") then
     capabilities = capabilities,
   }
 else
-  vim.notify("vim-language-server not found!", vim.log.levels.WARN, { title = "Nvim-config" })
+  -- vim.notify("vim-language-server not found!", vim.log.levels.WARN, { title = "Nvim-config" })
 end
 
 -- set up bash-language-server
