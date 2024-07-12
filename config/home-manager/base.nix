@@ -38,15 +38,9 @@ desktop: {pkgs, ...}: {
   };
   home.file.".p10k.zsh".source = ./.p10k.zsh;
 
-  systemd.user.sessionVariables = {
-    EDITOR = "nvim";
-  };
   home = {
     shellAliases =
       {
-        hx = "nvim";
-        vi = "nvim";
-        vim = "nvim";
         cat = "bat";
         less = "bat";
       }
