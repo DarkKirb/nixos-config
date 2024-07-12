@@ -6,12 +6,12 @@ inputs: system: self: prev: let
     patches = [./fix-rocm-python.patch];
   };
   python311Scope = self.lib.makeScope self.newScope (scope: {
-        python3 = self.python311;
-        python3Packages = self.python311Packages;
-        sphinx = scope.python3Packages.toPythonApplication scope.python3Packages.sphinx;
+    python3 = self.python311;
+    python3Packages = self.python311Packages;
+    sphinx = scope.python3Packages.toPythonApplication scope.python3Packages.sphinx;
 
-        rocmPackages = self.recurseIntoAttrs (scope.callPackage "${nixpkgsPatched}/pkgs/development/rocm-modules/6" { });
-      });
+    rocmPackages = self.recurseIntoAttrs (scope.callPackage "${nixpkgsPatched}/pkgs/development/rocm-modules/6" {});
+  });
   common = with nixpkgs.legacyPackages.${system}; {
     fcitx5-table-extra = prev.fcitx5-table-extra.overrideAttrs (super: {
       patches =
