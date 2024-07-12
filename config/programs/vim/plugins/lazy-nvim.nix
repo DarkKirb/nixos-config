@@ -49,6 +49,7 @@
       nvim-cmp
       nvim-gdb
       nvim-hlslens
+      nvim-lspconfig
       nvim-notify
       nvim-tree-lua
       nvim-web-devicons
