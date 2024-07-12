@@ -20,7 +20,7 @@ in {
       ./services/cups.nix
       ./services/docker.nix
       ./services/cifs.nix
-      ./kde.nix
+      #./kde.nix
     ]
     ++ (
       if system == "x86_64-linux"
@@ -148,6 +148,7 @@ in {
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    config.common.default = "*";
   };
   programs.dconf.enable = true;
   services.xserver = {
