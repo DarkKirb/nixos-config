@@ -70,6 +70,9 @@ in {
           position = "2560 0";
           subpixel = "rgb";
         };
+        "DSI-1" = {
+          transform = "90";
+        };
       };
       keybindings = let
         inherit (config.wayland.windowManager.sway.config) modifier;

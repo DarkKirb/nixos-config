@@ -563,26 +563,6 @@
         "type": "github"
       }
     },
-    "nix-neovim": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1650651888,
-        "narHash": "sha256-2lC6oeQMTke7/bx8VxLNJr54A/WGkdAv2H0iebTmACY=",
-        "owner": "syberant",
-        "repo": "nix-neovim",
-        "rev": "6f03a1c206ff2c5bea209c73f861ebd8088de53b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "syberant",
-        "repo": "nix-neovim",
-        "type": "github"
-      }
-    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1720515935,
@@ -704,7 +684,6 @@
         "lib-aggregate": "lib-aggregate",
         "naersk": "naersk",
         "nix-gaming": "nix-gaming",
-        "nix-neovim": "nix-neovim",
         "nixos-hardware": "nixos-hardware",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_3",

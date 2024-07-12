@@ -164,6 +164,12 @@ in {
     disabled_colors=${colorD 15}, ${colorD 0}, #ffa6adc8, #ff9399b2, ${colorD 1}, #ff6c7086, ${colorD 15}, ${colorD 15}, ${colorD 15}, #ff1e1e2e, ${colorD 0}, #ff7f849c, ${colorD 8}, ${colorD 15}, ${colorD 13}, ${colorD 5}, ${colorD 0}, ${colorD 15}, ${colorI 0}, ${colorD 5}, #807f849c
     inactive_colors=${colorI 15}, ${colorI 0}, #ffa6adc8, #ff9399b2, ${colorI 1}, #ff6c7086, ${colorI 15}, ${colorI 15}, ${colorI 15}, #ff1e1e2e, ${colorD 0}, #ff7f849c, ${colorI 8}, ${colorI 15}, ${colorI 13}, ${colorI 5}, ${colorI 0}, ${colorI 15}, ${colorI 0}, ${colorI 5}, #807f849c
   '';
+  xdg.configFile."qt6ct/colors/Catppuccin-Custom.conf".text = ''
+    [ColorScheme]
+    active_colors=${color 15}, ${color 0}, #ffa6adc8, #ff9399b2, ${color 1}, #ff6c7086, ${color 15}, ${color 15}, ${color 15}, #ff1e1e2e, ${colorD 0}, #ff7f849c, ${color 8}, ${color 15}, ${color 13}, ${color 5}, ${color 0}, ${color 15}, ${colorI 0}, ${color 5}, #807f849c
+    disabled_colors=${colorD 15}, ${colorD 0}, #ffa6adc8, #ff9399b2, ${colorD 1}, #ff6c7086, ${colorD 15}, ${colorD 15}, ${colorD 15}, #ff1e1e2e, ${colorD 0}, #ff7f849c, ${colorD 8}, ${colorD 15}, ${colorD 13}, ${colorD 5}, ${colorD 0}, ${colorD 15}, ${colorI 0}, ${colorD 5}, #807f849c
+    inactive_colors=${colorI 15}, ${colorI 0}, #ffa6adc8, #ff9399b2, ${colorI 1}, #ff6c7086, ${colorI 15}, ${colorI 15}, ${colorI 15}, #ff1e1e2e, ${colorD 0}, #ff7f849c, ${colorI 8}, ${colorI 15}, ${colorI 13}, ${colorI 5}, ${colorI 0}, ${colorI 15}, ${colorI 0}, ${colorI 5}, #807f849c
+  '';
   nixpkgs.overlays = [
     (super: self: {
       python3 = super.python.override {
