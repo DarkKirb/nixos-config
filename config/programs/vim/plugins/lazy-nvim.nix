@@ -18,6 +18,7 @@
       asyncrun-vim
       bufferline-nvim
       catppuccin-nvim
+      cmp-ai
       cmp-buffer
       cmp-emoji
       cmp-nvim-lsp
@@ -103,9 +104,18 @@
           "hrsh7th/cmp-buffer",
           "hrsh7th/cmp-omni",
           "hrsh7th/cmp-emoji",
+          "tzachar/cmp-ai"
         },
         config = function()
           require("config.nvim-cmp")
+        end,
+      },
+      {
+        "tzachar/cmp-ai",
+        event = "VeryLazy",
+        dependencies = {'nvim-lua/plenary.nvim'},
+        config = function()
+          require("config.cmp-ai")
         end,
       },
       {
@@ -435,6 +445,7 @@
           "stevearc",
           "tpope",
           "tyru",
+          "tzachar",
           "wellle",
           "Yggdroot",
         },
