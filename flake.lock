@@ -690,11 +690,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721108586,
-        "narHash": "sha256-v2TR4IjhlhdQcet9oTNlBhLyoexgL/7hF4v5uzAoW/E=",
+        "lastModified": 1721126798,
+        "narHash": "sha256-uRXbllYYN2b9L51iHq0qIm4Cy8QIDWFKCnC8qt9q9F4=",
         "owner": "DarkKirb",
         "repo": "riscv-overlay",
-        "rev": "874f5493f761452ae2069ef4b4682b2c4cfd19db",
+        "rev": "bcbdb68d60c9509e2ae462793795ad286c7a5723",
         "type": "github"
       },
       "original": {

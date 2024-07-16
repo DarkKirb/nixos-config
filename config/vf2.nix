@@ -22,6 +22,11 @@
 
   nixpkgs.overlays = [
     riscv-overlay.overlays.default
+    (self: super: {
+      nixos-option = super.nixos-option.override {
+        nix = self.nix;
+      };
+    })
   ];
 
   nix.settings.substituters = lib.mkForce [
@@ -112,4 +117,5 @@
   ];
   systemd.network.enable = true;
   networking.useNetworkd = true;
+  
 }
