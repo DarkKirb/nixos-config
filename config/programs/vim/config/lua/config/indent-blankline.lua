@@ -1,6 +1,6 @@
 local api = vim.api
 
-local exclude_ft = { "help", "git", "markdown", "snippets", "text", "gitconfig", "alpha", "dashboard" }
+local exclude_ft = { "help", "git", "markdown", "text", "gitconfig", "alpha", "dashboard" }
 
 require("ibl").setup {
   indent = {
