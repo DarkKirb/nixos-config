@@ -74,20 +74,20 @@ schema = 3
     version = "v1.7.4"
     hash = "sha256-1L0gZyD+AguN8GBy17rs54eFZv7LTU5dcttULEJRabI="
   [mod."go.mau.fi/libsignal"]
-    version = "v0.1.1-0.20240705162345-47e713a595ab"
-    hash = "sha256-Dv9uBYPpSMOPacao1VqJ1DFhpvsU+HDiIAKL0BY8BEc="
+    version = "v0.1.1"
+    hash = "sha256-KegSskYAq2MFiOvB28WG0j0VPzfbXqivapLHwsIEYNc="
   [mod."go.mau.fi/util"]
-    version = "v0.5.1-0.20240710154926-931b33d6d530"
-    hash = "sha256-rGs8nrTQuyHtlwyDN5en/jrbC7dAww2q1lOLLgn/ruQ="
+    version = "v0.6.0"
+    hash = "sha256-s3ocCW1ZTxxNiqzKUcUs1lfVdSRnFV8Zuc5lZ5t18h4="
   [mod."go.mau.fi/webp"]
     version = "v0.1.0"
     hash = "sha256-KIP/Onw0t/o10oBuvmRQDff7GF8G5lsMaDXpe0fjvNg="
   [mod."go.mau.fi/whatsmeow"]
-    version = "v0.0.0-20240710112833-d732338c041f"
-    hash = "sha256-2+WrcaKNis4/Vi2vo6hxlJ7tO/02jXTbgjLKmw9ICiA="
+    version = "v0.0.0-20240716084021-eb41d1f09552"
+    hash = "sha256-Q54RbZsiZz8NUlz4COumuzIdalJJQl1oi/NzSUSklOs="
   [mod."go.mau.fi/zeroconfig"]
-    version = "v0.1.2"
-    hash = "sha256-xf4p2Z5Pl9In3ne9BVmy7YvtooSRBzqxP4Pl2jdVN8w="
+    version = "v0.1.3"
+    hash = "sha256-TPwXOQql1MV8pXn6ZPxtkBUHzBCwIngNjrfqTfOSJX4="
   [mod."golang.org/x/crypto"]
     version = "v0.25.0"
     hash = "sha256-traLAylqoBwGIh0Z1fuEhNjbGgQBItgVjtZYdYr0zzQ="
@@ -122,5 +122,5 @@ schema = 3
     version = "v1.0.0"
     hash = "sha256-fYc/WwqE0ev0dvnu5qGmHJsYiSTuWeOTiAVzmQIKWyY="
   [mod."maunium.net/go/mautrix"]
-    version = "v0.19.0-beta.1.0.20240712164309-85e0664cb441"
-    hash = "sha256-GGG+QJL+bJVcoXf+P3Nkt4zkqozI0q28B3h32CegyL0="
+    version = "v0.19.0"
+    hash = "sha256-iDJMupBTm2rtrgJqT9TeUKcxnNspG+XmEF6TgIEo2LM="
