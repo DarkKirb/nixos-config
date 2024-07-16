@@ -18,10 +18,10 @@
       asyncrun-vim
       bufferline-nvim
       catppuccin-nvim
+      cmp-ai
       cmp-buffer
       cmp-emoji
       cmp-nvim-lsp
-      cmp-nvim-ultisnips
       cmp-omni
       cmp-path
       committia-vim
@@ -57,7 +57,6 @@
       targets-vim
       telescope-nvim
       telescope-symbols-nvim
-      UltiSnips
       unicode-vim
       vim-auto-save
       vim-commentary
@@ -73,7 +72,6 @@
       vim-repeat
       vim-sandwich
       vim-scriptease
-      vim-snippets
       vim-swap
       vim-toml
       vimtex
@@ -106,10 +104,18 @@
           "hrsh7th/cmp-buffer",
           "hrsh7th/cmp-omni",
           "hrsh7th/cmp-emoji",
-          "quangnguyen30192/cmp-nvim-ultisnips",
+          "tzachar/cmp-ai"
         },
         config = function()
           require("config.nvim-cmp")
+        end,
+      },
+      {
+        "tzachar/cmp-ai",
+        event = "VeryLazy",
+        dependencies = {'nvim-lua/plenary.nvim'},
+        config = function()
+          require("config.cmp-ai")
         end,
       },
       {
@@ -216,10 +222,6 @@
         end,
         cmd = "Vista",
       },
-      -- Snippet engine and snippet template
-      { "SirVer/ultisnips", dependencies = {
-        "honza/vim-snippets",
-      }, event = "InsertEnter" },
       -- Automatic insertion and deletion of a pair of characters
       { "Raimondi/delimitMate", event = "InsertEnter" },
       -- Comment plugin
@@ -443,6 +445,7 @@
           "stevearc",
           "tpope",
           "tyru",
+          "tzachar",
           "wellle",
           "Yggdroot",
         },
