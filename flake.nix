@@ -102,10 +102,6 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    nix-neovim = {
-      url = "github:syberant/nix-neovim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
@@ -181,14 +177,6 @@ rec {
         config.allowUnfree = true;
       };
       common = {
-        neovim-base = args.nix-neovim.buildNeovim {
-          inherit pkgs;
-          configuration = import ./config/programs/vim/configuration.nix false;
-        };
-        neovim = args.nix-neovim.buildNeovim {
-          inherit pkgs;
-          configuration = import ./config/programs/vim/configuration.nix true;
-        };
         inherit
           (pkgs)
           emoji-lotte

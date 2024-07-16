@@ -6,6 +6,7 @@
   ...
 }: {
   boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux-devterm;
+  boot.kernelParams = ["fbcon=rotate:1"];
   networking.hostName = "devterm";
   imports = [
     ./desktop.nix
@@ -30,7 +31,6 @@
       "ti_adc081c"
     ];
   };
-  console.enable = false;
   environment.systemPackages = with pkgs; [
     libraspberrypi
     raspberrypi-eeprom
@@ -51,13 +51,6 @@
     services.swaylock.u2fAuth = lib.mkForce false;
     u2f.enable = lib.mkForce false;
     services.sddm.u2fAuth = lib.mkForce false;
-  };
-  console.keyMap = lib.mkForce "us";
-  services.xserver.layout = lib.mkForce "us";
-  services.xserver.xkbVariant = lib.mkForce "";
-  services.displayManager.sddm = {
-    autoLogin.enable = true;
-    autoLogin.user = "darkkirb";
   };
   networking.networkmanager.enable = true;
   users.users.darkkirb.extraGroups = ["networkmanager"];
