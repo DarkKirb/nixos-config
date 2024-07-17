@@ -4,87 +4,93 @@
   ...
 }: {
   programs.neovim = {
-    plugins = with pkgs.vimPlugins; [
-      (nvim-treesitter.withPlugins (p: []))
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "vim-highlighturl";
-        src = pkgs.fetchFromGitHub {
-          owner = "itchyny";
-          repo = "vim-highlighturl";
-          rev = "012fee983e03913db6ba6393307eac434999b896";
-          sha256 = "18d72sgk44fwc91ziy54qr7vpzrs7qdlkwzlpvm9yr1d4k6329pc";
-        };
-      })
-      asyncrun-vim
-      bufferline-nvim
-      catppuccin-nvim
-      cmp-ai
-      cmp-buffer
-      cmp-emoji
-      cmp-nvim-lsp
-      cmp-omni
-      cmp-path
-      committia-vim
-      dashboard-nvim
-      delimitMate
-      dressing-nvim
-      fidget-nvim
-      firenvim
-      git-conflict-nvim
-      gitlinker-nvim
-      gitsigns-nvim
-      headlines-nvim
-      hop-nvim
-      indent-blankline-nvim
-      lazy-nvim
-      (LeaderF.overrideAttrs (super: {
-        buildInputs = [pkgs.python3 pkgs.python3Packages.setuptools];
-      }))
-      lspkind-nvim
-      lualine-nvim
-      neoformat
-      nvim-bqf
-      nvim-cmp
-      nvim-gdb
-      nvim-hlslens
-      nvim-lspconfig
-      nvim-notify
-      nvim-tree-lua
-      nvim-web-devicons
-      open-browser-vim
-      plenary-nvim
-      tabular
-      targets-vim
-      telescope-nvim
-      telescope-symbols-nvim
-      unicode-vim
-      vim-auto-save
-      vim-commentary
-      vim-eunuch
-      vim-flog
-      vim-fugitive
-      vim-indent-object
-      vim-markdown
-      vim-matchup
-      vim-mundo
-      vim-obsession
-      vim-oscyank
-      vim-repeat
-      vim-sandwich
-      vim-scriptease
-      vim-swap
-      vim-toml
-      vimtex
-      vista-vim
-      which-key-nvim
-      whitespace-nvim
-      wilder-nvim
-      yanky-nvim
-      zen-mode-nvim
-    ] ++ (if pkgs.targetPlatform.system != "riscv64-linux" then [
-      diffview-nvim
-      vim-grammarous
-    ] else []);
+    plugins = with pkgs.vimPlugins;
+      [
+        (nvim-treesitter.withPlugins (p: []))
+        (pkgs.vimUtils.buildVimPlugin {
+          name = "vim-highlighturl";
+          src = pkgs.fetchFromGitHub {
+            owner = "itchyny";
+            repo = "vim-highlighturl";
+            rev = "012fee983e03913db6ba6393307eac434999b896";
+            sha256 = "18d72sgk44fwc91ziy54qr7vpzrs7qdlkwzlpvm9yr1d4k6329pc";
+          };
+        })
+        asyncrun-vim
+        bufferline-nvim
+        catppuccin-nvim
+        cmp-ai
+        cmp-buffer
+        cmp-emoji
+        cmp-nvim-lsp
+        cmp-omni
+        cmp-path
+        committia-vim
+        dashboard-nvim
+        delimitMate
+        dressing-nvim
+        fidget-nvim
+        firenvim
+        git-conflict-nvim
+        gitlinker-nvim
+        gitsigns-nvim
+        headlines-nvim
+        hop-nvim
+        indent-blankline-nvim
+        lazy-nvim
+        (LeaderF.overrideAttrs (super: {
+          buildInputs = [pkgs.python3 pkgs.python3Packages.setuptools];
+        }))
+        lspkind-nvim
+        lualine-nvim
+        neoformat
+        nvim-bqf
+        nvim-cmp
+        nvim-gdb
+        nvim-hlslens
+        nvim-lspconfig
+        nvim-notify
+        nvim-tree-lua
+        nvim-web-devicons
+        open-browser-vim
+        plenary-nvim
+        tabular
+        targets-vim
+        telescope-nvim
+        telescope-symbols-nvim
+        unicode-vim
+        vim-auto-save
+        vim-commentary
+        vim-eunuch
+        vim-flog
+        vim-fugitive
+        vim-indent-object
+        vim-markdown
+        vim-matchup
+        vim-mundo
+        vim-obsession
+        vim-oscyank
+        vim-repeat
+        vim-sandwich
+        vim-scriptease
+        vim-swap
+        vim-toml
+        vimtex
+        vista-vim
+        which-key-nvim
+        whitespace-nvim
+        wilder-nvim
+        yanky-nvim
+        zen-mode-nvim
+      ]
+      ++ (
+        if pkgs.targetPlatform.system != "riscv64-linux"
+        then [
+          diffview-nvim
+          vim-grammarous
+        ]
+        else []
+      );
   };
   xdg.configFile."nvim/lua/config/lazy-nvim.lua".text = ''
     local utils = require('utils')
@@ -273,9 +279,13 @@
       },
       -- Better git commit experience
       { "rhysd/committia.vim", lazy = true },
-      ${if pkgs.targetPlatform.system != "riscv64-linux" then ''{
-        "sindrets/diffview.nvim"
-      },'' else ""}
+      ${
+      if pkgs.targetPlatform.system != "riscv64-linux"
+      then ''        {
+                "sindrets/diffview.nvim"
+              },''
+      else ""
+    }
       {
         "kevinhwang91/nvim-bqf",
         ft = "qf",
@@ -299,10 +309,14 @@
           require("config.zen-mode")
         end,
       },
-      ${if pkgs.targetPlatform.system != "riscv64-linux" then ''{
-        "rhysd/vim-grammarous",
-        ft = { "markdown" },
-      },'' else ""}
+      ${
+      if pkgs.targetPlatform.system != "riscv64-linux"
+      then ''        {
+                "rhysd/vim-grammarous",
+                ft = { "markdown" },
+              },''
+      else ""
+    }
       { "chrisbra/unicode.vim", event = "VeryLazy" },
       -- Additional powerful text object for vim, this plugin should be studied
       -- carefully to use its full power
