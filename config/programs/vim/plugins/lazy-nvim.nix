@@ -27,7 +27,6 @@
       committia-vim
       dashboard-nvim
       delimitMate
-      diffview-nvim
       dressing-nvim
       fidget-nvim
       firenvim
@@ -43,7 +42,6 @@
       }))
       lspkind-nvim
       lualine-nvim
-      markdown-preview-nvim
       neoformat
       nvim-bqf
       nvim-cmp
@@ -65,7 +63,6 @@
       vim-eunuch
       vim-flog
       vim-fugitive
-      vim-grammarous
       vim-indent-object
       vim-markdown
       vim-matchup
@@ -84,7 +81,10 @@
       wilder-nvim
       yanky-nvim
       zen-mode-nvim
-    ];
+    ] ++ (if pkgs.targetPlatform.system != "riscv64-linux" then [
+      diffview-nvim
+      vim-grammarous
+    ] else []);
   };
   xdg.configFile."nvim/lua/config/lazy-nvim.lua".text = ''
     local utils = require('utils')
@@ -273,9 +273,9 @@
       },
       -- Better git commit experience
       { "rhysd/committia.vim", lazy = true },
-      {
+      ${if pkgs.targetPlatform.system != "riscv64-linux" then ''{
         "sindrets/diffview.nvim"
-      },
+      },'' else ""}
       {
         "kevinhwang91/nvim-bqf",
         ft = "qf",
@@ -299,10 +299,10 @@
           require("config.zen-mode")
         end,
       },
-      {
+      ${if pkgs.targetPlatform.system != "riscv64-linux" then ''{
         "rhysd/vim-grammarous",
         ft = { "markdown" },
-      },
+      },'' else ""}
       { "chrisbra/unicode.vim", event = "VeryLazy" },
       -- Additional powerful text object for vim, this plugin should be studied
       -- carefully to use its full power

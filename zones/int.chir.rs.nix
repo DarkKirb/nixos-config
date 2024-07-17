@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 36;
+    serial = 37;
   };
   NS = [
     "ns1.chir.rs."
@@ -211,9 +211,9 @@ in {
       ];
     };
     vf2 = {
-      A = [(ttl zoneTTL (a "100.90.87.132"))];
+      A = [(ttl zoneTTL (a "100.80.150.39"))];
       AAAA = [
-        (ttl zoneTTL (aaaa "fd7a:115c:a1e0:ab12:4843:cd96:625a:5784"))
+        (ttl zoneTTL (aaaa "fd7a:115c:a1e0::5a01:9627"))
       ];
     };
     rainbow-resort = {

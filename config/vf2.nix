@@ -3,6 +3,8 @@
   config,
   pkgs,
   nixpkgs,
+  nixos-hardware,
+  riscv-overlay,
   ...
 } @ args: {
   networking.hostName = "vf2";
@@ -12,13 +14,19 @@
     ./services/acme.nix
     ./users/remote-build.nix
     ./systemd-boot.nix
+    "${nixos-hardware}/starfive/visionfive/v2/default.nix"
   ];
 
   environment.noXlibs = true;
   nixpkgs.config.allowUnsupportedSystem = true;
 
   nixpkgs.overlays = [
-    (import ../overlays/riscv.nix args)
+    riscv-overlay.overlays.default
+    (self: super: {
+      nixos-option = super.nixos-option.override {
+        nix = self.nix;
+      };
+    })
   ];
 
   nix.settings.substituters = lib.mkForce [
@@ -26,56 +34,25 @@
     "https://cache.ztier.in"
     "https://hydra.int.chir.rs"
   ];
-  boot = {
-    supportedFilesystems = lib.mkForce ["vfat" "ext4"];
-    kernelPackages = pkgs.linuxPackagesFor pkgs.vf2Kernel;
-    kernelParams = [
-      "console=tty0"
-      "console=ttyS0,115200"
-      "earlycon=sbi"
-      "boot.shell_on_fail"
-    ];
-    consoleLogLevel = 7;
-    initrd = {
-      network.enable = true;
-      network.flushBeforeStage2 = false;
-      availableKernelModules =
-        lib.mkForce [
-        ];
-      kernelModules = lib.mkForce [];
-    };
-    blacklistedKernelModules = [
-      "clk-starfive-jh7110-vout"
-    ];
-    loader.systemd-boot.extraInstallCommands = ''
-      set -euo pipefail
-      cp --no-preserve=mode -r ${config.hardware.deviceTree.package} ${config.boot.loader.efi.efiSysMountPoint}/
-      for filename in ${config.boot.loader.efi.efiSysMountPoint}/loader/entries/nixos*-generation-[1-9]*.conf; do
-        if ! ${pkgs.gnugrep}/bin/grep -q 'devicetree' $filename; then
-          echo "devicetree /dtbs/${config.hardware.deviceTree.name}" >> $filename
-        fi
-      done
-    '';
-    iscsi-initiator = {
-      discoverPortal = "192.168.2.1";
-      name = "iqn.2023-06.rs.chir:rs.chir.int.vf2";
-      target = "iqn.2023-06.rs.chir:rs.chir.int.nas.vf2";
-    };
-  };
 
   fileSystems = {
     "/boot" = {
-      device = "/dev/disk/by-uuid/1234-ABCD";
+      device = "/dev/nvme0n1p1";
       fsType = "vfat";
       options = ["nofail"];
     };
     "/" = {
-      device = "/dev/disk/by-uuid/b4e8cbe8-a233-444f-920b-c253339a44d6";
-      fsType = "ext4";
+      device = "/dev/nvme0n1p2";
+      fsType = "btrfs";
+      options = ["compress=zstd"];
     };
   };
-  hardware.deviceTree.name = "starfive/jh7110-starfive-visionfive-2-v1.3b.dtb";
-  system.stateVersion = "23.05";
+  swapDevices = [
+    {
+      device = "/dev/nvme0n1p3";
+    }
+  ];
+  #  hardware.deviceTree.name = "starfive/jh7110-starfive-visionfive-2-v1.3b.dtb";
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
     desktop = false;
     inherit args;
@@ -100,25 +77,45 @@
   ];
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
-  sops.secrets."root/.ssh/id_ed25519" = {
-    owner = "root";
-    path = "/root/.ssh/id_ed25519";
-  };
   services.tailscale.useRoutingFeatures = "server";
-  boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
-  networking.useNetworkd = lib.mkForce false;
-  networking.interfaces.end0.useDHCP = true;
-
-  services.openiscsi = {
-    name = "iqn.2023-06.rs.chir:rs.chir.int.vf2";
-    discoverPortal = "192.168.2.1";
-    enable = true;
-  };
 
   boot.binfmt.emulatedSystems = [
     "x86_64-linux"
   ];
-  boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
-  system.requiredKernelConfig = lib.mkForce [];
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.generic-extlinux-compatible.enable = false;
+  #system.requiredKernelConfig = lib.mkForce [];
   system.autoUpgrade.allowReboot = true;
+
+  system.stateVersion = "24.05";
+
+  boot.loader.systemd-boot.extraInstallCommands = ''
+    set -euo pipefail
+    ${pkgs.coreutils}/bin/cp --no-preserve=mode -r ${config.hardware.deviceTree.package} ${config.boot.loader.efi.efiSysMountPoint}/
+    for filename in ${config.boot.loader.efi.efiSysMountPoint}/loader/entries/nixos*-generation-[1-9]*.conf; do
+      if ! ${pkgs.gnugrep}/bin/grep -q 'devicetree' $filename; then
+        ${pkgs.coreutils}/bin/echo "devicetree /dtbs/${config.hardware.deviceTree.name}" >> $filename
+      fi
+    done
+  '';
+  hardware.deviceTree.name = "starfive/jh7110-starfive-visionfive-2-v1.3b.dtb";
+  boot.initrd.kernelModules = [
+    "dw_mmc-starfive"
+    "motorcomm"
+    "dwmac-starfive"
+    "cdns3-starfive"
+    "jh7110-trng"
+    "phy-jh7110-usb"
+    "clk-starfive-jh7110-aon"
+    "clk-starfive-jh7110-stg"
+    "clk-starfive-jh7110-vout"
+    "clk-starfive-jh7110-isp"
+    "clk-starfive-jh7100-audio"
+    "phy-jh7110-pcie"
+    "pcie-starfive"
+    "nvme"
+  ];
+  systemd.network.enable = true;
+  networking.useNetworkd = true;
+  
 }

@@ -663,6 +663,26 @@
         "type": "github"
       }
     },
+    "riscv-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1721126798,
+        "narHash": "sha256-uRXbllYYN2b9L51iHq0qIm4Cy8QIDWFKCnC8qt9q9F4=",
+        "owner": "DarkKirb",
+        "repo": "riscv-overlay",
+        "rev": "bcbdb68d60c9509e2ae462793795ad286c7a5723",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DarkKirb",
+        "repo": "riscv-overlay",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "admin-fe": "admin-fe",
@@ -687,6 +707,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_3",
+        "riscv-overlay": "riscv-overlay",
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",
         "systems": "systems_2"
