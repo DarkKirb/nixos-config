@@ -33,8 +33,8 @@ schema = 3
     version = "v0.0.19"
     hash = "sha256-wYQqGxeqV3Elkmn26Md8mKZ/viw598R4Ych3vtt72YE="
   [mod."github.com/mattn/go-sqlite3"]
-    version = "v1.14.19"
-    hash = "sha256-mP4cW7TGoe2ERgVZhHxrjYesjEENLYnY60V0xOrync4="
+    version = "v1.14.22"
+    hash = "sha256-CWF2Hjg43658NhaePWbGzS19gHJXjuTroG5c0W3hgYQ="
   [mod."github.com/pmezard/go-difflib"]
     version = "v1.0.0"
     hash = "sha256-/FtmHnaGjdvEIKAJtrUfEhV7EVo5A/eYrtdnUkuxLDA="
