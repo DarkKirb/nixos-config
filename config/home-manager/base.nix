@@ -1,4 +1,8 @@
-desktop: {pkgs, ...}: {
+desktop: {
+  pkgs,
+  system,
+  ...
+}: {
   imports =
     [
       (import ../programs/zsh.nix desktop)
@@ -20,17 +24,20 @@ desktop: {pkgs, ...}: {
         enable = true;
       };
       initExtraBeforeCompInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      
-      initExtra = ''
-      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-        test -n "$KITTY_INSTALLATION_DIR" || export KITTY_INSTALLATION_DIR=${pkgs.kitty}/lib/kitty
-        export KITTY_SHELL_INTEGRATION=enabled
-        autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
-        kitty-integration
-        unfunction kitty-integration
-    '';
-      
+      initExtra =
+        if system != "riscv64-linux"
+        then ''
+          [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+            test -n "$KITTY_INSTALLATION_DIR" || export KITTY_INSTALLATION_DIR=${pkgs.kitty}/lib/kitty
+            export KITTY_SHELL_INTEGRATION=enabled
+            autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+            kitty-integration
+            unfunction kitty-integration
+        ''
+        else "";
+
       plugins = [
       ];
     };
@@ -47,11 +54,12 @@ desktop: {pkgs, ...}: {
         less = "bat";
       }
       // (
-        if desktop
+        if system != "riscv64-linux"
         then {
           icat = "${pkgs.kitty}/bin/kitty +kitten icat";
           d = "${pkgs.kitty}/bin/kitty +kitten diff";
           hg = "${pkgs.kitty}/bin/kitty +kitten hyperlinked_grep";
+          ssh = "${pkgs.kitty}/bin/kitty +kitten ssh";
           cargo = "${pkgs.cargo-mommy}/bin/cargo-mommy";
         }
         else {}

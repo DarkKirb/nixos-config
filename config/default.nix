@@ -18,10 +18,15 @@
     ./services/otel.nix
   ];
   services.openssh.enable = true;
-  environment.systemPackages = with pkgs; [
-    git
-    kitty.terminfo
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      git
+    ]
+    ++ (
+      if system != "riscv64-linux"
+      then [kitty.terminfo]
+      else []
+    );
   networking.firewall.allowedTCPPorts = [22];
   networking.firewall.allowedUDPPortRanges = [
     {
