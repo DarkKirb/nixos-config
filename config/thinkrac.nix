@@ -15,7 +15,7 @@
     ./desktop.nix
     ./services/tpm2.nix
     nixos-hardware.nixosModules.lenovo-thinkpad-t470s
-    nixos-hardware.nixosModules.common-cpu-intel-kaby-lake
+    #nixos-hardware.nixosModules.common-cpu-intel-kaby-lake
     nixos-hardware.nixosModules.common-pc-ssd
     ./services/postgres.nix
   ];
@@ -45,11 +45,11 @@
   };
   services.snapper.configs.main = {
     SUBVOLUME = "/";
-    TIMELINE_LIMIT_HOURLY = "5";
-    TIMELINE_LIMIT_DAILY = "7";
-    TIMELINE_LIMIT_WEEKLY = "4";
-    TIMELINE_LIMIT_MONTHLY = "12";
-    TIMELINE_LIMIT_YEARLY = "0";
+    TIMELINE_LIMIT_HOURLY = 5;
+    TIMELINE_LIMIT_DAILY = 7;
+    TIMELINE_LIMIT_WEEKLY = 4;
+    TIMELINE_LIMIT_MONTHLY = 12;
+    TIMELINE_LIMIT_YEARLY = 0;
   };
   services.beesd.filesystems.root = {
     spec = "/";

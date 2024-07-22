@@ -8,7 +8,7 @@ rec {
       url = "github:DarkKirb/admin-fe";
       inputs.devshell.follows = "devshell";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     akkoma = {
       url = "github:DarkKirb/akkoma";
@@ -102,10 +102,6 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    nix-neovim = {
-      url = "github:syberant/nix-neovim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
@@ -113,6 +109,10 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs";
+    riscv-overlay = {
+      url = "github:DarkKirb/riscv-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.flake-utils.follows = "flake-utils";
@@ -159,6 +159,10 @@ rec {
         system = "x86_64-linux";
       }
       {
+        name = "vf2"; # vision five 2
+        system = "riscv64-linux";
+      }
+      {
         name = "devterm";
         system = "aarch64-linux";
       }
@@ -177,14 +181,6 @@ rec {
         config.allowUnfree = true;
       };
       common = {
-        neovim-base = args.nix-neovim.buildNeovim {
-          inherit pkgs;
-          configuration = import ./config/programs/vim/configuration.nix false;
-        };
-        neovim = args.nix-neovim.buildNeovim {
-          inherit pkgs;
-          configuration = import ./config/programs/vim/configuration.nix true;
-        };
         inherit
           (pkgs)
           emoji-lotte
@@ -284,6 +280,7 @@ rec {
     overlays = {
       x86_64-linux = import ./overlays args "x86_64-linux";
       aarch64-linux = import ./overlays args "aarch64-linux";
+      riscv64-linux = import ./overlays args "riscv64-linux";
     };
     devShell.x86_64-linux = let
       pkgs = import nixpkgs {

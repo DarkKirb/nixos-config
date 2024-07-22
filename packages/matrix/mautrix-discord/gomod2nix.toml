@@ -33,8 +33,8 @@ schema = 3
     version = "v0.0.19"
     hash = "sha256-wYQqGxeqV3Elkmn26Md8mKZ/viw598R4Ych3vtt72YE="
   [mod."github.com/mattn/go-sqlite3"]
-    version = "v1.14.19"
-    hash = "sha256-mP4cW7TGoe2ERgVZhHxrjYesjEENLYnY60V0xOrync4="
+    version = "v1.14.22"
+    hash = "sha256-CWF2Hjg43658NhaePWbGzS19gHJXjuTroG5c0W3hgYQ="
   [mod."github.com/pmezard/go-difflib"]
     version = "v1.0.0"
     hash = "sha256-/FtmHnaGjdvEIKAJtrUfEhV7EVo5A/eYrtdnUkuxLDA="
@@ -63,8 +63,8 @@ schema = 3
     version = "v1.6.0"
     hash = "sha256-0PeGjGxxM7lUSx2dn8yPUBpilPQzEN9nkgf3s+5zGTY="
   [mod."go.mau.fi/util"]
-    version = "v0.2.1"
-    hash = "sha256-ueWv/RjYieBavfIFJsDR6KoGn/6K5RI7X2m9YU8U14E="
+    version = "v0.2.2-0.20231228160422-22fdd4bbddeb"
+    hash = "sha256-k1wrTDyJ9rCsLvQ+Pbg1BbOANRGzrQyRvIT++9BZ8PM="
   [mod."go.mau.fi/zeroconfig"]
     version = "v0.1.2"
     hash = "sha256-xf4p2Z5Pl9In3ne9BVmy7YvtooSRBzqxP4Pl2jdVN8w="
@@ -96,5 +96,5 @@ schema = 3
     version = "v2.4.1"
     hash = "sha256-OstOCC7Bib6mbcUG2X3YafEBikFhPQ8lN6jPK5c/Ah8="
   [mod."maunium.net/go/mautrix"]
-    version = "v0.16.3-0.20240218195727-4ceb1123b660"
-    hash = "sha256-IMwwA03kHfNAMFDOzhS/NPo10N/2xht4/qPH+nnoOxs="
+    version = "v0.16.3-0.20240712164054-e6046fbf432c"
+    hash = "sha256-QeUoCxfJnHNNYXmL02/uEKWFT8A+nVLzA4NUkCcuV0c="

@@ -15,7 +15,7 @@ in {
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 36;
+    serial = 38;
   };
   NS = [
     "ns1.chir.rs."
@@ -142,9 +142,9 @@ in {
       ];
     };
     nas = {
-      A = [(ttl zoneTTL (a "100.99.129.7"))];
+      A = [(ttl zoneTTL (a "100.97.198.107"))];
       AAAA = [
-        (ttl zoneTTL (aaaa "fd7a:115c:a1e0:ab12:4843:cd96:6263:8107"))
+        (ttl zoneTTL (aaaa "fd7a:115c:a1e0::2401:c66b"))
       ];
       SSHFP = [
         {
@@ -211,9 +211,9 @@ in {
       ];
     };
     vf2 = {
-      A = [(ttl zoneTTL (a "100.90.87.132"))];
+      A = [(ttl zoneTTL (a "100.80.150.39"))];
       AAAA = [
-        (ttl zoneTTL (aaaa "fd7a:115c:a1e0:ab12:4843:cd96:625a:5784"))
+        (ttl zoneTTL (aaaa "fd7a:115c:a1e0::5a01:9627"))
       ];
     };
     rainbow-resort = {

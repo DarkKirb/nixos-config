@@ -49,44 +49,42 @@
     config.boot.kernelPackages.zenpower
   ];
 
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-
   fileSystems."/" = {
-    device = "tank/system/root";
-    fsType = "zfs";
+    device = "/dev/bcache0";
+    fsType = "btrfs";
+    options = ["subvol=root" "compress=zstd"];
   };
 
-  fileSystems."/etc" = {
-    device = "tank/system/etc";
-    fsType = "zfs";
+  fileSystems."/home" = {
+    device = "/dev/bcache0";
+    fsType = "btrfs";
+    options = ["subvol=home" "compress=zstd"];
   };
 
   fileSystems."/nix" = {
-    device = "tank/system/nix";
-    fsType = "zfs";
+    device = "/dev/bcache0";
+    fsType = "btrfs";
+    options = ["subvol=nix" "compress=zstd" "noatime"];
   };
 
-  fileSystems."/var" = {
-    device = "tank/data/var";
-    fsType = "zfs";
+  services.snapper.configs.main = {
+    SUBVOLUME = "/";
+    TIMELINE_LIMIT_HOURLY = 5;
+    TIMELINE_LIMIT_DAILY = 7;
+    TIMELINE_LIMIT_WEEKLY = 4;
+    TIMELINE_LIMIT_MONTHLY = 12;
+    TIMELINE_LIMIT_YEARLY = 0;
+  };
+  services.beesd.filesystems.root = {
+    spec = "/";
+    hashTableSizeMB = 2048;
+    verbosity = "crit";
+    extraOptions = ["--loadavg-target" "5.0"];
   };
 
   fileSystems."/boot" = {
     device = "/dev/nvme0n1p1";
     fsType = "vfat";
-  };
-
-  services.sanoid = {
-    enable = true;
-    datasets."tank/data" = {
-      yearly = 1;
-      recursive = true;
-      monthly = 12;
-      hourly = 24;
-      daily = 30;
-      autosnap = true;
-      autoprune = true;
-    };
   };
 
   environment.etc."sysconfig/lm_sensors".text = ''
