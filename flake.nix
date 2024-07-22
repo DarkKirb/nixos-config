@@ -166,6 +166,10 @@ rec {
         name = "devterm";
         system = "aarch64-linux";
       }
+      {
+        name = "rpi2";
+        system = "x86_64-linux";
+      }
     ];
     mkPackages = system: let
       pkgs = import nixpkgs {

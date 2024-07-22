@@ -87,6 +87,12 @@
         if pkgs.targetPlatform.system != "riscv64-linux"
         then [
           diffview-nvim
+        ]
+        else []
+      )
+      ++ (
+        if pkgs.targetPlatform.system != "riscv64-linux" && pkgs.targetPlatform.system != "armv7l-linux"
+        then [
           vim-grammarous
         ]
         else []
@@ -310,7 +316,7 @@
         end,
       },
       ${
-      if pkgs.targetPlatform.system != "riscv64-linux"
+      if pkgs.targetPlatform.system != "riscv64-linux" && pkgs.targetPlatform.system != "armv7l-linux"
       then ''        {
                 "rhysd/vim-grammarous",
                 ft = { "markdown" },
