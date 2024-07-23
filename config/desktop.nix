@@ -20,7 +20,8 @@ in {
       ./services/cups.nix
       ./services/docker.nix
       ./services/cifs.nix
-      #./kde.nix
+      ./kde.nix
+      ./sway.nix
     ]
     ++ (
       if system == "x86_64-linux"
