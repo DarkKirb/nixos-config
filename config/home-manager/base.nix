@@ -59,7 +59,7 @@ desktop: {
           icat = "${pkgs.kitty}/bin/kitty +kitten icat";
           d = "${pkgs.kitty}/bin/kitty +kitten diff";
           hg = "${pkgs.kitty}/bin/kitty +kitten hyperlinked_grep";
-          ssh = "${pkgs.kitty}/bin/kitty +kitten ssh";
+          #ssh = "${pkgs.kitty}/bin/kitty +kitten ssh";
           cargo = "${pkgs.cargo-mommy}/bin/cargo-mommy";
         }
         else {}
