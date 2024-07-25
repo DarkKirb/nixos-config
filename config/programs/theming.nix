@@ -117,10 +117,12 @@ in {
     params = [];
   };
   wayland.windowManager.sway.config.output."*".bg = "${bgPng} fill";
-  /*dconf.settings."org/gnome/desktop/interface" = {
+  /*
+    dconf.settings."org/gnome/desktop/interface" = {
     icon-theme = "breeze-dark";
     cursor-theme = "Vanilla-DMZ";
-  };*/
+  };
+  */
   gtk = {
     #enable = true;
     gtk2.extraConfig = ''
@@ -258,14 +260,16 @@ in {
     })
   ];
 
-  /*home.file = {
+  /*
+    home.file = {
     ".icons/default/index.theme".text = ''
       [Icon Theme]
       Name=Default
       Comment=Default Cursor Theme
       Inherits=Vanilla-DMZ
     '';
-  };*/
+  };
+  */
   programs.kitty.settings = with theme; {
     background = color 0;
     foreground = color 15;
