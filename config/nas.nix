@@ -193,7 +193,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   services.restic.backups.sysbackup = {
-    paths = ["/persist"];
+    paths = ["/media"];
     pruneOpts = [
       "--keep-daily 7"
       "--keep-weekly 4"
