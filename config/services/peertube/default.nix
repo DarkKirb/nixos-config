@@ -32,7 +32,6 @@
     database.createLocally = true;
     redis.createLocally = true;
   };
-  systemd.services.peertube.path = with pkgs; lib.mkForce [bashInteractive ffmpeg_5 nodejs-18_x openssl yarn python3 coreutils systemd];
   services.caddy.virtualHosts."peertube.chir.rs" = {
     useACMEHost = "chir.rs";
     logFormat = pkgs.lib.mkForce "";
