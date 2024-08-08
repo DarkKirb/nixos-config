@@ -19,7 +19,6 @@
     ./services/postgres.nix
     ./services/gitea.nix
     ./services/old-homepage.nix
-    ./services/postfixadmin.nix
     ./services/dovecot.nix
     ./services/postfix.nix
     ./services/reverse-proxy.nix
