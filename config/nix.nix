@@ -138,7 +138,7 @@
     distributedBuilds = true;
   };
   systemd.services.nix-daemon.environment.TMPDIR = "/build";
-  systemd.services.nixos-upgrade = m
+  systemd.services.nixos-upgrade = {
     description = "NixOS Upgrade";
 
     restartIfChanged = false;
