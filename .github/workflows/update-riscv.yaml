@@ -1,0 +1,19 @@
+name: update-riscv
+on:
+  push:
+    branches:
+      - main
+jobs:
+  pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: update-riscv-pr
+          base: main-riscv
+          commit-message: "Synchronize riscv branch"
+          title: Synchronize riscv branch
+          author: GitHub <noreply@github.com>
