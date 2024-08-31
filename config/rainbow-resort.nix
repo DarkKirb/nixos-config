@@ -101,7 +101,6 @@
 
   services.tailscale.useRoutingFeatures = "client";
   home-manager.users.darkkirb._module.args.withNSFW = lib.mkForce true;
-  system.autoUpgrade.allowReboot = true;
   services.prometheus.exporters.node.enabledCollectors = ["drm"];
   services.k3s.role = lib.mkForce "agent";
 
