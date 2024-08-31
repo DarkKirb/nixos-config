@@ -201,7 +201,6 @@
       "--keep-yearly 10"
     ];
   };
-  system.autoUpgrade.allowReboot = true;
   virtualisation.docker = {
     enable = true;
     #enableNvidia = true;
