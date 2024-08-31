@@ -9,11 +9,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v6
+      - name: Create update pull request
+        uses: LucasRuy/sync-branch-action@v1.1.1
         with:
-          branch: update-riscv-pr
-          base: main-riscv
-          commit-message: "Synchronize riscv branch"
-          title: Synchronize riscv branch
-          author: GitHub <noreply@github.com>
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          SOURCE_BRANCH: 'main'
+          DESTINATION_BRANCH: 'main-riscv'
