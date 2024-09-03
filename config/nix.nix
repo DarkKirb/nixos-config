@@ -173,7 +173,7 @@
               drvname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.drvpath')
               output=$(${pkgs.nix}/bin/nix-store -r $drvname)
 
-              nix-env -p /nix/var/nix/profiles/system --set $output
+              ${pkgs.nix}/bin/nix-env -p /nix/var/nix/profiles/system --set $output
 
               ${
         if config.networking.hostName != "nixos-8gb-fsn1-1"
