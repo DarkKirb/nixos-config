@@ -39,6 +39,7 @@
     ./services/synapse.nix
     ./services/heisenbridge.nix
     #./services/kubernetes.nix
+    ./services/forgejo-runner.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
