@@ -11,6 +11,7 @@
   ];
   nixpkgs.config.allowUnfree = true;
   nix = {
+    package = pkgs.nixVersions.latest;
     settings = {
       sandbox = true;
       trusted-users = ["@wheel" "remote-build"];
