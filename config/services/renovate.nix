@@ -28,6 +28,7 @@
       corepack
       cargo
       cargo2nix.packages.${system}.cargo2nix
+      alejandra
     ];
   };
 
