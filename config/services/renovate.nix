@@ -14,10 +14,10 @@
       autodiscoverTopics = ["managed-by-renovate"];
       nix.enabled = true;
       lockFileMaintenance.enabled = true;
-      ossVulnerabilityAlerts = true;
-      credentials = {
-        RENOVATE_TOKEN = config.sops.secrets."services/renovate".path;
-      };
+      osvVulnerabilityAlerts = true;
+    };
+    credentials = {
+      RENOVATE_TOKEN = config.sops.secrets."services/renovate".path;
     };
     runtimePackages = with pkgs; [
       config.nix.package
