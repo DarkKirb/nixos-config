@@ -17,7 +17,7 @@
       nix.enabled = true;
       lockFileMaintenance.enabled = true;
       osvVulnerabilityAlerts = true;
-      allowedPostUpgradeCommands = ["^cargo2nix -o$"];
+      allowedPostUpgradeCommands = ["^cargo2nix -o$" "^alejandra \\.$"];
     };
     credentials = {
       RENOVATE_TOKEN = config.sops.secrets."services/renovate".path;
