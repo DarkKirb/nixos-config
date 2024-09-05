@@ -16,7 +16,7 @@
       lockFileMaintenance.enabled = true;
       ossVulnerabilityAlerts = true;
       credentials = {
-        RENOVATE_TOKEN = config.sops.secrets."services/renovate-token".path;
+        RENOVATE_TOKEN = config.sops.secrets."services/renovate".path;
       };
     };
     runtimePackages = with pkgs; [
