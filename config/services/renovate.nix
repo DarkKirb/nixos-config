@@ -1,6 +1,8 @@
 {
   pkgs,
   config,
+  cargo2nix,
+  system,
   ...
 }: {
   services.renovate = {
@@ -15,6 +17,7 @@
       nix.enabled = true;
       lockFileMaintenance.enabled = true;
       osvVulnerabilityAlerts = true;
+      allowedPostUpgradeCommands = ["^cargo2nix -o$"];
     };
     credentials = {
       RENOVATE_TOKEN = config.sops.secrets."services/renovate".path;
@@ -24,6 +27,7 @@
       nodejs
       corepack
       cargo
+      cargo2nix.packages.${system}.cargo2nix
     ];
   };
 
