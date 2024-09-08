@@ -22,7 +22,6 @@
     ../modules/tc-cake.nix
     ./services/cups.nix
     ./services/iscsi.nix
-    ./services/samba.nix
     ./services/docker.nix
     ./users/remote-build.nix
     ./services/nfs.nix
