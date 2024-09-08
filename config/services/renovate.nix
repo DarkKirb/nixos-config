@@ -18,6 +18,7 @@
       lockFileMaintenance.enabled = true;
       osvVulnerabilityAlerts = true;
       allowedPostUpgradeCommands = ["^cargo2nix -o$" "^alejandra \\.$"];
+      allowCustomCrateRegistries = true;
     };
     credentials = {
       RENOVATE_TOKEN = config.sops.secrets."services/renovate".path;
