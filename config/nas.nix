@@ -76,14 +76,12 @@
     TIMELINE_LIMIT_MONTHLY = 12;
     TIMELINE_LIMIT_YEARLY = 0;
   };
-  /*
-    services.beesd.filesystems.root = {
+  services.beesd.filesystems.root = {
     spec = "/";
     hashTableSizeMB = 2048;
     verbosity = "crit";
     extraOptions = ["--loadavg-target" "5.0"];
   };
-  */
 
   fileSystems."/boot" = {
     device = "/dev/nvme0n1p1";
