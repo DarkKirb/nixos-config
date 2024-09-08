@@ -26,11 +26,6 @@
                 value = "${info.head.repo.clone_url} ${info.head.ref}";
                 emailresponsible = false;
               };
-              nixpkgs = {
-                type = "git";
-                value = "https://github.com/NixOS/nixpkgs.git master";
-                emailresponsible = false;
-              };
               github_input = {
                 type = "string";
                 value = "nixos-config";
@@ -65,11 +60,6 @@
           nixos-config = {
             type = "git";
             value = "https://github.com/DarkKirb/nixos-config main";
-            emailresponsible = false;
-          };
-          nixpkgs = {
-            type = "git";
-            value = "https://github.com/NixOS/nixpkgs.git master";
             emailresponsible = false;
           };
           github_input = {
