@@ -6,8 +6,6 @@ desktop: {pkgs, ...}: {
       then pkgs.gitAndTools.gitFull
       else pkgs.git;
     lfs.enable = true;
-    signing.signByDefault = true;
-    signing.key = "AB2BD8DAF2E37122";
     userEmail = "lotte@chir.rs";
     userName = "Charlotte 🦝 Delenk";
     extraConfig = {
