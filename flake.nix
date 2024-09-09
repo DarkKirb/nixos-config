@@ -32,7 +32,7 @@ rec {
       inputs.rust-overlay.follows = "rust-overlay";
     };
     cargo2nix = {
-      url = "github:cargo2nix/cargo2nix/main";
+      url = "github:DarkKirb/cargo2nix/master";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -115,7 +115,6 @@ rec {
     };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
-      inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
