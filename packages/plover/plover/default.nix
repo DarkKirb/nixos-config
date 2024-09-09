@@ -16,7 +16,7 @@
   pkg-config,
   fetchFromGitHub,
   cmarkgfm,
-  wayland,
+  wayland-scanner,
   pywayland,
   fetchPypi,
 }: let
@@ -51,7 +51,7 @@ in
     postPatch = ''
       sed -i /PyQt5/d setup.cfg
       substituteInPlace plover_build_utils/setup.py \
-        --replace "/usr/share/wayland/wayland.xml" "${wayland}/share/wayland/wayland.xml"
+        --replace "/usr/share/wayland/wayland.xml" "${wayland-scanner}/share/wayland/wayland.xml"
     '';
 
     checkInputs = [pytest mock];

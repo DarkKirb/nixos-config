@@ -85,4 +85,7 @@
     enable = true;
   };
   i18n.defaultLocale = "nl_NL.UTF-8";
+  nixpkgs.config.permittedInsecurePackages = [
+    "olm-3.2.16"
+  ];
 }

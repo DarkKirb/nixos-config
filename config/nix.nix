@@ -11,6 +11,7 @@
   ];
   nixpkgs.config.allowUnfree = true;
   nix = {
+    package = pkgs.nixVersions.latest;
     settings = {
       sandbox = true;
       trusted-users = ["@wheel" "remote-build"];
@@ -161,7 +162,11 @@
     script = lib.mkDefault ''
       #!${pkgs.bash}/bin/bash
       set -ex
-      builds=$(${pkgs.curl}/bin/curl -H 'accept: application/json' https://hydra.int.chir.rs/jobset/flakes/${if config.networking.hostName != "vf2" then "nixos-config" else "nixos-config-riscv"}/evals | ${pkgs.jq}/bin/jq -r '.evals[0].builds[]')
+      builds=$(${pkgs.curl}/bin/curl -H 'accept: application/json' https://hydra.int.chir.rs/jobset/flakes/${
+        if config.networking.hostName != "vf2"
+        then "nixos-config"
+        else "nixos-config-riscv"
+      }/evals | ${pkgs.jq}/bin/jq -r '.evals[0].builds[]')
       for build in $builds; do
           doc=$(${pkgs.curl}/bin/curl -H 'accept: application/json' https://hydra.int.chir.rs/build/$build)
           jobname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.job')
@@ -169,18 +174,23 @@
               drvname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.drvpath')
               output=$(${pkgs.nix}/bin/nix-store -r $drvname)
 
+              ${pkgs.nix}/bin/nix-env -p /nix/var/nix/profiles/system --set $output
 
-              ${if config.networking.hostName != "nixos-8gb-fsn1-1" then ''
-                $output/bin/switch-to-configuration boot
-                booted="$(${pkgs.coreutils}/bin/readlink /run/booted-system/{initrd,kernel,kernel-modules})"
-                built="$(${pkgs.coreutils}/bin/readlink $output/{initrd,kernel,kernel-modules})"
-                if [ "$booted" = "$built" ]; then
-                    $output/bin/switch-to-configuration switch
-                else
-                    ${pkgs.systemd}/bin/shutdown -r +1
-                fi
-                exit
-              '' else "$output/bin/switch-to-configuration switch"}
+              ${
+        if config.networking.hostName != "nixos-8gb-fsn1-1"
+        then ''
+          $output/bin/switch-to-configuration boot
+          booted="$(${pkgs.coreutils}/bin/readlink /run/booted-system/{initrd,kernel,kernel-modules})"
+          built="$(${pkgs.coreutils}/bin/readlink $output/{initrd,kernel,kernel-modules})"
+          if [ "$booted" = "$built" ]; then
+              $output/bin/switch-to-configuration switch
+          else
+              ${pkgs.systemd}/bin/shutdown -r +1
+          fi
+          exit
+        ''
+        else "$output/bin/switch-to-configuration switch"
+      }
           fi
       done
     '';

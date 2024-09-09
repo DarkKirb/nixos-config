@@ -175,6 +175,9 @@ rec {
           self.overlays.${system}
         ];
         config.allowUnfree = true;
+        config.permittedInsecurePackages = [
+          "olm-3.2.16"
+        ];
       };
       common = {
         inherit

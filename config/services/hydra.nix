@@ -67,6 +67,7 @@ in {
     extraConfig = ''
       <gitea_authorization>
         darkkirb = #gitea_token#
+        ProcyOS = #gitea_token#
       </gitea_authorization>
       <github_authorization>
         DarkKirb = Bearer #github_token#
