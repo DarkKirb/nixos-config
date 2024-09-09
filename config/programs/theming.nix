@@ -117,12 +117,14 @@ in {
     params = [];
   };
   wayland.windowManager.sway.config.output."*".bg = "${bgPng} fill";
-  dconf.settings."org/gnome/desktop/interface" = {
+  /*
+    dconf.settings."org/gnome/desktop/interface" = {
     icon-theme = "breeze-dark";
     cursor-theme = "Vanilla-DMZ";
   };
+  */
   gtk = {
-    enable = true;
+    #enable = true;
     gtk2.extraConfig = ''
       gtk-cursor-theme-name = "Vanilla-DMZ"
       gtk-cursor-theme-size = 0
@@ -151,7 +153,7 @@ in {
     };
   };
   qt = {
-    enable = true;
+    #enable = true;
     style = {
       name = "lightly";
       package = pkgs.plasma5Packages.lightly;
@@ -258,7 +260,8 @@ in {
     })
   ];
 
-  home.file = {
+  /*
+    home.file = {
     ".icons/default/index.theme".text = ''
       [Icon Theme]
       Name=Default
@@ -266,6 +269,7 @@ in {
       Inherits=Vanilla-DMZ
     '';
   };
+  */
   programs.kitty.settings = with theme; {
     background = color 0;
     foreground = color 15;

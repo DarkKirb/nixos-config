@@ -152,6 +152,14 @@ in {
           reverse_proxy http://localhost:8008
         }
 
+        handle /_matrix/client/v1/media/* {
+          reverse_proxy http://localhost:8008
+        }
+
+        handle /_matrix/federation/v1/media/* {
+          reverse_proxy http://localhost:8008
+        }
+
         handle /_matrix/* {
           reverse_proxy {
             to https://matrix.int.chir.rs

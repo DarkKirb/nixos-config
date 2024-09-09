@@ -9,6 +9,7 @@
     paths = [
       "/var"
       "/home"
+      "/root"
     ];
     extraBackupArgs = [
       "--exclude-caches"

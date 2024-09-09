@@ -19,6 +19,7 @@
     nixos-hardware.nixosModules.common-pc-ssd
     ./users/remote-build.nix
     #./services/kubernetes.nix
+    ./services/forgejo-runner.nix
   ];
   hardware.cpu.amd.updateMicrocode = true;
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "k10temp"];
@@ -58,6 +59,7 @@
     TIMELINE_LIMIT_MONTHLY = 12;
     TIMELINE_LIMIT_YEARLY = 0;
   };
+
   services.beesd.filesystems.root = {
     spec = "/";
     hashTableSizeMB = 2048;
@@ -101,7 +103,6 @@
 
   services.tailscale.useRoutingFeatures = "client";
   home-manager.users.darkkirb._module.args.withNSFW = lib.mkForce true;
-  system.autoUpgrade.allowReboot = true;
   services.prometheus.exporters.node.enabledCollectors = ["drm"];
   services.k3s.role = lib.mkForce "agent";
 

@@ -22,7 +22,6 @@
     ../modules/tc-cake.nix
     ./services/cups.nix
     ./services/iscsi.nix
-    ./services/samba.nix
     ./services/docker.nix
     ./users/remote-build.nix
     ./services/nfs.nix
@@ -39,6 +38,8 @@
     ./services/synapse.nix
     ./services/heisenbridge.nix
     #./services/kubernetes.nix
+    ./services/forgejo-runner.nix
+    ./services/renovate.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
@@ -193,7 +194,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   services.restic.backups.sysbackup = {
-    paths = ["/persist"];
+    paths = ["/media"];
     pruneOpts = [
       "--keep-daily 7"
       "--keep-weekly 4"
@@ -201,7 +202,6 @@
       "--keep-yearly 10"
     ];
   };
-  system.autoUpgrade.allowReboot = true;
   virtualisation.docker = {
     enable = true;
     #enableNvidia = true;

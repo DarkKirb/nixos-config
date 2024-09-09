@@ -93,4 +93,5 @@
     }
   ];
   hardware.enableRedistributableFirmware = true;
+  services.xserver.displayManager.defaultSession = lib.mkForce "sway";
 }

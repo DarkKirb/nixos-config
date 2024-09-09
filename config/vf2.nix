@@ -85,7 +85,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.generic-extlinux-compatible.enable = false;
   #system.requiredKernelConfig = lib.mkForce [];
-  system.autoUpgrade.allowReboot = true;
 
   system.stateVersion = "24.05";
 
