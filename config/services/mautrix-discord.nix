@@ -52,7 +52,7 @@
         encryption = {
           allow = true;
           default = true;
-          appservice = false;
+          appservice = true;
           require = false;
           plaintext_mentions = true;
           allow_key_sharing = true;
