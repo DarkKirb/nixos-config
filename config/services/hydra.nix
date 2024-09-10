@@ -56,9 +56,21 @@ in {
   ];
   services.hydra = {
     enable = true;
-    package = hydra.packages.${system}.hydra.overrideAttrs (_: {
+    package = hydra.packages.${system}.hydra.overrideAttrs (super: {
       doCheck = false;
       doInstallCheck = false;
+      patches =
+        super.patches
+        or []
+        ++ [
+          ./hydra/0001-add-gitea-pulls.patch
+          ./hydra/0002-unrestrict-eval.patch
+          ./hydra/0003-unlimit-output.patch
+          ./hydra/0004-remove-pr-number-from-github-job-name.patch
+          ./hydra/0005-use-pulls-instead-of-issues.patch
+          ./hydra/0006-only-list-open-prs.patch
+          ./hydra/0007-status-state.patch
+        ];
     });
     hydraURL = "https://hydra.chir.rs/";
     notificationSender = "hydra@chir.rs";

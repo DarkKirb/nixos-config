@@ -7,18 +7,21 @@ rec {
     admin-fe = {
       url = "github:DarkKirb/admin-fe";
       inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     akkoma = {
       url = "github:DarkKirb/akkoma";
       inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     akkoma-fe = {
       url = "github:DarkKirb/akkoma-fe";
       inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -72,6 +75,13 @@ rec {
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
     };
+    flakey-profile = {
+      url = "github:lf-/flakey-profile";
+    };
+    gitignore = {
+      url = "github:hercules-ci/gitignore.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     gomod2nix = {
       url = "github:DarkKirb/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -82,8 +92,10 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hydra = {
-      url = "github:DarkKirb/hydra";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      url = "git+https://git.lix.systems/lix-project/hydra";
+      inputs.lix.follows = "lix";
+      inputs.nix-eval-jobs.follows = "nix-eval-jobs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
       url = "github:nix-community/impermanence";
@@ -93,14 +105,46 @@ rec {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/lix";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.nix2container.follows = "nix2container";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.pre-commit-hooks.follows = "pre-commit-hooks";
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.flakey-profile.follows = "flakey-profile";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     naersk = {
       url = "github:nix-community/naersk/master";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-eval-jobs = {
+      url = "git+https://git.lix.systems/lix-project/nix-eval-jobs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.lix.follows = "lix";
+      inputs.nix-github-actions.follows = "nix-github-actions";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.treefmt-nix.follows = "treefmt-nix";
     };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
+      inputs.umu.follows = "umu";
+    };
+    nix-github-actions = {
+      url = "github:nix-community/nix-github-actions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix2container = {
+      url = "github:nlewo/nix2container";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-vscode-server = {
@@ -109,6 +153,13 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs";
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.gitignore.follows = "gitignore";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
     riscv-overlay = {
       url = "github:DarkKirb/riscv-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -123,6 +174,14 @@ rec {
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     systems.url = "github:nix-systems/default";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    umu = {
+      url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -130,6 +189,7 @@ rec {
     nixpkgs,
     sops-nix,
     home-manager,
+    lix-module,
     ...
   } @ args: let
     systems = [
@@ -271,6 +331,7 @@ rec {
                 home-manager.extraSpecialArgs = args // {inherit system;};
               })
               (import utils/link-input.nix args)
+              lix-module.nixosModules.default
             ];
           };
       })

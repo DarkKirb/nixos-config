@@ -1,0 +1,25 @@
+From dfb85165f6f4c312a7521564100c6a4166645f32 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Charlotte=20=F0=9F=A6=9D=20Delenk?= <lotte@chir.rs>
+Date: Wed, 4 Sep 2024 10:19:35 +0200
+Subject: [PATCH 5/8] use pulls instead of issues
+
+---
+ src/lib/Hydra/Plugin/GiteaPulls.pm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/lib/Hydra/Plugin/GiteaPulls.pm b/src/lib/Hydra/Plugin/GiteaPulls.pm
+index dda50f8d..48ae6e34 100644
+--- a/src/lib/Hydra/Plugin/GiteaPulls.pm
++++ b/src/lib/Hydra/Plugin/GiteaPulls.pm
+@@ -40,7 +40,7 @@ sub fetchInput {
+     my $auth = $self->{config}->{gitea_authorization}->{$owner};
+     my %pulls;
+     my $ua = LWP::UserAgent->new();
+-    _iterate("https://$domain/api/v1/repos/$owner/$repo/issues?types=pulls&per_page=100", 1, $auth, \%pulls, $ua);
++    _iterate("https://$domain/api/v1/repos/$owner/$repo/pulls?types=pulls&per_page=100", 1, $auth, \%pulls, $ua);
+     my $tempdir = File::Temp->newdir("gitea-pulls" . "XXXXX", TMPDIR => 1);
+     my $filename = "$tempdir/gitea-pulls.json";
+ 
+-- 
+2.46.0
+
