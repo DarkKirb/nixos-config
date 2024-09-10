@@ -5,7 +5,7 @@
   ...
 }:
 with lib; let
-  cfg = config.services.hydra;
+  cfg = config.services.hydra-dev;
 
   baseDir = "/var/lib/hydra";
 
@@ -15,7 +15,7 @@ with lib; let
 in {
   ###### interface
   options = {
-    services.hydra = {
+    services.hydra-dev = {
       giteaTokenFile = mkOption {
         type = with types; str;
         default = "";
