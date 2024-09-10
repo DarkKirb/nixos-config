@@ -53,10 +53,11 @@ in {
   imports = [
     ./postgres.nix
     ../../modules/hydra.nix
+    hydra.nixosModules.hydra
   ];
-  services.hydra = {
+  services.hydra-dev = {
     enable = true;
-    package = hydra.packages.${system}.hydra.overrideAttrs (super: {
+    package = pkgs.hydra.overrideAttrs (super: {
       doCheck = false;
       doInstallCheck = false;
       patches =

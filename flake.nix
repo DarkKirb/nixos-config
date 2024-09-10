@@ -232,6 +232,7 @@ rec {
         overlays = [
           args.gomod2nix.overlays.default
           self.overlays.${system}
+          args.hydra.overlays.default
         ];
         config.allowUnfree = true;
         config.permittedInsecurePackages = [
