@@ -87,31 +87,24 @@
     },
     "attic": {
       "inputs": {
-        "cargo2nix": [
-          "cargo2nix"
-        ],
         "crane": [
           "crane"
         ],
         "flake-compat": [
           "flake-compat"
         ],
-        "flake-utils": [
-          "flake-utils"
-        ],
+        "flake-parts": "flake-parts",
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": [
-          "rust-overlay"
-        ]
+        "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1718545268,
-        "narHash": "sha256-kYnM1kr1U/+mARR3kYd1Yh9atRofKnpNQF5wd4xf8Cc=",
+        "lastModified": 1726040335,
+        "narHash": "sha256-vR3faBFRqLBAQ3u8u/69A+Za4g1eeB5LyEAYmh6AICg=",
         "owner": "DarkKirb",
         "repo": "attic",
-        "rev": "7634b861f606cd21719e350da5c74475047a456d",
+        "rev": "49448a36b24b9f66ff15c4d36a3e11e6b7f4e885",
         "type": "github"
       },
       "original": {
@@ -265,6 +258,27 @@
       }
     },
     "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "attic",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1725234343,
+        "narHash": "sha256-+ebgonl3NbiKD2UD0x4BszCZQ6sTfL4xioaM49o5B3Y=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "567b938d64d4b4112ee253b9274472dc3a346eb6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
       "inputs": {
         "nixpkgs-lib": [
           "nixpkgs"
@@ -696,6 +710,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1725826545,
+        "narHash": "sha256-L64N1rpLlXdc94H+F6scnrbuEu+utC03cDDVvvJGOME=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f4c846aee8e1e29062aa8514d5e0ab270f4ec2f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1725905123,
@@ -772,7 +802,7 @@
         "devshell": "devshell",
         "dns": "dns",
         "flake-compat": "flake-compat",
-        "flake-parts": "flake-parts",
+        "flake-parts": "flake-parts_2",
         "flake-utils": "flake-utils",
         "flakey-profile": "flakey-profile",
         "gitignore": "gitignore",
@@ -892,12 +922,12 @@
         "rev": "3af25f44079f4a09ccd618501bb72ab368d033d3",
         "revCount": 714,
         "type": "git",
-        "url": "https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging/nix"
+        "url": "https://github.com/Open-Wine-Components/umu-launcher/"
       },
       "original": {
         "dir": "packaging/nix",
         "type": "git",
-        "url": "https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging/nix"
+        "url": "https://github.com/Open-Wine-Components/umu-launcher/"
       }
     }
   },
