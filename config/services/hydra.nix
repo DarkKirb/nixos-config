@@ -174,6 +174,15 @@ in {
     key = "attic/config.toml";
     path = "/var/lib/hydra/queue-runner/.config/attic/config.toml";
   };
+  services.postgresql.ensureDatabases = [
+    "hydra-queue-runner"
+  ];
+  services.postgresql.ensureUsers = [
+    {
+      name = "hydra-queue-runner";
+      ensureDBOwnership = true;
+    }
+  ];
 
   systemd.services."attic-queue" = {
     description = "Upload build results";
@@ -184,7 +193,7 @@ in {
     };
     script = ''
       export QUEUE_PATH=/var/lib/hydra/queue-runner/upload
-      export DATABASE_PATH=/var/lib/hydra/queue-runner/queue.db
+      export DATABASE_PATH=postgresql:///hydra-queue-runner
       export RUST_LOG=info
       exec ${attic.packages.${system}.attic-queue}/bin/attic-queue
     '';

@@ -27,12 +27,9 @@ rec {
     };
     attic = {
       url = "github:DarkKirb/attic";
-      inputs.cargo2nix.follows = "cargo2nix";
       inputs.crane.follows = "crane";
       inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
     };
     cargo2nix = {
       url = "github:DarkKirb/cargo2nix/master";
