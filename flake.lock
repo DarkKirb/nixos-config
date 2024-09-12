@@ -580,9 +580,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "umu": [
-          "umu"
-        ]
+        "umu": "umu"
       },
       "locked": {
         "lastModified": 1725977377,
@@ -826,8 +824,7 @@
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",
         "systems": "systems",
-        "treefmt-nix": "treefmt-nix",
-        "umu": "umu"
+        "treefmt-nix": "treefmt-nix"
       }
     },
     "rust-overlay": {
@@ -911,21 +908,24 @@
     "umu": {
       "inputs": {
         "nixpkgs": [
+          "nix-gaming",
           "nixpkgs"
         ]
       },
       "locked": {
         "dir": "packaging/nix",
         "lastModified": 1725946017,
-        "narHash": "sha256-9MoUjSWWgXDUqVz/tJo3DqW8WFbsXqO9JuQPzRWnzuI=",
+        "narHash": "sha256-cV5LQHcn+Inf8DMdyrGGNBWwqxCcuxNhGLi0sD6h6HY=",
         "ref": "refs/heads/main",
         "rev": "3af25f44079f4a09ccd618501bb72ab368d033d3",
         "revCount": 714,
+        "submodules": true,
         "type": "git",
         "url": "https://github.com/Open-Wine-Components/umu-launcher/"
       },
       "original": {
         "dir": "packaging/nix",
+        "submodules": true,
         "type": "git",
         "url": "https://github.com/Open-Wine-Components/umu-launcher/"
       }

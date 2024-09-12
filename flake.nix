@@ -132,7 +132,6 @@ rec {
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.umu.follows = "umu";
     };
     nix-github-actions = {
       url = "github:nix-community/nix-github-actions";
@@ -173,10 +172,6 @@ rec {
     systems.url = "github:nix-systems/default";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    umu = {
-      url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
