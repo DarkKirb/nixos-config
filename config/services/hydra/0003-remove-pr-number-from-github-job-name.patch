@@ -1,7 +1,7 @@
-From b9622a0dcd4de4e44df4fa8dded0b8c25226c7a5 Mon Sep 17 00:00:00 2001
+From fbdb6e02774208097164a5d1951bd6cf38d60392 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Charlotte=20=F0=9F=A6=9D=20Delenk?= <lotte@chir.rs>
 Date: Wed, 4 Sep 2024 09:54:13 +0200
-Subject: [PATCH 4/8] remove pr number from github job name
+Subject: [PATCH 3/6] remove pr number from github job name
 
 ---
  src/lib/Hydra/Plugin/GithubStatus.pm | 26 +++++++++++---------------

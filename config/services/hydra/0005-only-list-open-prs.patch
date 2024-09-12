@@ -1,7 +1,7 @@
-From 2ddff52ddaae5cf301112581589ddc6df968d2f9 Mon Sep 17 00:00:00 2001
+From c34ae5b32e5973648f484e09a5f4b590467f88be Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Charlotte=20=F0=9F=A6=9D=20Delenk?= <lotte@chir.rs>
 Date: Wed, 4 Sep 2024 10:20:22 +0200
-Subject: [PATCH 6/8] only list open prs
+Subject: [PATCH 5/6] only list open prs
 
 ---
  src/lib/Hydra/Plugin/GiteaPulls.pm | 2 +-
