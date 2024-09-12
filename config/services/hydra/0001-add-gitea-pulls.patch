@@ -1,7 +1,7 @@
-From 485657f5162cf063a8a6584255e9439b3f1686df Mon Sep 17 00:00:00 2001
+From c53f83b7d8ce1ea324980e60c588e1eb0ceae715 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Charlotte=20=F0=9F=A6=9D=20Delenk?= <lotte@chir.rs>
 Date: Wed, 4 Sep 2024 08:33:46 +0200
-Subject: [PATCH 1/8] add gitea pulls
+Subject: [PATCH 1/6] add gitea pulls
 
 ---
  src/lib/Hydra/Plugin/GiteaPulls.pm | 58 ++++++++++++++++++++++++++++++

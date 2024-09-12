@@ -55,6 +55,9 @@ in {
     ../../modules/hydra.nix
     hydra.nixosModules.hydra
   ];
+  nixpkgs.overlays = [
+    hydra.overlays.default
+  ];
   services.hydra-dev = {
     enable = true;
     package = pkgs.hydra.overrideAttrs (super: {
@@ -65,12 +68,11 @@ in {
         or []
         ++ [
           ./hydra/0001-add-gitea-pulls.patch
-          ./hydra/0002-unrestrict-eval.patch
-          ./hydra/0003-unlimit-output.patch
-          ./hydra/0004-remove-pr-number-from-github-job-name.patch
-          ./hydra/0005-use-pulls-instead-of-issues.patch
-          ./hydra/0006-only-list-open-prs.patch
-          ./hydra/0007-status-state.patch
+          ./hydra/0002-unlimit-output.patch
+          ./hydra/0003-remove-pr-number-from-github-job-name.patch
+          ./hydra/0004-use-pulls-instead-of-issues.patch
+          ./hydra/0005-only-list-open-prs.patch
+          ./hydra/0006-status-state.patch
         ];
     });
     hydraURL = "https://hydra.chir.rs/";
