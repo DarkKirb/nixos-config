@@ -73,6 +73,7 @@ in {
           ./hydra/0004-use-pulls-instead-of-issues.patch
           ./hydra/0005-only-list-open-prs.patch
           ./hydra/0006-status-state.patch
+          ./hydra/0007-hydra-server-findLog-fix-issue-with-ca-derivations-e.patch
         ];
     });
     hydraURL = "https://hydra.chir.rs/";
