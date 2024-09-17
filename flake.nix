@@ -90,9 +90,9 @@ rec {
     };
     hydra = {
       url = "git+https://git.lix.systems/lix-project/hydra";
-      inputs.lix.follows = "lix";
-      inputs.nix-eval-jobs.follows = "nix-eval-jobs";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.lix.follows = "lix";
+      #inputs.nix-eval-jobs.follows = "nix-eval-jobs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
       url = "github:nix-community/impermanence";
@@ -120,22 +120,10 @@ rec {
       url = "github:nix-community/naersk/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-eval-jobs = {
-      url = "git+https://git.lix.systems/lix-project/nix-eval-jobs";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.lix.follows = "lix";
-      inputs.nix-github-actions.follows = "nix-github-actions";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-    };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
-    };
-    nix-github-actions = {
-      url = "github:nix-community/nix-github-actions";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix2container = {
       url = "github:nlewo/nix2container";
@@ -170,10 +158,6 @@ rec {
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     systems.url = "github:nix-systems/default";
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {

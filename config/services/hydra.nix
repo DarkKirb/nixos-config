@@ -60,7 +60,7 @@ in {
   ];
   services.hydra-dev = {
     enable = true;
-    package = pkgs.hydra.overrideAttrs (super: {
+    package = hydra.packages.${system}.hydra.overrideAttrs (super: {
       doCheck = false;
       doInstallCheck = false;
       patches =
