@@ -54,6 +54,7 @@
   };
   networking.networkmanager.enable = true;
   users.users.darkkirb.extraGroups = ["networkmanager"];
+  hardware.deviceTree.filter = "*rpi*.dtb";
   hardware.deviceTree.overlays = [
     {
       name = "dwc2";
