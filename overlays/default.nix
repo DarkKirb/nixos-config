@@ -36,6 +36,7 @@ inputs: system: self: prev: let
     mautrix-discord = self.callPackage ../packages/matrix/mautrix-discord {};
     mautrix-whatsapp = self.callPackage ../packages/matrix/mautrix-whatsapp {};
     mautrix-telegram = self.callPackage ../packages/matrix/mautrix-telegram {};
+    mautrix-slack = self.callPackage ../packages/matrix/mautrix-slack {};
     python-mautrix = self.python3Packages.callPackage ../packages/python/mautrix.nix {};
     python-tulir-telethon = self.python3Packages.callPackage ../packages/python/tulir-telethon.nix {};
     papermc = self.callPackage ../packages/minecraft/papermc {};
