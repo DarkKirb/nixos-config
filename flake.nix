@@ -245,6 +245,7 @@ rec {
           mautrix-discord
           mautrix-whatsapp
           mautrix-telegram
+          mautrix-slack
           python-mautrix
           python-tulir-telethon
           papermc

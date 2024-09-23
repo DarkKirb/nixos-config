@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/mautrix/slack",
+  "rev": "52cdb0d9727d1de1ecb32f70ca53315469fe569b",
+  "date": "2024-09-16T14:14:10+03:00",
+  "path": "/nix/store/rkxr63qigiag8m3yp2hbavl3gfqhgrzh-slack",
+  "sha256": "1p0kpqac9in77q6qkls242d5jzw4k0anv5k0y8mxihmxxqm84aj4",
+  "hash": "sha256-RCqCKu69wtgr8mCWbRWYhH9ZmiBC04kNPsfGxBS+E9w=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}
