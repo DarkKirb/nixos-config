@@ -17,7 +17,6 @@
     "${nixos-hardware}/starfive/visionfive/v2/default.nix"
   ];
 
-  environment.noXlibs = true;
   nixpkgs.config.allowUnsupportedSystem = true;
 
   nixpkgs.overlays = [
