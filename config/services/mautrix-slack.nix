@@ -36,9 +36,9 @@
         queue.enabled = true;
       };
       encryption = {
-        allow = true;
-        default = true;
-        appservice = true;
+        allow = false;
+        default = false;
+        appservice = false;
       };
     };
   };

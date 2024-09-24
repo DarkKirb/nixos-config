@@ -34,7 +34,13 @@ in {
             hs_token = "$HS_TOKEN";
           };
           logging = {
-            file_name_format = null;
+            min_level = "debug";
+            writers = [
+              {
+                type = "stdout";
+                format = "pretty-colored";
+              }
+            ];
           };
         };
       };
