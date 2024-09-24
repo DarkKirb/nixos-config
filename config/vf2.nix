@@ -24,7 +24,7 @@
     riscv-overlay.overlays.default
     (self: super: {
       nixos-option = super.nixos-option.override {
-        nix = self.nix;
+        nix = self.nixVersions.latest;
       };
     })
   ];
