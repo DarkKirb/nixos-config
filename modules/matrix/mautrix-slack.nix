@@ -22,18 +22,20 @@ in {
         inherit (settingsFormat) type;
         default = {
           appservice = {
-            address = "http://mautrix-slack.int.chir.rs:29320";
+            address = "http://localhost:5216";
             hostname = "0.0.0.0";
-            port = 29320;
-            database = {
-              type = "sqlite";
-              uri = "sqlite:///${dataDir}/mautrix-telegram.db";
-            };
+            port = 5216;
             as_token = "$AS_TOKEN";
             hs_token = "$HS_TOKEN";
           };
           logging = {
-            file_name_format = null;
+            min_level = "debug";
+            writers = [
+              {
+                type = "stdout";
+                format = "pretty-colored";
+              }
+            ];
           };
         };
       };
