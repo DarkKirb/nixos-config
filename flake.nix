@@ -267,7 +267,6 @@ rec {
           plover-plugin-stenotype-extended
           asar-asm
           bsnes-plus
-          sliding-sync
           yiffstash
           plover-plugin-dict-commands
           plover-plugin-last-translation
