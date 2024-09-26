@@ -3,7 +3,6 @@
     timerConfig = {
       OnUnitActiveSec = "12h";
       RandomizedDelaySec = "1d";
-      Persistent = true;
     };
     environmentFile = config.sops.secrets."security/restic/env".path;
     paths = [
