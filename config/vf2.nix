@@ -8,7 +8,7 @@
   lix,
   ...
 } @ args: let
-  pkgs_x86_64 = import <nixpkgs> {
+  pkgs_x86_64 = import nixpkgs {
     system = "x86_64-linux";
     crossSystem.system = "riscv64-linux";
     overlays = [lix.overlays.default];
