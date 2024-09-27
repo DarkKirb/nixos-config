@@ -5,8 +5,15 @@
   nixpkgs,
   nixos-hardware,
   riscv-overlay,
+  lix,
   ...
-} @ args: {
+} @ args: let
+  pkgs_x86_64 = import <nixpkgs> {
+    system = "x86_64-linux";
+    crossSystem.system = "riscv64-linux";
+    overlays = [lix.overlays.default];
+  };
+in {
   networking.hostName = "vf2";
   networking.hostId = "ad325df9";
   imports = [
@@ -23,6 +30,7 @@
   nixpkgs.overlays = [
     riscv-overlay.overlays.default
     (self: super: {
+      inherit (pkgs_x86_64) lix;
       nixos-option = super.nixos-option.override {
         nix = self.nixVersions.stable;
       };
