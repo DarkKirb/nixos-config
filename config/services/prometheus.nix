@@ -125,16 +125,6 @@
           }
         ];
       }
-      {
-        job_name = "matrix-sliding-sync";
-        static_configs = [
-          {
-            targets = [
-              "instance-20221213-1915.int.chir.rs:50372"
-            ];
-          }
-        ];
-      }
     ];
   };
   sops.secrets."services/akkoma-key".owner = "prometheus";
