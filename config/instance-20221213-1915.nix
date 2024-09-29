@@ -23,6 +23,7 @@
     ./wireguard
     ./zfs.nix
     #./services/kubernetes.nix
+    ./services/gitea.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
