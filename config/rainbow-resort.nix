@@ -113,4 +113,7 @@
     environmentVariables.HCC_AMDGPU_TARGET = "gfx1100";
     rocmOverrideGfx = "11.0.0";
   };
+  services.joycond.enable = true;
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 }

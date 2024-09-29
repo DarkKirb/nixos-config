@@ -22,7 +22,6 @@
     ./services/reverse-proxy.nix
     ./wireguard
     ./zfs.nix
-    ./services/matrix-sliding-sync.nix
     #./services/kubernetes.nix
   ];
 

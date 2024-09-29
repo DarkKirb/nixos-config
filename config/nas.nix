@@ -40,6 +40,7 @@
     #./services/kubernetes.nix
     ./services/forgejo-runner.nix
     ./services/renovate.nix
+    ./services/mautrix-slack.nix
   ];
 
   hardware.cpu.amd.updateMicrocode = true;

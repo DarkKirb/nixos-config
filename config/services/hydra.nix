@@ -53,12 +53,28 @@ in {
   imports = [
     ./postgres.nix
     ../../modules/hydra.nix
+    hydra.nixosModules.hydra
   ];
-  services.hydra = {
+  nixpkgs.overlays = [
+    hydra.overlays.default
+  ];
+  services.hydra-dev = {
     enable = true;
-    package = hydra.packages.${system}.hydra.overrideAttrs (_: {
+    package = hydra.packages.${system}.hydra.overrideAttrs (super: {
       doCheck = false;
       doInstallCheck = false;
+      patches =
+        super.patches
+        or []
+        ++ [
+          ./hydra/0001-add-gitea-pulls.patch
+          ./hydra/0002-unlimit-output.patch
+          ./hydra/0003-remove-pr-number-from-github-job-name.patch
+          ./hydra/0004-use-pulls-instead-of-issues.patch
+          ./hydra/0005-only-list-open-prs.patch
+          ./hydra/0006-status-state.patch
+          ./hydra/0007-hydra-server-findLog-fix-issue-with-ca-derivations-e.patch
+        ];
     });
     hydraURL = "https://hydra.chir.rs/";
     notificationSender = "hydra@chir.rs";
@@ -111,7 +127,7 @@ in {
     extraConfig = ''
       import baseConfig
 
-      reverse_proxy http://127.0.0.1:${toString config.services.hydra.port} {
+      reverse_proxy http://127.0.0.1:${toString config.services.hydra-dev.port} {
         trusted_proxies private_ranges
       }
     '';
@@ -161,6 +177,15 @@ in {
     key = "attic/config.toml";
     path = "/var/lib/hydra/queue-runner/.config/attic/config.toml";
   };
+  services.postgresql.ensureDatabases = [
+    "hydra-queue-runner"
+  ];
+  services.postgresql.ensureUsers = [
+    {
+      name = "hydra-queue-runner";
+      ensureDBOwnership = true;
+    }
+  ];
 
   systemd.services."attic-queue" = {
     description = "Upload build results";
@@ -171,7 +196,7 @@ in {
     };
     script = ''
       export QUEUE_PATH=/var/lib/hydra/queue-runner/upload
-      export DATABASE_PATH=/var/lib/hydra/queue-runner/queue.db
+      export DATABASE_PATH=postgresql:///hydra-queue-runner
       export RUST_LOG=info
       exec ${attic.packages.${system}.attic-queue}/bin/attic-queue
     '';

@@ -54,6 +54,7 @@
   };
   networking.networkmanager.enable = true;
   users.users.darkkirb.extraGroups = ["networkmanager"];
+  hardware.deviceTree.filter = "*rpi*.dtb";
   hardware.deviceTree.overlays = [
     {
       name = "dwc2";
@@ -93,5 +94,10 @@
     }
   ];
   hardware.enableRedistributableFirmware = true;
-  services.xserver.displayManager.defaultSession = lib.mkForce "sway";
+  services.xserver.xkbVariant = lib.mkForce "us";
+  console.keyMap = lib.mkForce "us";
+  home-manager.users.darkkirb.wayland.windowManager.sway.config.input."*" = lib.mkForce {
+    xkb_layout = "us";
+    xkb_variant = "altgr-intl";
+  };
 }

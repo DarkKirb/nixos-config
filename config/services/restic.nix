@@ -1,9 +1,13 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
+  systemd.timers.restic-backups-sysbackup.wantedBy = lib.mkForce ["multi-user.target"];
   services.restic.backups."sysbackup" = {
     timerConfig = {
       OnUnitActiveSec = "12h";
       RandomizedDelaySec = "1d";
-      Persistent = true;
     };
     environmentFile = config.sops.secrets."security/restic/env".path;
     paths = [

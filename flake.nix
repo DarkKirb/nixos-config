@@ -7,29 +7,29 @@ rec {
     admin-fe = {
       url = "github:DarkKirb/admin-fe";
       inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
     akkoma = {
       url = "github:DarkKirb/akkoma";
       inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     akkoma-fe = {
       url = "github:DarkKirb/akkoma-fe";
       inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     attic = {
       url = "github:DarkKirb/attic";
-      inputs.cargo2nix.follows = "cargo2nix";
       inputs.crane.follows = "crane";
       inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
     };
     cargo2nix = {
       url = "github:DarkKirb/cargo2nix/master";
@@ -72,6 +72,13 @@ rec {
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
     };
+    flakey-profile = {
+      url = "github:lf-/flakey-profile";
+    };
+    gitignore = {
+      url = "github:hercules-ci/gitignore.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     gomod2nix = {
       url = "github:DarkKirb/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -82,7 +89,9 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hydra = {
-      url = "github:DarkKirb/hydra";
+      url = "git+https://git.lix.systems/lix-project/hydra";
+      #inputs.lix.follows = "lix";
+      #inputs.nix-eval-jobs.follows = "nix-eval-jobs";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
@@ -93,6 +102,20 @@ rec {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/lix";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.nix2container.follows = "nix2container";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.pre-commit-hooks.follows = "pre-commit-hooks";
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.flakey-profile.follows = "flakey-profile";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     naersk = {
       url = "github:nix-community/naersk/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -102,6 +125,11 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
+    nix2container = {
+      url = "github:nlewo/nix2container";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
@@ -109,6 +137,13 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs";
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.gitignore.follows = "gitignore";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
     riscv-overlay = {
       url = "github:DarkKirb/riscv-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -130,6 +165,7 @@ rec {
     nixpkgs,
     sops-nix,
     home-manager,
+    lix-module,
     ...
   } @ args: let
     systems = [
@@ -172,6 +208,7 @@ rec {
         overlays = [
           args.gomod2nix.overlays.default
           self.overlays.${system}
+          args.hydra.overlays.default
         ];
         config.allowUnfree = true;
         config.permittedInsecurePackages = [
@@ -208,6 +245,7 @@ rec {
           mautrix-discord
           mautrix-whatsapp
           mautrix-telegram
+          mautrix-slack
           python-mautrix
           python-tulir-telethon
           papermc
@@ -229,7 +267,6 @@ rec {
           plover-plugin-stenotype-extended
           asar-asm
           bsnes-plus
-          sliding-sync
           yiffstash
           plover-plugin-dict-commands
           plover-plugin-last-translation
@@ -271,6 +308,7 @@ rec {
                 home-manager.extraSpecialArgs = args // {inherit system;};
               })
               (import utils/link-input.nix args)
+              lix-module.nixosModules.default
             ];
           };
       })

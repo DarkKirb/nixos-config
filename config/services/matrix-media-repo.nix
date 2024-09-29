@@ -17,10 +17,12 @@
       {
         name = "matrix.chir.rs";
         csApi = "https://matrix.chir.rs";
+        signingKeyPath = config.sops.secrets."services/matrix-media-repo/signing.key".path;
       }
       {
         name = "matrix.int.chir.rs";
         csApi = "https://matrix.chir.rs";
+        signingKeyPath = config.sops.secrets."services/matrix-media-repo/signing.key".path;
       }
     ];
     accessTokens.maxCacheTimeSeconds = 43200;
@@ -120,6 +122,7 @@ in {
   };
   sops.secrets."services/matrix-media-repo/access-key-id".owner = "matrix-media-repo";
   sops.secrets."services/matrix-media-repo/secret-access-key".owner = "matrix-media-repo";
+  sops.secrets."services/matrix-media-repo/signing.key".owner = "matrix-media-repo";
   users.users.matrix-media-repo = {
     description = "Matrix Media Repository";
     home = "/var/lib/matrix-media-repo";
@@ -180,7 +183,7 @@ in {
         handle /.well-known/matrix/client {
           header Access-Control-Allow-Origin *
           header Content-Type application/json
-          respond "{ \"m.homeserver\": { \"base_url\": \"https://matrix.chir.rs\" }, \"org.matrix.msc3575.proxy\": {\"url\": \"https://sliding-sync.chir.rs\"} }" 200
+          respond "{ \"m.homeserver\": { \"base_url\": \"https://matrix.chir.rs\" } }" 200
         }
       }
     '';

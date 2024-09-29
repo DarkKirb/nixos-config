@@ -6,30 +6,25 @@
   ...
 }:
 with lib; let
-  dataDir = "/var/lib/mautrix-whatsapp";
-  registrationFile = config.sops.secrets."services/mautrix/whatsapp.yaml".path;
-  cfg = config.services.mautrix-whatsapp;
+  dataDir = "/var/lib/mautrix-slack";
+  registrationFile = config.sops.secrets."services/mautrix/slack.yaml".path;
+  cfg = config.services.mautrix-slack;
   settingsFormat = pkgs.formats.yaml {};
-  settingsFileUnsubstituted = settingsFormat.generate "mautrix-whatsapp-config-unsubstituted.yaml" cfg.settings;
+  settingsFileUnsubstituted = settingsFormat.generate "mautrix-slack-config-unsubstituted.yaml" cfg.settings;
   settingsFile = "${dataDir}/config.yaml";
-  inherit (pkgs) mautrix-whatsapp;
+  inherit (pkgs) mautrix-slack;
 in {
-  disabledModules = ["services/matrix/mautrix-whatsapp.nix"];
   options = {
-    services.mautrix-whatsapp = {
+    services.mautrix-slack = {
       enable = mkEnableOption "Mautrix-Whatsapp, a Matrix-Whatsapp hybrid puppeting/relaybot bridge";
       settings = mkOption rec {
         apply = recursiveUpdate default;
         inherit (settingsFormat) type;
         default = {
           appservice = {
-            address = "http://mautrix-whatsapp.int.chir.rs:29318";
+            address = "http://localhost:5216";
             hostname = "0.0.0.0";
-            port = 29318;
-            database = {
-              type = "sqlite";
-              uri = "sqlite:///${dataDir}/mautrix-telegram.db";
-            };
+            port = 5216;
             as_token = "$AS_TOKEN";
             hs_token = "$HS_TOKEN";
           };
@@ -60,8 +55,8 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    systemd.services.mautrix-whatsapp-genregistration = {
-      description = "Mautrix-Whatsapp Registration";
+    systemd.services.mautrix-slack-genregistration = {
+      description = "Mautrix-slack Registration";
 
       script = ''
         # Not all secrets can be passed as environment variable (yet)
@@ -99,17 +94,18 @@ in {
         WorkingDirectory = dataDir;
         StateDirectory = baseNameOf dataDir;
         UMask = 0117;
-        User = "mautrix-whatsapp";
-        Group = "mautrix-whatsapp";
+        User = "mautrix-slack";
+        Group = "mautrix-slack";
         EnvironmentFile = cfg.environmentFile;
       };
       restartTriggers = [settingsFileUnsubstituted cfg.environmentFile];
     };
-    systemd.services.mautrix-whatsapp = {
-      description = "Mautrix-Whatsapp";
+    systemd.services.mautrix-slack = {
+      description = "Mautrix-slack";
+      path = with pkgs; [ffmpeg lottieconverter];
       wantedBy = ["multi-user.target"];
-      wants = ["mautrix-whatsapp-genregistration.service"];
-      after = ["mautrix-whatsapp-genregistration.service"];
+      wants = ["mautrix-slack-genregistration.service"];
+      after = ["mautrix-slack-genregistration.service"];
       serviceConfig = {
         Type = "simple";
         Restart = "always";
@@ -136,24 +132,24 @@ in {
         WorkingDirectory = dataDir;
         StateDirectory = baseNameOf dataDir;
         UMask = 0117;
-        User = "mautrix-whatsapp";
-        Group = "mautrix-whatsapp";
+        User = "mautrix-slack";
+        Group = "mautrix-slack";
         EnvironmentFile = cfg.environmentFile;
         ExecStart = ''
-          ${mautrix-whatsapp}/bin/mautrix-whatsapp \
+          ${mautrix-slack}/bin/mautrix-slack \
             --config='${settingsFile}'
         '';
       };
       restartTriggers = [cfg.environmentFile];
     };
-    users.users.mautrix-whatsapp = {
+    users.users.mautrix-slack = {
       description = "Mautrix Whatsapp bridge";
       home = "${dataDir}";
       useDefaultShell = true;
-      group = "mautrix-whatsapp";
+      group = "mautrix-slack";
       isSystemUser = true;
     };
-    users.groups.mautrix-whatsapp = {};
-    sops.secrets."services/mautrix/whatsapp.yaml".owner = "mautrix-whatsapp";
+    users.groups.mautrix-slack = {};
+    sops.secrets."services/mautrix/slack.yaml".owner = "mautrix-slack";
   };
 }

@@ -1,0 +1,28 @@
+From 51d54758a00aebb4163a33dd75bb246007d561d1 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Charlotte=20=F0=9F=A6=9D=20Delenk?= <lotte@chir.rs>
+Date: Wed, 4 Sep 2024 10:21:14 +0200
+Subject: [PATCH 6/6] =?UTF-8?q?status=20=E2=86=92=20state?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/lib/Hydra/Plugin/GiteaPulls.pm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/lib/Hydra/Plugin/GiteaPulls.pm b/src/lib/Hydra/Plugin/GiteaPulls.pm
+index 70e88861..3b91fe8c 100644
+--- a/src/lib/Hydra/Plugin/GiteaPulls.pm
++++ b/src/lib/Hydra/Plugin/GiteaPulls.pm
+@@ -40,7 +40,7 @@ sub fetchInput {
+     my $auth = $self->{config}->{gitea_authorization}->{$owner};
+     my %pulls;
+     my $ua = LWP::UserAgent->new();
+-    _iterate("https://$domain/api/v1/repos/$owner/$repo/pulls?status=open&per_page=100", 1, $auth, \%pulls, $ua);
++    _iterate("https://$domain/api/v1/repos/$owner/$repo/pulls?state=open&per_page=100", 1, $auth, \%pulls, $ua);
+     my $tempdir = File::Temp->newdir("gitea-pulls" . "XXXXX", TMPDIR => 1);
+     my $filename = "$tempdir/gitea-pulls.json";
+ 
+-- 
+2.46.0
+

@@ -4,7 +4,7 @@
   fetchFromGitHub,
   lib,
   writeScript,
-  go,
+  go_1_23,
 }: let
   source = builtins.fromJSON (builtins.readFile ./source.json);
 in
@@ -16,6 +16,7 @@ in
       repo = "whatsapp";
       inherit (source) rev sha256;
     };
+    go = go_1_23;
     modules = ./gomod2nix.toml;
     buildInputs = [
       olm
@@ -27,7 +28,7 @@ in
     };
     postConfigure = ''
       chmod -R +w vendor/
-      for f in $(find vendor/go.mau.fi/webp/internal/ vendor/go.mau.fi/whatsmeow/proto/ -type l) vendor/go.mau.fi/util/variationselector/*.json vendor/golang.org/x/net/publicsuffix/data/* vendor/maunium.net/go/mautrix/crypto/sql_store_upgrade/*.sql vendor/maunium.net/go/mautrix/sqlstatestore/*.sql $(find vendor/go.mau.fi/whatsmeow/binary/ -type l) vendor/google.golang.org/protobuf/internal/editiondefaults/editions_defaults.binpb; do
+      for f in $(find vendor/go.mau.fi/webp/internal/ vendor/go.mau.fi/whatsmeow/proto/ -type l) vendor/go.mau.fi/util/variationselector/*.json vendor/golang.org/x/net/publicsuffix/data/* vendor/maunium.net/go/mautrix/crypto/sql_store_upgrade/*.sql vendor/maunium.net/go/mautrix/sqlstatestore/*.sql $(find vendor/go.mau.fi/whatsmeow/binary/ -type l) vendor/google.golang.org/protobuf/internal/editiondefaults/editions_defaults.binpb vendor/maunium.net/go/mautrix/bridgev2/database/upgrades/*.sql vendor/maunium.net/go/mautrix/bridgev2/matrix/mxmain/example-config.yaml; do
           cp -v --remove-destination -f `readlink $f` $f
       done
     '';
