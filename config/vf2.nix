@@ -126,4 +126,5 @@ in {
   ];
   systemd.network.enable = true;
   networking.useNetworkd = true;
+  boot.initrd.systemd.enableTpm2 = false;
 }
