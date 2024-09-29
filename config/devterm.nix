@@ -100,4 +100,6 @@
     xkb_layout = "us";
     xkb_variant = "altgr-intl";
   };
+  boot.initrd.systemd.tpm2.enable = lib.mkForce false;
+  systemd.tpm2.enable = lib.mkForce false;
 }
