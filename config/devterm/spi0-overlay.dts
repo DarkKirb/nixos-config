@@ -1,7 +1,7 @@
 /dts-v1/;
 /plugin/;
 / {
-	compatible = "bcrm,bcm2711";
+	compatible = "brcm,bcm2711";
 	fragment@0 {
 		target = <&spi>;
 		__overlay__ {
