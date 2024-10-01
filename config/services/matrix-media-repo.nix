@@ -15,12 +15,7 @@
     database.postgres = "postgresql:///matrix_media_repo?sslmode=disable&host=/run/postgresql";
     homeservers = [
       {
-        name = "matrix.chir.rs";
-        csApi = "https://matrix.chir.rs";
-        signingKeyPath = config.sops.secrets."services/matrix-media-repo/signing.key".path;
-      }
-      {
-        name = "matrix.int.chir.rs";
+        name = "chir.rs";
         csApi = "https://matrix.chir.rs";
         signingKeyPath = config.sops.secrets."services/matrix-media-repo/signing.key".path;
       }
@@ -148,19 +143,33 @@ in {
           reverse_proxy http://localhost:8008 {
             header_down Access-Control-Allow-Origin *
             header_down Access-Control-Allow-Headers *
+            header_up Host chir.rs
+            header_up X-Forwarded-Host chir.rs
           }
         }
 
         handle /_matrix/client/v3/logout/* {
-          reverse_proxy http://localhost:8008
+          reverse_proxy {
+            to http://localhost:8008
+            header_up Host chir.rs
+            header_up X-Forwarded-Host chir.rs
+          }
         }
 
         handle /_matrix/client/v1/media/* {
-          reverse_proxy http://localhost:8008
+          reverse_proxy {
+            to http://localhost:8008
+            header_up Host chir.rs
+            header_up X-Forwarded-Host chir.rs
+          }
         }
 
         handle /_matrix/federation/v1/media/* {
-          reverse_proxy http://localhost:8008
+          reverse_proxy {
+            to http://localhost:8008
+            header_up Host chir.rs
+            header_up X-Forwarded-Host chir.rs
+          }
         }
 
         handle /_matrix/* {
