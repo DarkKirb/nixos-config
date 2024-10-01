@@ -56,7 +56,7 @@
   };
   networking.networkmanager.enable = true;
   users.users.darkkirb.extraGroups = ["networkmanager"];
-  hardware.deviceTree.filter = "*rpi*.dtb";
+  hardware.deviceTree.filter = "bcm2711-rpi-cm4.dtb";
   hardware.deviceTree.overlays = [
     {
       name = "dwc2";
@@ -65,6 +65,10 @@
     {
       name = "cma";
       dtsFile = ./devterm/cma-overlay.dts;
+    }
+    {
+      name = "i2c0-overlay";
+      dtsFile = ./devterm/i2c0-overlay.dts;
     }
     /*
       {
