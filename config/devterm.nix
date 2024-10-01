@@ -10,6 +10,7 @@
   networking.hostName = "devterm";
   imports = [
     ./desktop.nix
+    "${nixos-hardware}/raspberry-pi/4/apply-overlays-dtmerge.nix"
   ];
   boot.loader = {
     grub.enable = lib.mkDefault false;
