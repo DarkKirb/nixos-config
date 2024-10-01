@@ -8,7 +8,8 @@
 buildLinux (
   args
   // {
-    inherit (linuxKernel.packages.linux_rpi4.kernel) src version;
+    src = linuxKernel.packages.linux_rpi4.kernel.src;
+    version = linuxKernel.packages.linux_rpi4.kernel.modDirVersion;
     defconfig = "bcm2711_defconfig";
     autoModules = false;
     kernelPatches = [
