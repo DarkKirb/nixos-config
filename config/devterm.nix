@@ -66,10 +66,12 @@
       name = "cma";
       dtsFile = ./devterm/cma-overlay.dts;
     }
-    {
+    /*
+      {
       name = "vc4-kms-v3d-pi4";
       dtsFile = ./devterm/vc4-kms-v3d-pi4-overlay.dts;
     }
+    */
     {
       name = "devterm-pmu";
       dtsFile = ./devterm/devterm-pmu-overlay.dts;
