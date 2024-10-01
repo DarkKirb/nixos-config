@@ -16,7 +16,7 @@
     grub.enable = lib.mkDefault false;
     generic-extlinux-compatible.enable = lib.mkDefault true;
   };
-  hardware.raspberry-pi."4".apply-overlays-dtmerge = true;
+  hardware.raspberry-pi."4".apply-overlays-dtmerge.enable = true;
   boot.initrd = {
     includeDefaultModules = false;
     availableKernelModules = [
