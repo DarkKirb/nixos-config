@@ -10,16 +10,13 @@
   networking.hostName = "devterm";
   imports = [
     ./desktop.nix
+    "${nixos-hardware}/raspberry-pi/4/pkgs-overlays.nix"
   ];
-  nixpkgs.overlays = [(self: super: {
-    deviceTree = prev.deviceTree // {
-      applyOverlays = self.callPackage "${nixos-hardware}/raspberry-pi/4/apply-overlays-dtmerge.nix" {};
-    };
-  })]
   boot.loader = {
     grub.enable = lib.mkDefault false;
     generic-extlinux-compatible.enable = lib.mkDefault true;
   };
+  hardware.raspberry-pi."4".apply-overlays-dtmerge = true;
   boot.initrd = {
     includeDefaultModules = false;
     availableKernelModules = [
