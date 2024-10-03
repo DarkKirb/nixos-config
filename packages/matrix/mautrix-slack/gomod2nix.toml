@@ -44,8 +44,8 @@ schema = 3
     version = "v0.0.0-20200617195104-da1b6568686e"
     hash = "sha256-ST9t4/b7WFXUb8wra4ZYVDNZJGrEykw8dkWhLrxp8F0="
   [mod."github.com/slack-go/slack"]
-    version = "v0.0.0-20240924110412-281dc21eaf99"
-    hash = "sha256-tRn8Y86TtWmRaUwKPpWHd9OZK5HqQdEn4AoHD2nQOjU="
+    version = "v0.0.0-20240930085310-1180a3fa18e0"
+    hash = "sha256-jHMKfmi7GMLOIyj8OoiGpbVoafGbctgtqynZDahIypU="
     replaced = "github.com/beeper/slackgo"
   [mod."github.com/stretchr/testify"]
     version = "v1.9.0"

@@ -4,12 +4,6 @@ schema = 3
   [mod."filippo.io/edwards25519"]
     version = "v1.1.0"
     hash = "sha256-9ACANrgWZSd5HYPfDZHY8DVbPSC9LOMgy8deq3rDOoc="
-  [mod."github.com/beorn7/perks"]
-    version = "v1.0.1"
-    hash = "sha256-h75GUqfwJKngCJQVE5Ao5wnO3cfKD9lSIteoLp/3xJ4="
-  [mod."github.com/cespare/xxhash/v2"]
-    version = "v2.3.0"
-    hash = "sha256-7hRlwSR+fos1kx4VZmJ/7snR7zHh8ZFKX+qqqqGcQpY="
   [mod."github.com/coreos/go-systemd/v22"]
     version = "v22.5.0"
     hash = "sha256-E2zXikbmIQImghstLUWuey1YgA0Folu3F+fi5k4hCxA="
@@ -22,12 +16,9 @@ schema = 3
   [mod."github.com/gorilla/websocket"]
     version = "v1.5.0"
     hash = "sha256-EYVgkSEMo4HaVrsWKqnsYRp8SSS8gNf7t+Elva02Ofc="
-  [mod."github.com/klauspost/compress"]
-    version = "v1.17.9"
-    hash = "sha256-FxHk4OuwsbiH1OLI+Q0oA4KpcOB786sEfik0G+GNoow="
-  [mod."github.com/kr/text"]
-    version = "v0.2.0"
-    hash = "sha256-fadcWxZOORv44oak3jTxm6YcITcFxdGt4bpn869HxUE="
+  [mod."github.com/kr/pretty"]
+    version = "v0.3.1"
+    hash = "sha256-DlER7XM+xiaLjvebcIPiB12oVNjyZHuJHoRGITzzpKU="
   [mod."github.com/lib/pq"]
     version = "v1.10.9"
     hash = "sha256-Gl6dLtL+yk6UrTTWfas43aM4lP/pNa2l7+ITXnjQyKs="
@@ -40,24 +31,12 @@ schema = 3
   [mod."github.com/mattn/go-sqlite3"]
     version = "v1.14.23"
     hash = "sha256-taGKFZFQlR5++5b2oZ1dYS3RERKv6yh1gniNWhb4egg="
-  [mod."github.com/munnerz/goautoneg"]
-    version = "v0.0.0-20191010083416-a7dc8b61c822"
-    hash = "sha256-79URDDFenmGc9JZu+5AXHToMrtTREHb3BC84b/gym9Q="
   [mod."github.com/petermattis/goid"]
     version = "v0.0.0-20240813172612-4fcff4a6cae7"
     hash = "sha256-tfb/0LbMHJQsmxwaj2RItXiYn2AVd05E92Z/vp+rJhs="
-  [mod."github.com/prometheus/client_golang"]
-    version = "v1.20.3"
-    hash = "sha256-cSgKoE7x6X0JuDT80Dtnve9jdxlTPzUGefy+fDuPd90="
-  [mod."github.com/prometheus/client_model"]
-    version = "v0.6.1"
-    hash = "sha256-rIDyUzNfxRA934PIoySR0EhuBbZVRK/25Jlc/r8WODw="
-  [mod."github.com/prometheus/common"]
-    version = "v0.55.0"
-    hash = "sha256-qzvCnc+hnAB5dq2MYy8GlPxgyNnyn9kFVlN2CXZe9T0="
-  [mod."github.com/prometheus/procfs"]
-    version = "v0.15.1"
-    hash = "sha256-H+WXJemFFwdoglmD6p7JRjrJJZmIVAmJwYmLbZ8Q9sw="
+  [mod."github.com/rogpeppe/go-internal"]
+    version = "v1.10.0"
+    hash = "sha256-vR7+d0aoKTuKeTYSgZxsGhH9e5Zvxix3Zrq9SPm5+NQ="
   [mod."github.com/rs/xid"]
     version = "v1.6.0"
     hash = "sha256-rJB7h3KuH1DPp5n4dY3MiGnV1Y96A10lf5OUl+MLkzU="
@@ -86,14 +65,14 @@ schema = 3
     version = "v0.1.1"
     hash = "sha256-KegSskYAq2MFiOvB28WG0j0VPzfbXqivapLHwsIEYNc="
   [mod."go.mau.fi/util"]
-    version = "v0.8.1-0.20240925093630-1734c3c342eb"
-    hash = "sha256-c9Lkp+FtJtEvQekYG0pWg7i5KLPnh+puHtG8xeGi+S0="
+    version = "v0.8.1-0.20240927174413-000d30f9a02a"
+    hash = "sha256-8w6G6BxW5JuhLDCne9DXwU4PwtMs6jVJAOZxvfoGoPI="
   [mod."go.mau.fi/webp"]
     version = "v0.1.0"
     hash = "sha256-KIP/Onw0t/o10oBuvmRQDff7GF8G5lsMaDXpe0fjvNg="
   [mod."go.mau.fi/whatsmeow"]
-    version = "v0.0.0-20240927134544-69ba055bef0f"
-    hash = "sha256-sBeTmvqoDwE4AXz+N/lcas6nKOxZd0MGfCKIwqhsx9A="
+    version = "v0.0.0-20241001150013-71e7937b706a"
+    hash = "sha256-t3b7KZ0rptHtNO8+6/kbrqZa/5vHrhjWS57m6ipKPdk="
   [mod."go.mau.fi/zeroconfig"]
     version = "v0.1.3"
     hash = "sha256-TPwXOQql1MV8pXn6ZPxtkBUHzBCwIngNjrfqTfOSJX4="
@@ -121,6 +100,9 @@ schema = 3
   [mod."google.golang.org/protobuf"]
     version = "v1.34.2"
     hash = "sha256-nMTlrDEE2dbpWz50eQMPBQXCyQh4IdjrTIccaU0F3m0="
+  [mod."gopkg.in/check.v1"]
+    version = "v1.0.0-20201130134442-10cb98267c6c"
+    hash = "sha256-VlIpM2r/OD+kkyItn6vW35dyc0rtkJufA93rjFyzncs="
   [mod."gopkg.in/natefinch/lumberjack.v2"]
     version = "v2.2.1"
     hash = "sha256-GaXWRDxhGy4Z4mgE+bJ8OE9SVvYUa9TnNiydnp2s1Ms="
@@ -131,5 +113,5 @@ schema = 3
     version = "v1.0.0"
     hash = "sha256-fYc/WwqE0ev0dvnu5qGmHJsYiSTuWeOTiAVzmQIKWyY="
   [mod."maunium.net/go/mautrix"]
-    version = "v0.21.1-0.20240927113633-d1e5b09d972b"
-    hash = "sha256-Dli7IjtOTICYU/vsUXsYuuuUm0SEIp1NRFLECN2/tbs="
+    version = "v0.21.1-0.20241001172103-260f642bf063"
+    hash = "sha256-5ma9YcSWZ93+q6eY18KTAa93m2uNe0G2KNOJSEbQTWk="
