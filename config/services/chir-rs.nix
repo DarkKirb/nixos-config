@@ -73,9 +73,7 @@ in {
   services.postgresql.ensureUsers = [
     {
       name = "chir_rs";
-      ensurePermissions = {
-        "DATABASE chir_rs" = "ALL PRIVILEGES";
-      };
+      ensureDBOwnership = true;
     }
   ];
   services.caddy.virtualHosts."lotte-test.chir.rs" = {
