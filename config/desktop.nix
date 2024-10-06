@@ -23,11 +23,14 @@ in {
       ./kde.nix
       ./sway.nix
     ]
-    ++ (
+    /*
+      ++ (
       if system == "x86_64-linux"
       then [./programs/virtualbox.nix]
       else []
-    );
+    )
+    */
+    ;
   fonts = {
     fontDir.enable = true;
     fontconfig = {
