@@ -38,6 +38,12 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
+    chir-rs = {
+      url = "github:DarkKirb/chir.rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     colorpickle = {
       url = "github:AgathaSorceress/colorpickle";
       inputs.naersk.follows = "naersk";

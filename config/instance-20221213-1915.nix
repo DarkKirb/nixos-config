@@ -24,6 +24,7 @@
     ./zfs.nix
     #./services/kubernetes.nix
     ./services/gitea.nix
+    ./services/chir-rs.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "virtio_pci" "usbhid"];
