@@ -16,6 +16,9 @@ in
       repo = "whatsapp";
       inherit (source) rev sha256;
     };
+    postPatch = ''
+      substituteInPlace go.mod --replace 'go1.23.2' 'go${go.version}'
+    '';
     go = go_1_23;
     modules = ./gomod2nix.toml;
     buildInputs = [
