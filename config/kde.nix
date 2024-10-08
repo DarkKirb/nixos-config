@@ -1,8 +1,11 @@
 {
   security.pam.services.sddm.u2fAuth = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    wayland.compositor = "kwin";
+  };
   services.xserver = {
-    displayManager.sddm.enable = true;
-    displayManager.sddm.wayland.enable = true;
     desktopManager.plasma6.enable = true;
     #desktopManager.plasma5.enable = true;
     displayManager.defaultSession = "plasma";
