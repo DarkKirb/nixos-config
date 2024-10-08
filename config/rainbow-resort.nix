@@ -35,8 +35,6 @@
     motherboard = "amd";
   };
 
-  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux_xanmod_latest);
-
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/23690ff2-7a65-431e-a6ee-fea0878e0bb1";
     fsType = "btrfs";
