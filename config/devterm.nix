@@ -10,11 +10,13 @@
   networking.hostName = "devterm";
   imports = [
     ./desktop.nix
+    "${nixos-hardware}/raspberry-pi/4/pkgs-overlays.nix"
   ];
   boot.loader = {
     grub.enable = lib.mkDefault false;
     generic-extlinux-compatible.enable = lib.mkDefault true;
   };
+  hardware.raspberry-pi."4".apply-overlays-dtmerge.enable = true;
   boot.initrd = {
     includeDefaultModules = false;
     availableKernelModules = [
@@ -54,7 +56,7 @@
   };
   networking.networkmanager.enable = true;
   users.users.darkkirb.extraGroups = ["networkmanager"];
-  hardware.deviceTree.filter = "*rpi*.dtb";
+  hardware.deviceTree.filter = "bcm2711-rpi-cm4.dtb";
   hardware.deviceTree.overlays = [
     {
       name = "dwc2";
@@ -63,6 +65,10 @@
     {
       name = "cma";
       dtsFile = ./devterm/cma-overlay.dts;
+    }
+    {
+      name = "i2c0-overlay";
+      dtsFile = ./devterm/i2c0-overlay.dts;
     }
     {
       name = "vc4-kms-v3d-pi4";

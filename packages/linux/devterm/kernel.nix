@@ -2,21 +2,22 @@
   callPackage,
   buildLinux,
   lib,
+  linuxKernel,
   ...
-} @ args: let
-  devterm = callPackage ./devterm.nix {};
-in
-  buildLinux (
-    args
-    // {
-      src = callPackage ./kernel-source.nix {};
-      version = "5.10.17-v8";
-      defconfig = "bcm2711_defconfig";
-      autoModules = false;
-      kernelPatches = [
+} @ args:
+buildLinux (
+  args
+  // {
+    src = linuxKernel.packages.linux_rpi4.kernel.src;
+    version = linuxKernel.packages.linux_rpi4.kernel.modDirVersion + "-v8";
+    defconfig = "bcm2711_defconfig";
+    autoModules = false;
+    kernelPatches =
+      linuxKernel.packages.linux_rpi4.kernel.kernelPatches
+      ++ [
         {
           name = "devterm";
-          patch = "${devterm}/Code/patch/cm4/cm4_kernel_0704.patch";
+          patch = ./linux-devterm.patch;
           extraStructuredConfig = with lib.kernel; {
             AXP20X_ADC = module;
             AXP20X_POWER = module;
@@ -33,12 +34,7 @@ in
             FW_LOADER_COMPRESS = yes;
           };
         }
-        {
-          name = "subcmd-util";
-          patch = ./subcmd-util.patch;
-          extraConfig = "";
-        }
       ];
-      enableCommonConfig = false;
-    }
-  )
+    enableCommonConfig = false;
+  }
+)
