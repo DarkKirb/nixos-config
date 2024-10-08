@@ -3,6 +3,7 @@
   services.xserver = {
     displayManager.sddm.enable = true;
     displayManager.sddm.wayland.enable = true;
+    displayManager.sddm.wayland.compositor = "kwin";
     #desktopManager.plasma6.enable = true;
     desktopManager.plasma5.enable = true;
     #displayManager.defaultSession = "plasma";
