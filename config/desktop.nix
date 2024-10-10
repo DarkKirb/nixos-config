@@ -21,13 +21,16 @@ in {
       ./services/docker.nix
       ./services/cifs.nix
       ./kde.nix
-      ./sway.nix
+      #./sway.nix
     ]
-    ++ (
+    /*
+      ++ (
       if system == "x86_64-linux"
       then [./programs/virtualbox.nix]
       else []
-    );
+    )
+    */
+    ;
   fonts = {
     fontDir.enable = true;
     fontconfig = {

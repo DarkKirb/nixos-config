@@ -102,4 +102,13 @@
   };
   boot.initrd.systemd.tpm2.enable = lib.mkForce false;
   systemd.tpm2.enable = lib.mkForce false;
+  services.displayManager = {
+    autoLogin = {
+      enable = true;
+      user = "darkkirb";
+    };
+    sddm = {
+      autoLogin.relogin = true;
+    };
+  };
 }

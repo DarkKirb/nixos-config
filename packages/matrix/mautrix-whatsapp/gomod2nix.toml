@@ -47,8 +47,8 @@ schema = 3
     version = "v0.0.0-20200617195104-da1b6568686e"
     hash = "sha256-ST9t4/b7WFXUb8wra4ZYVDNZJGrEykw8dkWhLrxp8F0="
   [mod."github.com/tidwall/gjson"]
-    version = "v1.17.3"
-    hash = "sha256-zui8S4qlfFXNLartKynJbYqeM/MW3f3eDbojIvh/KS8="
+    version = "v1.18.0"
+    hash = "sha256-CO6hqDu8Y58Po6A01e5iTpwiUBQ5khUZsw7czaJHw0I="
   [mod."github.com/tidwall/match"]
     version = "v1.1.1"
     hash = "sha256-M2klhPId3Q3T3VGkSbOkYl/2nLHnsG+yMbXkPkyrRdg="
@@ -65,14 +65,14 @@ schema = 3
     version = "v0.1.1"
     hash = "sha256-KegSskYAq2MFiOvB28WG0j0VPzfbXqivapLHwsIEYNc="
   [mod."go.mau.fi/util"]
-    version = "v0.8.1-0.20240927174413-000d30f9a02a"
-    hash = "sha256-8w6G6BxW5JuhLDCne9DXwU4PwtMs6jVJAOZxvfoGoPI="
+    version = "v0.8.1-0.20241003092848-3b49d3e0b9ee"
+    hash = "sha256-in0tzCWILrs2lSdfJmXW9wQsFO/am0235+AgUtp9xcc="
   [mod."go.mau.fi/webp"]
     version = "v0.1.0"
     hash = "sha256-KIP/Onw0t/o10oBuvmRQDff7GF8G5lsMaDXpe0fjvNg="
   [mod."go.mau.fi/whatsmeow"]
-    version = "v0.0.0-20241001150013-71e7937b706a"
-    hash = "sha256-t3b7KZ0rptHtNO8+6/kbrqZa/5vHrhjWS57m6ipKPdk="
+    version = "v0.0.0-20241009112614-70d73b690a8d"
+    hash = "sha256-jswF1tAks352jA4wtY23aSo5h1p1WN8ZCw8dOOx66Rg="
   [mod."go.mau.fi/zeroconfig"]
     version = "v0.1.3"
     hash = "sha256-TPwXOQql1MV8pXn6ZPxtkBUHzBCwIngNjrfqTfOSJX4="
@@ -113,5 +113,5 @@ schema = 3
     version = "v1.0.0"
     hash = "sha256-fYc/WwqE0ev0dvnu5qGmHJsYiSTuWeOTiAVzmQIKWyY="
   [mod."maunium.net/go/mautrix"]
-    version = "v0.21.1-0.20241001172103-260f642bf063"
-    hash = "sha256-5ma9YcSWZ93+q6eY18KTAa93m2uNe0G2KNOJSEbQTWk="
+    version = "v0.21.1-0.20241007164900-9dbd4333636b"
+    hash = "sha256-9KwHsZv3egdaG35ITDeMqWxVWoDrRZruA/GzUL9f9Tk="

@@ -26,8 +26,6 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
-  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux_xanmod_latest);
-
   fileSystems."/" = {
     device = "/dev/nvme0n1p2";
     fsType = "btrfs";
