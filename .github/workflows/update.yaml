@@ -10,7 +10,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install Nix
-        uses: cachix/install-nix-action@v30
+        uses: https://github.com/cachix/install-nix-action@v30
         with:
           nix_path: nixpkgs=channel:nixos-unstable
           extra_nix_config: |
@@ -27,7 +27,7 @@ jobs:
       - name: run nix fmt
         run: nix fmt
       - name: Commit and push
-        uses: peter-evans/create-pull-request@v7
+        uses: https://github.com/peter-evans/create-pull-request@v7
         with:
           commit-message: "Automatic Update"
           title: Run automatic update

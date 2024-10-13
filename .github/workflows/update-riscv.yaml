@@ -10,8 +10,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Create update pull request
-        uses: LucasRuy/sync-branch-action@v1.2.0
+        uses: https://github.com/LucasRuy/sync-branch-action@v1.2.0
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          SOURCE_BRANCH: 'main'
-          DESTINATION_BRANCH: 'main-riscv'
+          SOURCE_BRANCH: "main"
+          DESTINATION_BRANCH: "main-riscv"
