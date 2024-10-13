@@ -1,8 +1,6 @@
 {
     "extends": [
-        "config:best-practices",
-        "schedule:automergeDaily",
-        "schedule:daily"
+        "config:best-practices"
     ],
     "postUpgradeTasks": {
         "commands": [
@@ -12,5 +10,11 @@
         "fileFilters": [
             "packages/**/*"
         ]
-    }
+    },
+    "automergeSchedule": [
+        "every day"
+    ],
+    "schedule": [
+        "every day"
+    ]
 }
