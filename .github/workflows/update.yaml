@@ -5,13 +5,9 @@ on:
     - cron: "3 18 * * *"
 jobs:
   lockfile:
-    runs-on: docker
-    container:
-      image: nixpkgs/nix
+    runs-on: ubuntu-latest
     steps:
-      - run: nix-channel --add https://nixos.org/channels/nixos-unstable nixpkgs
-      - run: nix-channel --update
-      - run: nix-env -iA nixpkgs.nodejs
+      - run: sh <(curl -L https://nixos.org/nix/install) --daemon
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: update flake lock
