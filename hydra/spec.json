@@ -12,7 +12,7 @@
     "inputs": {
         "nixos-config": {
             "type": "git",
-            "value": "https://github.com/DarkKirb/nixos-config.git main",
+            "value": "https://git.chir.rs/darkkirb/nixos-config.git main",
             "emailresponsible": false
         },
         "nixpkgs": {
@@ -21,19 +21,19 @@
             "emailresponsible": false
         },
         "prsJSON": {
-            "type": "githubpulls",
-            "value": "DarkKirb nixos-config",
+            "type": "giteapulls",
+            "value": "git.chir.rs darkkirb nixos-config",
             "emailresponsible": false
         },
-        "github_input": {
+        "gitea_status_repo": {
             "type": "string",
             "value": "nixos-config"
         },
-        "github_repo_owner": {
+        "gitea_repo_owner": {
             "type": "string",
-            "value": "DarkKirb"
+            "value": "darkkirb"
         },
-        "github_repo_name": {
+        "gitea_repo_name": {
             "type": "string",
             "value": "nixos-config"
         }

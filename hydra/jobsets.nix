@@ -26,15 +26,15 @@
                 value = "${info.head.repo.clone_url} ${info.head.ref}";
                 emailresponsible = false;
               };
-              github_input = {
+              gitea_status_repo = {
                 type = "string";
                 value = "nixos-config";
               };
-              github_repo_owner = {
+              gitea_repo_owner = {
                 type = "string";
                 value = info.head.repo.owner.login;
               };
-              github_repo_name = {
+              gitea_repo_name = {
                 type = "string";
                 value = info.head.repo.name;
               };
@@ -59,18 +59,18 @@
         inputs = {
           nixos-config = {
             type = "git";
-            value = "https://github.com/DarkKirb/nixos-config main";
+            value = "https://git.chir.rs/darkkirb/nixos-config main";
             emailresponsible = false;
           };
-          github_input = {
+          gitea_status_repo = {
             type = "string";
             value = "nixos-config";
           };
-          github_repo_owner = {
+          gitea_repo_owner = {
             type = "string";
-            value = "DarkKirb";
+            value = "Darkkirb";
           };
-          github_repo_name = {
+          gitea_repo_name = {
             type = "string";
             value = "nixos-config";
           };
