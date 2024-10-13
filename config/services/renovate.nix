@@ -20,7 +20,7 @@
       allowedPostUpgradeCommands = [
         "^cargo2nix -o$"
         "^alejandra \\.$"
-        "^cd packages; yes '' | \\./update.sh$"
+        "^cd packages; yes '' | \\.\\/update.sh$"
       ];
       allowCustomCrateRegistries = true;
     };
