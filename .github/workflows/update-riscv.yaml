@@ -10,8 +10,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Create update pull request
-        uses: https://github.com/LucasRuy/sync-branch-action@v1.2.0
-        with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          SOURCE_BRANCH: "main"
-          DESTINATION_BRANCH: "main-riscv"
+        run: |
+          curl -X 'POST' \
+            'https://git.chir.rs/api/v1/repos/darkkirb/nixos-config/pulls' \
+            -H 'Authorization: Bearer ${{secrets.GITHUB_TOKEN}}' \
+            -H 'accept: application/json' \
+            -H 'Content-Type: application/json' \
+            -d '{
+            "base": "main-riscv",
+            "body": "Keeping main-riscv up to date",
+            "head": "main",
+            "title": "Update RISC-V config"
+          }'
