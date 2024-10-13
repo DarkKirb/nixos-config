@@ -11,7 +11,7 @@
       url = "https://git.chir.rs";
       # Obtaining the path to the runner token file may differ
       tokenFile = config.sops.secrets."services/forgejo-runner".path;
-      labels = [];
+      labels = ["docker"];
     };
     instances.darkkirb = {
       enable = true;
@@ -24,6 +24,7 @@
         "ubuntu-22.04:docker://node:16-bullseye"
         "ubuntu-20.04:docker://node:16-bullseye"
         "ubuntu-18.04:docker://node:16-buster"
+        "docker"
       ];
     };
   };
