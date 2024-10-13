@@ -5,7 +5,9 @@ on:
     - cron: "3 18 * * *"
 jobs:
   lockfile:
-    runs-on: nixpkgs/nix
+    runs-on: docker
+    container:
+      image: nixpkgs/nix
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
