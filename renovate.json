@@ -12,9 +12,9 @@
         ]
     },
     "automergeSchedule": [
-        "every day"
+        "0 12 * * *"
     ],
     "schedule": [
-        "every day"
+        "0 12 * * *"
     ]
 }
