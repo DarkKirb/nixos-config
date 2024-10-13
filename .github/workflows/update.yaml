@@ -9,7 +9,7 @@ jobs:
     container:
       image: nixpkgs/nix
     steps:
-      - run: nix-env -iA nodejs
+      - run: nix-env -iA nixpkgs.nodejs
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: update flake lock
