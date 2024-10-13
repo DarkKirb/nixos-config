@@ -12,5 +12,6 @@
         "fileFilters": [
             "packages/**/*"
         ]
-    }
+    },
+    "automerge": true
 }
