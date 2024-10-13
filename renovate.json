@@ -1,0 +1,16 @@
+{
+    "extends": [
+        "config:best-practices",
+        "schedule:automergeDaily",
+        "schedule:daily"
+    ],
+    "postUpgradeTasks": {
+        "commands": [
+            "cd packages; yes '' | ./update.sh",
+            "alejandra ."
+        ],
+        "fileFilters": [
+            "packages/**/*"
+        ]
+    }
+}

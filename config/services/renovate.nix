@@ -17,7 +17,11 @@
       nix.enabled = true;
       lockFileMaintenance.enabled = true;
       osvVulnerabilityAlerts = true;
-      allowedPostUpgradeCommands = ["^cargo2nix -o$" "^alejandra \\.$"];
+      allowedPostUpgradeCommands = [
+        "^cargo2nix -o$"
+        "^alejandra \\.$"
+        "^cd packages; yes '' | \\./update.sh$"
+      ];
       allowCustomCrateRegistries = true;
     };
     credentials = {
