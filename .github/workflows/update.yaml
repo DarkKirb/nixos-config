@@ -9,6 +9,7 @@ jobs:
     container:
       image: nixpkgs/nix
     steps:
+      - run: nix-channel --add https://nixos.org/channels/nixos-unstable nixpkgs
       - run: nix-env -iA nixpkgs.nodejs
       - name: Checkout repository
         uses: actions/checkout@v4
