@@ -66,7 +66,7 @@
     extraOptions = ["--loadavg-target" "5.0"];
   };
 
-  networking.interfaces.enp13s0.useDHCP = true;
+  networking.interfaces.enp14s0.useDHCP = true;
 
   system.stateVersion = "23.11";
 
