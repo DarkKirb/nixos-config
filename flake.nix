@@ -285,7 +285,7 @@ rec {
       };
       perSystem = {
         aarch64-linux = {
-          inherit (pkgs) linux-devterm;
+          #inherit (pkgs) linux-devterm;
         };
       };
     in
