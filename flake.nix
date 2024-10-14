@@ -203,10 +203,12 @@ rec {
         name = "vf2"; # vision five 2
         system = "riscv64-linux";
       }
-      {
+      /*
+        {
         name = "devterm";
         system = "aarch64-linux";
       }
+      */
     ];
     mkPackages = system: let
       pkgs = import nixpkgs {
