@@ -67,7 +67,7 @@ inputs: system: self: prev: let
   };
   perSystem = {
     aarch64-linux = {
-      linux-devterm = self.callPackage ../packages/linux/devterm/kernel.nix {};
+      # linux-devterm = self.callPackage ../packages/linux/devterm/kernel.nix {};
     };
   };
 in
