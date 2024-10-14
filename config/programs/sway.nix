@@ -47,6 +47,7 @@ in {
     ./fcitx.nix
     ./kitty.nix
     ./mpd.nix
+    ./theming.nix
   ];
   wayland.windowManager.sway = {
     enable = true;
