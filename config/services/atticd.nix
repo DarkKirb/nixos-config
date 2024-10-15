@@ -6,6 +6,8 @@
   pkgs,
   ...
 }: {
+  disabledModules = ["services/networking/atticd.nix"];
+  imports = [attic.nixosModules.atticd];
   services.atticd = {
     enable = true;
     package = attic.packages.${system}.attic-server;
