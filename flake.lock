@@ -160,11 +160,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1728650063,
-        "narHash": "sha256-3g+4jr39BL7KZ63PTgUcMxwpyK5T4+QvdXEFbYvlpjU=",
+        "lastModified": 1728890353,
+        "narHash": "sha256-AVPdzuiKBq/pWFO0Km1Gxb/xEJaFDITvbb1Tf6un+ow=",
         "owner": "DarkKirb",
         "repo": "chir.rs",
-        "rev": "47d29b6525d4a5a46324271faba3dab9f2764f3e",
+        "rev": "2ea4e18a33c87c5d737f0faa639fad234f93f296",
         "type": "github"
       },
       "original": {
@@ -505,11 +505,11 @@
     },
     "haskell-flake": {
       "locked": {
-        "lastModified": 1728227251,
-        "narHash": "sha256-JLDhMFyGyFe0QJAbCuSxB7/kjUCA7uUAMa6BFRORwXk=",
+        "lastModified": 1728845985,
+        "narHash": "sha256-0KkAWCRBNpno3f+E1rvV9TOr0iuweqncWGn1KtbrGmo=",
         "owner": "srid",
         "repo": "haskell-flake",
-        "rev": "9cbfbfc38f1fbf9a0f471795c84780211875fd45",
+        "rev": "2393b55948866f39afcfa7d8a53893a096bcd284",
         "type": "github"
       },
       "original": {
@@ -525,11 +525,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728791962,
-        "narHash": "sha256-nr5QiXwQcZmf6/auC1UpX8iAtINMtdi2mH+OkqJQVmU=",
+        "lastModified": 1728903686,
+        "narHash": "sha256-ZHFrGNWDDriZ4m8CA/5kDa250SG1LiiLPApv1p/JF0o=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "64c6325b28ebd708653dd41d88f306023f296184",
+        "rev": "e1aec543f5caf643ca0d94b6a633101942fd065f",
         "type": "github"
       },
       "original": {
@@ -667,11 +667,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728760590,
-        "narHash": "sha256-Y8DOKM28CP8wYcqbOhbEystLIC1ZK5PmHj07E87rvd4=",
+        "lastModified": 1728951119,
+        "narHash": "sha256-vUBgL8zJBDyj2serxdEVbNqe6pBN4YgWwhtg3XP8mpQ=",
         "ref": "refs/heads/main",
-        "rev": "a322fcea4a3630853bb1e91f411da5d37a8b4523",
-        "revCount": 16336,
+        "rev": "f6077314fa6aff862758095bb55fe844e9162a1d",
+        "revCount": 16344,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix"
       },
@@ -783,11 +783,11 @@
         "umu": "umu"
       },
       "locked": {
-        "lastModified": 1728783634,
-        "narHash": "sha256-kh4rf1WWFzx1wcHf6lToksRm1Qu/abEYiojs/sCxAYQ=",
+        "lastModified": 1728919237,
+        "narHash": "sha256-pjYeBH3eGhjIYyaHJbSOsPZZkbfJ07dO55NAxv7FUNY=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "6accf747c4a29c2ef26ee1a61e9b2466bc9da7b2",
+        "rev": "2c8d8bb698899ac978f0ccc7b88cf2229593dacc",
         "type": "github"
       },
       "original": {
@@ -1001,11 +1001,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1728853008,
-        "narHash": "sha256-gnJ0ftVmKfUe5GwHHoZ87CrE8LIKOLZDn1rgq2kDOiU=",
+        "lastModified": 1728971991,
+        "narHash": "sha256-S6c6LIj7EYxiwYZ80jADeinNIoy68dyk93ZPSDN4t2A=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "564451a037500d67b2c798ef7bddf43772ab6096",
+        "rev": "c2bdda7b60aedd011266eded7d58cbdec12d760a",
         "type": "github"
       },
       "original": {
@@ -1123,11 +1123,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728786660,
-        "narHash": "sha256-qY+1e0o6oV5ySlErhj/dsWsPLWjrMKzq4QI7a1t9/Ps=",
+        "lastModified": 1728959392,
+        "narHash": "sha256-fp4he1QQjE+vasDMspZYeXrwTm9otwEqLwEN6FKZ5v0=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "174a8d9cec9e2c23877a7b887c52b68ef0421d8b",
+        "rev": "4c6e317300f05b8871f585b826b6f583e7dc4a9b",
         "type": "github"
       },
       "original": {
@@ -1226,11 +1226,11 @@
       },
       "locked": {
         "dir": "packaging/nix",
-        "lastModified": 1728772489,
-        "narHash": "sha256-6sHjXNhPrRXIV1au5jlSXHeqn/QHb9wyRt7V0F5p4PA=",
+        "lastModified": 1728934342,
+        "narHash": "sha256-WLaHZZUGV36g9MfROd5gxym8J+L7AhKzFebGk5vlfMo=",
         "ref": "refs/heads/main",
-        "rev": "475e2b37e34a663b11f8c92b79dd45637a3e848c",
-        "revCount": 770,
+        "rev": "2c6ad348ad340ed6d07da77f8782e8a2c9f41570",
+        "revCount": 782,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/Open-Wine-Components/umu-launcher/"
