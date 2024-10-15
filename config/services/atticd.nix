@@ -6,7 +6,6 @@
   pkgs,
   ...
 }: {
-  imports = [attic.nixosModules.atticd];
   services.atticd = {
     enable = true;
     package = attic.packages.${system}.attic-server;
