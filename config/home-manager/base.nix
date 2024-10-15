@@ -1,6 +1,8 @@
 desktop: {
   pkgs,
   system,
+  lib,
+  config,
   ...
 }: {
   imports =
@@ -93,6 +95,9 @@ desktop: {
         ]
         else []
       );
+    sessionVariables = if desktop then {
+      QT_PLUGIN_PATH = lib.mkForce "\${QT_PLUGIN_PATH}:${config.i18n.inputMethod.package}/${pkgs.qt6.qtbase.qtPluginPrefix}:${pkgs.kdePackages.kimageformats}/${pkgs.qt6.qtbase.qtPluginPrefix}";
+    } else {};
   };
 
   programs.eza = {
