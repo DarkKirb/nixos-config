@@ -12,7 +12,7 @@
     ++ (
       if desktop
       then [
-        ../programs/sway.nix
+        #../programs/sway.nix
         ../programs/firefox.nix
         ../programs/waybar.nix
         ../programs/ims.nix
