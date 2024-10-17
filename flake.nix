@@ -39,7 +39,7 @@ rec {
       inputs.rust-overlay.follows = "rust-overlay";
     };
     chir-rs = {
-      url = "github:DarkKirb/chir.rs";
+      url = "git+https://git.chir.rs/chir.rs/chir.rs";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
