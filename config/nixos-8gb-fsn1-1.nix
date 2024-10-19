@@ -17,7 +17,6 @@
     ./services/grafana.nix
     ./users/miifox.nix
     ./services/postgres.nix
-    ./services/old-homepage.nix
     ./services/dovecot.nix
     ./services/postfix.nix
     ./services/reverse-proxy.nix
@@ -206,4 +205,11 @@
   services.resolved.enable = false;
   services.bind.forwarders = lib.mkForce [];
   services.tailscale.useRoutingFeatures = "server";
+  services.caddy.virtualHosts."darkkirb.de" = {
+    useACMEHost = "darkkirb.de";
+    logFormat = pkgs.lib.mkForce "";
+    extraConfig = ''
+      redir https://lotte.chir.rs
+    '';
+  };
 }

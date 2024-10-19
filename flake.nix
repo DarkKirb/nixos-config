@@ -270,7 +270,6 @@ rec {
           plover-plugin-dotool-output
           plover-dict-didoesdigital
           miifox-net
-          old-homepage
           plover-plugin-python-dictionary
           plover-plugin-stenotype-extended
           asar-asm
