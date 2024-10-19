@@ -29,13 +29,7 @@ in {
   nixpkgs.overlays = [
     riscv-overlay.overlays.default
     (self: super: {
-      inherit (pkgs_x86_64) lix;
-      nixos-option = super.nixos-option.override {
-        nix = self.nixVersions.stable_upstream.overrideAttrs {
-          doCheck = false;
-          doInstallCheck = false;
-        };
-      };
+      inherit (pkgs_x86_64) lix nixos-option;
     })
   ];
 
