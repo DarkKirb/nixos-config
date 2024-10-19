@@ -13,10 +13,8 @@ in {
   services.bind = {
     enable = true;
     zones = {
-      "darkkirb.de" = mkZone "darkkirb.de";
       "chir.rs" = mkZone "chir.rs";
       "int.chir.rs" = mkZone "int.chir.rs";
-      "shitallover.me" = mkZone "shitallover.me";
     };
     extraConfig = ''
       statistics-channels {
