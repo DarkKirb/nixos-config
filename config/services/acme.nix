@@ -9,6 +9,9 @@
     certs."darkkirb.de" = {
       domain = "*.darkkirb.de";
       extraDomainNames = ["darkkirb.de"];
+      dnsProvider = "gcloud";
+      credentialsFile = config.sops.secrets."security/acme/gcloud".path;
+      dnsResolver = "1.1.1.1:53";
     };
     certs."chir.rs" = {
       domain = "*.chir.rs";
