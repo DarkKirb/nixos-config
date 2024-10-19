@@ -60,7 +60,6 @@ inputs: system: self: prev: let
     plover-plugin-lapwing-aio = self.python311Packages.callPackage ../packages/plover/plover-lapwing-aio.nix {};
     plover-dict-didoesdigital = self.callPackage ../packages/plover/didoesdigital-dictionary.nix {};
     miifox-net = self.python3Packages.callPackage ../packages/web/miifox-net.nix {};
-    old-homepage = self.callPackage ../packages/web/old-homepage.nix {};
     asar-asm = self.callPackage ../packages/compiler/asar {};
     bsnes-plus = self.libsForQt5.callPackage ../packages/emulator/bsnes-plus {};
     yiffstash = self.python3Packages.callPackage ../packages/python/yiffstash.nix {};
