@@ -144,15 +144,13 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 55;
+      serial = 56;
     };
     NS = [
       "ns1.chir.rs."
       "ns2.chir.rs."
       "ns3.chir.rs."
       "ns4.chir.rs."
-      "ns1.darkkirb.de."
-      "ns2.darkkirb.de."
     ];
     MX = [
       (ttl zoneTTL (mx.mx 10 "mx.zoho.eu."))
