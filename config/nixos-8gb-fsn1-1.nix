@@ -17,7 +17,6 @@
     ./services/grafana.nix
     ./users/miifox.nix
     ./services/postgres.nix
-    ./services/old-homepage.nix
     ./services/dovecot.nix
     ./services/postfix.nix
     ./services/reverse-proxy.nix
