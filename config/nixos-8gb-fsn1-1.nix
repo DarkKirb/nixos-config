@@ -205,4 +205,11 @@
   services.resolved.enable = false;
   services.bind.forwarders = lib.mkForce [];
   services.tailscale.useRoutingFeatures = "server";
+  services.caddy.virtualHosts."darkkirb.de" = {
+    useACMEHost = "darkkirb.de";
+    logFormat = pkgs.lib.mkForce "";
+    extraConfig = ''
+      redir https://lotte.chir.rs
+    '';
+  };
 }
