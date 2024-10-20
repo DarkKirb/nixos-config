@@ -63,6 +63,7 @@ inputs: system: self: prev: let
     asar-asm = self.callPackage ../packages/compiler/asar {};
     bsnes-plus = self.libsForQt5.callPackage ../packages/emulator/bsnes-plus {};
     yiffstash = self.python3Packages.callPackage ../packages/python/yiffstash.nix {};
+    mgba-dev = self.libsForQt5.callPackage ../packages/emulator/mgba-dev {};
   };
   perSystem = {
     aarch64-linux = {

@@ -280,6 +280,7 @@ rec {
           plover-plugin-modal-dictionary
           plover-plugin-stitching
           plover-plugin-lapwing-aio
+          mgba-dev
           ;
       };
       perSystem = {

@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/mgba-emu/mgba",
+  "rev": "afff68cfc0731c441ececa83bf43c3d8bebe5c5a",
+  "date": "2024-10-11T21:52:48-07:00",
+  "path": "/nix/store/07x809rwbmxsxbax2dbmsr0cwi8189sr-mgba",
+  "sha256": "1cyj4da8skk2pn9gxwc0lq0wk6pmxj3bgv4iay4b81mmgq5p84q0",
+  "hash": "sha256-ABN0C361BrSIV5Hst4bs9ZrJAaaA8f6SvWJOjVQj0rM=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}
