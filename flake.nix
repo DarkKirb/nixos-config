@@ -23,7 +23,7 @@ rec {
       inputs.devshell.follows = "devshell";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     attic = {
       url = "github:DarkKirb/attic";
