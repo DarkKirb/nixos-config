@@ -9,7 +9,7 @@ in {
   home.packages =
     [
       pkgs.prismlauncher
-      pkgs.mgba
+      pkgs.mgba-dev
     ]
     ++ (
       if system == "x86_64-linux"
