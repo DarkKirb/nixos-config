@@ -154,14 +154,15 @@
         "systems": [
           "systems"
         ],
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": "treefmt-nix",
+        "webauthn": "webauthn"
       },
       "locked": {
-        "lastModified": 1729233248,
-        "narHash": "sha256-tC9hlqcZPw9HGgtLpBXp++6dt8DHahyXnw0qzCDYius=",
+        "lastModified": 1729580196,
+        "narHash": "sha256-nDN9aGk3B3gG33vVKjJ+vGqEs9Z4J+F1XavaSK0CtV4=",
         "ref": "refs/heads/main",
-        "rev": "4eecbcbfe0815f260e930a408bb2f7d62c68c451",
-        "revCount": 376,
+        "rev": "f3580c52978395ace76ce21d9b064ea39972d675",
+        "revCount": 378,
         "type": "git",
         "url": "https://git.chir.rs/chir.rs/chir.rs"
       },
@@ -443,11 +444,11 @@
     },
     "haskell-flake": {
       "locked": {
-        "lastModified": 1728845985,
-        "narHash": "sha256-0KkAWCRBNpno3f+E1rvV9TOr0iuweqncWGn1KtbrGmo=",
+        "lastModified": 1729428816,
+        "narHash": "sha256-PA3LR2aFS7GDaViGEl4gAbohwGLzU3dvykLCfNTLi+Y=",
         "owner": "srid",
         "repo": "haskell-flake",
-        "rev": "2393b55948866f39afcfa7d8a53893a096bcd284",
+        "rev": "688cc5757af330c9c2c53b23a00fec6664ff8852",
         "type": "github"
       },
       "original": {
@@ -463,11 +464,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729459288,
-        "narHash": "sha256-gBOVJv+q6Mx8jGvwX7cE6J8+sZmi1uxpRVsO7WxvVuQ=",
+        "lastModified": 1729551526,
+        "narHash": "sha256-7LAGY32Xl14OVQp3y6M43/0AtHYYvV6pdyBcp3eoz0s=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1e27f213d77fc842603628bcf2df6681d7d08f7e",
+        "rev": "5ec753a1fc4454df9285d8b3ec0809234defb975",
         "type": "github"
       },
       "original": {
@@ -605,11 +606,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729455191,
-        "narHash": "sha256-8hqmXUj2NH7fqZLFtFer+FfldkTaTmbkghvxM2UNK10=",
+        "lastModified": 1729562744,
+        "narHash": "sha256-RrjGZX97l+d4dqQHJQTY2GS/FSqCMV4osoHVf9zuUoI=",
         "ref": "refs/heads/main",
-        "rev": "068f4b147d589f2a219ba917537b53a56089c1ba",
-        "revCount": 16366,
+        "rev": "5ce1d8463a8bfd225d1b37f2fcfe3cfb59053ec9",
+        "revCount": 16369,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix"
       },
@@ -694,11 +695,11 @@
         "umu": "umu"
       },
       "locked": {
-        "lastModified": 1729388819,
+        "lastModified": 1729561272,
         "narHash": "sha256-Csa4LUgQWdUBQKj1bv8kKu3qFCOmnDWHAawWateCmls=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "177e270423839dedb9721b43c757a5f849b1e9f8",
+        "rev": "4947f7690b8f846bb4b8c5acea9c9845734dfdf2",
         "type": "github"
       },
       "original": {
@@ -770,11 +771,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1729455275,
-        "narHash": "sha256-THqzn/7um3oMHUEGXyq+1CJQE7EogwR3HjLMNOlhFBE=",
+        "lastModified": 1729509737,
+        "narHash": "sha256-8OHgqz+tFo21h3hg4/GHizFPws+MMzpEru/+62Z0E8c=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "9fcf30fccf8435f6390efec4a4d38e69c2268a36",
+        "rev": "cc2d3c0e060f981905d52337340ee6ec8b8eb037",
         "type": "github"
       },
       "original": {
@@ -902,11 +903,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1729493358,
-        "narHash": "sha256-Ti+Y9nWt5Fcs3JlarxLPgIOVlbqQo7jobz/qOwOaziM=",
+        "lastModified": 1729581717,
+        "narHash": "sha256-r0y2isy/XD6krL1/MMhZxVZpTJJgRzcQmsktatAOgo8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a5e6a9e979367ee14f65d9c38119c30272f8455f",
+        "rev": "deeb93f8eb4e53b52b4d22e1d30d2caa47aecb20",
         "type": "github"
       },
       "original": {
@@ -1024,11 +1025,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729477859,
-        "narHash": "sha256-r0VyeJxy4O4CgTB/PNtfQft9fPfN1VuGvnZiCxDArvg=",
+        "lastModified": 1729564184,
+        "narHash": "sha256-dP764PQ6YhjY7C84Txnrb2vf0H2YdQlp5c6a7G18fgw=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "ada8266712449c4c0e6ee6fcbc442b3c217c79e1",
+        "rev": "d687672b4541496408068bc273d94c643005d4c9",
         "type": "github"
       },
       "original": {
@@ -1083,11 +1084,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1727984844,
-        "narHash": "sha256-xpRqITAoD8rHlXQafYZOLvUXCF6cnZkPfoq67ThN0Hc=",
+        "lastModified": 1729242555,
+        "narHash": "sha256-6jWSWxv2crIXmYSEb3LEVsFkCkyVHNllk61X4uhqfCs=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "4446c7a6fc0775df028c5a3f6727945ba8400e64",
+        "rev": "d986489c1c757f6921a48c1439f19bfb9b8ecab5",
         "type": "github"
       },
       "original": {
@@ -1127,11 +1128,11 @@
       },
       "locked": {
         "dir": "packaging/nix",
-        "lastModified": 1729481341,
-        "narHash": "sha256-DS9tbS2TtAp4kUKUW5wUA0TbK7Dx1WOMBkRJLkEC6Cg=",
+        "lastModified": 1729582071,
+        "narHash": "sha256-mlDFEqzDKE/qPAX9nQZVO6/XN40tBPHii38G48gP/NM=",
         "ref": "refs/heads/main",
-        "rev": "0aea3e7fbfdbe172e07983b9b23b601f821495df",
-        "revCount": 810,
+        "rev": "5ea4c990e5864a9129ea3de7242e53e74d1b0a8a",
+        "revCount": 811,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/Open-Wine-Components/umu-launcher/"
@@ -1141,6 +1142,22 @@
         "submodules": true,
         "type": "git",
         "url": "https://github.com/Open-Wine-Components/umu-launcher/"
+      }
+    },
+    "webauthn": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1727705861,
+        "narHash": "sha256-DJOrV0PZAeRGbWe765ayvBhxk1w5LDsDUBObjwcEl/Q=",
+        "owner": "tweag",
+        "repo": "webauthn",
+        "rev": "e2abad5bc299914e18dc823ac016eb673004cbe5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tweag",
+        "repo": "webauthn",
+        "type": "github"
       }
     }
   },
