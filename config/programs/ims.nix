@@ -8,6 +8,7 @@
       nheko
       twinkle
       tokodon
+      telegram-desktop
     ]
     ++ (
       if system == "x86_64-linux"
