@@ -51,7 +51,7 @@
         };
         encryption = {
           allow = true;
-          default = true;
+          default = false;
           appservice = true;
           require = false;
           plaintext_mentions = true;

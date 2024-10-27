@@ -15,7 +15,6 @@
       sandbox = true;
       trusted-users = ["@wheel" "remote-build"];
       require-sigs = true;
-      builders-use-substitutes = true;
       substituters = [
         "https://attic.chir.rs/chir-rs/"
         "https://hydra.int.chir.rs"
@@ -29,7 +28,6 @@
     };
     extraOptions = ''
       experimental-features = nix-command flakes ca-derivations
-      builders-use-substitutes = true
     '';
     gc = {
       automatic = true;
