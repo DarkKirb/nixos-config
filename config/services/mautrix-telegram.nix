@@ -34,7 +34,7 @@
         invite_link_resolve = true;
         encryption = {
           allow = true;
-          default = true;
+          default = false;
           appservice = true;
           require = false;
           allow_key_sharing = true;

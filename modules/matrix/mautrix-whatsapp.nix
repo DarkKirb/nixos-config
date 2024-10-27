@@ -26,10 +26,6 @@ in {
             address = "http://mautrix-whatsapp.int.chir.rs:29318";
             hostname = "0.0.0.0";
             port = 29318;
-            database = {
-              type = "sqlite";
-              uri = "sqlite:///${dataDir}/mautrix-telegram.db";
-            };
             as_token = "$AS_TOKEN";
             hs_token = "$HS_TOKEN";
           };
