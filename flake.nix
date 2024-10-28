@@ -2,6 +2,11 @@
   description = "Lotte’s nix configuration";
 
   inputs = {
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+
     nixpkgs.url = "github:nixos/nixpkgs";
   };
 
@@ -70,9 +75,8 @@
       self.nixosContainers;
     in
       containers;
-
+    hydraJobs = {
+      inherit (self) checks nixosConfigurations;
+    };
   };
-  hydraJobs = {
-    inherit (self) checks nixosConfigurations;
-  }
 }
