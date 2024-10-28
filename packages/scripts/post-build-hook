@@ -1,4 +1,0 @@
-#!/bin/sh
-set -euf
-export IFS=' '
-/nix/var/nix/profiles/default/bin/nix run 'github:DarkKirb/nix-packages#attic-client' -- push cache $OUT_PATHS

@@ -1,4 +1,0 @@
-{...}: {
-  accounts.calendar.accounts.lotte = {
-  };
-}

@@ -1,5 +1,1 @@
 result
-*.qcow2
-*.fd
-.direnv
-/efi/secret
