@@ -13,7 +13,7 @@ testers.runNixOSTest {
     ...
   }: {
     imports = [
-      nixos-config.nixosModules.containers-autoconfig
+      nixos-config.nixosModules.default
     ];
     autoContainers = ["default"];
   };

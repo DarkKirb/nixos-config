@@ -6,8 +6,11 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
-
     nixpkgs.url = "github:nixos/nixpkgs";
+    riscv-overlay = {
+      url = "github:DarkKirb/riscv-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -21,16 +24,30 @@
         nixos-config = self;
         inherit inputs;
       };
-    pkgsFor = system:
+    pkgsFor = system: let
+      inputs' =
+        inputs
+        // {
+          inherit system;
+        };
+    in
       import nixpkgs {
         inherit system;
-        overlays = [
-          (_: _:
-            inputs
-            // {
-              inherit inputs;
-            })
-        ];
+        overlays =
+          [
+            (_: _:
+              inputs'
+              // {
+                inputs = inputs';
+              })
+          ]
+          ++ (
+            if system == "riscv64-linux"
+            then [
+              inputs.riscv-overlay.overlays.default
+            ]
+            else []
+          );
       };
   in {
     checks.x86_64-linux = nixpkgs.lib.listToAttrs (map (testName: {
@@ -39,13 +56,13 @@
     }) ["containers-default"]);
     nixosModules = {
       containers = import ./modules/containers/default.nix;
-      containers-autoconfig = import ./modules/containers/autoconfig.nix;
+      default = import ./modules/default.nix;
     };
     nixosContainers = with nixpkgs.lib; let
       containerNames = [
         "default"
       ];
-      containerArches = ["x86_64-linux" "aarch64-linux"];
+      containerArches = ["x86_64-linux" "aarch64-linux" "riscv64-linux"];
       containers = listToAttrs (flatten (map (system: let
         pkgs = pkgsFor system;
       in
@@ -58,13 +75,15 @@
     in
       containers;
     nixosConfigurations = with nixpkgs.lib; let
-      mkSystem = args:
+      mkSystem = args: let
+        inputs' = inputs // {inherit (args) system;};
+      in
         nixosSystem (args
           // {
             specialArgs =
               args.specialArgs
               or {}
-              // inputs;
+              // inputs';
           });
       containers = mapAttrs (_: container:
         mkSystem {

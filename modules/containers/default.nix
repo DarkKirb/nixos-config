@@ -1,5 +1,10 @@
-{lib, ...}: {
+{
+  nixos-config,
+  lib,
+  ...
+}: {
   imports = [
+    nixos-config.nixosModules.default
     ./hostName.nix
   ];
 
