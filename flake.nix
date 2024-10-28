@@ -77,7 +77,8 @@
     in
       containers;
     hydraJobs = {
-      inherit (self) checks nixosConfigurations;
+      inherit (self) checks;
+      nixosConfigurations = nixpkgs.lib.mapAttrs (_: v: v.config.system.build.toplevel) self.nixosConfigurations;
     };
   };
 }
