@@ -13,6 +13,7 @@
   outputs = {
     self,
     nixpkgs,
+    ...
   } @ inputs': let
     inputs =
       inputs'
