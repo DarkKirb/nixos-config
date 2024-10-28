@@ -2,11 +2,11 @@
   system,
   riscv-overlay,
   ...
-}: {
-  nixpkgs.overlays =
-    if system == "riscv64-linux"
-    then [
-      riscv-overlay.overlays.default
-    ]
-    else [];
+}:
+if system == "riscv64-linux"
+then {
+  nixpkgs.overlays = [
+    riscv-overlay.overlays.default
+  ];
 }
+else {}

@@ -29,6 +29,7 @@
         inputs
         // {
           inherit system;
+          inputs = inputs';
         };
     in
       import nixpkgs {
