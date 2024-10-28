@@ -7,18 +7,18 @@ with lib; {
   options.networking = {
     rootHostName = mkOption {
       description = "Hostname of the running host";
-      type = types.string;
+      type = types.str;
       default = "";
       example = "rainbow-resort";
     };
     nodeID = mkOption {
       description = "Unique node ID";
-      type = types.string;
+      type = types.str;
       readOnly = true;
     };
     fullHostName = mkOption {
       description = "Full combined host name";
-      type = types.string;
+      type = types.str;
       readOnly = true;
     };
   };

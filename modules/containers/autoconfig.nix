@@ -16,7 +16,7 @@ with lib; let
 in {
   options.autoContainers = mkOption {
     default = [];
-    type = types.listOf types.string;
+    type = types.listOf types.str;
   };
   config = {
     containers = listToAttrs (map (container: {
