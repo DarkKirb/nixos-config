@@ -2,7 +2,7 @@
   imports = [
     ./riscv.nix
     ./containers/autoconfig.nix
-    ./lix.nix
-    ./impermanence.nix
+    ./nix/lix.nix
+    ./environment/impermanence.nix
   ];
 }
