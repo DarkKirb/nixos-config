@@ -1,4 +1,8 @@
-{nixos-hardware, ...}: {
+{
+  pkgs,
+  nixos-hardware,
+  ...
+}: {
   imports = [
     "${nixos-hardware}/starfive/visionfive/v2/default.nix"
   ];
