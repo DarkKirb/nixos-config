@@ -2,4 +2,5 @@
   inherit system;
   config = import ./default.nix;
   autoStart = true;
+  privateNetwork = true;
 }
