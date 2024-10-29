@@ -17,7 +17,7 @@ testers.runNixOSTest {
     ];
     autoContainers = ["default"];
   };
-  node.specialArgs = inputs;
+  node.specialArgs = inputs // {inTester = true;};
   testScript = ''
     machine.wait_for_unit("container@default.service")
   '';

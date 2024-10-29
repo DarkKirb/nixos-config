@@ -6,11 +6,49 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+    flakey-profile = {
+      url = "github:lf-/flakey-profile";
+    };
+    gitignore = {
+      url = "github:hercules-ci/gitignore.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/lix";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.nix2container.follows = "nix2container";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.pre-commit-hooks.follows = "pre-commit-hooks";
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.flakey-profile.follows = "flakey-profile";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix2container = {
+      url = "github:nlewo/nix2container";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs.url = "github:nixos/nixpkgs";
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.gitignore.follows = "gitignore";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
     riscv-overlay = {
       url = "github:DarkKirb/riscv-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    systems.url = "github:nix-systems/default";
   };
 
   outputs = {
@@ -23,6 +61,7 @@
       // {
         nixos-config = self;
         inherit inputs;
+        inTester = false;
       };
     pkgsFor = system: let
       inputs' =
