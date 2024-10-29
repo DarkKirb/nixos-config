@@ -7,6 +7,7 @@
     "${nixos-config}/config"
     ./disko.nix
     ./hardware.nix
+    ./cross-packages.nix
   ];
   system.stateVersion = "24.11";
 }
