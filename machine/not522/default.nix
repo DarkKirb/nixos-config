@@ -3,6 +3,7 @@
   nixos-hardware,
   ...
 }: {
+  networking.hostName = "not522";
   imports = [
     "${nixos-config}/config"
     ./disko.nix

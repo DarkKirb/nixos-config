@@ -1,20 +1,20 @@
 keys:
   - &lotte age1tltjgexkp5fz3rum4j0k66ty5q4u8ptvkgkepumd20zal24g2qfs5xgw76
-  - &vf2 age1emv3kzvwgl36hgllrv7rlekqy3y3c6eztadl3lv09ks3z9vv6vdqw06yqa
+  - &not522 age1emv3kzvwgl36hgllrv7rlekqy3y3c6eztadl3lv09ks3z9vv6vdqw06yqa
 
 creation_rules:
-  - path_regex: machine/vf2/secrets\.yaml$
+  - path_regex: machine/not522/secrets\.yaml$
     key_groups:
       - age:
-          - *vf2
+          - *not522
           - *lotte
   - path_regex: services/tailscale\.yaml$
     key_groups:
       - age:
-          - *vf2
+          - *not522
           - *lotte
   - path_regex: users/root/password\.yaml$
     key_groups:
       - age:
-          - *vf2
+          - *not522
           - *lotte

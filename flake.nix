@@ -139,8 +139,8 @@
               // inputs';
           });
       systems' = {
-        vf2 = {
-          config = ./machine/vf2;
+        not522 = {
+          config = ./machine/not522;
           system = "riscv64-linux";
         };
       };
