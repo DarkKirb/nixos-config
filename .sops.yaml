@@ -13,3 +13,8 @@ creation_rules:
       - age:
           - *vf2
           - *lotte
+  - path_regex: users/root/password\.yaml$
+    key_groups:
+      - age:
+          - *vf2
+          - *lotte
