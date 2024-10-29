@@ -17,6 +17,9 @@
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
     lix = {
       url = "git+https://git.lix.systems/lix-project/lix";
       inputs.flake-compat.follows = "flake-compat";
