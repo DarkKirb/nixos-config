@@ -4,4 +4,5 @@
     "${nixos-config}/services/tailscale.nix"
     ./systemd-boot.nix
   ];
+  boot.initrd.systemd.enable = true;
 }
