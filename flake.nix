@@ -2,6 +2,10 @@
   description = "Lotte’s nix configuration";
 
   inputs = {
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -39,6 +43,7 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:nixos/nixpkgs";
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
@@ -133,6 +138,12 @@
               or {}
               // inputs';
           });
+      systems' = {
+        vf2 = {
+          config = ./machine/vf2;
+          system = "riscv64-linux";
+        };
+      };
       containers = mapAttrs (_: container:
         mkSystem {
           inherit (container) system;
@@ -141,8 +152,16 @@
           ];
         })
       self.nixosContainers;
+      systems = mapAttrs (_: system:
+        mkSystem {
+          inherit (system) system;
+          modules = [
+            system.config
+          ];
+        })
+      systems';
     in
-      containers;
+      containers // systems;
     hydraJobs = {
       inherit (self) checks devShells;
       nixosConfigurations = nixpkgs.lib.mapAttrs (_: v: v.config.system.build.toplevel) self.nixosConfigurations;

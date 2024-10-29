@@ -8,3 +8,8 @@ creation_rules:
       - age:
           - *vf2
           - *lotte
+  - path_regex: services/tailscale\.yaml$
+    key_groups:
+      - age:
+          - *vf2
+          - *lotte

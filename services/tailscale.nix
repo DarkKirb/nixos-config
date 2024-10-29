@@ -1,0 +1,7 @@
+{config, ...}: {
+  services.tailscale = {
+    enable = true;
+    authKeyFile = config.sops.secrets."services/tailscale/authKey".path;
+  };
+  sops.secrets."services/tailscale/authKey".sopsFile = ./tailscale.yaml;
+}

@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1730190761,
+        "narHash": "sha256-o5m5WzvY6cGIDupuOvjgNSS8AN6yP2iI9MtUC6q/uos=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "3979285062d6781525cded0f6c4ff92e71376b55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -168,6 +188,21 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1730161780,
+        "narHash": "sha256-z5ILcmwMtiCoHTXS1KsQWqigO7HJO8sbyK7f7wn9F/E=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "07d15e8990d5d86a631641b4c429bc0a7400cfb8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1730101162,
@@ -250,6 +285,7 @@
     },
     "root": {
       "inputs": {
+        "disko": "disko",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "flakey-profile": "flakey-profile",
@@ -258,6 +294,7 @@
         "lix": "lix",
         "lix-module": "lix-module",
         "nix2container": "nix2container",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "pre-commit-hooks": "pre-commit-hooks",
         "riscv-overlay": "riscv-overlay",

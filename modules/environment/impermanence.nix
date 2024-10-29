@@ -56,7 +56,7 @@ with lib; {
         {
           assertion =
             if hasAttr "/" config.fileSystems
-            then any (t: t == "subvol=root") config.fileSystems."/".options
+            then any (t: t == "subvol=root" || t == "subvol=/root") config.fileSystems."/".options
             else false;
           message = "rootfs must mount subvolume root";
         }
