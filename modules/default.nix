@@ -4,5 +4,6 @@
     ./containers/autoconfig.nix
     ./nix/lix.nix
     ./environment/impermanence.nix
+    ./secrets/sops.nix
   ];
 }

@@ -1,0 +1,10 @@
+keys:
+  - &lotte age1tltjgexkp5fz3rum4j0k66ty5q4u8ptvkgkepumd20zal24g2qfs5xgw76
+  - &vf2 age1emv3kzvwgl36hgllrv7rlekqy3y3c6eztadl3lv09ks3z9vv6vdqw06yqa
+
+creation_rules:
+  - path_regex: machine/vf2/secrets\.yaml$
+    key_groups:
+      - age:
+          - *vf2
+          - *lotte

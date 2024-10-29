@@ -51,6 +51,11 @@
       url = "github:DarkKirb/riscv-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
     systems.url = "github:nix-systems/default";
   };
 
@@ -139,8 +144,16 @@
     in
       containers;
     hydraJobs = {
-      inherit (self) checks;
+      inherit (self) checks devShells;
       nixosConfigurations = nixpkgs.lib.mapAttrs (_: v: v.config.system.build.toplevel) self.nixosConfigurations;
     };
+    devShells.x86_64-linux.default = with pkgsFor "x86_64-linux";
+      mkShell {
+        nativeBuildInputs = with pkgs; [
+          age
+          sops
+          ssh-to-age
+        ];
+      };
   };
 }
