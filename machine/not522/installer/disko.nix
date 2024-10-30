@@ -3,7 +3,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/disk/by-id/nvme-eui.002538b371b824db";
+        device = "/dev/mmcblk1";
         content = {
           type = "gpt";
           partitions = {
@@ -21,7 +21,7 @@
               };
             };
             root = {
-              end = "-8G";
+              size = "100%";
               content = {
                 type = "btrfs";
                 extraArgs = ["-f"]; # Override existing partition
@@ -45,14 +45,6 @@
                   };
                 };
                 mountpoint = "/partition-root";
-              };
-            };
-            swap = {
-              size = "100%";
-              content = {
-                type = "swap";
-                discardPolicy = "both";
-                resumeDevice = true; # resume from hiberation from this device
               };
             };
           };

@@ -75,6 +75,7 @@
         nixos-config = self;
         inherit inputs;
         inTester = false;
+        pureInputs = inputs';
       };
     pkgsFor = system: let
       inputs' =
@@ -141,6 +142,10 @@
       systems' = {
         not522 = {
           config = ./machine/not522;
+          system = "riscv64-linux";
+        };
+        not522-installer = {
+          config = ./machine/not522/installer;
           system = "riscv64-linux";
         };
       };

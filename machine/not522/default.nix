@@ -11,4 +11,5 @@
     ./cross-packages.nix
   ];
   system.stateVersion = "24.11";
+  nixpkgs.config.allowUnsupportedSystem = true;
 }
