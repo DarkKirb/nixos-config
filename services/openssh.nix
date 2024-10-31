@@ -1,4 +1,5 @@
 {...}: {
+  services.openssh.enable = true;
   services.openssh.settings = {
     PermitRootLogin = true;
     PasswordAuthentication = false;
