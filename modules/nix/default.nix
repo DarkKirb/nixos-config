@@ -2,6 +2,7 @@
   imports = [
     ./link-inputs.nix
     ./lix.nix
+    ./autoupdater.nix
   ];
   nix.settings = {
     substituters = [
