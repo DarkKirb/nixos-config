@@ -27,7 +27,7 @@ with lib; {
 
   config.nix.auto-update.enable = mkDefault true;
   config.nix.auto-update.reboot = mkDefault true;
-  systemd.services.nixos-upgrade = {
+  config.systemd.services.nixos-upgrade = {
     description = "NixOS Upgrade";
     restartIfChanged = false;
     unitConfig.X-StopOnRemoval = false;
@@ -70,7 +70,7 @@ with lib; {
     '';
   };
 
-  systemd.timers.nixos-upgrade = {
+  config.systemd.timers.nixos-upgrade = {
     enable = config.nix.auto-update.enable;
     description = "Automatically update nixos";
     requires = ["nixos-upgrade.service"];
