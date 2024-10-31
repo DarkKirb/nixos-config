@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   imports = [
     ./link-inputs.nix
     ./lix.nix
@@ -18,7 +18,7 @@
     experimental-features = "nix-command flakes ca-derivations";
   };
   nix.gc = {
-    automatic = true;
+    automatic = config.nix.enable;
     dates = "weekly";
     options = "--delete-older-than 7d";
   };

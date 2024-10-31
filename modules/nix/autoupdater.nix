@@ -40,11 +40,11 @@ with lib; {
     script = ''
       #!${pkgs.bash}/bin/bash
       set -euxo pipefail
-      builds=$(${pkgs.curl}/bin/curl -H "accept: application/json" ${config.options.nix.auto-update.source} | ${pkgs.jq}/bin/jq -r '.evals[0].builds[]')
+      builds=$(${pkgs.curl}/bin/curl -H "accept: application/json" ${config.nix.auto-update.source} | ${pkgs.jq}/bin/jq -r '.evals[0].builds[]')
       for build in $builds; do
-        doc=$(${pkgs.curl}/bin/curl -H "accept: application/json" ${config.options.nix.auto-update-hydraServer}/build/$build)
+        doc=$(${pkgs.curl}/bin/curl -H "accept: application/json" ${config.nix.auto-update.hydraServer}/build/$build)
         jobname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.job')
-        if [ "$jobname" = "${config.options.nix.auto-update.attr} ]; then
+        if [ "$jobname" = "${config.nix.auto-update.attr} ]; then
           drvname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.drvpath')
           output=$(${pkgs.nix}/bin/nix-store -r $drvname)
           ${pkgs.nix}/bin/nix-env -p /nix/var/nix/profiles/system --set $output
