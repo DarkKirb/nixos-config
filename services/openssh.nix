@@ -1,8 +1,8 @@
 {...}: {
   services.openssh.enable = true;
   services.openssh.settings = {
-    PermitRootLogin = true;
-    PasswordAuthentication = "no";
+    PermitRootLogin = "prohibit-password";
+    PasswordAuthentication = false;
   };
   networking.firewall.allowedTCPPorts = [22];
 }
