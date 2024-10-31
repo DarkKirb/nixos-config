@@ -36,6 +36,6 @@ in {
       set -eux
       exec ${pkgs.disko}/bin/disko-install --flake "${nixos-config}#not522" --disk main "${nixos-config.nixosConfigurations.not522.config.disko.devices.disk.main.device}"
     '')
-    gitMinimal
+    pkgs.gitMinimal
   ];
 }
