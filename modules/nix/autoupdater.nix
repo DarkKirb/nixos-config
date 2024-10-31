@@ -25,9 +25,9 @@ with lib; {
     };
   };
 
-  config.nix.auto-update.enable = mkDefault true;
+  config.nix.auto-update.enable = mkDefault config.nix.enable;
   config.nix.auto-update.reboot = mkDefault true;
-  config.systemd.services.nixos-upgrade = {
+  config.systemd.services.nixos-upgrade = mkIf config.nix.enable {
     description = "NixOS Upgrade";
     restartIfChanged = false;
     unitConfig.X-StopOnRemoval = false;
@@ -82,4 +82,10 @@ with lib; {
       RandomizedDelaySec = "1h";
     };
   };
+  config.assertions = [
+    {
+      assertion = config.nix.auto-update.enable -> config.nix.enable;
+      message = "Auto updating will only work when nix itself is enabled.";
+    }
+  ];
 }
