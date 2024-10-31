@@ -10,4 +10,8 @@
     neededForUsers = true;
     sopsFile = ./password.yaml;
   };
+  environment.persistence."/persistent" = {
+    directories = ["/root/.cache/nix"]; # for sanity
+    files = ["/root/.bash_history"];
+  };
 }
