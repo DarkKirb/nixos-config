@@ -18,6 +18,7 @@ with lib; {
     }
     (mkIf config.environment.impermanence {
       boot.initrd.systemd.services.rootfs-cleanup = {
+        description = "Clean file system root";
         wantedBy = [
           "initrd.target"
         ];

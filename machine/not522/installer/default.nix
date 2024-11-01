@@ -26,6 +26,7 @@ in {
     "${nixos-config}/machine/not522/cross-packages.nix"
     ./disko.nix
   ];
+  boot.initrd.timesync.enable = true;
 
   system.stateVersion = config.system.nixos.version;
 

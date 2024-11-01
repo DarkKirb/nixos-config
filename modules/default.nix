@@ -1,5 +1,6 @@
 {disko, ...}: {
   imports = [
+    ./boot/timesync.nix
     ./riscv.nix
     ./containers/autoconfig.nix
     ./nix
