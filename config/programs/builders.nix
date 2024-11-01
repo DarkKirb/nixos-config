@@ -31,7 +31,7 @@
         user = "backup";
       };
       "build-riscv" = {
-        hostname = "vf2.int.chir.rs";
+        hostname = "not522.tailbab65.ts.net";
         identitiesOnly = true;
         identityFile = "${config.home.homeDirectory}/.ssh/builder_id_ed25519";
         port = 22;
