@@ -32,5 +32,8 @@ with lib; {
       environment.SYSTEMD_NSS_RESOLVE_VALIDATE = "0";
       serviceConfig.ExecStart = "${config.boot.initrd.systemd.package}/lib/systemd/systemd-timesyncd";
     };
+    boot.initrd.systemd.storePaths = [
+      config.boot.initrd.systemd.services.sync-time.serviceConfig.ExecStart
+    ];
   };
 }
