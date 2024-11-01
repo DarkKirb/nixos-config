@@ -12,6 +12,9 @@ with lib; {
     boot.initrd.systemd.users.systemd-timesync = {
       uid = config.users.users.systemd-timesync.uid;
     };
+    boot.initrd.systemd.groups.systemd-timesync = {
+      gid = config.users.groups.systemd-timesync.gid;
+    };
     boot.initrd.systemd.network = {
       enable = true;
       wait-online.enable = true;
