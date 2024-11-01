@@ -31,6 +31,11 @@ with lib; {
         unitConfig.DefaultDependencies = "no";
         serviceConfig.Type = "oneshot";
         script = ''
+          # workaround for machines without working rtc battery
+          # The time may not yet be correctly set, so wait until it is
+          if [[ $(date '+%s') -lt 1730469314 ]];
+            sleep 30 # this should hopefully be enough
+          fi
           mkdir /btrfs_tmp
           mount ${config.fileSystems."/".device} -t btrfs /btrfs_tmp
           if [[ -e /btrfs_tmp/root ]]; then
