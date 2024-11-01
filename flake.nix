@@ -150,10 +150,6 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
-    riscv-overlay = {
-      url = "github:DarkKirb/riscv-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -198,10 +194,6 @@ rec {
       {
         name = "rainbow-resort"; # PC
         system = "x86_64-linux";
-      }
-      {
-        name = "vf2"; # vision five 2
-        system = "riscv64-linux";
       }
       /*
         {
@@ -324,7 +316,6 @@ rec {
     overlays = {
       x86_64-linux = import ./overlays args "x86_64-linux";
       aarch64-linux = import ./overlays args "aarch64-linux";
-      riscv64-linux = import ./overlays args "riscv64-linux";
     };
     devShell.x86_64-linux = let
       pkgs = import nixpkgs {

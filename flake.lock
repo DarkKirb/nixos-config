@@ -961,26 +961,6 @@
         "type": "github"
       }
     },
-    "riscv-overlay": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1728672381,
-        "narHash": "sha256-7zs+Kb4FaClPojFHIv7Wg4YH6B9/PpP2f0o9+5QIA7U=",
-        "owner": "DarkKirb",
-        "repo": "riscv-overlay",
-        "rev": "47b3b0e989ff06046004be0c76d24af9a46a0c29",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DarkKirb",
-        "repo": "riscv-overlay",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "admin-fe": "admin-fe",
@@ -1012,7 +992,6 @@
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_4",
         "pre-commit-hooks": "pre-commit-hooks_2",
-        "riscv-overlay": "riscv-overlay",
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",
         "systems": "systems"
