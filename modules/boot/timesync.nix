@@ -9,6 +9,9 @@ with lib; {
   };
 
   config = mkIf config.boot.initrd.timesync.enable {
+    boot.initrd.systemd.users.systemd-timesync = {
+      uid = config.users.users.systemd-timesync.uid;
+    };
     boot.initrd.systemd.network = {
       enable = true;
       wait-online.enable = true;
