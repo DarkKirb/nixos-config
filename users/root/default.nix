@@ -14,4 +14,5 @@
     directories = ["/root/.cache/nix"]; # for sanity
     files = ["/root/.bash_history"];
   };
+  home-manager.users.root = {};
 }
