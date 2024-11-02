@@ -33,7 +33,7 @@ with lib; {
         script = ''
           # workaround for machines without working rtc battery
           # The time may not yet be correctly set, so wait until it is
-          if [[ $(date '+%s') -lt 1730469314 ]];
+          if [[ $(date '+%s') -lt 1730469314 ]]; then
             sleep 30 # this should hopefully be enough
           fi
           mkdir /btrfs_tmp
