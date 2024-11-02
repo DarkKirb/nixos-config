@@ -15,4 +15,5 @@
     files = ["/root/.bash_history"];
   };
   home-manager.users.root = {};
+  environment.impermanence.users = ["root"];
 }

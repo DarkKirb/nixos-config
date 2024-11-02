@@ -7,7 +7,10 @@
   ...
 }:
 with lib; {
-  imports = ["${impermanence}/nixos.nix"];
+  imports = [
+    "${impermanence}/nixos.nix"
+    ./user-impermanence.nix
+  ];
   options = {
     environment.impermanence.enable = mkEnableOption "Enables impermanence";
   };
