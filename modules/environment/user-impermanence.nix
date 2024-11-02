@@ -25,7 +25,7 @@ with lib; {
             ];
             before = [
               "user-${toString cfg.uid}.slice"
-              "home-manager-${name}.slice"
+              "home-manager-${name}.service"
             ];
             serviceConfig.Type = "oneshot";
             script = ''
