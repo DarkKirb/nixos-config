@@ -9,12 +9,12 @@
 with lib; {
   imports = ["${impermanence}/nixos.nix"];
   options = {
-    environment.impermanence = mkEnableOption "Enables impermanence";
+    environment.impermanence.enable = mkEnableOption "Enables impermanence";
   };
 
   config = mkMerge [
     {
-      environment.impermanence = mkDefault (!config.boot.isContainer && !inTester);
+      environment.impermanence.enable = mkDefault (!config.boot.isContainer && !inTester);
     }
     (mkIf config.environment.impermanence {
       boot.initrd.systemd.services.rootfs-cleanup = {
@@ -40,7 +40,7 @@ with lib; {
           mount ${config.fileSystems."/".device} -t btrfs /btrfs_tmp
           if [[ -e /btrfs_tmp/root ]]; then
             mkdir -p /btrfs_tmp/old_roots
-            timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+            timestamp=$(date --date="@$(stat -c %X /btrfs_tmp/root)" "+%Y-%m-%d_%H:%M:%S")
             mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
           fi
 
