@@ -16,7 +16,7 @@ with lib; {
     {
       environment.impermanence.enable = mkDefault (!config.boot.isContainer && !inTester);
     }
-    (mkIf config.environment.impermanence {
+    (mkIf config.environment.impermanence.enable {
       boot.initrd.systemd.services.rootfs-cleanup = {
         description = "Clean file system root";
         wantedBy = [
