@@ -84,7 +84,6 @@ desktop: {
       ++ (
         if desktop
         then [
-          yubikey-manager
           yt-dlp
           oxipng
           jpegoptim
@@ -95,9 +94,12 @@ desktop: {
         ]
         else []
       );
-    sessionVariables = if desktop then {
-      QT_PLUGIN_PATH = lib.mkForce "\${QT_PLUGIN_PATH}:${config.i18n.inputMethod.package}/${pkgs.qt6.qtbase.qtPluginPrefix}:${pkgs.kdePackages.kimageformats}/${pkgs.qt6.qtbase.qtPluginPrefix}";
-    } else {};
+    sessionVariables =
+      if desktop
+      then {
+        QT_PLUGIN_PATH = lib.mkForce "\${QT_PLUGIN_PATH}:${config.i18n.inputMethod.package}/${pkgs.qt6.qtbase.qtPluginPrefix}:${pkgs.kdePackages.kimageformats}/${pkgs.qt6.qtbase.qtPluginPrefix}";
+      }
+      else {};
   };
 
   programs.eza = {
