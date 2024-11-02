@@ -31,7 +31,7 @@ with lib; {
             script = ''
               if [[ -e ${cfg.home} ]]; then
                 timestamp=$(date --date="@$(stat -c %X ${cfg.home})" "+%Y-%m-%d_%H:%M:%S")
-                mkdir - p /persistent/old-homedirs/${name}
+                mkdir -p /persistent/old-homedirs/${name}
                 mv ${cfg.home} /home/old-homedirs/${name}/$timestamp
               fi
 
