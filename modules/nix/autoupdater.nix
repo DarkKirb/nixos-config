@@ -47,7 +47,7 @@ in
       script = ''
         #!${pkgs.bash}/bin/bash
         set -euxo pipefail
-        build=$(${pkgs.curl}/bin/curl -H "accept: application/json" ${cfg.hydraServer}/api/latestbuilds -d "nr=10" -d "project=${cfg.project}" | ${pkgs.jq}/bin/jq -r '[.[]|select(.buildstatus==0)][0]][0].id')
+        build=$(${pkgs.curl}/bin/curl -H "accept: application/json" ${cfg.hydraServer}/api/latestbuilds -d "nr=10" -d "project=${cfg.project}" | ${pkgs.jq}/bin/jq -r '[.[]|select(.buildstatus==0)][0].id')
         doc=$(${pkgs.curl}/bin/curl -H "accept: application/json" ${config.nix.auto-update.hydraServer}/build/$build)
         drvname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.drvpath')
         output=$(${pkgs.nix}/bin/nix-store -r $drvname)
