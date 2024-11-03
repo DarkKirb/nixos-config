@@ -27,6 +27,9 @@ with lib; {
               "user@${toString cfg.uid}.service"
               "home-manager-${name}.service"
             ];
+            partOf = [
+              "user@${toString cfg.uid}.service"
+            ];
             serviceConfig.Type = "oneshot";
             script = ''
               if [[ -e ${cfg.home} ]]; then
@@ -61,6 +64,9 @@ with lib; {
               "cleanup-home-${name}.service"
             ];
             before = [
+              "user@${toString cfg.uid}.service"
+            ];
+            partOf = [
               "user@${toString cfg.uid}.service"
             ];
           };
