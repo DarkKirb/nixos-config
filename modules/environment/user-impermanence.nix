@@ -19,6 +19,7 @@ with lib; {
         inherit name;
         value.home.persistence.default = {
           persistentStoragePath = "/persistent/home/${name}";
+          allowOther = true;
         };
       })
       config.environment.impermanence.users);

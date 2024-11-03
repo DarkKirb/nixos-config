@@ -1,5 +1,8 @@
 {...}: {
-  imports = [./tide.nix];
+  imports = [
+    ./tide.nix
+    ./z.nix
+  ];
   programs.fish = {
     enable = true;
   };
