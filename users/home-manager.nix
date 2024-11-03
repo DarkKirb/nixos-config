@@ -1,14 +1,10 @@
 {
-  home-manager,
   impermanence,
   inputs,
   inputs',
   config,
   ...
 }: {
-  imports = [
-    "${home-manager}/nixos"
-  ];
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;

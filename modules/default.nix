@@ -1,4 +1,8 @@
-{disko, ...}: {
+{
+  disko,
+  home-manager,
+  ...
+}: {
   imports = [
     ./riscv.nix
     ./containers/autoconfig.nix
@@ -7,5 +11,6 @@
     ./secrets/sops.nix
     disko.nixosModules.default
     ./hydra/build-server.nix
+    "${home-manager}/nixos"
   ];
 }

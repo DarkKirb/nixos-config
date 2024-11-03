@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inTester,
   ...
 }:
 with lib; {
@@ -13,7 +14,7 @@ with lib; {
     };
   };
 
-  config = mkIf config.environment.impermanence.enable {
+  config = mkIf (config.environment.impermanence.enable && config.environment.impermanence.users != []) {
     home-manager.users = listToAttrs (map (name: {
         inherit name;
         value.home.persistence.default = {
