@@ -33,4 +33,9 @@
       set -g default-terminal "screen-256color"
     '';
   };
+  programs.fish.shellInit = ''
+    if status is-interactive and not set -q TMUX
+      tmux attach || tmux
+    end
+  '';
 }
