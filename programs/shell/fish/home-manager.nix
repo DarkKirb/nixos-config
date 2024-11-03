@@ -10,6 +10,10 @@
         name = "autopair";
         src = autopair.src;
       }
+      {
+        name = "fzf";
+        src = fzf.src;
+      }
     ];
   };
   home.persistence.default.directories = [

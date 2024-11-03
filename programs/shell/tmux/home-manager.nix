@@ -39,4 +39,5 @@
       tmux attach || tmux
     end
   '';
+  programs.fzf.tmux.enableShellIntegration = true;
 }
