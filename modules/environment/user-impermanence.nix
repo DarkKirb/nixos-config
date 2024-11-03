@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib; {
@@ -43,14 +44,14 @@ with lib; {
                 for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
                   delete_subvolume_recursively "/persistent/old-homedirs/${name}/$i"
                 done
-                btrfs subvolume delete "$1"
+                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete "$1"
               }
 
               for i in $(find /persistent/old-homedirs/${name} -maxdepth 1 -mtime +30); do
                 delete_subvolume_recursively "$i"
               done
 
-              btrfs subvolume create ${cfg.home}
+              ${pkgs.btrfs-progs}/bin/btrfs subvolume create ${cfg.home}
             '';
           };
         }
