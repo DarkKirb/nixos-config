@@ -21,6 +21,7 @@
       };
     sharedModules = [
       ./common
+      "${impermanence}/home-manager.nix"
     ];
   };
 }

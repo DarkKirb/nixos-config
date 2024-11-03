@@ -11,7 +11,7 @@
     sopsFile = ./password.yaml;
   };
   home-manager.users.root = {config, ...}: {
-    home.persistence."/persistent${config.home.username}" = {
+    home.persistence."/persistent/${config.home.username}" = {
       files = [
         ".bash_history"
       ];
