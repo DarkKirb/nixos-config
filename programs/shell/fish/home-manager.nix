@@ -12,7 +12,7 @@
       }
     ];
   };
-  home.persistence.default.files = [
-    ".local/share/fish/fish_history"
+  home.persistence.default.directories = [
+    ".local/share/fish"
   ];
 }
