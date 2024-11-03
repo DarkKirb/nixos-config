@@ -14,6 +14,13 @@ with lib; {
   };
 
   config = mkIf config.environment.impermanence.enable {
+    home-manager.users = listToAttrs (map (name: {
+        inherit name;
+        value.home.persistence.default = {
+          persistentStoragePath = "/persistent/home/${name}";
+        };
+      })
+      config.environment.impermanence.users);
     systemd.services = listToAttrs (flatten (map (name: let
         cfg = config.users.users.${name};
       in [

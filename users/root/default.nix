@@ -10,12 +10,5 @@
     neededForUsers = true;
     sopsFile = ./password.yaml;
   };
-  home-manager.users.root = {config, ...}: {
-    home.persistence."/persistent/${config.home.username}" = {
-      files = [
-        ".bash_history"
-      ];
-    };
-  };
   environment.impermanence.users = ["root"];
 }
