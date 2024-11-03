@@ -3,7 +3,6 @@
     enable = true;
     baseIndex = 1;
     clock24 = true;
-    prefix = "C-a";
     sensibleOnTop = true;
     plugins = with pkgs.tmuxPlugins; [
       power-theme
@@ -20,6 +19,9 @@
       }
     ];
     extraConfig = ''
+      unbind C-b
+      set -g prefix C-a
+      bind - N "Send the prefix key through to the application" C-a send-prefix
       set-window-option -g automatic-rename on
       set-option -g set-titles on
       bind -n M-Left select-pane -L
