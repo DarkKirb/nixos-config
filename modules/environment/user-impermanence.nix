@@ -21,10 +21,10 @@ with lib; {
           description = "Clean home directory for ${name}";
           value = {
             wantedBy = [
-              "user-${toString cfg.uid}.slice"
+              "user@${toString cfg.uid}.service"
             ];
             before = [
-              "user-${toString cfg.uid}.slice"
+              "user@${toString cfg.uid}.service"
               "home-manager-${name}.service"
             ];
             serviceConfig.Type = "oneshot";
@@ -55,13 +55,13 @@ with lib; {
           name = "home-manager-${name}";
           value = {
             wantedBy = mkForce [
-              "user-${toString cfg.uid}.slice"
+              "user@${toString cfg.uid}.service"
             ];
             after = [
               "cleanup-home-${name}.service"
             ];
             before = [
-              "user-${toString cfg.uid}.slice"
+              "user@${toString cfg.uid}.service"
             ];
           };
         }
