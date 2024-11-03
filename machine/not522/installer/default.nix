@@ -5,6 +5,7 @@
   pureInputs,
   pkgs,
   lib,
+  nixpkgs,
   ...
 }: let
   dependencies =
@@ -25,6 +26,7 @@ in {
     "${nixos-config}/machine/not522/hardware.nix"
     "${nixos-config}/machine/not522/cross-packages.nix"
     ./disko.nix
+    "${nixpkgs}/nixos/modules/profiles/minimal.nix"
   ];
 
   system.stateVersion = config.system.nixos.version;

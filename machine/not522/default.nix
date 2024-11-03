@@ -1,6 +1,7 @@
 {
   nixos-config,
   nixos-hardware,
+  nixpkgs,
   ...
 }: {
   networking.hostName = "not522";
@@ -9,6 +10,7 @@
     ./disko.nix
     ./hardware.nix
     ./cross-packages.nix
+    "${nixpkgs}/nixos/modules/profiles/minimal.nix"
   ];
   system.stateVersion = "24.11";
   nixpkgs.config.allowUnsupportedSystem = true;
