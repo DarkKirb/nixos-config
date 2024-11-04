@@ -35,7 +35,7 @@
       Port 22
       IdentitiesOnly yes
       User remote-build
-      HostName not522.tailbab65.chir.rs
+      HostName not522.tailbab65.ts.net
       IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
 
     Host *
