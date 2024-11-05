@@ -38,15 +38,12 @@ with lib; {
           name = "cleanup-home-${name}";
           description = "Clean home directory for ${name}";
           value = {
-            wantedBy = [
-              "user@${toString cfg.uid}.service"
-            ];
             before = [
               "user@${toString cfg.uid}.service"
               "home-manager-${name}.service"
             ];
             partOf = [
-              "user@${toString cfg.uid}.service"
+              "home-manager-${name}.service"
             ];
             serviceConfig.Type = "oneshot";
             script = ''
@@ -79,6 +76,9 @@ with lib; {
         {
           name = "home-manager-${name}";
           value = {
+            wants = [
+              "cleanup-home-${name}"
+            ];
             wantedBy = mkForce [
               "user@${toString cfg.uid}.service"
             ];
