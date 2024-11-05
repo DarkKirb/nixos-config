@@ -68,7 +68,7 @@ in
               if cfg.specialisation == null
               then "$output/bin/switch-to-configuration switch"
               else ''
-                $output/specialisations/${cfg.specialisation}/bin/switch-to-configuration switch
+                $output/specialisation/${cfg.specialisation}/bin/switch-to-configuration switch
               ''
             }
             else
@@ -81,7 +81,7 @@ in
               if cfg.specialisation == null
               then "$output/bin/switch-to-configuration switch"
               else ''
-                $output/specialisations/${cfg.specialisation}/bin/switch-to-configuration switch
+                $output/specialisation/${cfg.specialisation}/bin/switch-to-configuration switch
               ''
             }
           ''
