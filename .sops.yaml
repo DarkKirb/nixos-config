@@ -1,6 +1,7 @@
 keys:
   - &lotte age1tltjgexkp5fz3rum4j0k66ty5q4u8ptvkgkepumd20zal24g2qfs5xgw76
   - &not522 age1emv3kzvwgl36hgllrv7rlekqy3y3c6eztadl3lv09ks3z9vv6vdqw06yqa
+  - &pc-installer age1eh2vd6cdy23qazwg0hzq95pn9e6p8yaqu4g6zyan8gzal4x5ed5qful8kg
 
 creation_rules:
   - path_regex: machine/not522/secrets\.yaml$
@@ -18,3 +19,10 @@ creation_rules:
       - age:
           - *not522
           - *lotte
+          - *pc-installer
+  - path_regex: users/darkkirb/password\.yaml$
+    key_groups:
+      - age:
+          - *not522
+          - *lotte
+          - *pc-installer

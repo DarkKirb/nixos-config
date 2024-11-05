@@ -3,7 +3,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/disk/by-id/ata-WDC_WD10SPZX-22Z10T0_WD-WXL1A87JL6DC";
         content = {
           type = "gpt";
           partitions = {
@@ -22,7 +22,7 @@
               };
             };
             root = {
-              end = "100%";
+              size = "100%";
               content = {
                 type = "btrfs";
                 extraArgs = ["-f"]; # Override existing partition
