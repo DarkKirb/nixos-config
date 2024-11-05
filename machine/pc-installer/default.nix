@@ -1,6 +1,7 @@
 {
   config,
   nixos-config,
+  lib,
   ...
 }: {
   networking.hostName = "pc-installer";
@@ -17,4 +18,9 @@
       ./graphical.nix
     ];
   };
+  nix.settings.substituters = lib.mkForce [
+    "https://attic.chir.rs/chir-rs/"
+    "https://hydra.chir.rs"
+    "https://cache.nixos.org"
+  ];
 }
