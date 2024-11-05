@@ -9,6 +9,7 @@
     ./disko.nix
     ./grub.nix
     ./hardware.nix
+    "${nixos-config}/config/networkmanager.nix"
   ];
   system.stateVersion = config.system.nixos.version;
   specialisation.graphical = {
