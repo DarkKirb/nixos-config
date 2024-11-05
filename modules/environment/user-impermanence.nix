@@ -77,7 +77,7 @@ with lib; {
           name = "home-manager-${name}";
           value = {
             wants = [
-              "cleanup-home-${name}"
+              "cleanup-home-${name}.service"
             ];
             wantedBy = mkForce [
               "user@${toString cfg.uid}.service"
