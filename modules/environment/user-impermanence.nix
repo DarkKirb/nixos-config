@@ -15,6 +15,7 @@ with lib; {
   };
 
   config = mkIf (config.environment.impermanence.enable && config.environment.impermanence.users != []) {
+    programs.fuse.userAllowOther = true;
     home-manager.users = listToAttrs (map (name: {
         inherit name;
         value.home.persistence.default = {
