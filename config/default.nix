@@ -6,6 +6,7 @@
     "${nixos-config}/users"
     "${nixos-config}/programs"
     ./systemd-boot.nix
+    ./i18n.nix
   ];
   boot.initrd.systemd.enable = true;
 }

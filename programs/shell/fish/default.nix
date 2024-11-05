@@ -3,8 +3,11 @@
   home-manager.users.root.imports = [
     ./home-manager.nix
   ];
+  home-manager.users.darkkirb.imports = [
+    ./home-manager.nix
+  ];
   programs.bash.interactiveShellInit = ''
-    for user in root; do
+    for user in root darkkirb; do
       if [[ $USER == $user ]]; then
         if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
         then

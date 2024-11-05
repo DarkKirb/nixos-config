@@ -30,6 +30,11 @@ in
         description = "Job name to use";
         default = "nixosConfigurations.${config.networking.hostName}";
       };
+      specialisation = mkOption {
+        type = types.nullOr types.str;
+        description = "specialisation to switch into";
+        default = null;
+      };
     };
 
     config.nix.auto-update.enable = mkDefault config.nix.enable;
@@ -48,32 +53,44 @@ in
         #!${pkgs.bash}/bin/bash
         set -euxo pipefail
         build=$(${pkgs.curl}/bin/curl -H "accept: application/json" -G ${cfg.hydraServer}/api/latestbuilds -d "nr=10" -d "project=${cfg.project}" -d "jobset=${cfg.jobset}" -d "job=${cfg.job}" | ${pkgs.jq}/bin/jq -r '[.[]|select(.buildstatus==0)][0].id')
-        doc=$(${pkgs.curl}/bin/curl -H "accept: application/json" ${config.nix.auto-update.hydraServer}/build/$build)
+        doc=$(${pkgs.curl}/bin/curl -H "accept: application/json" ${cfg.hydraServer}/build/$build)
         drvname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.drvpath')
         output=$(${pkgs.nix}/bin/nix-store -r $drvname)
         ${pkgs.nix}/bin/nix-env -p /nix/var/nix/profiles/system --set $output
         ${
-          if config.nix.auto-update.reboot
+          if cfg.reboot
           then ''
             $output/bin/switch-to-configuration boot
             booted="$(${pkgs.coreutils}/bin/readlink /run/booted-system/{initrd,kernel,kernel-modules})"
             built="$(${pkgs.coreutils}/bin/readlink $output/{initrd,kernel,kernel-modules})"
             if [ "$booted" = "$built" ]; then
-              $output/bin/switch-to-configuration switch
+              ${
+              if cfg.specialisation == null
+              then "$output/bin/switch-to-configuration switch"
+              else ''
+                $output/specialisations/${cfg.specialisation}/bin/switch-to-configuration switch
+              ''
+            }
             else
                 ${pkgs.systemd}/bin/shutdown -r +1
             fi
             exit
           ''
           else ''
-            $output/bin/switch-to-configuration switch
+            ${
+              if cfg.specialisation == null
+              then "$output/bin/switch-to-configuration switch"
+              else ''
+                $output/specialisations/${cfg.specialisation}/bin/switch-to-configuration switch
+              ''
+            }
           ''
         }
       '';
     };
 
     config.systemd.timers.nixos-upgrade = {
-      enable = config.nix.auto-update.enable;
+      enable = cfg.enable;
       description = "Automatically update nixos";
       requires = ["nixos-upgrade.service"];
       wants = ["network-online.target"];
@@ -86,8 +103,16 @@ in
     };
     config.assertions = [
       {
-        assertion = config.nix.auto-update.enable -> config.nix.enable;
+        assertion = cfg.enable -> config.nix.enable;
         message = "Auto updating will only work when nix itself is enabled.";
+      }
+      {
+        assertion = (cfg.specialisation != null) -> config.isSpecialisation;
+        message = "Automatic update switching to specialisation is only allowed in specialisations";
+      }
+      {
+        assertion = config.isSpecialisation -> (cfg.specialisation != null);
+        message = "Specifying the specialization name is required for autoupdate to work!";
       }
     ];
   }

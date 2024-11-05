@@ -1,0 +1,3 @@
+{config, ...}: {
+  console.keyMap = "neo";
+}

@@ -152,6 +152,10 @@
           config = ./machine/not522/installer;
           system = "riscv64-linux";
         };
+        pc-installer = {
+          config = ./machine/pc-installer;
+          system = "x86_64-linux";
+        };
       };
       containers = mapAttrs (_: container:
         mkSystem {
