@@ -21,6 +21,13 @@ with lib; {
         value.home.persistence.default = {
           persistentStoragePath = "/persistent/home/${name}";
           allowOther = true;
+          directories = [
+            "Downloads"
+            "Music"
+            "Pictures"
+            "Documents"
+            "Videos"
+          ];
         };
       })
       config.environment.impermanence.users);
