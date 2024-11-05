@@ -63,8 +63,8 @@ with lib; {
               ${pkgs.btrfs-progs}/bin/btrfs subvolume create ${cfg.home}
               chown -R ${name}:${cfg.group} ${cfg.home}
 
-              mkdir -p /persistent/home/${cfg.home}
-              chown -R ${name}:${cfg.group} ${cfg.home}
+              mkdir -p /persistent/home/${name}
+              chown -R ${name}:${cfg.group} /persistent/home/${name}
             '';
           };
         }
