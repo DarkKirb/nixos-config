@@ -49,7 +49,12 @@ in
 
       serviceConfig.Type = "oneshot";
 
-      script = ''
+      script = let
+        switchToConfiguration =
+          if cfg.specialisation == null
+          then "$output/bin/switch-to-configuration switch"
+          else "$output/specialisation/${cfg.specialisation}/bin/switch-to-configuration";
+      in ''
         #!${pkgs.bash}/bin/bash
         set -euxo pipefail
         build=$(${pkgs.curl}/bin/curl -H "accept: application/json" -G ${cfg.hydraServer}/api/latestbuilds -d "nr=10" -d "project=${cfg.project}" -d "jobset=${cfg.jobset}" -d "job=${cfg.job}" | ${pkgs.jq}/bin/jq -r '[.[]|select(.buildstatus==0)][0].id')
@@ -60,30 +65,18 @@ in
         ${
           if cfg.reboot
           then ''
-            $output/bin/switch-to-configuration boot
+            ${switchToConfiguration} boot
             booted="$(${pkgs.coreutils}/bin/readlink /run/booted-system/{initrd,kernel,kernel-modules})"
             built="$(${pkgs.coreutils}/bin/readlink $output/{initrd,kernel,kernel-modules})"
             if [ "$booted" = "$built" ]; then
-              ${
-              if cfg.specialisation == null
-              then "$output/bin/switch-to-configuration switch"
-              else ''
-                $output/specialisation/${cfg.specialisation}/bin/switch-to-configuration switch
-              ''
-            }
+              ${switchToConfiguration} switch
             else
-                ${pkgs.systemd}/bin/shutdown -r +1
+              ${pkgs.systemd}/bin/shutdown -r +1
             fi
             exit
           ''
           else ''
-            ${
-              if cfg.specialisation == null
-              then "$output/bin/switch-to-configuration switch"
-              else ''
-                $output/specialisation/${cfg.specialisation}/bin/switch-to-configuration switch
-              ''
-            }
+            ${switchToConfiguration} switch
           ''
         }
       '';
