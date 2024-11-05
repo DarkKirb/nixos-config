@@ -59,7 +59,7 @@ with lib; {
 
               delete_subvolume_recursively() {
                 IFS=$'\n'
-                for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+                for i in $(${pkgs.btrfs-progs}/bin/btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
                   delete_subvolume_recursively "/persistent/old-homedirs/${name}/$i"
                 done
                 ${pkgs.btrfs-progs}/bin/btrfs subvolume delete "$1"
