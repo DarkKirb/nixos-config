@@ -8,6 +8,7 @@
     "${nixos-config}/config"
     ./disko.nix
     ./grub.nix
+    ./hardware.nix
   ];
   system.stateVersion = config.system.nixos.version;
   specialisation.graphical = {

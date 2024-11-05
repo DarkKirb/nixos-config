@@ -9,4 +9,5 @@
     ./i18n.nix
   ];
   boot.initrd.systemd.enable = true;
+  hardware.enableRedistributableFirmware = true;
 }
