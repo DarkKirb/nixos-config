@@ -32,6 +32,7 @@ with lib; {
           value = {
             wantedBy = [
               "user@${toString cfg.uid}.service"
+              "multi-user.target"
             ];
             before = [
               "user@${toString cfg.uid}.service"
@@ -73,6 +74,7 @@ with lib; {
           value = {
             wantedBy = mkForce [
               "user@${toString cfg.uid}.service"
+              "multi-user.target"
             ];
             after = [
               "cleanup-home-${name}.service"
