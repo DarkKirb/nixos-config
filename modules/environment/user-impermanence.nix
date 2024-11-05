@@ -61,6 +61,7 @@ with lib; {
               done
 
               ${pkgs.btrfs-progs}/bin/btrfs subvolume create ${cfg.home}
+              chown -R ${name}:${cfg.group} ${cfg.home}
             '';
           };
         }
