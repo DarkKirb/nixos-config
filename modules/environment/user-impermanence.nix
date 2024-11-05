@@ -61,7 +61,7 @@ with lib; {
                 for i in $(${pkgs.btrfs-progs}/bin/btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
                   delete_subvolume_recursively "/persistent/old-homedirs/${name}/$i"
                 done
-                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete "$1"
+                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete "$1" || rm -rf "$1"
               }
 
               for i in $(find /persistent/old-homedirs/${name} -maxdepth 1 -atime +30); do
