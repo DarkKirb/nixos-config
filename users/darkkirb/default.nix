@@ -10,7 +10,12 @@
   };
   sops.secrets."users/users/darkkirb/hashedPassword" = {
     neededForUsers = true;
-    sopsFile = ./password.yaml;
+    sopsFile = ./system.yaml;
   };
+  sops.secrets."users/users/darkkirb/age-key" = {
+    owner = "darkkirb";
+    sopsFile = ./system.yaml;
+  };
+  home-manager.users.darkkirb.sops.age.keyFile = config.sops.secrets."users/users/darkkirb/age-key".path;
   environment.impermanence.users = ["darkkirb"];
 }

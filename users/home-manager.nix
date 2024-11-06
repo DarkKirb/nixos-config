@@ -3,6 +3,7 @@
   inputs,
   inputs',
   config,
+  sops-nix,
   ...
 }: {
   home-manager = {
@@ -18,6 +19,7 @@
     sharedModules = [
       ./common
       "${impermanence}/home-manager.nix"
+      sops-nix.homeManagerModules.sops
     ];
   };
 }

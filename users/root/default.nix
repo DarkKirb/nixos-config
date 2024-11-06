@@ -8,7 +8,12 @@
   };
   sops.secrets."users/users/root/hashedPassword" = {
     neededForUsers = true;
-    sopsFile = ./password.yaml;
+    sopsFile = ./system.yaml;
   };
+  sops.secrets."users/users/root/age-key" = {
+    owner = "root";
+    sopsFile = ./system.yaml;
+  };
+  home-manager.users.root.sops.age.keyFile = config.sops.secrets."users/users/root/age-key".path;
   environment.impermanence.users = ["root"];
 }

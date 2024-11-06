@@ -2,6 +2,7 @@ users:
     users:
         root:
             hashedPassword: ENC[AES256_GCM,data:ptHTZ/MHRId363TlEWNJpOMQ46dISPSQjvrqsxQzq9hmDU3oC0FO9Mtf08I9wcVa0KpIEQfSZp/AgZ7yburK9EpfBccwudRdzpCBynsRYxhbuirSAm4ANaBLyrYx1jsCXFbeNDA4xsrmfw==,iv:WIG8qv7vAIUN8MMPkPKc9sjG1CQMYk03/C2TYSDs9zY=,tag:9Vm8Grn2AtME0O329N60Bw==,type:str]
+            age-key: ENC[AES256_GCM,data:A0G/R9o2Qray5kk7lqwu00EOJD0mRQ5cYWRDBzvw0gMTIq+JU16m5QrXLgzK3M/oURxPbBUOC+Wy7ZdiPAHVj5i353bsVLzGi6wIuwQpL2HA0RUwcos/bBnPTcvRriErBIpMYxgkxEVvgb4NpS0523V09AiXgX5DSY/z6pmQ1ERtXl1YRW+lCRqewgUUweC4WE31iG82NDOXkPZM+oaFginQeUy0Ruy4Kya4xQjC/+pzbxRdJwQKGkf/5fLl,iv:1TnvWbolHgQgOMmOBxpqxUlKmD14oCd+Yo/Jn2AHuL8=,tag:ML2ifWFpzHHxJ4F2OQ3+jA==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -35,8 +36,8 @@ sops:
             MGg3ZUxqcnhzbiszb2RNVkkwNUNIbHcK/NdUErDE9xecelLx1i0MjZCKkdev+hdx
             ZWwQORih0fGotN9FjFQuBTc4Y0ApRy8Su52xCp1UOqM0FhnaHjwEQQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-29T13:48:11Z"
-    mac: ENC[AES256_GCM,data:fNxQFhopRt4cf8tepyYuePCwIwOozf1gOgO3ixhyuZqpnWAt5ng7p8BoKyeigRDvIanBsbUQ8MtuEfIfBSEYzgAeAihODIyuSmsq72sqE1Jfm77Yq8HpeUQxYGEtDND3awx/wEcgpumnNXS9UzAJVh0Un5yY1mUA/E2fYpdVRX0=,iv:Kh9oUpyK83xxfG8OVs2jgxlJDIRiyKuQVgPNEiFdT7A=,tag:CXyRtYHHgD0+INnyEcC6rg==,type:str]
+    lastmodified: "2024-11-06T08:34:07Z"
+    mac: ENC[AES256_GCM,data:U3+GUzxyPL7infWqht48rQ7Oe7E7Fu3WU883VZjJSKLM46ilDf0mWhpIWX7JDwhFzii/fSyF3+FsJvBDD4bcnK8L0UiS7C9z6yH9RGtOXI6is6jitfgm4qOuPP+aZa99hEDUf/ZO5uEzE/Psayf4aVAxEyL3L+SgVdiWf2MIFmk=,iv:XQavrryRBHnSf/xPMGY/lk/ep1qdRdgDtzUVwde4vXE=,tag:yWScrP9lTH1SiHpUiQuAXw==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.9.1
