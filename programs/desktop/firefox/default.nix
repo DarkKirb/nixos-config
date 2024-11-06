@@ -1,17 +1,60 @@
 {
   pkgs,
   config,
+  lib,
   ...
-}: {
+}: let
+  extensions = {
+    "ublock-origin" = [
+      "alarms"
+      "dns"
+      "menus"
+      "privacy"
+      "storage"
+      "tabs"
+      "unlimitedStorage"
+      "webNavigation"
+      "webRequest"
+      "webRequestBlocking"
+      "<all_urls>"
+      "http://*/*"
+      "https://*/*"
+      "file://*/*"
+      "https://easylist.to/*"
+      "https://*.fanboy.co.nz/*"
+      "https://filterlists.com/*"
+      "https://forums.lanik.us/*"
+      "https://github.com/*"
+      "https://*.github.io/*"
+      "https://github.com/uBlockOrigin/*"
+      "https://ublockorigin.github.io/*"
+      "https://*.reddit.com/r/uBlockOrigin/*"
+    ];
+    "sidebery" = [
+      "activeTab"
+      "tabs"
+      "contextualIdentities"
+      "cookies"
+      "storage"
+      "unlimitedStorage"
+      "sessions"
+      "menus"
+      "menus.overrideContext"
+      "search"
+      "theme"
+    ];
+  };
+in {
   programs.firefox = {
     enable = true;
     profiles.default = {
       containersForce = true;
-      extensions = []; # TODO
+      extensions = map (v: config.nur.repos.rycee.firefox-addons.${v}) (lib.attrKeys extensions);
       settings = {
         "extensions.autoDisableScopes" = 0;
       };
       userChrome = ''
+        @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
         #main-window #titlebar {
           overflow: hidden;
           transition: height 0.3s 0.3s !important;
@@ -27,4 +70,16 @@
       '';
     };
   };
+  assertions =
+    lib.mapAttrsToList (k: v: let
+      unaccepted =
+        lib.subtractLists
+        v
+        config.nur.repos.rycee.firefox-addons.${k}.meta.mozPermissions;
+    in {
+      assertion = unaccepted == [];
+      message = ''
+        Extension ${k} has unaccepted permissions: ${builtins.toJSON unaccepted}'';
+    })
+    extensions;
 }

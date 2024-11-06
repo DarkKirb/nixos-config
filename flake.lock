@@ -275,6 +275,21 @@
         "type": "github"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1730885145,
+        "narHash": "sha256-UPrBEY0No1O3ULb67xYjRh2r3u7MnZovfo1oYSPCIxI=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "c0d8828600ef47d475e6ec33513bf9af6eb6b991",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
     "plasma-manager": {
       "inputs": {
         "home-manager": "home-manager_2",
@@ -359,6 +374,7 @@
         "nix2container": "nix2container",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nur": "nur",
         "plasma-manager": "plasma-manager",
         "pre-commit-hooks": "pre-commit-hooks",
         "riscv-overlay": "riscv-overlay",
