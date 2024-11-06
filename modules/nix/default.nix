@@ -1,13 +1,19 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}:
+with lib; {
   imports = [
     ./link-inputs.nix
     ./lix.nix
     ./autoupdater.nix
   ];
   nix.settings = {
-    substituters = [
-      "https://attic.chir.rs/chir-rs/"
-      "https://hydra.int.chir.rs"
+    substituters = mkMerge [
+      ["https://attic.chir.rs/chir-rs/"]
+      (mkIf (!config.isInstaller) ["https://hydra.int.chir.rs"])
+      (mkIf config.isInstaller ["https://hydra.chir.rs"])
     ];
     trusted-public-keys = [
       "nixcache:8KKuGz95Pk4UJ5W/Ni+pN+v+LDTkMMFV4yrGmAYgkDg="

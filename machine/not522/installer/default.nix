@@ -39,9 +39,5 @@ in {
       exec ${pkgs.disko}/bin/disko-install --flake "${nixos-config}#not522" --disk main "${nixos-config.nixosConfigurations.not522.config.disko.devices.disk.main.device}"
     '')
   ];
-  nix.settings.substituters = lib.mkForce [
-    "https://attic.chir.rs/chir-rs/"
-    "https://hydra.chir.rs"
-    "https://cache.nixos.org"
-  ];
+  isInstaller = true;
 }
