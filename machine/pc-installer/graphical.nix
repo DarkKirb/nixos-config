@@ -18,5 +18,6 @@
         powerProfile = "performance";
       };
     };
+    programs.plasma.kscreenlocker.autoLock = false;
   };
 }
