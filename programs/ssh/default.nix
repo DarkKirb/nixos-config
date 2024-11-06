@@ -1,9 +1,4 @@
 _: {
-  imports = [
-    ./shell
-    ./editors
-    ./ssh
-  ];
   home-manager.users.root.imports = [
     ./home-manager.nix
   ];

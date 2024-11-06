@@ -28,3 +28,9 @@ creation_rules:
           - *not522
           - *base
           - *pc-installer
+  - path_regex: programs/ssh/shared-keys.yaml$
+    key_groups:
+      - age:
+          - *root
+          - *darkkirb
+          - *base

@@ -8,6 +8,7 @@ with lib; {
     ./link-inputs.nix
     ./lix.nix
     ./autoupdater.nix
+    ./build-server.nix
   ];
   nix.settings = {
     substituters = mkMerge [
