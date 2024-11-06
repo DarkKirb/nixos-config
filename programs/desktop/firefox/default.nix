@@ -136,7 +136,7 @@ in {
         Extension ${k} has unaccepted permissions: ${builtins.toJSON unaccepted}'';
     })
     extensions;
-  value.home.persistence.default.directories = [
+  home.persistence.default.directories = [
     ".mozilla"
   ];
 }
