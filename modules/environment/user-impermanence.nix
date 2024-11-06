@@ -45,7 +45,7 @@ with lib; {
               "home-manager-${name}.service"
             ];
             partOf = [
-              "home-manager-${name}.service"
+              "user@${toString cfg.uid}.service"
             ];
             serviceConfig.Type = "oneshot";
             script = ''
