@@ -8,7 +8,6 @@
     profiles.default = {
       containersForce = true;
       extensions = []; # TODO
-      path = "${config.xdg.dataHome}/mozilla/default";
       settings = {
         "extensions.autoDisableScopes" = 0;
       };
