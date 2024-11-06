@@ -43,6 +43,59 @@
       "search"
       "theme"
     ];
+    "darkreader" = [
+      "alarms"
+      "contextMenus"
+      "storage"
+      "tabs"
+      "theme"
+      "<all_urls>"
+    ];
+    "plasma-integration" = [
+      "nativeMessaging"
+      "notifications"
+      "storage"
+      "downloads"
+      "tabs"
+      "<all_urls>"
+      "contextMenus"
+      "*://*/*"
+    ];
+    "keepassxc-browser" = [
+      "activeTab"
+      "clipboardWrite"
+      "contextMenus"
+      "cookies"
+      "nativeMessaging"
+      "notifications"
+      "storage"
+      "tabs"
+      "webNavigation"
+      "webRequest"
+      "webRequestBlocking"
+      "https://*/*"
+      "http://*/*"
+      "https://api.github.com/"
+      "<all_urls>"
+    ];
+    "sponsorblock" = [
+      "storage"
+      "scripting"
+      "https://sponsor.ajay.app/*"
+      "https://*.youtube.com/*"
+      "https://www.youtube-nocookie.com/embed/*"
+    ];
+    "dearrow" = [
+      "storage"
+      "unlimitedStorage"
+      "alarms"
+      "https://sponsor.ajay.app/*"
+      "https://dearrow-thumb.ajay.app/*"
+      "https://*.googlevideo.com/*"
+      "https://*.youtube.com/*"
+      "https://www.youtube-nocookie.com/embed/*"
+      "scripting"
+    ];
   };
 in {
   programs.firefox = {
