@@ -36,6 +36,7 @@
   programs.fish.shellInit = ''
     if status is-interactive
     and not set -q TMUX
+    and not set -q SSH_TTY
       tmux attach || tmux
     end
   '';
