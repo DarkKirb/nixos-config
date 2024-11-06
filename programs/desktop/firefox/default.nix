@@ -49,7 +49,7 @@ in {
     enable = true;
     profiles.default = {
       containersForce = true;
-      extensions = map (v: config.nur.repos.rycee.firefox-addons.${v}) (lib.attrKeys extensions);
+      extensions = map (v: config.nur.repos.rycee.firefox-addons.${v}) (lib.attrNames extensions);
       settings = {
         "extensions.autoDisableScopes" = 0;
       };
