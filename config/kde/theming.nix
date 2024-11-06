@@ -18,12 +18,6 @@
           "org.kde.plasma.digitalclock"
         ];
       }
-      # Global menu at the top
-      {
-        location = "top";
-        height = 26;
-        widgets = ["org.kde.plasma.appmenu"];
-      }
     ];
   };
 }
