@@ -52,6 +52,7 @@ in {
       extensions = map (v: config.nur.repos.rycee.firefox-addons.${v}) (lib.attrNames extensions);
       settings = {
         "extensions.autoDisableScopes" = 0;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       };
       userChrome = ''
         @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
