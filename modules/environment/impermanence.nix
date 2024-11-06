@@ -98,6 +98,7 @@ with lib; {
         directories = [
           "/var/log"
           "/var/lib/nixos"
+          "/var/cache"
         ];
         files = [
           "/etc/ssh/ssh_host_ecdsa_key"
@@ -108,6 +109,9 @@ with lib; {
           "/etc/ssh/ssh_host_rsa_key.pub"
         ];
       };
+      systemd.tmpfiles.rules = [
+        "d /persistent/var/cache 1777 root root 7d -"
+      ];
     })
   ];
 }
