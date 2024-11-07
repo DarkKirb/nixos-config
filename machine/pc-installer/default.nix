@@ -16,12 +16,12 @@
   specialisation.graphical = {
     configuration.imports = [
       ./graphical.nix
+      "${nixos-config}/config/graphical/plymouth.nix"
     ];
   };
   specialisation.graphical-verbose = {
     configuration.imports = [
       ./graphical.nix
-      "${nixos-config}/config/verbose.nix"
     ];
   };
   isInstaller = true;

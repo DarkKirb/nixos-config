@@ -1,5 +1,0 @@
-{...}: {
-  disabledModules = [
-    ./graphical/plymouth.nix
-  ];
-}
