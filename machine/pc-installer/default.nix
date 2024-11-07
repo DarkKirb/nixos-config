@@ -2,6 +2,8 @@
   config,
   nixos-config,
   lib,
+  pkgs,
+  pureInputs,
   ...
 }: let
   dependencies =
