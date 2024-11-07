@@ -29,6 +29,7 @@ in
         type = types.str;
         description = "Job name to use";
         default = "nixosConfigurations.${config.networking.hostName}";
+        defaultText = literalExpression ''"nixosConfigurations.''${config.networking.hostName}"'';
       };
       specialisation = mkOption {
         type = types.nullOr types.str;

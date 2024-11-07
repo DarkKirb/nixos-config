@@ -4,7 +4,6 @@
   inputs',
   config,
   sops-nix,
-  nur,
   ...
 }: {
   home-manager = {
@@ -21,7 +20,6 @@
       ./common
       "${impermanence}/home-manager.nix"
       sops-nix.homeManagerModules.sops
-      nur.nixosModules.nur
     ];
   };
 }

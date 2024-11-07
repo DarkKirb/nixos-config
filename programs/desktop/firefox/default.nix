@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  nur,
   ...
 }: let
   extensions = {
@@ -97,12 +98,16 @@
       "scripting"
     ];
   };
+  nur' = import nur {
+    nurpkgs = pkgs;
+    inherit pkgs;
+  };
 in {
   programs.firefox = {
     enable = true;
     profiles.default = {
       containersForce = true;
-      extensions = map (v: config.nur.repos.rycee.firefox-addons.${v}) (lib.attrNames extensions);
+      extensions = map (v: nur'.repos.rycee.firefox-addons.${v}) (lib.attrNames extensions);
       settings = {
         "extensions.autoDisableScopes" = 0;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -135,7 +140,7 @@ in {
       unaccepted =
         lib.subtractLists
         v
-        config.nur.repos.rycee.firefox-addons.${k}.meta.mozPermissions;
+        nur'.repos.rycee.firefox-addons.${k}.meta.mozPermissions;
     in {
       assertion = unaccepted == [];
       message = ''

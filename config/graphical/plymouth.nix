@@ -1,3 +1,5 @@
+# Unlike other modules in this directory, this one is not enabled by default
+# The default graphical configuration would enable this, the verbose configuration would not.
 {config, ...}: {
   boot = {
     plymouth.enable = true;
