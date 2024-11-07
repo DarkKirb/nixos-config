@@ -2,7 +2,6 @@ keys:
   - &base age1tltjgexkp5fz3rum4j0k66ty5q4u8ptvkgkepumd20zal24g2qfs5xgw76
   - &not522 age1emv3kzvwgl36hgllrv7rlekqy3y3c6eztadl3lv09ks3z9vv6vdqw06yqa
   - &pc-installer age1eh2vd6cdy23qazwg0hzq95pn9e6p8yaqu4g6zyan8gzal4x5ed5qful8kg
-  - &root age1pcdyf483yl2r8wny30yxsp9yusgder6vra7yrf7qjqn5fjhcxeaq3342ew
   - &darkkirb age15g6tzvcmcp3ae4hwnn4pwewat6eq9unlhtjrlaka6rf94ej9dd5qqpgt7u
 
 creation_rules:
@@ -31,6 +30,7 @@ creation_rules:
   - path_regex: programs/ssh/shared-keys.yaml$
     key_groups:
       - age:
-          - *root
           - *darkkirb
           - *base
+          - *not522
+          - *pc-installer
