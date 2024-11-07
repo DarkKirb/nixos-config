@@ -32,7 +32,11 @@ with lib; {
         };
       })
       config.environment.impermanence.users);
-    systemd.tmpfiles.rules = map (name: "d /persistent/home/${name}/.cache 700 ${name} ${name} 7d -") config.environment.impermanence.users;
+    systemd.tmpfiles.rules = mkMerge (map (name: [
+        "d /persistent/home/${name} 700 ${name} ${config.users.users.${name}.group} - -"
+        "d /persistent/home/${name}/.cache 700 ${name} ${config.users.users.${name}.group} 7d -"
+      ])
+      config.environment.impermanence.users);
     systemd.services = listToAttrs (flatten (map (name: let
         cfg = config.users.users.${name};
       in [
