@@ -19,4 +19,5 @@
   home.persistence.default.directories = [
     ".local/share/fish"
   ];
+  programs.nix-index.enable = true;
 }
