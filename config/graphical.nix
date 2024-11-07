@@ -3,5 +3,6 @@
   isGraphical = true;
   imports = [
     ./kde
+    ./graphical/plymouth.nix
   ];
 }

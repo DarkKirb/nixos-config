@@ -18,5 +18,11 @@
       ./graphical.nix
     ];
   };
+  specialisation.graphical-verbose = {
+    configuration.imports = [
+      ./graphical.nix
+      "${nixos-config}/config/verbose.nix"
+    ];
+  };
   isInstaller = true;
 }
