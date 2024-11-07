@@ -107,6 +107,11 @@ in {
         "extensions.autoDisableScopes" = 0;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "browser.tabs.inTitlebar" = 0;
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
+        "widget.use-xdg-desktop-portal.location" = 1;
+        "widget.use-xdg-desktop-portal.mime-handler" = 1;
+        "widget.use-xdg-desktop-portal.open-uri" = 1;
+        "widget.use-xdg-desktop-portal.settings" = 1;
       };
       userChrome = ''
         @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
