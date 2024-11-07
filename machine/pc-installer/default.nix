@@ -45,6 +45,7 @@ in {
     ];
   };
   isInstaller = true;
+  environment.etc."install-closure".source = "${closureInfo}/store-paths";
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "install-thinkrac-unattended" ''
       set -eux
