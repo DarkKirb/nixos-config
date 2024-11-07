@@ -161,6 +161,10 @@
           config = ./machine/pc-installer;
           system = "x86_64-linux";
         };
+        thinkrac = {
+          config = ./machine/thinkrac;
+          system = "x86_64-linux";
+        };
       };
       containers = mapAttrs (_: container:
         mkSystem {
