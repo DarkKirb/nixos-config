@@ -7,7 +7,7 @@
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.grub = {
     enable = true;
-    devices = [config.disko.devices.disk.main.device];
+    devices = [config.disko.devices.disk.installer.device];
     efiInstallAsRemovable = true;
     efiSupport = true;
     memtest86.enable = true;
