@@ -63,7 +63,7 @@ in
         doc=$(${pkgs.curl}/bin/curl -H "accept: application/json" ${cfg.hydraServer}/build/$build)
         drvname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.drvpath')
         output=$(${pkgs.nix}/bin/nix-store -r $drvname)
-        ${pkgs.nix}/bin/nix-env -p /nix/var/nix/profiles/system --set $output
+        ${pkgs.nix}/bin/nix-env -p /nix/var/nix/profiles/system --set ${output}
         ${
           if cfg.reboot
           then ''
