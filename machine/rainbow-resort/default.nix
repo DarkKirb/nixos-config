@@ -21,4 +21,5 @@
       }
     ];
   };
+  home-manager.users.darkkirb.imports = [./home-manager.nix];
 }
