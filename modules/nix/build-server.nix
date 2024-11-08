@@ -47,7 +47,7 @@ with lib; {
           ];
         }
       ]
-      [
+      (mkIf (config.networking.hostName != "rainbow-resort") [
         {
           hostName = "build-rainbow-resort";
           systems = [
@@ -76,7 +76,7 @@ with lib; {
             "ca-derivations"
           ];
         }
-      ]
+      ])
       (mkIf (config.networking.hostName != "not522") [
         {
           hostName = "build-riscv";

@@ -17,7 +17,31 @@
   boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = ["kvm-amd" "i2c-dev" "i2c-piix4"];
   boot.extraModulePackages = [];
-  nix.settings.cores = 4;
-  # use the lowest frequency possible, to save power
-  powerManagement.cpuFreqGovernor = "powersave";
+  nix.settings.cores = 16;
+  boot.binfmt.emulatedSystems = [
+    "armv7l-linux"
+    "powerpc-linux"
+    "powerpc64-linux"
+    "powerpc64le-linux"
+    "wasm32-wasi"
+    "riscv32-linux"
+    "riscv64-linux"
+  ];
+  nix.daemonCPUSchedPolicy = "idle";
+  nix.daemonIOSchedClass = "idle";
+
+  nix.settings.system-features = [
+    "kvm"
+    "nixos-test"
+    "big-parallel"
+    "benchmark"
+    "gccarch-znver4"
+    "gccarch-znver3"
+    "gccarch-znver2"
+    "gccarch-znver1"
+    "gccarch-skylake"
+    "gccarch-skylake-avx512"
+    "ca-derivations"
+  ];
+
 }
