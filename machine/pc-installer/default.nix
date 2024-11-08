@@ -6,14 +6,16 @@
   pureInputs,
   ...
 }: let
+  getDeps = name: [
+    nixos-config.nixosConfigurations.${name}.config.system.build.toplevel
+    nixos-config.nixosConfigurations.${name}.config.system.build.diskoScript
+    nixos-config.nixosConfigurations.${name}.config.system.build.diskoScript.drvPath
+    nixos-config.nixosConfigurations.${name}.pkgs.stdenv.drvPath
+    (nixos-config.nixosConfigurations.${name}.pkgs.closureInfo {rootPaths = [];}).drvPath
+  ];
   dependencies =
-    [
-      nixos-config.nixosConfigurations.thinkrac.config.system.build.toplevel
-      nixos-config.nixosConfigurations.thinkrac.config.system.build.diskoScript
-      nixos-config.nixosConfigurations.thinkrac.config.system.build.diskoScript.drvPath
-      nixos-config.nixosConfigurations.thinkrac.pkgs.stdenv.drvPath
-      (nixos-config.nixosConfigurations.thinkrac.pkgs.closureInfo {rootPaths = [];}).drvPath
-    ]
+    (getDeps "rainbow-resort")
+    ++ (getDeps "thinkrac")
     ++ map (i: i.outPath) (builtins.filter builtins.isAttrs (builtins.attrValues pureInputs));
 
   closureInfo = pkgs.closureInfo {rootPaths = dependencies;};
@@ -50,6 +52,10 @@ in {
     (pkgs.writeShellScriptBin "install-thinkrac-unattended" ''
       set -eux
       exec ${pkgs.disko}/bin/disko-install --flake "${nixos-config}#thinkrac" --disk main "${nixos-config.nixosConfigurations.thinkrac.config.disko.devices.disk.main.device}"
+    '')
+    (pkgs.writeShellScriptBin "install-rainbow-resort-unattended" ''
+      set -eux
+      exec ${pkgs.disko}/bin/disko-install --flake "${nixos-config}#rainbow-resort" --disk main "${nixos-config.nixosConfigurations.rainbow-resort.config.disko.devices.disk.main.device}"
     '')
   ];
 }

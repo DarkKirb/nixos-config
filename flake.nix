@@ -161,6 +161,10 @@
           config = ./machine/pc-installer;
           system = "x86_64-linux";
         };
+        rainbow-resort = {
+          config = ./machine/rainbow-resort;
+          system = "x86_64-linux";
+        };
         thinkrac = {
           config = ./machine/thinkrac;
           system = "x86_64-linux";

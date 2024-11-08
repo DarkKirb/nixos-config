@@ -1,1 +1,4 @@
-["not522"]
+[
+  "not522"
+  "rainbow-resort"
+]

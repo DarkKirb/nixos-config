@@ -3,6 +3,7 @@ keys:
   - &darkkirb age15g6tzvcmcp3ae4hwnn4pwewat6eq9unlhtjrlaka6rf94ej9dd5qqpgt7u
   - &not522 age1emv3kzvwgl36hgllrv7rlekqy3y3c6eztadl3lv09ks3z9vv6vdqw06yqa
   - &pc-installer age1eh2vd6cdy23qazwg0hzq95pn9e6p8yaqu4g6zyan8gzal4x5ed5qful8kg
+  - &rainbow-resort age19vzypddhexvvsf8xylstxc9znnkd8rxmamhjlt7elvz4j3zaf5tqqura6f
   - &thinkrac age1p400545a482fma40yfgytu40p6wr5a75v4f8yeudvgf7eh5erufqxhgynr
 
 creation_rules:
@@ -16,6 +17,7 @@ creation_rules:
       - age:
           - *base
           - *not522
+          - *rainbow-resort
           - *thinkrac
   - path_regex: users/root/system\.yaml$
     key_groups:
@@ -23,6 +25,7 @@ creation_rules:
           - *base
           - *not522
           - *pc-installer
+          - *rainbow-resort
           - *thinkrac
   - path_regex: users/darkkirb/system\.yaml$
     key_groups:
@@ -30,6 +33,7 @@ creation_rules:
           - *base
           - *not522
           - *pc-installer
+          - *rainbow-resort
           - *thinkrac
   - path_regex: programs/ssh/shared-keys.yaml$
     key_groups:
@@ -38,4 +42,5 @@ creation_rules:
           - *darkkirb
           - *not522
           - *pc-installer
+          - *rainbow-resort
           - *thinkrac
