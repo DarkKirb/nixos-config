@@ -20,4 +20,5 @@
     ".local/share/fish"
   ];
   programs.nix-index.enable = true;
+  programst.direnv.enable = true;
 }
