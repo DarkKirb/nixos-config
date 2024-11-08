@@ -4,5 +4,6 @@ _: {
     ./password-manager.nix
     ./syncthing
     ./games
+    ./ims.nix
   ];
 }
