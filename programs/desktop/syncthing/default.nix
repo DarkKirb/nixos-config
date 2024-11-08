@@ -1,4 +1,4 @@
-{systemConfig, ...}: {
+{config, systemConfig, ...}: {
   services.syncthing = {
     enable = true;
     tray.enable = true;
