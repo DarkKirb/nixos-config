@@ -44,8 +44,3 @@ creation_rules:
           - *pc-installer
           - *rainbow-resort
           - *thinkrac
-  - path_regex: programs/desktop/syncthing/rainbow-resort.yaml$
-    key_groups:
-      - age:
-        - *base
-        - *darkkirb
