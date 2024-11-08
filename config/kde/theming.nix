@@ -10,6 +10,7 @@
       # Windows-like panel at the bottom
       {
         location = "bottom";
+        screen = "all";
         widgets = [
           "org.kde.plasma.kickoff"
           "org.kde.plasma.icontasks"
