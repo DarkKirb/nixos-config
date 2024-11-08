@@ -3,5 +3,6 @@ _: {
     ./firefox
     ./password-manager.nix
     ./syncthing
+    ./games
   ];
 }
