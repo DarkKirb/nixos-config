@@ -1,7 +1,7 @@
 {
   disko.devices = {
     disk = {
-      main = {
+      installer = {
         type = "disk";
         device = "/dev/disk/by-id/ata-WDC_WD10SPZX-22Z10T0_WD-WXL1A87JL6DC";
         content = {
