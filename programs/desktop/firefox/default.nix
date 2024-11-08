@@ -105,6 +105,10 @@
 in {
   programs.firefox = {
     enable = true;
+    nativeMessagingHosts = with pkgs; [
+      kdePackages.plasma-browser-integration
+      keepassxc
+    ];
     profiles.default = {
       containersForce = true;
       extensions = map (v: nur'.repos.rycee.firefox-addons.${v}) (lib.attrNames extensions);
