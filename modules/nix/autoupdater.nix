@@ -51,10 +51,11 @@ in
       serviceConfig.Type = "oneshot";
 
       script = let
-        switchToConfiguration =
+        output = 
           if cfg.specialisation == null
-          then "$output/bin/switch-to-configuration switch"
-          else "$output/specialisation/${cfg.specialisation}/bin/switch-to-configuration";
+          then "$output"
+          else "$output/specialisation/${cfg.specialisation}";
+        switchToConfiguration = "${output}/bin/switch-to-configuration";
       in ''
         #!${pkgs.bash}/bin/bash
         set -euxo pipefail
@@ -68,7 +69,7 @@ in
           then ''
             ${switchToConfiguration} boot
             booted="$(${pkgs.coreutils}/bin/readlink /run/booted-system/{initrd,kernel,kernel-modules})"
-            built="$(${pkgs.coreutils}/bin/readlink $output/{initrd,kernel,kernel-modules})"
+            built="$(${pkgs.coreutils}/bin/readlink ${output}/{initrd,kernel,kernel-modules})"
             if [ "$booted" = "$built" ]; then
               ${switchToConfiguration} switch
             else
