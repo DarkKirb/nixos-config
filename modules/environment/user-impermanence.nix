@@ -28,6 +28,7 @@ with lib; {
             "Documents"
             "Videos"
             ".cache"
+            "Data"
           ];
         };
       })
