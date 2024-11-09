@@ -18,9 +18,11 @@ with lib; {
     programs.fuse.userAllowOther = true;
     home-manager.users = listToAttrs (map (name: {
         inherit name;
-        value.home = {
-          file.".cache/.keep".enable = false;
-          persistence.default = {
+        value = {config, ...}: {
+          home.file."${config.home.homeDirectory}/.cache/.keep" = {
+            enable = false;
+          };
+          home.persistence.default = {
             persistentStoragePath = "/persistent/home/${name}";
             allowOther = true;
             directories = [
