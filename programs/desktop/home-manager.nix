@@ -20,4 +20,9 @@
     kdePackages.ffmpegthumbs
     kdePackages.dolphin-plugins
   ];
+
+  home.persistence.default.directories = [
+    ".local/share/akonadi"
+    ".local/share/kontact"
+  ];
 }
