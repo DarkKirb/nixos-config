@@ -10,6 +10,13 @@
   ];
   home.packages = with pkgs; [
     kdePackages.kontact
+    kdePackages.kmail-account-wizard
+    kdePackages.kdepim-runtime
+    kdePackages.kdepim-addons
+    kdePackages.kalk
+    kdePackages.kalgebra
+    kdePackages.filelight
+    kdePackages.ffmpegthumbs
+    kdePackages.dolphin-plugins
   ];
-
 }
