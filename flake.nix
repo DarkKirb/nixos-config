@@ -203,7 +203,9 @@
           age
           sops
           ssh-to-age
+          nixfmt-rfc-style
         ];
       };
+    formatter.x86_64-linux = (pkgsFor "x86_64-linux").nixfmt-rfc-style;
   };
 }
