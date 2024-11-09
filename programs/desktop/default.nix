@@ -12,4 +12,17 @@
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     pkgs.elisa
   ];
+
+  networking.firewall.allowedTCPPortRanges = [
+    {
+      from = 1714;
+      to = 1764;
+    }
+  ];
+  networking.firewall.allowedUDPPortRanges = [
+    {
+      from = 1714;
+      to = 1764;
+    }
+  ];
 }

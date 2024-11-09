@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, nixos-config, ...}: {
   imports = [
     ./firefox
     ./password-manager.nix
@@ -6,8 +6,10 @@
     ./games
     ./ims.nix
     ./audacious.nix
+    "${nixos-config}/services/desktop"
   ];
   home.packages = with pkgs; [
     kdePackages.kontact
   ];
+
 }
