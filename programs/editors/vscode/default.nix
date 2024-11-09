@@ -12,11 +12,19 @@
       jnoortheen.nix-ide
       mkhl.direnv
       pkief.material-icon-theme
+      signageos.signageos-vscode-sops
     ];
     userSettings = {
+      "editor.formatOnPaste" = true;
+      "editor.formatOnSave" = true;
+      "editor.formatOnType" = true;
       "nix.enableLanguageServer" = true;
       "nix.formatterPath" = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
       "nix.serverPath" = "${pkgs.nil}/bin/nil";
+      "nix.serverSettings" = {
+        nil.formatting.command = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+      };
+      "sops.binPath" = "${pkgs.sops}/bin/sops";
       "workbench.iconTheme" = "material-icon-theme";
     };
   };
