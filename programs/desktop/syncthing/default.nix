@@ -3,5 +3,5 @@
     enable = true;
     tray.enable = true;
   };
-  home.persistence.default.directories = [".local/share/syncthing"];
+  home.persistence.default.directories = [".local/state/syncthing"];
 }
