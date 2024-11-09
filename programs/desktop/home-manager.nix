@@ -5,5 +5,6 @@ _: {
     ./syncthing
     ./games
     ./ims.nix
+    ./audacious.nix
   ];
 }
