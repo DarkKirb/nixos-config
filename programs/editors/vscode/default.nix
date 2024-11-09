@@ -15,6 +15,8 @@
       signageos.signageos-vscode-sops
     ];
     userSettings = {
+      "editor.fontFamily" = "\"Fira Code\", \"Fira Code Nerd Font Mono\", monospace";
+      "editor.fontLigatures" = true;
       "editor.formatOnPaste" = true;
       "editor.formatOnSave" = true;
       "editor.formatOnType" = true;
