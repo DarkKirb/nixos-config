@@ -27,7 +27,10 @@ with lib; {
             "Pictures"
             "Documents"
             "Videos"
-            ".cache"
+            {
+              directory = ".cache";
+              method = "symlink";
+            }
             "Data"
           ];
         };
