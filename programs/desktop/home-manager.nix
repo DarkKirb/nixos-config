@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   imports = [
     ./firefox
     ./password-manager.nix
@@ -6,5 +6,8 @@ _: {
     ./games
     ./ims.nix
     ./audacious.nix
+  ];
+  home.packages = with pkgs; [
+    kdePackages.kontact
   ];
 }
