@@ -18,21 +18,24 @@ with lib; {
     programs.fuse.userAllowOther = true;
     home-manager.users = listToAttrs (map (name: {
         inherit name;
-        value.home.persistence.default = {
-          persistentStoragePath = "/persistent/home/${name}";
-          allowOther = true;
-          directories = [
-            "Downloads"
-            "Music"
-            "Pictures"
-            "Documents"
-            "Videos"
-            {
-              directory = ".cache";
-              method = "symlink";
-            }
-            "Data"
-          ];
+        value.home = {
+          file.".cache/.keep".enable = false;
+          persistence.default = {
+            persistentStoragePath = "/persistent/home/${name}";
+            allowOther = true;
+            directories = [
+              "Downloads"
+              "Music"
+              "Pictures"
+              "Documents"
+              "Videos"
+              {
+                directory = ".cache";
+                method = "symlink";
+              }
+              "Data"
+            ];
+          };
         };
       })
       config.environment.impermanence.users);
