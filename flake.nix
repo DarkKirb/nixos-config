@@ -176,24 +176,12 @@ rec {
         system = "x86_64-linux";
       }
       {
-        name = "thinkrac"; # Thinkpad T470
-        system = "x86_64-linux";
-      }
-      {
         name = "nas"; # My nas
-        system = "x86_64-linux";
-      }
-      {
-        name = "installer"; # Installer iso
         system = "x86_64-linux";
       }
       {
         name = "instance-20221213-1915"; # Oracle server
         system = "aarch64-linux";
-      }
-      {
-        name = "rainbow-resort"; # PC
-        system = "x86_64-linux";
       }
       /*
         {
