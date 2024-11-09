@@ -3,16 +3,12 @@
   pkgs,
   lib,
   ...
-}: let
-  boolToStr = b:
-    if b
-    then "true"
-    else "false";
-  boolToStr' = b:
-    if b
-    then "1"
-    else "0";
-in {
+}:
+let
+  boolToStr = b: if b then "true" else "false";
+  boolToStr' = b: if b then "1" else "0";
+in
+{
   xdg.configFile."nvim/lua/globals.lua".text = ''
     local fn = vim.fn
     local api = vim.api

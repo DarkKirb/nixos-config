@@ -1,8 +1,9 @@
-{config, pkgs, ...}: {
+{ config, pkgs, ... }:
+{
   home.packages = with pkgs; [
     telegram-desktop
   ];
-  home.persistence.default.directories = [".local/share/TelegramDesktop"];
+  home.persistence.default.directories = [ ".local/share/TelegramDesktop" ];
   systemd.user.tmpfiles.rules = [
     "d ${config.xdg.cacheHome}/TelegramDesktop/cache - - - - -"
     "d ${config.xdg.cacheHome}/TelegramDesktop/media_cache - - - - -"

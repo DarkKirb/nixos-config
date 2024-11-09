@@ -5,21 +5,23 @@
   pkgs,
   pureInputs,
   ...
-}: let
+}:
+let
   getDeps = name: [
     nixos-config.nixosConfigurations.${name}.config.system.build.toplevel
     nixos-config.nixosConfigurations.${name}.config.system.build.diskoScript
     nixos-config.nixosConfigurations.${name}.config.system.build.diskoScript.drvPath
     nixos-config.nixosConfigurations.${name}.pkgs.stdenv.drvPath
-    (nixos-config.nixosConfigurations.${name}.pkgs.closureInfo {rootPaths = [];}).drvPath
+    (nixos-config.nixosConfigurations.${name}.pkgs.closureInfo { rootPaths = [ ]; }).drvPath
   ];
   dependencies =
     (getDeps "rainbow-resort")
     ++ (getDeps "thinkrac")
     ++ map (i: i.outPath) (builtins.filter builtins.isAttrs (builtins.attrValues pureInputs));
 
-  closureInfo = pkgs.closureInfo {rootPaths = dependencies;};
-in {
+  closureInfo = pkgs.closureInfo { rootPaths = dependencies; };
+in
+{
   networking.hostName = "pc-installer";
   imports = [
     "${nixos-config}/config"

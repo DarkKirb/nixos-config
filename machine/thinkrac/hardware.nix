@@ -2,7 +2,8 @@
   modulesPath,
   nixos-hardware,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.lenovo-thinkpad-t470s
@@ -11,10 +12,15 @@
     nixos-hardware.nixosModules.common-pc-laptop-ssd
   ];
   hardware.cpu.intel.updateMicrocode = true;
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
   nix.settings.cores = 4;
   # use the lowest frequency possible, to save power
   powerManagement.cpuFreqGovernor = "powersave";

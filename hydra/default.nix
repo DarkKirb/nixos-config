@@ -1,1 +1,1 @@
-{nixos-config}: (import nixos-config).hydraJobs
+{ nixos-config }: (import nixos-config).hydraJobs

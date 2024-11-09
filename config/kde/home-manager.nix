@@ -1,4 +1,5 @@
-{plasma-manager, ...}: {
+{ plasma-manager, ... }:
+{
   programs.plasma.enable = true;
   programs.plasma.configFile.baloofilerc."Basic Settings"."Indexing-Enabled" = false;
   imports = [

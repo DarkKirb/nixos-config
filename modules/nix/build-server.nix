@@ -3,7 +3,8 @@
   lib,
   ...
 }:
-with lib; {
+with lib;
+{
   config = mkIf (!config.isInstaller) {
     nix.distributedBuilds = true;
     nix.buildMachines = mkMerge [
@@ -17,7 +18,15 @@ with lib; {
           ];
           maxJobs = 4;
           speedFactor = 1;
-          supportedFeatures = ["nixos-test" "benchmark" "ca-derivations" "gccarch-armv8-a" "gccarch-armv8.1-a" "gccarch-armv8.2-a" "big-parallel"];
+          supportedFeatures = [
+            "nixos-test"
+            "benchmark"
+            "ca-derivations"
+            "gccarch-armv8-a"
+            "gccarch-armv8.1-a"
+            "gccarch-armv8.2-a"
+            "big-parallel"
+          ];
         }
       ]
       [

@@ -3,7 +3,8 @@
   nixos-config,
   lib,
   ...
-}: {
+}:
+{
   networking.hostName = "rainbow-resort";
   imports = [
     "${nixos-config}/config"
@@ -21,5 +22,5 @@
       }
     ];
   };
-  home-manager.users.darkkirb.imports = [./home-manager.nix];
+  home-manager.users.darkkirb.imports = [ ./home-manager.nix ];
 }

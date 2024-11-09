@@ -4,7 +4,8 @@
   lib,
   nur,
   ...
-}: let
+}:
+let
   extensions = {
     "ublock-origin" = [
       "alarms"
@@ -102,7 +103,8 @@
     nurpkgs = pkgs;
     inherit pkgs;
   };
-in {
+in
+{
   programs.firefox = {
     enable = true;
     nativeMessagingHosts = with pkgs; [
@@ -139,18 +141,16 @@ in {
       '';
     };
   };
-  assertions =
-    lib.mapAttrsToList (k: v: let
-      unaccepted =
-        lib.subtractLists
-        v
-        nur'.repos.rycee.firefox-addons.${k}.meta.mozPermissions;
-    in {
-      assertion = unaccepted == [];
-      message = ''
-        Extension ${k} has unaccepted permissions: ${builtins.toJSON unaccepted}'';
-    })
-    extensions;
+  assertions = lib.mapAttrsToList (
+    k: v:
+    let
+      unaccepted = lib.subtractLists v nur'.repos.rycee.firefox-addons.${k}.meta.mozPermissions;
+    in
+    {
+      assertion = unaccepted == [ ];
+      message = ''Extension ${k} has unaccepted permissions: ${builtins.toJSON unaccepted}'';
+    }
+  ) extensions;
   home.persistence.default.directories = [
     ".mozilla"
   ];

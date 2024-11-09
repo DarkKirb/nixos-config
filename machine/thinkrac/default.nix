@@ -3,7 +3,8 @@
   nixos-config,
   lib,
   ...
-}: {
+}:
+{
   networking.hostName = "thinkrac";
   imports = [
     "${nixos-config}/config"

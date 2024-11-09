@@ -3,7 +3,8 @@
   lib,
   ...
 }:
-with lib; {
+with lib;
+{
   config = mkIf (!config.isInstaller) {
     services.tailscale = {
       enable = true;

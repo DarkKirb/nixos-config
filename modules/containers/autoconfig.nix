@@ -6,27 +6,28 @@
   inputs,
   ...
 }:
-with lib; let
+with lib;
+let
   badNames = [
     "system"
     "override"
     "overrideDerivation"
   ];
   filterBad = filterAttrs (n: _: lib.all (m: n != m) badNames);
-in {
+in
+{
   options.autoContainers = mkOption {
-    default = [];
+    default = [ ];
     type = types.listOf types.str;
   };
   config = {
-    containers = listToAttrs (map (container: {
+    containers = listToAttrs (
+      map (container: {
         name = container;
-        value =
-          filterBad (pkgs.callPackage ../../containers/${container}-configuration.nix {})
-          // {
-            specialArgs = inputs;
-          };
-      })
-      config.autoContainers);
+        value = filterBad (pkgs.callPackage ../../containers/${container}-configuration.nix { }) // {
+          specialArgs = inputs;
+        };
+      }) config.autoContainers
+    );
   };
 }

@@ -1,4 +1,5 @@
-{vscode-server, pkgs, ...}: {
+{ vscode-server, pkgs, ... }:
+{
   imports = [
     "${vscode-server}/modules/vscode-server/home.nix"
   ];

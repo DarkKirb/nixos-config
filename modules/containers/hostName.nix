@@ -3,7 +3,8 @@
   lib,
   ...
 }:
-with lib; {
+with lib;
+{
   options.networking = {
     rootHostName = mkOption {
       description = "Hostname of the running host";
@@ -26,9 +27,10 @@ with lib; {
   config = {
     networking = rec {
       fullHostName =
-        if config.networking.rootHostName == ""
-        then config.networking.hostName
-        else "${config.networking.rootHostName}-${config.networking.hostName}";
+        if config.networking.rootHostName == "" then
+          config.networking.hostName
+        else
+          "${config.networking.rootHostName}-${config.networking.hostName}";
       nodeID = lib.substring 0 8 (builtins.hashString "sha256" fullHostName);
     };
   };

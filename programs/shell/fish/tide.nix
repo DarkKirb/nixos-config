@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.fish.plugins = with pkgs.fishPlugins; [
     {
       name = "tide";

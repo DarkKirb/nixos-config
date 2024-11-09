@@ -3,12 +3,15 @@
   systemConfig,
   lib,
   ...
-}: let
+}:
+let
   identityFile =
-    if config.home.username == "root"
-    then systemConfig.sops.secrets.".ssh/builder_id_ed25519".path
-    else config.sops.secrets.".ssh/builder_id_ed25519".path;
-in {
+    if config.home.username == "root" then
+      systemConfig.sops.secrets.".ssh/builder_id_ed25519".path
+    else
+      config.sops.secrets.".ssh/builder_id_ed25519".path;
+in
+{
   programs.ssh = {
     enable = true;
     matchBlocks = {

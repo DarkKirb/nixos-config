@@ -2,11 +2,13 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   programs.neovim = {
-    plugins = with pkgs.vimPlugins;
+    plugins =
+      with pkgs.vimPlugins;
       [
-        (nvim-treesitter.withPlugins (p: []))
+        (nvim-treesitter.withPlugins (p: [ ]))
         (pkgs.vimUtils.buildVimPlugin {
           name = "vim-highlighturl";
           src = pkgs.fetchFromGitHub {
@@ -39,7 +41,10 @@
         indent-blankline-nvim
         lazy-nvim
         (LeaderF.overrideAttrs (super: {
-          buildInputs = [pkgs.python3 pkgs.python3Packages.setuptools];
+          buildInputs = [
+            pkgs.python3
+            pkgs.python3Packages.setuptools
+          ];
         }))
         lspkind-nvim
         lualine-nvim
@@ -84,12 +89,13 @@
         zen-mode-nvim
       ]
       ++ (
-        if pkgs.targetPlatform.system != "riscv64-linux"
-        then [
-          diffview-nvim
-          vim-grammarous
-        ]
-        else []
+        if pkgs.targetPlatform.system != "riscv64-linux" then
+          [
+            diffview-nvim
+            vim-grammarous
+          ]
+        else
+          [ ]
       );
   };
   xdg.configFile."nvim/lua/config/lazy-nvim.lua".text = ''
@@ -280,12 +286,14 @@
       -- Better git commit experience
       { "rhysd/committia.vim", lazy = true },
       ${
-      if pkgs.targetPlatform.system != "riscv64-linux"
-      then ''        {
-                "sindrets/diffview.nvim"
-              },''
-      else ""
-    }
+        if pkgs.targetPlatform.system != "riscv64-linux" then
+          ''
+            {
+                    "sindrets/diffview.nvim"
+                  },''
+        else
+          ""
+      }
       {
         "kevinhwang91/nvim-bqf",
         ft = "qf",
@@ -310,13 +318,15 @@
         end,
       },
       ${
-      if pkgs.targetPlatform.system != "riscv64-linux"
-      then ''        {
-                "rhysd/vim-grammarous",
-                ft = { "markdown" },
-              },''
-      else ""
-    }
+        if pkgs.targetPlatform.system != "riscv64-linux" then
+          ''
+            {
+                    "rhysd/vim-grammarous",
+                    ft = { "markdown" },
+                  },''
+        else
+          ""
+      }
       { "chrisbra/unicode.vim", event = "VeryLazy" },
       -- Additional powerful text object for vim, this plugin should be studied
       -- carefully to use its full power

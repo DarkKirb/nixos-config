@@ -3,13 +3,15 @@
   nixpkgs,
   lix,
   ...
-}: let
+}:
+let
   pkgs_x86_64 = import nixpkgs {
     system = "x86_64-linux";
     crossSystem.system = "riscv64-linux";
-    overlays = [lix.overlays.default];
+    overlays = [ lix.overlays.default ];
   };
-in {
+in
+{
   nixpkgs.overlays = [
     (self: super: {
       inherit (pkgs_x86_64) lix nixos-option;

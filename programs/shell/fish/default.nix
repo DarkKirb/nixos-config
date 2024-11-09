@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.fish.enable = true;
   home-manager.users.root.imports = [
     ./home-manager.nix

@@ -1,4 +1,5 @@
-{lib, config, ...}: {
+{ lib, config, ... }:
+{
   programs.steam = lib.mkIf config.isGraphical {
     enable = !config.isInstaller;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -7,5 +8,5 @@
   };
   nixpkgs.config.allowUnfree = true;
 
-  home-manager.users.darkkirb.imports = if config.isGraphical then [./home-manager.nix] else [];
+  home-manager.users.darkkirb.imports = if config.isGraphical then [ ./home-manager.nix ] else [ ];
 }

@@ -5,7 +5,8 @@
   nur,
   ...
 }:
-with lib; {
+with lib;
+{
   imports = [
     ./riscv.nix
     ./containers/autoconfig.nix

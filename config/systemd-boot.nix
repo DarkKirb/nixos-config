@@ -1,6 +1,8 @@
-{system, ...}: let
+{ system, ... }:
+let
   isx86 = system == "x86_64-linux";
-in {
+in
+{
   boot.loader.systemd-boot = {
     enable = true;
     memtest86.enable = isx86;

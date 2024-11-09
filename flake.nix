@@ -78,134 +78,161 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs': let
-    inputs =
-      inputs'
-      // {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs':
+    let
+      inputs = inputs' // {
         nixos-config = self;
         inherit inputs;
         inTester = false;
         pureInputs = inputs';
       };
-    pkgsFor = system: let
-      inputs' =
-        inputs
-        // {
+      pkgsFor =
+        system:
+        let
+          inputs' = inputs // {
+            inherit system;
+            inputs = inputs';
+          };
+        in
+        import nixpkgs {
           inherit system;
-          inputs = inputs';
-        };
-    in
-      import nixpkgs {
-        inherit system;
-        overlays =
-          [
-            (_: _:
-              inputs'
-              // {
-                inputs = inputs';
-              })
-          ]
-          ++ (
-            if system == "riscv64-linux"
-            then [
-              inputs.riscv-overlay.overlays.default
+          overlays =
+            [
+              (
+                _: _:
+                inputs'
+                // {
+                  inputs = inputs';
+                }
+              )
             ]
-            else []
+            ++ (
+              if system == "riscv64-linux" then
+                [
+                  inputs.riscv-overlay.overlays.default
+                ]
+              else
+                [ ]
+            );
+        };
+    in
+    {
+      checks.x86_64-linux = nixpkgs.lib.listToAttrs (
+        map (testName: {
+          name = testName;
+          value = (pkgsFor "x86_64-linux").callPackage ./tests/${testName}.nix { };
+        }) [ "containers-default" ]
+      );
+      nixosModules = {
+        containers = import ./modules/containers/default.nix;
+        default = import ./modules/default.nix;
+      };
+      nixosContainers =
+        with nixpkgs.lib;
+        let
+          containerNames = [
+            "default"
+          ];
+          containerArches = [
+            "x86_64-linux"
+            "aarch64-linux"
+            "riscv64-linux"
+          ];
+          containers = listToAttrs (
+            flatten (
+              map (
+                system:
+                let
+                  pkgs = pkgsFor system;
+                in
+                map (container: {
+                  name = "container-${container}-${system}";
+                  value = pkgs.callPackage ./containers/${container}-configuration.nix { };
+                }) containerNames
+              ) containerArches
+            )
           );
+        in
+        containers;
+      nixosConfigurations =
+        with nixpkgs.lib;
+        let
+          mkSystem =
+            args:
+            let
+              inputs' = inputs // {
+                inherit (args) system;
+              };
+            in
+            nixosSystem (
+              args
+              // {
+                specialArgs = args.specialArgs or { } // inputs';
+              }
+            );
+          systems' = {
+            not522 = {
+              config = ./machine/not522;
+              system = "riscv64-linux";
+            };
+            not522-installer = {
+              config = ./machine/not522/installer;
+              system = "riscv64-linux";
+            };
+            pc-installer = {
+              config = ./machine/pc-installer;
+              system = "x86_64-linux";
+            };
+            rainbow-resort = {
+              config = ./machine/rainbow-resort;
+              system = "x86_64-linux";
+            };
+            thinkrac = {
+              config = ./machine/thinkrac;
+              system = "x86_64-linux";
+            };
+          };
+          containers = mapAttrs (
+            _: container:
+            mkSystem {
+              inherit (container) system;
+              modules = [
+                container.config
+              ];
+            }
+          ) self.nixosContainers;
+          systems = mapAttrs (
+            _: system:
+            mkSystem {
+              inherit (system) system;
+              modules = [
+                system.config
+              ];
+            }
+          ) systems';
+        in
+        containers // systems;
+      hydraJobs = {
+        inherit (self) checks devShells;
+        nixosConfigurations = nixpkgs.lib.mapAttrs (
+          _: v: v.config.system.build.toplevel
+        ) self.nixosConfigurations;
       };
-  in {
-    checks.x86_64-linux = nixpkgs.lib.listToAttrs (map (testName: {
-      name = testName;
-      value = (pkgsFor "x86_64-linux").callPackage ./tests/${testName}.nix {};
-    }) ["containers-default"]);
-    nixosModules = {
-      containers = import ./modules/containers/default.nix;
-      default = import ./modules/default.nix;
-    };
-    nixosContainers = with nixpkgs.lib; let
-      containerNames = [
-        "default"
-      ];
-      containerArches = ["x86_64-linux" "aarch64-linux" "riscv64-linux"];
-      containers = listToAttrs (flatten (map (system: let
-        pkgs = pkgsFor system;
-      in
-        map (container: {
-          name = "container-${container}-${system}";
-          value = pkgs.callPackage ./containers/${container}-configuration.nix {};
-        })
-        containerNames)
-      containerArches));
-    in
-      containers;
-    nixosConfigurations = with nixpkgs.lib; let
-      mkSystem = args: let
-        inputs' = inputs // {inherit (args) system;};
-      in
-        nixosSystem (args
-          // {
-            specialArgs =
-              args.specialArgs
-              or {}
-              // inputs';
-          });
-      systems' = {
-        not522 = {
-          config = ./machine/not522;
-          system = "riscv64-linux";
-        };
-        not522-installer = {
-          config = ./machine/not522/installer;
-          system = "riscv64-linux";
-        };
-        pc-installer = {
-          config = ./machine/pc-installer;
-          system = "x86_64-linux";
-        };
-        rainbow-resort = {
-          config = ./machine/rainbow-resort;
-          system = "x86_64-linux";
-        };
-        thinkrac = {
-          config = ./machine/thinkrac;
-          system = "x86_64-linux";
-        };
-      };
-      containers = mapAttrs (_: container:
-        mkSystem {
-          inherit (container) system;
-          modules = [
-            container.config
+      devShells.x86_64-linux.default =
+        with pkgsFor "x86_64-linux";
+        mkShell {
+          nativeBuildInputs = with pkgs; [
+            age
+            sops
+            ssh-to-age
+            nixfmt-rfc-style
           ];
-        })
-      self.nixosContainers;
-      systems = mapAttrs (_: system:
-        mkSystem {
-          inherit (system) system;
-          modules = [
-            system.config
-          ];
-        })
-      systems';
-    in
-      containers // systems;
-    hydraJobs = {
-      inherit (self) checks devShells;
-      nixosConfigurations = nixpkgs.lib.mapAttrs (_: v: v.config.system.build.toplevel) self.nixosConfigurations;
+        };
+      formatter.x86_64-linux = (pkgsFor "x86_64-linux").nixfmt-rfc-style;
     };
-    devShells.x86_64-linux.default = with pkgsFor "x86_64-linux";
-      mkShell {
-        nativeBuildInputs = with pkgs; [
-          age
-          sops
-          ssh-to-age
-          nixfmt-rfc-style
-        ];
-      };
-    formatter.x86_64-linux = (pkgsFor "x86_64-linux").nixfmt-rfc-style;
-  };
 }

@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   users.users.root = {
     createHome = true;
     openssh.authorizedKeys.keys = [
@@ -23,6 +24,6 @@
     mode = "600";
     sopsFile = "${nixos-config}/programs/ssh/shared-keys.yaml";
   };
-  home-manager.users.root.sops.secrets = lib.mkForce {};
-  environment.impermanence.users = ["root"];
+  home-manager.users.root.sops.secrets = lib.mkForce { };
+  environment.impermanence.users = [ "root" ];
 }

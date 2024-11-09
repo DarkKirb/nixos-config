@@ -1,4 +1,5 @@
-{pkgs, nixos-config, ...}: {
+{ pkgs, nixos-config, ... }:
+{
   imports = [
     ./firefox
     ./password-manager.nix

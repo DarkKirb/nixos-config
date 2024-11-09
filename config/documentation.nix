@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   documentation.nixos.includeAllModules = true;
   documentation.nixos.options.warningsAreErrors = false;
   home-manager.users.darkkirb.manual = {

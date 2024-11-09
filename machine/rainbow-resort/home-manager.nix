@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   xdg.configFile."kwinoutputconfig.json".text = lib.strings.toJSON [
     {
       data = [

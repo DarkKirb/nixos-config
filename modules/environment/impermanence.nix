@@ -6,7 +6,8 @@
   inTester,
   ...
 }:
-with lib; {
+with lib;
+{
   imports = [
     "${impermanence}/nixos.nix"
     ./user-impermanence.nix
@@ -70,26 +71,23 @@ with lib; {
         }
         {
           assertion =
-            if hasAttr "/" config.fileSystems
-            then config.fileSystems."/".fsType == "btrfs"
-            else false;
+            if hasAttr "/" config.fileSystems then config.fileSystems."/".fsType == "btrfs" else false;
           message = "rootfs must be btrfs";
         }
         {
           assertion =
-            if hasAttr "/" config.fileSystems
-            then any (t: t == "subvol=root" || t == "subvol=/root") config.fileSystems."/".options
-            else false;
+            if hasAttr "/" config.fileSystems then
+              any (t: t == "subvol=root" || t == "subvol=/root") config.fileSystems."/".options
+            else
+              false;
           message = "rootfs must mount subvolume root";
         }
       ];
       fileSystems."/persistent" = {
         device =
-          if hasAttr "/" config.fileSystems
-          then mkDefault config.fileSystems."/".device
-          else "/dev/null";
+          if hasAttr "/" config.fileSystems then mkDefault config.fileSystems."/".device else "/dev/null";
         fsType = "btrfs";
-        options = ["subvol=persistent"];
+        options = [ "subvol=persistent" ];
         neededForBoot = true;
       };
       environment.persistence."/persistent" = {

@@ -7,19 +7,19 @@
   lib,
   nixpkgs,
   ...
-}: let
-  dependencies =
-    [
-      nixos-config.nixosConfigurations.not522.config.system.build.toplevel
-      nixos-config.nixosConfigurations.not522.config.system.build.diskoScript
-      nixos-config.nixosConfigurations.not522.config.system.build.diskoScript.drvPath
-      nixos-config.nixosConfigurations.not522.pkgs.stdenv.drvPath
-      (nixos-config.nixosConfigurations.not522.pkgs.closureInfo {rootPaths = [];}).drvPath
-    ]
-    ++ map (i: i.outPath) (builtins.filter builtins.isAttrs (builtins.attrValues pureInputs));
+}:
+let
+  dependencies = [
+    nixos-config.nixosConfigurations.not522.config.system.build.toplevel
+    nixos-config.nixosConfigurations.not522.config.system.build.diskoScript
+    nixos-config.nixosConfigurations.not522.config.system.build.diskoScript.drvPath
+    nixos-config.nixosConfigurations.not522.pkgs.stdenv.drvPath
+    (nixos-config.nixosConfigurations.not522.pkgs.closureInfo { rootPaths = [ ]; }).drvPath
+  ] ++ map (i: i.outPath) (builtins.filter builtins.isAttrs (builtins.attrValues pureInputs));
 
-  closureInfo = pkgs.closureInfo {rootPaths = dependencies;};
-in {
+  closureInfo = pkgs.closureInfo { rootPaths = dependencies; };
+in
+{
   networking.hostName = "not522-installer";
   imports = [
     "${nixos-config}/config"

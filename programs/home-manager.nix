@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.eza.enable = true;
   programs.bat.enable = true;
   programs.fzf.enable = true;
@@ -6,5 +7,8 @@
     cat = "bat";
     less = "bat";
   };
-  home.packages = with pkgs; [ripgrep fd];
+  home.packages = with pkgs; [
+    ripgrep
+    fd
+  ];
 }

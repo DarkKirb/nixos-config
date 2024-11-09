@@ -3,13 +3,15 @@
   config,
   ...
 }:
-with lib; {
+with lib;
+{
   options.hydra.buildServer.enable = mkEnableOption "Make this device a build server";
   imports = [
     {
-      config.hydra.buildServer.enable = let
-        buildServers = import ./build-server-list.nix;
-      in
+      config.hydra.buildServer.enable =
+        let
+          buildServers = import ./build-server-list.nix;
+        in
         mkDefault (any (t: t == config.networking.hostName) buildServers);
     }
   ];
@@ -21,6 +23,6 @@ with lib; {
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINN5Q/L2FyB3DIgdJRYnTGHW3naw5VQ9coOdwHYmv0aZ darkkirb@thinkrac"
       ];
     };
-    nix.settings.trusted-users = ["remote-build"];
+    nix.settings.trusted-users = [ "remote-build" ];
   };
 }

@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   # For legacy pc reason, this needs to be grub
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.grub = {

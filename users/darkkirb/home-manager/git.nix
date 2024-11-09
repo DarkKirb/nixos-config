@@ -1,10 +1,8 @@
-{pkgs, systemConfig, ...}: {
+{ pkgs, systemConfig, ... }:
+{
   programs.git = {
     enable = true;
-    package =
-      if systemConfig.isGraphical
-      then pkgs.gitAndTools.gitFull
-      else pkgs.git;
+    package = if systemConfig.isGraphical then pkgs.gitAndTools.gitFull else pkgs.git;
     lfs.enable = true;
     userEmail = "lotte@chir.rs";
     userName = "Charlotte 🦝 Delenk";
@@ -17,4 +15,3 @@
     delta.enable = true;
   };
 }
-

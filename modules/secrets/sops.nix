@@ -2,7 +2,8 @@
   sops-nix,
   config,
   ...
-}: {
+}:
+{
   imports = [
     "${sops-nix}/modules/sops"
   ];

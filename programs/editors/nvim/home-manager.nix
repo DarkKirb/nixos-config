@@ -2,13 +2,14 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   imports = [
     ./globals.nix
     ./plugins/lazy-nvim.nix
   ];
   programs.neovim = {
-    plugins = with pkgs.vimPlugins; [lazy-nvim];
+    plugins = with pkgs.vimPlugins; [ lazy-nvim ];
     enable = true;
     viAlias = true;
     vimAlias = true;
