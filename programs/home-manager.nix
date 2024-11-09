@@ -6,5 +6,5 @@
     cat = "bat";
     less = "bat";
   };
-  home.packages = with pkgs; [rg fd];
+  home.packages = with pkgs; [ripgrep fd];
 }
