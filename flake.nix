@@ -71,6 +71,11 @@
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     systems.url = "github:nix-systems/default";
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
