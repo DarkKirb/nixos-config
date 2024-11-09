@@ -1,6 +1,5 @@
 {
   nixos-config,
-  nixos-hardware,
   nixpkgs,
   ...
 }:

@@ -2,7 +2,6 @@
   disko,
   home-manager,
   lib,
-  nur,
   ...
 }:
 with lib;

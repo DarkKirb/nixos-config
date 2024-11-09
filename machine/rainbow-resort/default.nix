@@ -1,7 +1,5 @@
 {
-  config,
   nixos-config,
-  lib,
   ...
 }:
 {

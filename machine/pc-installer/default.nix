@@ -1,7 +1,6 @@
 {
   config,
   nixos-config,
-  lib,
   pkgs,
   pureInputs,
   ...

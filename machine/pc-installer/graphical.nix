@@ -1,5 +1,4 @@
 {
-  config,
   nixos-config,
   ...
 }:

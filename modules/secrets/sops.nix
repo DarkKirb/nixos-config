@@ -1,6 +1,5 @@
 {
   sops-nix,
-  config,
   ...
 }:
 {

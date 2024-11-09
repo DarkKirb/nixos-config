@@ -1,10 +1,8 @@
 {
   nixos-config,
-  nixos-hardware,
   config,
   pureInputs,
   pkgs,
-  lib,
   nixpkgs,
   ...
 }:

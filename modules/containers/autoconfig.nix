@@ -1,5 +1,4 @@
 {
-  system,
   config,
   lib,
   pkgs,
@@ -19,6 +18,7 @@ in
   options.autoContainers = mkOption {
     default = [ ];
     type = types.listOf types.str;
+    description = "names of containers to automatically set up";
   };
   config = {
     containers = listToAttrs (

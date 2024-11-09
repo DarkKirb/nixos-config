@@ -2,7 +2,6 @@
   impermanence,
   config,
   lib,
-  pkgs,
   inTester,
   ...
 }:

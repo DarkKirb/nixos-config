@@ -1,4 +1,4 @@
-{ config, systemConfig, ... }:
+{ ... }:
 {
   services.syncthing = {
     enable = true;

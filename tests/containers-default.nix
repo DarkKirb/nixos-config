@@ -1,7 +1,5 @@
 {
-  callPackage,
   testers,
-  nixos-config,
   inputs,
 }:
 testers.runNixOSTest {
