@@ -17,7 +17,13 @@
     sopsFile = ./system.yaml;
   };
   home-manager.users.darkkirb.sops.age.keyFile = config.sops.secrets."users/users/darkkirb/age-key".path;
-  home-manager.users.darkkirb.home.persistence.default.directories = ["sources" "Games"];
+  home-manager.users.darkkirb.home.persistence.default.directories = [
+    "sources"
+    {
+      directory = "Games";
+      method = "symlink";
+    }
+  ];
   home-manager.users.darkkirb.imports = [./home-manager];
   environment.impermanence.users = ["darkkirb"];
 }
