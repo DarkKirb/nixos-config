@@ -5,5 +5,6 @@
   imports = [
     ./kde
     ./documentation.nix
+    ./graphical/fonts.nix
   ];
 }
