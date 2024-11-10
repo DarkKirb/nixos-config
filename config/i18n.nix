@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
   console.keyMap = "neo";
   i18n.extraLocaleSettings = {
@@ -9,4 +9,10 @@
     LC_TELEPHONE = "de_DE.UTF-8";
     LC_TIME = "de_DE.UTF-8";
   };
+  i18n.supportedLocales = [
+    "C"
+    "C.UTF-8"
+    "en_US.UTF-8"
+    "de_DE.UTF-8"
+  ];
 }
