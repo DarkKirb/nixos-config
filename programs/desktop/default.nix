@@ -16,6 +16,10 @@
     kate
   ];
 
+  home.persistence.default.directories = [
+    ".local/share/kwalletd"
+  ];
+
   networking.firewall.allowedTCPPortRanges = [
     {
       from = 1714;
