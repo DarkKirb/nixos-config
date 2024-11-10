@@ -1,9 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.jellyfin.enable = true;
   environment.systemPackages = [
     pkgs.jellyfin
     pkgs.jellyfin-web
     pkgs.jellyfin-ffmpeg
+    pkgs.yt-dlp
   ];
   services.caddy.virtualHosts."jellyfin.int.chir.rs" = {
     useACMEHost = "int.chir.rs";
