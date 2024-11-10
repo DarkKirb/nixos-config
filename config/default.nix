@@ -1,4 +1,4 @@
-{ nixos-config, ... }:
+{ pkgs, nixos-config, ... }:
 {
   imports = [
     "${nixos-config}/modules"
@@ -10,5 +10,6 @@
     ./i18n.nix
   ];
   boot.initrd.systemd.enable = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   hardware.enableRedistributableFirmware = true;
 }
