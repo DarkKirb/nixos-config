@@ -101,6 +101,7 @@
         in
         import nixpkgs {
           inherit system;
+          config.allowUnfree = true;
           overlays =
             [
               (
@@ -110,6 +111,7 @@
                   inputs = inputs';
                 }
               )
+              self.overlays.default
             ]
             ++ (
               if system == "riscv64-linux" then
@@ -218,7 +220,7 @@
         in
         containers // systems;
       hydraJobs = {
-        inherit (self) checks devShells;
+        inherit (self) checks devShells packages;
         nixosConfigurations = nixpkgs.lib.mapAttrs (
           _: v: v.config.system.build.toplevel
         ) self.nixosConfigurations;
@@ -231,8 +233,34 @@
             sops
             ssh-to-age
             nixfmt-rfc-style
+            nix-prefetch
+            nix-prefetch-git
           ];
         };
       formatter.x86_64-linux = (pkgsFor "x86_64-linux").nixfmt-rfc-style;
+      overlays.default = import ./packages;
+      packages = nixpkgs.lib.listToAttrs (
+        map
+          (name: {
+            inherit name;
+            value =
+              let
+                pkgs = pkgsFor name;
+              in
+              {
+                inherit (pkgs)
+                  art-lotte
+                  art-lotte-bgs-nsfw
+                  art-lotte-bgs-sfw
+                  package-updater
+                  ;
+              };
+          })
+          [
+            "x86_64-linux"
+            "riscv64-linux"
+            "aarch64-linux"
+          ]
+      );
     };
 }

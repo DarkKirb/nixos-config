@@ -20,4 +20,21 @@
       }
     ];
   };
+  specialisation.nsfw = {
+    configuration.imports = [
+      {
+        nix.auto-update.specialisation = "nsfw";
+        isNSFW = true;
+      }
+    ];
+  };
+  specialisation.quiet-nsfw = {
+    configuration.imports = [
+      "${nixos-config}/config/graphical/plymouth.nix"
+      {
+        nix.auto-update.specialisation = "quiet-nsfw";
+        isNSFW = true;
+      }
+    ];
+  };
 }

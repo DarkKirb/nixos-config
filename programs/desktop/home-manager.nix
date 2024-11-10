@@ -15,7 +15,7 @@
     kdePackages.kalk
     kdePackages.kalgebra
     kdePackages.filelight
-    kdePackages.kdegraphics.thumbnailers
+    kdePackages.kdegraphics-thumbnailers
     kdePackages.ffmpegthumbs
     kdePackages.dolphin-plugins
   ];

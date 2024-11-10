@@ -2,6 +2,8 @@
   disko,
   home-manager,
   lib,
+  inTester,
+  self,
   ...
 }:
 with lib;
@@ -18,4 +20,15 @@ with lib;
   ];
   options.isGraphical = mkEnableOption "Whether or not this configuration is a graphical install";
   options.isInstaller = mkEnableOption "Whether or not this configuration is an installer and has no access to secrets";
+  options.isNSFW = mkEnableOption "Whether or not this configuration is NSFW";
+
+  config =
+    if !inTester then
+      {
+        nixpkgs.overlays = [
+          self.overlays.default
+        ];
+      }
+    else
+      { };
 }

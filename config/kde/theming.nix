@@ -1,7 +1,12 @@
-{ ... }:
+{ systemConfig, pkgs, ... }:
 {
   programs.plasma = {
-    workspace.lookAndFeel = "org.kde.breezedark.desktop";
+    workspace = {
+      lookAndFeel = "org.kde.breezedark.desktop";
+      wallpaperSlideShow = {
+        path = if systemConfig.isNSFW then "${pkgs.art-lotte-bgs-nsfw}" else "${pkgs.art-lotte-bgs-sfw}";
+      };
+    };
     hotkeys.commands."launch-konsole" = {
       name = "Launch Konsole";
       key = "Meta+Alt+K";
