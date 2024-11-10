@@ -12,7 +12,8 @@
       [ ];
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    pkgs.elisa
+    elisa
+    kate
   ];
 
   networking.firewall.allowedTCPPortRanges = [
