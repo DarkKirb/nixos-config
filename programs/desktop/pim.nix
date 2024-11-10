@@ -10,6 +10,6 @@
     ".local/share/akonadi"
     ".local/share/kontact"
     ".local/share/akonadi_maildir_resource_0"
-    ".local/share/akgregator"
+    ".local/share/akregator"
   ];
 }
