@@ -9,6 +9,7 @@
     ./audacious.nix
     ./pim.nix
     "${nixos-config}/services/desktop"
+    ./kodi
   ];
   home.packages = with pkgs; [
     kdePackages.kalk
