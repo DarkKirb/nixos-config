@@ -26,6 +26,10 @@
         ];
       }
     ];
+    fonts.fixedWidth = {
+      family = "FiraCode Nerd Font Mono";
+      pointSize = 9;
+    };
     configFile.kwinrc."NightColor" = {
       Active = true;
       LatitudeFixed = 51;
