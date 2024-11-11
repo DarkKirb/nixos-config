@@ -17,6 +17,6 @@
       vdirsyncer.enable = true;
     };
   };
-  accounts.calendar.basePath = "Data/.calendar";
+  accounts.calendar.basePath = "Data/calendar";
   sops.secrets."accounts/calendar/accounts/lotte/remote/password".sopsFile = ./secrets.yaml;
 }
