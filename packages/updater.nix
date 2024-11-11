@@ -2,12 +2,13 @@
   lib,
   callPackage,
   writeScriptBin,
-  fish,
+  bash,
 }:
 let
   script = lib.concatMapStringsSep "\n" (f: callPackage "${f}/updater.nix" { }) [ ./art ];
 in
 writeScriptBin "updater" ''
-  #!${fish}/bin/fish
+  #!${bash}/bin/bash
+  set -euxo pipefail
   ${script}
 ''
