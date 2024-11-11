@@ -1,0 +1,4 @@
+{ ... }:
+{
+  imports = [ ./calendar.nix ];
+}

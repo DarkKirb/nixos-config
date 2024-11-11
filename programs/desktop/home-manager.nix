@@ -10,6 +10,7 @@
     ./pim.nix
     "${nixos-config}/services/desktop"
     ./kodi
+    ./pim
   ];
   home.packages = with pkgs; [
     kdePackages.kalk
