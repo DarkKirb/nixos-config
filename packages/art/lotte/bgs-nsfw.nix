@@ -1,6 +1,6 @@
 { art-lotte, stdenvNoCC }:
 stdenvNoCC.mkDerivation {
-  pname = "sfw-bgs";
+  pname = "nsfw-bgs";
   inherit (art-lotte) version;
   src = art-lotte;
   dontUnpack = true;
