@@ -28,7 +28,7 @@ stdenvNoCC.mkDerivation {
   installPhase = ''
     mkdir $out
     for f in $nsfwBgs; do
-      ln -svf $src/$f $out/$f
+      cp $src/$f $out/$f
     done
   '';
 
