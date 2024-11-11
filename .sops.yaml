@@ -35,7 +35,7 @@ creation_rules:
           - *pc-installer
           - *rainbow-resort
           - *thinkrac
-  - path_regex: users/darkkirb/home-manager/keys.txt$
+  - path_regex: users/darkkirb/home-manager/keys.yaml$
     key_groups:
       - age:
           - *base
