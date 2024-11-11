@@ -1,6 +1,7 @@
 {
   lib,
   pureInputs,
+  config,
   ...
 }:
 let
@@ -15,7 +16,7 @@ in
   nix.registry = nixRegistry;
   environment.etc = mapAttrs' (name: value: {
     name = "nix/inputs/${name}";
-    value = {
+    value = lib.mkIf config.nix.enable {
       source = value.outPath;
     };
   }) flakes;
