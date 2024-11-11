@@ -2,7 +2,10 @@
 {
   accounts.email.accounts.lotte = {
     address = "lotte@chir.rs";
-    imap.host = "imappro.zoho.eu";
+    imap = {
+      host = "imappro.zoho.eu";
+      port = 993;
+    };
     imapnotify = {
       enable = true;
       onNotify = "${pkgs.isync}/bin/mbsync test-%s";
@@ -31,7 +34,10 @@
       config.sops.secrets."accounts/email/accounts/lotte/password".path
     ];
     realName = "Charlotte 🦝 Delenk";
-    smtp.host = "smtppro.zoho.eu";
+    smtp = {
+      host = "smtppro.zoho.eu";
+      port = 465;
+    };
     thunderbird.enable = true;
     userName = "lotte@chir.rs";
     primary = true;
