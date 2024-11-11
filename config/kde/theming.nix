@@ -26,5 +26,12 @@
         ];
       }
     ];
+    configFile.kwinrc."NightColor" = {
+      Active = true;
+      LatitudeFixed = 51;
+      LongitudeFixed = 13;
+      Mode = "Location";
+      NightTemperature = 4200;
+    };
   };
 }
