@@ -7,7 +7,6 @@
     ./games
     ./ims.nix
     ./audacious.nix
-    ./pim.nix
     "${nixos-config}/services/desktop"
     ./kodi
     ./pim

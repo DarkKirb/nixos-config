@@ -47,4 +47,7 @@
       withExternalGnupg = true;
     };
   };
+  home.persistence.default.directories = [
+    ".thunderbird"
+  ];
 }
