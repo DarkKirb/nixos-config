@@ -46,6 +46,7 @@
   sops.secrets."accounts/email/accounts/lotte/password".sopsFile = ./secrets.yaml;
   services.imapnotify.enable = true;
   programs.notmuch.enable = true;
+  programs.neomutt.enable = true;
   programs.thunderbird = {
     enable = true;
     profiles.default = {
