@@ -49,3 +49,8 @@ creation_rules:
           - *pc-installer
           - *rainbow-resort
           - *thinkrac
+  - path_regex: programs/desktop/pim/secrets.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *darkkirb
