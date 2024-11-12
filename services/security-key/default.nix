@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./kdeconnect.nix
-    ./gpg
+    ./pcscd.nix
+    ./tpm2.nix
   ];
 }
