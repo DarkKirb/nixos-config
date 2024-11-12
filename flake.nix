@@ -252,11 +252,18 @@
                   art-lotte
                   art-lotte-bgs-nsfw
                   art-lotte-bgs-sfw
-                  kodi-joyn
                   kodi-pydes
                   package-updater
                   ;
-              };
+              }
+              // (
+                if name != "riscv64-linux" then
+                  {
+                    inherit (pkgs) kodi-joyn;
+                  }
+                else
+                  { }
+              );
           })
           [
             "x86_64-linux"
