@@ -19,6 +19,9 @@ buildKodiAddon {
     repo = "plugin.video.joyn";
     inherit (srcInfo) rev sha256;
   };
+  postPatch = ''
+    substituteInPlace --replace '2.26.0' '3.0.0' addon.xml
+  '';
   propagatedBuildInputs = [
     inputstream-adaptive
     inputstreamhelper
