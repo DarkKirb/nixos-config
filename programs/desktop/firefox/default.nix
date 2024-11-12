@@ -123,6 +123,9 @@ in
         "widget.use-xdg-desktop-portal.open-uri" = 1;
         "widget.use-xdg-desktop-portal.settings" = 1;
         "extensions.pocket.enabled" = false;
+        "browser.newtabpage.activity-stream.showSponsored" = false;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+        "browser.newtabpage.activity-stream.default.sites" = "";
       };
       userChrome = ''
         @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
