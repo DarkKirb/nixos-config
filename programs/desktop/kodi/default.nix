@@ -12,4 +12,7 @@
       ]
     ))
   ];
+  home.persistence.default.directories = [
+    ".kodi/userdata"
+  ];
 }
