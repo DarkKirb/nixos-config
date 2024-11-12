@@ -2,4 +2,7 @@
   lib,
   callPackage,
 }:
-lib.concatMapStringsSep "\n" (f: callPackage "${f}/updater.nix" { }) [ ./pydes ]
+lib.concatMapStringsSep "\n" (f: callPackage "${f}/updater.nix" { }) [
+  ./joyn
+  ./pydes
+]

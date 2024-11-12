@@ -9,6 +9,7 @@
       kodiPkgs: with kodiPkgs; [
         jellyfin
         jellycon
+        pkgs.kodi-joyn
       ]
     ))
   ];

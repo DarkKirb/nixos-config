@@ -252,6 +252,7 @@
                   art-lotte
                   art-lotte-bgs-nsfw
                   art-lotte-bgs-sfw
+                  kodi-joyn
                   kodi-pydes
                   package-updater
                   ;

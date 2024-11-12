@@ -1,0 +1,12 @@
+{
+    "url": "https://github.com/knaerzche/plugin.video.joyn",
+    "rev": "0954c40d20fe4c956c45519993f0dfdc0debade2",
+    "date": "2020-09-04T17:17:52+02:00",
+    "path": "/nix/store/1c49y966arnakcna3nb55fpfik0rsysq-plugin.video.joyn",
+    "sha256": "1wkn03j0mwlbnnl0zzr74pw3z4z2r76130rana7jdmc79fqxld53",
+    "hash": "sha256-ozTasUuH1SaPsiqDEczJ4pM/+CUn/w+otYvyCuQAdvI=",
+    "fetchLFS": false,
+    "fetchSubmodules": false,
+    "deepClone": false,
+    "leaveDotGit": false
+}
