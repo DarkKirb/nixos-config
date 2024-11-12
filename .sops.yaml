@@ -5,7 +5,6 @@ keys:
   - &pc-installer age1eh2vd6cdy23qazwg0hzq95pn9e6p8yaqu4g6zyan8gzal4x5ed5qful8kg
   - &rainbow-resort age19vzypddhexvvsf8xylstxc9znnkd8rxmamhjlt7elvz4j3zaf5tqqura6f
   - &thinkrac age1p400545a482fma40yfgytu40p6wr5a75v4f8yeudvgf7eh5erufqxhgynr
-
 creation_rules:
   - path_regex: machine/not522/secrets\.yaml$
     key_groups:
@@ -13,6 +12,13 @@ creation_rules:
           - *base
           - *not522
   - path_regex: services/tailscale\.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *not522
+          - *rainbow-resort
+          - *thinkrac
+  - path_regex: services/restic\.yaml$
     key_groups:
       - age:
           - *base
