@@ -9,9 +9,6 @@
       kodiPkgs: with kodiPkgs; [
         jellyfin
         jellycon
-        inputstream-adaptive
-        inputstreamhelper
-        simplejson
       ]
     ))
   ];

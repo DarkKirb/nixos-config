@@ -6,7 +6,10 @@
   nix,
 }:
 let
-  script = lib.concatMapStringsSep "\n" (f: callPackage "${f}/updater.nix" { }) [ ./art ];
+  script = lib.concatMapStringsSep "\n" (f: callPackage "${f}/updater.nix" { }) [
+    ./art
+    ./kodi
+  ];
 in
 writeScriptBin "updater" ''
   #!${bash}/bin/bash
