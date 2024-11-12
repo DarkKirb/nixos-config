@@ -122,6 +122,7 @@ in
         "widget.use-xdg-desktop-portal.mime-handler" = 1;
         "widget.use-xdg-desktop-portal.open-uri" = 1;
         "widget.use-xdg-desktop-portal.settings" = 1;
+        "extensions.pocket.enabled" = false;
       };
       userChrome = ''
         @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
