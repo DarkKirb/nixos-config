@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     keepassxc
   ];
-  xdg.configFile."keepassxc.ini".text = lib.generators.toINI { } {
+  xdg.configFile."keepassxc/keepassxc.ini".text = lib.generators.toINI { } {
     General.ConfigVersion = 2;
     Browser = {
       CustomProxyLocation = "";
