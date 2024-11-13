@@ -8,12 +8,20 @@
     enableExtensionUpdateCheck = false;
     enableUpdateCheck = false;
     mutableExtensionsDir = false;
-    extensions = with pkgs.vscode-extensions; [
-      jnoortheen.nix-ide
-      mkhl.direnv
-      pkief.material-icon-theme
-      signageos.signageos-vscode-sops
-    ];
+    extensions =
+      (with pkgs.vscode-extensions; [
+        fill-labs.dependi
+        jnoortheen.nix-ide
+        mkhl.direnv
+        pkief.material-icon-theme
+        rust-lang.rust-analyzer
+        signageos.signageos-vscode-sops
+        tamasfe.even-better-toml
+        vadimcn.vscode-lldb
+      ])
+      ++ (with pkgs.vscode-marketplace; [
+        jscearcy.rust-doc-viewer
+      ]);
     userSettings = {
       "editor.fontFamily" = "\"Fira Code\", \"Fira Code Nerd Font Mono\", monospace";
       "editor.fontLigatures" = true;

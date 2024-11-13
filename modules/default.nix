@@ -5,6 +5,7 @@
   inTester,
   self,
   rust-overlay,
+  nix-vscode-extensions,
   ...
 }:
 with lib;
@@ -29,6 +30,7 @@ with lib;
         nixpkgs.overlays = [
           self.overlays.default
           (import rust-overlay)
+          nix-vscode-extensions.overlays.default
         ];
       }
     else
