@@ -12,6 +12,7 @@
       (with pkgs.vscode-extensions; [
         fill-labs.dependi
         jnoortheen.nix-ide
+        mechatroner.rainbow-csv
         mkhl.direnv
         pkief.material-icon-theme
         rust-lang.rust-analyzer
