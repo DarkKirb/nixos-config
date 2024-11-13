@@ -31,11 +31,11 @@
       CARGO_HOME = "${config.xdg.dataHome}/cargo";
     };
   systemd.user.tmpfiles.rules = [
-    "d ${config.xdg.cacheHome}/cargo - - - - -"
-    "d ${config.xdg.cacheHome}/cargo/git - - - - -"
-    "d ${config.xdg.cacheHome}/cargo/registry - - - - -"
-    "L ${config.xdg.dataHome}/cargo/git - - - - ${config.xdg.cacheHome}/cargo/git"
-    "L ${config.xdg.dataHome}/cargo/registry - - - - ${config.xdg.cacheHome}/cargo/registry"
+    "d /persistent${config.xdg.cacheHome}/cargo - - - - -"
+    "d /persistent${config.xdg.cacheHome}/cargo/git - - - - -"
+    "d /persistent${config.xdg.cacheHome}/cargo/registry - - - - -"
+    "L /persistent${config.xdg.dataHome}/cargo/git - - - - ${config.xdg.cacheHome}/cargo/git"
+    "L /persistent${config.xdg.dataHome}/cargo/registry - - - - ${config.xdg.cacheHome}/cargo/registry"
   ];
   xdg.dataFile."cargo/config.toml".source = (pkgs.formats.toml { }).generate "config.toml" {
     build.target-dir = "${config.xdg.cacheHome}/cargo/target";
