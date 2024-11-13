@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 {
@@ -53,9 +54,9 @@
     withPython3 = true;
   };
   systemd.user.tmpfiles.rules = [
-    "d %h/.cache/nvim/undo-files 0700 - -  mM:1w -"
-    "d %h/.cache/nvim/swap-files 0700 - -  mM:1w -"
-    "d %h/.cache/nvim/backup-files 0700 - -  mM:1w -"
+    "d /persistent${config.xdg.cacheHome}/nvim/undo-files 0700 - -  mM:1w -"
+    "d /persistent${config.xdg.cacheHome}/nvim/swap-files 0700 - -  mM:1w -"
+    "d /persistent${config.xdg.cacheHome}/nvim/backup-files 0700 - -  mM:1w -"
   ];
   xdg.configFile.nvim = {
     recursive = true;
