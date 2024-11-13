@@ -21,6 +21,7 @@
         vadimcn.vscode-lldb
       ])
       ++ (with pkgs.vscode-marketplace; [
+        janisdd.vscode-edit-csv
         jscearcy.rust-doc-viewer
       ]);
     userSettings = {
