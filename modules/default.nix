@@ -4,6 +4,7 @@
   lib,
   inTester,
   self,
+  rust-overlay,
   ...
 }:
 with lib;
@@ -27,6 +28,7 @@ with lib;
       {
         nixpkgs.overlays = [
           self.overlays.default
+          (import rust-overlay)
         ];
       }
     else

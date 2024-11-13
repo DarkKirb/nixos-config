@@ -10,6 +10,7 @@
     "${nixos-config}/services/desktop"
     ./kodi
     ./pim
+    ./development/rust
   ];
   home.packages = with pkgs; [
     kdePackages.kalk
