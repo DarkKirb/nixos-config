@@ -36,6 +36,23 @@
       "nix.serverSettings" = {
         nil.formatting.command = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
       };
+      "rust-analyzer.diagnostics.experimental.enable" = true;
+      "rust-analyzer.diagnostics.styleLints.enable" = true;
+      "rust-analyzer.hover.actions.references.enable" = true;
+      "rust-analyzer.imports.granularity.enforce" = true;
+      "rust-analyzer.inlayHints.bindingModeHints.enable" = true;
+      "rust-analyzer.inlayHints.closureCaptureHints.enable" = true;
+      "rust-analyzer.inlayHints.closureReturnTypeHints.enable" = "always";
+      "rust-analyzer.inlayHints.discriminantHints.enable" = "always";
+      "rust-analyzer.inlayHints.lifetimeElisionHints.enable" = "always";
+      "rust-analyzer.inlayHints.lifetimeElisionHints.useParameterNames" = true;
+      "rust-analyzer.inlayHints.rangeExclusiveHints.enable" = true;
+      "rust-analyzer.inlayHints.typeHints.hideClosureInitialization" = false;
+      "rust-analyzer.interpret.tests" = true;
+      "rust-analyzer.lens.references.adt.enable" = true;
+      "rust-analyzer.lens.references.enumVariant.enable" = true;
+      "rust-analyzer.lens.references.method.enable" = true;
+      "rust-analyzer.lens.references.trait.enable" = true;
       "sops.binPath" = "${pkgs.sops}/bin/sops";
       "workbench.iconTheme" = "material-icon-theme";
     };

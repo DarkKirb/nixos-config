@@ -8,6 +8,7 @@
   home.packages = with pkgs; [
     (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default))
     cargo-mommy
+    clang
   ];
   home.shellAliases = {
     cargo = "${pkgs.cargo-mommy}/bin/cargo-mommy";
