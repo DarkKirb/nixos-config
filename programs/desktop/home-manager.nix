@@ -19,6 +19,8 @@
     kdePackages.kdegraphics-thumbnailers
     kdePackages.ffmpegthumbs
     kdePackages.dolphin-plugins
+    libreoffice
+    obsidian
   ];
   home.persistence.default.directories = [
     ".local/share/kwalletd"
