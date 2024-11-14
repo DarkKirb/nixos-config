@@ -2,24 +2,8 @@
   config,
   nixos-config,
   pkgs,
-  pureInputs,
   ...
 }:
-let
-  getDeps = name: [
-    nixos-config.nixosConfigurations.${name}.config.system.build.toplevel
-    nixos-config.nixosConfigurations.${name}.config.system.build.diskoScript
-    nixos-config.nixosConfigurations.${name}.config.system.build.diskoScript.drvPath
-    nixos-config.nixosConfigurations.${name}.pkgs.stdenv.drvPath
-    (nixos-config.nixosConfigurations.${name}.pkgs.closureInfo { rootPaths = [ ]; }).drvPath
-  ];
-  dependencies =
-    (getDeps "rainbow-resort")
-    ++ (getDeps "thinkrac")
-    ++ map (i: i.outPath) (builtins.filter builtins.isAttrs (builtins.attrValues pureInputs));
-
-  closureInfo = pkgs.closureInfo { rootPaths = dependencies; };
-in
 {
   networking.hostName = "pc-installer";
   imports = [
@@ -48,7 +32,14 @@ in
     ];
   };
   isInstaller = true;
-  environment.etc."install-closure".source = "${closureInfo}/store-paths";
+  environment.etc."system/rainbow-resort".source = "${nixos-config.nixosConfigurations.rainbow-resort.config.system.build.toplevel
+  }";
+  environment.etc."system/rainbow-resort-disko".source = "${nixos-config.nixosConfigurations.rainbow-resort.config.system.build.diskoScript
+  }";
+  environment.etc."system/thinkrac".source = "${nixos-config.nixosConfigurations.thinkrac.config.system.build.toplevel
+  }";
+  environment.etc."system/thinkrac-disko".source = "${nixos-config.nixosConfigurations.thinkrac.config.system.build.diskoScript
+  }";
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "install-thinkrac-unattended" ''
       set -eux
