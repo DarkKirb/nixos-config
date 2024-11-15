@@ -17,10 +17,8 @@
 
   system.stateVersion = config.system.nixos.version;
 
-  environment.etc."system/not522".source = "${nixos-config.nixosConfigurations.not522.config.system.build.toplevel
-  }";
-  environment.etc."system/not522-disko".source = "${nixos-config.nixosConfigurations.not522.config.system.build.diskoScript
-  }";
+  #environment.etc."system/not522".source = "${nixos-config.nixosConfigurations.not522.config.system.build.toplevel}";
+  #environment.etc."system/not522-disko".source = "${nixos-config.nixosConfigurations.not522.config.system.build.diskoScript}";
 
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "install-nixos-unattended" ''

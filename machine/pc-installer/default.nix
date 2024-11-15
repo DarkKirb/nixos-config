@@ -32,14 +32,16 @@
     ];
   };
   isInstaller = true;
-  environment.etc."system/rainbow-resort".source = "${nixos-config.nixosConfigurations.rainbow-resort.config.system.build.toplevel
-  }";
-  environment.etc."system/rainbow-resort-disko".source = "${nixos-config.nixosConfigurations.rainbow-resort.config.system.build.diskoScript
-  }";
-  environment.etc."system/thinkrac".source = "${nixos-config.nixosConfigurations.thinkrac.config.system.build.toplevel
-  }";
-  environment.etc."system/thinkrac-disko".source = "${nixos-config.nixosConfigurations.thinkrac.config.system.build.diskoScript
-  }";
+  /*
+    environment.etc."system/rainbow-resort".source = "${nixos-config.nixosConfigurations.rainbow-resort.config.system.build.toplevel
+    }";
+    environment.etc."system/rainbow-resort-disko".source = "${nixos-config.nixosConfigurations.rainbow-resort.config.system.build.diskoScript
+    }";
+    environment.etc."system/thinkrac".source = "${nixos-config.nixosConfigurations.thinkrac.config.system.build.toplevel
+    }";
+    environment.etc."system/thinkrac-disko".source = "${nixos-config.nixosConfigurations.thinkrac.config.system.build.diskoScript
+    }";
+  */
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "install-thinkrac-unattended" ''
       set -eux
