@@ -1,12 +1,12 @@
 {
-    "url": "https://github.com/Maven85/plugin.video.joyn",
-    "rev": "a74a0901d55c47ca0269fd85dc2f267c41570e00",
-    "date": "2024-11-13T09:07:18+01:00",
-    "path": "/nix/store/q5x2msdzl377yribfa5a86vrdl1cbl4d-plugin.video.joyn",
-    "sha256": "00y4p9pqd1x67jc0356bm9ynkml9qnggqyylzm6mckk44i1ixqh1",
-    "hash": "sha256-AeIeQyRkTlZN/dR7/J7FidZpfarLlAGYPKaHhm+6xAM=",
-    "fetchLFS": false,
-    "fetchSubmodules": false,
-    "deepClone": false,
-    "leaveDotGit": false
+  "url": "https://github.com/Maven85/plugin.video.joyn",
+  "rev": "ada6baf66c2938ce2d268c0fc26a03c0f22860c8",
+  "date": "2024-11-14T12:11:46+01:00",
+  "path": "/nix/store/pijybsgblp2ajsim9wr40hwfpq5474dr-plugin.video.joyn",
+  "sha256": "1c8xsf85kvg2bplfcp9fc7a1fh38w5a6m2qy9y5z7ki8p8480crn",
+  "hash": "sha256-NjOACLoozvOLTx6LalThaEAX1GEuXeboXeLtWZDTHbE=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
 }
