@@ -6,7 +6,7 @@
 }:
 {
   home.packages = with pkgs; [
-    (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default))
+    rust-bin.stable.latest.default
     cargo-mommy
     clang
   ];
