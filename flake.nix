@@ -149,6 +149,7 @@
         let
           containerNames = [
             "default"
+            "postgresql"
           ];
           containerArches = [
             "x86_64-linux"
