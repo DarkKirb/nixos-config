@@ -12,7 +12,7 @@ with lib;
 {
   imports = [
     ./riscv.nix
-    ./containers/autoconfig.nix
+    ./containers/host.nix
     ./nix
     ./environment/impermanence.nix
     ./secrets/sops.nix
