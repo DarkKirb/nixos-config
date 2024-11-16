@@ -134,44 +134,9 @@
         };
     in
     {
-      checks.x86_64-linux = nixpkgs.lib.listToAttrs (
-        map (testName: {
-          name = testName;
-          value = (pkgsFor "x86_64-linux").callPackage ./tests/${testName}.nix { };
-        }) [ "containers-default" ]
-      );
       nixosModules = {
-        containers = import ./modules/containers/default.nix;
         default = import ./modules/default.nix;
       };
-      nixosContainers =
-        with nixpkgs.lib;
-        let
-          containerNames = [
-            "default"
-            "postgresql"
-          ];
-          containerArches = [
-            "x86_64-linux"
-            "aarch64-linux"
-            "riscv64-linux"
-          ];
-          containers = listToAttrs (
-            flatten (
-              map (
-                system:
-                let
-                  pkgs = pkgsFor system;
-                in
-                map (container: {
-                  name = "container-${container}-${system}";
-                  value = pkgs.callPackage ./containers/${container}-configuration.nix { };
-                }) containerNames
-              ) containerArches
-            )
-          );
-        in
-        containers;
       nixosConfigurations =
         with nixpkgs.lib;
         let
@@ -210,15 +175,6 @@
               system = "x86_64-linux";
             };
           };
-          containers = mapAttrs (
-            _: container:
-            mkSystem {
-              inherit (container) system;
-              modules = [
-                container.config
-              ];
-            }
-          ) self.nixosContainers;
           systems = mapAttrs (
             _: system:
             mkSystem {
@@ -229,7 +185,7 @@
             }
           ) systems';
         in
-        containers // systems;
+        systems;
       hydraJobs = {
         inherit (self) checks devShells packages;
         nixosConfigurations = nixpkgs.lib.mapAttrs (

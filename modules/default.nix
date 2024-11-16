@@ -12,7 +12,6 @@ with lib;
 {
   imports = [
     ./riscv.nix
-    ./containers/host.nix
     ./nix
     ./environment/impermanence.nix
     ./secrets/sops.nix
