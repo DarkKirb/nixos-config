@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   programs.newsboat = {
     enable = true;
@@ -55,4 +55,5 @@
         ]
       );
   };
+  home.persistence.default.directories = [ "${config.xdg.dataHome}/newsboat" ];
 }
