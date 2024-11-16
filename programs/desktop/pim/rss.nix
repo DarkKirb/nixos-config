@@ -56,5 +56,5 @@
         ]
       );
   };
-  home.persistence.default.directories = [ "${config.xdg.dataHome}/newsboat" ];
+  home.persistence.default.directories = [ ".local/share/newsboat" ];
 }
