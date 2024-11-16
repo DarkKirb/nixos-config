@@ -55,7 +55,6 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:nixos/nixpkgs";
-    nur.url = "github:nix-community/NUR";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -74,6 +73,10 @@
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rycee-nur-expressions = {
+      url = "git+https://gitlab.com/rycee/nur-expressions";
+      flake = false;
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -187,7 +190,7 @@
         in
         systems;
       hydraJobs = {
-        inherit (self) checks devShells packages;
+        inherit (self) devShells packages;
         nixosConfigurations = nixpkgs.lib.mapAttrs (
           _: v: v.config.system.build.toplevel
         ) self.nixosConfigurations;

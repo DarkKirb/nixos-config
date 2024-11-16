@@ -301,21 +301,6 @@
         "type": "github"
       }
     },
-    "nur": {
-      "locked": {
-        "lastModified": 1731730181,
-        "narHash": "sha256-uCyImsva4NYsRywcT+U6cr+MZrXx/e4Gu8SqTujrCBY=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "295cc9ee333bda9e7d58daae4d1c25fcdef3e5a6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
-      }
-    },
     "plasma-manager": {
       "inputs": {
         "home-manager": "home-manager_2",
@@ -401,11 +386,11 @@
         "nix2container": "nix2container",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nur": "nur",
         "plasma-manager": "plasma-manager",
         "pre-commit-hooks": "pre-commit-hooks",
         "riscv-overlay": "riscv-overlay",
         "rust-overlay": "rust-overlay",
+        "rycee-nur-expressions": "rycee-nur-expressions",
         "sops-nix": "sops-nix",
         "systems": "systems",
         "vscode-server": "vscode-server"
@@ -429,6 +414,22 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "rycee-nur-expressions": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731729795,
+        "narHash": "sha256-trv2jL/Xo/vddO0C6FvBdxMKEq+jn0Vw/0kIhPe9FHc=",
+        "ref": "refs/heads/master",
+        "rev": "c1ca3a49435407dddef89c07961c5ce40f66ff99",
+        "revCount": 3908,
+        "type": "git",
+        "url": "https://gitlab.com/rycee/nur-expressions"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gitlab.com/rycee/nur-expressions"
       }
     },
     "sops-nix": {

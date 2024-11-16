@@ -1,10 +1,11 @@
 {
   pkgs,
   lib,
-  nur,
+  rycee-nur-expressions,
   ...
 }:
 let
+  rycee = import rycee-nur-expressions { inherit pkgs; };
   extensions = {
     "ublock-origin" = [
       "alarms"
@@ -98,10 +99,6 @@ let
       "scripting"
     ];
   };
-  nur' = import nur {
-    nurpkgs = pkgs;
-    inherit pkgs;
-  };
 in
 {
   programs.firefox = {
@@ -112,7 +109,7 @@ in
     ];
     profiles.default = {
       containersForce = true;
-      extensions = map (v: nur'.repos.rycee.firefox-addons.${v}) (lib.attrNames extensions);
+      extensions = map (v: rycee.firefox-addons.${v}) (lib.attrNames extensions);
       settings = {
         "extensions.autoDisableScopes" = 0;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -147,7 +144,7 @@ in
   assertions = lib.mapAttrsToList (
     k: v:
     let
-      unaccepted = lib.subtractLists v nur'.repos.rycee.firefox-addons.${k}.meta.mozPermissions;
+      unaccepted = lib.subtractLists v rycee.firefox-addons.${k}.meta.mozPermissions;
     in
     {
       assertion = unaccepted == [ ];
