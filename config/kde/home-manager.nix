@@ -5,5 +5,6 @@
   imports = [
     plasma-manager.homeManagerModules.plasma-manager
     ./theming.nix
+    ./krdp.nix
   ];
 }

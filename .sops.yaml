@@ -60,3 +60,8 @@ creation_rules:
       - age:
           - *base
           - *darkkirb
+  - path_regex: config/kde/krdp.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *darkkirb
