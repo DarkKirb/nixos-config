@@ -87,6 +87,20 @@
       "L /persistent${config.xdg.dataHome}/Code/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/Code/DawnWebGPUCache"
       "L /persistent${config.xdg.dataHome}/Code/GPUCache - - - - ${config.xdg.cacheHome}/Code/GPUCache"
     ])
+    (lib.mkIf (!systemConfig.isIntelGPU) [
+      # GPU Cache sometimes breaks for electron apps on intel
+      "d /persistent${config.xdg.cacheHome}/Code/DawnWebGPUCache - - - - -"
+      "d /persistent${config.xdg.cacheHome}/Code/GPUCache - - - - -"
+      "L /persistent${config.xdg.dataHome}/Code/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/Code/DawnWebGPUCache"
+      "L /persistent${config.xdg.dataHome}/Code/GPUCache - - - - ${config.xdg.cacheHome}/Code/GPUCache"
+    ])
+    (lib.mkIf (systemConfig.isIntelGPU) [
+      # GPU Cache sometimes breaks for electron apps on intel
+      "d /tmp${config.xdg.cacheHome}/Code/DawnWebGPUCache - - - - -"
+      "d /tmp${config.xdg.cacheHome}/Code/GPUCache - - - - -"
+      "L /persistent${config.xdg.dataHome}/Code/DawnWebGPUCache - - - - /tmp${config.xdg.cacheHome}/Code/DawnWebGPUCache"
+      "L /persistent${config.xdg.dataHome}/Code/GPUCache - - - - /tmp${config.xdg.cacheHome}/Code/GPUCache"
+    ])
   ];
   home.persistence.default.directories = [
     ".local/share/Code"
