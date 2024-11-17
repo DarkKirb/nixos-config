@@ -80,22 +80,14 @@
       "L /persistent${config.xdg.dataHome}/Code/DawnGraphiteCache - - - - ${config.xdg.cacheHome}/Code/DawnGraphiteCache"
       "L ${config.xdg.configHome}/Code - - - - ${config.xdg.dataHome}/Code"
     ]
+    # GPU Cache sometimes breaks for electron apps on intel, so only persist that on non-intel
     (lib.mkIf (!systemConfig.isIntelGPU) [
-      # GPU Cache sometimes breaks for electron apps on intel
-      "d /persistent${config.xdg.cacheHome}/Code/DawnWebGPUCache - - - - -"
-      "d /persistent${config.xdg.cacheHome}/Code/GPUCache - - - - -"
-      "L /persistent${config.xdg.dataHome}/Code/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/Code/DawnWebGPUCache"
-      "L /persistent${config.xdg.dataHome}/Code/GPUCache - - - - ${config.xdg.cacheHome}/Code/GPUCache"
-    ])
-    (lib.mkIf (!systemConfig.isIntelGPU) [
-      # GPU Cache sometimes breaks for electron apps on intel
       "d /persistent${config.xdg.cacheHome}/Code/DawnWebGPUCache - - - - -"
       "d /persistent${config.xdg.cacheHome}/Code/GPUCache - - - - -"
       "L /persistent${config.xdg.dataHome}/Code/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/Code/DawnWebGPUCache"
       "L /persistent${config.xdg.dataHome}/Code/GPUCache - - - - ${config.xdg.cacheHome}/Code/GPUCache"
     ])
     (lib.mkIf (systemConfig.isIntelGPU) [
-      # GPU Cache sometimes breaks for electron apps on intel
       "d /tmp${config.xdg.cacheHome}/Code/DawnWebGPUCache - - - - -"
       "d /tmp${config.xdg.cacheHome}/Code/GPUCache - - - - -"
       "L /persistent${config.xdg.dataHome}/Code/DawnWebGPUCache - - - - /tmp${config.xdg.cacheHome}/Code/DawnWebGPUCache"
