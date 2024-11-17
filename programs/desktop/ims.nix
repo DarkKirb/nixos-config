@@ -2,6 +2,8 @@
 {
   home.packages = with pkgs; [
     telegram-desktop
+    discord
+    element-desktop
   ];
   home.persistence.default.directories = [ ".local/share/TelegramDesktop" ];
   systemd.user.tmpfiles.rules = [
