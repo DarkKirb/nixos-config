@@ -1,4 +1,11 @@
-{ vscode-server, pkgs, ... }:
+{
+  vscode-server,
+  config,
+  systemConfig,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
     "${vscode-server}/modules/vscode-server/home.nix"
@@ -58,4 +65,30 @@
     };
   };
   services.vscode-server.enable = true;
+  systemd.user.tmpfiles.rules = lib.mkMerge [
+    [
+      "d /persistent${config.xdg.cacheHome}/Code/Cache - - - - -"
+      "d /persistent${config.xdg.cacheHome}/Code/CachedData - - - - -"
+      "d /persistent${config.xdg.cacheHome}/Code/CachedProfilesData - - - - -"
+      "d /persistent${config.xdg.cacheHome}/Code/Code\x20Cache - - - - -"
+      "d /persistent${config.xdg.cacheHome}/Code/DawnGraphiteCache - - - - -"
+      "d /persistent${config.xdg.dataHome}/Code - - - - -"
+      "L /persistent${config.xdg.dataHome}/Code/Cache - - - - ${config.xdg.cacheHome}/Code/Cache"
+      "L /persistent${config.xdg.dataHome}/Code/CachedData - - - - ${config.xdg.cacheHome}/Code/CachedData"
+      "L /persistent${config.xdg.dataHome}/Code/CachedProfilesData - - - - ${config.xdg.cacheHome}/Code/CachedProfilesData"
+      "L /persistent${config.xdg.dataHome}/Code/Code\x20Cache - - - - ${config.xdg.cacheHome}/Code/Code\x20Cache"
+      "L /persistent${config.xdg.dataHome}/Code/DawnGraphiteCache - - - - ${config.xdg.cacheHome}/Code/DawnGraphiteCache"
+      "L ${config.xdg.configHome}/Code - - - - ${config.xdg.dataHome}/Code"
+    ]
+    (lib.mkIf (!systemConfig.isIntelGPU) [
+      # GPU Cache sometimes breaks for electron apps on intel
+      "d /persistent${config.xdg.cacheHome}/Code/DawnWebGPUCache - - - - -"
+      "d /persistent${config.xdg.cacheHome}/Code/GPUCache - - - - -"
+      "L /persistent${config.xdg.dataHome}/Code/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/Code/DawnWebGPUCache"
+      "L /persistent${config.xdg.dataHome}/Code/GPUCache - - - - ${config.xdg.cacheHome}/Code/GPUCache"
+    ])
+  ];
+  home.persistence.default.directories = [
+    ".local/share/Code"
+  ];
 }
