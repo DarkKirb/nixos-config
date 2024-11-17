@@ -174,7 +174,7 @@ in
     "storage-sync-v2.sqlite"
     "storage-sync-v2.sqlite-shm"
     "storage-sync-v2.sqlite-wal"
-    "webappstore.sqlite"
-    "webappstore.sqlite-wal"
+    "webappsstore.sqlite"
+    "webappsstore.sqlite-wal"
   ];
 }
