@@ -22,6 +22,7 @@
           "org.kde.plasma.icontasks"
           "org.kde.plasma.marginsseparator"
           "org.kde.plasma.systemtray"
+          "org.kde.plasma.pager"
           "org.kde.plasma.digitalclock"
         ];
       }

@@ -7,4 +7,8 @@
     ./theming.nix
     ./krdp.nix
   ];
+  programs.plasma.kwin.virtualDesktops = {
+    rows = 3;
+    number = 3;
+  };
 }
