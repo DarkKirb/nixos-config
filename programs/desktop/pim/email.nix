@@ -54,7 +54,33 @@
       withExternalGnupg = true;
     };
   };
-  home.persistence.default.directories = [
-    ".thunderbird"
+  home.persistence.default.directories = map (f: ".thunderbird/default/${f}") [
+    "calendar-data"
+    "ImapMail"
+    "Mail"
+    "settings"
+    "storage"
+  ];
+  home.persistence.default.files = map (f: ".thunderbird/default/${f}") [
+    "abook.sqlite"
+    "blist.sqlite"
+    "content-prefs.sqlite"
+    "cookies.sqlite"
+    "extension-preferences.json"
+    "extensions.json"
+    "favicons.sqlite"
+    "folderTree.json"
+    "formhistory.sqlite"
+    "global-messages-db.sqlite"
+    "history.sqlite"
+    "key4.db"
+    "logins.json"
+    "mailViews.dat"
+    "openpgp.sqlite"
+    "permissions.sqlite"
+    "places.sqlite"
+    "prefs.js"
+    "storage.sqlite"
+    "virtualFolders.dat"
   ];
 }

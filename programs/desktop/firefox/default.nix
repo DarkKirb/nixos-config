@@ -151,7 +151,30 @@ in
       message = ''Extension ${k} has unaccepted permissions: ${builtins.toJSON unaccepted}'';
     }
   ) extensions;
-  home.persistence.default.directories = [
-    ".mozilla"
+  home.persistence.default.directories = map (f: ".mozilla/firefox/default/${f}") [
+    "extension-store"
+    "extension-store-menus"
+    "storage"
+    "settings"
+    "security_state"
+  ];
+  home.persistence.default.files = map (f: ".mozilla/firefox/default/${f}") [
+    "addons.json"
+    "cookies.sqlite"
+    "extension-preferences.json"
+    "extension-settings.json"
+    "favicons.sqlite"
+    "formhistory.sqlite"
+    "key4.db"
+    "permissions.sqlite"
+    "places.sqlite"
+    "protections.sqlite"
+    "prefs.js"
+    "storage.sqlite"
+    "storage-sync-v2.sqlite"
+    "storage-sync-v2.sqlite-shm"
+    "storage-sync-v2.sqlite-wal"
+    "webappstore.sqlite"
+    "webappstore.sqlite-wal"
   ];
 }
