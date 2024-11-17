@@ -11,7 +11,11 @@
     discord
     element-desktop
   ];
-  home.persistence.default.directories = [ ".local/share/TelegramDesktop" ];
+  home.persistence.default.directories = [
+    ".local/share/TelegramDesktop"
+    ".local/share/discord"
+    ".local/share/Element"
+  ];
   systemd.user.tmpfiles.rules = lib.mkMerge [
     [
       "d /persistent${config.xdg.cacheHome}/TelegramDesktop/cache - - - - -"
