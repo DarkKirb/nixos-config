@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
-      url = "github:nix-community/impermanence";
+      url = "github:DarkKirb/impermanence/change-default-link-type";
     };
     lix = {
       url = "git+https://git.lix.systems/lix-project/lix";

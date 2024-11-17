@@ -30,16 +30,14 @@ with lib;
                 home.persistence.default = {
                   persistentStoragePath = "/persistent/home/${name}";
                   allowOther = true;
+                  defaultMethod = "symlink";
                   directories = [
                     "Downloads"
                     "Music"
                     "Pictures"
                     "Documents"
                     "Videos"
-                    {
-                      directory = ".cache";
-                      method = "symlink";
-                    }
+                    ".cache"
                     "Data"
                   ];
                 };
