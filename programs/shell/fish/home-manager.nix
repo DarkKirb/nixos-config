@@ -19,6 +19,7 @@
   };
   home.persistence.default.directories = [
     ".local/share/fish"
+    ".local/share/direnv"
   ];
   programs.nix-index.enable = true;
   programs.direnv.enable = true;
