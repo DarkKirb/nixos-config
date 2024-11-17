@@ -9,6 +9,6 @@
   ];
   programs.plasma.kwin.virtualDesktops = {
     rows = 3;
-    number = 3;
+    number = 9;
   };
 }
