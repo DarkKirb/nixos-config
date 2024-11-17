@@ -134,11 +134,11 @@
     },
     "impermanence": {
       "locked": {
-        "lastModified": 1731832498,
-        "narHash": "sha256-Dtz5DoRIWE7S7DoBMcuJXxKUaPpHpllcnIx51b82IlY=",
+        "lastModified": 1731846036,
+        "narHash": "sha256-vOmxUqGNFjyF4i0hLTI3iNJ3tUJXkPxN+BwPRZFb3FA=",
         "owner": "DarkKirb",
         "repo": "impermanence",
-        "rev": "ef639cd8194874937f899e5450b45b79e8f7463e",
+        "rev": "5edca6851b3b65d02cdd68e766ffb7162e17e730",
         "type": "github"
       },
       "original": {
