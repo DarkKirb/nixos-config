@@ -2,13 +2,29 @@
   description = "Lotte’s nix configuration";
 
   inputs = {
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    element-web = {
+      url = "github:darkkirb/element-web";
+      inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.matrix-js-sdk.follows = "matrix-js-sdk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
+    };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     flake-utils = {
       url = "github:numtide/flake-utils";
@@ -40,6 +56,13 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.flakey-profile.follows = "flakey-profile";
       inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    matrix-js-sdk = {
+      url = "github:darkkirb/matrix-js-sdk";
+      inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-vscode-extensions = {
@@ -229,7 +252,11 @@
               // (
                 if name != "riscv64-linux" then
                   {
-                    inherit (pkgs) kodi-joyn;
+                    inherit (pkgs)
+                      element-desktop
+                      element-web
+                      kodi-joyn
+                      ;
                   }
                 else
                   { }

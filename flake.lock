@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "devshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1728330715,
+        "narHash": "sha256-xRJ2nPOXb//u1jaBnDP56M7v5ldavjbtR6lfGqSvcKg=",
+        "owner": "numtide",
+        "repo": "devshell",
+        "rev": "dd6b80932022cea34a019e2bb32f6fa9e494dfef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "devshell",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -20,6 +40,38 @@
         "type": "github"
       }
     },
+    "element-web": {
+      "inputs": {
+        "devshell": [
+          "devshell"
+        ],
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "matrix-js-sdk": [
+          "matrix-js-sdk"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1731922168,
+        "narHash": "sha256-kDHZXas6YvkNWq5Ab038/MMPfobB6rSuJhJTp7V5K1Y=",
+        "owner": "darkkirb",
+        "repo": "element-web",
+        "rev": "c2e3d1415eb376f7c09d0f48c69779936e2e26d6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "darkkirb",
+        "repo": "element-web",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -33,6 +85,26 @@
       "original": {
         "owner": "edolstra",
         "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1730504689,
+        "narHash": "sha256-hgmguH29K2fvs9szpq2r3pz2/8cJd2LPS+b4tfNFCwE=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "506278e768c2a08bec68eb62932193e341f55c90",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
         "type": "github"
       }
     },
@@ -207,6 +279,35 @@
         "url": "https://git.lix.systems/lix-project/nixos-module"
       }
     },
+    "matrix-js-sdk": {
+      "inputs": {
+        "devshell": [
+          "devshell"
+        ],
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1731919198,
+        "narHash": "sha256-WOTtlA2pVCh4GmIN2MQiNa0vOs57LLMIwMGKdWxdt1w=",
+        "owner": "darkkirb",
+        "repo": "matrix-js-sdk",
+        "rev": "ff08c2e49038fbd29472d1fe1d13593ecb416136",
+        "type": "github"
+      },
+      "original": {
+        "owner": "darkkirb",
+        "repo": "matrix-js-sdk",
+        "type": "github"
+      }
+    },
     "nix-vscode-extensions": {
       "inputs": {
         "flake-compat": [
@@ -374,8 +475,11 @@
     },
     "root": {
       "inputs": {
+        "devshell": "devshell",
         "disko": "disko",
+        "element-web": "element-web",
         "flake-compat": "flake-compat",
+        "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "flakey-profile": "flakey-profile",
         "gitignore": "gitignore",
@@ -383,6 +487,7 @@
         "impermanence": "impermanence",
         "lix": "lix",
         "lix-module": "lix-module",
+        "matrix-js-sdk": "matrix-js-sdk",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nix2container": "nix2container",
         "nixos-hardware": "nixos-hardware",
