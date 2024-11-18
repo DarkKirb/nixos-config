@@ -140,13 +140,9 @@
           config.allowUnfree = true;
           overlays =
             [
-              (
-                _: _:
-                inputs'
-                // {
-                  inputs = inputs';
-                }
-              )
+              (_: _: {
+                inputs = inputs';
+              })
               self.overlays.default
             ]
             ++ (
