@@ -3,6 +3,7 @@
   imports = [
     ./steam
     ./kodi/system-config.nix
+    ./pipewire.nix
   ];
   home-manager.users.darkkirb.imports =
     if config.isGraphical then
