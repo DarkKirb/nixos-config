@@ -1,4 +1,7 @@
 { ... }:
 {
-  networking.firewall.enable = false;
+  networking.firewall.allowedTCPPorts = [
+    8080
+    9090
+  ];
 }
