@@ -6,11 +6,11 @@
     ./syncthing
     ./games
     ./ims.nix
-    ./audacious.nix
     "${nixos-config}/services/desktop"
     ./kodi
     ./pim
     ./development/rust
+    ./music
   ];
   home.packages = with pkgs; [
     kdePackages.kalk
