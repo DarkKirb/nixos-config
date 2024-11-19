@@ -6,6 +6,7 @@
     plasma-manager.homeManagerModules.plasma-manager
     ./theming.nix
     ./krdp.nix
+    ./gtk-fixes
   ];
   programs.plasma.kwin.virtualDesktops = {
     rows = 3;
