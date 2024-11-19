@@ -47,7 +47,6 @@
     options usbcore autosuspend=2
     # Fan control for thinkpads
     options thinkpad_acpi fan_control=1
-    options zfs zfs_arc_max=4294967296
   '';
   boot.kernel.sysctl = {
     # Probably unnecessary

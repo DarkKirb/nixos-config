@@ -184,6 +184,10 @@
               config = ./machine/not522/installer;
               system = "riscv64-linux";
             };
+            oracle-installer = {
+              config = ./machine/oracle-installer;
+              system = "aarch64-linux";
+            };
             pc-installer = {
               config = ./machine/pc-installer;
               system = "x86_64-linux";

@@ -1,0 +1,1 @@
+Taken from https://github.com/cleverca22/nix-tests/tree/master/kexec, released under the apache 2.0 license
