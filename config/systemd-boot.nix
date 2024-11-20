@@ -1,6 +1,6 @@
-{ system, ... }:
+{ pkgs, ... }:
 let
-  isx86 = system == "x86_64-linux";
+  isx86 = pkgs.targetPlatform.system == "x86_64-linux";
 in
 {
   boot.loader.systemd-boot = {
