@@ -55,6 +55,7 @@
           "https://www.youtube.com/feeds/videos.xml?channel_id=UCto7D1L-MiRoOziCXK9uT5Q"
           "https://www.youtube.com/feeds/videos.xml?channel_id=UCKOvOaJv4GK-oDqx-sj7VVg"
           "https://www.youtube.com/feeds/videos.xml?channel_id=UChFur_NwVSbUozOcF_F2kMg"
+          "https://www.youtube.com/feeds/videos.xml?channel_id=UCL0EBrPPyepiM_U3CIW-0xw"
         ]
       );
   };
