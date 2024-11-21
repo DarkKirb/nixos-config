@@ -100,7 +100,7 @@ with lib;
                 {
                   name = "home-manager-${name}";
                   value = {
-                    wantedBy = mkForce [
+                    wantedBy = [
                       "user@${toString cfg.uid}.service"
                     ];
                     after = [
