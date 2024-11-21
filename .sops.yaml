@@ -65,3 +65,8 @@ creation_rules:
       - age:
           - *base
           - *darkkirb
+  - path_regex: services/desktop/gpg/privkey.yaml
+    key_groups:
+      - age:
+          - *base
+          - *darkkirb
