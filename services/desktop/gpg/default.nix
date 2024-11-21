@@ -22,6 +22,7 @@
     enable = true;
     enableSshSupport = true;
     pinentryPackage = pkgs.pinentry-qt;
+    enableExtraSocket = true;
   };
   sops.secrets."pgp/0xB4E3D4801C49EC5E.asc".sopsFile = ./privkey.yaml;
   home.activation.import-gpg-privkey =
@@ -36,4 +37,17 @@
           config.sops.secrets."pgp/0xB4E3D4801C49EC5E.asc".path
         }
       '';
+  programs.fish.loginShellInit = "gpgconf --launch gpg-agent";
+  systemd.user.services.link-gnupg-sockets = {
+    Unit = {
+      Description = "link gnupg sockets from /run to /home";
+    };
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.coreutils}/bin/ln -Tfs /run/user/%U/gnupg %h/.local/state/gnupg";
+      ExecStop = "${pkgs.coreutils}/bin/rm $HOME/.local/state/gnupg";
+      RemainAfterExit = true;
+    };
+    Install.WantedBy = [ "default.target" ];
+  };
 }
