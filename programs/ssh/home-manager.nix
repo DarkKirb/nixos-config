@@ -34,7 +34,15 @@
           bind.address = "/%d/.local/state/gnupg/S.gpg-agent";
           host.address = "/%d/.local/state/gnupg/S.gpg-agent.extra";
         }
+        {
+          bind.address = "/%d/.local/state/waypipe/server.sock";
+          host.address = "/%d/.local/state/waypipe/client.sock";
+        }
       ];
+      forwardX11 = true;
+      forwardX11Trusted = true;
+      setEnv.WAYLAND_DISPLAY = "wayland-waypipe";
+      extraOptions.StreamLocalBindUnlink = "yes";
     };
     enable = true;
   };
