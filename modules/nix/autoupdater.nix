@@ -40,7 +40,7 @@ with lib;
     };
   };
 
-  #config.nix.auto-update.enable = mkDefault config.nix.enable;
+  config.nix.auto-update.enable = mkDefault config.nix.enable;
   config.nix.auto-update.reboot = mkDefault true;
   config.systemd.services.nixos-upgrade = mkIf config.nix.enable {
     description = "NixOS Upgrade";
