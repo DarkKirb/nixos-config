@@ -23,16 +23,4 @@ with lib;
   options.isInstaller = mkEnableOption "Whether or not this configuration is an installer and has no access to secrets";
   options.isNSFW = mkEnableOption "Whether or not this configuration is NSFW";
   options.isIntelGPU = mkEnableOption "Whether or not this configuration uses an Intel GPU";
-
-  config =
-    if !inTester then
-      {
-        nixpkgs.overlays = [
-          self.overlays.default
-          (import rust-overlay)
-          nix-vscode-extensions.overlays.default
-        ];
-      }
-    else
-      { };
 }
