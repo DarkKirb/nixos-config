@@ -177,11 +177,11 @@
           systems' = {
             not522 = {
               config = ./machine/not522;
-              system = "x86_64-linux";
+              system = "riscv64-linux";
             };
             not522-installer = {
               config = ./machine/not522/installer;
-              system = "x86_64-linux";
+              system = "riscv64-linux";
             };
             oracle-installer = {
               config = ./machine/oracle-installer;
@@ -263,7 +263,7 @@
           })
           [
             "x86_64-linux"
-            #"riscv64-linux"
+            "riscv64-linux"
             "aarch64-linux"
           ]
       );

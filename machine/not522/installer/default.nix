@@ -27,8 +27,4 @@
     '')
   ];
   isInstaller = true;
-  nixpkgs.crossSystem = {
-    config = "riscv64-unknown-linux-gnu";
-    system = "riscv64-linux";
-  };
 }

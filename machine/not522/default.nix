@@ -9,7 +9,7 @@
     "${nixos-config}/config"
     ./disko.nix
     ./hardware.nix
-    #./cross-packages.nix
+    ./cross-packages.nix
     "${nixpkgs}/nixos/modules/profiles/minimal.nix"
   ];
   system.stateVersion = "24.11";
@@ -18,8 +18,4 @@
     "native-riscv"
     "big-parallel"
   ];
-  nixpkgs.crossSystem = {
-    config = "riscv64-unknown-linux-gnu";
-    system = "riscv64-linux";
-  };
 }
