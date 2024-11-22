@@ -6,7 +6,6 @@
   self,
   rust-overlay,
   nix-vscode-extensions,
-  inputs,
   ...
 }:
 with lib;
@@ -29,9 +28,6 @@ with lib;
     if !inTester then
       {
         nixpkgs.overlays = [
-          (_: _: {
-            inherit inputs;
-          })
           self.overlays.default
           (import rust-overlay)
           nix-vscode-extensions.overlays.default

@@ -9,6 +9,7 @@
     "${nixos-config}/programs"
     ./systemd-boot.nix
     ./i18n.nix
+    ./overlays
   ];
   boot.initrd.systemd.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
