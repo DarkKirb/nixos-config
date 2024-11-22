@@ -25,18 +25,24 @@
     enableExtraSocket = true;
   };
   sops.secrets."pgp/0xB4E3D4801C49EC5E.asc".sopsFile = ./privkey.yaml;
-  home.activation.import-gpg-privkey =
-    lib.hm.dag.entryAfter
-      [
-        "writeBoundary"
-        "sops-nix"
-        "importGpgKeys"
-      ]
-      ''
-        run env GNUPGHOME=${config.programs.gpg.homedir} ${config.programs.gpg.package}/bin/gpg --import ${
+  systemd.user.services.import-gpg-privkey = {
+    Unit = {
+      Description = "Imports the GPG private key";
+      Wants = [ "sops-nix.service" ];
+      After = [ "sops-nix.service" ];
+    };
+    Service = {
+      Type = "oneshot";
+      Environment = "GNUPGHOME=${config.programs.gpg.homedir}";
+      ExecStart = pkgs.writeScript "import-gpg-privkey" ''
+        ${config.programs.gpg.package}/bin/gpg --import ${
           config.sops.secrets."pgp/0xB4E3D4801C49EC5E.asc".path
         }
+        ${config.programs.gpg.package}/bin/gpg --card-status
       '';
+    };
+    Install.WantedBy = [ "graphical-session-pre.target" ];
+  };
   programs.fish.loginShellInit = "gpgconf --launch gpg-agent";
   systemd.user.services.link-gnupg-sockets = {
     Unit = {
