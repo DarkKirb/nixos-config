@@ -11,7 +11,7 @@
       merge.conflictstyle = "diff3";
       push.autoSetupRemote = true;
       rerere.enabled = true;
-      user.signingkey = "AB2BD8DAF2E37122";
+      user.signingkey = "B4E3D4801C49EC5E";
       commit.gpgsign = true;
     };
     delta.enable = true;
