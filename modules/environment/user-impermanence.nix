@@ -69,6 +69,10 @@ with lib;
                     partOf = [
                       "user@${toString cfg.uid}.service"
                     ];
+                    conflicts = [
+                      "home-darkkirb-.mozilla.mount"
+                      "home-darkkirb-.thunderbird.mount"
+                    ];
                     serviceConfig.Type = "oneshot";
                     script = ''
                       if [[ -e ${cfg.home} ]]; then
@@ -100,11 +104,17 @@ with lib;
                 {
                   name = "home-manager-${name}";
                   value = {
+                    wants = [
+                      "home-darkkirb-.mozilla.mount"
+                      "home-darkkirb-.thunderbird.mount"
+                    ];
                     wantedBy = [
                       "user@${toString cfg.uid}.service"
                     ];
                     after = [
                       "cleanup-home-${name}.service"
+                      "home-darkkirb-.mozilla.mount"
+                      "home-darkkirb-.thunderbird.mount"
                     ];
                     before = [
                       "user@${toString cfg.uid}.service"
