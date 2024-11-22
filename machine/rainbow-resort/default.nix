@@ -9,7 +9,6 @@
     "${nixos-config}/config"
     ./disko.nix
     ./hardware.nix
-    "${nixos-config}/config/networkmanager.nix"
     "${nixos-config}/config/graphical.nix"
     "${nixos-config}/config/graphical/plymouth.nix"
   ];
