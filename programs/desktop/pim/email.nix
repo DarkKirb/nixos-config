@@ -60,4 +60,8 @@
       withExternalGnupg = true;
     };
   };
+  systemd.user.services.imapnotify.Unit = {
+    Wants = [ "sops-nix.service" ];
+    After = [ "sops-nix.service" ];
+  };
 }
