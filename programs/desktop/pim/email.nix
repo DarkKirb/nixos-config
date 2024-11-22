@@ -2,6 +2,11 @@
 {
   accounts.email.accounts.lotte = {
     address = "lotte@chir.rs";
+    gpg = {
+      encryptByDefault = true;
+      key = "B4E3D4801C49EC5E";
+      signByDefault = true;
+    };
     imap = {
       host = "imappro.zoho.eu";
       port = 993;
