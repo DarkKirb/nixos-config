@@ -10,7 +10,6 @@
   imports = [
     "${nixos-config}/config"
     "${nixos-config}/machine/not522/hardware.nix"
-    "${nixos-config}/machine/not522/cross-packages.nix"
     ./disko.nix
     "${nixpkgs}/nixos/modules/profiles/minimal.nix"
   ];
