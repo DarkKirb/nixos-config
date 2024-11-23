@@ -43,6 +43,7 @@
       "nix.serverSettings" = {
         nil.formatting.command = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
       };
+      "rust-analyzer.cargo.targetDir" = "${config.xdg.cacheHome}/cargo/rust-analyzer-target";
       "rust-analyzer.check.command" = "clippy";
       "rust-analyzer.diagnostics.experimental.enable" = true;
       "rust-analyzer.diagnostics.styleLints.enable" = true;
