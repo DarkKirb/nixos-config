@@ -1,4 +1,4 @@
-{ riscv-overlay }:
+{ riscv-overlay, ... }:
 {
   nixpkgs.overlays = [
     riscv-overlay.overlays.default
