@@ -80,7 +80,8 @@ let
   };
 in
 {
-  home-manager.users.root.stylix.enable = lib.mkForce false;
+  home-manager.users.root.stylix.targets.kde.enable = lib.mkForce false;
+  home-manager.users.darkkirb.stylix.targets.kde.enable = config.isGraphical;
   stylix = {
     enable = true;
     image = bgPng;
@@ -107,6 +108,9 @@ in
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
       };
+    };
+    targets = {
+      kde.enable = config.isGraphical;
     };
   };
 }

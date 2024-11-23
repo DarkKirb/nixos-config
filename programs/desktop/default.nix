@@ -11,7 +11,6 @@
     ./pipewire.nix
     ./firefox/system.nix
     stylix.nixosModules.stylix
-    ./stylix
   ];
   home-manager.users.darkkirb.imports =
     if config.isGraphical then
