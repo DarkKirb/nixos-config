@@ -109,8 +109,12 @@ in
         name = "Noto Color Emoji";
       };
     };
-    targets = {
-      kde.enable = config.isGraphical;
-    };
   };
+  home-manager.sharedModules = [
+    {
+      stylix.targets = {
+        kde.enable = config.isGraphical;
+      };
+    }
+  ];
 }
