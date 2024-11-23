@@ -32,7 +32,6 @@
         jscearcy.rust-doc-viewer
       ]);
     userSettings = {
-      "editor.fontFamily" = "\"Fira Code\", \"Fira Code Nerd Font Mono\", monospace";
       "editor.fontLigatures" = true;
       "editor.formatOnPaste" = true;
       "editor.formatOnSave" = true;

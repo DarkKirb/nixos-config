@@ -1,11 +1,8 @@
-{ systemConfig, pkgs, ... }:
+{ ... }:
 {
   programs.plasma = {
     workspace = {
       lookAndFeel = "org.kde.breezedark.desktop";
-      wallpaperSlideShow = {
-        path = if systemConfig.isNSFW then "${pkgs.art-lotte-bgs-nsfw}" else "${pkgs.art-lotte-bgs-sfw}";
-      };
     };
     hotkeys.commands."launch-konsole" = {
       name = "Launch Konsole";
@@ -34,10 +31,6 @@
         screen = "all";
       }
     ];
-    fonts.fixedWidth = {
-      family = "FiraCode Nerd Font Mono";
-      pointSize = 9;
-    };
     configFile.kwinrc."NightColor" = {
       Active = true;
       LatitudeFixed = 51;

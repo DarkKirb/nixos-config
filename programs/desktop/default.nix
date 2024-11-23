@@ -1,10 +1,17 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  stylix,
+  ...
+}:
 {
   imports = [
     ./steam
     ./kodi/system-config.nix
     ./pipewire.nix
     ./firefox/system.nix
+    stylix.nixosModules.stylix
+    ./stylix
   ];
   home-manager.users.darkkirb.imports =
     if config.isGraphical then
