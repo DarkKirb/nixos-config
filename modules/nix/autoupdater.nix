@@ -70,8 +70,8 @@ with lib;
           if cfg.reboot then
             ''
               ${switchToConfiguration} boot
-              booted="$(${pkgs.coreutils}/bin/readlink /run/booted-system/{initrd,kernel,kernel-modules})"
-              built="$(${pkgs.coreutils}/bin/readlink ${output}/{initrd,kernel,kernel-modules})"
+              booted="$(${pkgs.coreutils}/bin/readlink /run/booted-system/{kernel,kernel-modules})"
+              built="$(${pkgs.coreutils}/bin/readlink ${output}/{kernel,kernel-modules})"
               if [ "$booted" = "$built" ]; then
                 ${switchToConfiguration} switch
               else
