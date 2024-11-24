@@ -125,11 +125,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1732258553,
-        "narHash": "sha256-fwKg96DlsbHUFWYMU8XWUdLjIgiHQJvQ0x91DQYISZw=",
+        "lastModified": 1732439059,
+        "narHash": "sha256-UrOc9NB1UnV01l6xFHZuWIQAGQizB+mytrJE6yfkwWQ=",
         "owner": "darkkirb",
         "repo": "element-web",
-        "rev": "a975b607499358e8d008474d1258b791cab84a6e",
+        "rev": "96692a8a217ed4ddc0243acdab5d3aefeb9bc9a6",
         "type": "github"
       },
       "original": {
