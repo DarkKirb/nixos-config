@@ -20,12 +20,12 @@ with lib;
     project = mkOption {
       type = types.str;
       description = "Project name to use";
-      default = "nixos-config";
+      default = "flakes";
     };
     jobset = mkOption {
       type = types.str;
       description = "Jobset name to use";
-      default = "pr618";
+      default = "nixos-config-rewrite";
     };
     job = mkOption {
       type = types.str;
