@@ -65,13 +65,14 @@ in
   '';
 
   imports = [
-    ./wl-clipboard.nix
+    ./cliphist.nix
     ./mako.nix
     ./swayidle.nix
     ./rofi.nix
     ./mpd.nix
   ];
   wayland.windowManager.sway = {
+    systemd.enable = true;
     enable = true;
     config = {
       modifier = "Mod4";
@@ -170,6 +171,21 @@ in
       gaps inner 4
       exec_always ${pkgs.xorg.xrandr}/bin/xrandr --output DP-1 --primary
     '';
+  };
+  qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+  };
+  systemd.user.services.transparency = {
+    Unit = {
+      Description = "transparency";
+      After = [ "graphical-session-pre.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+    Service = {
+      ExecStart = "${pkgs.python3.withPackages (ps: with ps; [ i3ipc ])}/bin/python ${./transparency.py}";
+    };
   };
 
 }
