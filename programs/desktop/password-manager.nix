@@ -10,5 +10,6 @@
       Enabled = true;
       UpdateBinaryPath = false;
     };
+    GUI.ApplicationTheme="classic";
   };
 }
