@@ -70,6 +70,7 @@ in
     ./swayidle.nix
     ./rofi.nix
     ./mpd.nix
+    ./waybar.nix
   ];
   wayland.windowManager.sway = {
     systemd.enable = true;
