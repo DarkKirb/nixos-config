@@ -83,7 +83,7 @@ in
   home-manager.users.root.stylix.targets.kde.enable = lib.mkForce false;
   home-manager.users.darkkirb.stylix.targets.kde.enable = config.isGraphical;
   stylix = {
-    enable = true;
+    enable = pkgs.targetPlatform.system != "riscv64-linux";
     image = bgPng;
     polarity = "dark";
     fonts = {
