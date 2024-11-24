@@ -6,6 +6,7 @@
   sops-nix,
   self,
   nixpkgs,
+  system,
   ...
 }:
 {
@@ -14,7 +15,7 @@
     useGlobalPkgs = true;
     backupFileExtension = "backup-${self.shortRev or nixpkgs.shortRev}";
     extraSpecialArgs = inputs // {
-      inherit inputs inputs';
+      inherit inputs inputs' system;
       systemConfig = config;
     };
     sharedModules = [

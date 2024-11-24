@@ -17,7 +17,7 @@
   specialisation.graphical = {
     configuration.imports = [
       ./graphical.nix
-      "${nixos-config}/config/graphical/plymouth.nix"
+      #"${nixos-config}/config/graphical/plymouth.nix"
       {
         nix.auto-update.specialisation = "graphical";
       }

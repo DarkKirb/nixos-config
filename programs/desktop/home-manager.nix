@@ -1,4 +1,9 @@
-{ pkgs, nixos-config, ... }:
+{
+  pkgs,
+  nixos-config,
+  systemConfig,
+  ...
+}:
 {
   imports = [
     ./firefox
@@ -12,16 +17,26 @@
     ./development/rust
     ./music
   ];
-  home.packages = with pkgs; [
-    kdePackages.kalk
-    kdePackages.kalgebra
-    kdePackages.filelight
-    kdePackages.kdegraphics-thumbnailers
-    kdePackages.ffmpegthumbs
-    kdePackages.dolphin-plugins
-    libreoffice
-    obsidian
-  ];
+  home.packages =
+    with pkgs;
+    [
+      libreoffice
+      obsidian
+    ]
+    ++ (
+      if !systemConfig.isSway then
+        with pkgs;
+        [
+          kdePackages.kalk
+          kdePackages.kalgebra
+          kdePackages.filelight
+          kdePackages.kdegraphics-thumbnailers
+          kdePackages.ffmpegthumbs
+          kdePackages.dolphin-plugins
+        ]
+      else
+        [ ]
+    );
   home.persistence.default.directories = [
     ".local/share/kwalletd"
   ];

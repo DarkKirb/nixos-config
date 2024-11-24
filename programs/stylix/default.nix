@@ -84,10 +84,10 @@ in
   home-manager.users.root.stylix.targets.kde.enable = lib.mkForce false;
   home-manager.users.darkkirb.imports = [
     {
-      stylix.targets.kde.enable = config.isGraphical;
+      stylix.targets.kde.enable = lib.mkForce (config.isGraphical && !config.isSway);
     }
     (
-      if config.isGraphical then
+      if config.isGraphical && !config.isSway then
         { config, lib, ... }:
         {
           home.activation.konsolerc = lib.hm.dag.entryAfter [ "stylixLookAndFeel" ] ''
@@ -212,7 +212,7 @@ in
   home-manager.sharedModules = [
     {
       stylix.targets = {
-        kde.enable = config.isGraphical;
+        kde.enable = config.isGraphical && !config.isSway;
       };
     }
   ];

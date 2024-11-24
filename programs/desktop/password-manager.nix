@@ -10,6 +10,7 @@
       Enabled = true;
       UpdateBinaryPath = false;
     };
-    GUI.ApplicationTheme="classic";
+    GUI.ApplicationTheme = "classic";
+    FdeSecrets.Enabled = true;
   };
 }
