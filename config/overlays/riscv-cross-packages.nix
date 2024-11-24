@@ -18,7 +18,7 @@ in
 {
   nixpkgs.overlays = [
     (self: super: {
-      inherit (pkgs_x86_64) lix;
+      inherit (pkgs_x86_64) lix pandoc;
       inherit (pkgs_x86_64_2) nixos-option;
     })
   ];
@@ -33,7 +33,7 @@ in
       crossSystem.system = "riscv64-linux";
       overlays = [];
     }; in {
-      inherit (pkgs_x86_64) lix;
+      inherit (pkgs_x86_64) lix pandoc;
       inherit (pkgs_x86_64_2) nixos-option;
     }
   '';
