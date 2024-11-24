@@ -7,6 +7,7 @@
     ./theming.nix
     ./krdp.nix
     ./gtk-fixes
+    ./konsole.nix
   ];
   programs.plasma.kwin.virtualDesktops = {
     rows = 3;

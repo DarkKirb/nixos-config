@@ -82,12 +82,13 @@ let
 in
 {
   home-manager.users.root.stylix.targets.kde.enable = lib.mkForce false;
-  home-manager.users.darkkirb =
+  home-manager.users.darkkirb.imports = [
     {
       stylix.targets.kde.enable = config.isGraphical;
     }
-    // (
+    (
       if config.isGraphical then
+        { config, lib, ... }:
         {
           home.activation.konsolerc = lib.hm.dag.entryAfter [ "stylixLookAndFeel" ] ''
             PATH="${config.home.path}/bin:$PATH:${pkgs.jq}"
@@ -177,7 +178,9 @@ in
         }
       else
         { }
-    );
+    )
+  ];
+
   stylix = {
     enable = system != "riscv64-linux";
     image = bgPng;
