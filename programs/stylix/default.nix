@@ -83,9 +83,9 @@ let
     with config.lib.stylix.colors;
     ''
       [ColorScheme]
-      active_colors=#ff{{ base0C-hex }}, #ff${base01}, #ff${base01}, #ff${base05}, #ff${base03}, #ff${base04}, #ff{{ base0E-hex }}, #ff${base06}, #ff${base05}, #ff${base01}, #ff${base00}, #ff${base03}, #ff${base02}, #ff{{ base0E-hex }}, #ff${base09}, #ff${base08}, #ff${base02}, #ff${base05}, #ff${base01}, #ff{{ base0E-hex }}, #8f{{ base0E-hex }}
-      disabled_colors=#ff{{ base0F-hex }}, #ff${base01}, #ff${base01}, #ff${base05}, #ff${base03}, #ff${base04}, #ff{{ base0F-hex }}, #ff{{ base0F-hex }}, #ff{{ base0F-hex }}, #ff${base01}, #ff${base00}, #ff${base03}, #ff${base02}, #ff{{ base0E-hex }}, #ff${base09}, #ff${base08}, #ff${base02}, #ff${base05}, #ff${base01}, #ff{{ base0F-hex }}, #8f{{ base0F-hex }}
-      inactive_colors=#ff{{ base0C-hex }}, #ff${base01}, #ff${base01}, #ff${base05}, #ff${base03}, #ff${base04}, #ff{{ base0E-hex }}, #ff${base06}, #ff${base05}, #ff${base01}, #ff${base00}, #ff${base03}, #ff${base02}, #ff{{ base0E-hex }}, #ff${base09}, #ff${base08}, #ff${base02}, #ff${base05}, #ff${base01}, #ff{{ base0E-hex }}, #8f{{ base0E-hex }}
+      active_colors=#ff${base0C}, #ff${base01}, #ff${base01}, #ff${base05}, #ff${base03}, #ff${base04}, #ff${base0E}, #ff${base06}, #ff${base05}, #ff${base01}, #ff${base00}, #ff${base03}, #ff${base02}, #ff${base0E}, #ff${base09}, #ff${base08}, #ff${base02}, #ff${base05}, #ff${base01}, #ff${base0E}, #8f${base0E}
+      disabled_colors=#ff${base0F}, #ff${base01}, #ff${base01}, #ff${base05}, #ff${base03}, #ff${base04}, #ff${base0F}, #ff${base0F}, #ff${base0F}, #ff${base01}, #ff${base00}, #ff${base03}, #ff${base02}, #ff${base0E}, #ff${base09}, #ff${base08}, #ff${base02}, #ff${base05}, #ff${base01}, #ff${base0F}, #8f${base0F}
+      inactive_colors=#ff${base0C}, #ff${base01}, #ff${base01}, #ff${base05}, #ff${base03}, #ff${base04}, #ff${base0E}, #ff${base06}, #ff${base05}, #ff${base01}, #ff${base00}, #ff${base03}, #ff${base02}, #ff${base0E}, #ff${base09}, #ff${base08}, #ff${base02}, #ff${base05}, #ff${base01}, #ff${base0E}, #8f${base0E}
     ''
   );
 in
@@ -99,6 +99,7 @@ in
             custom_palette = true;
             color_scheme_path = "${qtctPalette}";
             standard_dialogs = "xdgdesktopportal";
+            style = "breeze";
           };
         };
         "qt6ct/qt6ct.conf".text = lib.generators.toINI { } {
@@ -106,8 +107,13 @@ in
             custom_palette = true;
             color_scheme_path = "${qtctPalette}";
             standard_dialogs = "xdgdesktopportal";
+            style = "breeze";
           };
         };
+      };
+      qt.style = {
+        name = "breeze";
+        package = pkgs.kdePackages.breeze;
       };
     }
     {
