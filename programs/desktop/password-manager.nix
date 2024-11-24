@@ -11,6 +11,6 @@
       UpdateBinaryPath = false;
     };
     GUI.ApplicationTheme = "classic";
-    FdeSecrets.Enabled = true;
+    FdoSecrets.Enabled = true;
   };
 }
