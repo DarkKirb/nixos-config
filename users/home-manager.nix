@@ -4,13 +4,15 @@
   inputs',
   config,
   sops-nix,
+  self,
+  nixpkgs,
   ...
 }:
 {
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    backupFileExtension = "backup";
+    backupFileExtension = "backup-${self.shortRev or nixpkgs.shortRev}";
     extraSpecialArgs = inputs // {
       inherit inputs inputs';
       systemConfig = config;

@@ -1,6 +1,6 @@
 {
   pkgs,
-  nixos-config,
+  self,
   nixpkgs,
   lib,
   config,
@@ -67,7 +67,7 @@ let
   };
   hexToInt =
     s: lib.foldl (state: new: state * 16 + hexToIntList.${new}) 0 (lib.strings.stringToCharacters s);
-  seed = hexToInt (nixos-config.shortRev or nixpkgs.shortRev);
+  seed = hexToInt (self.shortRev or nixpkgs.shortRev);
   bg = choose (if config.isNSFW then nsfw-bgs else sfw-bgs) seed;
   bgPng = pkgs.stdenv.mkDerivation {
     name = "bg.png";
