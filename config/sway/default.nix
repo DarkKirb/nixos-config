@@ -180,7 +180,7 @@ in
   systemd.user.services.transparency = {
     Unit = {
       Description = "transparency";
-      After = [ "graphical-session-pre.target" ];
+      After = [ "graphical-session.target" ];
       PartOf = [ "graphical-session.target" ];
     };
     Install.WantedBy = [ "graphical-session.target" ];
