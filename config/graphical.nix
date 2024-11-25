@@ -2,6 +2,7 @@
   nixos-config,
   config,
   pkgs,
+  lib,
   ...
 }:
 {
@@ -25,16 +26,12 @@
     wlr.enable = config.isSway;
     extraPortals =
       with pkgs;
-      (lib.mkMerge [
-        [
-          xdg-desktop-portal-gtk
-          xdg-desktop-portal-kde
-        ]
-        (lib.mkIf config.isSway [
-          xdg-desktop-portal-wlr
-        ])
+      (lib.mkIf config.isSway [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-kde
+        xdg-desktop-portal-wlr
       ]);
-    config.common.default = if config.isSway then "wlr" else "kde";
+    config.common.default = lib.mkIf config.isSway "wlr";
   };
   security.pam.services.swaylock = { };
 }
