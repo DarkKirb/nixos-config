@@ -20,7 +20,10 @@
       enable = true;
       create = "both";
       expunge = "both";
-      extraConfig.account.AuthMechs = "plain";
+      extraConfig.account = {
+        AuthMechs = "plain";
+        PipelineDepth = 128;
+      };
     };
     msmtp = {
       enable = true;
