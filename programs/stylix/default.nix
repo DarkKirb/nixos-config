@@ -111,14 +111,25 @@ in
           };
         };
       };
-      qt.style = {
-        name = "breeze";
-        package = pkgs.kdePackages.breeze;
-      };
     }
     {
       stylix.targets.kde.enable = lib.mkForce (config.isGraphical && !config.isSway);
     }
+    (
+      if config.isSway then
+        {
+          qt.style = {
+            name = "breeze-dark";
+            package = pkgs.kdePackages.breeze;
+          };
+          gtk.iconTheme = {
+            package = pkgs.kdePackages.breeze-icons;
+            name = "breeze-dark";
+          };
+        }
+      else
+        { }
+    )
     (
       if config.isGraphical && !config.isSway then
         { config, lib, ... }:
