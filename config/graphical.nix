@@ -22,7 +22,6 @@
     else
       [ ./graphical/gtk-fixes ];
   xdg.portal = {
-    xdgOpenUsePortal = true;
     wlr.enable = config.isSway;
     extraPortals =
       with pkgs;
