@@ -37,4 +37,5 @@
       ]);
     config.common.default = if config.isSway then "wlr" else "kde";
   };
+  security.pam.services.swaylock = { };
 }
