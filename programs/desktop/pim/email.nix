@@ -23,8 +23,8 @@
       extraConfig.account.AuthMechs = "plain";
     };
     msmtp = {
-      auth = "plain";
       enable = true;
+      extraConfig.auth = "plain";
     };
     neomutt.enable = true;
     notmuch = {
