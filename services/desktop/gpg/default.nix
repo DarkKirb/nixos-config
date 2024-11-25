@@ -35,6 +35,7 @@
       Type = "oneshot";
       Environment = "GNUPGHOME=${config.programs.gpg.homedir}";
       ExecStart = pkgs.writeScript "import-gpg-privkey" ''
+        #!${pkgs.bash}/bin/bash
         ${config.programs.gpg.package}/bin/gpg --import ${
           config.sops.secrets."pgp/0xB4E3D4801C49EC5E.asc".path
         }
