@@ -20,8 +20,12 @@
       enable = true;
       create = "both";
       expunge = "both";
+      extraConfig.account.AuthMechs = "plain";
     };
-    msmtp.enable = true;
+    msmtp = {
+      auth = "plain";
+      enable = true;
+    };
     notmuch = {
       enable = true;
       neomutt = {
