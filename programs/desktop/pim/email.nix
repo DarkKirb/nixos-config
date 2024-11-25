@@ -26,6 +26,7 @@
       auth = "plain";
       enable = true;
     };
+    neomutt.enable = true;
     notmuch = {
       enable = true;
       neomutt = {
