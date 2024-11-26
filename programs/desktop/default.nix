@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  stylix,
   ...
 }:
 {
@@ -10,7 +9,6 @@
     ./kodi/system-config.nix
     ./pipewire.nix
     ./firefox/system.nix
-    stylix.nixosModules.stylix
   ];
   home-manager.users.darkkirb.imports =
     if config.isGraphical then

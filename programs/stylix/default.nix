@@ -5,6 +5,7 @@
   lib,
   config,
   system,
+  stylix,
   ...
 }:
 let
@@ -90,6 +91,9 @@ let
   );
 in
 {
+  imports = [
+    stylix.nixosModules.stylix
+  ];
   home-manager.users.root.stylix.targets.kde.enable = lib.mkForce false;
   home-manager.users.darkkirb.imports = [
     {
