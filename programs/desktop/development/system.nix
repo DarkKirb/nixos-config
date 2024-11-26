@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 {
   services.postgresql = {
-    enable = true;
+    enable = config.isGraphical;
     ensureUsers = [
       {
         name = "darkkirb";
