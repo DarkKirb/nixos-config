@@ -70,3 +70,13 @@ creation_rules:
       - age:
           - *base
           - *darkkirb
+  - path_regex: services/postgresql/rainbow-resort.yaml
+    key_groups:
+      - age:
+        - *base
+        - *rainbow-resort
+  - path_regex: services/postgresql/thinkrac.yaml
+    key_groups:
+      - age:
+        - *base
+        - *thinkrac

@@ -9,6 +9,7 @@
     ./kodi/system-config.nix
     ./pipewire.nix
     ./firefox/system.nix
+    ./development/system.nix
   ];
   home-manager.users.darkkirb.imports =
     if config.isGraphical then

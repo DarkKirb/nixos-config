@@ -1,7 +1,7 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   services.pgbouncer = {
-    enable = true;
+    enable = config.services.postgresql.enable;
     settings = {
       pgbouncer = {
         listen_addr = "localhost";
@@ -10,5 +10,9 @@
       };
     };
   };
-  sops.secrets."services/pgbouncer/settings/pgbouncer/auth".sopsFile = ./${config.networking.hostName}.yaml;
+  sops.secrets."services/pgbouncer/settings/pgbouncer/auth" =
+    lib.mkIf config.services.postgresql.enable
+      {
+        sopsFile = ./${config.networking.hostName}.yaml;
+      };
 }

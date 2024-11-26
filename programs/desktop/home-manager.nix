@@ -14,7 +14,7 @@
     "${nixos-config}/services/desktop"
     ./kodi
     ./pim
-    ./development/rust
+    ./development
     ./music
   ];
   home.packages =
