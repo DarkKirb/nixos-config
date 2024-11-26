@@ -1,12 +1,12 @@
 {
-  "url": "https://github.com/mgba-emu/mgba",
-  "rev": "cfd30b7a95edf1dafaf5cfb6d691578d8b6554c5",
-  "date": "2024-11-08T21:38:25-08:00",
-  "path": "/nix/store/jcsrdhn7a1cxpy96sgjyc11j0gzlcc6m-mgba",
-  "sha256": "1q83dgsnf4pdz2li2ip6z7rnf1c7w8qf82jr1q5ck499rhv3v689",
-  "hash": "sha256-CZk9NswpkckKDlkK5DDihwVn8/nmRhGp+O0SZ/VrA+E=",
-  "fetchLFS": false,
-  "fetchSubmodules": false,
-  "deepClone": false,
-  "leaveDotGit": false
+    "url": "https://github.com/mgba-emu/mgba",
+    "rev": "cfd30b7a95edf1dafaf5cfb6d691578d8b6554c5",
+    "date": "2024-11-08T21:38:25-08:00",
+    "path": "/nix/store/jcsrdhn7a1cxpy96sgjyc11j0gzlcc6m-mgba",
+    "sha256": "1q83dgsnf4pdz2li2ip6z7rnf1c7w8qf82jr1q5ck499rhv3v689",
+    "hash": "sha256-CZk9NswpkckKDlkK5DDihwVn8/nmRhGp+O0SZ/VrA+E=",
+    "fetchLFS": false,
+    "fetchSubmodules": false,
+    "deepClone": false,
+    "leaveDotGit": false
 }
