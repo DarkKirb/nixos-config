@@ -13,8 +13,8 @@
     enableTCPIP = true;
     package = pkgs.postgresql_17_jit;
     authentication = lib.mkForce ''
-      local all all           peer
-      host  all all 127.0.0.1 scram-sha-256
+      local all all              peer
+      host  all all 127.0.0.1/32 scram-sha-256
     '';
   };
   services.postgresqlBackup = {
