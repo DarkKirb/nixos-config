@@ -19,6 +19,7 @@
       (with pkgs.vscode-extensions; [
         fill-labs.dependi
         jnoortheen.nix-ide
+        leonardssh.vscord
         mechatroner.rainbow-csv
         mkhl.direnv
         pkief.material-icon-theme
