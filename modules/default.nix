@@ -2,16 +2,11 @@
   disko,
   home-manager,
   lib,
-  inTester,
-  self,
-  rust-overlay,
-  nix-vscode-extensions,
   ...
 }:
 with lib;
 {
   imports = [
-    ./riscv.nix
     ./nix
     ./environment/impermanence.nix
     ./secrets/sops.nix
