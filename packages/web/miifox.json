@@ -1,12 +1,12 @@
 {
-  "url": "https://git.chir.rs/CarolineHusky/MiiFox.net",
-  "rev": "f24ef76468b77d529d2331415b5bf04805cba04f",
-  "date": "2023-10-23T15:22:52+02:00",
-  "path": "/nix/store/7hr4g6v1jl89rnvxagpnzdc7y2pa7m54-MiiFox.net",
-  "sha256": "0gpplkmgzlyjs4wi85vcpzi3dvv6qcy8pr69fy56lw41ssgm3rjm",
-  "hash": "sha256-VeZRn9aBcGqKd8nkizzDZu824r9sFxQ50dLT/+qk9z4=",
-  "fetchLFS": false,
-  "fetchSubmodules": false,
-  "deepClone": false,
-  "leaveDotGit": false
+    "url": "https://git.chir.rs/CarolineHusky/MiiFox.net",
+    "rev": "f24ef76468b77d529d2331415b5bf04805cba04f",
+    "date": "2023-10-23T15:22:52+02:00",
+    "path": "/nix/store/7hr4g6v1jl89rnvxagpnzdc7y2pa7m54-MiiFox.net",
+    "sha256": "0gpplkmgzlyjs4wi85vcpzi3dvv6qcy8pr69fy56lw41ssgm3rjm",
+    "hash": "sha256-VeZRn9aBcGqKd8nkizzDZu824r9sFxQ50dLT/+qk9z4=",
+    "fetchLFS": false,
+    "fetchSubmodules": false,
+    "deepClone": false,
+    "leaveDotGit": false
 }
