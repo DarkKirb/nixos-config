@@ -78,6 +78,7 @@ with lib;
             "big-parallel"
             "benchmark"
             "gccarch-skylake-avx512"
+            "gccarch-znver4"
             "gccarch-znver3"
             "gccarch-znver2"
             "gccarch-znver1"
