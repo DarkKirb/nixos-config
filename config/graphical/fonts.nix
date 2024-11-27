@@ -28,13 +28,10 @@
       noto-fonts-cjk-sans
       noto-fonts-emoji
       noto-fonts-extra
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "DroidSansMono"
-          "Noto"
-        ];
-      })
+      nerd-fonts.fira-mono
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.noto
     ];
   };
 }
