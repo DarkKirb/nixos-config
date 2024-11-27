@@ -16,5 +16,6 @@
   nix.settings.system-features = [
     "native-riscv"
     "big-parallel"
+    "ca-derivations"
   ];
 }

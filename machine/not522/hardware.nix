@@ -36,4 +36,7 @@
     "pcie-starfive"
     "nvme"
   ];
+  nix.settings.system-features = [
+    "gccarch-rv64gc_zba_zbb"
+  ];
 }

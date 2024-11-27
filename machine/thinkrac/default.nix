@@ -38,4 +38,10 @@
       }
     ];
   };
+  nix.settings.system-features = [
+    "kvm"
+    "nixos-test"
+    "gccarch-skylake"
+    "ca-derivations"
+  ];
 }
