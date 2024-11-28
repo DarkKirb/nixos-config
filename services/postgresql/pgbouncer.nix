@@ -15,5 +15,6 @@
     lib.mkIf config.services.postgresql.enable
       {
         sopsFile = ./${config.networking.hostName}.yaml;
+        owner = "pgbouncer";
       };
 }
