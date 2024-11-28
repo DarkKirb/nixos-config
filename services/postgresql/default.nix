@@ -36,6 +36,7 @@
     done
   '';
   sops.secrets."systemd/services/postgresql/postStart" = lib.mkIf config.services.postgresql.enable {
+    owner = "postgres";
     sopsFile = ./${config.networking.hostName}.yaml;
   };
 }
