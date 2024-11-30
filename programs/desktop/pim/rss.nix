@@ -56,6 +56,10 @@
           "https://www.youtube.com/feeds/videos.xml?channel_id=UCKOvOaJv4GK-oDqx-sj7VVg"
           "https://www.youtube.com/feeds/videos.xml?channel_id=UChFur_NwVSbUozOcF_F2kMg"
           "https://www.youtube.com/feeds/videos.xml?channel_id=UCL0EBrPPyepiM_U3CIW-0xw"
+          "https://www.youtube.com/feeds/videos.xml?channel_id=UCJxsAjbKGzdq9__bqTEf_fQ"
+          "https://www.youtube.com/feeds/videos.xml?channel_id=UCAnzaHhB0ONtwDkYdc3MFCw"
+          "https://www.youtube.com/feeds/videos.xml?channel_id=UCo0-VCHchPIG3JtJlIQnFew"
+          "https://www.youtube.com/feeds/videos.xml?channel_id=UCroqqI7XwD828o0rAvAF8iw"
         ]
       );
   };
