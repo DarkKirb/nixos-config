@@ -40,14 +40,14 @@ for arg in sys.argv[1:]:
 
 remote_args += ["--workers", "4", "--gc-roots-dir", "/tmp"]
 
-# copy over what files we need to ensure are present on the target
-
-subprocess.run(["@nix@", "copy"] + list(inputs_to_copy) + ["--to", "ssh://build-rainbow-resort", "--no-check-sigs"], check=True, stdout=subprocess.DEVNULL)
+if len(inputs_to_copy) != 0:
+    # copy over what files we need to ensure are present on the target
+    subprocess.run(["@nix@", "copy"] + list(inputs_to_copy) + ["--to", "ssh://build-rainbow-resort", "--no-check-sigs"], check=True, stdout=subprocess.DEVNULL)
 
 # Evaluate on target
 result = subprocess.run(["@ssh@", "build-rainbow-resort", "nix-eval-jobs"] + list(map(shlex.quote, remote_args)), check=True, stdout=subprocess.PIPE, text=True)
 
-for line in result.stdout:
+for line in iter(result.stdout.readline, ""):
     try:
         data = json.loads(line)
         # copy .drv file home
