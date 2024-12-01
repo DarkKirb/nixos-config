@@ -3,6 +3,7 @@ import sys
 import subprocess
 import os
 import json
+import shlex
 
 # First check if the server is up
 
@@ -44,7 +45,7 @@ remote_args += ["--workers" "4"]
 subprocess.run(["@nix@", "copy"] + list(inputs_to_copy) + ["--to", "ssh://build-rainbow-resort", "--no-check-sigs"], check=True, stdout=subprocess.DEVNULL)
 
 # Evaluate on target
-result = subprocess.run(["@ssh@", "build-rainbow-resort", "nix-eval-jobs"] + remote_args, check=True, stdout=subprocess.PIPE, text=True)
+result = subprocess.run(["@ssh@", "build-rainbow-resort", "nix-eval-jobs"] + list(map(shlex.quote, remote_args)), check=True, stdout=subprocess.PIPE, text=True)
 
 for line in result.stdout:
     try:
