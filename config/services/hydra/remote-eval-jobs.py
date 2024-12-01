@@ -45,7 +45,7 @@ if len(inputs_to_copy) != 0:
     subprocess.run(["@nix@", "copy"] + list(inputs_to_copy) + ["--to", "ssh://build-rainbow-resort", "--no-check-sigs"], check=True, stdout=subprocess.DEVNULL)
 
 # Evaluate on target
-result = subprocess.run(["@ssh@", "build-rainbow-resort", "nix-eval-jobs"] + list(map(shlex.quote, remote_args)), check=True, stdout=subprocess.PIPE, text=True)
+result = subprocess.Popen(["@ssh@", "build-rainbow-resort", "nix-eval-jobs"] + list(map(shlex.quote, remote_args)), bufsize=1, stdout=subprocess.PIPE, text=True)
 
 for line in iter(result.stdout.readline, ""):
     try:
@@ -60,3 +60,5 @@ for line in iter(result.stdout.readline, ""):
         print(line)
     except Exception as e:
         print(e, file=sys.stderr)
+
+sys.exit(result.wait())
