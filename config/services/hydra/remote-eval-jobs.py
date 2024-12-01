@@ -38,7 +38,7 @@ for arg in sys.argv[1:]:
         next_to_copy = True
     remote_args.append(arg)
 
-remote_args += ["--workers" "4"]
+remote_args += ["--workers", "4"]
 
 # copy over what files we need to ensure are present on the target
 
