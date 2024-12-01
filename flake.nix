@@ -161,213 +161,210 @@ rec {
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     systems.url = "github:nix-systems/default";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      sops-nix,
-      home-manager,
-      lix-module,
-      ...
-    }@args:
-    let
-      systems = [
+  outputs = {
+    self,
+    nixpkgs,
+    sops-nix,
+    home-manager,
+    lix-module,
+    ...
+  } @ args: let
+    systems = [
+      {
+        name = "nixos-8gb-fsn1-1"; # Hetzner Server
+        system = "x86_64-linux";
+      }
+      {
+        name = "nas"; # My nas
+        system = "x86_64-linux";
+      }
+      {
+        name = "instance-20221213-1915"; # Oracle server
+        system = "aarch64-linux";
+      }
+      /*
         {
-          name = "nixos-8gb-fsn1-1"; # Hetzner Server
-          system = "x86_64-linux";
-        }
-        {
-          name = "nas"; # My nas
-          system = "x86_64-linux";
-        }
-        {
-          name = "instance-20221213-1915"; # Oracle server
-          system = "aarch64-linux";
-        }
-        /*
-            {
-            name = "devterm";
-            system = "aarch64-linux";
-          }
-        */
-      ];
-      mkPackages =
-        system:
-        let
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [
-              args.gomod2nix.overlays.default
-              self.overlays.${system}
-              args.hydra.overlays.default
-            ];
-            config.allowUnfree = true;
-            config.permittedInsecurePackages = [
-              "olm-3.2.16"
-            ];
-          };
-          common = {
-            inherit (pkgs)
-              emoji-lotte
-              emoji-volpeon-blobfox
-              emoji-volpeon-blobfox-flip
-              emoji-volpeon-bunhd
-              emoji-volpeon-bunhd-flip
-              emoji-volpeon-drgn
-              emoji-volpeon-fox
-              emoji-volpeon-gphn
-              emoji-volpeon-raccoon
-              emoji-volpeon-vlpn
-              emoji-volpeon-neofox
-              emoji-volpeon-neocat
-              emoji-volpeon-floof
-              emoji-rosaflags
-              emoji-raccoon
-              emoji-caro
-              lotte-art
-              alco-sans
-              constructium
-              fairfax
-              fairfax-hd
-              kreative-square
-              nasin-nanpa
-              matrix-media-repo
-              mautrix-discord
-              mautrix-whatsapp
-              mautrix-telegram
-              mautrix-slack
-              python-mautrix
-              python-tulir-telethon
-              papermc
-              python-plover-stroke
-              python-rtf-tokenize
-              plover
-              plover-plugins-manager
-              python-simplefuzzyset
-              plover-plugin-emoji
-              plover-plugin-tapey-tape
-              plover-plugin-yaml-dictionary
-              plover-plugin-machine-hid
-              plover-plugin-rkb1-hid
-              plover-plugin-dotool-output
-              plover-dict-didoesdigital
-              miifox-net
-              plover-plugin-python-dictionary
-              plover-plugin-stenotype-extended
-              asar-asm
-              bsnes-plus
-              yiffstash
-              plover-plugin-dict-commands
-              plover-plugin-last-translation
-              plover-plugin-modal-dictionary
-              plover-plugin-stitching
-              plover-plugin-lapwing-aio
-              mgba-dev
-              ;
-          };
-          perSystem = {
-            aarch64-linux = {
-              #inherit (pkgs) linux-devterm;
-            };
-          };
-        in
-        common // perSystem.${system} or { };
+        name = "devterm";
+        system = "aarch64-linux";
+      }
+      */
+    ];
+    mkPackages = system: let
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          args.gomod2nix.overlays.default
+          self.overlays.${system}
+          args.hydra.overlays.default
+        ];
+        config.allowUnfree = true;
+        config.permittedInsecurePackages = [
+          "olm-3.2.16"
+        ];
+      };
+      common = {
+        inherit
+          (pkgs)
+          emoji-lotte
+          emoji-volpeon-blobfox
+          emoji-volpeon-blobfox-flip
+          emoji-volpeon-bunhd
+          emoji-volpeon-bunhd-flip
+          emoji-volpeon-drgn
+          emoji-volpeon-fox
+          emoji-volpeon-gphn
+          emoji-volpeon-raccoon
+          emoji-volpeon-vlpn
+          emoji-volpeon-neofox
+          emoji-volpeon-neocat
+          emoji-volpeon-floof
+          emoji-rosaflags
+          emoji-raccoon
+          emoji-caro
+          lotte-art
+          alco-sans
+          constructium
+          fairfax
+          fairfax-hd
+          kreative-square
+          nasin-nanpa
+          matrix-media-repo
+          mautrix-discord
+          mautrix-whatsapp
+          mautrix-telegram
+          mautrix-slack
+          python-mautrix
+          python-tulir-telethon
+          papermc
+          python-plover-stroke
+          python-rtf-tokenize
+          plover
+          plover-plugins-manager
+          python-simplefuzzyset
+          plover-plugin-emoji
+          plover-plugin-tapey-tape
+          plover-plugin-yaml-dictionary
+          plover-plugin-machine-hid
+          plover-plugin-rkb1-hid
+          plover-plugin-dotool-output
+          plover-dict-didoesdigital
+          miifox-net
+          plover-plugin-python-dictionary
+          plover-plugin-stenotype-extended
+          asar-asm
+          bsnes-plus
+          yiffstash
+          plover-plugin-dict-commands
+          plover-plugin-last-translation
+          plover-plugin-modal-dictionary
+          plover-plugin-stitching
+          plover-plugin-lapwing-aio
+          mgba-dev
+          ;
+      };
+      perSystem = {
+        aarch64-linux = {
+          #inherit (pkgs) linux-devterm;
+        };
+      };
     in
-    rec {
-      nixosConfigurations = builtins.listToAttrs (
+      common // perSystem.${system} or {};
+  in rec {
+    nixosConfigurations = builtins.listToAttrs (
+      map (
+        {
+          name,
+          system,
+          configName ? name,
+        }: {
+          inherit name;
+          value = nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs =
+              args
+              // {
+                inherit system;
+              };
+            modules = [
+              (./config + "/${configName}.nix")
+              ./config/default.nix
+              sops-nix.nixosModules.sops
+              home-manager.nixosModules.home-manager
+              (
+                {pkgs, ...}: {
+                  home-manager.extraSpecialArgs =
+                    args
+                    // {
+                      inherit system;
+                    };
+                }
+              )
+              (import utils/link-input.nix args)
+              lix-module.nixosModules.default
+            ];
+          };
+        }
+      )
+      systems
+    );
+    overlays = {
+      x86_64-linux = import ./overlays args "x86_64-linux";
+      aarch64-linux = import ./overlays args "aarch64-linux";
+    };
+    devShell.x86_64-linux = let
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [
+          args.gomod2nix.overlays.default
+          self.overlays.x86_64-linux
+        ];
+      };
+    in
+      pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          age
+          sops
+          ssh-to-age
+          nix-prefetch
+          nix-prefetch-git
+          jq
+          bundix
+          python3
+          python3Packages.yapf
+          github-cli
+          statix
+          alejandra
+        ];
+      };
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    packages.x86_64-linux = mkPackages "x86_64-linux";
+    packages.aarch64-linux = mkPackages "aarch64-linux";
+    hydraJobs =
+      (builtins.listToAttrs (
         map (
           {
             name,
             system,
-            configName ? name,
-          }:
-          {
+            ...
+          }: {
             inherit name;
-            value = nixpkgs.lib.nixosSystem {
-              inherit system;
-              specialArgs = args // {
-                inherit system;
-              };
-              modules = [
-                (./config + "/${configName}.nix")
-                ./config/default.nix
-                sops-nix.nixosModules.sops
-                home-manager.nixosModules.home-manager
-                (
-                  { pkgs, ... }:
-                  {
-                    home-manager.extraSpecialArgs = args // {
-                      inherit system;
-                    };
-                  }
-                )
-                (import utils/link-input.nix args)
-                lix-module.nixosModules.default
-              ];
+            value = {
+              ${system} = nixosConfigurations.${name}.config.system.build.toplevel;
             };
           }
-        ) systems
-      );
-      overlays = {
-        x86_64-linux = import ./overlays args "x86_64-linux";
-        aarch64-linux = import ./overlays args "aarch64-linux";
+        )
+        systems
+      ))
+      // {
+        inherit devShell;
+        inherit packages;
+        # Uncomment the line to build an installer image
+        # This is EXTREMELY LARGE and will make builds take forever
+        # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
       };
-      devShell.x86_64-linux =
-        let
-          pkgs = import nixpkgs {
-            system = "x86_64-linux";
-            overlays = [
-              args.gomod2nix.overlays.default
-              self.overlays.x86_64-linux
-            ];
-          };
-        in
-        pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            age
-            sops
-            ssh-to-age
-            nix-prefetch
-            nix-prefetch-git
-            jq
-            bundix
-            python3
-            python3Packages.yapf
-            github-cli
-            statix
-            alejandra
-          ];
-        };
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-      packages.x86_64-linux = mkPackages "x86_64-linux";
-      packages.aarch64-linux = mkPackages "aarch64-linux";
-      hydraJobs =
-        (builtins.listToAttrs (
-          map (
-            {
-              name,
-              system,
-              ...
-            }:
-            {
-              inherit name;
-              value = {
-                ${system} = nixosConfigurations.${name}.config.system.build.toplevel;
-              };
-            }
-          ) systems
-        ))
-        // {
-          inherit devShell;
-          inherit packages;
-          # Uncomment the line to build an installer image
-          # This is EXTREMELY LARGE and will make builds take forever
-          # installer.x86_64-linux = nixosConfigurations.installer.config.system.build.isoImage;
-        };
-    };
+  };
 }

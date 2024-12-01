@@ -7,8 +7,7 @@
   hydra,
   nix-eval-jobs,
   ...
-}:
-let
+}: let
   machines = pkgs.writeText "machines" ''
     localhost armv7l-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,wasm32-wasi,x86_64-linux,i686-linux,riscv32-linux,riscv64-linux - 12 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver1,gccarch-skylake,ca-derivations  -
     build-aarch64 aarch64-linux,riscv32-linux,riscv64-linux - 4 1 nixos-test,benchmark,ca-derivations,gccarch-armv8-a,gccarch-armv8.1-a,gccarch-armv8.2-a,big-parallel  -
@@ -65,8 +64,7 @@ let
         --subst-var-by ssh ${pkgs.openssh}/bin/ssh
     '';
   };
-in
-{
+in {
   imports = [
     ./postgres.nix
     ../../modules/hydra.nix
@@ -80,17 +78,21 @@ in
     package = hydra.packages.${system}.hydra.overrideAttrs (super: {
       doCheck = false;
       doInstallCheck = false;
-      patches = super.patches or [ ] ++ [
-        ./hydra/0001-add-gitea-pulls.patch
-        ./hydra/0002-unlimit-output.patch
-        ./hydra/0003-remove-pr-number-from-github-job-name.patch
-        ./hydra/0004-use-pulls-instead-of-issues.patch
-        ./hydra/0005-only-list-open-prs.patch
-        ./hydra/0006-status-state.patch
-        ./hydra/0007-hydra-server-findLog-fix-issue-with-ca-derivations-e.patch
-      ];
+      patches =
+        super.patches
+        or []
+        ++ [
+          ./hydra/0001-add-gitea-pulls.patch
+          ./hydra/0002-unlimit-output.patch
+          ./hydra/0003-remove-pr-number-from-github-job-name.patch
+          ./hydra/0004-use-pulls-instead-of-issues.patch
+          ./hydra/0005-only-list-open-prs.patch
+          ./hydra/0006-status-state.patch
+          ./hydra/0007-hydra-server-findLog-fix-issue-with-ca-derivations-e.patch
+        ];
       postPatch =
-        super.postPatch or ""
+        super.postPatch
+        or ""
         + ''
           substituteInPlace src/script/hydra-eval-jobset --replace-fail nix-eval-jobs ${nix-eval-jobs-script}
         '';
@@ -138,8 +140,8 @@ in
     "https://"
     "http://"
   ];
-  sops.secrets."services/hydra/gitea_token" = { };
-  sops.secrets."services/hydra/github_token" = { };
+  sops.secrets."services/hydra/gitea_token" = {};
+  sops.secrets."services/hydra/github_token" = {};
   sops.secrets."services/hydra/cache-key" = {
     owner = "hydra-www";
     mode = "0440";
@@ -158,7 +160,7 @@ in
   sops.secrets."services/hydra/aws_credentials" = {
     owner = "hydra-queue-runner";
     path = "/var/lib/hydra/queue-runner/.aws/credentials";
-    restartUnits = [ "hydra-notify.service" ];
+    restartUnits = ["hydra-notify.service"];
   };
   systemd.services.update-hydra-hosts = {
     description = "Update hydra hosts";
@@ -176,21 +178,21 @@ in
   systemd.timers.update-hydra-hosts = {
     enable = true;
     description = "Update hydra hosts";
-    requires = [ "update-hydra-hosts.service" ];
-    wantedBy = [ "multi-user.target" ];
+    requires = ["update-hydra-hosts.service"];
+    wantedBy = ["multi-user.target"];
     timerConfig = {
       OnBootSec = 300;
       OnUnitActiveSec = 300;
     };
   };
-  nix.settings.trusted-users = [ "@hydra" ];
+  nix.settings.trusted-users = ["@hydra"];
   sops.secrets."hydra/ssh/builder_id_ed25519" = {
     sopsFile = ../../secrets/shared.yaml;
     owner = "hydra-queue-runner";
     key = "ssh/builder_id_ed25519";
     path = "/var/lib/hydra/queue-runner/.ssh/builder_id_ed25519";
   };
-  system.activationScripts.setupHydraSshConfig = lib.stringAfter [ "var" ] ''
+  system.activationScripts.setupHydraSshConfig = lib.stringAfter ["var"] ''
     mkdir -p /var/lib/hydra/queue-runner/.ssh/
     chown -Rv hydra-queue-runner /var/lib/hydra/queue-runner
     ln -svf ${sshConfig} /var/lib/hydra/queue-runner/.ssh/config
@@ -212,7 +214,7 @@ in
 
   systemd.services."attic-queue" = {
     description = "Upload build results";
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
       User = "hydra-queue-runner";
       Group = "hydra";
