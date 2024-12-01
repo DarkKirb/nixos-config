@@ -1,7 +1,8 @@
 {
   lib,
   config,
-  pkgs,
+  nix-eval-jobs,
+  system,
   ...
 }:
 with lib;
@@ -25,6 +26,7 @@ with lib;
       ];
     };
     nix.settings.trusted-users = [ "remote-build" ];
-    environment.systemPackages = [ pkgs.nix-eval-jobs ];
+    environment.systemPackages =
+      if system == "x86_64-linux" then [ nix-eval-jobs.packages.x86_64-linux.nix-eval-jobs ] else [ ];
   };
 }

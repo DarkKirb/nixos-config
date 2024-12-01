@@ -65,6 +65,10 @@
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-eval-jobs = {
+      url = "git+https://git.lix.systems/lix-project/nix-eval-jobs.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.flake-compat.follows = "flake-compat";
