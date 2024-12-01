@@ -58,10 +58,10 @@ let
     dontBuild = true;
     installPhase = ''
       substitute $src $out \
-        --subst-var-by python3 ${pkgs.python3}/bin/python3
-        --subst-var-by ping ${pkgs.iputils}/bin/ping
-        --subst-var-by nix-eval-jobs ${pkgs.nix-eval-jobs}/bin/nix-eval-jobs
-        --subst-var-by nix ${pkgs.nix}/bin/nix
+        --subst-var-by python3 ${pkgs.python3}/bin/python3 \
+        --subst-var-by ping ${pkgs.iputils}/bin/ping \
+        --subst-var-by nix-eval-jobs ${nix-eval-jobs.packages.x86_64-linux.nix-eval-jobs}/bin/nix-eval-jobs \
+        --subst-var-by nix ${pkgs.nix}/bin/nix \
         --subst-var-by ssh ${pkgs.openssh}/bin/ssh
     '';
   };
