@@ -3,5 +3,8 @@
   imports = [
     ./ff14
   ];
-  home.packages = with pkgs; [ factorio ];
+  home.packages = with pkgs; [
+    factorio
+    wine-tkg
+  ];
 }

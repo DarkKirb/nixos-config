@@ -4,6 +4,7 @@
   self,
   rust-overlay,
   nix-vscode-extensions,
+  nix-gaming,
   ...
 }:
 {
@@ -33,6 +34,7 @@
         self.overlays.default
         (import rust-overlay)
         nix-vscode-extensions.overlays.default
+        nix-gaming.overlays.default
       ];
     }
   else
