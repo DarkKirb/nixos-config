@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.jellyfin.enable = true;
   environment.systemPackages = [
     pkgs.jellyfin
