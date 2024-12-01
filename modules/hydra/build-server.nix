@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 with lib;
@@ -24,5 +25,6 @@ with lib;
       ];
     };
     nix.settings.trusted-users = [ "remote-build" ];
+    environment.systemPackages = [ pkgs.nix-eval-jobs ];
   };
 }
