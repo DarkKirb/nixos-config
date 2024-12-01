@@ -22,6 +22,7 @@
         leonardssh.vscord
         mechatroner.rainbow-csv
         mkhl.direnv
+        ms-python.python
         pkief.material-icon-theme
         rust-lang.rust-analyzer
         signageos.signageos-vscode-sops
