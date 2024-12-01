@@ -185,6 +185,12 @@ in
     };
   };
   nix.settings.trusted-users = [ "@hydra" ];
+  sops.secrets."hydra-evaluator/ssh/builder_id_ed25519" = {
+    sopsFile = ../../secrets/shared.yaml;
+    owner = "hydra";
+    key = "ssh/builder_id_ed25519";
+    path = "/var/lib/hydra/.ssh/builder_id_ed25519";
+  };
   sops.secrets."hydra/ssh/builder_id_ed25519" = {
     sopsFile = ../../secrets/shared.yaml;
     owner = "hydra-queue-runner";
@@ -195,6 +201,9 @@ in
     mkdir -p /var/lib/hydra/queue-runner/.ssh/
     chown -Rv hydra-queue-runner /var/lib/hydra/queue-runner
     ln -svf ${sshConfig} /var/lib/hydra/queue-runner/.ssh/config
+    mkdir -p /var/lib/hydra/.ssh/
+    chown -Rv hydra /var/lib/hydra/.ssh
+    ln -svf ${sshConfig} /var/lib/hydra/.ssh/config
   '';
   sops.secrets."attic/config.toml" = {
     owner = "hydra-queue-runner";
