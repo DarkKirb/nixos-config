@@ -63,6 +63,7 @@ let
         --subst-var-by nix-eval-jobs ${nix-eval-jobs.packages.x86_64-linux.nix-eval-jobs}/bin/nix-eval-jobs \
         --subst-var-by nix ${pkgs.nix}/bin/nix \
         --subst-var-by ssh ${pkgs.openssh}/bin/ssh
+      chmod +x $out
     '';
   };
 in
