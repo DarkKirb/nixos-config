@@ -38,7 +38,7 @@ for arg in sys.argv[1:]:
         next_to_copy = True
     remote_args.append(arg)
 
-remote_args += ["--workers", "4"]
+remote_args += ["--workers", "4", "--gc-roots-dir", "/tmp"]
 
 # copy over what files we need to ensure are present on the target
 
@@ -58,5 +58,5 @@ for line in result.stdout:
             os.symlink(data["drvPath"], os.path.join(gcroots, drvBasename))
         # Now we are done with this job, we can tell hydra about it
         print(line)
-    except e:
+    except Exception as e:
         print(e, file=sys.stderr)
