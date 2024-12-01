@@ -25,7 +25,7 @@ for arg in sys.argv[1:]:
     if arg == "--gc-roots-dir":
         next_to_gcroots = True
     if next_to_gcroots:
-        next_to_gcroots = false    
+        next_to_gcroots = False    
         gcroots = arg
     if skip_next > 0:
         skip_next -= 1
