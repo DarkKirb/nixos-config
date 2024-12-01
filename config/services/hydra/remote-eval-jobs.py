@@ -55,7 +55,10 @@ for line in iter(result.stdout.readline, ""):
         # if we have a gcroot, add it to it
         if gcroots is not None:
             drvBasename = os.path.basename(data["drvPath"])
-            os.symlink(data["drvPath"], os.path.join(gcroots, drvBasename))
+            try:
+                os.symlink(data["drvPath"], os.path.join(gcroots, drvBasename))
+            except:
+                pass
         # Now we are done with this job, we can tell hydra about it
         print(line)
     except Exception as e:
