@@ -14,43 +14,45 @@ let
     build-aarch64 aarch64-linux,riscv32-linux,riscv64-linux - 4 1 nixos-test,benchmark,ca-derivations,gccarch-armv8-a,gccarch-armv8.1-a,gccarch-armv8.2-a,big-parallel  -
     build-riscv riscv64-linux,riscv32-linux - 4 2 nixos-test,benchmark,ca-derivations,gccarch-rv64gc_zba_zbb,gccarch-rv64gc_zba,gccarch-rv64gc_zbb,ccarch-rv64gc,gccarch-rv32gc_zba_zbb,gccarch-rv32gc_zba,gccarch-rv32gc_zbb,gccarch-rv32gc,big-parallel,native-riscv  -
   '';
-  sshConfig = pkgs.writeText "ssh-config" ''
-    Host build-aarch64
-      Port 22
-      IdentitiesOnly yes
-      User remote-build
-      HostName instance-20221213-1915.int.chir.rs
-      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
-    Host build-nas
-      Port 22
-      IdentitiesOnly yes
-      User remote-build
-      HostName nas.int.chir.rs
-      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
-    Host build-rainbow-resort
-      Port 22
-      IdentitiesOnly yes
-      User remote-build
-      HostName rainbow-resort.int.chir.rs
-      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
-    Host build-riscv
-      Port 22
-      IdentitiesOnly yes
-      User remote-build
-      HostName not522.tailbab65.ts.net
-      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
+  sshConfig =
+    home:
+    pkgs.writeText "ssh-config" ''
+      Host build-aarch64
+        Port 22
+        IdentitiesOnly yes
+        User remote-build
+        HostName instance-20221213-1915.int.chir.rs
+        IdentityFile ${home}/.ssh/builder_id_ed25519
+      Host build-nas
+        Port 22
+        IdentitiesOnly yes
+        User remote-build
+        HostName nas.int.chir.rs
+        IdentityFile ${home}/.ssh/builder_id_ed25519
+      Host build-rainbow-resort
+        Port 22
+        IdentitiesOnly yes
+        User remote-build
+        HostName rainbow-resort.int.chir.rs
+        IdentityFile ${home}/.ssh/builder_id_ed25519
+      Host build-riscv
+        Port 22
+        IdentitiesOnly yes
+        User remote-build
+        HostName not522.tailbab65.ts.net
+        IdentityFile ${home}/.ssh/builder_id_ed25519
 
-    Host *
-      ForwardAgent no
-      Compression no
-      ServerAliveInterval 0
-      ServerAliveCountMax 3
-      HashKnownHosts no
-      UserKnownHostsFile ~/.ssh/known_hosts
-      ControlMaster auto
-      ControlPath ~/.ssh/master-%r@%n:%p
-      ControlPersist 10m
-  '';
+      Host *
+        ForwardAgent no
+        Compression no
+        ServerAliveInterval 0
+        ServerAliveCountMax 3
+        HashKnownHosts no
+        UserKnownHostsFile ~/.ssh/known_hosts
+        ControlMaster auto
+        ControlPath ~/.ssh/master-%r@%n:%p
+        ControlPersist 10m
+    '';
   nix-eval-jobs-script = pkgs.stdenvNoCC.mkDerivation {
     name = "remote-eval-jobs.py";
     src = ./hydra/remote-eval-jobs.py;
@@ -200,10 +202,10 @@ in
   system.activationScripts.setupHydraSshConfig = lib.stringAfter [ "var" ] ''
     mkdir -p /var/lib/hydra/queue-runner/.ssh/
     chown -Rv hydra-queue-runner /var/lib/hydra/queue-runner
-    ln -svf ${sshConfig} /var/lib/hydra/queue-runner/.ssh/config
+    ln -svf ${sshConfig "/var/lib/hydra/queue-runner"} /var/lib/hydra/queue-runner/.ssh/config
     mkdir -p /var/lib/hydra/.ssh/
     chown -Rv hydra /var/lib/hydra/.ssh
-    ln -svf ${sshConfig} /var/lib/hydra/.ssh/config
+    ln -svf ${sshConfig "/var/lib/hydra"} /var/lib/hydra/.ssh/config
   '';
   sops.secrets."attic/config.toml" = {
     owner = "hydra-queue-runner";
