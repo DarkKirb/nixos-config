@@ -13,7 +13,10 @@ in
     src = fetchgit {
       inherit (source) url rev sha256;
     };
-    nativeBuildInputs = [chevron lndir];
+    nativeBuildInputs = [
+      chevron
+      lndir
+    ];
     buildPhase = ''
       chevron -d index.json index.handlebars > index.html
     '';
@@ -27,5 +30,5 @@ in
       description = "miifox.net";
       license = lib.licenses.unfree;
     };
-    passthru.updateScript = [../scripts/update-git.sh "https://git.chir.rs/CarolineHusky/MiiFox.net" "web/miifox.json"];
+    #passthru.updateScript = [../scripts/update-git.sh "https://git.chir.rs/CarolineHusky/MiiFox.net" "web/miifox.json"];
   }

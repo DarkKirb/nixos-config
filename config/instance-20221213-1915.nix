@@ -3,8 +3,7 @@
   lib,
   modulesPath,
   ...
-}@args:
-{
+} @ args: {
   networking.hostName = "instance-20221213-1915";
   networking.hostId = "746d4523";
 
@@ -33,9 +32,9 @@
     "virtio_pci"
     "usbhid"
   ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = [];
+  boot.extraModulePackages = [];
 
   fileSystems."/" = {
     device = "tank/local/root";
@@ -94,7 +93,7 @@
 
   services.postgresql.dataDir = "/persist/var/lib/postgresql/${config.services.postgresql.package.psqlSchema}";
 
-  networking.wireguard.interfaces."wg0".ips = [ "fd0d:a262:1fa6:e621:746d:4523:5c04:1453/64" ];
+  networking.wireguard.interfaces."wg0".ips = ["fd0d:a262:1fa6:e621:746d:4523:5c04:1453/64"];
   home-manager.users.darkkirb = import ./home-manager/darkkirb.nix {
     desktop = false;
     inherit args;
@@ -127,8 +126,8 @@
     owner = "root";
     path = "/etc/secrets/initrd/ssh_host_ed25519_key";
   };
-  sops.age.sshKeyPaths = lib.mkForce [ "/persist/ssh/ssh_host_ed25519_key" ];
-  services.bind.forwarders = lib.mkForce [ ];
+  sops.age.sshKeyPaths = lib.mkForce ["/persist/ssh/ssh_host_ed25519_key"];
+  services.bind.forwarders = lib.mkForce [];
   boot.loader.systemd-boot.configurationLimit = lib.mkForce 1;
   services.tailscale.useRoutingFeatures = "server";
   services.postgresql.settings = {
@@ -150,5 +149,5 @@
     max_parallel_maintenance_workers = 2;
   };
 
-  services.restic.backups.sysbackup.paths = [ "/persist" ];
+  services.restic.backups.sysbackup.paths = ["/persist"];
 }

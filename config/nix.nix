@@ -5,8 +5,7 @@
   system,
   attic,
   ...
-}:
-{
+}: {
   imports = [
     ./workarounds
   ];
@@ -38,8 +37,7 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    buildMachines =
-      with lib;
+    buildMachines = with lib;
       mkMerge [
         (mkIf (config.networking.hostName != "instance-20221213-1915") [
           {
@@ -175,7 +173,9 @@
       #!${pkgs.bash}/bin/bash
       set -ex
       builds=$(${pkgs.curl}/bin/curl -H 'accept: application/json' https://hydra.int.chir.rs/jobset/flakes/${
-        if config.networking.hostName != "vf2" then "nixos-config" else "nixos-config-riscv"
+        if config.networking.hostName != "vf2"
+        then "nixos-config"
+        else "nixos-config-riscv"
       }/evals | ${pkgs.jq}/bin/jq -r '.evals[0].builds[]')
       for build in $builds; do
           doc=$(${pkgs.curl}/bin/curl -H 'accept: application/json' https://hydra.int.chir.rs/build/$build)
@@ -187,32 +187,31 @@
               ${pkgs.nix}/bin/nix-env -p /nix/var/nix/profiles/system --set $output
 
               ${
-                if config.networking.hostName != "nixos-8gb-fsn1-1" then
-                  ''
-                    $output/bin/switch-to-configuration boot
-                    booted="$(${pkgs.coreutils}/bin/readlink /run/booted-system/{initrd,kernel,kernel-modules})"
-                    built="$(${pkgs.coreutils}/bin/readlink $output/{initrd,kernel,kernel-modules})"
-                    if [ "$booted" = "$built" ]; then
-                        $output/bin/switch-to-configuration switch
-                    else
-                        ${pkgs.systemd}/bin/shutdown -r +1
-                    fi
-                    exit
-                  ''
-                else
-                  "$output/bin/switch-to-configuration switch"
-              }
+        if config.networking.hostName != "nixos-8gb-fsn1-1"
+        then ''
+          $output/bin/switch-to-configuration boot
+          booted="$(${pkgs.coreutils}/bin/readlink /run/booted-system/{initrd,kernel,kernel-modules})"
+          built="$(${pkgs.coreutils}/bin/readlink $output/{initrd,kernel,kernel-modules})"
+          if [ "$booted" = "$built" ]; then
+              $output/bin/switch-to-configuration switch
+          else
+              ${pkgs.systemd}/bin/shutdown -r +1
+          fi
+          exit
+        ''
+        else "$output/bin/switch-to-configuration switch"
+      }
           fi
       done
     '';
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
   };
   systemd.timers.nixos-upgrade = {
     enable = true;
     description = "Automatically update nixos";
-    requires = [ "nixos-upgrade.service" ];
-    wantedBy = [ "multi-user.target" ];
+    requires = ["nixos-upgrade.service"];
+    wantedBy = ["multi-user.target"];
     timerConfig = {
       OnUnitActiveSec = "30min";
       RandomizedDelaySec = "1h";
