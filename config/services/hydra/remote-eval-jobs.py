@@ -6,7 +6,7 @@ import json
 
 # First check if the server is up
 
-if subprocess.call(["@ping@", "-c", "1", "rainbow-resort.int.chir.rs"], stdout=subprocess.DEVNULL).returncode != 0:
+if subprocess.run(["@ping@", "-c", "1", "rainbow-resort.int.chir.rs"], stdout=subprocess.DEVNULL).returncode != 0:
     os.execv("@nix-eval-jobs@", ["@nix-eval-jobs@"] + sys.argv[1:])
 
 inputs_to_copy = set()
@@ -41,16 +41,16 @@ remote_args += ["--workers" "4"]
 
 # copy over what files we need to ensure are present on the target
 
-subprocess.call(["@nix@", "copy"] + list(inputs_to_copy) + ["--to", "ssh://build-rainbow-resort", "--no-check-sigs"], check=True, stdout=subprocess.DEVNULL)
+subprocess.run(["@nix@", "copy"] + list(inputs_to_copy) + ["--to", "ssh://build-rainbow-resort", "--no-check-sigs"], check=True, stdout=subprocess.DEVNULL)
 
 # Evaluate on target
-result = subprocess.call(["@ssh@", "build-rainbow-resort", "nix-eval-jobs"] + remote_args, check=True, stdout=subprocess.PIPE, text=True)
+result = subprocess.run(["@ssh@", "build-rainbow-resort", "nix-eval-jobs"] + remote_args, check=True, stdout=subprocess.PIPE, text=True)
 
 for line in result.stdout:
     try:
         data = json.loads(line)
         # copy .drv file home
-        subprocess.call(["@nix@", "copy", data["drvPath"], "--from", "ssh://build-rainbow-resort", "--no-check-sigs"], check=True, stdout=subprocess.DEVNULL)
+        subprocess.run(["@nix@", "copy", data["drvPath"], "--from", "ssh://build-rainbow-resort", "--no-check-sigs"], check=True, stdout=subprocess.DEVNULL)
         # if we have a gcroot, add it to it
         if gcroots is not None:
             drvBasename = os.path.basename(data["drvPath"])
