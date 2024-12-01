@@ -7,49 +7,52 @@
   hydra,
   nix-eval-jobs,
   ...
-}: let
+}:
+let
   machines = pkgs.writeText "machines" ''
     localhost armv7l-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,wasm32-wasi,x86_64-linux,i686-linux,riscv32-linux,riscv64-linux - 12 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver1,gccarch-skylake,ca-derivations  -
     build-aarch64 aarch64-linux,riscv32-linux,riscv64-linux - 4 1 nixos-test,benchmark,ca-derivations,gccarch-armv8-a,gccarch-armv8.1-a,gccarch-armv8.2-a,big-parallel  -
     build-riscv riscv64-linux,riscv32-linux - 4 2 nixos-test,benchmark,ca-derivations,gccarch-rv64gc_zba_zbb,gccarch-rv64gc_zba,gccarch-rv64gc_zbb,ccarch-rv64gc,gccarch-rv32gc_zba_zbb,gccarch-rv32gc_zba,gccarch-rv32gc_zbb,gccarch-rv32gc,big-parallel,native-riscv  -
   '';
-  sshConfig = pkgs.writeText "ssh-config" ''
-    Host build-aarch64
-      Port 22
-      IdentitiesOnly yes
-      User remote-build
-      HostName instance-20221213-1915.int.chir.rs
-      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
-    Host build-nas
-      Port 22
-      IdentitiesOnly yes
-      User remote-build
-      HostName nas.int.chir.rs
-      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
-    Host build-rainbow-resort
-      Port 22
-      IdentitiesOnly yes
-      User remote-build
-      HostName rainbow-resort.int.chir.rs
-      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
-    Host build-riscv
-      Port 22
-      IdentitiesOnly yes
-      User remote-build
-      HostName not522.tailbab65.ts.net
-      IdentityFile /var/lib/hydra/queue-runner/.ssh/builder_id_ed25519
+  sshConfig =
+    home:
+    pkgs.writeText "ssh-config" ''
+      Host build-aarch64
+        Port 22
+        IdentitiesOnly yes
+        User remote-build
+        HostName instance-20221213-1915.int.chir.rs
+        IdentityFile ${home}/.ssh/builder_id_ed25519
+      Host build-nas
+        Port 22
+        IdentitiesOnly yes
+        User remote-build
+        HostName nas.int.chir.rs
+        IdentityFile ${home}/.ssh/builder_id_ed25519
+      Host build-rainbow-resort
+        Port 22
+        IdentitiesOnly yes
+        User remote-build
+        HostName rainbow-resort.int.chir.rs
+        IdentityFile ${home}/.ssh/builder_id_ed25519
+      Host build-riscv
+        Port 22
+        IdentitiesOnly yes
+        User remote-build
+        HostName not522.tailbab65.ts.net
+        IdentityFile ${home}/.ssh/builder_id_ed25519
 
-    Host *
-      ForwardAgent no
-      Compression no
-      ServerAliveInterval 0
-      ServerAliveCountMax 3
-      HashKnownHosts no
-      UserKnownHostsFile ~/.ssh/known_hosts
-      ControlMaster auto
-      ControlPath ~/.ssh/master-%r@%n:%p
-      ControlPersist 10m
-  '';
+      Host *
+        ForwardAgent no
+        Compression no
+        ServerAliveInterval 0
+        ServerAliveCountMax 3
+        HashKnownHosts no
+        UserKnownHostsFile ~/.ssh/known_hosts
+        ControlMaster auto
+        ControlPath ~/.ssh/master-%r@%n:%p
+        ControlPersist 10m
+    '';
   nix-eval-jobs-script = pkgs.stdenvNoCC.mkDerivation {
     name = "remote-eval-jobs.py";
     src = ./hydra/remote-eval-jobs.py;
@@ -62,9 +65,11 @@
         --subst-var-by nix-eval-jobs ${nix-eval-jobs.packages.x86_64-linux.nix-eval-jobs}/bin/nix-eval-jobs \
         --subst-var-by nix ${pkgs.nix}/bin/nix \
         --subst-var-by ssh ${pkgs.openssh}/bin/ssh
+      chmod +x $out
     '';
   };
-in {
+in
+{
   imports = [
     ./postgres.nix
     ../../modules/hydra.nix
@@ -78,21 +83,17 @@ in {
     package = hydra.packages.${system}.hydra.overrideAttrs (super: {
       doCheck = false;
       doInstallCheck = false;
-      patches =
-        super.patches
-        or []
-        ++ [
-          ./hydra/0001-add-gitea-pulls.patch
-          ./hydra/0002-unlimit-output.patch
-          ./hydra/0003-remove-pr-number-from-github-job-name.patch
-          ./hydra/0004-use-pulls-instead-of-issues.patch
-          ./hydra/0005-only-list-open-prs.patch
-          ./hydra/0006-status-state.patch
-          ./hydra/0007-hydra-server-findLog-fix-issue-with-ca-derivations-e.patch
-        ];
+      patches = super.patches or [ ] ++ [
+        ./hydra/0001-add-gitea-pulls.patch
+        ./hydra/0002-unlimit-output.patch
+        ./hydra/0003-remove-pr-number-from-github-job-name.patch
+        ./hydra/0004-use-pulls-instead-of-issues.patch
+        ./hydra/0005-only-list-open-prs.patch
+        ./hydra/0006-status-state.patch
+        ./hydra/0007-hydra-server-findLog-fix-issue-with-ca-derivations-e.patch
+      ];
       postPatch =
-        super.postPatch
-        or ""
+        super.postPatch or ""
         + ''
           substituteInPlace src/script/hydra-eval-jobset --replace-fail nix-eval-jobs ${nix-eval-jobs-script}
         '';
@@ -140,8 +141,8 @@ in {
     "https://"
     "http://"
   ];
-  sops.secrets."services/hydra/gitea_token" = {};
-  sops.secrets."services/hydra/github_token" = {};
+  sops.secrets."services/hydra/gitea_token" = { };
+  sops.secrets."services/hydra/github_token" = { };
   sops.secrets."services/hydra/cache-key" = {
     owner = "hydra-www";
     mode = "0440";
@@ -160,7 +161,7 @@ in {
   sops.secrets."services/hydra/aws_credentials" = {
     owner = "hydra-queue-runner";
     path = "/var/lib/hydra/queue-runner/.aws/credentials";
-    restartUnits = ["hydra-notify.service"];
+    restartUnits = [ "hydra-notify.service" ];
   };
   systemd.services.update-hydra-hosts = {
     description = "Update hydra hosts";
@@ -178,24 +179,33 @@ in {
   systemd.timers.update-hydra-hosts = {
     enable = true;
     description = "Update hydra hosts";
-    requires = ["update-hydra-hosts.service"];
-    wantedBy = ["multi-user.target"];
+    requires = [ "update-hydra-hosts.service" ];
+    wantedBy = [ "multi-user.target" ];
     timerConfig = {
       OnBootSec = 300;
       OnUnitActiveSec = 300;
     };
   };
-  nix.settings.trusted-users = ["@hydra"];
+  nix.settings.trusted-users = [ "@hydra" ];
+  sops.secrets."hydra-evaluator/ssh/builder_id_ed25519" = {
+    sopsFile = ../../secrets/shared.yaml;
+    owner = "hydra";
+    key = "ssh/builder_id_ed25519";
+    path = "/var/lib/hydra/.ssh/builder_id_ed25519";
+  };
   sops.secrets."hydra/ssh/builder_id_ed25519" = {
     sopsFile = ../../secrets/shared.yaml;
     owner = "hydra-queue-runner";
     key = "ssh/builder_id_ed25519";
     path = "/var/lib/hydra/queue-runner/.ssh/builder_id_ed25519";
   };
-  system.activationScripts.setupHydraSshConfig = lib.stringAfter ["var"] ''
+  system.activationScripts.setupHydraSshConfig = lib.stringAfter [ "var" ] ''
     mkdir -p /var/lib/hydra/queue-runner/.ssh/
     chown -Rv hydra-queue-runner /var/lib/hydra/queue-runner
-    ln -svf ${sshConfig} /var/lib/hydra/queue-runner/.ssh/config
+    ln -svf ${sshConfig "/var/lib/hydra/queue-runner"} /var/lib/hydra/queue-runner/.ssh/config
+    mkdir -p /var/lib/hydra/.ssh/
+    chown -Rv hydra /var/lib/hydra/.ssh
+    ln -svf ${sshConfig "/var/lib/hydra"} /var/lib/hydra/.ssh/config
   '';
   sops.secrets."attic/config.toml" = {
     owner = "hydra-queue-runner";
@@ -214,7 +224,7 @@ in {
 
   systemd.services."attic-queue" = {
     description = "Upload build results";
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       User = "hydra-queue-runner";
       Group = "hydra";
