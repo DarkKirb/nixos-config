@@ -49,6 +49,7 @@ result = subprocess.Popen(["@ssh@", "build-rainbow-resort", "nix-eval-jobs"] + l
 
 for line in iter(result.stdout.readline, ""):
     try:
+        line = line.strip()
         data = json.loads(line)
         # copy .drv file home
         subprocess.run(["@nix@", "copy", data["drvPath"], "--from", "ssh://build-rainbow-resort", "--no-check-sigs"], check=True, stdout=subprocess.DEVNULL)
