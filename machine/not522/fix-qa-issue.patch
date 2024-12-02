@@ -1,0 +1,12 @@
+
+diff --git a/tools/include/asm/fence.h b/tools/include/asm/fence.h
+new file mode 100644
+index 000000000000..917a173059a4
+--- /dev/null
++++ b/tools/include/asm/fence.h
+@@ -0,0 +1,3 @@
++#if defined(__riscv)
++#include "../../arch/riscv/include/asm/fence.h"
++#endif
+-- 
+2.46.2

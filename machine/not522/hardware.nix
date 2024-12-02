@@ -5,6 +5,12 @@
   ...
 }:
 {
+  boot.kernelPatches = [
+    {
+      name = "fix-dumb-qa-issue";
+      patch = ./fix-qa-issue.patch;
+    }
+  ];
   imports = [
     "${nixos-hardware}/starfive/visionfive/v2/default.nix"
   ];
