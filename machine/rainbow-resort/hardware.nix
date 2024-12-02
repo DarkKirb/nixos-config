@@ -1,6 +1,7 @@
 {
   modulesPath,
   nixos-hardware,
+  config,
   ...
 }:
 {
@@ -57,4 +58,8 @@
     "gccarch-skylake-avx512"
     "ca-derivations"
   ];
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = config.isSway;
+  services.joycond.enable = true;
 }
