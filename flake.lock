@@ -143,32 +143,35 @@
     },
     "chir-rs": {
       "inputs": {
-        "flake-parts": [
-          "flake-parts"
+        "cargo2nix": [
+          "cargo2nix"
         ],
-        "haskell-flake": "haskell-flake",
-        "microformats2-parser": "microformats2-parser",
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "flake-utils": [
+          "flake-utils"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": [
-          "systems"
-        ],
-        "treefmt-nix": "treefmt-nix",
-        "webauthn": "webauthn"
+        "riscv-overlay": "riscv-overlay",
+        "rust-overlay": [
+          "rust-overlay"
+        ]
       },
       "locked": {
-        "lastModified": 1729675675,
-        "narHash": "sha256-Eo73j7AkSdb8XU7MlAZeuBH+tgRJGMY1tXjlOI//2JU=",
+        "lastModified": 1733387034,
+        "narHash": "sha256-tbGWUYObc5DstFds0Til/A/Tt64Ed7ZFUI0vadjUUyc=",
         "ref": "refs/heads/main",
-        "rev": "48e5aade5bcc188d3c2cc4b446d445355b49b458",
-        "revCount": 380,
+        "rev": "f4b45cb2f8aeca95b59afd96ead8a5c36a6f224d",
+        "revCount": 24,
         "type": "git",
-        "url": "https://git.chir.rs/chir.rs/chir.rs"
+        "url": "https://git.chir.rs/darkkirb/chir.rs"
       },
       "original": {
         "type": "git",
-        "url": "https://git.chir.rs/chir.rs/chir.rs"
+        "url": "https://git.chir.rs/darkkirb/chir.rs"
       }
     },
     "colorpickle": {
@@ -479,21 +482,6 @@
         "type": "github"
       }
     },
-    "haskell-flake": {
-      "locked": {
-        "lastModified": 1729428816,
-        "narHash": "sha256-PA3LR2aFS7GDaViGEl4gAbohwGLzU3dvykLCfNTLi+Y=",
-        "owner": "srid",
-        "repo": "haskell-flake",
-        "rev": "688cc5757af330c9c2c53b23a00fec6664ff8852",
-        "type": "github"
-      },
-      "original": {
-        "owner": "srid",
-        "repo": "haskell-flake",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -679,22 +667,6 @@
         "url": "https://git.lix.systems/lix-project/lix/archive/main.tar.gz"
       }
     },
-    "microformats2-parser": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1695821315,
-        "narHash": "sha256-Et4yYDiIcIeMsEkZI9Y0Unh51fnuMQzScE4dxgXCGzo=",
-        "owner": "darkkirb",
-        "repo": "microformats2-parser",
-        "rev": "4e6b3aac8f5af3306261ef2782f7df990e96f429",
-        "type": "github"
-      },
-      "original": {
-        "owner": "darkkirb",
-        "repo": "microformats2-parser",
-        "type": "github"
-      }
-    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -728,7 +700,7 @@
           "hydra",
           "nixpkgs"
         ],
-        "treefmt-nix": "treefmt-nix_2"
+        "treefmt-nix": "treefmt-nix"
       },
       "locked": {
         "lastModified": 1732351635,
@@ -752,7 +724,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "treefmt-nix": "treefmt-nix_3"
+        "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
         "lastModified": 1732351635,
@@ -1114,6 +1086,27 @@
         "type": "github"
       }
     },
+    "riscv-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "chir-rs",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1733038904,
+        "narHash": "sha256-M6JkngHqY/gacVebtpn63NXxFw9m7NtP/9WWtWurHPc=",
+        "owner": "DarkKirb",
+        "repo": "riscv-overlay",
+        "rev": "19c2d6af232de9af3c6691df5ed6b629da7731f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DarkKirb",
+        "repo": "riscv-overlay",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "admin-fe": "admin-fe",
@@ -1209,27 +1202,6 @@
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
-          "chir-rs",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1729242555,
-        "narHash": "sha256-6jWSWxv2crIXmYSEb3LEVsFkCkyVHNllk61X4uhqfCs=",
-        "owner": "numtide",
-        "repo": "treefmt-nix",
-        "rev": "d986489c1c757f6921a48c1439f19bfb9b8ecab5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "treefmt-nix_2": {
-      "inputs": {
-        "nixpkgs": [
           "hydra",
           "nix-eval-jobs",
           "nixpkgs"
@@ -1249,7 +1221,7 @@
         "type": "github"
       }
     },
-    "treefmt-nix_3": {
+    "treefmt-nix_2": {
       "inputs": {
         "nixpkgs": [
           "nix-eval-jobs",
@@ -1293,22 +1265,6 @@
         "submodules": true,
         "type": "git",
         "url": "https://github.com/Open-Wine-Components/umu-launcher/"
-      }
-    },
-    "webauthn": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1727705861,
-        "narHash": "sha256-DJOrV0PZAeRGbWe765ayvBhxk1w5LDsDUBObjwcEl/Q=",
-        "owner": "tweag",
-        "repo": "webauthn",
-        "rev": "e2abad5bc299914e18dc823ac016eb673004cbe5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tweag",
-        "repo": "webauthn",
-        "type": "github"
       }
     }
   },

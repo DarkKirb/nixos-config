@@ -6,7 +6,8 @@
   nixpkgs,
   pkgs,
   ...
-} @ args: {
+}@args:
+{
   networking.hostName = "nas";
   networking.hostId = "70af00ed";
 
@@ -41,12 +42,20 @@
     ./services/forgejo-runner.nix
     ./services/renovate.nix
     ./services/mautrix-slack.nix
+    ./services/chir-rs
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod" "bcache"];
-  boot.initrd.kernelModules = ["igb"];
-  boot.kernelModules = ["kvm-amd"];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "ahci"
+    "usb_storage"
+    "sd_mod"
+    "bcache"
+  ];
+  boot.initrd.kernelModules = [ "igb" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [
     config.boot.kernelPackages.zenpower
   ];
@@ -54,19 +63,29 @@
   fileSystems."/" = {
     device = "/dev/bcache0";
     fsType = "btrfs";
-    options = ["subvol=root" "compress=zstd"];
+    options = [
+      "subvol=root"
+      "compress=zstd"
+    ];
   };
 
   fileSystems."/home" = {
     device = "/dev/bcache0";
     fsType = "btrfs";
-    options = ["subvol=home" "compress=zstd"];
+    options = [
+      "subvol=home"
+      "compress=zstd"
+    ];
   };
 
   fileSystems."/nix" = {
     device = "/dev/bcache0";
     fsType = "btrfs";
-    options = ["subvol=nix" "compress=zstd" "noatime"];
+    options = [
+      "subvol=nix"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   services.snapper.configs.main = {
@@ -81,7 +100,10 @@
     spec = "/";
     hashTableSizeMB = 2048;
     verbosity = "crit";
-    extraOptions = ["--loadavg-target" "5.0"];
+    extraOptions = [
+      "--loadavg-target"
+      "5.0"
+    ];
   };
 
   fileSystems."/boot" = {
@@ -184,7 +206,7 @@
     driSupport32Bit = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -195,7 +217,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   services.restic.backups.sysbackup = {
-    paths = ["/media"];
+    paths = [ "/media" ];
     pruneOpts = [
       "--keep-daily 7"
       "--keep-weekly 4"
@@ -207,5 +229,8 @@
     enable = true;
     #enableNvidia = true;
   };
-  environment.systemPackages = with pkgs; [docker runc];
+  environment.systemPackages = with pkgs; [
+    docker
+    runc
+  ];
 }

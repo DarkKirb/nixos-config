@@ -73,3 +73,11 @@ creation_rules:
           - *instance-20221213-1915
           - *rainbow-resort
           - *lotte
+  - path_regex: config/services/chir-rs/secrets\.yaml$
+    key_groups:
+      - age:
+        - *nixos-8gb-fsn1-1
+        - *nas
+        - *instance-20221213-1915
+        - *rainbow-resort
+        - *lotte
