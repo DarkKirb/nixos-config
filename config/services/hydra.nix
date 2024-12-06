@@ -155,6 +155,7 @@ in
 
       reverse_proxy http://127.0.0.1:${toString config.services.hydra-dev.port} {
         trusted_proxies private_ranges
+        header_up Host hydra.chir.rs
       }
     '';
   };

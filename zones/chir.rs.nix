@@ -1,15 +1,19 @@
 {
-  dns ? (import (builtins.fetchTarball "https://github.com/DarkKirb/dns.nix/archive/master.zip")).outputs,
+  dns ?
+    (import (builtins.fetchTarball "https://github.com/DarkKirb/dns.nix/archive/master.zip")).outputs,
   zoneTTL ? 3600,
 }:
-with dns.lib.combinators; let
+with dns.lib.combinators;
+let
   inherit (builtins) hasAttr;
-  merge = a: b:
+  merge =
+    a: b:
     (a // b)
     // (
-      if ((hasAttr "subdomains" a) && (hasAttr "subdomains" b))
-      then {subdomains = a.subdomains // b.subdomains;}
-      else {}
+      if ((hasAttr "subdomains" a) && (hasAttr "subdomains" b)) then
+        { subdomains = a.subdomains // b.subdomains; }
+      else
+        { }
     );
   oracleBase = {
     A = [
@@ -48,9 +52,13 @@ with dns.lib.combinators; let
       {
         svcPriority = 1;
         targetName = ".";
-        alpn = ["http/1.1" "h2" "h3"];
-        ipv4hint = ["130.162.60.127"];
-        ipv6hint = ["2603:c020:8009:f100:f09a:894d:ef57:a278"];
+        alpn = [
+          "http/1.1"
+          "h2"
+          "h3"
+        ];
+        ipv4hint = [ "130.162.60.127" ];
+        ipv6hint = [ "2603:c020:8009:f100:f09a:894d:ef57:a278" ];
         ttl = zoneTTL;
       }
     ];
@@ -92,9 +100,13 @@ with dns.lib.combinators; let
       {
         svcPriority = 1;
         targetName = ".";
-        alpn = ["http/1.1" "h2" "h3"];
-        ipv4hint = ["138.201.155.128"];
-        ipv6hint = ["2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49"];
+        alpn = [
+          "http/1.1"
+          "h2"
+          "h3"
+        ];
+        ipv4hint = [ "138.201.155.128" ];
+        ipv6hint = [ "2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49" ];
         ttl = zoneTTL;
       }
     ];
@@ -133,9 +145,19 @@ with dns.lib.combinators; let
       {
         svcPriority = 1;
         targetName = ".";
-        alpn = ["http/1.1" "h2" "h3"];
-        ipv4hint = ["138.201.155.128" "130.162.60.127"];
-        ipv6hint = ["2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49" "2603:c020:8009:f100:f09a:894d:ef57:a278"];
+        alpn = [
+          "http/1.1"
+          "h2"
+          "h3"
+        ];
+        ipv4hint = [
+          "138.201.155.128"
+          "130.162.60.127"
+        ];
+        ipv6hint = [
+          "2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49"
+          "2603:c020:8009:f100:f09a:894d:ef57:a278"
+        ];
         ttl = zoneTTL;
       }
     ];
@@ -144,7 +166,7 @@ with dns.lib.combinators; let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 56;
+      serial = 57;
     };
     NS = [
       "ns1.chir.rs."
@@ -210,42 +232,47 @@ with dns.lib.combinators; let
     ];
     subdomains = {
       _dmarc.TXT = [
-        (ttl zoneTTL (txt "v=DMARC1; p=reject; rua=mailto:dmarc@chir.rs; ruf=mailto:dmarc@chir.rs; sp=reject; adkim=s; aspf=s"))
+        (ttl zoneTTL (
+          txt "v=DMARC1; p=reject; rua=mailto:dmarc@chir.rs; ruf=mailto:dmarc@chir.rs; sp=reject; adkim=s; aspf=s"
+        ))
       ];
       _domainkey.subdomains.mail.TXT = [
-        (ttl zoneTTL (txt "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDTZvuDWFmZOOMr9pogMK5lFBjV3nRAjUpFv3o0d4KhbRW/zVrOOdfdt83F6zSLzUqrxSOG3uKVG+J0KR4kX4BbYflSLZ++y91C0Uu5d+o3A8Y/z2vUSe5YVt44IaDQoPCCpuWEYyqKIEaKGXNFPvlsO6y551biM3raNjq5kEpb3wIDAQAB"))
+        (ttl zoneTTL (
+          txt "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDTZvuDWFmZOOMr9pogMK5lFBjV3nRAjUpFv3o0d4KhbRW/zVrOOdfdt83F6zSLzUqrxSOG3uKVG+J0KR4kX4BbYflSLZ++y91C0Uu5d+o3A8Y/z2vUSe5YVt44IaDQoPCCpuWEYyqKIEaKGXNFPvlsO6y551biM3raNjq5kEpb3wIDAQAB"
+        ))
       ];
       _domainkey.subdomains.zmail.TXT = [
-        (ttl zoneTTL (txt "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCYVA1GcJ+JSl/Qv3hHtnge+FwAMn0+4KXWH3Ut4Ma6li3jT3ibO3d7sk7D4jmqwSQH+vCh/HC7+0PI8PYM9TQIecVwdwBF/29yMpiyVDyEc8ppRfU5KeYJsPxSAS/quFHy3M24qfckXb5aor6aI0mOtq8Bvh+v+69CpJUGSkNLUQIDAQAB"))
+        (ttl zoneTTL (
+          txt "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCYVA1GcJ+JSl/Qv3hHtnge+FwAMn0+4KXWH3Ut4Ma6li3jT3ibO3d7sk7D4jmqwSQH+vCh/HC7+0PI8PYM9TQIecVwdwBF/29yMpiyVDyEc8ppRfU5KeYJsPxSAS/quFHy3M24qfckXb5aor6aI0mOtq8Bvh+v+69CpJUGSkNLUQIDAQAB"
+        ))
       ];
       _keybase.TXT = [
         (ttl zoneTTL (txt "keybase-site-verification=r044cwg0wOTW-ws35BA5MMRLNwjdTNJ4uOu6kgdTopI"))
       ];
 
-      www = createZone {};
-      api = createZone {};
+      www = createZone { };
+      api = createZone { };
       git = createZone oracleBase;
-      mail = createZone {};
+      mail = createZone { };
       mc = createZone oracleBase;
-      ns1 = createZone {};
-      ns2 = createZone {};
+      ns1 = createZone { };
+      ns2 = createZone { };
       ns3 = createZone oracleBase;
       ns4 = createZone oracleBase;
-      hydra = createZone {};
-      mastodon = createZone {};
+      hydra = createZone { };
+      mastodon = createZone { };
       mastodon-assets.CNAME = [
         "assets-chir-rs.b-cdn.net."
       ];
-      matrix = createZone {};
-      akko = createZone {};
-      peertube = createZone {};
-      mediaproxy.CNAME = ["mediaproxy-chir-rs.b-cdn.net."];
-      cache.CNAME = ["cache-chir-rs.b-cdn.net."];
+      matrix = createZone { };
+      akko = createZone { };
+      peertube = createZone { };
+      mediaproxy.CNAME = [ "mediaproxy-chir-rs.b-cdn.net." ];
+      cache.CNAME = [ "cache-chir-rs.b-cdn.net." ];
       attic = createZone oracleBase;
-      lotte.CNAME = ["lotte-chir-rs.b-cdn.net."];
-      lotte-test = createZone oracleBase;
+      lotte = createFullZone { };
       status = createZone oracleBase;
-      weblate = createFullZone {};
+      weblate = createFullZone { };
 
       int =
         delegateTo [
@@ -273,4 +300,4 @@ with dns.lib.combinators; let
     };
   };
 in
-  zone
+zone
