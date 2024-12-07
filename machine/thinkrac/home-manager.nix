@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  systemConfig,
+  ...
+}:
 {
   xdg.configFile."kwinoutputconfig.json".text = lib.strings.toJSON [
     {
@@ -53,10 +58,16 @@
     }
   ];
 
-  programs.plasma.configFile.kcminputrc."Libinput/2/7/SynPS\\/2 Synaptics TouchPad".DisableWhentyping =
-    false;
-
   programs.vscode.extensions = with pkgs.vscode-extensions; [
     ms-vscode-remote.remote-ssh
   ];
 }
+// (
+  if !systemConfig.isSway then
+    {
+      programs.plasma.configFile.kcminputrc."Libinput/2/7/SynPS\\/2 Synaptics TouchPad".DisableWhentyping =
+        false;
+    }
+  else
+    { }
+)
