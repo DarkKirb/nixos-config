@@ -132,9 +132,9 @@
         static_configs = [
           {
             targets = [
-              "nas.int.chir.rs:1589"
-              "nixos-8gb-fsn1-1.int.chir.rs:1589"
-              "instance-20221213-1915.int.chir.rs:1589"
+              "nas.int.chir.rs:5621"
+              "nixos-8gb-fsn1-1.int.chir.rs:5621"
+              "instance-20221213-1915.int.chir.rs:5621"
             ];
           }
         ];
