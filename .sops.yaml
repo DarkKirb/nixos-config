@@ -80,3 +80,9 @@ creation_rules:
       - age:
         - *base
         - *thinkrac
+  - path_regex: services/chir-rs/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *rainbow-resort
+        - *not522

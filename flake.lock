@@ -66,6 +66,71 @@
         "type": "github"
       }
     },
+    "cargo2nix": {
+      "inputs": {
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": [
+          "rust-overlay"
+        ]
+      },
+      "locked": {
+        "lastModified": 1726552619,
+        "narHash": "sha256-ytTBILVMnRZYvjiLYz+J6IFf/TOXdGuP6RDesMx9qgA=",
+        "owner": "DarkKirb",
+        "repo": "cargo2nix",
+        "rev": "baa12124e2de09e1cbbdac320f14809fa55af1a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DarkKirb",
+        "ref": "master",
+        "repo": "cargo2nix",
+        "type": "github"
+      }
+    },
+    "chir-rs": {
+      "inputs": {
+        "cargo2nix": [
+          "cargo2nix"
+        ],
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "riscv-overlay": [
+          "riscv-overlay"
+        ],
+        "rust-overlay": [
+          "rust-overlay"
+        ]
+      },
+      "locked": {
+        "lastModified": 1733406011,
+        "narHash": "sha256-Oo5QDULKeq/Iw+iWnIU17caV3oz/t44WTFn1lDTZi2E=",
+        "ref": "refs/heads/main",
+        "rev": "be35842c6be433cbee2a4a1d7c9719ae7f8532fa",
+        "revCount": 25,
+        "type": "git",
+        "url": "https://git.chir.rs/darkkirb/chir.rs"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.chir.rs/darkkirb/chir.rs"
+      }
+    },
     "devshell": {
       "inputs": {
         "nixpkgs": [
@@ -816,6 +881,8 @@
     },
     "root": {
       "inputs": {
+        "cargo2nix": "cargo2nix",
+        "chir-rs": "chir-rs",
         "devshell": "devshell",
         "disko": "disko",
         "element-web": "element-web",

@@ -2,6 +2,22 @@
   description = "Lotte’s nix configuration";
 
   inputs = {
+    cargo2nix = {
+      url = "github:DarkKirb/cargo2nix/master";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
+    chir-rs = {
+      url = "git+https://git.chir.rs/darkkirb/chir.rs";
+      inputs.cargo2nix.follows = "cargo2nix";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+      inputs.riscv-overlay.follows = "riscv-overlay";
+    };
     devshell = {
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
