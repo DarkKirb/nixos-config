@@ -53,7 +53,7 @@
     }
   ];
 
-  programs.plasma.configFile.kcminputrc.Libinput."2"."7"."SynPS/2 Synaptics TouchPad".DisableWhentyping =
+  programs.plasma.configFile.kcminputrc."Libinput/2/7/SynPS\\/2 Synaptics TouchPad".DisableWhentyping =
     false;
 
   programs.vscode.extensions = with pkgs.vscode-extensions; [
