@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.prometheus = {
     port = 26678;
     enable = true;
@@ -121,6 +122,19 @@
           {
             targets = [
               "akko.chir.rs"
+            ];
+          }
+        ];
+      }
+      {
+        job_name = "lotte-chir-rs";
+        metrics_path = "/.api/metrics";
+        static_configs = [
+          {
+            targets = [
+              "nas.int.chir.rs:1589"
+              "nixos-8gb-fsn1-1.int.chir.rs:1589"
+              "instance-20221213-1915.int.chir.rs:1589"
             ];
           }
         ];
