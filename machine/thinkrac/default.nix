@@ -44,4 +44,5 @@
     "gccarch-skylake"
     "ca-derivations"
   ];
+  home-manager.users.darkkirb.imports = [ ./home-manager.nix ];
 }
