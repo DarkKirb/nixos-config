@@ -35,8 +35,8 @@
           host.address = "/run/user/1000/gnupg/d.gbpmeth5aucqrmhhx93taymi/S.gpg-agent.extra";
         }
         {
-          bind.address = "%d/.local/state/waypipe/server.sock";
-          host.address = "%d/.local/state/waypipe/client.sock";
+          bind.address = "/%d/.local/state/waypipe/server.sock";
+          host.address = "/%d/.local/state/waypipe/client.sock";
         }
       ];
       forwardX11 = true;
