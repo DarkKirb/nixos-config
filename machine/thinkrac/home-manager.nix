@@ -65,7 +65,7 @@
     if !systemConfig.isSway then
       [
         {
-          programs.plasma.configFile.kcminputrc."Libinput/2/7/SynPS\\/2 Synaptics TouchPad".DisableWhentyping =
+          programs.plasma.configFile.kcminputrc."Libinput/2/7/SynPS\\/2 Synaptics TouchPad".DisableWhileTyping =
             false;
         }
       ]
