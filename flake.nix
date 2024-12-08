@@ -281,6 +281,7 @@
                     inherit (pkgs)
                       element-desktop
                       element-web
+                      fcitx5-table-extra
                       kodi-joyn
                       ;
                   }

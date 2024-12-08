@@ -16,6 +16,7 @@
     ./pim
     ./development
     ./music
+    ./i18n.nix
   ];
   home.packages =
     with pkgs;
