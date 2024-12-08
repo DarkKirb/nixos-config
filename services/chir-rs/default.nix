@@ -78,4 +78,5 @@ in
     isSystemUser = true;
     group = "chir-rs";
   };
+  users.groups.chir-rs = { };
 }
