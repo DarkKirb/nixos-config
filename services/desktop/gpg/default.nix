@@ -54,9 +54,9 @@
       Type = "oneshot";
       ExecStart = pkgs.writeScript "link-gpg" ''
         #!${pkgs.bash}/bin/sh
-        stream_path=$(${pkgs.systemd}/bin/systemd show --user gpg-agent-extra.socket --property Listen | ${pkgs.coreutils}/bin/cut -d'=' -f 2- | ${pkgs.coreutils}/bin/cut -d' ' -f 1)
+        stream_path=$(${pkgs.systemd}/bin/systemctl show --user gpg-agent-extra.socket --property Listen | ${pkgs.coreutils}/bin/cut -d'=' -f 2- | ${pkgs.coreutils}/bin/cut -d' ' -f 1)
         ${pkgs.coreutils}/bin/mkdir -p $HOME/.local/state/gnupg
-        ${pkgs.coreutils}/bin/ln -Tfs $stream_path %h/.local/state/gnupg
+        ${pkgs.coreutils}/bin/ln -Tfs $stream_path $HOME/.local/state/gnupg
       '';
       ExecStop = "${pkgs.coreutils}/bin/rm -rf $HOME/.local/state/gnupg";
       RemainAfterExit = true;
