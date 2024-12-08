@@ -100,4 +100,5 @@
   home.persistence.default.directories = [
     ".local/share/Code"
   ];
+  home.file.".vscode-server/extensions".source = config.home.file.".vscode/extensions".source;
 }
