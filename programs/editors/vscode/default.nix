@@ -38,6 +38,7 @@
       "editor.formatOnPaste" = true;
       "editor.formatOnSave" = true;
       "editor.formatOnType" = true;
+      "editor.unicodeHighlight.ambiguousCharacters" = false;
       "nix.enableLanguageServer" = true;
       "nix.formatterPath" = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
       "nix.serverPath" = "${pkgs.nil}/bin/nil";
