@@ -23,6 +23,7 @@
     [
       libreoffice
       obsidian
+      gimp
     ]
     ++ (
       if !systemConfig.isSway then
