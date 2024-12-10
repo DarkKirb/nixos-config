@@ -8,7 +8,7 @@
       fcitx5-table-extra
     ];
   };
-  xdg.configFile."fcitx5/config".text = lib.generators.toINI { } {
+  xdg.configFile."fcitx5/profile".text = lib.generators.toINI { } {
     "Groups/0" = {
       Name = "Default";
       "Default Layout" = "de-neo";
