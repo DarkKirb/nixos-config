@@ -28,6 +28,7 @@
         signageos.signageos-vscode-sops
         tamasfe.even-better-toml
         vadimcn.vscode-lldb
+        zhwu95.riscv
       ])
       ++ (with pkgs.vscode-marketplace; [
         janisdd.vscode-edit-csv
