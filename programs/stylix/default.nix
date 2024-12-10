@@ -138,7 +138,25 @@ in
       if config.isGraphical && !config.isSway then
         { config, lib, ... }:
         {
-          home.activation.konsolerc = lib.hm.dag.entryAfter [ "stylixLookAndFeel" ] ''
+          home.activation.nuke-gtkrc = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
+            rm $HOME/.gtkrc-2.0 || true
+          '';
+          home.activation.stylixLookAndFeel = lib.mkForce (lib.hm.dag.entryAfter [ "writeBoundary" ] "");
+          systemd.user.services.stylix-look-and-feel = {
+            Unit = {
+              Description = "Apply stylix look and feel";
+              After = [ "plasma-workspace.target" ];
+            };
+            Service = {
+              Type = "simple";
+              ExecStart = pkgs.writeScript "apply-plasma-lookandfeel" ''
+                plasma-apply-wallpaperimage /etc/profiles/per-user/${config.home.username}/share/wallpapers/stylix
+                plasma-apply-lookandfeel --apply stylix
+              '';
+            };
+            Install.WantedBy = [ "plasma-workspace.target" ];
+          };
+          home.activation.konsolerc = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
             PATH="${config.home.path}/bin:$PATH:${pkgs.jq}"
             palette=$HOME/.config/stylix/palette.json
             scheme=$HOME/.local/share/konsole/Stylix.colorscheme
