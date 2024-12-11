@@ -2,13 +2,17 @@
 {
   nixpkgs,
   lix,
+  self,
   ...
 }:
 let
   pkgs_x86_64 = import nixpkgs {
     system = "x86_64-linux";
     crossSystem.system = "riscv64-linux";
-    overlays = [ lix.overlays.default ];
+    overlays = [
+      lix.overlays.default
+      self.overlays.default
+    ];
   };
   pkgs_x86_64_2 = import nixpkgs {
     system = "x86_64-linux";
@@ -18,7 +22,7 @@ in
 {
   nixpkgs.overlays = [
     (self: super: {
-      inherit (pkgs_x86_64) lix;
+      inherit (pkgs_x86_64) lix palette-generator;
       inherit (pkgs_x86_64_2) nixos-option;
     })
   ];
@@ -26,14 +30,14 @@ in
     self: _: let pkgs_x86_64 = import <nixpkgs> {
       system = "x86_64-linux";
       crossSystem.system = "riscv64-linux";
-      overlays = [self.inputs.lix.overlays.default];
+      overlays = [self.inputs.lix.overlays.default self.inputs.nixos-config.overlays.default ];
     }
     pkgs_x86_64_2 = import <nixpkgs> {
       system = "x86_64-linux";
       crossSystem.system = "riscv64-linux";
       overlays = [];
     }; in {
-      inherit (pkgs_x86_64) lix;
+      inherit (pkgs_x86_64) lix palette-generator;
       inherit (pkgs_x86_64_2) nixos-option;
     }
   '';

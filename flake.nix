@@ -273,8 +273,6 @@
                   art-lotte
                   fish
                   package-updater
-                  palette-generator
-                  palettes
                   ;
               }
               // (
@@ -286,6 +284,8 @@
                       fcitx5-configtool
                       fcitx5-table-extra
                       kodi-joyn
+                      palette-generator
+                      palettes
                       ;
                   }
                 else
