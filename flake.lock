@@ -990,15 +990,15 @@
         "tinted-tmux": "tinted-tmux"
       },
       "locked": {
-        "lastModified": 1733858997,
-        "narHash": "sha256-PMZdRUZQlouWgHFCFW8ANDFL6fUjZ67KAEaqRXwRwvc=",
-        "owner": "danth",
+        "lastModified": 1733901598,
+        "narHash": "sha256-mAhtihXr8ojGiUUg05uI9FBmtNbkWbVfc2ZaVnfLbsI=",
+        "owner": "DarkKirb",
         "repo": "stylix",
-        "rev": "bc25f3d69d3bb54548b772d7c2771e65cc37dc10",
+        "rev": "0c98c899f0d7a07ce48131d45f558575837040ae",
         "type": "github"
       },
       "original": {
-        "owner": "danth",
+        "owner": "DarkKirb",
         "repo": "stylix",
         "type": "github"
       }

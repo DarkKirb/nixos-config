@@ -4,7 +4,6 @@
   nixpkgs,
   lib,
   config,
-  system,
   stylix,
   ...
 }:
@@ -244,9 +243,10 @@ in
   ];
 
   stylix = {
-    enable = system != "riscv64-linux";
+    inherit (pkgs) palette-generator;
+    enable = true;
     image = bgPng;
-    polarity = "dark";
+    polarity = "either";
     fonts = {
       serif = {
         package = pkgs.noto-fonts;
@@ -267,11 +267,14 @@ in
     };
   };
   home-manager.sharedModules = [
-    {
-      stylix.targets = {
-        kde.enable = config.isGraphical && !config.isSway;
-      };
-    }
+    (
+      { config, systemConfig, ... }:
+      {
+        stylix.targets = {
+          kde.enable = systemConfig.isGraphical && !systemConfig.isSway;
+        };
+      }
+    )
   ];
   environment.systemPackages = [
     (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
