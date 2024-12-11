@@ -1,4 +1,7 @@
 {
+  emptyDirectory,
+  stdenv,
+  imagemagick,
   runCommand,
   palette-generator,
   art-lotte,
@@ -6,13 +9,24 @@
   ...
 }:
 let
+  imgPng =
+    img:
+    stdenv.mkDerivation {
+      name = "bg.png";
+      src = emptyDirectory;
+      nativeBuildInputs = [ imagemagick ];
+      buildPhase = ''
+        magick ${img} $out
+      '';
+      installPhase = "true";
+    };
   mkPalette =
     img: polarity:
     (runCommand "palette.json" { } ''
-      ${palette-generator}/bin/palette-generator ${polarity}  ${lib.escapeShellArg "${img}"} "$out"
+      ${palette-generator}/bin/palette-generator ${polarity}  ${lib.escapeShellArg "${imgPng img}"} "$out"
     '').overrideAttrs
       {
-        passthru.img = img;
+        passthru.img = imgPng img;
       };
   mkPalettes = img: {
     either = mkPalette img "either";
