@@ -87,6 +87,7 @@ in
 {
   imports = [
     stylix.nixosModules.stylix
+    ./is-dark.nix
   ];
   home-manager.users.root.stylix.targets.kde.enable = lib.mkForce false;
   home-manager.users.darkkirb.imports = [
@@ -117,12 +118,12 @@ in
       if config.isSway then
         {
           qt.style = {
-            name = "breeze-dark";
+            name = if config.isLightTheme then "breeze" else "breeze-dark";
             package = pkgs.kdePackages.breeze;
           };
           gtk.iconTheme = {
             package = pkgs.kdePackages.breeze-icons;
-            name = "breeze-dark";
+            name = if config.isLightTheme then "breeze" else "breeze-dark";
           };
         }
       else

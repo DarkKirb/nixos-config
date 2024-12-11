@@ -1,17 +1,17 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  systemConfig,
+  ...
+}:
 let
-  rgbToFloat = r: if r == "255" then 1.0 else (lib.toInt r) / 256.0;
-  luma =
-    0.2126 * rgbToFloat config.lib.stylix.colors.base00-rgb-r
-    + 0.7152 * rgbToFloat config.lib.stylix.colors.base00-rgb-g
-    + 0.0722 * rgbToFloat config.lib.stylix.colors.base00-rgb-b;
   configFile = {
     settings_defaults = {
       default_theme = "custom-Stylix";
       custom_themes = [
         {
           name = "Stylix";
-          is_dark = luma < 0.5;
+          is_dark = systemConfig.isLightTheme;
           colors = with config.lib.stylix.colors.withHashtag; {
             "accent-color" = base07;
             "primary-color" = base07;
