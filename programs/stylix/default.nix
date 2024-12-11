@@ -218,7 +218,7 @@ in
               Color={{base07-rgb-r}},{{base07-rgb-g}},{{base07-rgb-b}}
               [General]
               Description=Stylix
-              Opacity=${config.stylix.opacity.terminal}
+              Opacity=${toString config.stylix.opacity.terminal}
               Wallpaper=
               "
               populated_template=$(echo "$mustache_template" \
