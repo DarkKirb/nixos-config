@@ -12,6 +12,7 @@
     "${nixos-config}/config/graphical.nix"
     #"${nixos-config}/config/graphical/plymouth.nix"
     "${nixos-config}/services/chir-rs"
+    "${nixos-config}/services/ollama.nix"
   ];
   system.stateVersion = "24.11";
   specialisation.sway = {
