@@ -31,6 +31,7 @@
         zhwu95.riscv
       ])
       ++ (with pkgs.vscode-marketplace; [
+        ex3ndr.llama-coder
         janisdd.vscode-edit-csv
         jscearcy.rust-doc-viewer
       ]);
@@ -40,6 +41,8 @@
       "editor.formatOnSave" = true;
       "editor.formatOnType" = true;
       "editor.unicodeHighlight.ambiguousCharacters" = false;
+      "inference.endpoint" = "http://rainbow-resort.int.chir.rs:11434";
+      "inference.model" = "codellama:7b";
       "nix.enableLanguageServer" = true;
       "nix.formatterPath" = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
       "nix.serverPath" = "${pkgs.nil}/bin/nil";
