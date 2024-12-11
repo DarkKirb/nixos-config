@@ -135,6 +135,7 @@ in
           imports = [
             ./konsole.nix
             ./telegram-desktop.nix
+            ./element-desktop.nix
           ];
           home.activation.nuke-gtkrc = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
             rm $HOME/.gtkrc-2.0 || true
