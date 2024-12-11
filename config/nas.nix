@@ -233,4 +233,5 @@
     docker
     runc
   ];
+  nix.settings.auto-optimise-store = lib.mkForce false;
 }
