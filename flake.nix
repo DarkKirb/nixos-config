@@ -259,7 +259,7 @@
           ];
         };
       formatter.x86_64-linux = (pkgsFor "x86_64-linux").nixfmt-rfc-style;
-      overlays.default = import ./packages;
+      overlays.default = import ./packages inputs;
       packages = nixpkgs.lib.listToAttrs (
         map
           (name: {
@@ -273,6 +273,7 @@
                   art-lotte
                   fish
                   package-updater
+                  palette-generator
                   ;
               }
               // (

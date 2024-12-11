@@ -1,4 +1,4 @@
-final: prev: {
+inputs: final: prev: {
   art-lotte = final.callPackage ./art/lotte { };
   inherit (prev.inputs.element-web.packages.${prev.system}) element-web;
   inherit (final.kdePackages) fcitx5-configtool;
@@ -15,4 +15,5 @@ final: prev: {
   };
   kodi-joyn = final.kodiPackages.callPackage ./kodi/joyn { };
   package-updater = final.callPackage ./updater.nix { };
+  palette-generator = final.callPackage "${inputs.stylix}/palette-generator" { };
 }
