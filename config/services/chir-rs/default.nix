@@ -13,7 +13,9 @@ let
     logging = {
       sentry_dsn = "https://c9d12e36a24cf7cd7addfff060884d0d@o253952.ingest.us.sentry.io/4508341406793728";
     };
-    http = { };
+    http = {
+      listen = "[::]:5621";
+    };
     gemini = {
       host = "lotte.chir.rs";
       private_key = "/var/lib/acme/chir.rs/key.pem";
@@ -36,33 +38,8 @@ in
     after = [ "network.target" ];
     serviceConfig = {
       Restart = "always";
-      PrivateTmp = true;
-      WorkingDirectory = "/tmp";
       User = "chir-rs";
-      CapabilityBoundingSet = [ "" ];
-      DeviceAllow = [ "" ];
-      LockPersonality = true;
-      MemoryDenyWriteExecute = true;
-      NoNewPrivileges = true;
-      PrivateDevices = true;
-      ProtectClock = true;
-      ProtectControlGroups = true;
-      ProtectHome = true;
-      ProtectHostname = true;
-      ProtectKernelLogs = true;
-      ProtectKernelModules = true;
-      ProtectKernelTunables = true;
-      ProtectSystem = "strict";
-      RemoveIPC = true;
-      RestrictAddressFamilies = [
-        "AF_INET"
-        "AF_INET6"
-      ];
-      RestrictNamespaces = true;
-      RestrictRealtime = true;
-      RestrictSUIDSGID = true;
-      SystemCallArchitectures = "native";
-      UMask = "0077";
+      Group = "acme";
       ExecStart = ''
         ${chir-rs.packages.${system}.chir-rs}/bin/chir-rs
       '';
