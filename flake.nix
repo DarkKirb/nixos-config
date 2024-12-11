@@ -274,6 +274,7 @@
                   fish
                   package-updater
                   palette-generator
+                  palettes
                   ;
               }
               // (
