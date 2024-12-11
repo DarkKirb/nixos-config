@@ -1,9 +1,6 @@
 { ... }:
 {
   programs.plasma = {
-    workspace = {
-      lookAndFeel = "org.kde.breezedark.desktop";
-    };
     hotkeys.commands."launch-konsole" = {
       name = "Launch Konsole";
       key = "Meta+Alt+K";
