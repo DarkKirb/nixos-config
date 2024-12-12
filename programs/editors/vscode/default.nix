@@ -42,7 +42,8 @@
       "editor.formatOnType" = true;
       "editor.unicodeHighlight.ambiguousCharacters" = false;
       "inference.endpoint" = "http://rainbow-resort.int.chir.rs:11434";
-      "inference.model" = "codellama:7b";
+      "inference.model" = "codellama:7b-code-q4_K_S";
+      "inference.custom.format" = "codellama";
       "nix.enableLanguageServer" = true;
       "nix.formatterPath" = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
       "nix.serverPath" = "${pkgs.nil}/bin/nil";
