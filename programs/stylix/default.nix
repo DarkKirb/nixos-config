@@ -150,7 +150,8 @@ in
               Description = "Home manager activation";
             };
             Service = {
-              Type = "simple";
+              Type = "oneshot";
+              RemainAfterExit = "yes";
               ExecStart = "${pkgs.coreutils}/bin/true";
             };
             Install.WantedBy = [ "basic.target" ];
