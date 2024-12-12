@@ -7,5 +7,5 @@
     environmentVariables.HCC_AMDGPU_TARGET = "gfx1100";
     rocmOverrideGfx = "11.0.0";
   };
-  environment.persistence."/persistent".directories = [ config.services.ollama.home ];
+  environment.persistence."/persistent".directories = [ "/var/lib/private/ollama" ];
 }
