@@ -2,8 +2,9 @@
   config,
   lib,
   ...
-}: {
-  systemd.timers.restic-backups-sysbackup.wantedBy = lib.mkForce ["multi-user.target"];
+}:
+{
+  systemd.timers.restic-backups-sysbackup.wantedBy = lib.mkForce [ "multi-user.target" ];
   services.restic.backups."sysbackup" = {
     timerConfig = {
       OnUnitActiveSec = "12h";
@@ -29,6 +30,8 @@
       "/home/darkkirb/.cache"
       "--exclude"
       "/var/lib/ipfs/root"
+      "--exclude"
+      "/media/Youtube"
     ];
     repository = "s3://ams1.vultrobjects.com/backup-chir-rs";
     passwordFile = config.sops.secrets."security/restic/password".path;
