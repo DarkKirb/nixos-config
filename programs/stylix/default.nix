@@ -163,7 +163,8 @@ in
               PartOf = [ "home-manager-activation.service" ];
             };
             Service = {
-              Type = "simple";
+              Type = "oneshot";
+              RemainAfterExit = "yes";
               ExecStart = pkgs.writeScript "apply-plasma-lookandfeel" ''
                 #!${pkgs.bash}/bin/sh
                 ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage /etc/profiles/per-user/${config.home.username}/share/wallpapers/stylix
