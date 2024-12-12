@@ -142,10 +142,24 @@ in
             rm $HOME/.gtkrc-2.0 || true
           '';
           home.activation.stylixLookAndFeel = lib.mkForce (lib.hm.dag.entryAfter [ "writeBoundary" ] "");
+          home.activation.notify-services = lib.hm.dag.entryAfter [ "reloadSystemd" ] ''
+            ${pkgs.systemd}/bin/systemctl restart --user home-manager-activation
+          '';
+          systemd.user.services.home-manager-activation = {
+            Unit = {
+              Description = "Home manager activation";
+            };
+            Service = {
+              Type = "simple";
+              ExecStart = "${pkgs.coreutils}/bin/true";
+            };
+            Install.WantedBy = [ "basic.target" ];
+          };
           systemd.user.services.stylix-look-and-feel = {
             Unit = {
               Description = "Apply stylix look and feel";
               After = [ "plasma-workspace.target" ];
+              PartOf = [ "home-manager-activation.service" ];
             };
             Service = {
               Type = "simple";
