@@ -2,6 +2,7 @@
   modulesPath,
   nixos-hardware,
   config,
+  pkgs,
   ...
 }:
 {
@@ -62,4 +63,5 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = config.isSway;
   services.joycond.enable = true;
+  hardware.graphics.extraPackages = [ pkgs.amf ];
 }

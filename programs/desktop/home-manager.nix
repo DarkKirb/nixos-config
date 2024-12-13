@@ -24,6 +24,7 @@
       libreoffice
       obsidian
       gimp
+      ffmpeg-full
     ]
     ++ (
       if !systemConfig.isSway then
