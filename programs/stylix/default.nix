@@ -9,26 +9,26 @@
 }:
 let
   sfw-bgs = [
-    "2020-07-24-urbankitsune-bna-ych.jxl"
-    "2021-09-15-cloverhare-lotteplush.jxl"
-    "2022-05-02-anonfurryartist-giftart.jxl"
-    "2022-06-21-sammythetanuki-lotteplushpride.jxl"
-    "2022-11-15-wolfsifi-maff-me-leashed.jxl"
+    "2020-07-24-urbankitsune-bna-ych"
+    "2021-09-15-cloverhare-lotteplush"
+    "2022-05-02-anonfurryartist-giftart"
+    "2022-06-21-sammythetanuki-lotteplushpride"
+    "2022-11-15-wolfsifi-maff-me-leashed"
   ];
   nsfw-bgs = sfw-bgs ++ [
-    "2021-10-29-butterskunk-lotte-scat-buffet.jxl"
-    "2021-11-27-theroguez-lottegassyvore1.jxl"
-    "2021-12-12-baltnwolf-christmas-diaper-messy.jxl"
-    "2021-12-12-baltnwolf-christmas-diaper.jxl"
-    "2022-04-20-cloverhare-mxbatty-maffsie-train-plush.jxl"
-    "2022-04-20-cloverhare-mxbatty-me-train-maffsie-plush.jxl"
-    "2022-08-12-deathtoaster-funpit-scat.jxl"
-    "2022-08-15-deathtoaster-funpit-mud.jxl"
-    "2022-12-27-rexyi-scatych.jxl"
-    "2023-03-09-rexyi-voredisposal-ych.jxl"
-    "2023-08-09-coldquarantine-lotte-eating-trash.jxl"
-    "2023-08-10-coldquarantine-lotte-eating-trash-diapers.jxl"
-    "2023-08-20-coldquarantine-lotte-eating-trash-clean.jxl"
+    "2021-10-29-butterskunk-lotte-scat-buffet"
+    "2021-11-27-theroguez-lottegassyvore1"
+    "2021-12-12-baltnwolf-christmas-diaper-messy"
+    "2021-12-12-baltnwolf-christmas-diaper"
+    "2022-04-20-cloverhare-mxbatty-maffsie-train-plush"
+    "2022-04-20-cloverhare-mxbatty-me-train-maffsie-plush"
+    "2022-08-12-deathtoaster-funpit-scat"
+    "2022-08-15-deathtoaster-funpit-mud"
+    "2022-12-27-rexyi-scatych"
+    "2023-03-09-rexyi-voredisposal-ych"
+    "2023-08-09-coldquarantine-lotte-eating-trash"
+    "2023-08-10-coldquarantine-lotte-eating-trash-diapers"
+    "2023-08-20-coldquarantine-lotte-eating-trash-clean"
   ];
   mod = a: b: a - (a / b * b);
   choose =
@@ -65,15 +65,8 @@ let
     s: lib.foldl (state: new: state * 16 + hexToIntList.${new}) 0 (lib.strings.stringToCharacters s);
   seed = hexToInt (self.shortRev or nixpkgs.shortRev);
   bg = choose (if config.isNSFW then nsfw-bgs else sfw-bgs) seed;
-  bgPng = pkgs.stdenv.mkDerivation {
-    name = "bg.png";
-    src = pkgs.emptyDirectory;
-    nativeBuildInputs = [ pkgs.imagemagick ];
-    buildPhase = ''
-      magick ${pkgs.art-lotte}/${bg} $out
-    '';
-    installPhase = "true";
-  };
+  palette = pkgs.palettes.${bg}.dark;
+  bgPng = palette.passthru.img;
   qtctPalette = pkgs.writeText "colors.conf" (
     with config.lib.stylix.colors;
     ''
@@ -184,6 +177,7 @@ in
     inherit (pkgs) palette-generator;
     enable = true;
     image = bgPng;
+    inherit palette;
     polarity = "dark";
     fonts = {
       serif = {
