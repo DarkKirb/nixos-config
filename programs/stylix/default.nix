@@ -184,7 +184,7 @@ in
     inherit (pkgs) palette-generator;
     enable = true;
     image = bgPng;
-    polarity = "either";
+    polarity = "dark";
     fonts = {
       serif = {
         package = pkgs.noto-fonts;
