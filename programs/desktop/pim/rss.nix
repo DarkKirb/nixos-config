@@ -60,6 +60,8 @@
           "https://www.youtube.com/feeds/videos.xml?channel_id=UCAnzaHhB0ONtwDkYdc3MFCw"
           "https://www.youtube.com/feeds/videos.xml?channel_id=UCo0-VCHchPIG3JtJlIQnFew"
           "https://www.youtube.com/feeds/videos.xml?channel_id=UCroqqI7XwD828o0rAvAF8iw"
+          "https://www.youtube.com/feeds/videos.xml?channel_id=UCQG40havu4kNpB4pxUDQhYQ"
+          "https://www.youtube.com/feeds/videos.xml?channel_id=UCKlA7qF9XKwu79ULYmVu28w"
         ]
       );
   };
