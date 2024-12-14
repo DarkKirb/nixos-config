@@ -286,6 +286,9 @@
                       kodi-joyn
                       palette-generator
                       palettes
+                      plover
+                      plover_stroke
+                      rtf_tokenize
                       ;
                   }
                 else

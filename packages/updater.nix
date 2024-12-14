@@ -9,6 +9,7 @@ let
   script = lib.concatMapStringsSep "\n" (f: callPackage "${f}/updater.nix" { }) [
     ./art
     ./kodi
+    ./stenography
   ];
 in
 writeScriptBin "updater" ''

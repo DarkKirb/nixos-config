@@ -1,4 +1,5 @@
 inputs: final: prev: {
+  github-updater = final.callPackage ./updaters/github.nix { };
   art-lotte = final.callPackage ./art/lotte { };
   inherit (prev.inputs.element-web.packages.${prev.system}) element-web;
   inherit (final.kdePackages) fcitx5-configtool;
@@ -17,4 +18,7 @@ inputs: final: prev: {
   package-updater = final.callPackage ./updater.nix { };
   palette-generator = final.callPackage "${inputs.stylix}/palette-generator" { };
   palettes = final.callPackage ./art/lotte/palettes.nix { };
+  plover = final.libsForQt5.callPackage ./stenography/plover { };
+  plover_stroke = final.python3Packages.callPackage ./stenography/plover_stroke { };
+  rtf_tokenize = final.python3Packages.callPackage ./stenography/rtf_tokenize { };
 }
