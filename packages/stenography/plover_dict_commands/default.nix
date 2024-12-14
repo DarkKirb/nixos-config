@@ -2,6 +2,9 @@
   fetchFromGitHub,
   buildPythonPackage,
   plover,
+  setuptools,
+  setuptools-scm,
+
 }:
 let
   source = builtins.fromJSON (builtins.readFile ./source.json);
@@ -12,6 +15,9 @@ buildPythonPackage {
 
   propagatedBuildInputs = [
     plover
+    setuptools
+    setuptools-scm
+
   ];
 
   src = fetchFromGitHub {
