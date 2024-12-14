@@ -2,15 +2,15 @@
   lib,
   fetchFromGitHub,
   python3Packages,
-  mkDerivationWith,
   plover_stroke,
   rtf_tokenize,
+  qt5,
 }:
 let
   source = builtins.fromJSON (builtins.readFile ./source.json);
 in
 with python3Packages;
-mkDerivationWith buildPythonPackage {
+qt5.mkDerivationWith buildPythonPackage {
   pname = "plover";
   version = source.date;
 
@@ -45,8 +45,6 @@ mkDerivationWith buildPythonPackage {
     rtf_tokenize
     plover_stroke
   ];
-
-  dontWrapQtApps = true;
 
   preFixup = ''
     makeWrapperArgs+=("''${qtWrapperArgs[@]}")

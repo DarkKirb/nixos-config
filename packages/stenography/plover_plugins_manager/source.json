@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/openstenoproject/plover_plugins_manager",
+  "rev": "ba368cbd89d48d81ef7d42b626d59fd15c8b17d3",
+  "date": "2023-09-22T19:04:11-07:00",
+  "path": "/nix/store/bpq00b16vsk61s48i5yrkmh02jdyns80-plover_plugins_manager",
+  "sha256": "1acichlysw7vczwsj4pkvl5hyjrs7wasbxxbkkcaa0azcnl0c10m",
+  "hash": "sha256-FQQGqGVfAaXYnKv3pRU/OksPC93zEqn5Z/tw7Slkkak=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

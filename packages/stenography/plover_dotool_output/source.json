@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/DarkKirb/plover-dotool-output",
+  "rev": "95a908208b542b99b96fb571eb4a93140e299027",
+  "date": "2024-01-28T16:43:06+01:00",
+  "path": "/nix/store/1k4ygkkmnh7yvjsm86p36s7mw9wygzck-plover-dotool-output",
+  "sha256": "09m81p9p4dy3ylc1mwa4wx1da9l5ipzqw2sihpm1sbdwxyhxrzjw",
+  "hash": "sha256-XP7coe+8LR3qhVELjv+NhSbVQudE8RoY9cM3ctMNqCY=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/aerickt/plover-lapwing-aio",
+  "rev": "c4077183722c59e6eee29854b3adc6bce4714a64",
+  "date": "2024-11-30T11:16:26-08:00",
+  "path": "/nix/store/amk4pygf75gflz0r3aggl1wc15j1mn79-plover-lapwing-aio",
+  "sha256": "1z648drzw87wr19azg3dc0vd815wlcv04103ggarfmj89qv5vhax",
+  "hash": "sha256-XcFdNk5IVpfVewMEAjajvATUNmBtvK9SyPwg/nNDxPw=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

@@ -18,7 +18,23 @@ inputs: final: prev: {
   package-updater = final.callPackage ./updater.nix { };
   palette-generator = final.callPackage "${inputs.stylix}/palette-generator" { };
   palettes = final.callPackage ./art/lotte/palettes.nix { };
-  plover = final.libsForQt5.callPackage ./stenography/plover { };
+  plover = final.python3Packages.callPackage ./stenography/plover { };
+  plover_dict_commands = final.python3Packages.callPackage ./stenography/plover_dict_commands { };
+  plover_dotool_output = final.python3Packages.callPackage ./stenography/plover_dotool_output { };
+  plover-env = final.callPackage ./stenography/plover-env.nix { };
+  plover_lapwing_aio = final.python3Packages.callPackage ./stenography/plover_lapwing_aio { };
+  plover_last_translation =
+    final.python3Packages.callPackage ./stenography/plover_last_translation
+      { };
+  plover_machine_hid = final.python3Packages.callPackage ./stenography/plover_machine_hid { };
+  plover_modal_dictionary =
+    final.python3Packages.callPackage ./stenography/plover_modal_dictionary
+      { };
+  plover_plugins_manager = final.python3Packages.callPackage ./stenography/plover_plugins_manager { };
+  plover_python_dictionary =
+    final.python3Packages.callPackage ./stenography/plover_python_dictionary
+      { };
+  plover_stitching = final.python3Packages.callPackage ./stenography/plover_stitching { };
   plover_stroke = final.python3Packages.callPackage ./stenography/plover_stroke { };
   rtf_tokenize = final.python3Packages.callPackage ./stenography/rtf_tokenize { };
 }

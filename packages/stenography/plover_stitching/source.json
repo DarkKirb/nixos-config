@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/morinted/plover_stitching",
+  "rev": "7e75093beda5fbb1a161359072095d1679219def",
+  "date": "2018-06-04T22:11:40-04:00",
+  "path": "/nix/store/nysb5fq4saisjfj1j9bbnz0pm5k6832i-plover_stitching",
+  "sha256": "02r25gk08haii0gpcd2894j537v6b5bpsqfx0djh427p1qhwpp9i",
+  "hash": "sha256-Md3LIQ73CAJlA91hfVdZZp9RJElINHYfiFFBBOYrIgs=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}
