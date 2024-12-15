@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  imgSrc = pkgs.stdenvNoCC {
+  imgSrc = pkgs.stdenvNoCC.mkDerivation {
     name = "bg.png.b64";
     src = config.stylix.image;
     dontUnpack = true;
