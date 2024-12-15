@@ -11,6 +11,7 @@
   requests-futures,
   setuptools,
   wheel,
+  cmarkgfm,
 }:
 let
   source = builtins.fromJSON (builtins.readFile ./source.json);
@@ -30,6 +31,7 @@ buildPythonPackage {
     requests-futures
     setuptools
     wheel
+    cmarkgfm
   ];
 
   src = fetchFromGitHub {

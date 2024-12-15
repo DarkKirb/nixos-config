@@ -3,6 +3,7 @@
   buildPythonPackage,
   plover,
   hid,
+  bitstring,
 }:
 let
   source = builtins.fromJSON (builtins.readFile ./source.json);
@@ -14,6 +15,7 @@ buildPythonPackage {
   propagatedBuildInputs = [
     plover
     hid
+    bitstring
   ];
 
   src = fetchgit {
