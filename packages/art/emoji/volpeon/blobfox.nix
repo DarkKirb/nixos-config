@@ -1,11 +1,11 @@
-{callPackage}:
-callPackage ../../../lib/mkPleromaEmoji.nix {} rec {
+{ callPackage }:
+callPackage ../../../lib/mkPleromaEmoji.nix { } {
   name = "blobfox";
-  manifest = ./${name}.json;
+  manifest = ./emoji.json;
   passthru.updateScript = [
     ../../../scripts/update-json.sh
-    "https://volpeon.ink/emojis/${name}/manifest.json"
-    "art/emoji/volpeon/${name}.json"
+    "https://volpeon.ink/emojis/pleroma.json"
+    "art/emoji/volpeon/emoji.json"
   ];
   configurePhase = ''
     rm a*.png

@@ -11,9 +11,7 @@ inputs: system: self: prev: let
     });
     emoji-lotte = self.callPackage ../packages/art/emoji/lotte {};
     emoji-volpeon-blobfox = self.callPackage ../packages/art/emoji/volpeon/blobfox.nix {};
-    emoji-volpeon-blobfox-flip = self.callPackage ../packages/art/emoji/volpeon/blobfox_flip.nix {};
     emoji-volpeon-bunhd = self.callPackage ../packages/art/emoji/volpeon/bunhd.nix {};
-    emoji-volpeon-bunhd-flip = self.callPackage ../packages/art/emoji/volpeon/bunhd_flip.nix {};
     emoji-volpeon-drgn = self.callPackage ../packages/art/emoji/volpeon/drgn.nix {};
     emoji-volpeon-fox = self.callPackage ../packages/art/emoji/volpeon/fox.nix {};
     emoji-volpeon-gphn = self.callPackage ../packages/art/emoji/volpeon/gphn.nix {};
@@ -22,6 +20,7 @@ inputs: system: self: prev: let
     emoji-volpeon-neofox = self.callPackage ../packages/art/emoji/volpeon/neofox.nix {};
     emoji-volpeon-neocat = self.callPackage ../packages/art/emoji/volpeon/neocat.nix {};
     emoji-volpeon-floof = self.callPackage ../packages/art/emoji/volpeon/floof.nix {};
+    emoji-volpeon-wvrn = self.callPackage ../packages/art/emoji/volpeon/wvrn.nix {};
     emoji-rosaflags = self.callPackage ../packages/art/emoji/rosaflags.nix {};
     emoji-raccoon = self.callPackage ../packages/art/emoji/rosaflags.nix {};
     emoji-caro = self.callPackage ../packages/art/emoji/caro {};
