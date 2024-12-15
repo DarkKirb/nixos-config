@@ -1,12 +1,14 @@
 { pkgs, config, ... }:
-let imgSrc = pkgs.stdenvNoCC {
-  name = "bg.png.b64";
-  src = config.stylix.image;
-  dontUnpack = true;
-  dontBuild = true;
-  installPhase = ''base64 -w 0 $src > $out'';
-};
+let
+  imgSrc = pkgs.stdenvNoCC {
+    name = "bg.png.b64";
+    src = config.stylix.image;
+    dontUnpack = true;
+    dontBuild = true;
+    installPhase = ''base64 -w 0 $src > $out'';
+  };
   img = builtins.readFile imgSrc;
+in
 {
   xdg.configFile."BetterDiscord/data/stable/custom.css".text =
     with config.lib.stylix.colors.withHashtag; ''
