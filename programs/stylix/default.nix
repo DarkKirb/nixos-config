@@ -130,6 +130,7 @@ in
             ./konsole.nix
             ./telegram-desktop.nix
             ./element-desktop.nix
+            ./discord.nix
           ];
           home.activation.nuke-gtkrc = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
             run rm -f $VERBOSE_ARG $HOME/.gtkrc-2.0
