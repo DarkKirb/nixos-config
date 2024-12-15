@@ -216,9 +216,7 @@ rec {
             inherit (pkgs)
               emoji-lotte
               emoji-volpeon-blobfox
-              emoji-volpeon-blobfox-flip
               emoji-volpeon-bunhd
-              emoji-volpeon-bunhd-flip
               emoji-volpeon-drgn
               emoji-volpeon-fox
               emoji-volpeon-gphn
@@ -227,6 +225,7 @@ rec {
               emoji-volpeon-neofox
               emoji-volpeon-neocat
               emoji-volpeon-floof
+              emoji-volpeon-wvrn
               emoji-rosaflags
               emoji-raccoon
               emoji-caro
