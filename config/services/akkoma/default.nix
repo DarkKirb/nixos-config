@@ -15,14 +15,13 @@
     done
   '';
   emoji_set_names = [
-    "volpeon-blobfox-flip"
     "volpeon-blobfox"
-    "volpeon-bunhd-flip"
     "volpeon-bunhd"
     "volpeon-drgn"
     "volpeon-fox"
     "volpeon-raccoon"
     "volpeon-vlpn"
+    "volpeon-wvrn"
     "lotte"
     "caro"
     "volpeon-neofox"

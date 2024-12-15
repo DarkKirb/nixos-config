@@ -1,5 +1,5 @@
 { callPackage }:
 callPackage ../../../lib/mkPleromaEmoji.nix { } {
-  name = "floof";
+  name = "wvrn";
   manifest = ./emoji.json;
 }

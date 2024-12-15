@@ -26,11 +26,11 @@ schema = 3
     version = "v0.0.19"
     hash = "sha256-wYQqGxeqV3Elkmn26Md8mKZ/viw598R4Ych3vtt72YE="
   [mod."github.com/mattn/go-sqlite3"]
-    version = "v1.14.23"
+    version = "v1.14.24"
     hash = "sha256-taGKFZFQlR5++5b2oZ1dYS3RERKv6yh1gniNWhb4egg="
   [mod."github.com/petermattis/goid"]
-    version = "v0.0.0-20240813172612-4fcff4a6cae7"
-    hash = "sha256-tfb/0LbMHJQsmxwaj2RItXiYn2AVd05E92Z/vp+rJhs="
+    version = "v0.0.0-20241025130422-66cb2e6d7274"
+    hash = "sha256-57jJs5TcQlUFk9hZm76XTyqIDFt6ZxYWrWqu+yfOX/0="
   [mod."github.com/pmezard/go-difflib"]
     version = "v1.0.0"
     hash = "sha256-/FtmHnaGjdvEIKAJtrUfEhV7EVo5A/eYrtdnUkuxLDA="
@@ -44,15 +44,15 @@ schema = 3
     version = "v0.0.0-20200617195104-da1b6568686e"
     hash = "sha256-ST9t4/b7WFXUb8wra4ZYVDNZJGrEykw8dkWhLrxp8F0="
   [mod."github.com/slack-go/slack"]
-    version = "v0.0.0-20240930085310-1180a3fa18e0"
-    hash = "sha256-jHMKfmi7GMLOIyj8OoiGpbVoafGbctgtqynZDahIypU="
+    version = "v0.0.0-20241211205744-f532856a1038"
+    hash = "sha256-5l0LYTULr9QXlpFoS1hNpZnxKuvzIXI81r3c+GSxW1Y="
     replaced = "github.com/beeper/slackgo"
   [mod."github.com/stretchr/testify"]
-    version = "v1.9.0"
-    hash = "sha256-uUp/On+1nK+lARkTVtb5RxlW15zxtw2kaAFuIASA+J0="
+    version = "v1.10.0"
+    hash = "sha256-fJ4gnPr0vnrOhjQYQwJ3ARDKPsOtA7d4olQmQWR+wpI="
   [mod."github.com/tidwall/gjson"]
-    version = "v1.17.3"
-    hash = "sha256-zui8S4qlfFXNLartKynJbYqeM/MW3f3eDbojIvh/KS8="
+    version = "v1.18.0"
+    hash = "sha256-CO6hqDu8Y58Po6A01e5iTpwiUBQ5khUZsw7czaJHw0I="
   [mod."github.com/tidwall/match"]
     version = "v1.1.1"
     hash = "sha256-M2klhPId3Q3T3VGkSbOkYl/2nLHnsG+yMbXkPkyrRdg="
@@ -63,32 +63,32 @@ schema = 3
     version = "v1.2.5"
     hash = "sha256-OYGNolkmL7E1Qs2qrQ3IVpQp5gkcHNU/AB/z2O+Myps="
   [mod."github.com/yuin/goldmark"]
-    version = "v1.7.4"
-    hash = "sha256-1L0gZyD+AguN8GBy17rs54eFZv7LTU5dcttULEJRabI="
+    version = "v1.7.8"
+    hash = "sha256-SNJMPPiXkRDLVOldrHN0ErC3bUB2VoWaLDkd9zmMATw="
   [mod."go.mau.fi/util"]
-    version = "v0.8.0"
-    hash = "sha256-7o1p24OH9w0532nv2dC+jrwjWDX9eeuv0m6OFKcIBNc="
+    version = "v0.8.2"
+    hash = "sha256-tif8s44XYGL9G3ZHihQdXR8qw4hrlEv0y3lxa+TS9es="
   [mod."go.mau.fi/zeroconfig"]
     version = "v0.1.3"
     hash = "sha256-TPwXOQql1MV8pXn6ZPxtkBUHzBCwIngNjrfqTfOSJX4="
   [mod."golang.org/x/crypto"]
-    version = "v0.27.0"
-    hash = "sha256-8HP4+gr4DbXI22GhdgZmCWr1ijtI9HNLsTcE0kltY9o="
+    version = "v0.30.0"
+    hash = "sha256-kxgjbJxcAxfJKpKjsNhUeMp8g3FsNH+dtNVwMHOBeTE="
   [mod."golang.org/x/exp"]
-    version = "v0.0.0-20240909161429-701f63a606c0"
-    hash = "sha256-nB3zQGSyCNU9Z6QP0iYYBpUeu7HKBBXS1z9ba4DxjMQ="
+    version = "v0.0.0-20241108190413-2d47ceb2692f"
+    hash = "sha256-uRR1wFVGutfXAQIG69BD4g5Y8Ejw+ugw28F6ayu2BPY="
   [mod."golang.org/x/net"]
-    version = "v0.29.0"
-    hash = "sha256-dH9Rdf5T04KJ4B5WvIZh12ogMbADWiWgIt77nvPTk2k="
+    version = "v0.32.0"
+    hash = "sha256-BI5m7sqmE2kVqPTPjgwIxoPOjwLYeQZiTfJylhZVTVs="
   [mod."golang.org/x/sync"]
-    version = "v0.8.0"
-    hash = "sha256-usvF0z7gq1vsX58p4orX+8WHlv52pdXgaueXlwj2Wss="
+    version = "v0.10.0"
+    hash = "sha256-HWruKClrdoBKVdxKCyoazxeQV4dIYLdkHekQvx275/o="
   [mod."golang.org/x/sys"]
-    version = "v0.25.0"
-    hash = "sha256-PXZ9EQZ7SFpcL7d3E1+KGTxziYlHEIZPfoXEbnaVD3I="
+    version = "v0.28.0"
+    hash = "sha256-kzSlDo5FKsQU9cLefIt2dueGUfz9XuEW+mGSGlPATGc="
   [mod."golang.org/x/text"]
-    version = "v0.18.0"
-    hash = "sha256-aNvJW4gQs+MTfdz6DZqyyHQS2GJ9W8L8qKPVODPn4+k="
+    version = "v0.21.0"
+    hash = "sha256-QaMwddBRnoS2mv9Y86eVC2x2wx/GZ7kr2zAJvwDeCPc="
   [mod."gopkg.in/natefinch/lumberjack.v2"]
     version = "v2.2.1"
     hash = "sha256-GaXWRDxhGy4Z4mgE+bJ8OE9SVvYUa9TnNiydnp2s1Ms="
@@ -99,5 +99,5 @@ schema = 3
     version = "v1.0.0"
     hash = "sha256-fYc/WwqE0ev0dvnu5qGmHJsYiSTuWeOTiAVzmQIKWyY="
   [mod."maunium.net/go/mautrix"]
-    version = "v0.21.0"
-    hash = "sha256-N/bOKAx/klp4LFP99P8jeNaNzgeqZalQgYiJIADJkwA="
+    version = "v0.22.1-0.20241211205709-48b7b3aca5b7"
+    hash = "sha256-zSwwIHUwZTt9P9ZnuifnADBW737DdMYEVm0xuEXnjEo="

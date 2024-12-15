@@ -1,10 +1,5 @@
-{callPackage}:
-callPackage ../../../lib/mkPleromaEmoji.nix {} rec {
+{ callPackage }:
+callPackage ../../../lib/mkPleromaEmoji.nix { } {
   name = "fox";
-  manifest = ./${name}.json;
-  passthru.updateScript = [
-    ../../../scripts/update-json.sh
-    "https://volpeon.ink/emojis/${name}/manifest.json"
-    "art/emoji/volpeon/${name}.json"
-  ];
+  manifest = ./emoji.json;
 }
