@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
 #! nix-shell -i bash -p curl jq
 set -e
-PACKAGES="plover-plugins-manager plover-stroke rtf-tokenize plover-emoji plover-tapey-tape plover-yaml-dictionary simplefuzzyset mautrix tulir-telethon"
+PACKAGES="mautrix tulir-telethon"
 
 cat > tarballs.nix << EOF
 { fetchurl }: rec {

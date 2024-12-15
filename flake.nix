@@ -247,27 +247,10 @@ rec {
               papermc
               python-plover-stroke
               python-rtf-tokenize
-              plover
-              plover-plugins-manager
-              python-simplefuzzyset
-              plover-plugin-emoji
-              plover-plugin-tapey-tape
-              plover-plugin-yaml-dictionary
-              plover-plugin-machine-hid
-              plover-plugin-rkb1-hid
-              plover-plugin-dotool-output
-              plover-dict-didoesdigital
               miifox-net
-              plover-plugin-python-dictionary
-              plover-plugin-stenotype-extended
               asar-asm
               bsnes-plus
               yiffstash
-              plover-plugin-dict-commands
-              plover-plugin-last-translation
-              plover-plugin-modal-dictionary
-              plover-plugin-stitching
-              plover-plugin-lapwing-aio
               mgba-dev
               ;
           };
