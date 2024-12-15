@@ -64,4 +64,8 @@
   services.blueman.enable = config.isSway;
   services.joycond.enable = true;
   hardware.graphics.extraPackages = [ pkgs.amf ];
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="e621", ATTRS{idProduct}=="0000", TAG+="uaccess"
+    ACTION=="add", SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="e621", ATTRS{idProduct}=="0000", TAG+="uaccess"
+  '';
 }
