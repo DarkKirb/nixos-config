@@ -2,6 +2,7 @@
   pkgs,
   nixos-hardware,
   config,
+  lib,
   ...
 }:
 {
@@ -45,4 +46,5 @@
   nix.settings.system-features = [
     "gccarch-rv64gc_zba_zbb"
   ];
+  boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
 }
