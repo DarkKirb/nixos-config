@@ -6,7 +6,7 @@
 }:
 let
   configFile = {
-    settings_defaults = {
+    setting_defaults = {
       default_theme = "custom-Stylix";
       custom_themes = [
         {
