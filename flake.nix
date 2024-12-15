@@ -244,8 +244,6 @@ rec {
               python-mautrix
               python-tulir-telethon
               papermc
-              python-plover-stroke
-              python-rtf-tokenize
               miifox-net
               asar-asm
               bsnes-plus
