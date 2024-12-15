@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     telegram-desktop
     discord
+    betterdiscordctl
     element-desktop
   ];
   home.persistence.default.directories = [
@@ -66,4 +67,19 @@
       "L /persistent${config.xdg.dataHome}/Element/GPUCache - - - - /tmp${config.xdg.cacheHome}/Element/GPUCache"
     ])
   ];
+  systemd.user.services.betterdiscord = {
+    Unit = {
+      Description = "Patch discord";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "home-manager-activation.service" ];
+    };
+    Service = {
+      Type = "oneshot";
+      RemainAfterExit = "yes";
+      ExecStart = pkgs.writeScript "update-betterdiscord" ''
+        ${pkgs.betterdiscordctl}/bin/betterdiscordctl install
+        ${pkgs.betterdiscordctl}/bin/betterdiscordctl self-upgrade
+      '';
+    };
+  };
 }
