@@ -146,7 +146,7 @@ in
               RemainAfterExit = "yes";
               ExecStart = pkgs.writeScript "apply-plasma-lookandfeel" ''
                 #!${pkgs.bash}/bin/sh
-                ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage /etc/profiles/per-user/${config.home.username}/share/wallpapers/stylix
+                ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage $(readlink /etc/profiles/per-user/${config.home.username}/share/wallpapers)/stylix
                 ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel --apply stylix
               '';
             };
