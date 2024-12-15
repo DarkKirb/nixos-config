@@ -1,6 +1,14 @@
-{ config, ... }:
+{ pkgs, config, ... }:
+let imgSrc = pkgs.stdenvNoCC {
+  name = "bg.png.b64";
+  src = config.stylix.image;
+  dontUnpack = true;
+  dontBuild = true;
+  installPhase = ''base64 -w 0 $src > $out'';
+};
+  img = builtins.readFile imgSrc;
 {
-  xdg.configFile."BetterDiscord/themes/stylix.css".text =
+  xdg.configFile."BetterDiscord/data/stable/custom.css".text =
     with config.lib.stylix.colors.withHashtag; ''
       :root {
           --base00: ${base00}; /* Black */
@@ -25,7 +33,7 @@
       }
 
       .app {
-        background-image: url("file://${config.stylix.image}") !important;
+        background-image: url("data:image/png;base64,${img}") !important;
         background-size: cover;
       }
 
