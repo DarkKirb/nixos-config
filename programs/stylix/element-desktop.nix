@@ -6,6 +6,7 @@
 }:
 let
   configFile = {
+    show_labs_settings = true;
     setting_defaults = {
       default_theme = "custom-Stylix";
       custom_themes = [
