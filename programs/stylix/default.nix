@@ -132,7 +132,7 @@ in
             ./element-desktop.nix
           ];
           home.activation.nuke-gtkrc = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
-            rm $HOME/.gtkrc-2.0 || true
+            run rm -f $VERBOSE_ARG $HOME/.gtkrc-2.0
           '';
           home.activation.stylixLookAndFeel = lib.mkForce (lib.hm.dag.entryAfter [ "writeBoundary" ] "");
           systemd.user.services.stylix-look-and-feel = {

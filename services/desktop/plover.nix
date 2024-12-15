@@ -22,5 +22,11 @@ let
   );
 in
 {
-
+  home.packages = [ pkgs.plover-env ];
+  home.activation.ploverSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    run mkdir $VERBOSE_ARG -p $HOME/.config/plover
+    run rm -f $VERBOSE_ARG $HOME/.config/plover/plover.cfg
+    run cp $VERBOSE_ARG ${plover-cfg} $HOME/.config/plover/plover.cfg
+    run chmod +w $VERBOSE_ARG $HOME/.config/plover/plover.cfg
+  '';
 }
