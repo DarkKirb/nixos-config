@@ -51,4 +51,24 @@ in
     run cp $VERBOSE_ARG ${plover-cfg} $HOME/.config/plover/plover.cfg
     run chmod +w $VERBOSE_ARG $HOME/.config/plover/plover.cfg
   '';
+  xdg.configFile."plover/abby-left-hand-modifiers.py".source =
+    "${pkgs.plover_lapwing_aio.src}/plover_lapwing/dictionaries/abby-left-hand-modifiers.py";
+  xdg.configFile."plover/emily-modifiers.py".source =
+    "${pkgs.plover_lapwing_aio.src}/plover_lapwing/dictionaries/emily-modifiers.py";
+  xdg.configFile."plover/emily-symbols.py".source =
+    "${pkgs.plover_lapwing_aio.src}/plover_lapwing/dictionaries/emily-modifiers.py";
+  xdg.configFile."plover/jeff-phrasing.py".source =
+    "${pkgs.plover_lapwing_aio.src}/plover_lapwing/dictionaries/jeff-phrasing.py";
+  xdg.configFile."plover/lapwing-base.json".source =
+    "${pkgs.plover_lapwing_aio.src}/plover_lapwing/dictionaries/lapwing-base.json";
+  xdg.configFile."plover/lapwing-commands.json".source =
+    "${pkgs.plover_lapwing_aio.src}/plover_lapwing/dictionaries/lapwing-commands.json";
+  xdg.configFile."plover/lapwing-movement.json".source =
+    "${pkgs.plover_lapwing_aio.src}/plover_lapwing/dictionaries/lapwing-movement.json";
+  xdg.configFile."plover/lapwing-numbers.json".source =
+    "${pkgs.plover_lapwing_aio.src}/plover_lapwing/dictionaries/lapwing-numbers.json";
+  xdg.configFile."plover/lapwing-proper-nouns.json".source =
+    "${pkgs.plover_lapwing_aio.src}/plover_lapwing/dictionaries/lapwing-proper-nouns.json";
+  xdg.configFile."plover/lapwing-uk-additions.json".source =
+    "${pkgs.plover_lapwing_aio.src}/plover_lapwing/dictionaries/lapwing-uk-additions.json";
 }
