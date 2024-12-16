@@ -38,6 +38,7 @@ in
     plover
     plover_plugins
     plover_send_command
+    pkgs.dotool
   ];
   home.activation.ploverSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     run mkdir $VERBOSE_ARG -p $HOME/.config/plover
