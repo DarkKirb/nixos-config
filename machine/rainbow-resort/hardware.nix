@@ -68,4 +68,5 @@
     ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="e621", ATTRS{idProduct}=="0000", TAG+="uaccess"
     ACTION=="add", SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="e621", ATTRS{idProduct}=="0000", TAG+="uaccess"
   '';
+  users.users.darkkirb.extraGroups = [ "dialout" ];
 }
