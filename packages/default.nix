@@ -26,7 +26,6 @@ inputs: final: prev: {
   plover_last_translation =
     final.python3Packages.callPackage ./stenography/plover_last_translation
       { };
-  plover_machine_hid = final.python3Packages.callPackage ./stenography/plover_machine_hid { };
   plover_modal_dictionary =
     final.python3Packages.callPackage ./stenography/plover_modal_dictionary
       { };
