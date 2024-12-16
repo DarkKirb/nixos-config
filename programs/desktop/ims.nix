@@ -78,7 +78,7 @@
       RemainAfterExit = "yes";
       ExecStart = pkgs.writeScript "update-betterdiscord" ''
         #!${pkgs.bash}/bin/bash
-        ${pkgs.betterdiscordctl}/bin/betterdiscordctl install
+        ${pkgs.betterdiscordctl}/bin/betterdiscordctl reinstall
       '';
     };
     Install.WantedBy = [ "graphical-session.target" ];
