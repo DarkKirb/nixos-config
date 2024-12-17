@@ -166,7 +166,7 @@ let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 57;
+      serial = 58;
     };
     NS = [
       "ns1.chir.rs."
@@ -228,6 +228,17 @@ let
         flags.zoneSigningKey = true;
         algorithm = "ecdsap256sha256";
         publicKey = "EuNM0AynEfbLZf5Hn5eMi31X0jW/NxpayoSQpnRuoko9JWQRBg3nPbqTWSPKHaCKrfs6zVRMoHtSq2Hql1Z+dw==";
+      }
+      {
+        flags.zoneSigningKey = true;
+        flags.secureEntryPoint = true;
+        algorithm = "rsasha256";
+        publicKey = "AwEAAd5upL/+YoLDwA5AcAeNMhmvb7NaQzqgN/VyNzdjQSq4uA62SiodSw3USn3mzTGrj/Qik2/NNvnnuhYitXSL7tuRuuteEu8SF6gTf17SWitvplWPKeZtpKtafjtY9qnwFRS/2SUBBbmszr0dBAll1s7KrCyveFvORq3ixaauovB0BVOxJDEeHvJlRb9DuosRDkeM/ILt0QgMWiIQo7HDQA7SOXAiCibuBsETeaCo+5sIB6x2MDw4ex9inf1q/sLHy+QBe3D9bztNDm312GawhNtmitvpsBgzhXoGsUJKkr70mJ5+BJHxptonGos9enaYHsDwxQKykOxwAV9OLmI0HM0=";
+      }
+      {
+        flags.zoneSigningKey = true;
+        algorithm = "rsasha256";
+        publicKey = "AwEAAYnn8E70niEgi9ejixusaLMEdYkJiL5HSdVAOT4rvziF4OfE9PIBtDdgaEzaQf/EGKtR2fXPSiusJt5cxYLLH8NAYPB+zt4LfDbVEy1D1JBoq6oRQ1cDadCYArMRzgFruVtKnIxnFi5Y3D1CKH7o1wXr8rIUuz9r7xmSDwLHyNR9";
       }
     ];
     subdomains = {
