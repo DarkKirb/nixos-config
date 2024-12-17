@@ -22,6 +22,9 @@ in
     ];
     CGO_ENABLED = "1";
     go = go_1_23;
+    postPatch = ''
+      substituteInPlace go.mod --replace 'go1.23.4' 'go${go.version}'
+    '';
     meta = {
       description = "slack-Matrix double-puppeting bridge";
       broken = builtins.compareVersions go.version "1.18" < 0;

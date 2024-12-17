@@ -18,14 +18,11 @@
     ./services/grafana.nix
     ./users/miifox.nix
     ./services/postgres.nix
-    ./services/dovecot.nix
-    ./services/postfix.nix
     ./services/reverse-proxy.nix
     ./services/matrix-media-repo.nix
     ./bittorrent-blocker.nix
     ./services/akkoma
     ./services/peertube
-    ./services/rspamd.nix
     ./wireguard/public-server.nix
     ./services/initrd-ssh.nix
     ./wireguard

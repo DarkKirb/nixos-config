@@ -216,9 +216,7 @@ rec {
             inherit (pkgs)
               emoji-lotte
               emoji-volpeon-blobfox
-              emoji-volpeon-blobfox-flip
               emoji-volpeon-bunhd
-              emoji-volpeon-bunhd-flip
               emoji-volpeon-drgn
               emoji-volpeon-fox
               emoji-volpeon-gphn
@@ -227,6 +225,7 @@ rec {
               emoji-volpeon-neofox
               emoji-volpeon-neocat
               emoji-volpeon-floof
+              emoji-volpeon-wvrn
               emoji-rosaflags
               emoji-raccoon
               emoji-caro
@@ -245,29 +244,10 @@ rec {
               python-mautrix
               python-tulir-telethon
               papermc
-              python-plover-stroke
-              python-rtf-tokenize
-              plover
-              plover-plugins-manager
-              python-simplefuzzyset
-              plover-plugin-emoji
-              plover-plugin-tapey-tape
-              plover-plugin-yaml-dictionary
-              plover-plugin-machine-hid
-              plover-plugin-rkb1-hid
-              plover-plugin-dotool-output
-              plover-dict-didoesdigital
               miifox-net
-              plover-plugin-python-dictionary
-              plover-plugin-stenotype-extended
               asar-asm
               bsnes-plus
               yiffstash
-              plover-plugin-dict-commands
-              plover-plugin-last-translation
-              plover-plugin-modal-dictionary
-              plover-plugin-stitching
-              plover-plugin-lapwing-aio
               mgba-dev
               ;
           };
