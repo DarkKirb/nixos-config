@@ -5,6 +5,18 @@
   ...
 }:
 with lib;
+let
+  persistName = ent: if builtins.isAttrs ent then ent.directory else ent;
+  tmpfiles_rule =
+    user: ent:
+    let
+      name = persistName ent;
+    in
+    if name == ".cache" then
+      "d /persistent/home/${user}/.cache 700 ${user} ${config.users.users.${user}.group} 7d -"
+    else
+      "d /persistent/home/${user}/${name} 700 ${user} ${config.users.users.${user}.group} - -";
+in
 {
   options = {
     environment.impermanence.users = mkOption {
@@ -45,10 +57,12 @@ with lib;
           }) config.environment.impermanence.users
         );
         systemd.tmpfiles.rules = mkMerge (
-          map (name: [
-            "d /persistent/home/${name} 700 ${name} ${config.users.users.${name}.group} - -"
-            "d /persistent/home/${name}/.cache 700 ${name} ${config.users.users.${name}.group} 7d -"
-          ]) config.environment.impermanence.users
+          map (
+            user:
+            map (tmpfiles_rule user) (
+              [ "" ] ++ config.home-manager.users.darkkirb.home.persistence.default.directories
+            )
+          ) config.environment.impermanence.users
         );
         systemd.services = listToAttrs (
           flatten (
