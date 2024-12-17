@@ -13,4 +13,8 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   hardware.enableRedistributableFirmware = true;
   security.sudo.enable = false;
+  systemd.tmpfiles.rules = [
+    "d /var/lib/private 700 root root - -"
+    "z /var/lib/private 700 root root - -"
+  ];
 }

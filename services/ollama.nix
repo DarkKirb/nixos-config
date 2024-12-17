@@ -9,7 +9,4 @@
     host = "[::]";
   };
   environment.persistence."/persistent".directories = [ "/var/lib/private/ollama" ];
-  systemd.tmpfiles.rules = [
-    "d /var/lib/private 1777 root root - -"
-  ];
 }
