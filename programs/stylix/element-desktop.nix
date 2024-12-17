@@ -64,6 +64,6 @@ let
 in
 {
   home.activation.elementConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    run ln $VERBOSE_ARG -sf ${builtins.toFile "config.json" (builtins.toJSON configFile)} ~/.config/Element/config.json
+    run ln $VERBOSE_ARG -sf ${builtins.toFile "config.json" (builtins.toJSON configFile)} /persistent/home/darkkirb/.local/share/Element/config.json
   '';
 }
