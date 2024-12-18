@@ -7,6 +7,15 @@ let
   dictionaries = [
     {
       enabled = true;
+      path = pkgs.writeText "user.json" (
+        builtins.toJSON {
+          "SROR" = "vore";
+          "SROR/TPHEU" = "vorny";
+        }
+      );
+    }
+    {
+      enabled = true;
       path = "${pkgs.plover_lapwing_aio.src}/plover_lapwing/dictionaries/abby-left-hand-modifiers.py";
     }
     {
