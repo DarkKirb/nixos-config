@@ -20,7 +20,6 @@ inputs: final: prev: {
   palettes = final.callPackage ./art/lotte/palettes.nix { };
   plover = final.python3Packages.callPackage ./stenography/plover { };
   plover_dict_commands = final.python3Packages.callPackage ./stenography/plover_dict_commands { };
-  plover_dotool_output = final.python3Packages.callPackage ./stenography/plover_dotool_output { };
   plover-env = final.callPackage ./stenography/plover-env.nix { };
   plover_lapwing_aio = final.python3Packages.callPackage ./stenography/plover_lapwing_aio { };
   plover_last_translation =
@@ -35,5 +34,6 @@ inputs: final: prev: {
       { };
   plover_stitching = final.python3Packages.callPackage ./stenography/plover_stitching { };
   plover_stroke = final.python3Packages.callPackage ./stenography/plover_stroke { };
+  plover_uinput = final.python3Packages.callPackage ./stenography/plover_uinput { };
   rtf_tokenize = final.python3Packages.callPackage ./stenography/rtf_tokenize { };
 }

@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/LilleAila/plover-uinput",
+  "rev": "f3c3feb82e3e4fc499a7e61574da39edb3dc9aa5",
+  "date": "2024-09-01T22:19:13+02:00",
+  "path": "/nix/store/j11sgvcff4gdbk3x9g6s70kcapnv97q1-plover-uinput",
+  "sha256": "0ir9987xvmrarnrdb67r0j9fbzqcj2wxklh5rwc63xi64qyi4djx",
+  "hash": "sha256-XTYSPSYm9mEYzwXS2bmQDP/lkgT5mNWyzSrX3Q9KKUc=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

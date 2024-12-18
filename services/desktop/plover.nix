@@ -47,7 +47,7 @@ let
       "Output Configuration".undo_levels = 100;
       "Logging Configuration".log_file = "strokes.log";
       "Translation Frame".opacity = 100;
-      Plugins.enabled_extensions = ''["modal_update", "plover_dotool_output"]'';
+      Plugins.enabled_extensions = ''["modal_update", "plover_uinput"]'';
       System.name = "Lapwing";
       "System: Lapwing".dictionaries = builtins.toJSON dictionaries;
       "Machine Configuration" = {
@@ -82,7 +82,6 @@ in
     plover
     plover_plugins
     plover_send_command
-    pkgs.dotool
   ];
   home.activation.ploverSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     run mkdir $VERBOSE_ARG -p $HOME/.config/plover
@@ -90,4 +89,14 @@ in
     run cp $VERBOSE_ARG ${plover-cfg} $HOME/.config/plover/plover.cfg
     run chmod +w $VERBOSE_ARG $HOME/.config/plover/plover.cfg
   '';
+  xdg.desktopEntries.plover = {
+    name = "Plover";
+    exec = "${pkgs.plover-env}/bin/plover";
+    icon = "${pkgs.plover.src}/plover/gui_qt/resources/plover.png";
+    categories = [
+      "Utility"
+      "Accessibility"
+    ];
+    comment = "stenographic input and translation";
+  };
 }
