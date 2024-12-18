@@ -10,7 +10,7 @@ let
       path = pkgs.writeText "user.json" (
         builtins.toJSON {
           "SROR" = "vore";
-          "SROR/TPHEU" = "vorny";
+          "SROR/KWREU" = "vorny";
         }
       );
     }
