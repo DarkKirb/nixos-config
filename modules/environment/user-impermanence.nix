@@ -51,6 +51,7 @@ in
                     "Videos"
                     ".cache"
                     "Data"
+                    ".local/state/wireplumber"
                   ];
                 };
               };
