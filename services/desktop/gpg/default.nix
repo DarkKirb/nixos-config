@@ -23,7 +23,6 @@
     pinentryPackage = pkgs.pinentry-qt;
     enableExtraSocket = true;
   };
-  services.ssh-agent.enable = true;
   sops.secrets."pgp/0xB4E3D4801C49EC5E.asc".sopsFile = ./privkey.yaml;
   systemd.user.services.import-gpg-privkey = {
     Unit = {
