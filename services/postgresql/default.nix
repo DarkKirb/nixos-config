@@ -27,12 +27,12 @@
     "${config.services.postgresqlBackup.location}"
   ];
   systemd.services.postgresql.postStart = lib.mkIf config.services.postgresql.enable ''
-    for ref in $(${pkgs.coreutils}/bin/cat ${
+    for ref in $(${lib.getExe' pkgs.coreutils "cat"} ${
       config.sops.secrets."systemd/services/postgresql/postStart".path
     }); do
       username=$(echo $ref | cut -d= -f1)
       password=$(echo $ref | cut -d= -f2)
-      ${config.services.postgresql.package}/bin/psql -U postgres -c "ALTER ROLE $username WITH LOGIN PASSWORD '$password';"
+      ${lib.getExe' config.services.postgresql.package "psql"} -U postgres -c "ALTER ROLE $username WITH LOGIN PASSWORD '$password';"
     done
   '';
   sops.secrets."systemd/services/postgresql/postStart" = lib.mkIf config.services.postgresql.enable {
