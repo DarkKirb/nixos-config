@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   services.ssh-agent.enable = true;
   systemd.user.services.import-ssh-key = {
@@ -11,7 +16,9 @@
     Service = {
       Type = "oneshot";
       RemainAfterExit = "yes";
-      ExecStart = ''${pkgs.openssh}/bin/ssh-add ${config.sops.secrets.".ssh/builder_id_ed25519".path}'';
+      ExecStart = ''${lib.getExe' pkgs.openssh "ssh-add"} ${
+        config.sops.secrets.".ssh/builder_id_ed25519".path
+      }'';
     };
     Install.WantedBy = [ "default.target" ];
   };

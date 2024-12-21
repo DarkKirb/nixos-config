@@ -23,7 +23,7 @@ let
   mkPalette =
     img: polarity:
     (runCommand "palette.json" { } ''
-      ${palette-generator}/bin/palette-generator ${polarity}  ${lib.escapeShellArg "${imgPng img}"} "$out"
+      ${lib.getExe' palette-generator "palette-generator"} ${polarity}  ${lib.escapeShellArg "${imgPng img}"} "$out"
     '').overrideAttrs
       {
         passthru.img = imgPng img;

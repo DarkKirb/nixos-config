@@ -10,7 +10,7 @@
     ff11 = {
       name = "Final Fantasy XI";
       comment = "Custom Launcher for Final Fantasy XI";
-      exec = "${pkgs.coreutils}/bin/env WINEPREFIX=${config.home.homeDirectory}/Games/FF11/Wine WINEESYNC=1 WINEFSYNC=1 ${pkgs.wine-tkg}/bin/wine C:\\\\\\\\users\\\\\\\\darkkirb\\\\\\\\AppData\\\\\\\\Roaming\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\Start\\\\ Menu\\\\\\\\Programs\\\\\\\\HorizonXI\\\\\\\\HorizonXI-Launcher.lnk";
+      exec = "${lib.getExe' pkgs.coreutils "env"} WINEPREFIX=${config.home.homeDirectory}/Games/FF11/Wine WINEESYNC=1 WINEFSYNC=1 ${lib.getExe pkgs.wine-tkg} C:\\\\\\\\users\\\\\\\\darkkirb\\\\\\\\AppData\\\\\\\\Roaming\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\Start\\\\ Menu\\\\\\\\Programs\\\\\\\\HorizonXI\\\\\\\\HorizonXI-Launcher.lnk";
       prefersNonDefaultGPU = true;
       icon = pkgs.fetchurl {
         url = "https://horizonxi.com/logo.png";

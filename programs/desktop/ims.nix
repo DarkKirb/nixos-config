@@ -76,10 +76,7 @@
     Service = {
       Type = "oneshot";
       RemainAfterExit = "yes";
-      ExecStart = pkgs.writeScript "update-betterdiscord" ''
-        #!${pkgs.bash}/bin/bash
-        ${pkgs.betterdiscordctl}/bin/betterdiscordctl reinstall
-      '';
+      ExecStart = "${lib.getExe pkgs.betterdiscordctl} reinstall";
     };
     Install.WantedBy = [ "graphical-session.target" ];
   };

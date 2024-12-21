@@ -13,8 +13,8 @@ let
   ];
 in
 writeScriptBin "updater" ''
-  #!${bash}/bin/bash
+  #!${lib.getExe bash}
   set -euxo pipefail
-  ${nix}/bin/nix flake update
+  ${lib.getExe nix} flake update
   ${script}
 ''

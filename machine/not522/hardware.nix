@@ -17,11 +17,11 @@
   ];
   boot.loader.systemd-boot.extraInstallCommands = ''
     set -euo pipefail
-    ${pkgs.coreutils}/bin/cp --no-preserve=mode -r ${config.hardware.deviceTree.package} ${config.boot.loader.efi.efiSysMountPoint}/
+    ${lib.getExe' pkgs.coreutils "cp"} --no-preserve=mode -r ${config.hardware.deviceTree.package} ${config.boot.loader.efi.efiSysMountPoint}/
     if [[ -d ${config.boot.loader.efi.efiSysMountPoint}/loader/entries ]]; then
       for filename in ${config.boot.loader.efi.efiSysMountPoint}/loader/entries/nixos*-generation-[1-9]*.conf; do
-        if ! ${pkgs.gnugrep}/bin/grep -q 'devicetree' $filename; then
-          ${pkgs.coreutils}/bin/echo "devicetree /dtbs/${config.hardware.deviceTree.name}" >> $filename
+        if ! ${lib.getExe pkgs.gnugrep} -q 'devicetree' $filename; then
+          ${lib.getExe' pkgs.coreutils "echo"} "devicetree /dtbs/${config.hardware.deviceTree.name}" >> $filename
         fi
       done
     fi

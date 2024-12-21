@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   accounts.calendar.accounts.lotte = {
     khal = {
@@ -8,7 +13,7 @@
     primary = true;
     remote = {
       passwordCommand = [
-        "${pkgs.coreutils}/bin/cat"
+        "${lib.getExe' pkgs.coreutils "cat"}"
         config.sops.secrets."accounts/calendar/accounts/lotte/remote/password".path
       ];
       type = "caldav";

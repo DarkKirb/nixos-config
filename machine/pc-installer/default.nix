@@ -3,6 +3,7 @@
   nixos-config,
   pkgs,
   pureInputs,
+  lib,
   ...
 }:
 let
@@ -53,11 +54,11 @@ in
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "install-thinkrac-unattended" ''
       set -eux
-      exec ${pkgs.disko}/bin/disko-install --flake "${nixos-config}#thinkrac" --disk main "${nixos-config.nixosConfigurations.thinkrac.config.disko.devices.disk.main.device}"
+      exec ${lib.getExe' pkgs.disko "disko-install"} --flake "${nixos-config}#thinkrac" --disk main "${nixos-config.nixosConfigurations.thinkrac.config.disko.devices.disk.main.device}"
     '')
     (pkgs.writeShellScriptBin "install-rainbow-resort-unattended" ''
       set -eux
-      exec ${pkgs.disko}/bin/disko-install --flake "${nixos-config}#rainbow-resort" --disk main "${nixos-config.nixosConfigurations.rainbow-resort.config.disko.devices.disk.main.device}"
+      exec ${lib.getExe' pkgs.disko "disko-install"} --flake "${nixos-config}#rainbow-resort" --disk main "${nixos-config.nixosConfigurations.rainbow-resort.config.disko.devices.disk.main.device}"
     '')
   ];
 }

@@ -7,9 +7,9 @@
 }:
 let
   sway = config.wayland.windowManager.sway.package;
-  screenshot_then_switch = pkgs.writeScript "screenshotThenSwitch" ''
-    ${pkgs.sway-contrib.grimshot}/bin/grimshot "$@"
-    ${sway}/bin/swaymsg mode default
+  screenshot_then_switch = pkgs.writeScriptBin "screenshotThenSwitch" ''
+    ${lib.getExe pkgs.sway-contrib.grimshot} "$@"
+    ${lib.getExe' sway "swaymsg"} mode default
   '';
   mkKeybind = combo: number: [
     {
@@ -60,7 +60,7 @@ in
   programs.fish.loginShellInit = ''
     if not set -q DISPLAY
     and test (tty) = /dev/tty1
-      exec ${sway}/bin/sway
+      exec ${lib.getExe sway}
     end
   '';
 
@@ -105,38 +105,46 @@ in
         in
         lib.mkOptionDefault (
           {
-            "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
+            "${modifier}+d" = "exec ${lib.getExe pkgs.rofi} -show drun";
             "Print" = "mode screenshot";
-            "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
-            "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
-            "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
-            "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-            "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
-            "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
-            "XF86AudioPlay" = "exec ${pkgs.mpc-cli}/bin/mpc toggle";
-            "XF86AudioNext" = "exec ${pkgs.mpc-cli}/bin/mpc next";
-            "XF86AudioPrev" = "exec ${pkgs.mpc-cli}/bin/mpc prev";
-            "XF86AudioStop" = "exec ${pkgs.mpc-cli}/bin/mpc stop";
+            "XF86AudioRaiseVolume" =
+              "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-sink-volume @DEFAULT_SINK@ +5%";
+            "XF86AudioLowerVolume" =
+              "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-sink-volume @DEFAULT_SINK@ -5%";
+            "XF86AudioMute" = "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-sink-mute @DEFAULT_SINK@ toggle";
+            "XF86AudioMicMute" =
+              "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-source-mute @DEFAULT_SOURCE@ toggle";
+            "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.brightnessctl} set 5%-";
+            "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} set +5%";
+            "XF86AudioPlay" = "exec ${lib.getExe pkgs.mpc-cli} toggle";
+            "XF86AudioNext" = "exec ${lib.getExe pkgs.mpc-cli} next";
+            "XF86AudioPrev" = "exec ${lib.getExe pkgs.mpc-cli} prev";
+            "XF86AudioStop" = "exec ${lib.getExe pkgs.mpc-cli} stop";
           }
           // (lib.listToAttrs keybinds)
         );
       bars = [
         {
-          command = "${pkgs.waybar}/bin/waybar";
+          command = "${lib.getExe pkgs.waybar}";
         }
       ];
       modes = {
         screenshot = {
-          Print = "exec ${screenshot_then_switch} copy area";
-          "Shift+Print" = "exec ${screenshot_then_switch} save area $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
-          a = "exec ${screenshot_then_switch} copy active";
-          "Shift+a" = "exec ${screenshot_then_switch} save active $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
-          s = "exec ${screenshot_then_switch} copy screen";
-          "Shift+s" = "exec ${screenshot_then_switch} save screen $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
-          o = "exec ${screenshot_then_switch} copy output";
-          "Shift+o" = "exec ${screenshot_then_switch} save output $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
-          w = "exec ${screenshot_then_switch} copy window";
-          "Shift+w" = "exec ${screenshot_then_switch} save window $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
+          Print = "exec ${lib.getExe screenshot_then_switch} copy area";
+          "Shift+Print" =
+            "exec ${lib.getExe screenshot_then_switch} save area $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
+          a = "exec ${lib.getExe screenshot_then_switch} copy active";
+          "Shift+a" =
+            "exec ${lib.getExe screenshot_then_switch} save active $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
+          s = "exec ${lib.getExe screenshot_then_switch} copy screen";
+          "Shift+s" =
+            "exec ${lib.getExe screenshot_then_switch} save screen $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
+          o = "exec ${lib.getExe screenshot_then_switch} copy output";
+          "Shift+o" =
+            "exec ${lib.getExe screenshot_then_switch} save output $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
+          w = "exec ${lib.getExe screenshot_then_switch} copy window";
+          "Shift+w" =
+            "exec ${lib.getExe screenshot_then_switch} save window $HOME/Pictures/grim-$(date --iso=s | sed 's/:/-/g').png";
           Escape = ''mode "default"'';
           Return = ''mode "default"'';
         };
@@ -170,7 +178,7 @@ in
       default_border none
       gaps outer 8
       gaps inner 4
-      exec_always ${pkgs.xorg.xrandr}/bin/xrandr --output DP-1 --primary
+      exec_always ${lib.getExe pkgs.xorg.xrandr} --output DP-1 --primary
     '';
   };
   qt = {
@@ -185,7 +193,7 @@ in
     };
     Install.WantedBy = [ "graphical-session.target" ];
     Service = {
-      ExecStart = "${pkgs.python3.withPackages (ps: with ps; [ i3ipc ])}/bin/python ${./transparency.py}";
+      ExecStart = "${lib.getExe pkgs.sway-contrib.inactive-windows-transparency}";
     };
   };
 

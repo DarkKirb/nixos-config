@@ -45,10 +45,10 @@
       "inference.model" = "codellama:7b-code-q4_K_S";
       "inference.custom.format" = "codellama";
       "nix.enableLanguageServer" = true;
-      "nix.formatterPath" = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-      "nix.serverPath" = "${pkgs.nil}/bin/nil";
+      "nix.formatterPath" = "${lib.getExe pkgs.nixfmt-rfc-style}";
+      "nix.serverPath" = "${lib.getExe pkgs.nil}";
       "nix.serverSettings" = {
-        nil.formatting.command = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+        nil.formatting.command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
       };
       "rust-analyzer.cargo.targetDir" = "${config.xdg.cacheHome}/cargo/rust-analyzer-target";
       "rust-analyzer.check.command" = "clippy";
@@ -69,7 +69,7 @@
       "rust-analyzer.lens.references.enumVariant.enable" = true;
       "rust-analyzer.lens.references.method.enable" = true;
       "rust-analyzer.lens.references.trait.enable" = true;
-      "sops.binPath" = "${pkgs.sops}/bin/sops";
+      "sops.binPath" = "${lib.getExe pkgs.sops}";
       "workbench.iconTheme" = "material-icon-theme";
     };
   };

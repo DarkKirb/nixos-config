@@ -98,17 +98,17 @@ in
 
                       delete_subvolume_recursively() {
                         IFS=$'\n'
-                        for i in $(${pkgs.btrfs-progs}/bin/btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+                        for i in $(${lib.getExe' pkgs.btrfs-progs "btrfs"} subvolume list -o "$1" | cut -f 9- -d ' '); do
                           delete_subvolume_recursively "/persistent/old-homedirs/${name}/$i"
                         done
-                        ${pkgs.btrfs-progs}/bin/btrfs subvolume delete "$1" || rm -rf "$1"
+                        ${lib.getExe' pkgs.btrfs-progs "btrfs"} subvolume delete "$1" || rm -rf "$1"
                       }
 
                       for i in $(find /persistent/old-homedirs/${name} -maxdepth 1 -atime +30); do
                         delete_subvolume_recursively "$i"
                       done
 
-                      ${pkgs.btrfs-progs}/bin/btrfs subvolume create ${cfg.home}
+                      ${lib.getExe' pkgs.btrfs-progs "btrfs"} subvolume create ${cfg.home}
                       chown -R ${name}:${cfg.group} ${cfg.home}
 
                       mkdir -p /persistent/home/${name}

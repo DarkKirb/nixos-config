@@ -23,7 +23,7 @@
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "install-oracle-unattended" ''
       set -eux
-      exec ${pkgs.disko}/bin/disko-install --flake "${nixos-config}#oracle" --disk main "${nixos-config.nixosConfigurations.thinkrac.config.disko.devices.disk.main.device}"
+      exec ${lib.getExe' pkgs.disko "disko-install"} --flake "${nixos-config}#oracle" --disk main "${nixos-config.nixosConfigurations.thinkrac.config.disko.devices.disk.main.device}"
     '')
   ];
 

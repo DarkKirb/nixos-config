@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   accounts.email.accounts.lotte = {
     address = "lotte@chir.rs";
@@ -13,8 +18,8 @@
     };
     imapnotify = {
       enable = true;
-      onNotify = "${pkgs.isync}/bin/mbsync test-%s";
-      onNotifyPost = "${pkgs.notmuch}/bin/notmuch new && ${pkgs.libnotify}/bin/notify-send 'New mail arrived'";
+      onNotify = "${lib.getExe pkgs.isync} test-%s";
+      onNotifyPost = "${lib.getExe pkgs.notmuch} new && ${lib.getExe pkgs.libnotify} 'New mail arrived'";
     };
     mbsync = {
       enable = true;
@@ -43,7 +48,7 @@
       };
     };
     passwordCommand = [
-      "${pkgs.coreutils}/bin/cat"
+      "${lib.getExe' pkgs.coreutils "cat"}"
       config.sops.secrets."accounts/email/accounts/lotte/password".path
     ];
     realName = "Charlotte 🦝 Delenk";

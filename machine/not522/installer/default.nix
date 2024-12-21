@@ -4,6 +4,7 @@
   pkgs,
   nixpkgs,
   pureInputs,
+  lib,
   ...
 }:
 let
@@ -33,7 +34,7 @@ in
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "install-nixos-unattended" ''
       set -eux
-      exec ${pkgs.disko}/bin/disko-install --flake "${nixos-config}#not522" --disk main "${nixos-config.nixosConfigurations.not522.config.disko.devices.disk.main.device}"
+      exec ${lib.getExe' pkgs.disko "disko-install"} --flake "${nixos-config}#not522" --disk main "${nixos-config.nixosConfigurations.not522.config.disko.devices.disk.main.device}"
     '')
   ];
   isInstaller = true;

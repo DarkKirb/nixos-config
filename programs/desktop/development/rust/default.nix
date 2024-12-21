@@ -2,6 +2,7 @@
   pkgs,
   config,
   systemConfig,
+  lib,
   ...
 }:
 {
@@ -11,7 +12,7 @@
     clang
   ];
   home.shellAliases = {
-    cargo = "${pkgs.cargo-mommy}/bin/cargo-mommy";
+    cargo = "${lib.getExe pkgs.cargo-mommy}";
   };
   home.sessionVariables =
     (

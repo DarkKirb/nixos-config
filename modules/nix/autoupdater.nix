@@ -59,23 +59,23 @@ with lib;
         switchToConfiguration = "${output}/bin/switch-to-configuration";
       in
       ''
-        #!${pkgs.bash}/bin/bash
+        #!${lib.getExe pkgs.bash}
         set -euxo pipefail
-        build=$(${pkgs.curl}/bin/curl -H "accept: application/json" -G ${cfg.hydraServer}/api/latestbuilds -d "nr=10" -d "project=${cfg.project}" -d "jobset=${cfg.jobset}" -d "job=${cfg.job}" | ${pkgs.jq}/bin/jq -r '[.[]|select(.buildstatus==0)][0].id')
-        doc=$(${pkgs.curl}/bin/curl -H "accept: application/json" ${cfg.hydraServer}/build/$build)
-        drvname=$(echo $doc | ${pkgs.jq}/bin/jq -r '.drvpath')
-        output=$(${pkgs.nix}/bin/nix-store -r $drvname)
-        ${pkgs.nix}/bin/nix-env -p /nix/var/nix/profiles/system --set $output
+        build=$(${lib.getExe pkgs.curl} -H "accept: application/json" -G ${cfg.hydraServer}/api/latestbuilds -d "nr=10" -d "project=${cfg.project}" -d "jobset=${cfg.jobset}" -d "job=${cfg.job}" | ${lib.getExe pkgs.jq} -r '[.[]|select(.buildstatus==0)][0].id')
+        doc=$(${lib.getExe pkgs.curl} -H "accept: application/json" ${cfg.hydraServer}/build/$build)
+        drvname=$(echo $doc | ${lib.getExe pkgs.jq} -r '.drvpath')
+        output=$(${lib.getExe' pkgs.nix "nix-store"} -r $drvname)
+        ${lib.getExe' pkgs.nix "nix-env"} -p /nix/var/nix/profiles/system --set $output
         ${
           if cfg.reboot then
             ''
               ${switchToConfiguration} boot
-              booted="$(${pkgs.coreutils}/bin/readlink /run/booted-system/{kernel,kernel-modules})"
-              built="$(${pkgs.coreutils}/bin/readlink ${output}/{kernel,kernel-modules})"
+              booted="$(${lib.getExe' pkgs.coreutils "readlink"} /run/booted-system/{kernel,kernel-modules})"
+              built="$(${lib.getExe' pkgs.coreutils "readlink"} ${output}/{kernel,kernel-modules})"
               if [ "$booted" = "$built" ]; then
                 ${switchToConfiguration} switch
               else
-                ${pkgs.systemd}/bin/shutdown -r +1
+                ${lib.getExe' pkgs.systemd "shutdown"} -r +1
               fi
               exit
             ''

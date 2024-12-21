@@ -1,21 +1,21 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 let
-  lock-script = pkgs.writeScript "suspend" ''
-    ${pkgs.swaylock}/bin/swaylock -f -c 000000
-    ${pkgs.mpc-cli}/bin/mpc pause
+  lock-script = pkgs.writeScriptBin "suspend" ''
+    ${lib.getExe pkgs.swaylock} -f -c 000000
+    ${lib.getExe pkgs.mpc-cli} pause
   '';
-  screen-off-script = pkgs.writeScript "screenOff" ''
-    ${pkgs.sway}/bin/swaymsg "output * dpms off"
+  screen-off-script = pkgs.writeScriptBin "screenOff" ''
+    ${lib.getExe' pkgs.sway "swaymsg"} "output * dpms off"
   '';
-  suspend-script = pkgs.writeScript "suspend" ''
-    ${pkgs.systemd}/bin/systemctl suspend
+  suspend-script = pkgs.writeScriptBin "suspend" ''
+    ${lib.getExe' pkgs.systemd "systemctl"} suspend
   '';
-  resume-script = pkgs.writeScript "resume" ''
-    ${pkgs.sway}/bin/swaymsg "output * dpms on"
+  resume-script = pkgs.writeScriptBin "resume" ''
+    ${lib.getExe' pkgs.sway "swaymsg"} "output * dpms on"
   '';
-  unlock-script = pkgs.writeScript "unlock" ''
-    ${pkgs.procps}/bin/pkill swaylock
-    ${pkgs.mpc-cli}/bin/mpc play
+  unlock-script = pkgs.writeScriptBin "unlock" ''
+    ${lib.getExe' pkgs.procps "pkill"} swaylock
+    ${lib.getExe pkgs.mpc-cli} play
   '';
 in
 {
@@ -24,30 +24,30 @@ in
     events = [
       {
         event = "before-sleep";
-        command = "${lock-script}";
+        command = "${lib.getExe lock-script}";
       }
       {
         event = "lock";
-        command = "${lock-script}";
+        command = "${lib.getExe lock-script}";
       }
       {
         event = "unlock";
-        command = "${unlock-script}";
+        command = "${lib.getExe unlock-script}";
       }
     ];
     timeouts = [
       {
         timeout = 300;
-        command = "${lock-script}";
+        command = "${lib.getExe lock-script}";
       }
       {
         timeout = 305;
-        command = "${screen-off-script}";
-        resumeCommand = "${resume-script}";
+        command = "${lib.getExe screen-off-script}";
+        resumeCommand = "${lib.getExe resume-script}";
       }
       {
         timeout = 900;
-        command = "${suspend-script}";
+        command = "${lib.getExe suspend-script}";
       }
     ];
   };

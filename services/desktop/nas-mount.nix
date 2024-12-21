@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   xdg.configFile."rclone/rclone.conf".text = ''
     [nas]
@@ -13,9 +13,9 @@
     };
     Service = {
       Type = "notify";
-      ExecStartPre = "/usr/bin/env mkdir -p %h/nas";
-      ExecStart = "${pkgs.rclone}/bin/rclone --vfs-cache-mode writes mount \"nas:\" \"%h/nas\"";
-      ExecStop = "/bin/fusermount -u %h/nas";
+      ExecStartPre = "${lib.getExe' pkgs.coreutils "mkdir"} -p %h/nas";
+      ExecStart = "${lib.getExe pkgs.rclone} --vfs-cache-mode writes mount \"nas:\" \"%h/nas\"";
+      ExecStop = "/run/wrappers/bin/fusermount -u %h/nas";
     };
     Install.WantedBy = [ "default.target" ];
   };

@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   accounts.contact.accounts.lotte = {
     khal = {
@@ -8,7 +13,7 @@
     khard.enable = true;
     remote = {
       passwordCommand = [
-        "${pkgs.coreutils}/bin/cat"
+        "${lib.getExe' pkgs.coreutils "cat"}"
         config.sops.secrets."accounts/contact/accounts/lotte/remote/password".path
       ];
       type = "carddav";

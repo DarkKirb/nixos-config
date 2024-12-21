@@ -40,9 +40,7 @@ in
       Restart = "always";
       User = "chir-rs";
       Group = "acme";
-      ExecStart = ''
-        ${chir-rs.packages.${system}.chir-rs}/bin/chir-rs
-      '';
+      ExecStart = lib.getExe' chir-rs.packages.${system}.chir-rs "chir-rs";
     };
     environment = {
       CHIR_RS_CONFIG = "${configFile}";

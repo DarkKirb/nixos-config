@@ -74,16 +74,16 @@ let
     }
   );
   plover = pkgs.writeScriptBin "plover" ''
-    #!/bin/sh
-    exec ${pkgs.plover-env}/bin/plover "$@"
+    #!${lib.getExe pkgs.bash}
+    exec ${lib.getExe' pkgs.plover-env "plover"} "$@"
   '';
   plover_plugins = pkgs.writeScriptBin "plover_plugins" ''
-    #!/bin/sh
-    exec ${pkgs.plover-env}/bin/plover_plugins "$@"
+    #!${lib.getExe pkgs.bash}
+    exec ${lib.getExe' pkgs.plover-env "plover_plugins"} "$@"
   '';
   plover_send_command = pkgs.writeScriptBin "plover_send_command" ''
-    #!/bin/sh
-    exec ${pkgs.plover-env}/bin/plover_send_command "$@"
+    #!${lib.getExe pkgs.bash}
+    exec ${lib.getExe' pkgs.plover-env "plover_send_command"} "$@"
   '';
 in
 {
@@ -100,7 +100,7 @@ in
   '';
   xdg.desktopEntries.plover = {
     name = "Plover";
-    exec = "${pkgs.plover-env}/bin/plover";
+    exec = "${lib.getExe' pkgs.plover-env "plover"}";
     icon = "${pkgs.plover.src}/plover/gui_qt/resources/plover.png";
     categories = [
       "Utility"

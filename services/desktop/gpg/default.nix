@@ -34,14 +34,14 @@
       Type = "oneshot";
       Environment = "GNUPGHOME=${config.programs.gpg.homedir}";
       ExecStart = pkgs.writeScript "import-gpg-privkey" ''
-        #!${pkgs.bash}/bin/bash
-        ${config.programs.gpg.package}/bin/gpg --import ${
+        #!${lib.getExe pkgs.bash}
+        ${lib.getExe config.programs.gpg.package} --import ${
           config.sops.secrets."pgp/0xB4E3D4801C49EC5E.asc".path
         }
-        ${config.programs.gpg.package}/bin/gpg --card-status
+        ${lib.getExe config.programs.gpg.package} --card-status
       '';
     };
     Install.WantedBy = [ "graphical-session-pre.target" ];
   };
-  programs.fish.loginShellInit = "gpgconf --launch gpg-agent";
+  programs.fish.loginShellInit = "${lib.getExe' config.programs.gpg.package "gpgconf"} --launch gpg-agent";
 }

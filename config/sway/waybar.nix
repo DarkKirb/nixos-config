@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.waybar = {
     enable = true;
@@ -59,11 +59,11 @@
           };
           tooltip-format = "MPD (connected)";
           tooltip-format-disconnected = "MPD (disconnected)";
-          on-click = "${pkgs.mpc-cli}/bin/mpc toggle";
-          on-click-middle = "${pkgs.foot}/bin/foot ${pkgs.ncmpcpp}/bin/ncmpcpp";
-          on-click-right = "${pkgs.mpc-cli}/bin/mpc stop";
-          on-scroll-up = "${pkgs.mpc-cli}/bin/mpc seekthrough +00:00:01";
-          on-scroll-down = "${pkgs.mpc-cli}/bin/mpc seekthrough -00:00:01";
+          on-click = "${lib.getExe pkgs.mpc-cli} toggle";
+          on-click-middle = "${lib.getExe pkgs.foot} ${lib.getExe pkgs.ncmpcpp}";
+          on-click-right = "${lib.getExe pkgs.mpc-cli} stop";
+          on-scroll-up = "${lib.getExe pkgs.mpc-cli} seekthrough +00:00:01";
+          on-scroll-down = "${lib.getExe pkgs.mpc-cli} seekthrough -00:00:01";
         };
         idle_inhibitor = {
           format = "{icon}";
@@ -141,7 +141,7 @@
               ""
             ];
           };
-          on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
+          on-click = "${lib.getExe pkgs.pavucontrol}";
         };
       };
     };

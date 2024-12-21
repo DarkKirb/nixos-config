@@ -146,9 +146,9 @@ in
               Type = "oneshot";
               RemainAfterExit = "yes";
               ExecStart = pkgs.writeScript "apply-plasma-lookandfeel" ''
-                #!${pkgs.bash}/bin/sh
-                ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage $(readlink /etc/profiles/per-user/${config.home.username}/share/wallpapers)/stylix
-                ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel --apply stylix
+                #!${lib.getExe pkgs.bash}
+                ${lib.getExe' pkgs.kdePackages.plasma-workspace "plasma-apply-wallpaperimage"} $(${lib.getExe' pkgs.coreutils "readlink"} /etc/profiles/per-user/${config.home.username}/share/wallpapers)/stylix
+                ${lib.getExe' pkgs.kdePackages.plasma-workspace "plasma-apply-lookandfeel"} --apply stylix
               '';
             };
             Install.WantedBy = [ "plasma-workspace.target" ];
