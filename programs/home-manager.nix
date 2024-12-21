@@ -10,5 +10,7 @@
   home.packages = with pkgs; [
     ripgrep
     fd
+    file
+    ncdu
   ];
 }
