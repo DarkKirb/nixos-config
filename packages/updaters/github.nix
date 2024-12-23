@@ -20,7 +20,7 @@ in
   KNOWN_COMMIT=${srcInfo.rev}
   if [ $CURRENT_COMMIT != $KNOWN_COMMIT ]; then
     echo "${name}: Updating from $KNOWN_COMMIT to $CURRENT_COMMIT"
-    ${lib.getExe nix-prefetch-git} https://github.com/${owner}/${repo} | ${lib.getExe jq} > ${sourceFileName}
+    ${lib.getExe' nix-prefetch-git "nix-prefetch-git"} https://github.com/${owner}/${repo} | ${lib.getExe jq} > ${sourceFileName}
   fi
   echo "${name}: Done"
 ''
