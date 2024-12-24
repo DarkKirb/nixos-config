@@ -10,6 +10,10 @@
         jellyfin
         jellycon
         pkgs.kodi-joyn
+        youtube
+        sendtokodi
+        sponsorblock
+        visualization-starburst
       ]
     ))
   ];
