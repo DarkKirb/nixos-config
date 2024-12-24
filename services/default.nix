@@ -5,5 +5,6 @@
     ./postgresql
     ./restic.nix
     ./tailscale.nix
+    ./desktop/avahi.nix
   ];
 }
