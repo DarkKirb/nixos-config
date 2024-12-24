@@ -17,6 +17,6 @@
   systemd.user.tmpfiles.rules = [
     "d /persistent${config.xdg.dataHome}/factorio - - - - -"
     "L ${config.home.homeDirectory}/.factorio - - - - ${config.xdg.dataHome}/factorio"
-    "L ${config.home.dataHome}/PrismLauncher - - - - ${config.home.homeDirectory}/Games/Minecraft"
+    "L ${config.xdg.dataHome}/PrismLauncher - - - - ${config.home.homeDirectory}/Games/Minecraft"
   ];
 }
