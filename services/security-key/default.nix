@@ -2,6 +2,6 @@
 {
   imports = [
     ./pcscd.nix
-    ./tpm2.nix
+    #./tpm2.nix
   ];
 }
