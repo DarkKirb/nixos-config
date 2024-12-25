@@ -6,7 +6,7 @@
   ];
   home.packages = with pkgs; [
     factorio
-    wine-ge
+    wineWowPackages.waylandFull
     ppsspp
     prismlauncher
   ];
