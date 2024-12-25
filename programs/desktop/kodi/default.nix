@@ -14,6 +14,7 @@
         sendtokodi
         sponsorblock
         visualization-starburst
+        mediathekview
       ]
     ))
   ];
