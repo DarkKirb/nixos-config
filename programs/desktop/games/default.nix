@@ -6,7 +6,7 @@
   ];
   home.packages = with pkgs; [
     factorio
-    wine-tkg
+    wine-ge
     ppsspp
     prismlauncher
   ];
