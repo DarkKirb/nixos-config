@@ -86,3 +86,8 @@ creation_rules:
         - *base
         - *rainbow-resort
         - *not522
+  - path_regex: programs/desktop/development/rust/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *darkkirb

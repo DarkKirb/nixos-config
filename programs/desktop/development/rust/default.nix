@@ -46,4 +46,12 @@
       codegen-units = 1;
     };
   };
+  sops.secrets.".local/share/cargo/credentials/procyos".sopsFile = ./secrets.yaml;
+  sops.templates.".local/share/cargo/credentials.toml" = {
+    path = "${config.xdg.dataHome}/cargo/credentials.toml";
+    content = ''
+      [registries.procyos]
+      token = "${config.sops.placeholder.".local/share/cargo/credentials/procyos"}"
+    '';
+  };
 }
