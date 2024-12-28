@@ -1,6 +1,7 @@
 {
   modulesPath,
   nixos-hardware,
+  pkgs,
   ...
 }:
 {
@@ -12,6 +13,15 @@
     nixos-hardware.nixosModules.common-pc-laptop-ssd
   ];
   hardware.cpu.intel.updateMicrocode = true;
+  hardware.graphics.extraPackages = [
+    pkgs.intel-ocl
+  ];
+  boot.kernelParams = [
+    "i915.enable_guc=2"
+    "i915.enable_fbc=1"
+    "i915.enable_psr=2"
+  ];
+  hardware.intelgpu.vaapiDriver = "intel-media-driver";
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "nvme"
