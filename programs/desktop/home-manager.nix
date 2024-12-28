@@ -43,6 +43,7 @@
     );
   home.persistence.default.directories = [
     ".local/share/kwalletd"
+    ".local/share/darktable"
     "Unload"
   ];
 }
