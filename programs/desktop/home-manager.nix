@@ -25,6 +25,7 @@
       obsidian
       gimp
       ffmpeg-full
+      darktable
     ]
     ++ (
       if !systemConfig.isSway then
@@ -42,5 +43,6 @@
     );
   home.persistence.default.directories = [
     ".local/share/kwalletd"
+    "Unload"
   ];
 }
