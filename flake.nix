@@ -224,6 +224,10 @@
               config = ./machine/rainbow-resort;
               system = "x86_64-linux";
             };
+            stinky-ssb = {
+              config = ./machine/stinky-ssb;
+              system = "aarch64-linux";
+            };
             thinkrac = {
               config = ./machine/thinkrac;
               system = "x86_64-linux";
@@ -299,6 +303,14 @@
                       plover_uinput
                       rtf_tokenize
                       ;
+                  }
+                else
+                  { }
+              )
+              // (
+                if name == "aarch64-linux" then
+                  {
+                    inherit (pkgs) linux-devterm;
                   }
                 else
                   { }

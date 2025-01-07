@@ -1,0 +1,12 @@
+{
+    "url": "https://github.com/raspberrypi/linux",
+    "rev": "3a33f11c48572b9dd0fecac164b3990fc9234da8",
+    "date": "2021-04-29T20:34:42+01:00",
+    "path": "/nix/store/g3cawyxkjchyhz4860d92ql0p6hj2gvj-linux-3a33f11",
+    "sha256": "154aicn2cd4a6kpnifcb899px6jijg2abavjm3y4w5lfwpipmqck",
+    "hash": "sha256-k+F64+WOFk78qHKrpcSTUZp+U0KLuWjvNIo0JiyLipQ=",
+    "fetchLFS": false,
+    "fetchSubmodules": false,
+    "deepClone": false,
+    "leaveDotGit": false
+}

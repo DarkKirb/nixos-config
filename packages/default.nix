@@ -15,6 +15,7 @@ inputs: final: prev: {
     doCheck = false;
   };
   kodi-joyn = final.kodiPackages.callPackage ./kodi/joyn { };
+  linux-devterm = final.callPackage ./linux/devterm { };
   package-updater = final.callPackage ./updater.nix { };
   palette-generator = final.callPackage "${inputs.stylix}/palette-generator" { };
   palettes = final.callPackage ./art/lotte/palettes.nix { };
