@@ -1,4 +1,4 @@
-{ nixos-config, ... }:
+{ lib, nixos-config, ... }:
 {
   networking.hostName = "stinky-ssb";
   imports = [
@@ -13,4 +13,5 @@
   isSway = true;
   home-manager.users.darkkirb.imports = [ ./home-manager.nix ];
   isNSFW = true;
+  services.postgresql.enable = lib.mkForce false;
 }

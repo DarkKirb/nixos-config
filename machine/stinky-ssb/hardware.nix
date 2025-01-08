@@ -26,42 +26,42 @@
   hardware.deviceTree.overlays = [
     {
       name = "dwc2";
-      dtsFile = ./devterm/dwc2-overlay.dts;
+      dtsFile = ./dts/dwc2-overlay.dts;
     }
     {
       name = "cma";
-      dtsFile = ./devterm/cma-overlay.dts;
+      dtsFile = ./dts/cma-overlay.dts;
     }
     {
       name = "vc4-kms-v3d-pi4";
-      dtsFile = ./devterm/vc4-kms-v3d-pi4-overlay.dts;
+      dtsFile = ./dts/vc4-kms-v3d-pi4-overlay.dts;
     }
     {
       name = "devterm-pmu";
-      dtsFile = ./devterm/devterm-pmu-overlay.dts;
+      dtsFile = ./dts/devterm-pmu-overlay.dts;
     }
     {
       name = "devterm-panel";
-      dtsFile = ./devterm/devterm-panel-overlay.dts;
+      dtsFile = ./dts/devterm-panel-overlay.dts;
     }
     {
       name = "devterm-misc";
-      dtsFile = ./devterm/devterm-misc-overlay.dts;
+      dtsFile = ./dts/devterm-misc-overlay.dts;
     }
     {
       name = "audremap";
-      dtsFile = ./devterm/audremap-overlay.dts;
+      dtsFile = ./dts/audremap-overlay.dts;
     }
     {
       name = "spi";
-      dtsFile = ./devterm/spi0-overlay.dts;
+      dtsFile = ./dts/spi0-overlay.dts;
     }
     {
       name = "devterm-overlay";
-      dtsFile = ./devterm/devterm-overlay.dts;
+      dtsFile = ./dts/devterm-overlay.dts;
     }
   ];
-  services.xserver.xkbVariant = lib.mkForce "us";
+  services.xserver.xkb.variant = lib.mkForce "us";
   console.keyMap = lib.mkForce "us";
   home-manager.users.darkkirb.wayland.windowManager.sway.config.input."*" = lib.mkForce {
     xkb_layout = "us";
