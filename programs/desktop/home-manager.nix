@@ -26,6 +26,7 @@
       gimp
       ffmpeg-full
       darktable
+      digikam
     ]
     ++ (if system == "x86_64-linux" then [ obsidian ] else [ ])
     ++ (
@@ -45,6 +46,7 @@
   home.persistence.default.directories = [
     ".local/share/kwalletd"
     ".local/share/darktable"
+    ".local/share/digikam"
     "Unload"
   ];
 }
