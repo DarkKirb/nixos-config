@@ -111,7 +111,7 @@
         event = "VeryLazy",
         dependencies = {
           "hrsh7th/cmp-nvim-lsp",
-          "onsails/lspkind-nvim",
+          "onsails/lspkind.nvim",
           "hrsh7th/cmp-path",
           "hrsh7th/cmp-buffer",
           "hrsh7th/cmp-omni",
@@ -211,7 +211,7 @@
           require("config.indent-blankline")
         end,
       },
-      { "itchyny/vim-highlighturl", event = "VeryLazy" },
+      { "itchyny/vimplugin-vim-highlighturl", event = "VeryLazy" },
       {
         "rcarriga/nvim-notify",
         event = "VeryLazy",
