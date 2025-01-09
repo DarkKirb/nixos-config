@@ -2,6 +2,7 @@
   pkgs,
   nixos-config,
   systemConfig,
+  system,
   ...
 }:
 {
@@ -22,11 +23,11 @@
     with pkgs;
     [
       libreoffice
-      obsidian
       gimp
       ffmpeg-full
       darktable
     ]
+    ++ (if system == "x86_64-linux" then [ obsidian ] else [ ])
     ++ (
       if !systemConfig.isSway then
         with pkgs;
