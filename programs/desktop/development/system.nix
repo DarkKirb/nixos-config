@@ -2,6 +2,7 @@
 {
   services.postgresql = {
     enable = config.isGraphical && !config.isInstaller;
+    extensions = ps: [ ps.postgis ];
     ensureUsers = [
       {
         name = "darkkirb";
