@@ -28,7 +28,15 @@
       darktable
       digikam
     ]
-    ++ (if system == "x86_64-linux" then [ obsidian ] else [ ])
+    ++ (
+      if system == "x86_64-linux" then
+        [
+          obsidian
+          qgis
+        ]
+      else
+        [ ]
+    )
     ++ (
       if !systemConfig.isSway then
         with pkgs;
