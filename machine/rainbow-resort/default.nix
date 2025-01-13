@@ -10,7 +10,7 @@
     ./disko.nix
     ./hardware.nix
     "${nixos-config}/config/graphical.nix"
-    #"${nixos-config}/config/graphical/plymouth.nix"
+    "${nixos-config}/config/graphical/plymouth.nix"
     "${nixos-config}/services/chir-rs"
     "${nixos-config}/services/ollama.nix"
   ];

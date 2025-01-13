@@ -10,7 +10,7 @@
     ./hardware.nix
     "${nixos-config}/config/networkmanager.nix"
     "${nixos-config}/config/graphical.nix"
-    #"${nixos-config}/config/graphical/plymouth.nix"
+    "${nixos-config}/config/graphical/plymouth.nix"
   ];
   system.stateVersion = "24.11";
   specialisation.nsfw = {
