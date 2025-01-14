@@ -35,6 +35,7 @@
   boot.extraModulePackages = [ ];
   nix.settings.cores = 16;
   boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
     "armv7l-linux"
     "powerpc-linux"
     "powerpc64-linux"
