@@ -5,7 +5,6 @@
 let
   configTxt = pkgs.writeText "config.txt" ''
     [pi4]
-    kernel=u-boot-rpi4.bin
     enable_gic=1
 
     # Otherwise the resolution will be weird in most cases, compared to
@@ -14,12 +13,6 @@ let
 
     # Supported in newer board revisions
     arm_boost=1
-
-    [cm4]
-    # Enable host mode on the 2711 built-in XHCI USB controller.
-    # This line should be removed if the legacy DWC2 controller is required
-    # (e.g. for USB device mode) or if USB support is not required.
-    otg_mode=1
 
     [all]
     # Boot in 64-bit mode.
@@ -33,6 +26,10 @@ let
     # Prevent the firmware from smashing the framebuffer setup done by the mainline kernel
     # when attempting to show low-voltage or overtemperature warnings.
     avoid_warnings=1
+    kernel=u-boot-rpi4.bin
+    ignore_lcd=1
+    gpio=10=ip,np
+    max_framebuffers=2
   '';
 in
 {
