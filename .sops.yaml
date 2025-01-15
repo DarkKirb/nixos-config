@@ -4,6 +4,7 @@ keys:
   - &not522 age1emv3kzvwgl36hgllrv7rlekqy3y3c6eztadl3lv09ks3z9vv6vdqw06yqa
   - &pc-installer age1eh2vd6cdy23qazwg0hzq95pn9e6p8yaqu4g6zyan8gzal4x5ed5qful8kg
   - &rainbow-resort age19vzypddhexvvsf8xylstxc9znnkd8rxmamhjlt7elvz4j3zaf5tqqura6f
+  - &stinky-ssb age1sqvl2cwvzeztuelpwppaestqufzeap8uf0vgy7t5mzr9rwc3dpxqhx8ly9
   - &thinkrac age1p400545a482fma40yfgytu40p6wr5a75v4f8yeudvgf7eh5erufqxhgynr
 creation_rules:
   - path_regex: machine/not522/secrets\.yaml$
@@ -17,6 +18,7 @@ creation_rules:
           - *base
           - *not522
           - *rainbow-resort
+          - *stinky-ssb
           - *thinkrac
   - path_regex: services/restic\.yaml$
     key_groups:
@@ -24,6 +26,7 @@ creation_rules:
           - *base
           - *not522
           - *rainbow-resort
+          - *stinky-ssb
           - *thinkrac
   - path_regex: users/root/system\.yaml$
     key_groups:
@@ -32,6 +35,7 @@ creation_rules:
           - *not522
           - *pc-installer
           - *rainbow-resort
+          - *stinky-ssb
           - *thinkrac
   - path_regex: users/darkkirb/system\.yaml$
     key_groups:
@@ -40,6 +44,7 @@ creation_rules:
           - *not522
           - *pc-installer
           - *rainbow-resort
+          - *stinky-ssb
           - *thinkrac
   - path_regex: users/darkkirb/home-manager/keys.yaml$
     key_groups:
@@ -54,6 +59,7 @@ creation_rules:
           - *not522
           - *pc-installer
           - *rainbow-resort
+          - *stinky-ssb
           - *thinkrac
   - path_regex: programs/desktop/pim/secrets.yaml$
     key_groups:
