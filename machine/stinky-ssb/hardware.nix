@@ -22,6 +22,7 @@
     libraspberrypi
     raspberrypi-eeprom
   ];
+  hardware.deviceTree.name = "broadcom/bcm2711-rpi-cm4.dtb";
   hardware.deviceTree.filter = "*rpi*.dtb";
   hardware.deviceTree.overlays = [
     {
