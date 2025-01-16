@@ -1,7 +1,13 @@
-{ config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   services.forgejo = {
     enable = true;
+    package = pkgs.forgejo;
     database = {
       createDatabase = false;
       host = "localhost";
