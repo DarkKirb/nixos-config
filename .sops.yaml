@@ -1,6 +1,7 @@
 keys:
   - &base age1tltjgexkp5fz3rum4j0k66ty5q4u8ptvkgkepumd20zal24g2qfs5xgw76
   - &darkkirb age15g6tzvcmcp3ae4hwnn4pwewat6eq9unlhtjrlaka6rf94ej9dd5qqpgt7u
+  - &instance-20221213-1915 age1elra3uklw8rmwkevqms2l4tsd06d5utqda9d2w4qvqpz898uzuesugxkhc
   - &not522 age1emv3kzvwgl36hgllrv7rlekqy3y3c6eztadl3lv09ks3z9vv6vdqw06yqa
   - &pc-installer age1eh2vd6cdy23qazwg0hzq95pn9e6p8yaqu4g6zyan8gzal4x5ed5qful8kg
   - &rainbow-resort age19vzypddhexvvsf8xylstxc9znnkd8rxmamhjlt7elvz4j3zaf5tqqura6f
@@ -16,6 +17,7 @@ creation_rules:
     key_groups:
       - age:
           - *base
+          - *instance-20221213-1915
           - *not522
           - *rainbow-resort
           - *stinky-ssb
@@ -24,6 +26,7 @@ creation_rules:
     key_groups:
       - age:
           - *base
+          - *instance-20221213-1915
           - *not522
           - *rainbow-resort
           - *stinky-ssb
@@ -32,6 +35,7 @@ creation_rules:
     key_groups:
       - age:
           - *base
+          - *instance-20221213-1915
           - *not522
           - *pc-installer
           - *rainbow-resort
@@ -41,6 +45,7 @@ creation_rules:
     key_groups:
       - age:
           - *base
+          - *instance-20221213-1915
           - *not522
           - *pc-installer
           - *rainbow-resort
@@ -56,6 +61,7 @@ creation_rules:
       - age:
           - *base
           - *darkkirb
+          - *instance-20221213-1915
           - *not522
           - *pc-installer
           - *rainbow-resort
@@ -86,11 +92,32 @@ creation_rules:
       - age:
         - *base
         - *thinkrac
+  - path_regex: services/postgresql/instance-20221213-1915.yaml
+    key_groups:
+      - age:
+        - *base
+        - *instance-20221213-1915
+  - path_regex: services/acme/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *instance-20221213-1915
+  - path_regex: services/atticd/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *instance-20221213-1915
+  - path_regex: services/forgejo/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *instance-20221213-1915
   - path_regex: services/chir-rs/secrets.yaml
     key_groups:
       - age:
         - *base
         - *rainbow-resort
+        - *instance-20221213-1915
         - *not522
   - path_regex: programs/desktop/development/rust/secrets.yaml
     key_groups:

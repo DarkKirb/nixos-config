@@ -18,6 +18,7 @@ with lib;
   config = mkMerge [
     {
       environment.impermanence.enable = mkDefault (!config.boot.isContainer && !inTester);
+      environment.persistence."/persistent".enable = config.environment.impermanence.enable;
     }
     (mkIf config.environment.impermanence.enable {
       boot.initrd.systemd.services.rootfs-cleanup = {

@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  systemConfig,
+  ...
+}:
 {
   home.stateVersion = "24.11";
   home.activation.notify-services = lib.hm.dag.entryAfter [ "reloadSystemd" ] ''
@@ -15,4 +20,5 @@
     };
     Install.WantedBy = [ "basic.target" ];
   };
+  home.persistence.default.enable = systemConfig.environment.impermanence.enable;
 }

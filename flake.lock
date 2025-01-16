@@ -1,5 +1,33 @@
 {
   "nodes": {
+    "attic": {
+      "inputs": {
+        "crane": [
+          "crane"
+        ],
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "flake-parts": "flake-parts",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": "nixpkgs-stable"
+      },
+      "locked": {
+        "lastModified": 1726060175,
+        "narHash": "sha256-Iw13A9W1ud7qJlOS76jCRd8bdH8w5qSortgHQJ10xnU=",
+        "owner": "DarkKirb",
+        "repo": "attic",
+        "rev": "79a43f39e3f5f4ff7488b47f16fbe7ddbc1ca6f1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DarkKirb",
+        "repo": "attic",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -131,6 +159,35 @@
         "url": "https://git.chir.rs/darkkirb/chir.rs"
       }
     },
+    "crane": {
+      "inputs": {
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": [
+          "rust-overlay"
+        ]
+      },
+      "locked": {
+        "lastModified": 1674934931,
+        "narHash": "sha256-TmGfRDBK7EkR0VY8Jr0WU4WdyzZxiXDGVGUzIXPFXRI=",
+        "owner": "DarkKirb",
+        "repo": "crane",
+        "rev": "42c3f329daa267857c6bc6d21c9eec468e97e2d7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DarkKirb",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "devshell": {
       "inputs": {
         "nixpkgs": [
@@ -254,6 +311,27 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
+          "attic",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1725234343,
+        "narHash": "sha256-+ebgonl3NbiKD2UD0x4BszCZQ6sTfL4xioaM49o5B3Y=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "567b938d64d4b4112ee253b9274472dc3a346eb6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
+      "inputs": {
+        "nixpkgs-lib": [
           "nixpkgs"
         ]
       },
@@ -271,7 +349,7 @@
         "type": "github"
       }
     },
-    "flake-parts_2": {
+    "flake-parts_3": {
       "inputs": {
         "nixpkgs-lib": [
           "nix-eval-jobs",
@@ -292,7 +370,7 @@
         "type": "github"
       }
     },
-    "flake-parts_3": {
+    "flake-parts_4": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
       },
@@ -589,7 +667,7 @@
     },
     "nix-eval-jobs": {
       "inputs": {
-        "flake-parts": "flake-parts_2",
+        "flake-parts": "flake-parts_3",
         "lix": "lix_2",
         "nix-github-actions": "nix-github-actions",
         "nixpkgs": [
@@ -613,7 +691,7 @@
     },
     "nix-gaming": {
       "inputs": {
-        "flake-parts": "flake-parts_3",
+        "flake-parts": "flake-parts_4",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -793,6 +871,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1725826545,
+        "narHash": "sha256-L64N1rpLlXdc94H+F6scnrbuEu+utC03cDDVvvJGOME=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f4c846aee8e1e29062aa8514d5e0ab270f4ec2f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "plasma-manager": {
       "inputs": {
         "home-manager": "home-manager_2",
@@ -878,13 +972,15 @@
     },
     "root": {
       "inputs": {
+        "attic": "attic",
         "cargo2nix": "cargo2nix",
         "chir-rs": "chir-rs",
+        "crane": "crane",
         "devshell": "devshell",
         "disko": "disko",
         "element-web": "element-web",
         "flake-compat": "flake-compat",
-        "flake-parts": "flake-parts",
+        "flake-parts": "flake-parts_2",
         "flake-utils": "flake-utils",
         "flakey-profile": "flakey-profile",
         "gitignore": "gitignore",

@@ -2,6 +2,12 @@
   description = "Lotte’s nix configuration";
 
   inputs = {
+    attic = {
+      url = "github:DarkKirb/attic";
+      inputs.crane.follows = "crane";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     cargo2nix = {
       url = "github:DarkKirb/cargo2nix/master";
       inputs.flake-compat.follows = "flake-compat";
@@ -17,6 +23,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
       inputs.riscv-overlay.follows = "riscv-overlay";
+    };
+    crane = {
+      url = "github:DarkKirb/crane";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     devshell = {
       url = "github:numtide/devshell";
@@ -203,6 +216,10 @@
               }
             );
           systems' = {
+            instance-20221213-1915 = {
+              config = ./machine/instance-20221213-1915;
+              system = "aarch64-linux";
+            };
             not522 = {
               config = ./machine/not522;
               system = "riscv64-linux";
