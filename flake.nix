@@ -111,7 +111,6 @@
       inputs.flake-compat.follows = "flake-compat";
       inputs.gitignore.follows = "gitignore";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     riscv-overlay = {
       url = "github:DarkKirb/riscv-overlay";
