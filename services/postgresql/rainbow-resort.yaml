@@ -2,11 +2,15 @@ services:
     pgbouncer:
         settings:
             pgbouncer:
-                auth: ENC[AES256_GCM,data:WXC8Wp5Z9xZv95kzM1Ajw2Ix4kn810ur5mgtprLslBIGL7Q0cLQjt88lLlKJSw==,iv:KW/71zXP4xbN2pXlIanjcH09278mjP8vW1FM/gIyuzI=,tag:OvVn17KPjQLX4OfT1+fu+Q==,type:str]
+                auth: ENC[AES256_GCM,data:FcZ/iC8FSFTNas3Gj8OS44voNn0vt8oXW+AzjMsg4huBFfEOAVTEGaaTWk6AhOkjXCB9g3bUb7gKeWF7DrtlDL4EkwPcxY5OyVpiEmkjJHwkM4mqfYWQ0FTdsxqTmpOCWNhi,iv:+YsiSV9UYFugfUM9Prbyg98xousY9X0Ps1LUshRDtGA=,tag:p0GRW2ND/zmledBQFCaJJQ==,type:str]
+    prometheus:
+        exporters:
+            pgbouncer:
+                connectionEnv: ENC[AES256_GCM,data:+7ncLWW+NkG4cIxUWbfLOxuOGGumZ9jFxXBN3H2NlIEKGwZIPeNViLI0TBSUzlx5/vuotP7ZCOQ/VabHsG+MYmOOr0dQcnR1lvae5H1U6PPk+M3cuISr823vfhebOUzCbGLfcZexmld0hEftdnPkJumkQuKSOmYmwOkSvA==,iv:gBN3ziPHp4HGycJ7/51cm52bBf/7Xei5bj3awFbdUBw=,tag:PrKBs5/h+WQght/vej2rQA==,type:str]
 systemd:
     services:
         postgresql:
-            postStart: ENC[AES256_GCM,data:T3w5dfwHBOgpsZR2c/OE7gyn4a/IKMFsyH09m+NpBwbDZj5T5TIpZX2X,iv:sjmgDbmQPVdPX5HHwadbplmUqZXoV5YoH1/Ii/X8n7E=,tag:7hiqdohXxIaTjP2VFpl5sA==,type:str]
+            postStart: ENC[AES256_GCM,data:lV6TqulkmeMC6g8nb8GWJmrDX73Iq/bjX/095SbzBm3D2QZBfawmL02xJPJolkhOwIWPblYkVzZ9dYKk/Wvo1fZ3iFbpZfnywzM7Ae5sxQA6tfGS2WBQXUQS,iv:20s45n3tIhE1sni8FNCIBbdTnoAYXG1vh0wP+ILTXy0=,tag:3isJ2+AgREO6nesvqJDfjw==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -31,8 +35,8 @@ sops:
             REUxUC81alBKVGljZlZYNnc5Vld2NlUKCUZ7HYxWABHCX5eCoigdtGz8Hd331mpz
             jigXLmqmUY1syDSpyxKjaYtUBPKPO4+PeSKjGwIEOlgcxc7oCEDeFw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-11-26T08:56:51Z"
-    mac: ENC[AES256_GCM,data:BNRT1HEVdzMckBPWVxu3YaKHQCPyq+tz6rTDxyd/fhBRjJkU8zJU9QgyocovTd91/lxi1RkWRE4Ash31ZMhRV9//gQ5d+zElnuGT9kFVrvqiKZcjggInQyIh8+v6Joj09Be7pAW6qBjXTSgqn3KSdY58AD5ONNncNhCFIJk+35g=,iv:5ygjU6lnLpHgNZDY8b/AWCs/u2Ff4rSmAI2+TQsO7wc=,tag:8DtQhbJpb+cY9POMDox7LQ==,type:str]
+    lastmodified: "2025-01-16T08:27:38Z"
+    mac: ENC[AES256_GCM,data:wBLa83OMjjxryxTPo0SAIf1r5Mr4JMgMID4g4Xdz+qXpc0D9771d2s+oXmmVXmGP88dEPKKeub4J2naPVnnyJcz7iLtRAbwmzPQ2T5bO1qLTktBrdCNNc2wXmcdOQv82XO2cE+fmvYGw8+0z29YsVgiwHmoS9kEEO0yFM3C7ZYI=,iv:dgxPKMeSCXpOOFSHpvGP2fm8IHYpc5/T+UKhsX7msZM=,tag:YXaqLge09iwmmEahuLuk8w==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
-    version: 3.9.1
+    version: 3.9.2

@@ -17,4 +17,21 @@
         sopsFile = ./${config.networking.hostName}.yaml;
         owner = "pgbouncer";
       };
+  sops.secrets."services/prometheus/exporters/pgbouncer/connectionEnv" =
+    lib.mkIf config.services.postgresql.enable
+      {
+        sopsFile = ./${config.networking.hostName}.yaml;
+        owner = config.services.prometheus.exporters.pgbouncer.user;
+      };
+  services.prometheus.exporters.pgbouncer = {
+    enable = config.services.postgresql.enable;
+    port = 29714;
+    connecitonEnvFile =
+      config.sops.secrets."services/prometheus/exporters/pgbouncer/connectionEnv".path;
+  };
+  services.postgresql.ensureUsers = lib.mkIf config.services.postgresql.enable [
+    {
+      name = "stats_collector";
+    }
+  ];
 }
