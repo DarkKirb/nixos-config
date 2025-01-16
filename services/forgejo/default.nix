@@ -38,6 +38,8 @@
         ENABLE_OPENID_SIGNIN = true;
         ENABLE_OPENID_SIGNUP = true;
       };
+      server.DOMAIN = "git.chir.rs";
+      server.ROOT_URL = "https://git.chir.rs/";
       session.COOKIE_SECURE = true;
       metrics = {
         ENABLED = true;
