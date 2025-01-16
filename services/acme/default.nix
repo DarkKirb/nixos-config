@@ -33,13 +33,6 @@ in
       certs."int.chir.rs" = {
         domain = "*.int.chir.rs";
       };
-      certs."shitallover.me" = {
-        domain = "*.shitallover.me";
-        extraDomainNames = [ "shitallover.me" ];
-        dnsProvider = "gcloud";
-        credentialsFile = gcloud;
-        dnsResolver = "1.1.1.1:53";
-      };
     };
     sops.secrets."security/acme/dns".sopsFile = ./secrets.yaml;
     sops.secrets."security/acme/gcloud.json" = {
