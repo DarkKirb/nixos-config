@@ -16,6 +16,11 @@
       local all all              peer
       host  all all 127.0.0.1/32 scram-sha-256
     '';
+    settings = {
+      shared_preload_libraries = "pg_stat_statements";
+      "pg_stat_statements.track" = "all";
+    };
+
   };
   services.postgresqlBackup = {
     compression = "zstd";
