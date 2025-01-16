@@ -61,10 +61,6 @@
       name = "devterm-overlay";
       dtsFile = ./dts/devterm-overlay.dts;
     }
-    {
-      name = "uart0-overlay";
-      dtsFile = ./dts/uart0-overlay.dts;
-    }
   ];
   services.xserver.xkb.variant = lib.mkForce "us";
   console.keyMap = lib.mkForce "us";
