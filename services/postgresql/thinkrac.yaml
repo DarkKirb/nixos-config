@@ -3,10 +3,10 @@ services:
         settings:
             pgbouncer:
                 auth: ENC[AES256_GCM,data:rONeKGpb8FaR4LCDPKt8tfZNcEhBcIUv8e6PCfxgzUBhEJjTF6etDH7j2E1GIZdTmKuIWq5M/YU1kZ8JE4bZvpQhb/WrOO6Q9thXBOzylTp6ZKvjku+OPk/x3zOnNElqOmux,iv:X8KlUmK70K0wtc/RPzbL3vJ6plrc1lxjjdKMXJbB1II=,tag:qk7/NaqQtJUfSMRftnvlxQ==,type:str]
-        prometheus: null
+    prometheus:
         exporters:
             pgbouncer:
-                connectionEnv: ENC[AES256_GCM,data:5Jh7z5gMehzG1VBroRCaWZDqluBP9+ZVBlQ05f1ziatFX+Orwiylvm0x+CEIwqT3mx5aSYOGTJ7+i7dJktWwvHTLQ4iV+rGacxLR/vXemtEyuaQ/Ks5O3/Hr57/bUmRJRxiADW1XqC8sUqu+FJZP2/O2iI7qHbGTgy/Kog==,iv:kmmAirXLNZM1eV/XPkgwiKbHOR3d2A3b36f7QjGk2ts=,tag:L9PIHm6uHaIiJtf6hvzPaQ==,type:str]
+                connectionEnv: ENC[AES256_GCM,data:fu9inND9B4mq0bXW9fsB0pJkb4PlKgpS468ppvcU8A9jM6es1Z9gGU0FyM8kVwAOTR1BKL+L5aZ9KrWfJRfMaaovgM3CwY5Oq2h5zecEOLhCaUHCZ1jTNPdeZ2IahuFTxuT1DIKiugsj+zQDTePZCl6QdgQ1RSQ3ocZ+qQ==,iv:dpdZFinAs6rVSo/aVXPX3rOrqpSVPQpGgfLCcT8LTEI=,tag:feT7Dqsv9Wlsu8ke4LFxnA==,type:str]
 systemd:
     services:
         postgresql:
@@ -35,8 +35,8 @@ sops:
             eGRlN0tQQ3Y1TWNGZlhMc2hlNW5QTUkKUi6G8WpA4+fbwny75vleOkQ9AlNUzdq7
             E57OcJlyJw7r5S6ZVV47LTypk/wtTFokugOAhB7n2of+s5ScUXUX2w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-01-16T08:27:47Z"
-    mac: ENC[AES256_GCM,data:zraueFtLWjg4jaZoPEqvp1zbmWRPLTU3K8t4KF+ZMjxFsYGu955GJA+QFfMrrCxH/xqzgmz2bsdyvzJHyqCtgJTCCm40vU+QEg/C16xDf4ZUIxfm7+VSAUEiw7iN1plEKxGAI1jFfMHDWuYrfgCfJw2mbbqMGsL/D3Ik64cuMtg=,iv:pNBwFc1AXS2uBVLerGVYtxk/iY4UC/NpgUojgOpTxJY=,tag:/+/d5EOZk0OFVwdJwDwxLw==,type:str]
+    lastmodified: "2025-01-16T19:34:33Z"
+    mac: ENC[AES256_GCM,data:tqECdP2Br6ZpOjNDhKE8jTjfQcsy9nuAW4mOpPYwHW6Saiqk/S9Foc0JY05ZOP8h2NJTydjZuQkhTNExWw3wgLpLSy5T7UlJc1kNh6TBfHWTXh0hdD5bRc4NoqXQuqjNAOfEgmHCRjhgRxmqhRd9NK9WlufY+EchKANdLeUjy+w=,iv:ZY8U8BFi9l5L8Bl3u58o9t8Kv14kKCHcqtPV7QmQHxQ=,tag:J6LIUBP5RnF5HwFoRwqI9A==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
-    version: 3.9.2
+    version: 3.9.3
