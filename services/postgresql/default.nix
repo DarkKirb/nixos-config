@@ -39,4 +39,9 @@
     owner = "postgres";
     sopsFile = ./${config.networking.hostName}.yaml;
   };
+  services.prometheus.exporters.postgres = {
+    enable = config.services.postgresql.enable;
+    user = "postgres";
+    port = 1589;
+  };
 }

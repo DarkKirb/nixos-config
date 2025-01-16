@@ -14,6 +14,7 @@
     nixos-hardware.nixosModules.common-gpu-amd
     nixos-hardware.nixosModules.common-pc
     nixos-hardware.nixosModules.common-pc-ssd
+    ./postgresql.nix
   ];
   hardware.cpu.amd.updateMicrocode = true;
   boot.initrd.availableKernelModules = [
