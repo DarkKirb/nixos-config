@@ -84,7 +84,10 @@ in
     Service = {
       Type = "oneshot";
       RemainAfterExit = "yes";
-      ExecStart = "${lib.getExe pkgs.betterdiscordctl} reinstall";
+      ExecStart = pkgs.writeScript "install-betterdiscord" ''
+        #!${lib.getExe pkgs.bash}
+        ${lib.getExe pkgs.betterdiscordctl} reinstall || ${lib.getExe pkgs.betterdiscordctl} install
+      '';
     };
     Install.WantedBy = [ "graphical-session.target" ];
   };
