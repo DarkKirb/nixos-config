@@ -18,6 +18,9 @@ let
     nixos-config.nixosConfigurations.thinkrac.config.system.build.diskoScript.drvPath
     nixos-config.nixosConfigurations.thinkrac.pkgs.stdenv.drvPath
     (nixos-config.nixosConfigurations.thinkrac.pkgs.closureInfo { rootPaths = [ ]; }).drvPath
+    nixos-config.nixosConfigurations.nas.config.system.build.toplevel
+    nixos-config.nixosConfigurations.nas.pkgs.stdenv.drvPath
+    (nixos-config.nixosConfigurations.nas.pkgs.closureInfo { rootPaths = [ ]; }).drvPath
   ] ++ map (i: i.outPath) (builtins.filter builtins.isAttrs (builtins.attrValues pureInputs));
 
   closureInfo = pkgs.closureInfo { rootPaths = dependencies; };
