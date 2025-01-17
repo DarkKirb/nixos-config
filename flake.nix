@@ -70,6 +70,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hydra = {
+      url = "git+https://git.lix.systems/lix-project/hydra";
+      #inputs.lix.follows = "lix";
+      #inputs.nix-eval-jobs.follows = "nix-eval-jobs";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
     impermanence = {
       url = "github:DarkKirb/impermanence/change-default-link-type";
     };
@@ -219,6 +225,10 @@
             instance-20221213-1915 = {
               config = ./machine/instance-20221213-1915;
               system = "aarch64-linux";
+            };
+            nas = {
+              config = ./machine/nas;
+              system = "x86_64-linux";
             };
             not522 = {
               config = ./machine/not522;

@@ -29,7 +29,7 @@ with lib;
           ];
         }
       ])
-      [
+      (mkIf (config.networking.hostName != "nas") [
         {
           hostName = "build-nas";
           systems = [
@@ -55,7 +55,7 @@ with lib;
             "ca-derivations"
           ];
         }
-      ]
+      ])
       (mkIf (config.networking.hostName != "rainbow-resort") [
         {
           hostName = "build-rainbow-resort";
