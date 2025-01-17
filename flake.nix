@@ -303,6 +303,7 @@
                   art-lotte
                   fish
                   package-updater
+                  yiffstash
                   ;
               }
               // (

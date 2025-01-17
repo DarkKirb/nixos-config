@@ -37,4 +37,5 @@ inputs: final: prev: {
   plover_stroke = final.python3Packages.callPackage ./stenography/plover_stroke { };
   plover_uinput = final.python3Packages.callPackage ./stenography/plover_uinput { };
   rtf_tokenize = final.python3Packages.callPackage ./stenography/rtf_tokenize { };
+  yiffstash = final.python3Packages.callPackage ./art/yiffstash { };
 }

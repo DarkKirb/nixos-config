@@ -128,6 +128,16 @@ creation_rules:
       - age:
         - *base
         - *nas
+  - path_regex: services/prometheus/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nas
+  - path_regex: services/yiffstash/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nas
   - path_regex: services/chir-rs/secrets.yaml
     key_groups:
       - age:

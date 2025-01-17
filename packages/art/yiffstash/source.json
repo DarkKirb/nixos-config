@@ -1,0 +1,12 @@
+{
+    "url": "https://git.chir.rs/CarolineHusky/Caroline_Yiffstash_bot.git",
+    "rev": "d1553380be462502918eebbccdc86ee345d2cc6e",
+    "date": "2024-03-18T21:42:10+01:00",
+    "path": "/nix/store/9gmmvjqag8l2pkzkdk4rf0a78nml3cfm-Caroline_Yiffstash_bot",
+    "sha256": "0lzjm3cvr7fdw6prgrxvc1dvm9xhxx4nrzdsmp58xxi3cpwsmbpr",
+    "hash": "sha256-+a6q+WUj9o7Krbr9bEnvsKe6W2C755ev4c2dvNmo8lM=",
+    "fetchLFS": true,
+    "fetchSubmodules": false,
+    "deepClone": false,
+    "leaveDotGit": false
+}
