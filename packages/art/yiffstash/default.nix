@@ -6,7 +6,7 @@
   jq,
 }:
 let
-  source = builtins.fromJSON (builtins.readFile ./yiffstash.json);
+  source = builtins.fromJSON (builtins.readFile ./source.json);
   python = python3.withPackages (pkgs: with pkgs; [ requests ]);
   src = fetchgit {
     inherit (source)
