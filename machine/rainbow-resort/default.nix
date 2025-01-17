@@ -13,7 +13,7 @@
     "${nixos-config}/config/graphical/plymouth.nix"
     "${nixos-config}/services/chir-rs"
     "${nixos-config}/services/ollama.nix"
-    "${nixos-config}/services/forgejo-runner.nix"
+    "${nixos-config}/services/forgejo-runner"
   ];
   system.stateVersion = "24.11";
   specialisation.sway = {
