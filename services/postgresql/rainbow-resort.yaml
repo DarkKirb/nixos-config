@@ -6,7 +6,7 @@ services:
     prometheus:
         exporters:
             pgbouncer:
-                connectionEnv: ENC[AES256_GCM,data:+7ncLWW+NkG4cIxUWbfLOxuOGGumZ9jFxXBN3H2NlIEKGwZIPeNViLI0TBSUzlx5/vuotP7ZCOQ/VabHsG+MYmOOr0dQcnR1lvae5H1U6PPk+M3cuISr823vfhebOUzCbGLfcZexmld0hEftdnPkJumkQuKSOmYmwOkSvA==,iv:gBN3ziPHp4HGycJ7/51cm52bBf/7Xei5bj3awFbdUBw=,tag:PrKBs5/h+WQght/vej2rQA==,type:str]
+                connectionEnv: ENC[AES256_GCM,data:ULyVRiwiyHiMvpFnz5ZtaCpXIbLgbBUGuWYE+jTIdKYHBkaJn2/x0jWcsTiHqg6aDsWoZz2vFx9AcuuAT/+0tlFvEg5UuY6FHwjiNZY8KrZx5j3bLOL7ccyHkZUxrCRT//RCRA+wrXAJMk040pVMcLpMYxHxWBx7uaYhzMULpnF1HIBc2D9lV6qZE5k=,iv:POKeWl3ghm/E3f2DuofqWYWzrYo+xF2pLOTsZNgq2xY=,tag:PPEDSPh4N3AMd9u214N78Q==,type:str]
 systemd:
     services:
         postgresql:
@@ -35,8 +35,8 @@ sops:
             REUxUC81alBKVGljZlZYNnc5Vld2NlUKCUZ7HYxWABHCX5eCoigdtGz8Hd331mpz
             jigXLmqmUY1syDSpyxKjaYtUBPKPO4+PeSKjGwIEOlgcxc7oCEDeFw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-01-16T08:27:38Z"
-    mac: ENC[AES256_GCM,data:wBLa83OMjjxryxTPo0SAIf1r5Mr4JMgMID4g4Xdz+qXpc0D9771d2s+oXmmVXmGP88dEPKKeub4J2naPVnnyJcz7iLtRAbwmzPQ2T5bO1qLTktBrdCNNc2wXmcdOQv82XO2cE+fmvYGw8+0z29YsVgiwHmoS9kEEO0yFM3C7ZYI=,iv:dgxPKMeSCXpOOFSHpvGP2fm8IHYpc5/T+UKhsX7msZM=,tag:YXaqLge09iwmmEahuLuk8w==,type:str]
+    lastmodified: "2025-01-17T09:04:41Z"
+    mac: ENC[AES256_GCM,data:kGfeB0sgJ4yZfOhi0uKtf5ccDg4lmoa/aY83989WpErRnFwDWMbDESO5z/iQNXnYo7q7jnH8cxJ/0/9WMw+f+z669PhV74NwdjoONNMP2zBcIipC1WbCq00TDAmcU2cF6S0MH3VGkZ0iPYt52vv5mxoswLORW+avHcW/3c6/r2Q=,iv:obnU8fkvRDLhXggwHFIeWfdRYKLLRs7SogTS98AT5Gk=,tag:I4wF0gQtWia6VXR8KUveMA==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
-    version: 3.9.2
+    version: 3.9.3
