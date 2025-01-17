@@ -15,11 +15,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1737101122,
-        "narHash": "sha256-TlSdC/RRGjPETbQQSePkVui+PwvmHnxB4fCU/4rT+bU=",
+        "lastModified": 1737102119,
+        "narHash": "sha256-94dagj3/hOAeuQl403n6OgpVAoeEQN6fh1S/YjQY/wU=",
         "owner": "DarkKirb",
         "repo": "attic",
-        "rev": "ad8f90fbc46b76dc9fcd42c7d6c3bb689c7867a3",
+        "rev": "bf3bd0755c5e312787a6b72c1d0b6d7272c239bb",
         "type": "github"
       },
       "original": {
