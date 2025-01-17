@@ -45,27 +45,6 @@
         ];
       }
       {
-        job_name = "matrix-media-repo";
-        static_configs = [
-          {
-            targets = [
-              "nixos-8gb-fsn1-1.int.chir.rs:20855"
-            ];
-          }
-        ];
-      }
-      {
-        job_name = "matrix-synapse";
-        metrics_path = "/_synapse/metrics";
-        static_configs = [
-          {
-            targets = [
-              "nas.int.chir.rs:8008"
-            ];
-          }
-        ];
-      }
-      {
         job_name = "postgresql";
         static_configs = [
           {
@@ -116,6 +95,16 @@
               "nixos-8gb-fsn1-1.int.chir.rs:5621"
               "instance-20221213-1915.int.chir.rs:5621"
               "rainbow-resort.int.chir.rs:5621"
+            ];
+          }
+        ];
+      }
+      {
+        job_name = "restic";
+        static_configs = [
+          {
+            targets = [
+              "localhost:44632"
             ];
           }
         ];

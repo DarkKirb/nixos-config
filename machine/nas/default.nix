@@ -14,6 +14,10 @@
     "${nixos-config}/services/yiffstash"
     "${nixos-config}/services/reverse-proxy.nix"
     "${nixos-config}/services/jellyfin.nix"
+    "${nixos-config}/services/forgejo-runner"
+    "${nixos-config}/services/renovate"
+    "${nixos-config}/services/chir-rs"
+    ./restic-monitor.nix
   ];
 
   nix.settings.substituters = lib.mkForce [
