@@ -77,4 +77,20 @@ in
     group = "chir-rs";
   };
   users.groups.chir-rs = { };
+  services.caddy.virtualHosts."lotte.chir.rs" = {
+    useACMEHost = "chir.rs";
+    logFormat = lib.mkForce "";
+    extraConfig = ''
+      import baseConfig
+
+      reverse_proxy {
+        to http://instance-20221213-1915.int.chir.rs:5621 http://nixos-8gb-fsn1-1.int.chir.rs:5621 http://nas.int.chir.rs:5621
+        trusted_proxies private_ranges
+        lb_retries 3
+        lb_try_duration 2s
+        health_uri /.api/readyz
+        header_up Host {upstream_hostport}
+      }
+    '';
+  };
 }
