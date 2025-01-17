@@ -8,7 +8,7 @@ with lib;
   config = mkIf (!config.isInstaller) {
     nix.distributedBuilds = true;
     nix.buildMachines = mkMerge [
-      [
+      (mkIf (config.networking.hostName != "instance-20221213-1915") [
         {
           hostName = "build-aarch64";
           systems = [
@@ -28,7 +28,7 @@ with lib;
             "big-parallel"
           ];
         }
-      ]
+      ])
       [
         {
           hostName = "build-nas";
