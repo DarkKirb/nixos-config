@@ -37,7 +37,7 @@
     }); do
       username=$(echo $ref | cut -d= -f1)
       password=$(echo $ref | cut -d= -f2)
-      ${lib.getExe' config.services.postgresql.package "psql"} -U postgres -c "ALTER ROLE $username WITH LOGIN PASSWORD '$password';"
+      ${lib.getExe' config.services.postgresql.package "psql"} -U postgres -c "ALTER ROLE \"$username\" WITH LOGIN PASSWORD '$password';"
     done
   '';
   sops.secrets."systemd/services/postgresql/postStart" = lib.mkIf config.services.postgresql.enable {
