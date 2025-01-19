@@ -2,11 +2,12 @@
   config,
   pkgs,
   lib,
+  systemConfig,
   ...
 }:
 {
   programs.gpg = {
-    enable = true;
+    enable = systemConfig.isGraphical;
     homedir = "${config.xdg.dataHome}/gnupg";
     mutableKeys = false;
     mutableTrust = false;
@@ -19,12 +20,12 @@
     ];
   };
   services.gpg-agent = {
-    enable = true;
+    enable = systemConfig.isGraphical;
     pinentryPackage = pkgs.pinentry-qt;
     enableExtraSocket = true;
   };
   sops.secrets."pgp/0xB4E3D4801C49EC5E.asc".sopsFile = ./privkey.yaml;
-  systemd.user.services.import-gpg-privkey = {
+  systemd.user.services.import-gpg-privkey = lib.mkIf systemConfig.isGraphical {
     Unit = {
       Description = "Imports the GPG private key";
       Wants = [ "sops-nix.service" ];
@@ -43,5 +44,5 @@
     };
     Install.WantedBy = [ "graphical-session-pre.target" ];
   };
-  programs.fish.loginShellInit = "${lib.getExe' config.programs.gpg.package "gpgconf"} --launch gpg-agent";
+  programs.fish.loginShellInit = lib.mkIf systemConfig.isGraphical "${lib.getExe' config.programs.gpg.package "gpgconf"} --launch gpg-agent";
 }
