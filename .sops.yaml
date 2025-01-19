@@ -112,6 +112,7 @@ creation_rules:
     key_groups:
       - age:
         - *base
+        - *nas
         - *instance-20221213-1915
   - path_regex: services/atticd/secrets.yaml
     key_groups:
