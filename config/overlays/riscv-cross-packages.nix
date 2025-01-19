@@ -27,6 +27,9 @@ in
       gnupg = super.gnupg.override {
         withTpm2Tss = false;
       };
+      gnupg24 = super.gnupg24.override {
+        withTpm2Tss = false;
+      };
     })
   ];
   environment.etc."nix/inputs/nixpkgs-overlays/riscv-cross-packages.nix".text = ''
