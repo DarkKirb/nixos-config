@@ -247,11 +247,7 @@ in
 
   };
   sops.secrets."systemd/services/attic-queue/serviceConfig/environment".sopsFile = ./secrets.yaml;
-  sops.secrets."services/hydra/pgpass" = {
-    sopsFile = ./secrets.yaml;
-    owner = "hydra";
-    path = "/var/lib/hydra/pgpass";
-  };
+  sops.secrets."services/hydra/environment".sopsFile = ./secrets.yaml;
   sops.secrets."services/hydra/pgpass-www" = {
     sopsFile = ./secrets.yaml;
     owner = "hydra-www";
@@ -266,4 +262,22 @@ in
     hydra = "host=127.0.0.1 port=5432 auth_user=hydra dbname=hydra";
     hydra-queue-runner = "host=127.0.0.1 port=5432 auth_user=hydra-queue-runner dbname=hydra-queue-runner";
   };
+  systemd.services.hydra-init.serviceConfig.EnvironmentFile =
+    config.sops.secrets."services/hydra/environment".path;
+  systemd.services.hydra-server.serviceConfig.EnvironmentFile =
+    config.sops.secrets."services/hydra/environment".path;
+  systemd.services.hydra-queue-runner.serviceConfig.EnvironmentFile =
+    config.sops.secrets."services/hydra/environment".path;
+  systemd.services.hydra-evaluator.serviceConfig.EnvironmentFile =
+    config.sops.secrets."services/hydra/environment".path;
+  systemd.services.hydra-update-gc-roots.serviceConfig.EnvironmentFile =
+    config.sops.secrets."services/hydra/environment".path;
+  systemd.services.hydra-send-stats.serviceConfig.EnvironmentFile =
+    config.sops.secrets."services/hydra/environment".path;
+  systemd.services.hydra-notify.serviceConfig.EnvironmentFile =
+    config.sops.secrets."services/hydra/environment".path;
+  systemd.services.hydra-check-space.serviceConfig.EnvironmentFile =
+    config.sops.secrets."services/hydra/environment".path;
+  systemd.services.hydra-compress-logs.serviceConfig.EnvironmentFile =
+    config.sops.secrets."services/hydra/environment".path;
 }
