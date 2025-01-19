@@ -37,4 +37,5 @@
     "/var/tmp"
   ];
   services.caddy.enable = true;
+  sops.age.sshKeyPaths = lib.mkForce [ "/etc/ssh/ssh_host_ed25519_key" ];
 }
