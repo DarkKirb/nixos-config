@@ -129,7 +129,6 @@ in
           imports = [
             ./konsole.nix
             ./telegram-desktop.nix
-            ./element-desktop.nix
             ./discord.nix
           ];
           home.activation.nuke-gtkrc = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''

@@ -39,14 +39,6 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    element-web = {
-      url = "github:darkkirb/element-web";
-      inputs.devshell.follows = "devshell";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.matrix-js-sdk.follows = "matrix-js-sdk";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -91,13 +83,6 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.flakey-profile.follows = "flakey-profile";
       inputs.lix.follows = "lix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    matrix-js-sdk = {
-      url = "github:darkkirb/matrix-js-sdk";
-      inputs.devshell.follows = "devshell";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-eval-jobs = {
@@ -310,8 +295,6 @@
                 if name != "riscv64-linux" then
                   {
                     inherit (pkgs)
-                      element-desktop
-                      element-web
                       fcitx5-configtool
                       fcitx5-table-extra
                       kodi-joyn

@@ -1,7 +1,6 @@
 inputs: final: prev: {
   github-updater = final.callPackage ./updaters/github.nix { };
   art-lotte = final.callPackage ./art/lotte { };
-  #inherit (prev.inputs.element-web.packages.${prev.system}) element-web;
   inherit (final.kdePackages) fcitx5-configtool;
   fcitx5-table-extra = prev.fcitx5-table-extra.overrideAttrs (super: {
     patches = super.patches or [ ] ++ [

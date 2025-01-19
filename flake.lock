@@ -228,38 +228,6 @@
         "type": "github"
       }
     },
-    "element-web": {
-      "inputs": {
-        "devshell": [
-          "devshell"
-        ],
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "matrix-js-sdk": [
-          "matrix-js-sdk"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1732439059,
-        "narHash": "sha256-UrOc9NB1UnV01l6xFHZuWIQAGQizB+mytrJE6yfkwWQ=",
-        "owner": "darkkirb",
-        "repo": "element-web",
-        "rev": "96692a8a217ed4ddc0243acdab5d3aefeb9bc9a6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "darkkirb",
-        "repo": "element-web",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -719,35 +687,6 @@
         "url": "https://git.lix.systems/lix-project/lix/archive/main.tar.gz"
       }
     },
-    "matrix-js-sdk": {
-      "inputs": {
-        "devshell": [
-          "devshell"
-        ],
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1732172057,
-        "narHash": "sha256-WwYQAEIWA1tqCpU1yqrLXnrdUJJIux6OIDtB4svR/G8=",
-        "owner": "darkkirb",
-        "repo": "matrix-js-sdk",
-        "rev": "a0304468b7e4a166da1bbdd7a46629cd1489975f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "darkkirb",
-        "repo": "matrix-js-sdk",
-        "type": "github"
-      }
-    },
     "nix-eval-jobs": {
       "inputs": {
         "flake-parts": "flake-parts_3",
@@ -1175,7 +1114,6 @@
         "crane": "crane",
         "devshell": "devshell",
         "disko": "disko",
-        "element-web": "element-web",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts_2",
         "flake-utils": "flake-utils",
@@ -1186,7 +1124,6 @@
         "impermanence": "impermanence",
         "lix": "lix_2",
         "lix-module": "lix-module",
-        "matrix-js-sdk": "matrix-js-sdk",
         "nix-eval-jobs": "nix-eval-jobs_2",
         "nix-gaming": "nix-gaming",
         "nix-vscode-extensions": "nix-vscode-extensions",
