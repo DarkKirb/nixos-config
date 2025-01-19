@@ -18,6 +18,7 @@
     "${nixos-config}/services/renovate"
     "${nixos-config}/services/chir-rs"
     ./restic-monitor.nix
+    ./postgresql.nix
   ];
 
   nix.settings.substituters = lib.mkForce [
