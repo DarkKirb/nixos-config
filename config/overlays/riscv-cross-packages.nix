@@ -24,6 +24,9 @@ in
     (self: super: {
       inherit (pkgs_x86_64) lix palette-generator;
       inherit (pkgs_x86_64_2) nixos-option;
+      gnupg = super.gnupg.override {
+        withTpm2Tss = false;
+      };
     })
   ];
   environment.etc."nix/inputs/nixpkgs-overlays/riscv-cross-packages.nix".text = ''
