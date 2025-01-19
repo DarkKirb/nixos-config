@@ -134,8 +134,16 @@ in
     "https://"
     "http://"
   ];
-  sops.secrets."services/hydra/gitea_token".sopsFile = ./secrets.yaml;
-  sops.secrets."services/hydra/github_token".sopsFile = ./secrets.yaml;
+  sops.secrets."services/hydra/gitea_token" = {
+    sopsFile = ./secrets.yaml;
+    owner = "hydra";
+    mode = "0440";
+  };
+  sops.secrets."services/hydra/github_token" = {
+    sopsFile = ./secrets.yaml;
+    owner = "hydra";
+    mode = "0440";
+  };
   sops.secrets."services/hydra/cache-key" = {
     owner = "hydra-www";
     mode = "0440";
