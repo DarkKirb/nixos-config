@@ -80,7 +80,7 @@ in
   ];
   services.hydra-dev = {
     enable = true;
-    dbi = "dbi:Pg:dbname=hydra;user=hydra;host=localhost;port=6432";
+    dbi = "dbi:Pg:dbname=hydra;user=hydra;host=localhost;port=5432";
     package = hydra.packages.${system}.hydra.overrideAttrs (super: {
       doCheck = false;
       doInstallCheck = false;
@@ -247,7 +247,7 @@ in
 
   };
   sops.secrets."systemd/services/attic-queue/serviceConfig/environment".sopsFile = ./secrets.yaml;
-  sops.secrets."services/hydra/environment".sopsFile = ./secrets.yaml;
+  sops.secrets."services/hydra/environment".^sopsFile = ./secrets.yaml;
   services.pgbouncer.settings.databases = {
     hydra = "host=127.0.0.1 port=5432 auth_user=hydra dbname=hydra";
     hydra-queue-runner = "host=127.0.0.1 port=5432 auth_user=hydra-queue-runner dbname=hydra-queue-runner";
