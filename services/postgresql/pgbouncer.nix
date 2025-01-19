@@ -8,6 +8,7 @@
         auth_type = "scram-sha-256";
         auth_file = config.sops.secrets."services/pgbouncer/settings/pgbouncer/auth".path;
         ignore_startup_parameters = "extra_float_digits";
+        stats_users = "pgbouncer";
       };
     };
   };
