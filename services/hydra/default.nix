@@ -80,7 +80,7 @@ in
   ];
   services.hydra-dev = {
     enable = true;
-    dbi = "dbi:Pg:dbname=hydra;user=hydra;host=localhost;pg_port=6432";
+    dbi = "dbi:Pg:dbname=hydra;user=hydra;host=localhost;port=6432";
     package = hydra.packages.${system}.hydra.overrideAttrs (super: {
       doCheck = false;
       doInstallCheck = false;
