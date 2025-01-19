@@ -47,4 +47,6 @@
     "gccarch-rv64gc_zba_zbb"
   ];
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+  boot.initrd.systemd.tpm2.enable = lib.mkForce false;
+  systemd.tpm2.enable = lib.mkForce false;
 }
