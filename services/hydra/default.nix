@@ -248,16 +248,6 @@ in
   };
   sops.secrets."systemd/services/attic-queue/serviceConfig/environment".sopsFile = ./secrets.yaml;
   sops.secrets."services/hydra/environment".sopsFile = ./secrets.yaml;
-  sops.secrets."services/hydra/pgpass-www" = {
-    sopsFile = ./secrets.yaml;
-    owner = "hydra-www";
-    path = "/var/lib/hydra/pgpass-www";
-  };
-  sops.secrets."services/hydra/pgpass-queue-runner" = {
-    sopsFile = ./secrets.yaml;
-    owner = "hydra-queue-runner";
-    path = "/var/lib/hydra/pgpass-queue-runner";
-  };
   services.pgbouncer.settings.databases = {
     hydra = "host=127.0.0.1 port=5432 auth_user=hydra dbname=hydra";
     hydra-queue-runner = "host=127.0.0.1 port=5432 auth_user=hydra-queue-runner dbname=hydra-queue-runner";
