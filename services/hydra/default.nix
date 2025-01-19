@@ -80,6 +80,7 @@ in
   ];
   services.hydra-dev = {
     enable = true;
+    dbi = "dbi:Pg:dbname=hydra;user=hydra;host=localhost;pg_port=6432";
     package = hydra.packages.${system}.hydra.overrideAttrs (super: {
       doCheck = false;
       doInstallCheck = false;
@@ -236,12 +237,33 @@ in
     serviceConfig = {
       User = "hydra-queue-runner";
       Group = "hydra";
+      EnvironmentFile = config.sops.secrets."systemd/services/attic-queue/serviceConfig/environment".path;
     };
-    script = ''
-      export QUEUE_PATH=/var/lib/hydra/queue-runner/upload
-      export DATABASE_PATH=postgresql:///hydra-queue-runner
-      export RUST_LOG=info
-      exec ${attic.packages.${system}.attic-queue}/bin/attic-queue
-    '';
+    environment = {
+      QUEUE_PATH = "/var/lib/hydra/queue-runner/upload";
+      RUST_LOG = "info";
+    };
+    script = lib.getExe' attic.packages.${system}.attic-queue "attic-queue";
+
+  };
+  sops.secrets."systemd/services/attic-queue/serviceConfig/environment".sopsFile = ./secrets.yaml;
+  sops.secrets."services/hydra/pgpass" = {
+    sopsFile = ./secrets.yaml;
+    owner = "hydra";
+    path = "/var/lib/hydra/pgpass";
+  };
+  sops.secrets."services/hydra/pgpass-www" = {
+    sopsFile = ./secrets.yaml;
+    owner = "hydra-www";
+    path = "/var/lib/hydra/pgpass-www";
+  };
+  sops.secrets."services/hydra/pgpass-queue-runner" = {
+    sopsFile = ./secrets.yaml;
+    owner = "hydra-queue-runner";
+    path = "/var/lib/hydra/pgpass-queue-runner";
+  };
+  services.pgbouncer.settings.databases = {
+    hydra = "host=127.0.0.1 port=5432 auth_user=hydra dbname=hydra";
+    hydra-queue-runner = "host=127.0.0.1 port=5432 auth_user=hydra-queue-runner dbname=hydra-queue-runner";
   };
 }
