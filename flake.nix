@@ -319,6 +319,21 @@
                   fish
                   package-updater
                   yiffstash
+                  emoji-caro
+                  emoji-lotte
+                  emoji-volpeon-blobfox
+                  emoji-volpeon-bunhd
+                  emoji-volpeon-drgn
+                  emoji-volpeon-floof
+                  emoji-volpeon-fox
+                  emoji-volpeon-gphn
+                  emoji-volpeon-neocat
+                  emoji-volpeon-neofox
+                  emoji-volpeon-raccoon
+                  emoji-volpeon-vlpn
+                  emoji-volpeon-wvrn
+                  emoji-raccoon
+                  emoji-rosaflags
                   ;
               }
               // (
