@@ -1,4 +1,9 @@
-{ modulesPath, nixos-config, ... }:
+{
+  modulesPath,
+  nixos-config,
+  lib,
+  ...
+}:
 {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -130,17 +135,20 @@
 
   system.stateVersion = "21.11";
 
-  networking.useDHCP = false;
-
-  systemd.network = {
-    enable = true;
-    networks."ens3".extraConfig = ''
-      [Match]
-      Name = ens3
-      [Network]
-      Address = 2a01:4f8:1c17:d953:b4e1:08ff:e658:6f49/64
-      Gateway = fe80::1
-    '';
+  networking.interfaces.ens3.ipv6 = {
+    addresses = [
+      {
+        prefixLength = 64;
+        address = "2a01:4f8:1c17:d953:b4e1:08ff:e658:6f49";
+      }
+    ];
+    routes = [
+      {
+        address = "::";
+        prefixLength = 0;
+        via = "fe80::1";
+      }
+    ];
   };
 
   nix.settings.cores = 2;
@@ -156,5 +164,7 @@
     "gccarch-skylake"
     "ca-derivations"
   ];
+  services.resolved.enable = false;
+  services.bind.forwarders = lib.mkForce [ ];
 
 }
