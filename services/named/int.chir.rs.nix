@@ -19,7 +19,7 @@ in
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 39;
+    serial = 40;
   };
   NS = [
     "ns1.chir.rs."
@@ -238,16 +238,7 @@ in
     minio-console.CNAME = [ (ttl zoneTTL (cname "nixos-8gb-fsn1-1")) ];
     backup.CNAME = [ (ttl zoneTTL (cname "nas")) ];
     hydra.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    mastodon.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    matrix.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    rspamd.CNAME = [ (ttl zoneTTL (cname "nixos-8gb-fsn1-1")) ];
     moa.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    matrix-admin.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    mautrix-discord.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    mautrix-signal.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    mautrix-telegram.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    mautrix-whatsapp.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    weblate.CNAME = [ (ttl zoneTTL (cname "nas")) ];
     jellyfin.CNAME = [ (ttl zoneTTL (cname "nas")) ];
     _acme-challenge = delegateTo [
       "ns1.chir.rs."

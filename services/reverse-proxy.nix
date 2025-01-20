@@ -34,17 +34,6 @@ in
           header Location https://akko.chir.rs{path}
           respond 301
         }
-        handle /.well-known/matrix/server {
-          header Access-Control-Allow-Origin *
-          header Content-Type application/json
-          respond "{ \"m.server\": \"matrix.chir.rs:443\" }" 200
-        }
-
-        handle /.well-known/matrix/client {
-          header Access-Control-Allow-Origin *
-          header Content-Type application/json
-          respond "{ \"m.homeserver\": { \"base_url\": \"https://matrix.chir.rs\" } }" 200
-        }
       '';
     };
   };

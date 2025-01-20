@@ -166,7 +166,7 @@ let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 57;
+      serial = 58;
     };
     NS = [
       "ns1.chir.rs."
@@ -178,38 +178,6 @@ let
       (ttl zoneTTL (mx.mx 10 "mx.zoho.eu."))
       (ttl zoneTTL (mx.mx 20 "mx2.zoho.eu."))
       (ttl zoneTTL (mx.mx 50 "mx3.zoho.eu."))
-    ];
-    SRV = [
-      {
-        service = "submission";
-        proto = "tcp";
-        port = 587;
-        target = "mail.chir.rs.";
-      }
-      {
-        service = "imap";
-        proto = "tcp";
-        port = 143;
-        target = "mail.chir.rs.";
-      }
-      {
-        service = "imaps";
-        proto = "tcp";
-        port = 993;
-        target = "mail.chir.rs.";
-      }
-      {
-        service = "pop3";
-        proto = "tcp";
-        port = 110;
-        target = "mail.chir.rs.";
-      }
-      {
-        service = "pop3s";
-        proto = "tcp";
-        port = 995;
-        target = "mail.chir.rs.";
-      }
     ];
     TXT = [
       (ttl zoneTTL (txt "v=spf1 include:zoho.eu ~all"))
@@ -236,11 +204,6 @@ let
           txt "v=DMARC1; p=reject; rua=mailto:dmarc@chir.rs; ruf=mailto:dmarc@chir.rs; sp=reject; adkim=s; aspf=s"
         ))
       ];
-      _domainkey.subdomains.mail.TXT = [
-        (ttl zoneTTL (
-          txt "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDTZvuDWFmZOOMr9pogMK5lFBjV3nRAjUpFv3o0d4KhbRW/zVrOOdfdt83F6zSLzUqrxSOG3uKVG+J0KR4kX4BbYflSLZ++y91C0Uu5d+o3A8Y/z2vUSe5YVt44IaDQoPCCpuWEYyqKIEaKGXNFPvlsO6y551biM3raNjq5kEpb3wIDAQAB"
-        ))
-      ];
       _domainkey.subdomains.zmail.TXT = [
         (ttl zoneTTL (
           txt "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCYVA1GcJ+JSl/Qv3hHtnge+FwAMn0+4KXWH3Ut4Ma6li3jT3ibO3d7sk7D4jmqwSQH+vCh/HC7+0PI8PYM9TQIecVwdwBF/29yMpiyVDyEc8ppRfU5KeYJsPxSAS/quFHy3M24qfckXb5aor6aI0mOtq8Bvh+v+69CpJUGSkNLUQIDAQAB"
@@ -251,20 +214,15 @@ let
       ];
 
       www = createZone { };
-      api = createZone { };
       git = createZone oracleBase;
-      mail = createZone { };
-      mc = createZone oracleBase;
       ns1 = createZone { };
       ns2 = createZone { };
       ns3 = createZone oracleBase;
       ns4 = createZone oracleBase;
       hydra = createZone { };
-      mastodon = createZone { };
       mastodon-assets.CNAME = [
         "assets-chir-rs.b-cdn.net."
       ];
-      matrix = createZone { };
       akko = createZone { };
       peertube = createZone { };
       mediaproxy.CNAME = [ "mediaproxy-chir-rs.b-cdn.net." ];
@@ -272,7 +230,6 @@ let
       attic = createZone oracleBase;
       lotte = createFullZone { };
       status = createZone oracleBase;
-      weblate = createFullZone { };
 
       int =
         delegateTo [
