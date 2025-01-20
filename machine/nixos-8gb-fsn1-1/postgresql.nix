@@ -31,6 +31,7 @@
       max_parallel_workers_per_gather = 2;
       max_parallel_workers = 4;
       max_parallel_maintenance_workers = 2;
+      password_encryption = "scram-sha-256";
     };
     enable = true;
   };
