@@ -244,7 +244,8 @@ let
           adapter = mkRaw "Ecto.Adapters.Postgres";
           database = "akkoma";
           pool_size = 10;
-          socket_dir = "/run/postgresql";
+          hostname = "localhost";
+          port = 5432;
           prepare = mkAtom ":named";
           parameters.plan_cache_mode = "force_custom_plan";
         };
