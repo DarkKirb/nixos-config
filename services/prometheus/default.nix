@@ -109,6 +109,16 @@
           }
         ];
       }
+      {
+        job_name = "bind";
+        static_configs = [
+          {
+            targets = [
+              "nixos-8gb-fsn1-1.int.chir.rs:1533"
+            ];
+          }
+        ];
+      }
     ];
   };
   sops.secrets."services/akkoma-key" = {

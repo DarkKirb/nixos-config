@@ -2,6 +2,27 @@
   description = "Lotte’s nix configuration";
 
   inputs = {
+    admin-fe = {
+      url = "github:DarkKirb/admin-fe";
+      inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-parts.follows = "flake-parts";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
+    akkoma = {
+      url = "github:DarkKirb/akkoma";
+      inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    akkoma-fe = {
+      url = "github:DarkKirb/akkoma-fe";
+      inputs.devshell.follows = "devshell";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-parts.follows = "flake-parts";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
     attic = {
       url = "github:DarkKirb/attic";
       inputs.crane.follows = "crane";
@@ -37,6 +58,11 @@
     };
     disko = {
       url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dns = {
+      url = "github:DarkKirb/dns.nix";
+      inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-compat = {
@@ -213,6 +239,10 @@
             };
             nas = {
               config = ./machine/nas;
+              system = "x86_64-linux";
+            };
+            nixos-8gb-fsn1-1 = {
+              config = ./machine/nixos-8gb-fsn1-1;
               system = "x86_64-linux";
             };
             not522 = {

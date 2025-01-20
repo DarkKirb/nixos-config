@@ -37,4 +37,19 @@ inputs: final: prev: {
   plover_uinput = final.python3Packages.callPackage ./stenography/plover_uinput { };
   rtf_tokenize = final.python3Packages.callPackage ./stenography/rtf_tokenize { };
   yiffstash = final.python3Packages.callPackage ./art/yiffstash { };
+  emoji-caro = final.callPackage ./art/emoji/caro { };
+  emoji-lotte = final.callPackage ./art/emoji/lotte { };
+  emoji-volpeon-blobfox = final.callPackage ./art/emoji/volpeon/blobfox.nix { };
+  emoji-volpeon-bunhd = final.callPackage ./art/emoji/volpeon/bunhd.nix { };
+  emoji-volpeon-drgn = final.callPackage ./art/emoji/volpeon/drgn.nix { };
+  emoji-volpeon-floof = final.callPackage ./art/emoji/volpeon/floof.nix { };
+  emoji-volpeon-fox = final.callPackage ./art/emoji/volpeon/fox.nix { };
+  emoji-volpeon-gphn = final.callPackage ./art/emoji/volpeon/gphn.nix { };
+  emoji-volpeon-neocat = final.callPackage ./art/emoji/volpeon/neocat.nix { };
+  emoji-volpeon-neofox = final.callPackage ./art/emoji/volpeon/neofox.nix { };
+  emoji-volpeon-raccoon = final.callPackage ./art/emoji/volpeon/raccoon.nix { };
+  emoji-volpeon-vlpn = final.callPackage ./art/emoji/volpeon/vlpn.nix { };
+  emoji-volpeon-wvrn = final.callPackage ./art/emoji/volpeon/wvrn.nix { };
+  emoji-raccoon = final.callPackage ./art/emoji/raccoon.nix { };
+  emoji-rosaflags = final.callPackage ./art/emoji/rosaflags.nix { };
 }
