@@ -30,7 +30,6 @@
       };
     };
     database = {
-      createLocally = true;
       host = "localhost";
       port = 6432;
       passwordFile = config.sops.secrets."services/peertube/dbPassword".path;
