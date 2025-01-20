@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, systemConfig, ... }:
 {
   xdg.configFile."fcitx5/profile".text = lib.generators.toINI { } {
     "Groups/0" = {
@@ -18,4 +18,6 @@
       "0" = "default";
     };
   };
+  programs.plasma.configFile.kwinrc.Wayland."InputMethod[$e]" =
+    "${systemConfig.i18n.inputMethod.package}/share/applications/fcitx5-wayland-launcher.desktop";
 }
