@@ -332,7 +332,6 @@
                   emoji-volpeon-raccoon
                   emoji-volpeon-vlpn
                   emoji-volpeon-wvrn
-                  emoji-raccoon
                   emoji-rosaflags
                   ;
               }
