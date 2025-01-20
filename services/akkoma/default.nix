@@ -22,7 +22,6 @@ let
     "volpeon-raccoon"
     "volpeon-vlpn"
     "volpeon-wvrn"
-    "raccoon"
     "rosaflags"
   ];
   emoji_sets = builtins.listToAttrs (

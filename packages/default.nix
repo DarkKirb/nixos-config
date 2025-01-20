@@ -50,6 +50,5 @@ inputs: final: prev: {
   emoji-volpeon-raccoon = final.callPackage ./art/emoji/volpeon/raccoon.nix { };
   emoji-volpeon-vlpn = final.callPackage ./art/emoji/volpeon/vlpn.nix { };
   emoji-volpeon-wvrn = final.callPackage ./art/emoji/volpeon/wvrn.nix { };
-  emoji-raccoon = final.callPackage ./art/emoji/raccoon.nix { };
   emoji-rosaflags = final.callPackage ./art/emoji/rosaflags.nix { };
 }
