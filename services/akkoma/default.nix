@@ -245,7 +245,7 @@ let
           database = "akkoma";
           pool_size = 10;
           hostname = "localhost";
-          port = 6432;
+          port = 5432;
           prepare = mkAtom ":named";
           parameters.plan_cache_mode = "force_custom_plan";
         };
