@@ -43,7 +43,6 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
-      inputs.riscv-overlay.follows = "riscv-overlay";
     };
     crane = {
       url = "github:DarkKirb/crane";
