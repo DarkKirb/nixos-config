@@ -301,6 +301,7 @@
             nixfmt-rfc-style
             nix-prefetch
             nix-prefetch-git
+            treefmt
           ];
         };
       formatter.x86_64-linux = (pkgsFor "x86_64-linux").nixfmt-rfc-style;
