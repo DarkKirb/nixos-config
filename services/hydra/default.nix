@@ -223,10 +223,15 @@ in
   };
   services.postgresql.ensureDatabases = [
     "hydra-queue-runner"
+    "hydra"
   ];
   services.postgresql.ensureUsers = [
     {
       name = "hydra-queue-runner";
+      ensureDBOwnership = true;
+    }
+    {
+      name = "hydra";
       ensureDBOwnership = true;
     }
   ];
