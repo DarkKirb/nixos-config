@@ -1,4 +1,4 @@
-# DB Version: 14
+# DB Version: 17
 # OS Type: linux
 # DB Type: web
 # Total Memory (RAM): 24 GB
@@ -6,13 +6,10 @@
 # Data Storage: ssd
 
 {
-  pkgs,
-  lib,
   ...
 }:
 {
   services.postgresql = {
-    package = lib.mkForce pkgs.postgresql_14_jit;
     settings = {
       max_connections = 200;
       shared_buffers = "6GB";
