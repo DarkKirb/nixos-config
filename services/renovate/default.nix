@@ -23,6 +23,7 @@
         "^alejandra \\.$"
         "^./update.sh$"
         "^treefmt$"
+        "^updater$"
       ];
       allowCustomCrateRegistries = true;
     };
@@ -39,6 +40,7 @@
       git-lfs
       treefmt
       nixfmt-rfc-style
+      package-updater
     ];
   };
 
