@@ -1,0 +1,49 @@
+From 3750beb2a031090c4b60599044d3b0861939a735 Mon Sep 17 00:00:00 2001
+From: Rick van Schijndel <rol3517@gmail.com>
+Date: Wed, 3 Apr 2024 22:47:22 +0200
+Subject: [PATCH 7/7] hydra-server: findLog: fix issue with ca-derivations
+ enabled
+
+When content addressed derivations are built on the hydra server,
+one may run into an issue where some builds suddenly don't load anymore.
+
+This seems to be caused by outPaths that are NULL (which is
+allowed for ca-derivations). Filter them out to prevent querying the
+database for them, which is not supported by the database abstraction
+layer that's currently in use.
+
+On my instance this appears to resolve the issue.
+I feel like I might be doing this at the wrong abstraction layer, but on
+the other hand -- it seems to resolve it and it also doesn't really look
+like it will hurt anything.
+
+The test added in a previous commit uncovers this issue, and this commit
+resolves it. So I'm happy with this patch for now.
+
+The issue I was seeing on my server:
+
+hydra-server[2549]: [error] Couldn't render template "undef error - DBIx::Class::SQLMaker::ClassicExtensions::puke(): Fatal: NULL-within-IN not implemented: The upcoming SQL::Abstract::Classic 2.0 will emit the logically correct SQL instead of raising this exception. at /nix/store/<hash>-hydra-unstable-2024-03-08_nix_2_20/libexec/hydra/lib/Hydra/Helper/Nix.pm line 190
+
+See also short discussion here: https://github.com/NixOS/nixpkgs/pull/297392#issuecomment-2035366263
+---
+ src/lib/Hydra/Helper/Nix.pm | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/lib/Hydra/Helper/Nix.pm b/src/lib/Hydra/Helper/Nix.pm
+index 2a479ddb..69dbebce 100644
+--- a/src/lib/Hydra/Helper/Nix.pm
++++ b/src/lib/Hydra/Helper/Nix.pm
+@@ -188,6 +188,10 @@ sub findLog {
+ 
+     return undef if scalar @outPaths == 0;
+ 
++    # Filter out any NULLs. Content-addressed derivations
++    # that haven't built yet or failed to build may have a NULL outPath.
++    @outPaths = grep {defined} @outPaths;
++
+     my @steps = $c->model('DB::BuildSteps')->search(
+         { path => { -in => [@outPaths] } },
+         { select => ["drvpath"]
+-- 
+2.46.0
+

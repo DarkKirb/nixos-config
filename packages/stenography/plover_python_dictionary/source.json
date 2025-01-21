@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/openstenoproject/plover_python_dictionary",
+  "rev": "8ff565b892f5e2153adfc800fd9a5b2c90989862",
+  "date": "2021-06-23T23:47:17+02:00",
+  "path": "/nix/store/rd97n5xmqpc4hrmc5x55qcl0za27k0s1-plover_python_dictionary",
+  "sha256": "1hwgm2dkx8chvbbk8w409r6pnk8azk62xxq4skxwkz3rdvzvi4sr",
+  "hash": "sha256-WZO4/255/Mn71AT3Lsz8Ck17TU6AcDTX2pChPpuoj8M=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

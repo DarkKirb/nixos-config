@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/openstenoproject/plover_stroke",
+  "rev": "e717a1983b58dcba644153a542dbf8514425a39b",
+  "date": "2022-05-14T22:20:29+02:00",
+  "path": "/nix/store/xsiiia0qv39gkfsmh01g8a4jkrvx7bmj-plover_stroke",
+  "sha256": "104ab1lr2xr8nbq98n7h3jvskfzzg8m41rhb1ik4b7w474rlxgh3",
+  "hash": "sha256-A75OMzmEn0VmDAvmQCp6/7uptxzwWJTwsih3kWlYioA=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

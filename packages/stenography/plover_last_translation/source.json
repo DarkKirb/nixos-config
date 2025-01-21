@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/nsmarkop/plover_last_translation",
+  "rev": "b8c7d75e2d54cfdcbf7729b325b8446d2ea947b9",
+  "date": "2018-06-20T23:58:58-05:00",
+  "path": "/nix/store/v7ln8pzvicv8wr4p7lb9npkhrhc81lnm-plover_last_translation",
+  "sha256": "1kz0hz5ca9rhsgdlipi812ayqdh6mlbms74ir6g49q929yfiing7",
+  "hash": "sha256-59kYnU8i4USeyZEcXRetBjbslQgo3kjb0zAnxcqH4M8=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

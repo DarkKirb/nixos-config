@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/openstenoproject/rtf_tokenize",
+  "rev": "509b009b97077d5abcebe53d46ca6b67c3438a2c",
+  "date": "2021-10-11T03:19:28+02:00",
+  "path": "/nix/store/k6h8q3r5ng0fyyw5ndwfhbj7m2pb6qjk-rtf_tokenize",
+  "sha256": "1l5pfrggil9knk58r2r84i9msm7mdhddl87hkfk54qqk2sqzc06g",
+  "hash": "sha256-zwD2sRYTY1Kmm/Ag2hps9VRdUyQoi4zKtDPR+F52t9A=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

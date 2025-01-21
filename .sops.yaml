@@ -1,0 +1,193 @@
+keys:
+  - &base age1tltjgexkp5fz3rum4j0k66ty5q4u8ptvkgkepumd20zal24g2qfs5xgw76
+  - &darkkirb age15g6tzvcmcp3ae4hwnn4pwewat6eq9unlhtjrlaka6rf94ej9dd5qqpgt7u
+  - &instance-20221213-1915 age1elra3uklw8rmwkevqms2l4tsd06d5utqda9d2w4qvqpz898uzuesugxkhc
+  - &nas age1c7y687sxh428wk34s8ws6kemu62mggafpt40rmanevgkuj5xa59q6f7tlc
+  - &nixos-8gb-fsn1-1 age1273ps5thcy70ckdt0270s2nysqgu48t38pq3wq975v3y7mf4eavsw38wsl
+  - &not522 age1emv3kzvwgl36hgllrv7rlekqy3y3c6eztadl3lv09ks3z9vv6vdqw06yqa
+  - &pc-installer age1eh2vd6cdy23qazwg0hzq95pn9e6p8yaqu4g6zyan8gzal4x5ed5qful8kg
+  - &rainbow-resort age19vzypddhexvvsf8xylstxc9znnkd8rxmamhjlt7elvz4j3zaf5tqqura6f
+  - &stinky-ssb age1sqvl2cwvzeztuelpwppaestqufzeap8uf0vgy7t5mzr9rwc3dpxqhx8ly9
+  - &thinkrac age1p400545a482fma40yfgytu40p6wr5a75v4f8yeudvgf7eh5erufqxhgynr
+creation_rules:
+  - path_regex: machine/not522/secrets\.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *not522
+  - path_regex: services/tailscale\.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *instance-20221213-1915
+          - *nas
+          - *nixos-8gb-fsn1-1
+          - *not522
+          - *rainbow-resort
+          - *stinky-ssb
+          - *thinkrac
+  - path_regex: services/restic\.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *instance-20221213-1915
+          - *nas
+          - *nixos-8gb-fsn1-1
+          - *not522
+          - *rainbow-resort
+          - *stinky-ssb
+          - *thinkrac
+  - path_regex: users/root/system\.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *instance-20221213-1915
+          - *nas
+          - *nixos-8gb-fsn1-1
+          - *not522
+          - *pc-installer
+          - *rainbow-resort
+          - *stinky-ssb
+          - *thinkrac
+  - path_regex: users/darkkirb/system\.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *instance-20221213-1915
+          - *nas
+          - *nixos-8gb-fsn1-1
+          - *not522
+          - *pc-installer
+          - *rainbow-resort
+          - *stinky-ssb
+          - *thinkrac
+  - path_regex: users/darkkirb/home-manager/keys.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *darkkirb
+  - path_regex: programs/ssh/shared-keys.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *darkkirb
+          - *instance-20221213-1915
+          - *nas
+          - *nixos-8gb-fsn1-1
+          - *not522
+          - *pc-installer
+          - *rainbow-resort
+          - *stinky-ssb
+          - *thinkrac
+  - path_regex: programs/desktop/pim/secrets.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *darkkirb
+  - path_regex: config/kde/krdp.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *darkkirb
+  - path_regex: services/desktop/gpg/privkey.yaml
+    key_groups:
+      - age:
+          - *base
+          - *darkkirb
+  - path_regex: services/postgresql/rainbow-resort.yaml
+    key_groups:
+      - age:
+        - *base
+        - *rainbow-resort
+  - path_regex: services/postgresql/thinkrac.yaml
+    key_groups:
+      - age:
+        - *base
+        - *thinkrac
+  - path_regex: services/postgresql/nas.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nas
+  - path_regex: services/postgresql/instance-20221213-1915.yaml
+    key_groups:
+      - age:
+        - *base
+        - *instance-20221213-1915
+  - path_regex: services/postgresql/nixos-8gb-fsn1-1.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nixos-8gb-fsn1-1
+  - path_regex: services/acme/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nas
+        - *nixos-8gb-fsn1-1
+        - *instance-20221213-1915
+  - path_regex: services/atticd/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *instance-20221213-1915
+  - path_regex: services/forgejo/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *instance-20221213-1915
+  - path_regex: services/hydra/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nas
+  - path_regex: services/prometheus/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nas
+  - path_regex: services/yiffstash/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nas
+  - path_regex: services/forgejo-runner/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nas
+        - *rainbow-resort
+  - path_regex: services/renovate/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nas
+  - path_regex: services/chir-rs/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *instance-20221213-1915
+        - *nas
+        - *nixos-8gb-fsn1-1
+        - *not522
+        - *rainbow-resort
+  - path_regex: services/named/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nixos-8gb-fsn1-1
+  - path_regex: services/akkoma/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nixos-8gb-fsn1-1
+  - path_regex: services/peertube/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *nixos-8gb-fsn1-1
+  - path_regex: programs/desktop/development/rust/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *darkkirb

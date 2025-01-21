@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/KoiOates/plover_dict_commands",
+  "rev": "5dceddc0830fb5a72679d62995f27b2e49850998",
+  "date": "2017-06-13T12:22:49-04:00",
+  "path": "/nix/store/w5sjmhsgcphlrlk32gl67x6vl6i57g6f-plover_dict_commands",
+  "sha256": "186g1w3209hss8b9m9w53k92i8dpf468nbc1jrhcrwkkl8r1hyrx",
+  "hash": "sha256-PXsYMqJz8sxgloEtiwxxt6Eo0hyFp5oW0homIAYPz6A=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

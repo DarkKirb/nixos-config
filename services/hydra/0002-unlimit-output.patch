@@ -1,0 +1,28 @@
+From b1e4e97a5fad51f2fad87b6743369f90b012aeb6 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Charlotte=20=F0=9F=A6=9D=20Delenk?= <lotte@chir.rs>
+Date: Wed, 4 Sep 2024 09:52:45 +0200
+Subject: [PATCH 2/6] unlimit output
+
+---
+ src/hydra-queue-runner/build-remote.cc | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/src/hydra-queue-runner/build-remote.cc b/src/hydra-queue-runner/build-remote.cc
+index 352b2208..67513407 100644
+--- a/src/hydra-queue-runner/build-remote.cc
++++ b/src/hydra-queue-runner/build-remote.cc
+@@ -654,11 +654,6 @@ void State::buildRemote(ref<Store> destStore,
+             size_t totalNarSize = 0;
+             auto infos = build_remote::queryPathInfos(conn, *localStore, outputs, totalNarSize);
+ 
+-            if (totalNarSize > maxOutputSize) {
+-                result.stepStatus = bsNarSizeLimitExceeded;
+-                return;
+-            }
+-
+             /* Copy each path. */
+             printMsg(lvlDebug, "copying outputs of ‘%s’ from ‘%s’ (%d bytes)",
+                 localStore->printStorePath(step->drvPath), machine->sshName, totalNarSize);
+-- 
+2.46.0
+

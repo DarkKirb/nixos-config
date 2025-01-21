@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/Kaoffie/plover_modal_dictionary",
+  "rev": "086f9784377454ace45c333d21ea8ca2666b0a06",
+  "date": "2022-03-20T17:35:38Z",
+  "path": "/nix/store/g3yxnwzgp2cwrqnkkphqd4hzmwig5jmn-plover_modal_dictionary",
+  "sha256": "0hkq7n3qpilzj2qbfdjxmx9rfj8m22fazqr688cglpc66y95i43p",
+  "hash": "sha256-d5BYkjeGXfoYQibjr5wQFUmXU69dNrewkJ/Gi4c9eEI=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

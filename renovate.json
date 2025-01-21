@@ -1,0 +1,19 @@
+{
+    "extends": [
+        "config:best-practices",
+        "schedule:automergeDaily"
+    ],
+    "schedule": [
+        "32 4 * * *"
+    ],
+    "postUpgradeTasks": {
+        "commands": [
+            "updater",
+            "treefmt"
+        ],
+        "fileFilters": [
+            "packages/**/*"
+        ]
+    },
+    "automerge": true
+}
