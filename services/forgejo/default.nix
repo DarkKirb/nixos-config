@@ -92,6 +92,22 @@
     extraConfig = ''
       import baseConfig
 
+      @badbots {
+        header 'User-Agent' *Bytespider*
+        header 'User-Agent' *meta-externalagent*
+        header 'User-Agent' *claudebot*
+        header 'User-Agent' *imagesift*
+        header 'User-Agent' *amazon*
+      }
+
+      respond @badbots 403
+
+      handle_path /robots.txt {
+        root ${./static}
+        try_files /robots.txt =404
+        file_server
+      }
+
       reverse_proxy http://${config.services.forgejo.settings.server.HTTP_ADDR}:${toString config.services.forgejo.settings.server.HTTP_PORT}
     '';
   };
