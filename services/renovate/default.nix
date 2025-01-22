@@ -41,6 +41,7 @@
       treefmt
       nixfmt-rfc-style
       package-updater
+      rustfmt
     ];
   };
 
