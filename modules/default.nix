@@ -19,4 +19,5 @@ with lib;
   options.isNSFW = mkEnableOption "Whether or not this configuration is NSFW";
   options.isIntelGPU = mkEnableOption "Whether or not this configuration uses an Intel GPU";
   options.isSway = mkEnableOption "Whether to use sway or kde";
+  config.isNSFW = lib.mkDefault true;
 }

@@ -12,6 +12,13 @@
   system.stateVersion = "24.11";
   isSway = true;
   home-manager.users.darkkirb.imports = [ ./home-manager.nix ];
-  isNSFW = true;
   services.postgresql.enable = lib.mkForce false;
+  specialisation.sfw = {
+    configuration.imports = [
+      {
+        nix.auto-update.specialisation = "sfw";
+        isNSFW = lib.mkForce false;
+      }
+    ];
+  };
 }
