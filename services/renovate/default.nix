@@ -29,7 +29,7 @@
     };
     credentials = {
       RENOVATE_TOKEN = config.sops.secrets."services/renovate/credentials/RENOVATE_TOKEN".path;
-      GITHUB_COM_TOKEN = config.sops.secrets."services/renovate/credentials/RENOVATE_SECRETS".path;
+      GITHUB_COM_TOKEN = config.sops.secrets."services/renovate/credentials/GITHUB_COM_TOKEN".path;
     };
     runtimePackages = with pkgs; [
       config.nix.package
