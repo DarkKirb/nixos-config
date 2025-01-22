@@ -1,5 +1,6 @@
 {
   nixos-config,
+  lib,
   ...
 }:
 {
@@ -13,11 +14,11 @@
     "${nixos-config}/config/graphical/plymouth.nix"
   ];
   system.stateVersion = "24.11";
-  specialisation.nsfw = {
+  specialisation.sfw = {
     configuration.imports = [
       {
-        nix.auto-update.specialisation = "nsfw";
-        isNSFW = true;
+        nix.auto-update.specialisation = "sfw";
+        isNSFW = lib.mkForce false;
       }
     ];
   };
@@ -32,9 +33,9 @@
   specialisation.sway-nsfw = {
     configuration.imports = [
       {
-        nix.auto-update.specialisation = "sway-nsfw";
+        nix.auto-update.specialisation = "sway-sfw";
         isSway = true;
-        isNSFW = true;
+        isNSFW = lib.mkForce false;
       }
     ];
   };
