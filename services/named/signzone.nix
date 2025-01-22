@@ -21,6 +21,10 @@ in
     description = "Signing the DNS zone '${zonename}'";
     wantedBy = [ "bind.service" ];
     before = [ "bind.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = "yes";
+    };
     script = ''
       set -ex
 
@@ -31,6 +35,7 @@ in
       ${lib.getExe' pkgs.bind "dnssec-signzone"} -N unixtime -o ${zonename} -k /run/secrets/${ksk} -a -3 $(${lib.getExe' pkgs.coreutils "head"} -c 16 /dev/urandom | ${lib.getExe' pkgs.coreutils "sha256sum"} | ${lib.getExe' pkgs.coreutils "cut"} -b 1-32) -f /var/lib/named/${zonename} ${zoneFile} /run/secrets/${zsk}
       ${lib.getExe' pkgs.systemd "systemctl"} reload bind || true
     '';
+    restartIfChanged = true;
   };
   systemd.timers."zonesign@${zonename}" = {
     description = "Resign the DNS zone '${zonename}'";
