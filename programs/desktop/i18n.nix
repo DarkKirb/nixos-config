@@ -29,4 +29,7 @@
       "0" = "default";
     };
   };
+  home.activation.nuke-fcitx5-profile = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
+    run rm -f $VERBOSE_ARG $HOME/.config/fcitx5/profile
+  '';
 }
