@@ -166,7 +166,7 @@ let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 58;
+      serial = 59;
     };
     NS = [
       "ns1.chir.rs."
@@ -228,7 +228,14 @@ let
       mediaproxy.CNAME = [ "mediaproxy-chir-rs.b-cdn.net." ];
       cache.CNAME = [ "cache-chir-rs.b-cdn.net." ];
       attic = createZone oracleBase;
-      lotte = createFullZone { };
+      lotte = createFullZone {
+        subdomains._atproto.TXT = [
+          (ttl zoneTTL (txt "did=did:plc:vgecfmtbwju6a6bqulz5ddl3"))
+        ];
+      };
+      messy.subdomains._atproto.TXT = [
+        (ttl zoneTTL (txt "did=did:plc:wtxdmo7634gs4lxfrlptey3v"))
+      ];
       status = createZone oracleBase;
 
       int =
