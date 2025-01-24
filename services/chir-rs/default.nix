@@ -4,6 +4,7 @@
   config,
   chir-rs,
   system,
+  nixos-config,
   ...
 }:
 let
@@ -32,6 +33,10 @@ let
   };
 in
 {
+  imports = [
+    "${nixos-config}/services/acme"
+  ];
+  security.acme.enable = true;
   systemd.services.chir-rs = {
     enable = true;
     wantedBy = [ "multi-user.target" ];
