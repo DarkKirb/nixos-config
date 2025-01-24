@@ -126,6 +126,7 @@ creation_rules:
         - *nas
         - *nixos-8gb-fsn1-1
         - *instance-20221213-1915
+        - *rainbow-resort
   - path_regex: services/atticd/secrets.yaml
     key_groups:
       - age:
