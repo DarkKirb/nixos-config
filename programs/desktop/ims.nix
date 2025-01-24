@@ -17,6 +17,7 @@ in
         telegram-desktop
         discord
         betterdiscordctl
+        signal-desktop
       ])
     ];
   home.persistence.default.directories = lib.mkMerge [
