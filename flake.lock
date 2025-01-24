@@ -193,11 +193,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735240527,
-        "narHash": "sha256-af7D89fpzaLnkZXAy+Q+3lafjfN/A5YFQTsFYfvAxYA=",
+        "lastModified": 1737557671,
+        "narHash": "sha256-zfN8Olw/JWOeLRTaBuHyqL/WxORZNCiHRpLpoMdJR3Q=",
         "owner": "DarkKirb",
         "repo": "cargo2nix",
-        "rev": "884545bb59949546745ecf59f1ba31537e8f37cf",
+        "rev": "c1d43400b49444a3490e93b490d856488561e3b3",
         "type": "github"
       },
       "original": {
@@ -227,11 +227,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736238722,
-        "narHash": "sha256-w5D7IVm89UU4Fewz92kYHpyKX2u+ss1WcEd8Q2tdAu8=",
+        "lastModified": 1737707437,
+        "narHash": "sha256-3muUnZZU8ySngJuSJYRl2vizCkiYsQkAAt42CZP1VTA=",
         "ref": "refs/heads/main",
-        "rev": "6a432fc8daad315e42b21763ffabdb3d9433908a",
-        "revCount": 32,
+        "rev": "316efad482d7996b3bbcf2576628bae37141dc2c",
+        "revCount": 41,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/chir.rs"
       },
@@ -614,11 +614,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737299337,
-        "narHash": "sha256-0NBrY2A7buujKmeCbieopOMSbLxTu8TFcTLqAbTnQDw=",
+        "lastModified": 1737575492,
+        "narHash": "sha256-qa/D3NC1JoApnUuLrq1gseBmIxeg6icm/ojPgggMDVQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f8ef4541bb8a54a8b52f19b52912119e689529b3",
+        "rev": "cefb1889b96ddd1dac3dd4734e894f4cadab7802",
         "type": "github"
       },
       "original": {
@@ -755,11 +755,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737278482,
-        "narHash": "sha256-PNgRtz5Ps8tE/1IqQnKXyRYkPOxi9SJzAefVJAceWuY=",
+        "lastModified": 1737614656,
+        "narHash": "sha256-HPXC0Qv6ftkH1CVE2Pb3Zbz+vOI+AO2YKKD357t7mN8=",
         "ref": "refs/heads/main",
-        "rev": "98d9fd0584af4a21965689332551875ef709af49",
-        "revCount": 16636,
+        "rev": "caafc3f84b7a25d6e29c4337c1b47ea120bc9b30",
+        "revCount": 16666,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix"
       },
@@ -852,11 +852,11 @@
         "umu": "umu"
       },
       "locked": {
-        "lastModified": 1737337163,
-        "narHash": "sha256-Z9hc25iV+jhH0AlvsrG65KqLEd726/HVvalSiqNQLqA=",
+        "lastModified": 1737596278,
+        "narHash": "sha256-OEdGZ6TTHXGB791VvhErq4Nro54NQzzDAO0G0WfK2kw=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "e5559b3a91433c21eb64792b78134582b3bd77f2",
+        "rev": "10f37dc9be5d79fec72b46b670ece4783a83a13a",
         "type": "github"
       },
       "original": {
@@ -921,11 +921,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737337847,
-        "narHash": "sha256-1j7wMhzpTUIkfXnsgTDr4c6dIKAHAAXDr3ojgs0n3HE=",
+        "lastModified": 1737596814,
+        "narHash": "sha256-hfMz2iTGrM95jvnxgFD3kQmCBr4qvLtoJxT7pU20QN0=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "83e447a2ae38dc584ce572d0d80847e3d53fac90",
+        "rev": "2dc18aa9f519bb9c7f908c38a141562619ce01fb",
         "type": "github"
       },
       "original": {
@@ -991,11 +991,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1737306472,
-        "narHash": "sha256-+X9KAryvDsIE7lQ0FdfiD1u33nOVgsgufedqspf77N4=",
+        "lastModified": 1737590910,
+        "narHash": "sha256-qM/y6Dtpu9Wmf5HqeZajQdn+cS0aljdYQQQnrvx+LJE=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "cb3173dc5c746fa95bca1f035a7e4d2b588894ac",
+        "rev": "9368027715d8dde4b84c79c374948b5306fdd2db",
         "type": "github"
       },
       "original": {
@@ -1128,11 +1128,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1737355292,
-        "narHash": "sha256-j2h+6R07uy0XU6brh1V1uSPGs7IuguytKa+lskEJSo4=",
+        "lastModified": 1737624835,
+        "narHash": "sha256-UwyUmRZGWwsO9P8nkcBlJvy+8R8k62WVK3jnAGcYh10=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "502b23ee80217461c93024c0d6d501f72211920c",
+        "rev": "276af645fd291be616253db95c88a4469d6e3421",
         "type": "github"
       },
       "original": {
@@ -1207,11 +1207,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737301351,
-        "narHash": "sha256-2UNmLCKORvdBRhPGI8Vx0b6l7M8/QBey/nHLIxOl4jE=",
+        "lastModified": 1737465171,
+        "narHash": "sha256-R10v2hoJRLq8jcL4syVFag7nIGE7m13qO48wRIukWNg=",
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "rev": "15a87cedeb67e3dbc8d2f7b9831990dffcf4e69f",
+        "rev": "9364dc02281ce2d37a1f55b6e51f7c0f65a75f17",
         "type": "github"
       },
       "original": {
@@ -1307,11 +1307,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737340068,
-        "narHash": "sha256-5UciRckNV+YOZ6y6ASBIb01cySB12whDxgFUK+EqT8g=",
+        "lastModified": 1737599167,
+        "narHash": "sha256-S2rHCrQWCDVp63XxL/AQbGr1g5M8Zx14C7Jooa4oM8o=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "275c824ed9e90e7fd4f96d187bde3670062e721f",
+        "rev": "38374302ae9edf819eac666d1f276d62c712dd06",
         "type": "github"
       },
       "original": {
@@ -1323,11 +1323,11 @@
     "rycee-nur-expressions": {
       "flake": false,
       "locked": {
-        "lastModified": 1737345819,
-        "narHash": "sha256-1lMv2u4kQ+YloYXKhZoe9tFnwnWAGVPm1yXBtpSO7xw=",
+        "lastModified": 1737626415,
+        "narHash": "sha256-19rRFLDO1HMpYKjxY9baFREpiPxEerCy4Ti6e3LhxWg=",
         "ref": "refs/heads/master",
-        "rev": "12f2f8d9744c29ac622d723ef173a54223de39af",
-        "revCount": 4047,
+        "rev": "ee2c8899a918bd1aa4e7945bb807d58cfe3b6e28",
+        "revCount": 4056,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       },
@@ -1343,11 +1343,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737107480,
-        "narHash": "sha256-GXUE9+FgxoZU8v0p6ilBJ8NH7k8nKmZjp/7dmMrCv3o=",
+        "lastModified": 1737411508,
+        "narHash": "sha256-j9IdflJwRtqo9WpM0OfAZml47eBblUHGNQTe62OUqTw=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "4c4fb93f18b9072c6fa1986221f9a3d7bf1fe4b6",
+        "rev": "015d461c16678fc02a2f405eb453abb509d4e1d4",
         "type": "github"
       },
       "original": {
@@ -1522,20 +1522,20 @@
       },
       "locked": {
         "dir": "packaging/nix",
-        "lastModified": 1737161836,
-        "narHash": "sha256-v20q0DeglyrsIAbqwqOSxdzZ4JhEWtU9muWPlPz3Few=",
+        "lastModified": 1737484151,
+        "narHash": "sha256-pONHsVIyIHbjyv51JQW3Nv9JeuqiVEuINyH+HnN4f8Q=",
         "ref": "refs/heads/main",
-        "rev": "3fd4ef90e8427cfc74d94914654a288912edb2cf",
-        "revCount": 901,
+        "rev": "0cac244cc89ee69bf33ad60a3953cfde188ee8a6",
+        "revCount": 907,
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging/nix"
+        "url": "https://github.com/Open-Wine-Components/umu-launcher/"
       },
       "original": {
         "dir": "packaging/nix",
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging/nix"
+        "url": "https://github.com/Open-Wine-Components/umu-launcher/"
       }
     },
     "vscode-server": {
