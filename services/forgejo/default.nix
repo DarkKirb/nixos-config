@@ -20,6 +20,7 @@
     user = "gitea";
     group = "gitea";
     stateDir = "/var/lib/gitea";
+    lfs.enable = true;
     secrets = {
       storage = {
         MINIO_ACCESS_KEY_ID = config.sops.secrets."services/forgejo/secrets/MINIO_ACCESS_KEY_ID".path;
