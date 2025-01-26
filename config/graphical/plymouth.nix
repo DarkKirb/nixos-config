@@ -16,5 +16,6 @@
       "udev.log_priority=3"
     ];
     loader.timeout = 0;
+    loader.systemd-boot.configurationLimit = 5; # Due to the plymouth theme containing the system background, it causes out of space errors on my 1GB boot partition
   };
 }
