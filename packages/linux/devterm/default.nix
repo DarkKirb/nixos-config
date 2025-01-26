@@ -40,6 +40,7 @@ buildLinux (
         extraConfig = "";
       }
     ];
+    ignoreConfigErrors = true;
     enableCommonConfig = false;
   }
 )
