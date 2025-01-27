@@ -1226,11 +1226,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736845877,
-        "narHash": "sha256-SBbeHHA7CekLSOz7FPXx7cpv09aGGOdu4az9ECq5CFY=",
+        "lastModified": 1738007491,
+        "narHash": "sha256-pRKzKbmQi56v0ejCZe2AhtrhDSw2osQLo21SvbNQ1jg=",
         "owner": "DarkKirb",
         "repo": "riscv-overlay",
-        "rev": "02c6d5758922edf6f8fb4324478a03ab20d9b00c",
+        "rev": "0026ebb92471069dbe88058785f69e4974ae43c0",
         "type": "github"
       },
       "original": {
