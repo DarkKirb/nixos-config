@@ -17,11 +17,9 @@
       }
     ];
   };
-  home.persistence.default.files = [
-    ".local/share/fish/fish_history"
-  ];
   home.persistence.default.directories = [
     ".local/share/direnv"
+    ".local/share/fish"
   ];
   programs.nix-index.enable = true;
   programs.direnv.enable = true;
