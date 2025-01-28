@@ -164,7 +164,6 @@ in
     enable = true;
     image = bgPng;
     inherit palette;
-    polarity = "dark";
     fonts = {
       serif = {
         package = pkgs.noto-fonts;
