@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   imports = [
     ./tide.nix
@@ -23,4 +23,10 @@
   ];
   programs.nix-index.enable = true;
   programs.direnv.enable = true;
+  xdg.dataFile."fish/home-manager_generated_completions".enable = false;
+  systemd.user.tmpfiles.rules = [
+    "L /persistent${config.xdg.dataHome}/fish/home-manager_generated_completions - - - - ${
+      config.xdg.dataFile."fish/home-manager_generated_completions".source
+    }"
+  ];
 }
