@@ -316,7 +316,6 @@
               {
                 inherit (pkgs)
                   art-lotte
-                  fish
                   package-updater
                   yiffstash
                   emoji-caro
