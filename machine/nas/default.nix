@@ -36,6 +36,8 @@
     "/var/cache"
     "--exclude"
     "/var/tmp"
+    "--exclude"
+    "/media/Youtube"
   ];
   services.caddy.enable = true;
   sops.age.sshKeyPaths = lib.mkForce [ "/etc/ssh/ssh_host_ed25519_key" ];
