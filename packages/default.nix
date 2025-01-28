@@ -7,12 +7,6 @@ inputs: final: prev: {
       ./i18n/fcitx-table-extra.patch
     ];
   });
-  fish = prev.fish.overrideAttrs {
-    postPatch = ''
-      substituteInPlace src/history.cpp --replace-fail 'vacuum = true' 'vacuum = false'
-    '';
-    doCheck = false;
-  };
   kodi-joyn = final.kodiPackages.callPackage ./kodi/joyn { };
   linux-devterm = final.callPackage ./linux/devterm { };
   package-updater = final.callPackage ./updater.nix { };
