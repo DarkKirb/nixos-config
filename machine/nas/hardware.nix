@@ -124,4 +124,5 @@
       "--keep-yearly 10"
     ];
   };
+  nix.settings.auto-optimise-store = lib.mkForce false;
 }
