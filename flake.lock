@@ -1078,6 +1078,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-rocm-workaround": {
+      "locked": {
+        "lastModified": 1738100969,
+        "narHash": "sha256-RtFwafulI9EIUhp4H0caIZF+6FFbuzhVS2hkVoWHwz0=",
+        "owner": "mschwaig",
+        "repo": "nixpkgs",
+        "rev": "04f36c5b904e0b071f9232b50a364b90a0897037",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mschwaig",
+        "ref": "comically-bad-rocm-workaround",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1725826545,
@@ -1267,6 +1283,7 @@
         "nix2container": "nix2container_3",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-rocm-workaround": "nixpkgs-rocm-workaround",
         "plasma-manager": "plasma-manager",
         "pre-commit-hooks": "pre-commit-hooks_3",
         "riscv-overlay": "riscv-overlay",
