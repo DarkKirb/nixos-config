@@ -10,7 +10,9 @@
     (
       _: _:
       let
-        pkgs' = import nixpkgs-rocm-workaround { };
+        pkgs' = import nixpkgs-rocm-workaround {
+          system = "x86_64-linux";
+        };
       in
       {
         inherit (pkgs') rocmPackages rocmPackages_5 rocmPackages_6;
