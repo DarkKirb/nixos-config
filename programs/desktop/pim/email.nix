@@ -51,7 +51,7 @@
       "${lib.getExe' pkgs.coreutils "cat"}"
       config.sops.secrets."accounts/email/accounts/lotte/password".path
     ];
-    realName = "Charlotte 🦝 Delenk";
+    realName = "Charlotte 🦝 Deleńkec";
     smtp = {
       host = "smtppro.zoho.eu";
       port = 465;
