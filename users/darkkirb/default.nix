@@ -8,7 +8,7 @@
     ];
     hashedPasswordFile = config.sops.secrets."users/users/darkkirb/hashedPassword".path;
     extraGroups = [ "wheel" ];
-    description = "Charlotte 🦝 Delenk";
+    description = "Charlotte 🦝 Deleńkec";
   };
   sops.secrets."users/users/darkkirb/hashedPassword" = {
     neededForUsers = true;

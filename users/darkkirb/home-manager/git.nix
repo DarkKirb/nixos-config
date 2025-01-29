@@ -5,7 +5,7 @@
     package = if systemConfig.isGraphical then pkgs.gitAndTools.gitFull else pkgs.git;
     lfs.enable = true;
     userEmail = "lotte@chir.rs";
-    userName = "Charlotte 🦝 Delenk";
+    userName = "Charlotte 🦝 Deleńkec";
     extraConfig = {
       init.defaultBranch = "main";
       merge.conflictstyle = "diff3";
