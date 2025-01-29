@@ -131,6 +131,7 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs-rocm-workaround.url = "github:mschwaig/nixpkgs/comically-bad-rocm-workaround";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
