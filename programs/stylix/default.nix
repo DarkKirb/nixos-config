@@ -65,7 +65,7 @@ let
     s: lib.foldl (state: new: state * 16 + hexToIntList.${new}) 0 (lib.strings.stringToCharacters s);
   seed = hexToInt (self.shortRev or nixpkgs.shortRev);
   bg = choose (if config.isNSFW then nsfw-bgs else sfw-bgs) seed;
-  palette = pkgs.palettes.${bg}.dark;
+  palette = pkgs.palettes.${bg}.either;
   bgPng = palette.passthru.img;
   qtctPalette = pkgs.writeText "colors.conf" (
     with config.lib.stylix.colors;
