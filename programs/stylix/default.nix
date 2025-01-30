@@ -199,5 +199,11 @@ in
       background=${bgPng}
       type=image
     '')
+    (pkgs.runCommand "pfp" { } ''
+      mkdir -pv $out/share/sddm/faces
+      ln -s ${
+        config.home-manager.users.darkkirb.home.file.".face.icon".source
+      } $out/share/sddm/faces/darkkirb.face.icon
+    '')
   ];
 }

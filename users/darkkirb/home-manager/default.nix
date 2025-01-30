@@ -4,7 +4,7 @@
     ./git.nix
     ./sops.nix
   ];
-  home.file.".face".source =
+  home.file.".face.icon".source =
     let
       pfp = pkgs.stdenvNoCC.mkDerivation {
         pname = "face";
