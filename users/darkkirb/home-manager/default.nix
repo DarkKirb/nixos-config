@@ -3,6 +3,7 @@
   imports = [
     ./git.nix
     ./sops.nix
+    ./jujutsu.nix
   ];
   home.file.".face.icon".source =
     let
