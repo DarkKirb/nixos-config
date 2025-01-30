@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, pkgs, ... }:
 {
   programs.jujutsu = {
     enable = true;
@@ -6,6 +6,15 @@
       user = {
         email = "lotte@chir.rs";
         name = "Charlotte 🦝 Deleńkec";
+      };
+      signing = {
+        sign-all = true;
+        backend = "gpg";
+        key = "B4E3D4801C49EC5E";
+      };
+      fix.tools.treefmt = {
+        command = [ (lib.getExe pkgs.treefmt) ];
+        patterns = [ "glob:**/*" ];
       };
     };
   };
