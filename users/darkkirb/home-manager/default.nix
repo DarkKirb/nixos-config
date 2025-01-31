@@ -11,6 +11,7 @@
       else
         [ ]
     );
+  home.file.".face.icon".enable = systemConfig.isGraphical;
   home.file.".face.icon".source =
     let
       pfp = pkgs.stdenvNoCC.mkDerivation {
