@@ -20,6 +20,7 @@ if system == "x86_64-linux" then
       extensions =
         (with pkgs.vscode-extensions; [
           fill-labs.dependi
+          james-yu.latex-workshop
           jnoortheen.nix-ide
           leonardssh.vscord
           mechatroner.rainbow-csv
