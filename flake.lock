@@ -678,11 +678,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738200030,
-        "narHash": "sha256-z2DVxun8fEH0yeVIyfL68hXht+k2h3vEwNVxJPOMCgU=",
+        "lastModified": 1738275749,
+        "narHash": "sha256-PM+cGduJ05EZ+YXulqAwUFjvfKpPmW080mcuN6R1POw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "86a0d627cae02e8cc5d29eeb03de97f8c652a4bb",
+        "rev": "a8159195bfaef3c64df75d3b1e6a68d49d392be9",
         "type": "github"
       },
       "original": {
@@ -719,11 +719,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1737272903,
-        "narHash": "sha256-mksBfF56gJ8UFuKlsswn8yIb7Xp5GQSHg0lFIa8uMzg=",
+        "lastModified": 1738242633,
+        "narHash": "sha256-jueFk1HeyszppU7gr3WOhUnTiPOnwPKhW/BBrzUrvVk=",
         "ref": "refs/heads/main",
-        "rev": "5cdcd17cbfa5e433c2bb5c25adf0e9684ee38a11",
-        "revCount": 4232,
+        "rev": "d72ade3ad3427733f92132ca7a18a4ca91df0912",
+        "revCount": 4236,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/hydra"
       },
@@ -786,11 +786,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1737238254,
-        "narHash": "sha256-GoOwW81pV5T0YhD3yuLZG0+/Qr/Ld4qC71eM0mD3pJA=",
+        "lastModified": 1738053421,
+        "narHash": "sha256-B9HigdAgTs/FxUVcGYIRIxJVPQ+vGp3/G6WRuVKIGds=",
         "ref": "refs/heads/main",
-        "rev": "4cacb5412fedc9f37bc7a502540374f774d923cf",
-        "revCount": 16633,
+        "rev": "f8a592713d14bf0374950c8d3575eb3795e63987",
+        "revCount": 16698,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix"
       },
@@ -845,11 +845,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738174211,
-        "narHash": "sha256-eYmp1mKM4kULV1W+EBtCPk6LmKWl2REivaYfGRl+AWo=",
+        "lastModified": 1738295316,
+        "narHash": "sha256-i6dSbuPQXv3iqARBqxL0tIbSZw4Rq5UuoVrI9a8vjV0=",
         "ref": "refs/heads/main",
-        "rev": "64e33a7e09a0d1faacf2fd3f6ebd647fe4d8346a",
-        "revCount": 17329,
+        "rev": "e529074cb2c21e66c300806ebf6bf03abcd681b3",
+        "revCount": 17333,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix"
       },
@@ -896,11 +896,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1737237917,
-        "narHash": "sha256-xd3/Wr4aPc2MY61qyQ6qQ8AGoG3H/DDcJWziP4EhhXY=",
+        "lastModified": 1738008985,
+        "narHash": "sha256-EYmllgk4J7jZPfyf9ps7JWJFiNv9wLncpND23d+7dVo=",
         "ref": "refs/heads/main",
-        "rev": "6482bee40b89ab2c28d2e988848aa9ae0429d78c",
-        "revCount": 621,
+        "rev": "e489d2190a9e7b6a369d3457b49ba80c93f80eae",
+        "revCount": 623,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/nix-eval-jobs"
       },
@@ -1011,11 +1011,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738201509,
-        "narHash": "sha256-gyKBLziqn47BqpELlorHxlQTQxBS2GFQah2KNqh8Uzg=",
+        "lastModified": 1738287944,
+        "narHash": "sha256-q8pOnhaA95ZZf+CJ4ahScSzt5pbnL7lShFuMwTwiw7I=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "1b54a1707f1388b457792736b9903980ab26afaf",
+        "rev": "529e0a84346f34db86ea24203c0b2e975fefb4f2",
         "type": "github"
       },
       "original": {
@@ -1218,11 +1218,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1737165118,
-        "narHash": "sha256-s40Kk/OulP3J/1JvC3VT16U4r/Xw6Qdi7SRw3LYkPWs=",
+        "lastModified": 1737672001,
+        "narHash": "sha256-YnHJJ19wqmibLQdUeq9xzE6CjrMA568KN/lFPuSVs4I=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6a3ae7a5a12fb8cac2d59d7df7cbd95f9b2f0566",
+        "rev": "035f8c0853c2977b24ffc4d0a42c74f00b182cd8",
         "type": "github"
       },
       "original": {
@@ -1234,11 +1234,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1738227432,
-        "narHash": "sha256-8YKjeQrFkI0TdFFSKR7C1LchctkPtIfU6au5sso+m9s=",
+        "lastModified": 1738316972,
+        "narHash": "sha256-1B9+X56FtSgQWzRfb7yCXfSoNb53k8hYjmq9Tjqat+g=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "51522090318dd2e17b9152641cf859f6650b7f59",
+        "rev": "f155be437ac1f1f5dfb2253021de0da5f0acd9da",
         "type": "github"
       },
       "original": {
@@ -1394,11 +1394,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738203884,
-        "narHash": "sha256-H48s0D1+p9G0XcP2ggMLQ9QVI2SfpgZsJGrkzp5EmyU=",
+        "lastModified": 1738290352,
+        "narHash": "sha256-YKOHUmc0Clm4tMV8grnxYL4IIwtjTayoq/3nqk0QM7k=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "86a1ccaaca8ba20a8b4187aa8ca75c319aea16fa",
+        "rev": "b031b584125d33d23a0182f91ddbaf3ab4880236",
         "type": "github"
       },
       "original": {
@@ -1430,11 +1430,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737411508,
-        "narHash": "sha256-j9IdflJwRtqo9WpM0OfAZml47eBblUHGNQTe62OUqTw=",
+        "lastModified": 1738291974,
+        "narHash": "sha256-wkwYJc8cKmmQWUloyS9KwttBnja2ONRuJQDEsmef320=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "015d461c16678fc02a2f405eb453abb509d4e1d4",
+        "rev": "4c1251904d8a08c86ac6bc0d72cc09975e89aef7",
         "type": "github"
       },
       "original": {
@@ -1628,11 +1628,11 @@
       },
       "locked": {
         "dir": "packaging/nix",
-        "lastModified": 1737834175,
-        "narHash": "sha256-uHTE0PWZ9A/uLCAlx36z3pdDfIEdu5Jsnt4bJW4KYLY=",
+        "lastModified": 1738306689,
+        "narHash": "sha256-DE1+O2XSuqkTLihIhk7geI2M6tjcsrFztLiSfcDpo0A=",
         "ref": "refs/heads/main",
-        "rev": "4d1860eefd79d6c04e964774155dbe13be65121a",
-        "revCount": 911,
+        "rev": "7a71163b79e56222fe3f3097d1e71208a91a1a3b",
+        "revCount": 917,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/Open-Wine-Components/umu-launcher/"
