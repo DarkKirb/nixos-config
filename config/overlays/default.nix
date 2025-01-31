@@ -5,6 +5,7 @@
   rust-overlay,
   nix-vscode-extensions,
   nix-gaming,
+  jujutsu,
   ...
 }:
 {
@@ -35,6 +36,7 @@
         (import rust-overlay)
         nix-vscode-extensions.overlays.default
         nix-gaming.overlays.default
+        jujutsu.overlays.default
       ];
     }
   else
