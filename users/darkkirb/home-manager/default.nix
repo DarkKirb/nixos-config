@@ -1,10 +1,16 @@
-{ pkgs, ... }:
+{ pkgs, systemConfig, ... }:
 {
-  imports = [
-    ./git.nix
-    ./sops.nix
-    ./jujutsu.nix
-  ];
+  imports =
+    [ ./sops.nix ]
+    ++ (
+      if systemConfig.isGraphical then
+        [
+          ./git.nix
+          ./jujutsu.nix
+        ]
+      else
+        [ ]
+    );
   home.file.".face.icon".source =
     let
       pfp = pkgs.stdenvNoCC.mkDerivation {
