@@ -96,6 +96,12 @@
     impermanence = {
       url = "github:DarkKirb/impermanence/change-default-link-type";
     };
+    jujutsu = {
+      url = "github:jj-vcs/jj";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
     lix = {
       url = "git+https://git.lix.systems/lix-project/lix";
       inputs.flake-compat.follows = "flake-compat";

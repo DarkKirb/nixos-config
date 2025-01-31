@@ -16,6 +16,7 @@
         command = [ (lib.getExe pkgs.treefmt) ];
         patterns = [ "glob:**/*" ];
       };
+      git.subprocess = true;
     };
   };
 }

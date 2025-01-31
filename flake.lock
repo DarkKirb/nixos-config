@@ -748,6 +748,32 @@
         "type": "github"
       }
     },
+    "jujutsu": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": [
+          "rust-overlay"
+        ]
+      },
+      "locked": {
+        "lastModified": 1738288054,
+        "narHash": "sha256-+4GGIofTfQ9kArrULbDoc35ILsrjK90gVyr0xNHEd2c=",
+        "owner": "jj-vcs",
+        "repo": "jj",
+        "rev": "b637e981275094afad6629b73bad38187c5e842f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jj-vcs",
+        "repo": "jj",
+        "type": "github"
+      }
+    },
     "lix": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -1340,6 +1366,7 @@
         "home-manager": "home-manager",
         "hydra": "hydra",
         "impermanence": "impermanence",
+        "jujutsu": "jujutsu",
         "lix": "lix_2",
         "lix-module": "lix-module",
         "nix-eval-jobs": "nix-eval-jobs_2",
