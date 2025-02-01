@@ -10,9 +10,9 @@
 let
   sfw-bgs = [
     "2020-07-24-urbankitsune-bna-ych"
+    "2021-06-22-sammythetanuki-skonks-colored"
     "2021-09-15-cloverhare-lotteplush"
     "2022-05-02-anonfurryartist-giftart"
-    "2022-06-22-sammythetanuki-skonks-colored"
     "2022-06-21-sammythetanuki-lotteplushpride"
     "2022-11-15-wolfsifi-maff-me-leashed"
   ];
