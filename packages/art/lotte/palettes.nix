@@ -89,37 +89,37 @@ lib.listToAttrs (
         name = "2023-10-31-zombineko-lotteplushpunished-blowout";
         magickCommand =
           img:
-          "\( ${img} -gravity west -crop 86x4085+0+0 +repage \) -write mpr:sometile +delete -size 7262x4085 tile:mpr:sometile ${img} -gravity east";
+          "\\( ${img} -gravity west -crop 86x4085+0+0 +repage \\) -write mpr:sometile +delete -size 7262x4085 tile:mpr:sometile ${img} -gravity east -composite";
       }
       {
         name = "2023-10-31-zombineko-lotteplushpunished-messier";
         magickCommand =
           img:
-          "\( ${img} -gravity west -crop 86x4085+0+0 +repage \) -write mpr:sometile +delete -size 7262x4085 tile:mpr:sometile ${img} -gravity east";
+          "\\( ${img} -gravity west -crop 86x4085+0+0 +repage \\) -write mpr:sometile +delete -size 7262x4085 tile:mpr:sometile ${img} -gravity east -composite";
       }
       {
         name = "2023-10-31-zombineko-lotteplushpunished-messier-nodiaper";
         magickCommand =
           img:
-          "\( ${img} -gravity west -crop 86x4085+0+0 +repage \) -write mpr:sometile +delete -size 7262x4085 tile:mpr:sometile ${img} -gravity east";
+          "\\( ${img} -gravity west -crop 86x4085+0+0 +repage \\) -write mpr:sometile +delete -size 7262x4085 tile:mpr:sometile ${img} -gravity east -composite";
       }
       {
         name = "2023-10-31-zombineko-lotteplushpunished-messy";
         magickCommand =
           img:
-          "\( ${img} -gravity west -crop 86x4085+0+0 +repage \) -write mpr:sometile +delete -size 7262x4085 tile:mpr:sometile ${img} -gravity east";
+          "\\( ${img} -gravity west -crop 86x4085+0+0 +repage \\) -write mpr:sometile +delete -size 7262x4085 tile:mpr:sometile ${img} -gravity east -composite";
       }
       {
         name = "2023-10-31-zombineko-lotteplushpunished-messy-nodiaper";
         magickCommand =
           img:
-          "\( ${img} -gravity west -crop 86x4085+0+0 +repage \) -write mpr:sometile +delete -size 7262x4085 tile:mpr:sometile ${img} -gravity east";
+          "\\( ${img} -gravity west -crop 86x4085+0+0 +repage \\) -write mpr:sometile +delete -size 7262x4085 tile:mpr:sometile ${img} -gravity east -composite";
       }
       {
         name = "2023-10-31-zombineko-lotteplushpunished-outside";
         magickCommand =
           img:
-          "\( ${img} -gravity west -crop 86x4085+0+0 +repage \) -write mpr:sometile +delete -size 7262x4085 tile:mpr:sometile ${img} -gravity east";
+          "\\( ${img} -gravity west -crop 86x4085+0+0 +repage \\) -write mpr:sometile +delete -size 7262x4085 tile:mpr:sometile ${img} -gravity east -composite";
       }
       {
         name = "2025-01-24-crepes-lottediaperpail-tp";
