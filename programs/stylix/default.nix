@@ -12,6 +12,7 @@ let
     "2020-07-24-urbankitsune-bna-ych"
     "2021-09-15-cloverhare-lotteplush"
     "2022-05-02-anonfurryartist-giftart"
+    "2022-06-22-sammythetanuki-skonks-colored"
     "2022-06-21-sammythetanuki-lotteplushpride"
     "2022-11-15-wolfsifi-maff-me-leashed"
   ];
@@ -26,9 +27,20 @@ let
     "2022-08-15-deathtoaster-funpit-mud"
     "2022-12-27-rexyi-scatych"
     "2023-03-09-rexyi-voredisposal-ych"
+    "2023-04-03-sibyl-lottehosesuit"
+    "2023-04-03-sibyl-lottehosesuit-edited"
+    "2023-04-16-baltnwolf-lottediaperplushies"
+    "2023-04-16-baltnwolf-lottediaperplushies-messy"
     "2023-08-09-coldquarantine-lotte-eating-trash"
     "2023-08-10-coldquarantine-lotte-eating-trash-diapers"
     "2023-08-20-coldquarantine-lotte-eating-trash-clean"
+    "2023-10-31-zombineko-lotteplushpunished-blowout"
+    "2023-10-31-zombineko-lotteplushpunished-messier"
+    "2023-10-31-zombineko-lotteplushpunished-messier-nodiaper"
+    "2023-10-31-zombineko-lotteplushpunished-messy"
+    "2023-10-31-zombineko-lotteplushpunished-messy-nodiaper"
+    "2023-10-31-zombineko-lotteplushpunished-outside"
+    "2025-01-24-crepes-lottediaperpail-tp"
   ];
   mod = a: b: a - (a / b * b);
   choose =
