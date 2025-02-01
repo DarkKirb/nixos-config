@@ -22,7 +22,6 @@
   home.packages =
     with pkgs;
     [
-      libreoffice
       gimp
       ffmpeg-full
       darktable
