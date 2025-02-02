@@ -65,7 +65,7 @@ with lib;
         doc=$(${lib.getExe pkgs.curl} -H "accept: application/json" ${cfg.hydraServer}/build/$build)
         drvname=$(echo $doc | ${lib.getExe pkgs.jq} -r '.drvpath')
         output=$(${lib.getExe' pkgs.nix "nix-store"} -r $drvname)
-        if [ "$(readlink -f /nix/var/nix/profiles/system)" = "$output" ]; then
+        if [ "$(${lib.getExe' pkgs.coreutils "readlink"} -f /nix/var/nix/profiles/system)" = "$output" ]; then
           echo "still up-to-date!"
           exit 0
         fi
