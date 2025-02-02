@@ -21,17 +21,17 @@ let
       installPhase = "true";
     };
   mkPalette =
-    img: magickCommand: polarity:
+    magickCommand: polarity:
     (runCommand "palette.json" { } ''
       ${lib.getExe' palette-generator "palette-generator"} ${polarity}  ${lib.escapeShellArg "${imgPng magickCommand}"} "$out"
     '').overrideAttrs
       {
-        passthru.img = imgPng img;
+        passthru.img = imgPng magickCommand;
       };
-  mkPalettes = img: magickCommand: {
-    either = mkPalette img magickCommand "either";
-    dark = mkPalette img magickCommand "dark";
-    light = mkPalette img magickCommand "light";
+  mkPalettes = magickCommand: {
+    either = mkPalette magickCommand "either";
+    dark = mkPalette magickCommand "dark";
+    light = mkPalette magickCommand "light";
   };
 
 in
@@ -46,7 +46,7 @@ lib.listToAttrs (
       in
       {
         inherit name;
-        value = mkPalettes imgFile magickCommand;
+        value = mkPalettes magickCommand;
       }
     )
     [
