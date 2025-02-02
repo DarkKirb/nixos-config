@@ -46,7 +46,7 @@ with lib;
     (pkgs.writeShellScriptBin "switch-variant" ''
       #!${lib.getExe pkgs.bash}
       set -euxo pipefail
-      if [ "x$1" = x ];
+      if [ "x$1" = x ]; then
         job="${cfg.job}"
       else
         job="${cfg.job}-$1"
