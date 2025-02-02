@@ -22,4 +22,7 @@ let
   };
 in
 variants:
-lib.foldl (a: b: permutations a values.${b}) values.${lib.head variants} (lib.tail variants)
+if variants == [ ] then
+  [ ]
+else
+  lib.foldl (a: b: permutations a values.${b}) values.${lib.head variants} (lib.tail variants)
