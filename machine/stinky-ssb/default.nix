@@ -13,12 +13,4 @@
   isSway = true;
   home-manager.users.darkkirb.imports = [ ./home-manager.nix ];
   services.postgresql.enable = lib.mkForce false;
-  specialisation.sfw = {
-    configuration.imports = [
-      {
-        nix.auto-update.specialisation = "sfw";
-        isNSFW = lib.mkForce false;
-      }
-    ];
-  };
 }

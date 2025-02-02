@@ -35,23 +35,6 @@ in
     "${nixos-config}/config/networkmanager.nix"
   ];
   system.stateVersion = config.system.nixos.version;
-  specialisation.graphical = {
-    configuration.imports = [
-      ./graphical.nix
-      #"${nixos-config}/config/graphical/plymouth.nix"
-      {
-        nix.auto-update.specialisation = "graphical";
-      }
-    ];
-  };
-  specialisation.graphical-verbose = {
-    configuration.imports = [
-      ./graphical.nix
-      {
-        nix.auto-update.specialisation = "graphical-verbose";
-      }
-    ];
-  };
   isInstaller = true;
   environment.etc."install-closure".source = "${closureInfo}/store-paths";
   environment.systemPackages = [
