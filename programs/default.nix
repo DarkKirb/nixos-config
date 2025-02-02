@@ -1,20 +1,12 @@
-{ system, ... }:
+{ ... }:
 {
-  imports =
-    [
-      ./shell
-      ./editors
-      ./ssh
-      ./desktop
-    ]
-    ++ (
-      if system != "riscv64-linux" then
-        [
-          ./stylix
-        ]
-      else
-        [ ]
-    );
+  imports = [
+    ./shell
+    ./editors
+    ./ssh
+    ./desktop
+    ./stylix
+  ];
   home-manager.users.root.imports = [
     ./home-manager.nix
   ];
