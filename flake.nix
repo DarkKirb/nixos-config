@@ -242,53 +242,125 @@
             instance-20221213-1915 = {
               config = ./machine/instance-20221213-1915;
               system = "aarch64-linux";
+              variants = [
+                "bg"
+                "polarity"
+              ];
             };
             nas = {
               config = ./machine/nas;
               system = "x86_64-linux";
+              variants = [
+                "bg"
+                "polarity"
+              ];
             };
             nixos-8gb-fsn1-1 = {
               config = ./machine/nixos-8gb-fsn1-1;
               system = "x86_64-linux";
+              variants = [
+                "bg"
+                "polarity"
+              ];
             };
             not522 = {
               config = ./machine/not522;
               system = "riscv64-linux";
+              variants = [
+                "bg"
+                "polarity"
+              ];
             };
             not522-installer = {
               config = ./machine/not522/installer;
               system = "riscv64-linux";
+              variants = [
+                "bg"
+                "polarity"
+              ];
             };
             oracle-installer = {
               config = ./machine/oracle-installer;
               system = "aarch64-linux";
+              variants = [
+                "bg"
+                "polarity"
+              ];
             };
             pc-installer = {
               config = ./machine/pc-installer;
               system = "x86_64-linux";
+              variants = [
+                "bg"
+                "boot"
+                "de"
+                "polarity"
+              ];
             };
             rainbow-resort = {
               config = ./machine/rainbow-resort;
               system = "x86_64-linux";
+              variants = [
+                "bg"
+                "boot"
+                "de"
+                "polarity"
+              ];
             };
             stinky-ssb = {
               config = ./machine/stinky-ssb;
               system = "aarch64-linux";
+              variants = [
+                "bg"
+                "boot"
+                "de"
+                "polarity"
+              ];
             };
             thinkrac = {
               config = ./machine/thinkrac;
               system = "x86_64-linux";
+              variants = [
+                "bg"
+                "boot"
+                "de"
+                "polarity"
+              ];
             };
           };
-          systems = mapAttrs (
-            _: system:
+          mkVariant =
+            system: variantCfg: variantName:
+            let
+              filteredVariantCfg = filterAttrs (n: _: elem n system.variants) variantCfg;
+            in
             mkSystem {
               inherit (system) system;
               modules = [
                 system.config
+                (import ./variants/import-variants.nix filteredVariantCfg)
+                {
+                  nix.auto-update.variant = if variantName == "default" then null else variantName;
+                }
               ];
-            }
-          ) systems';
+            };
+
+          mkVariantName = variantCfg: concatStringsSep "-" (attrValues variantCfg);
+          permutations = import ./variants/permutations.nix { inherit (nixpkgs) lib; };
+          variantCfgs = system: permutations system.variants;
+          mkVariants =
+            hostname: system:
+            (map (variantCfg: rec {
+              name = "${hostname}-${mkVariantName variantCfg}";
+              value = mkVariant system variantCfg name;
+            }) (variantCfgs system))
+            ++ [
+              {
+                name = hostname;
+                value = mkVariant system (import ./variants/defaults.nix) null;
+              }
+            ];
+
+          systems = listToAttrs (flatten (mapAttrsToList mkVariants systems'));
         in
         systems;
       hydraJobs = {

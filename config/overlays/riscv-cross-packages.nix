@@ -3,6 +3,7 @@
   nixpkgs,
   lix,
   self,
+  lib,
   ...
 }:
 let
@@ -13,6 +14,15 @@ let
       lix.overlays.default
       self.overlays.default
     ];
+    config.allowUnfree = true;
+  };
+  pkgs_x86_64_native = import nixpkgs {
+    system = "x86_64-linux";
+    overlays = [
+      lix.overlays.default
+      self.overlays.default
+    ];
+    config.allowUnfree = true;
   };
   pkgs_x86_64_2 = import nixpkgs {
     system = "x86_64-linux";
@@ -20,10 +30,11 @@ let
   };
 in
 {
-  nixpkgs.overlays = [
+  nixpkgs.overlays = lib.mkAfter [
     (self: super: {
       inherit (pkgs_x86_64) lix palette-generator;
       inherit (pkgs_x86_64_2) nixos-option;
+      inherit (pkgs_x86_64_native) palettes;
       gnupg = super.gnupg.override {
         withTpm2Tss = false;
       };

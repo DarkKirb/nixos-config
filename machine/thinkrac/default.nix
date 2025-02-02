@@ -14,31 +14,6 @@
     "${nixos-config}/config/graphical/plymouth.nix"
   ];
   system.stateVersion = "24.11";
-  specialisation.sfw = {
-    configuration.imports = [
-      {
-        nix.auto-update.specialisation = "sfw";
-        isNSFW = lib.mkForce false;
-      }
-    ];
-  };
-  specialisation.sway = {
-    configuration.imports = [
-      {
-        nix.auto-update.specialisation = "sway";
-        isSway = true;
-      }
-    ];
-  };
-  specialisation.sway-nsfw = {
-    configuration.imports = [
-      {
-        nix.auto-update.specialisation = "sway-sfw";
-        isSway = true;
-        isNSFW = lib.mkForce false;
-      }
-    ];
-  };
   nix.settings.system-features = [
     "kvm"
     "nixos-test"
