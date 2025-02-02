@@ -267,16 +267,12 @@
               config = ./machine/not522;
               system = "riscv64-linux";
               variants = [
-                "bg"
-                "polarity"
               ];
             };
             not522-installer = {
               config = ./machine/not522/installer;
               system = "riscv64-linux";
               variants = [
-                "bg"
-                "polarity"
               ];
             };
             oracle-installer = {
