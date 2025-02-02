@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, systemConfig, ... }:
 {
   home.packages = [ pkgs.hyfetch ];
   xdg.configFile."hyfetch.json".text = builtins.toJSON {
     preset = "nonhuman-unity";
     mode = "rgb";
-    light_dark = "dark";
+    light_dark = if systemConfig.isLightTheme then "light" else "dark";
     lightness = 0.65;
     color_align = {
       mode = "vertical";
