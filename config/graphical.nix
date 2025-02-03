@@ -38,7 +38,7 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    wayland.compositor = if config.isSway then "sway" else "kwin";
+    wayland.compositor = if config.isSway then "weston" else "kwin";
   };
   programs.sway.enable = config.isSway;
 }
