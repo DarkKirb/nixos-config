@@ -172,6 +172,7 @@ in
   ];
 
   stylix = {
+    polarity = if config.isLightTheme then "light" else "dark";
     inherit (pkgs) palette-generator;
     enable = true;
     image = bgPng;
