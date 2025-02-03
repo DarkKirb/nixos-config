@@ -456,3 +456,4 @@
       );
     };
 }
+# Trick renovate into working: "github:NixOS/nixpkgs/nixpkgs-unstable"
