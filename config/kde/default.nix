@@ -1,11 +1,5 @@
 { config, ... }:
 {
-  services.xserver.enable = !config.isSway;
-  services.displayManager.sddm = {
-    enable = !config.isSway;
-    wayland.enable = true;
-    wayland.compositor = "kwin";
-  };
   services.desktopManager.plasma6.enable = !config.isSway;
 
   imports = [

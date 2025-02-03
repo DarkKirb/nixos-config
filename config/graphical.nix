@@ -34,4 +34,11 @@
     config.common.default = lib.mkIf config.isSway "wlr";
   };
   security.pam.services.swaylock = { };
+  services.xserver.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    wayland.compositor = if config.isSway then "sway" else "kwin";
+  };
+  programs.sway.enable = config.isSway;
 }
