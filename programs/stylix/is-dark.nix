@@ -7,6 +7,14 @@ let
     + 0.0722 * rgbToFloat config.lib.stylix.colors.base00-rgb-b;
 in
 {
+  options.polarity = lib.mkOption {
+    description = "what polarity to use";
+    type = lib.types.enum [
+      "dark"
+      "light"
+      "either"
+    ];
+  };
   options.isLightTheme = lib.mkEnableOption "Set to true on light themes, false on dark themes.";
   config.isLightTheme = lib.mkDefault (
     {
@@ -14,6 +22,6 @@ in
       light = true;
       either = luma > 0.5;
     }
-    .${config.stylix.polarity}
+    .${config.polarity}
   );
 }

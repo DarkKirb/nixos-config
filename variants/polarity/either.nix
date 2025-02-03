@@ -1,4 +1,4 @@
 { ... }:
 {
-  stylix.polarity = "either";
+  polarity = "either";
 }
