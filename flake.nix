@@ -349,10 +349,16 @@
           variantCfgs = system: permutations system.variants;
           mkVariants =
             hostname: system:
-            (map (variantCfg: rec {
-              name = "${hostname}-${mkVariantName variantCfg}";
-              value = mkVariant system variantCfg name;
-            }) (variantCfgs system))
+            (map (
+              variantCfg:
+              let
+                variantName = mkVariantName variantCfg;
+              in
+              {
+                name = "${hostname}-${variantName}";
+                value = mkVariant system variantCfg variantName;
+              }
+            ) (variantCfgs system))
             ++ [
               {
                 name = hostname;
