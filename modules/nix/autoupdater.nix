@@ -109,7 +109,7 @@ with lib;
           ''
             $output/bin/switch-to-configuration boot
             booted="$(${lib.getExe' pkgs.coreutils "readlink"} /run/booted-system/{kernel,kernel-modules})"
-            built="$(${lib.getExe' pkgs.coreutils "readlink"} output/{kernel,kernel-modules})"
+            built="$(${lib.getExe' pkgs.coreutils "readlink"} $output/{kernel,kernel-modules})"
             if [ "$booted" = "$built" ]; then
               $output/bin/switch-to-configuration switch
             else
