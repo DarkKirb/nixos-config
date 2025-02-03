@@ -1,6 +1,5 @@
 {
   nixos-config,
-  lib,
   ...
 }:
 {
@@ -15,5 +14,4 @@
   ];
   system.stateVersion = "24.11";
   home-manager.users.darkkirb.imports = [ ./home-manager.nix ];
-  isNSFW = true;
 }
