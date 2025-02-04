@@ -44,6 +44,7 @@ let
       "menus.overrideContext"
       "search"
       "theme"
+      "identity"
     ];
     "darkreader" = [
       "alarms"
