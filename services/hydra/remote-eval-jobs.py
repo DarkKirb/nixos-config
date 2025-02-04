@@ -47,22 +47,28 @@ if len(inputs_to_copy) != 0:
 # Evaluate on target
 result = subprocess.Popen(["@ssh@", "build-rainbow-resort", "nix-eval-jobs"] + list(map(shlex.quote, remote_args)), bufsize=1, stdout=subprocess.PIPE, text=True)
 
+drvsToCopy = []
+drvsResult = []
+
 for line in iter(result.stdout.readline, ""):
+    drvsResult.append(line)
     try:
         line = line.strip()
         data = json.loads(line)
-        # copy .drv file home
-        subprocess.run(["@nix@", "copy", data["drvPath"], "--from", "ssh://build-rainbow-resort", "--no-check-sigs"], check=True, stdout=subprocess.DEVNULL)
-        # if we have a gcroot, add it to it
-        if gcroots is not None:
-            drvBasename = os.path.basename(data["drvPath"])
-            try:
-                os.symlink(data["drvPath"], os.path.join(gcroots, drvBasename))
-            except:
-                pass
-        # Now we are done with this job, we can tell hydra about it
+        drvsToCopy.append(data["drvPath"])
         print(line)
     except Exception as e:
         print(e, file=sys.stderr)
+
+subprocess.run(["@nix@", "copy", *drvsToCopy, "--from", "ssh://build-rainbow-resort", "--no-check-sigs"], check=True, stdout=subprocess.DEVNULL)
+if gcroots is not None:
+    for drv in drvsToCopy:
+        try:
+            os.symlink(drv, os.path.join(gcroots, os.path.basename(drv)))
+        except:
+            pass
+
+for lin in drvsResult:
+    print(lin)
 
 sys.exit(result.wait())
