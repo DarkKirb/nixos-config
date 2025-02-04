@@ -227,11 +227,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738330549,
-        "narHash": "sha256-sFM/SdPWEBKqbS4tJZsf2h7AWdYBuXL9G1anisGNB8c=",
+        "lastModified": 1738561136,
+        "narHash": "sha256-RBPPXHtHOyQythFcX2X1qMjFptB6f74YbZ1ok7yFDzg=",
         "ref": "refs/heads/main",
-        "rev": "58d2a297ef557838f8203c87b41abfee5653496a",
-        "revCount": 57,
+        "rev": "0f2f63fd8a8f4446243716da00a3aeb8ca844483",
+        "revCount": 59,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/chir.rs"
       },
@@ -678,11 +678,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738448366,
-        "narHash": "sha256-4ATtQqBlgsGqkHTemta0ydY6f7JBRXz4Hf574NHQpkg=",
+        "lastModified": 1738667255,
+        "narHash": "sha256-sMMQb9NydZqQ/MvvtPp+Ny0W9P0Jk0moU7SrTBlO5Vo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "18fa9f323d8adbb0b7b8b98a8488db308210ed93",
+        "rev": "7abcf59a365430b36f84eaa452a466b11e469e33",
         "type": "github"
       },
       "original": {
@@ -761,11 +761,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738449835,
-        "narHash": "sha256-STfq/drxfeYUX52pu+0SqfbEFf76jHB44Xm6rWJSmCQ=",
+        "lastModified": 1738692980,
+        "narHash": "sha256-Gngd9HFmROtjUE+LfN724gYbH5wgDH2fD9rHfR+MFKY=",
         "owner": "jj-vcs",
         "repo": "jj",
-        "rev": "b3099b7b673261bce2b440255937c1ba8f5e0ac3",
+        "rev": "227eccefdb220491bd25e9e51a316a85e6e6a0a1",
         "type": "github"
       },
       "original": {
@@ -845,11 +845,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738446528,
-        "narHash": "sha256-NYL/r7EXSyYP7nXuYGvGYMI9QtztGjVaKKofBt/pCv8=",
+        "lastModified": 1738690832,
+        "narHash": "sha256-gHJkxfk4ePMx5lhcF12r28lX6WdaH+a4y6GZhlaRQ1I=",
         "ref": "refs/heads/main",
-        "rev": "a51380645f61b33d37a536b596d16c481f7b84a6",
-        "revCount": 17342,
+        "rev": "8553adbb414167d969ba720cae02ab0694f38bd4",
+        "revCount": 17359,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix"
       },
@@ -942,11 +942,11 @@
         "umu": "umu"
       },
       "locked": {
-        "lastModified": 1738460253,
-        "narHash": "sha256-ksCksa9r66Abrk2UWQac0QLV8hUmlr3zdhLlSKvHj3k=",
+        "lastModified": 1738633089,
+        "narHash": "sha256-awMsAhuhPctQ0v4fbNX0aRNqQTL1qDLgVjOJJHQ4y4M=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "5542800ed394225b5560a25e7fb92455bdcf5b85",
+        "rev": "3c83a677771fea8b55724f2d5cde0ca878c65712",
         "type": "github"
       },
       "original": {
@@ -1011,11 +1011,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738460950,
-        "narHash": "sha256-VnojfvmXvLmEddGj+5pGg8UiQY1REHl0apB0R51wylw=",
+        "lastModified": 1738633599,
+        "narHash": "sha256-EXZoqWNfwBGrlrSNB5Vz5AL+pYc5p8keM35mglYw6j4=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "66dd0a10ed193f204a7e0f9853bdc21f94dd838f",
+        "rev": "615f991fb42739207e7f71138e03b1b9bbe45e72",
         "type": "github"
       },
       "original": {
@@ -1081,11 +1081,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1738471961,
-        "narHash": "sha256-cgXDFrplNGs7bCVzXhRofjD8oJYqqXGcmUzXjHmip6Y=",
+        "lastModified": 1738638143,
+        "narHash": "sha256-ZYMe4c4OCtIUBn5hx15PEGr0+B1cNEpl2dsaLxwY2W0=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "537286c3c59b40311e5418a180b38034661d2536",
+        "rev": "9bdd53f5908453e4d03f395eb1615c3e9a351f70",
         "type": "github"
       },
       "original": {
@@ -1234,11 +1234,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1738480477,
-        "narHash": "sha256-nHHz/rjfjcHxJ4LnBgwVEWeNTjlsTYoux/QNdlEmPmk=",
+        "lastModified": 1738693324,
+        "narHash": "sha256-Gxub9lNpVM1szErsBK+NfU9noBTTW35okAWcnbSNzWk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c3b4161dac4a30a098a5c35767b1f0b41916d52f",
+        "rev": "be02d861eace1ba8d9cac31d0493af1032ca4b2f",
         "type": "github"
       },
       "original": {
@@ -1394,11 +1394,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738463259,
-        "narHash": "sha256-+5QJpiRpkh1ALvKcMEpPyGwkPZfaynsYF4SFdNW5UfQ=",
+        "lastModified": 1738635966,
+        "narHash": "sha256-5MbJhh6nz7tx8FYVOJ0+ixMaEn0ibGzV/hScPMmqVTE=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "e2bb8c205a069514535f083742c7da8dfb6e02b9",
+        "rev": "1ff8663cd75a11e61f8046c62f4dbb05d1907b44",
         "type": "github"
       },
       "original": {
@@ -1410,11 +1410,11 @@
     "rycee-nur-expressions": {
       "flake": false,
       "locked": {
-        "lastModified": 1738469013,
-        "narHash": "sha256-vqyvxAb9SoY1DmKASSGhmgB+EN8kTSqpqwzLhAu5z1E=",
+        "lastModified": 1738641794,
+        "narHash": "sha256-MNnDZJuxMTXT1vGHQFSPJx9sJ56JjpjKulNsy01Cu8A=",
         "ref": "refs/heads/master",
-        "rev": "d361d728e3d83960629bfe5e7edde6134e758970",
-        "revCount": 4076,
+        "rev": "727fbb76627296cdeab0f2367930fb1f663b2113",
+        "revCount": 4079,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       },
@@ -1629,19 +1629,19 @@
       "locked": {
         "dir": "packaging/nix",
         "lastModified": 1738306689,
-        "narHash": "sha256-DE1+O2XSuqkTLihIhk7geI2M6tjcsrFztLiSfcDpo0A=",
+        "narHash": "sha256-g1p++aLe6q6OdGy3K91uyCjAeBUkkT4uoItSFQT+PJw=",
         "ref": "refs/heads/main",
         "rev": "7a71163b79e56222fe3f3097d1e71208a91a1a3b",
         "revCount": 917,
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/Open-Wine-Components/umu-launcher/"
+        "url": "https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging/nix"
       },
       "original": {
         "dir": "packaging/nix",
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/Open-Wine-Components/umu-launcher/"
+        "url": "https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging/nix"
       }
     },
     "vscode-server": {
