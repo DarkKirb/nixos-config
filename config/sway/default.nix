@@ -188,13 +188,12 @@ in
   systemd.user.services.transparency = {
     Unit = {
       Description = "transparency";
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
+      After = [ "sway-session.target" ];
+      PartOf = [ "sway-session.target" ];
     };
-    Install.WantedBy = [ "graphical-session.target" ];
+    Install.WantedBy = [ "sway-session.target" ];
     Service = {
       ExecStart = "${lib.getExe pkgs.sway-contrib.inactive-windows-transparency}";
     };
   };
-
 }
