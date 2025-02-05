@@ -11,6 +11,5 @@
     ripgrep
     fd
     file
-    ncdu
   ];
 }
