@@ -69,6 +69,6 @@ if gcroots is not None:
             pass
 
 for lin in drvsResult:
-    print(lin)
+    print(lin, end="", flush=False)
 
 sys.exit(result.wait())
