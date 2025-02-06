@@ -72,11 +72,13 @@ in
     ./mpd.nix
     ./waybar.nix
   ];
+  programs.alacritty.enable = true;
   wayland.windowManager.sway = {
     systemd.enable = true;
     enable = true;
     config = {
       modifier = "Mod4";
+      terminal = "${lib.getExe pkgs.alacritty}";
       input = {
         "*" = {
           xkb_layout = "de";

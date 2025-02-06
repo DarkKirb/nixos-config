@@ -60,7 +60,7 @@
           tooltip-format = "MPD (connected)";
           tooltip-format-disconnected = "MPD (disconnected)";
           on-click = "${lib.getExe pkgs.mpc-cli} toggle";
-          on-click-middle = "${lib.getExe pkgs.foot} ${lib.getExe pkgs.ncmpcpp}";
+          on-click-middle = "${lib.getExe pkgs.alacritty} ${lib.getExe pkgs.ncmpcpp}";
           on-click-right = "${lib.getExe pkgs.mpc-cli} stop";
           on-scroll-up = "${lib.getExe pkgs.mpc-cli} seekthrough +00:00:01";
           on-scroll-down = "${lib.getExe pkgs.mpc-cli} seekthrough -00:00:01";
