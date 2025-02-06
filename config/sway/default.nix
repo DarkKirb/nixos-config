@@ -86,7 +86,7 @@ in
         };
       };
       output = {
-        "DP-2" = {
+        "DP-1" = {
           mode = "2560x1440@74.971Hz";
           position = "0 0";
           subpixel = "rgb";
