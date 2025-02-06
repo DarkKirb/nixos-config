@@ -199,23 +199,21 @@
           };
         in
         import nixpkgs {
-          inherit system;
+          system = if system == "riscv64-linux" then "x86_64-linux" else system;
+          crossSystem =
+            if system == "riscv64-linux" then
+              {
+                inherit system;
+              }
+            else
+              null;
           config.allowUnfree = true;
-          overlays =
-            [
-              (_: _: {
-                inputs = inputs';
-              })
-              self.overlays.default
-            ]
-            ++ (
-              if system == "riscv64-linux" then
-                [
-                  inputs.riscv-overlay.overlays.default
-                ]
-              else
-                [ ]
-            );
+          overlays = [
+            (_: _: {
+              inputs = inputs';
+            })
+            self.overlays.default
+          ];
         };
     in
     {
@@ -229,11 +227,12 @@
             args:
             let
               inputs' = inputs // {
-                inherit (args) system;
+                system = args.targetSystem;
               };
+              filteredArgs = filterAttrs (n: _: n != "targetSystem") args;
             in
             nixosSystem (
-              args
+              filteredArgs
               // {
                 specialArgs = args.specialArgs or { } // inputs';
               }
@@ -265,7 +264,8 @@
             };
             not522 = {
               config = ./machine/not522;
-              system = "riscv64-linux";
+              system = "x86_64-linux";
+              targetSystem = "riscv64-linx";
               variants = [
                 "bg"
                 "polarity"
@@ -273,7 +273,8 @@
             };
             not522-installer = {
               config = ./machine/not522/installer;
-              system = "riscv64-linux";
+              system = "x86_64-linux";
+              targetSystem = "riscv64-linx";
               variants = [
                 "bg"
                 "polarity"
@@ -335,6 +336,7 @@
             in
             mkSystem {
               inherit (system) system;
+              targetSystem = system.targetSystem or system.system;
               modules = [
                 system.config
                 (import ./variants/import-variants.nix filteredVariantCfg)

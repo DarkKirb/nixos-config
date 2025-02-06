@@ -13,4 +13,5 @@
   isSway = true;
   home-manager.users.darkkirb.imports = [ ./home-manager.nix ];
   services.postgresql.enable = lib.mkForce false;
+  nixpkgs.config.allowUnfree = true;
 }

@@ -98,6 +98,7 @@
           [ ]
       );
   };
+  xdg.configFile."nvim/lua/config/lazy-nvim.lua".enable = config.programs.neovim.enable;
   xdg.configFile."nvim/lua/config/lazy-nvim.lua".text = ''
     local utils = require('utils')
     -- check if firenvim is active

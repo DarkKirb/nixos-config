@@ -3,6 +3,9 @@
   nixos-hardware,
   config,
   lib,
+  nixpkgs,
+  lix,
+  self,
   ...
 }:
 {
@@ -50,4 +53,46 @@
   boot.initrd.systemd.tpm2.enable = lib.mkForce false;
   systemd.tpm2.enable = lib.mkForce false;
   nix.auto-update.jobset = "nixos-config-riscv";
+  nixpkgs = {
+    buildPlatform.config = "x86_64-linux";
+    hostPlatform.config = "riscv64-linux";
+    pkgs = lib.mkForce (
+      import nixpkgs {
+        system = "x86_64-linux";
+        crossSystem = "riscv64-linux";
+        config = {
+          allowUnfree = true;
+          allowUnsupportedSystem = true;
+        };
+      }
+    );
+  };
+
+  nixpkgs.overlays =
+    let
+      pkgs_x86_64 = import nixpkgs {
+        system = "x86_64-linux";
+        crossSystem.system = "riscv64-linux";
+        overlays = [
+          lix.overlays.default
+          self.overlays.default
+        ];
+        config.allowUnfree = true;
+      };
+      pkgs_x86_64_native = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [
+          lix.overlays.default
+          self.overlays.default
+        ];
+        config.allowUnfree = true;
+      };
+    in
+    lib.mkAfter [
+      (import ./overlay/overlay.nix)
+      (_: _: {
+        inherit (pkgs_x86_64) lix palette-generator;
+        inherit (pkgs_x86_64_native) palettes;
+      })
+    ];
 }

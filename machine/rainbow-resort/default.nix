@@ -14,4 +14,5 @@
   ];
   system.stateVersion = "24.11";
   home-manager.users.darkkirb.imports = [ ./home-manager.nix ];
+  nixpkgs.config.allowUnfree = true;
 }
