@@ -140,8 +140,6 @@ in
         {
           imports = [
             ./konsole.nix
-            ./telegram-desktop.nix
-            ./discord.nix
           ];
           home.activation.nuke-gtkrc = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
             run rm -f $VERBOSE_ARG $HOME/.gtkrc-2.0
@@ -169,6 +167,8 @@ in
       else
         { }
     )
+    ./telegram-desktop.nix
+    ./discord.nix
   ];
 
   stylix = {
