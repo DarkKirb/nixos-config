@@ -64,10 +64,10 @@ let
         machine_type = "Gemini PR";
       };
       "Gemini PR" = {
-        baudrate = 1000000;
+        baudrate = 4000000;
         bytesize = 8;
         parity = "N";
-        port = "/dev/serial/by-id/usb-Charlotte_🦝_Delenk_rkb1-if03";
+        port = "/dev/serial/by-id/usb-Charlotte_🦝_Deleńkec_rkb1_E6616407E30978210000000000000000-if03";
         stopbits = 1;
         timeout = 2.0;
       };
