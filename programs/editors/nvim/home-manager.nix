@@ -10,7 +10,7 @@
   ];
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [ lazy-nvim ];
-    enable = true;
+    enable = pkgs.targetPlatform.system != "riscv64-linux";
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;

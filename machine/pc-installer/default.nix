@@ -26,4 +26,5 @@
       exec ${lib.getExe' pkgs.disko "disko-install"} --flake "${nixos-config}#rainbow-resort" --disk main "${nixos-config.nixosConfigurations.rainbow-resort.config.disko.devices.disk.main.device}"
     '')
   ];
+  nixpkgs.config.allowUnfree = true;
 }

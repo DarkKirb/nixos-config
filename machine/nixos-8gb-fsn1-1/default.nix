@@ -39,4 +39,5 @@
   services.caddy.enable = true;
   sops.age.sshKeyPaths = lib.mkForce [ "/etc/ssh/ssh_host_ed25519_key" ];
   nix.auto-update.reboot = false;
+  nixpkgs.config.allowUnfree = true;
 }
