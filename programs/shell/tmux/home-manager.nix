@@ -10,10 +10,6 @@
       power-theme
       cpu
       {
-        plugin = resurrect;
-        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
-      }
-      {
         plugin = continuum;
         extraConfig = ''
           set -g @continuum-restore 'on'

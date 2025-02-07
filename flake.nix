@@ -118,7 +118,7 @@
     };
     nix-eval-jobs = {
       url = "git+https://git.lix.systems/lix-project/nix-eval-jobs.git";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
