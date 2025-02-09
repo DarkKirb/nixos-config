@@ -45,4 +45,7 @@ inputs: final: prev: {
   emoji-volpeon-vlpn = final.callPackage ./art/emoji/volpeon/vlpn.nix { };
   emoji-volpeon-wvrn = final.callPackage ./art/emoji/volpeon/wvrn.nix { };
   emoji-rosaflags = final.callPackage ./art/emoji/rosaflags.nix { };
+  renovate = prev.renovate.overrideAttrs {
+    dontCheckForBrokenSymlinks = true;
+  };
 }

@@ -177,6 +177,10 @@ in
     enable = true;
     image = bgPng;
     inherit palette;
+    cursor = {
+      package = pkgs.kdePackages.breeze-icons;
+      name = "Breeze";
+    };
     fonts = {
       serif = {
         package = pkgs.noto-fonts;
