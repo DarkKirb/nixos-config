@@ -1,10 +1,8 @@
 {
     "extends": [
         "config:best-practices",
-        "schedule:automergeDaily"
-    ],
-    "schedule": [
-        "* 4 * * *"
+        "schedule:automergeDaily",
+        "schedule:daily"
     ],
     "postUpgradeTasks": {
         "commands": [
@@ -15,5 +13,14 @@
             "packages/**/*"
         ]
     },
-    "automerge": true
+    "automerge": true,
+    "nix": {
+        "enabled": true
+    },
+    "lockFileMaintenance": {
+        "enabled": true,
+        "extends": [
+            "schedule:daily"
+        ]
+    },
 }
