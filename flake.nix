@@ -27,6 +27,7 @@
       url = "github:DarkKirb/attic";
       inputs.crane.follows = "crane";
       inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     cargo2nix = {
@@ -90,7 +91,7 @@
     hydra = {
       url = "git+https://git.lix.systems/lix-project/hydra";
       #inputs.lix.follows = "lix";
-      #inputs.nix-eval-jobs.follows = "nix-eval-jobs";
+      inputs.nix-eval-jobs.follows = "nix-eval-jobs";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
@@ -119,10 +120,12 @@
     nix-eval-jobs = {
       url = "git+https://git.lix.systems/lix-project/nix-eval-jobs.git";
       #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
