@@ -4,22 +4,15 @@
         "schedule:automergeDaily",
         "schedule:daily"
     ],
-    "packageRules": [
-        {
-            "matchDepNames": [
-                "nixpkgs"
-            ],
-            "postUpgradeTasks": {
-                "commands": [
-                    "updater",
-                    "treefmt"
-                ],
-                "fileFilters": [
-                    "packages/**/*"
-                ]
-            }
-        }
-    ],
+    "postUpgradeTasks": {
+        "commands": [
+            "updater",
+            "treefmt"
+        ],
+        "fileFilters": [
+            "packages/**/*"
+        ]
+    },
     "automerge": true,
     "nix": {
         "enabled": true

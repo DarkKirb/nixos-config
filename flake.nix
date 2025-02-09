@@ -3,35 +3,35 @@
 
   inputs = {
     admin-fe = {
-      url = "github:DarkKirb/admin-fe/76424b7fe477b5a81b2961e6e8742a12b441f3d3";
+      url = "github:DarkKirb/admin-fe";
       inputs.devshell.follows = "devshell";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
     akkoma = {
-      url = "github:DarkKirb/akkoma/0383ea0469a723c8992e03b41554cf9e0a165b15";
+      url = "github:DarkKirb/akkoma";
       inputs.devshell.follows = "devshell";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     akkoma-fe = {
-      url = "github:DarkKirb/akkoma-fe/b1ed0f54f94c8c673712b433faf4e62af3f9624c";
+      url = "github:DarkKirb/akkoma-fe";
       inputs.devshell.follows = "devshell";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
     attic = {
-      url = "github:DarkKirb/attic/bf3bd0755c5e312787a6b72c1d0b6d7272c239bb";
+      url = "github:DarkKirb/attic";
       inputs.crane.follows = "crane";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     cargo2nix = {
-      url = "github:DarkKirb/cargo2nix/29084d950413d317ce5c5901d5f5fd3510a38974";
+      url = "github:DarkKirb/cargo2nix/master";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,46 +46,46 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
     crane = {
-      url = "github:DarkKirb/crane/42c3f329daa267857c6bc6d21c9eec468e97e2d7";
+      url = "github:DarkKirb/crane";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
     devshell = {
-      url = "github:numtide/devshell/f7795ede5b02664b57035b3b757876703e2c3eac";
+      url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
-      url = "github:nix-community/disko/ff3568858c54bd306e9e1f2886f0f781df307dff";
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dns = {
-      url = "github:DarkKirb/dns.nix/4d3d32b0fd221895bf3da0e348056260c3a77636";
+      url = "github:DarkKirb/dns.nix";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-compat = {
-      url = "github:edolstra/flake-compat/ff81ac966bb2cae68946d5ed5fc4994f96d0ffec";
+      url = "github:edolstra/flake-compat";
       flake = false;
     };
     flake-parts = {
-      url = "github:hercules-ci/flake-parts/32ea77a06711b758da0ad9bd6a844c5740a87abd";
+      url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     flake-utils = {
-      url = "github:numtide/flake-utils/11707dc2f618dd54ca8739b309ec4fc024de578b";
+      url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
     };
     flakey-profile = {
-      url = "github:lf-/flakey-profile/243c903fd8eadc0f63d205665a92d4df91d42d9d";
+      url = "github:lf-/flakey-profile";
     };
     gitignore = {
-      url = "github:hercules-ci/gitignore.nix/637db329424fd7e46cf4185293b9cc8c88c95394";
+      url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/947eef9e99c42346cf0aac2bebe1cd94924c173b";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hydra = {
@@ -95,10 +95,10 @@
       #inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
-      url = "github:DarkKirb/impermanence/5edca6851b3b65d02cdd68e766ffb7162e17e730";
+      url = "github:DarkKirb/impermanence/change-default-link-type";
     };
     jujutsu = {
-      url = "github:jj-vcs/jj/6d6f2c6deccfb6d2fe535df01af835c31a6fe10d";
+      url = "github:jj-vcs/jj";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
@@ -123,39 +123,40 @@
       inputs.flake-parts.follows = "flake-parts";
     };
     nix-gaming = {
-      url = "github:fufexan/nix-gaming/3030553160ece3b8ea7df66d2670e8f41f0c0ec7";
+      url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
     nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions/6457c8c71e998d76799e0a246dd6a2ca13ffe51d";
+      url = "github:nix-community/nix-vscode-extensions";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix2container = {
-      url = "github:nlewo/nix2container/5fb215a1564baa74ce04ad7f903d94ad6617e17a";
+      url = "github:nlewo/nix2container";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware/2eccff41bab80839b1d25b303b53d339fbb07087";
-    nixpkgs.url = "github:nixos/nixpkgs/9e708797a87ae1e05456987cd1359fe7d5225588";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs-rocm-workaround.url = "github:mschwaig/nixpkgs/comically-bad-rocm-workaround";
     plasma-manager = {
-      url = "github:nix-community/plasma-manager/a53af7f1514ef4cce8620a9d6a50f238cdedec8b";
+      url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks = {
-      url = "github:cachix/git-hooks.nix/9364dc02281ce2d37a1f55b6e51f7c0f65a75f17";
+      url = "github:cachix/git-hooks.nix";
       inputs.flake-compat.follows = "flake-compat";
       inputs.gitignore.follows = "gitignore";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     riscv-overlay = {
-      url = "github:DarkKirb/riscv-overlay/4db935dcc65c04985bef87c49532e6358fe27503";
+      url = "github:DarkKirb/riscv-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rust-overlay = {
-      url = "github:oxalica/rust-overlay/5c571e5ff246d8fc5f76ba6e38dc8edb6e4002fe";
+      url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rycee-nur-expressions = {
@@ -163,17 +164,17 @@
       flake = false;
     };
     sops-nix = {
-      url = "github:Mic92/sops-nix/4c1251904d8a08c86ac6bc0d72cc09975e89aef7";
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
-      url = "github:DarkKirb/stylix/24459d4a58e94df886697508ca2cea0c2ca2688a";
+      url = "github:DarkKirb/stylix";
       inputs.home-manager.follows = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    systems.url = "github:nix-systems/default/da67096a3b9bf56a91d16901293e51ba5b49a27e";
+    systems.url = "github:nix-systems/default";
     vscode-server = {
-      url = "github:nix-community/nixos-vscode-server/8b6db451de46ecf9b4ab3d01ef76e59957ff549f";
+      url = "github:nix-community/nixos-vscode-server";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
