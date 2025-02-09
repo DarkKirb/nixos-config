@@ -22,5 +22,5 @@
         "extends": [
             "schedule:daily"
         ]
-    },
+    }
 }
