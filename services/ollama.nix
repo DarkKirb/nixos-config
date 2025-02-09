@@ -1,4 +1,4 @@
-{ nixpkgs-rocm-workaround, ... }:
+{ ... }:
 {
 
   services.ollama = {
@@ -9,18 +9,5 @@
     rocmOverrideGfx = "11.0.0";
     host = "[::]";
   };
-  nixpkgs.overlays = [
-    (
-      _: _:
-      let
-        pkgs' = import nixpkgs-rocm-workaround {
-          system = "x86_64-linux";
-        };
-      in
-      {
-        inherit (pkgs') rocmPackages rocmPackages_5 rocmPackages_6;
-      }
-    )
-  ];
   environment.persistence."/persistent".directories = [ "/var/lib/private/ollama" ];
 }

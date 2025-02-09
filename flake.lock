@@ -233,17 +233,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1738783548,
-        "narHash": "sha256-PDLWsTRP8/77e2l5udGiuABr78nXsJqCyJp7pVaKJhM=",
+        "lastModified": 1739106522,
+        "narHash": "sha256-xNctUsmfD3snMeXLm3clh2ImQaSpX6Ejt5dFAJSPUp4=",
         "ref": "refs/heads/main",
-        "rev": "da3af2f4bd5cfd3080131daddd64bbc6af2d16be",
-        "revCount": 61,
+        "rev": "a3816fb3dddd63b89401c28c6efc629f92c991d7",
+        "revCount": 63,
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/chir.rs"
       },
       "original": {
-        "ref": "refs/heads/main",
-        "rev": "da3af2f4bd5cfd3080131daddd64bbc6af2d16be",
         "type": "git",
         "url": "https://git.chir.rs/darkkirb/chir.rs"
       }
@@ -651,23 +649,18 @@
     "hydra": {
       "inputs": {
         "lix": "lix",
-        "nix-eval-jobs": [
-          "nix-eval-jobs"
-        ],
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1738242633,
-        "narHash": "sha256-jueFk1HeyszppU7gr3WOhUnTiPOnwPKhW/BBrzUrvVk=",
+        "lastModified": 1739030545,
+        "narHash": "sha256-NQx72uTsRCdYkK1gdgXdXgnUlLBGhsIxfIIniuYFFFc=",
         "ref": "refs/heads/main",
-        "rev": "d72ade3ad3427733f92132ca7a18a4ca91df0912",
-        "revCount": 4236,
+        "rev": "8f73d63eacc66f8c4de52d33b120170a0ccd790c",
+        "revCount": 4238,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/hydra"
       },
       "original": {
-        "ref": "refs/heads/main",
-        "rev": "d72ade3ad3427733f92132ca7a18a4ca91df0912",
         "type": "git",
         "url": "https://git.lix.systems/lix-project/hydra"
       }
@@ -765,8 +758,6 @@
         "url": "https://git.lix.systems/lix-project/nixos-module"
       },
       "original": {
-        "ref": "refs/heads/main",
-        "rev": "621aae0f3cceaffa6d73a4fb0f89c08d338d729e",
         "type": "git",
         "url": "https://git.lix.systems/lix-project/nixos-module"
       }
@@ -788,17 +779,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1739016888,
-        "narHash": "sha256-JUOvTAYx+/bAec9H7C/nnpT1NRm/6tdy5EZ/XuUGHlA=",
+        "lastModified": 1739035579,
+        "narHash": "sha256-Zc7KAA3iC5Ak9reV/peqELKXJn6rLcSZptq1Tzcx9Nc=",
         "ref": "refs/heads/main",
-        "rev": "72326c404487bbf8dc6ee069930c6c2a0319857e",
-        "revCount": 17371,
+        "rev": "132d11c2d85425b7d23785ec306acb9b1d1ddba6",
+        "revCount": 17397,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix"
       },
       "original": {
-        "ref": "refs/heads/main",
-        "rev": "72326c404487bbf8dc6ee069930c6c2a0319857e",
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix"
       }
@@ -846,8 +835,6 @@
         "url": "https://git.lix.systems/lix-project/nix-eval-jobs.git"
       },
       "original": {
-        "ref": "refs/heads/main",
-        "rev": "f2086413bac0bf7b3ab6ce0847e8367f911db835",
         "type": "git",
         "url": "https://git.lix.systems/lix-project/nix-eval-jobs.git"
       }
@@ -1056,22 +1043,6 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "215d4d0fd80ca5163643b03a33fde804a29cc1e2",
-        "type": "github"
-      }
-    },
-    "nixpkgs-rocm-workaround": {
-      "locked": {
-        "lastModified": 1738164439,
-        "narHash": "sha256-C9GtT0xLkheBB1SgZDVriE9aZlBE78ZFaeonOgZFUJM=",
-        "owner": "mschwaig",
-        "repo": "nixpkgs",
-        "rev": "2094f0d9bef7232c3c9054f395bacad1342c26b3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mschwaig",
-        "repo": "nixpkgs",
-        "rev": "2094f0d9bef7232c3c9054f395bacad1342c26b3",
         "type": "github"
       }
     },
@@ -1285,7 +1256,6 @@
         "nix2container": "nix2container_3",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
-        "nixpkgs-rocm-workaround": "nixpkgs-rocm-workaround",
         "plasma-manager": "plasma-manager",
         "pre-commit-hooks": "pre-commit-hooks_3",
         "riscv-overlay": "riscv-overlay",
@@ -1321,17 +1291,15 @@
     "rycee-nur-expressions": {
       "flake": false,
       "locked": {
-        "lastModified": 1739003331,
-        "narHash": "sha256-GVcw+qO4cNHG1kjvw2Jy3341Xe4w0jRzjQ2awyhOgEI=",
+        "lastModified": 1739073806,
+        "narHash": "sha256-uDyVctjdD5nLnpuWVPTD7kRbKT4mXScGqC2DYzSAtig=",
         "ref": "refs/heads/master",
-        "rev": "8f2693e1459d1a7a13aaa9fa702c210e9462b65b",
-        "revCount": 4089,
+        "rev": "b82257270ffdf913c3a87058fdd86b997007fade",
+        "revCount": 4091,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       },
       "original": {
-        "ref": "refs/heads/master",
-        "rev": "8f2693e1459d1a7a13aaa9fa702c210e9462b65b",
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       }

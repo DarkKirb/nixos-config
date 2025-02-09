@@ -38,7 +38,7 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
     chir-rs = {
-      url = "git+https://git.chir.rs/darkkirb/chir.rs?ref=refs/heads/main&rev=da3af2f4bd5cfd3080131daddd64bbc6af2d16be";
+      url = "git+https://git.chir.rs/darkkirb/chir.rs";
       inputs.cargo2nix.follows = "cargo2nix";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
@@ -89,7 +89,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hydra = {
-      url = "git+https://git.lix.systems/lix-project/hydra?ref=refs/heads/main&rev=d72ade3ad3427733f92132ca7a18a4ca91df0912";
+      url = "git+https://git.lix.systems/lix-project/hydra";
       #inputs.lix.follows = "lix";
       inputs.nix-eval-jobs.follows = "nix-eval-jobs";
       #inputs.nixpkgs.follows = "nixpkgs";
@@ -104,21 +104,21 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
     lix = {
-      url = "git+https://git.lix.systems/lix-project/lix?ref=refs/heads/main&rev=72326c404487bbf8dc6ee069930c6c2a0319857e";
+      url = "git+https://git.lix.systems/lix-project/lix";
       inputs.flake-compat.follows = "flake-compat";
       inputs.nix2container.follows = "nix2container";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.pre-commit-hooks.follows = "pre-commit-hooks";
     };
     lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module?ref=refs/heads/main&rev=621aae0f3cceaffa6d73a4fb0f89c08d338d729e";
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
       inputs.flake-utils.follows = "flake-utils";
       inputs.flakey-profile.follows = "flakey-profile";
       inputs.lix.follows = "lix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-eval-jobs = {
-      url = "git+https://git.lix.systems/lix-project/nix-eval-jobs.git?ref=refs/heads/main&rev=f2086413bac0bf7b3ab6ce0847e8367f911db835";
+      url = "git+https://git.lix.systems/lix-project/nix-eval-jobs.git";
       #inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
@@ -140,7 +140,6 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/2eccff41bab80839b1d25b303b53d339fbb07087";
     nixpkgs.url = "github:nixos/nixpkgs/9e708797a87ae1e05456987cd1359fe7d5225588";
-    nixpkgs-rocm-workaround.url = "github:mschwaig/nixpkgs/2094f0d9bef7232c3c9054f395bacad1342c26b3";
     plasma-manager = {
       url = "github:nix-community/plasma-manager/a53af7f1514ef4cce8620a9d6a50f238cdedec8b";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -160,7 +159,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rycee-nur-expressions = {
-      url = "git+https://gitlab.com/rycee/nur-expressions?ref=refs/heads/master&rev=8f2693e1459d1a7a13aaa9fa702c210e9462b65b";
+      url = "git+https://gitlab.com/rycee/nur-expressions";
       flake = false;
     };
     sops-nix = {
