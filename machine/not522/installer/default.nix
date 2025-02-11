@@ -27,7 +27,7 @@ in
     "${nixpkgs}/nixos/modules/profiles/minimal.nix"
   ];
 
-  system.stateVersion = config.system.nixos.version;
+  system.stateVersion = "24.11";
 
   environment.etc."install-closure".source = "${closureInfo}/store-paths";
 

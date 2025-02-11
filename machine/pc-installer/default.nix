@@ -14,7 +14,7 @@
     ./hardware.nix
     "${nixos-config}/config/networkmanager.nix"
   ];
-  system.stateVersion = config.system.nixos.version;
+  system.stateVersion = "24.11";
   isInstaller = true;
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "install-thinkrac-unattended" ''
