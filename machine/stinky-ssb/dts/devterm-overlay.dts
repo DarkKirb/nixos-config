@@ -124,7 +124,7 @@
 	fragment@19 {
 		target-path = "/chosen";
 		__overlay__ {
-			bootargs = "coherent_pool=1M snd_bcm2835.enable_compat_alsa=0 snd_bcm2835.enable_hdmi=1 smsc95xx.macaddr=E4:5F:01:E4:FE:2D vc_mem.mem_base=0x3ec00000 vc_mem.mem_size=0x40000000 8250.nr_uarts=1";
+			bootargs = "coherent_pool=1M 8250.nr_uarts=0 snd_bcm2835.enable_compat_alsa=0 snd_bcm2835.enable_hdmi=1 8250.nr_uarts=0  smsc95xx.macaddr=E4:5F:01:E4:FE:2D vc_mem.mem_base=0x3ec00000 vc_mem.mem_size=0x40000000 8250.nr_uarts=1";
 		};
 	};
 };

@@ -23,7 +23,7 @@
     raspberrypi-eeprom
   ];
   hardware.deviceTree.name = "broadcom/bcm2711-rpi-cm4.dtb";
-  hardware.deviceTree.filter = "*rpi*.dtb";
+  hardware.deviceTree.filter = "*rpi-cm4*.dtb";
   hardware.deviceTree.overlays = [
     {
       name = "dwc2";
@@ -57,10 +57,6 @@
       name = "spi";
       dtsFile = ./dts/spi0-overlay.dts;
     }
-    {
-      name = "devterm-overlay";
-      dtsFile = ./dts/devterm-overlay.dts;
-    }
   ];
   services.xserver.xkb.variant = lib.mkForce "us";
   console.keyMap = lib.mkForce "us";
@@ -79,4 +75,12 @@
   };
   boot.initrd.systemd.tpm2.enable = lib.mkForce false;
   systemd.tpm2.enable = lib.mkForce false;
+  nixpkgs.overlays = [
+    (_final: prev: {
+      deviceTree = prev.deviceTree // {
+        applyOverlays = _final.callPackage ./apply-overlays-dtmerge.nix { };
+      };
+    })
+  ];
+  boot.initrd.systemd.enable = lib.mkForce false;
 }
