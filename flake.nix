@@ -91,7 +91,6 @@
     hydra = {
       url = "git+https://git.lix.systems/lix-project/hydra";
       #inputs.lix.follows = "lix";
-      inputs.nix-eval-jobs.follows = "nix-eval-jobs";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
@@ -104,7 +103,7 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
     lix = {
-      url = "git+https://git.lix.systems/lix-project/lix";
+      url = "git+https://gerrit.lix.systems/lix?ref=refs/changes/55/2555/2";
       inputs.flake-compat.follows = "flake-compat";
       inputs.nix2container.follows = "nix2container";
       inputs.nixpkgs.follows = "nixpkgs";
