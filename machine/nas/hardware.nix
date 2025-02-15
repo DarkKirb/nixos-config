@@ -95,17 +95,19 @@
 
   system.stateVersion = "22.05";
 
-  swapDevices = [
-    {
-      device = "/dev/sda2";
-    }
-    {
-      device = "/dev/sdb2";
-    }
-    {
-      device = "/dev/sdc2";
-    }
-  ];
+  /*
+    swapDevices = [
+      {
+        device = "/dev/sda2";
+      }
+      {
+        device = "/dev/sdb2";
+      }
+      {
+        device = "/dev/sdc2";
+      }
+    ];
+  */
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = lib.mkForce false;
   hardware.nvidia = {
