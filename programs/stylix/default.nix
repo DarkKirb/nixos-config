@@ -178,36 +178,54 @@ in
     image = bgPng;
     inherit palette;
     cursor = {
-      package = pkgs.kdePackages.breeze-icons;
+      package = if config.isGraphical then pkgs.kdePackages.breeze-icons else pkgs.emptyDirectory;
       name = "Breeze";
     };
     fonts = {
       serif = {
-        package = pkgs.noto-fonts;
+        package = if config.isGraphical then pkgs.noto-fonts else pkgs.emptyDirectory;
         name = "Noto Serif";
       };
       sansSerif = {
-        package = pkgs.noto-fonts;
+        package = if config.isGraphical then pkgs.noto-fonts else pkgs.emptyDirectory;
         name = "Noto Sans";
       };
       monospace = {
-        package = pkgs.nerd-fonts.fira-code;
+        package = if config.isGraphical then pkgs.nerd-fonts.fira-code else pkgs.emptyDirectory;
         name = "FiraCode Nerd Font Mono";
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = if config.isGraphical then pkgs.noto-fonts-emoji else pkgs.emptyDirectory;
         name = "Noto Color Emoji";
       };
     };
   };
   home-manager.sharedModules = [
     (
-      { config, systemConfig, ... }:
+      {
+        config,
+        systemConfig,
+        lib,
+        ...
+      }:
       {
         stylix.targets = {
           kde.enable = systemConfig.isGraphical && !systemConfig.isSway;
+          xresources.enable = systemConfig.isGraphical;
         };
       }
+    )
+    (
+      if config.isGraphical then
+        { }
+      else
+        {
+          xresources = {
+            extraConfig = lib.mkForce "";
+            path = lib.mkForce null;
+            properties = lib.mkForce null;
+          };
+        }
     )
   ];
   environment.systemPackages = [

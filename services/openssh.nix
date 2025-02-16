@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   services.openssh.enable = true;
   services.openssh.settings = {
@@ -7,8 +7,9 @@
     StreamLocalBindUnlink = "yes";
     GatewayPorts = "clientspecified";
     AcceptEnv = "WAYLAND_DISPLAY";
-    X11Forwarding = true;
+    X11Forwarding = config.isGraphical;
   };
+  programs.ssh.setXAuthLocation = config.isGraphical;
   programs.ssh.knownHosts = {
     "git.chir.rs".publicKey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+GanuiV1I08OP8+nNy24+zagQN08rtJnCoU/ixiQNn";
