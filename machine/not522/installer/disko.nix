@@ -1,7 +1,7 @@
 {
   disko.devices = {
     disk = {
-      main = {
+      installer = {
         type = "disk";
         device = "/dev/mmcblk1";
         content = {
