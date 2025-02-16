@@ -1,4 +1,10 @@
-{ pkgs, nixos-config, ... }:
+{
+  pkgs,
+  nixos-config,
+  config,
+  lib,
+  ...
+}:
 {
   imports = [
     "${nixos-config}/modules"
@@ -17,4 +23,5 @@
     "d /var/lib/private 700 root root - -"
     "z /var/lib/private 700 root root - -"
   ];
+  security.pam.services.su.forwardXAuth = lib.mkForce config.isGraphical;
 }

@@ -39,8 +39,8 @@
           host.address = "/%d/.local/state/waypipe/client.sock";
         }
       ];
-      forwardX11 = true;
-      forwardX11Trusted = true;
+      forwardX11 = systemConfig.isGraphical;
+      forwardX11Trusted = systemConfig.isGraphical;
       setEnv.WAYLAND_DISPLAY = "wayland-waypipe";
       extraOptions.StreamLocalBindUnlink = "yes";
     };
