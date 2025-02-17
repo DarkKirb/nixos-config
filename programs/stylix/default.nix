@@ -95,6 +95,7 @@ in
     ./is-dark.nix
   ];
   home-manager.users.root.stylix.targets.kde.enable = lib.mkForce false;
+  home-manager.users.root.stylix.targets.gnome-text-editor.enable = lib.mkForce false;
   home-manager.users.darkkirb.imports = [
     {
       xdg.configFile = {
@@ -115,9 +116,8 @@ in
           };
         };
       };
-    }
-    {
       stylix.targets.kde.enable = lib.mkForce (config.isGraphical && !config.isSway);
+      stylix.targets.gnome-text-editor.enable = false;
     }
     (
       if config.isSway then
