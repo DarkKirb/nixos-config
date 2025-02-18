@@ -166,7 +166,7 @@ let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 59;
+      serial = 61;
     };
     NS = [
       "ns1.chir.rs."
@@ -237,6 +237,10 @@ let
         (ttl zoneTTL (txt "did=did:plc:wtxdmo7634gs4lxfrlptey3v"))
       ];
       status = createZone oracleBase;
+
+      ad = delegateTo [
+        "nas.int.chir.rs."
+      ];
 
       int =
         delegateTo [
