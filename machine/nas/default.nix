@@ -17,6 +17,7 @@
     "${nixos-config}/services/forgejo-runner"
     "${nixos-config}/services/renovate"
     "${nixos-config}/services/chir-rs"
+    "${nixos-config}/services/samba/addc.nix"
     ./postgresql.nix
   ];
 
