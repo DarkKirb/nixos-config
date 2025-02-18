@@ -1093,15 +1093,16 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1739750409,
-        "narHash": "sha256-7xCTetHdi+tSz/9HBlbXXe1DYV+F0+wdUHW7LgiAPlc=",
-        "owner": "nixos",
+        "lastModified": 1739866163,
+        "narHash": "sha256-TxropzKQZXQ05i8c9RZeE7Me2cWM+JOmhzjK3vBSf8o=",
+        "owner": "darkkirb",
         "repo": "nixpkgs",
-        "rev": "e573b086559dcdc9320517487af91180d04b0c0c",
+        "rev": "6c6eb6c61fa9a1ea8edfb41e0a018adf8e03158e",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "darkkirb",
+        "ref": "fix-rust-analyzer",
         "repo": "nixpkgs",
         "type": "github"
       }
