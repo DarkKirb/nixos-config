@@ -1,4 +1,0 @@
-{ ... }:
-{
-  polarity = "either";
-}

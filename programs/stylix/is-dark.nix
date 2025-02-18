@@ -14,6 +14,7 @@ in
       "light"
       "either"
     ];
+    default = "dark";
   };
   options.isLightTheme = lib.mkEnableOption "Set to true on light themes, false on dark themes.";
   config.isLightTheme = lib.mkDefault (

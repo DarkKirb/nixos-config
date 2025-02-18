@@ -14,11 +14,6 @@ let
       { de = "kde"; }
       { de = "sway"; }
     ];
-    polarity = [
-      { polarity = "dark"; }
-      { polarity = "either"; }
-      { polarity = "light"; }
-    ];
   };
 in
 variants:

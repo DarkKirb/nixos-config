@@ -244,7 +244,6 @@
               system = "aarch64-linux";
               variants = [
                 "bg"
-                "polarity"
               ];
             };
             nas = {
@@ -252,7 +251,6 @@
               system = "x86_64-linux";
               variants = [
                 "bg"
-                "polarity"
               ];
             };
             nixos-8gb-fsn1-1 = {
@@ -260,7 +258,6 @@
               system = "x86_64-linux";
               variants = [
                 "bg"
-                "polarity"
               ];
             };
             not522 = {
@@ -269,7 +266,6 @@
               targetSystem = "riscv64-linx";
               variants = [
                 "bg"
-                "polarity"
               ];
             };
             not522-installer = {
@@ -278,7 +274,6 @@
               targetSystem = "riscv64-linx";
               variants = [
                 "bg"
-                "polarity"
               ];
             };
             oracle-installer = {
@@ -286,7 +281,6 @@
               system = "aarch64-linux";
               variants = [
                 "bg"
-                "polarity"
               ];
             };
             pc-installer = {
@@ -296,7 +290,6 @@
                 "bg"
                 "boot"
                 "de"
-                "polarity"
               ];
             };
             rainbow-resort = {
@@ -306,7 +299,6 @@
                 "bg"
                 "boot"
                 "de"
-                "polarity"
               ];
             };
             stinky-ssb = {
@@ -316,7 +308,6 @@
                 "bg"
                 "boot"
                 "de"
-                "polarity"
               ];
             };
             thinkrac = {
@@ -326,7 +317,6 @@
                 "bg"
                 "boot"
                 "de"
-                "polarity"
               ];
             };
           };
