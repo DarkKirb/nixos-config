@@ -8,7 +8,7 @@
         name = "Charlotte 🦝 Deleńkec";
       };
       signing = {
-        sign-all = true;
+        behavior = "own";
         backend = "gpg";
         key = "B4E3D4801C49EC5E";
       };
