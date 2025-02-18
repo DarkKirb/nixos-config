@@ -2,7 +2,6 @@
   bg ? null,
   boot ? null,
   de ? null,
-  polarity ? null,
   ...
 }:
 {
@@ -27,14 +26,6 @@
       if de != null then
         [
           ./de/${de}.nix
-        ]
-      else
-        [ ]
-    )
-    ++ (
-      if polarity != null then
-        [
-          ./polarity/${polarity}.nix
         ]
       else
         [ ]
