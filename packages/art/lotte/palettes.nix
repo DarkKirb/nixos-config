@@ -29,9 +29,9 @@ let
         passthru.img = imgPng magickCommand;
       };
   mkPalettes = magickCommand: {
-    either = mkPalette magickCommand "either";
+    #either = mkPalette magickCommand "either";
     dark = mkPalette magickCommand "dark";
-    light = mkPalette magickCommand "light";
+    #light = mkPalette magickCommand "light";
   };
 
 in
