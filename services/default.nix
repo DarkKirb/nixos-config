@@ -11,5 +11,6 @@
     ./promtail.nix
     ./restic.nix
     ./tailscale.nix
+    ./samba/ad-machine.nix
   ];
 }

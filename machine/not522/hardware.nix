@@ -92,7 +92,16 @@
       (import ./overlay/overlay.nix)
       (_: _: {
         inherit (pkgs_x86_64) lix palette-generator;
-        inherit (pkgs_x86_64_native) palettes;
+        inherit (pkgs_x86_64_native)
+          palettes
+          sssd
+          adcli
+          realmd
+          ;
       })
     ];
+
+  boot.binfmt.emulatedSystems = [
+    "x86_64-linux"
+  ];
 }
