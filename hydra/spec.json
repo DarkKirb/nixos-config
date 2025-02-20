@@ -21,19 +21,19 @@
             "emailresponsible": false
         },
         "prsJSON": {
-            "type": "giteapulls",
-            "value": "git.chir.rs darkkirb nixos-config",
+            "type": "githubpulls",
+            "value": "DarkKirb nixos-config",
             "emailresponsible": false
         },
-        "gitea_status_repo": {
+        "github_input": {
             "type": "string",
             "value": "nixos-config"
         },
-        "gitea_repo_owner": {
+        "github_repo_owner": {
             "type": "string",
-            "value": "darkkirb"
+            "value": "DarkKirb"
         },
-        "gitea_repo_name": {
+        "github_repo_name": {
             "type": "string",
             "value": "nixos-config"
         }
