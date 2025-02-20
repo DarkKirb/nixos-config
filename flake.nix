@@ -103,7 +103,7 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
     lix = {
-      url = "git+https://gerrit.lix.systems/lix?ref=refs/changes/55/2555/2";
+      url = "git+https://git.lix.systems/lix-project/lix";
       inputs.flake-compat.follows = "flake-compat";
       inputs.nix2container.follows = "nix2container";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -127,7 +127,7 @@
       inputs.flake-parts.follows = "flake-parts";
     };
     nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
+      url = "github:nix-community/nix-vscode-extensions/a81daa13ca23440d8ae219d765140769c4d2f117";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -138,7 +138,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixpkgs.url = "github:darkkirb/nixpkgs/fix-rust-analyzer";
+    nixpkgs.url = "github:darkkirb/nixpkgs";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
