@@ -81,7 +81,7 @@
     # Create JWT
     JWT="''${header_payload}"."''${signature}"
 
-    RENOVATE_TOKEN=$(${lib.getExe pkgs.curl} --request POST \                                                                                                                                                                                                                  ─╯
+    RENOVATE_TOKEN=$(${lib.getExe pkgs.curl} --request POST \
        --url "https://api.github.com/app/installations/61371765/access_tokens" \
        --header "Accept: application/vnd.github+json" \
        --header "Authorization: Bearer ''${JWT}" \
