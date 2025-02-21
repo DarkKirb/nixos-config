@@ -110,7 +110,7 @@ in
     ];
     profiles.default = {
       containersForce = true;
-      extensions = map (v: rycee.firefox-addons.${v}) (lib.attrNames extensions);
+      extensions.packages = map (v: rycee.firefox-addons.${v}) (lib.attrNames extensions);
       settings = {
         "extensions.autoDisableScopes" = 0;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
