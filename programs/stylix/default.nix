@@ -94,46 +94,16 @@ in
     stylix.nixosModules.stylix
     ./is-dark.nix
   ];
+  stylix.targets.qt.enable = lib.mkForce (config.isGraphical && config.isSway);
   home-manager.users.root.stylix.targets.kde.enable = lib.mkForce false;
+  home-manager.users.root.stylix.targets.qt.enable = lib.mkForce false;
   home-manager.users.root.stylix.targets.gnome-text-editor.enable = lib.mkForce false;
   home-manager.users.darkkirb.imports = [
     {
-      xdg.configFile = {
-        "qt5ct/qt5ct.conf".text = lib.generators.toINI { } {
-          Appearance = {
-            custom_palette = true;
-            color_scheme_path = "${qtctPalette}";
-            standard_dialogs = "xdgdesktopportal";
-            style = "breeze";
-          };
-        };
-        "qt6ct/qt6ct.conf".text = lib.generators.toINI { } {
-          Appearance = {
-            custom_palette = true;
-            color_scheme_path = "${qtctPalette}";
-            standard_dialogs = "xdgdesktopportal";
-            style = "breeze";
-          };
-        };
-      };
       stylix.targets.kde.enable = lib.mkForce (config.isGraphical && !config.isSway);
+      stylix.targets.qt.platform = "qtct";
       stylix.targets.gnome-text-editor.enable = false;
     }
-    (
-      if config.isSway then
-        {
-          qt.style = {
-            name = if config.isLightTheme then "breeze" else "breeze-dark";
-            package = pkgs.kdePackages.breeze;
-          };
-          gtk.iconTheme = {
-            package = pkgs.kdePackages.breeze-icons;
-            name = if config.isLightTheme then "breeze" else "breeze-dark";
-          };
-        }
-      else
-        { }
-    )
     (
       if config.isGraphical && !config.isSway then
         { config, lib, ... }:
