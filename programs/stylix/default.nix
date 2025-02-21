@@ -101,6 +101,7 @@ in
   home-manager.users.darkkirb.imports = [
     {
       stylix.targets.kde.enable = lib.mkForce (config.isGraphical && !config.isSway);
+      stylix.targets.qt.enable = lib.mkForce (config.isGraphical && config.isSway);
       stylix.targets.qt.platform = "qtct";
       stylix.targets.gnome-text-editor.enable = false;
     }

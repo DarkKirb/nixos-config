@@ -1326,11 +1326,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1740039585,
-        "narHash": "sha256-1RCxIdaMWXnLmKTBshvR6eooMYxw4iX7zIbh+xrpwGg=",
+        "lastModified": 1740145329,
+        "narHash": "sha256-hhHrp5gDHqurZ7JbPgCsbqO9JgPkpqYPZ/zQ0iiT76g=",
         "owner": "DarkKirb",
         "repo": "stylix",
-        "rev": "1c4e864fd1603cd62f55675ad403ff0886c65fca",
+        "rev": "3121d2470787c82d9f5bb882617f91df39c34514",
         "type": "github"
       },
       "original": {
