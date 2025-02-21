@@ -52,9 +52,7 @@ with lib;
         job="${cfg.job}-$1"
       fi
       build=$(${lib.getExe pkgs.curl} -H "accept: application/json" -G ${cfg.hydraServer}/api/latestbuilds -d "nr=10" -d "project=${cfg.project}" -d "jobset=${cfg.jobset}" -d "job=$job" | ${lib.getExe pkgs.jq} -r '[.[]|select(.buildstatus==0)][0].id')
-      doc=$(${lib.getExe pkgs.curl} -H "accept: application/json" ${cfg.hydraServer}/build/$build)
-      drvname=$(echo $doc | ${lib.getExe pkgs.jq} -r '.drvpath')
-      output=$(${lib.getExe' pkgs.nix "nix-store"} -r $drvname)
+      output=$(${lib.getExe pkgs.curl} -H "accept: application/json" ${cfg.hydraServer}/build/$build | ${lib.getExe pkgs.jq} -r '.buildoutputs.out.path')
       if [ "$(${lib.getExe' pkgs.coreutils "readlink"} -f /nix/var/nix/profiles/system)" = "$output" ]; then
         echo "still up-to-date!"
         exit 0
