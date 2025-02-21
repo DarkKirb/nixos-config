@@ -11,9 +11,7 @@
     enable = true;
     schedule = "hourly";
     settings = {
-      platform = "gitea";
-      endpoint = "https://git.chir.rs";
-      gitAuthor = "Renovate <gitea-bot@chir.rs>";
+      platform = "github";
       autodiscover = true;
       autodiscoverTopics = [ "managed-by-renovate" ];
       nix.enabled = true;
