@@ -52,7 +52,7 @@
     pem="$(${lib.getExe' pkgs.systemd "systemd-creds"} cat 'SECRET-GITHUB_PEM')"
     now=$(${lib.getExe' pkgs.coreutils "date"} +%s)
     iat=$((''${now} - 60)) # Issues 60 seconds in the past
-    exp=$((''${now} + 31536000)) # Expires 10 minutes in the future
+    exp=$((''${now} + 600)) # Expires 10 minutes in the future
     b64enc() { ${lib.getExe pkgs.openssl} base64 | ${lib.getExe' pkgs.coreutils "tr"} -d '=' | ${lib.getExe' pkgs.coreutils "tr"} '/+' '_-' | ${lib.getExe' pkgs.coreutils "tr"} -d '\n'; }
     header_json='{
         "typ":"JWT",
