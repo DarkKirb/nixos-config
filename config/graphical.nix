@@ -28,7 +28,7 @@
       with pkgs;
       (lib.mkIf config.isSway [
         xdg-desktop-portal-gtk
-        xdg-desktop-portal-kde
+        kdePackages.xdg-desktop-portal-kde
         xdg-desktop-portal-wlr
       ]);
     config.common.default = lib.mkIf config.isSway "wlr";
