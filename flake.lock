@@ -599,11 +599,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740208222,
-        "narHash": "sha256-FqgPcK5BK+Mc4cGBCGz555UsVd/TQK9FvmuamBWu+ZY=",
+        "lastModified": 1740265252,
+        "narHash": "sha256-+LFsCsIUF/pJWL9S21m5NLcK5bgwRB4MwfV0Iu7tggY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f4a07823a298deff0efb0db30f9318511de7c232",
+        "rev": "fb568d75cf6c81f30d49eeb73787e9b56454ba16",
         "type": "github"
       },
       "original": {
@@ -681,11 +681,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740188928,
-        "narHash": "sha256-3dTJTDyLDhmKlk2zvyGHrYdgVMeip6Kqddoarha5bqk=",
+        "lastModified": 1740255582,
+        "narHash": "sha256-SkYQgYfhQBWRkgAMkP/Cf5UyPIbUwAQgShf3QcImnO4=",
         "owner": "jj-vcs",
         "repo": "jj",
-        "rev": "a031defcff00c2e5ad7ee9d1544662a90e3723f1",
+        "rev": "35936463ed89dadbccb3ab743b345981e57e917e",
         "type": "github"
       },
       "original": {
@@ -765,11 +765,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740188830,
-        "narHash": "sha256-5oNhuRYf/RNh058TwmvalGMlsq2gOSVihz2j+0pfQYE=",
+        "lastModified": 1740253065,
+        "narHash": "sha256-ucwXcftJ7DHjk1UA2LmfHXkDPoCgfB4uadwFUCBvc8w=",
         "ref": "refs/heads/main",
-        "rev": "148f4eefe9136e722752c0f73633ea271f271278",
-        "revCount": 17446,
+        "rev": "82c7e76c9c2d829dc11c22b32173a40056cc44ef",
+        "revCount": 17449,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix"
       },
@@ -1290,11 +1290,11 @@
     "rycee-nur-expressions": {
       "flake": false,
       "locked": {
-        "lastModified": 1740164177,
-        "narHash": "sha256-hNEgYjKKkSICKrmyLBK+Ght7KGxOryiSGiTRViUrKWw=",
+        "lastModified": 1740212040,
+        "narHash": "sha256-Gpvn9Z+ZgKPyb6qaAbahLbo6ZVj7VuLzSCmHZRvsACA=",
         "ref": "refs/heads/master",
-        "rev": "16c8c7e376b09119913bbc4d8e6852b7918ca7cc",
-        "revCount": 4140,
+        "rev": "9a8a0914000e4453c99a4c12e9862a0a40075851",
+        "revCount": 4142,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       },
