@@ -79,30 +79,20 @@ let
   bg = choose (if config.isNSFW then nsfw-bgs else sfw-bgs) seed;
   palette = pkgs.palettes.${bg}.${config.polarity};
   bgPng = palette.passthru.img;
-  qtctPalette = pkgs.writeText "colors.conf" (
-    with config.lib.stylix.colors;
-    ''
-      [ColorScheme]
-      active_colors=#ff${base0C}, #ff${base01}, #ff${base01}, #ff${base05}, #ff${base03}, #ff${base04}, #ff${base0E}, #ff${base06}, #ff${base05}, #ff${base01}, #ff${base00}, #ff${base03}, #ff${base02}, #ff${base0E}, #ff${base09}, #ff${base08}, #ff${base02}, #ff${base05}, #ff${base01}, #ff${base0E}, #8f${base0E}
-      disabled_colors=#ff${base0F}, #ff${base01}, #ff${base01}, #ff${base05}, #ff${base03}, #ff${base04}, #ff${base0F}, #ff${base0F}, #ff${base0F}, #ff${base01}, #ff${base00}, #ff${base03}, #ff${base02}, #ff${base0E}, #ff${base09}, #ff${base08}, #ff${base02}, #ff${base05}, #ff${base01}, #ff${base0F}, #8f${base0F}
-      inactive_colors=#ff${base0C}, #ff${base01}, #ff${base01}, #ff${base05}, #ff${base03}, #ff${base04}, #ff${base0E}, #ff${base06}, #ff${base05}, #ff${base01}, #ff${base00}, #ff${base03}, #ff${base02}, #ff${base0E}, #ff${base09}, #ff${base08}, #ff${base02}, #ff${base05}, #ff${base01}, #ff${base0E}, #8f${base0E}
-    ''
-  );
 in
 {
   imports = [
     stylix.nixosModules.stylix
     ./is-dark.nix
   ];
-  stylix.targets.qt.enable = lib.mkForce (config.isGraphical && config.isSway);
+  stylix.targets.qt.enable = lib.mkForce config.isGraphical;
   home-manager.users.root.stylix.targets.kde.enable = lib.mkForce false;
   home-manager.users.root.stylix.targets.qt.enable = lib.mkForce false;
   home-manager.users.root.stylix.targets.gnome-text-editor.enable = lib.mkForce false;
   home-manager.users.darkkirb.imports = [
     {
       stylix.targets.kde.enable = lib.mkForce (config.isGraphical && !config.isSway);
-      stylix.targets.qt.enable = lib.mkForce (config.isGraphical && config.isSway);
-      stylix.targets.qt.platform = "qtct";
+      stylix.targets.qt.enable = lib.mkForce config.isGraphical;
       stylix.targets.gnome-text-editor.enable = false;
     }
     (

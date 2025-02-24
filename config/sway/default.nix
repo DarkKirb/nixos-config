@@ -181,11 +181,7 @@ in
       gaps outer 8
       gaps inner 4
       exec_always ${lib.getExe pkgs.xorg.xrandr} --output DP-1 --primary
-      exec ${lib.getExe (pkgs.python3.withPackages (ps: [ps.i3ipc]))} ${./transparency.py}
+      exec ${lib.getExe (pkgs.python3.withPackages (ps: [ ps.i3ipc ]))} ${./transparency.py}
     '';
-  };
-  qt = {
-    enable = true;
-    platformTheme.name = "qtct";
   };
 }
