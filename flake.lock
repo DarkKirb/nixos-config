@@ -1394,11 +1394,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1740386071,
-        "narHash": "sha256-7PVeY/da8kxvV7kjwpO1HP6DJCYop5meLNDjWtxjkn8=",
+        "lastModified": 1740387419,
+        "narHash": "sha256-l/FAkFX5Uj6Sk5VVHtTqwXwc3rTLP4U4fB92N6Iv6rI=",
         "owner": "DarkKirb",
         "repo": "stylix",
-        "rev": "cf88d9238875bcc39f737d06323e2bf9e41dd020",
+        "rev": "97954b76f1b5ddf1503113fab7f45d97bcee9fd1",
         "type": "github"
       },
       "original": {
