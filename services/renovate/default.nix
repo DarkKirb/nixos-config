@@ -23,6 +23,8 @@
         "^./update.sh$"
         "^treefmt$"
         "^updater$"
+        "^mix2nix$"
+        "^yarn2nix$"
       ];
       allowCustomCrateRegistries = true;
     };
@@ -42,6 +44,8 @@
       nixfmt-rfc-style
       package-updater
       rustfmt
+      mix2nix
+      yarn2nix
     ];
   };
 
