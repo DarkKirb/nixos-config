@@ -33,7 +33,7 @@ in
         --primary-660: var(--base00); /* Search input background */
     }
 
-    .app {
+    body {
       background-image: url("data:image/png;base64,${img}") !important;
       background-size: contain;
       background-attachment: fixed;
