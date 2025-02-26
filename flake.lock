@@ -299,11 +299,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739841949,
-        "narHash": "sha256-lSOXdgW/1zi/SSu7xp71v+55D5Egz8ACv0STkj7fhbs=",
+        "lastModified": 1740485968,
+        "narHash": "sha256-WK+PZHbfDjLyveXAxpnrfagiFgZWaTJglewBWniTn2Y=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "15dbf8cebd8e2655a883b74547108e089f051bf0",
+        "rev": "19c1140419c4f1cdf88ad4c1cfb6605597628940",
         "type": "github"
       },
       "original": {
@@ -703,11 +703,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740446779,
-        "narHash": "sha256-8FMHS6/uHdG7AlPWggMO8qoGqcqmpMrWwptjOQJW1NA=",
+        "lastModified": 1740501686,
+        "narHash": "sha256-k3VmMgPQKTogCmRl1Ck6QQ/AsONP+FSJSHoeN+uldPU=",
         "owner": "jj-vcs",
         "repo": "jj",
-        "rev": "cdc9c69a8f7cda726858ef85fdea1b6214a5d3e5",
+        "rev": "0e2d079ef8a94f0f1ea0a478ffad3bba4bb41f3b",
         "type": "github"
       },
       "original": {
@@ -787,11 +787,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740449362,
-        "narHash": "sha256-UJaNM71Lai/GdExpjqzhWRcLLJf5TfISSHZgA/KMU6M=",
+        "lastModified": 1740502011,
+        "narHash": "sha256-H5itHYNtWHzM1nlZozYfLvN+CHRL3A95uO8qKBNx7Xo=",
         "ref": "refs/heads/main",
-        "rev": "42a8fb96567ef4ffae9494056da0c8ca5a7634df",
-        "revCount": 17492,
+        "rev": "ffe2dd40f4fae2d8f0ff94063c8522efddc2a3e6",
+        "revCount": 17493,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix"
       },
