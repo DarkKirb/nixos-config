@@ -74,6 +74,7 @@ if system == "x86_64-linux" then
           "rust-analyzer.lens.references.trait.enable" = true;
           "sops.binPath" = "${lib.getExe pkgs.sops}";
           "workbench.iconTheme" = "material-icon-theme";
+          "telemetry.telemetryLevel" = "error";
         };
       };
     };
