@@ -102,7 +102,7 @@ with lib;
       set -euxo pipefail
       exec ${lib.getExe' switch-variant "switch-variant"} ${
         if cfg.variant == null then ''""'' else cfg.variant
-      };
+      } ""
     '';
   };
 
