@@ -18,7 +18,7 @@
     };
     imapnotify = {
       enable = true;
-      onNotify = "${lib.getExe pkgs.isync} test-%s";
+      onNotify = "${lib.getExe pkgs.isync} lotte";
       onNotifyPost = "${lib.getExe pkgs.notmuch} new && ${lib.getExe pkgs.libnotify} 'New mail arrived'";
     };
     mbsync = {
