@@ -23,6 +23,7 @@ let
     "volpeon-vlpn"
     "volpeon-wvrn"
     "rosaflags"
+    "neopossum"
   ];
   emoji_sets = builtins.listToAttrs (
     map (name: {

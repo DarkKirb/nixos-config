@@ -410,6 +410,7 @@
                   emoji-volpeon-vlpn
                   emoji-volpeon-wvrn
                   emoji-rosaflags
+                  emoji-neopossum
                   ;
               }
               // (
