@@ -8,6 +8,7 @@
 {
   name,
   manifest,
+  subdir ? ".",
   ...
 }@args:
 let
@@ -44,7 +45,7 @@ stdenv.mkDerivation (
     '';
     installPhase = ''
       mkdir $out
-      cp -r *.png $out
+      cp -r ${subdir}/*.png $out
     '';
     meta = {
       inherit (manifestData) description homepage;

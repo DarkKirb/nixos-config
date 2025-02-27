@@ -1,0 +1,9 @@
+{
+    "neopossum": {
+        "description": "Neopossum emotes by ibly",
+        "homepage": "https://skunks.gay/downloads",
+        "src": "https://skunks.gay/download/neopossum-256px_v0.5.zip",
+        "src_sha256": "ef365b2787fd3be91f98630b4e5780bdcbc5608a625ce23c0b281725e39978be",
+        "license": "CC BY-NC-SA 4.0"
+    }
+}
