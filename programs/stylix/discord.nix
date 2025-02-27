@@ -41,16 +41,16 @@ in
 
     .theme-light, .theme-dark {
         --search-popout-option-fade: none; /* Disable fade for search popout */
-        --bg-overlay-2: #40${base00}; /* These 2 are needed for proper threads coloring */
-        --home-background: #40${base00};
-        --background-primary: #40${base00};
-        --background-secondary: #40${base01};
-        --background-secondary-alt: #40${base01};
-        --channeltextarea-background: #40${base01};
-        --background-tertiary: #40${base00};
-        --background-accent: #40${base0E};
-        --background-floating: #40${base01};
-        --background-modifier-selected: #40${base00};
+        --bg-overlay-2: #${base00}40; /* These 2 are needed for proper threads coloring */
+        --home-background: #${base00}40;
+        --background-primary: #${base00}40;
+        --background-secondary: #${base01}40;
+        --background-secondary-alt: #${base01}40;
+        --channeltextarea-background: #${base01}40;
+        --background-tertiary: #${base00}40;
+        --background-accent: #${base0E}40;
+        --background-floating: #${base01}40;
+        --background-modifier-selected: #${base00}40;
         --text-normal: var(--base05);
         --text-secondary: var(--base00);
         --text-muted: var(--base03);
