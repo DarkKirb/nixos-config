@@ -32,6 +32,7 @@
         [
           obsidian
           qgis
+          nicotine-plus
         ]
       else
         [ ]
@@ -54,6 +55,7 @@
     ".local/share/kwalletd"
     ".local/share/darktable"
     ".local/share/digikam"
+    ".config/nicotine"
     "Unload"
   ];
 }
