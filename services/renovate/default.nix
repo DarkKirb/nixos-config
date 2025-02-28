@@ -23,8 +23,8 @@
         "^./update.sh$"
         "^treefmt$"
         "^updater$"
-        "^mix2nix$"
-        "^yarn2nix$"
+        "^mix2nix > mix.nix$"
+        "^yarn2nix > yarn.nix$"
       ];
       allowCustomCrateRegistries = true;
     };
