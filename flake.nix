@@ -84,6 +84,11 @@
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    gomod2nix = {
+      url = "github:nix-community/gomod2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     home-manager = {
       url = "github:DarkKirb/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -182,6 +187,7 @@
     {
       self,
       nixpkgs,
+      gomod2nix,
       ...
     }@inputs':
     let
@@ -213,6 +219,7 @@
             (_: _: {
               inputs = inputs';
             })
+            gomod2nix.overlays.default
             self.overlays.default
           ];
         };
@@ -411,6 +418,8 @@
                   emoji-volpeon-wvrn
                   emoji-rosaflags
                   emoji-neopossum
+                  gomod2nix
+                  clscrobble
                   ;
               }
               // (
