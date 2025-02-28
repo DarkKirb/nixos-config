@@ -14,6 +14,7 @@
       (
         [
           ./inputs-overlay.nix
+          ./staging-workarounds.nix
         ]
         ++ (
           if system == "riscv64-linux" then
