@@ -56,6 +56,7 @@
     ".local/share/darktable"
     ".local/share/digikam"
     ".config/nicotine"
+    ".config/MusicBrainz"
     "Unload"
   ];
 }
