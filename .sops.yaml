@@ -67,6 +67,11 @@ creation_rules:
       - age:
           - *base
           - *darkkirb
+  - path_regex: programs/desktop/music/listenbrainz.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *darkkirb
   - path_regex: programs/ssh/shared-keys.yaml$
     key_groups:
       - age:
