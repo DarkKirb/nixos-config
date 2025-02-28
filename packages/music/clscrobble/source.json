@@ -1,0 +1,12 @@
+{
+  "url": "https://codeberg.org/punkscience/clscrobble.git",
+  "rev": "9416b30c40caf404a0611c896329bc8738709ad4",
+  "date": "2024-06-01T11:39:19-03:00",
+  "path": "/nix/store/vzcxv4vjkvpfapn8mzs3krqw3w7vdzcz-clscrobble",
+  "sha256": "0fmzi79rjsf5xcbhckvd82jw533mz5xi81dydlia0ppwxy34lkf9",
+  "hash": "sha256-yU1Khu/8XqAibb4FFHv5dYzCpUBtTwYX68VpmdOJvzo=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

@@ -6,6 +6,7 @@
   nix-vscode-extensions,
   nix-gaming,
   jujutsu,
+  gomod2nix,
   ...
 }:
 {
@@ -33,6 +34,7 @@
   if !inTester then
     {
       nixpkgs.overlays = [
+        gomod2nix.overlays.default
         self.overlays.default
         (import rust-overlay)
         nix-vscode-extensions.overlays.default

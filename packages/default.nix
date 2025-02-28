@@ -49,4 +49,5 @@ inputs: final: prev: {
   renovate = prev.renovate.overrideAttrs {
     dontCheckForBrokenSymlinks = true;
   };
+  clscrobble = final.callPackage ./music/clscrobble { };
 }
