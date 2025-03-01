@@ -52,7 +52,6 @@
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
   boot.initrd.systemd.tpm2.enable = lib.mkForce false;
   systemd.tpm2.enable = lib.mkForce false;
-  nix.auto-update.jobset = "nixos-config-riscv";
   nixpkgs = {
     buildPlatform.config = "x86_64-linux";
     hostPlatform.config = "riscv64-linux";
