@@ -10,7 +10,7 @@
     (writeScriptBin "clscrobble" ''
       #!${lib.getExe bash}
       export LISTENBRAINZ_TOKEN=$(cat ${config.sops.secrets."env/LISTENBRAINZ_TOKEN".path})
-      exec clscrobble "$@"
+      exec ${lib.getExe' pkgs.clscrobble "clscrobble"} "$@"
     '')
   ];
   home.persistence.default.directories = [
