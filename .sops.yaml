@@ -7,7 +7,7 @@ keys:
   - &not522 age1nvgqlpqe026czej7erz5a7ptulzzhh7tht3gjzy5s3m2dp5fgy2slkajdx
   - &pc-installer age18jqsxdwhrwgsum8wefgt8jl2sj2277dzaj2yhwlj2vvfjqm9hazsmuvx7w
   - &rainbow-resort age19vzypddhexvvsf8xylstxc9znnkd8rxmamhjlt7elvz4j3zaf5tqqura6f
-  - &stinky-ssb age1sqvl2cwvzeztuelpwppaestqufzeap8uf0vgy7t5mzr9rwc3dpxqhx8ly9
+  - &stinky-ssb age1gpdv8pq5f4efwkzchkxjyygr0g6tzzluqtepu6x0jzax5wnqeffq6ekyns
   - &thinkrac age1p400545a482fma40yfgytu40p6wr5a75v4f8yeudvgf7eh5erufqxhgynr
 creation_rules:
   - path_regex: services/tailscale\.yaml$
