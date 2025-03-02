@@ -100,5 +100,12 @@
 			};
 		};
 	};
-	
+
+	fragment@4 {
+		target-path = "/__symbols__";
+		__overlay__ {
+			reg_aldo2 = "/soc/i2c@7e205000/pmic@34/regulators/aldo2";
+			reg_dldo4 = "/soc/i2c@7e205000/pmic@34/regulators/aldo2";
+		};
+	};
 };
