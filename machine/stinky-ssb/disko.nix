@@ -68,10 +68,6 @@ in
           imageSize = "20G";
           type = "disk";
           device = "/dev/mmcblk0";
-          postCreateHook = ''
-            lsblk
-            sgdisk -A 1:set:2 /dev/vda
-          '';
           content = {
             type = "gpt";
             partitions = {
@@ -102,7 +98,7 @@ in
                 };
               };
               root = {
-                end = "100%";
+                size = "100%";
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ]; # Override existing partition
