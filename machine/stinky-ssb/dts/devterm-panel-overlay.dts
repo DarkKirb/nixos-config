@@ -18,11 +18,13 @@
 			};
 			
 			panel_cwd686: panel@0 {
-				compatible = "cw,cwd686";
+				compatible = "clockworkpi,cwd686";
 				reg = <0>;
 				reset-gpio = <&gpio 8 1>;
 				backlight = <&ocp8178_backlight>;
-				rotation = <0x5a>;
+				rotation = <90>;
+				vci = <&reg_aldo2>;
+				iovcc = <&reg_dldo4>;
 				
 				port {
 					panel_dsi_port: endpoint {
@@ -44,4 +46,10 @@
 		};
 	};
 	
+	fragment@2 {
+		target = <&dma40>;
+		__overlay__ {
+			dma-channel-mask = <0x3000>;
+		};
+	};
 };
