@@ -448,14 +448,6 @@
                   }
                 else
                   { }
-              )
-              // (
-                if name == "aarch64-linux" then
-                  {
-                    inherit (pkgs) linux-devterm;
-                  }
-                else
-                  { }
               );
           })
           [
