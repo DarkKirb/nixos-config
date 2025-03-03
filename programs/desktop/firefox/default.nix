@@ -384,43 +384,6 @@ in
     profiles.default = {
       containersForce = true;
       extensions.packages = map (v: rycee.firefox-addons.${v}) (lib.attrNames extensions);
-      extensions.force = true;
-      extensions.settings = {
-        "uBlock0@raymondhill.net".settings = {
-          "selectedFilterLists" = [
-            "user-filters"
-            "ublock-filters"
-            "ublock-badware"
-            "ublock-privacy"
-            "ublock-unbreak"
-            "ublock-quick-fixes"
-            "easylist"
-            "easyprivacy"
-            "urlhaus-1"
-            "plowe-0"
-          ];
-          dynamicFilteringString = ''
-            behind-the-scene * * noop 
-            behind-the-scene * inline-script noop 
-            behind-the-scene * 1p-script noop 
-            behind-the-scene * 3p-script noop 
-            behind-the-scene * 3p-frame noop 
-            behind-the-scene * image noop 
-            behind-the-scene * 3p noop 
-            * * 3p block 
-            bsky.app bsky-api-public.b-cdn.net * noop 
-            bsky.app bsky-web.b-cdn.net * noop 
-            bsky.app bsky.social * noop 
-            akko.chir.rs assets-chir-rs.b-cdn.net * noop 
-            akko.chir.rs mediaproxy-chir-rs.b-cdn.net * noop 
-            bsky.app bsky.b-cdn.net * noop 
-            bsky.app host.bsky.network * noop 
-            github.com githubassets.com * noop 
-            github.com avatars.githubusercontent.com * noop
-            www.icy-veins.com etro.gg * noop
-          '';
-        };
-      };
       settings = {
         "extensions.autoDisableScopes" = 0;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
