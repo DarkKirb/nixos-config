@@ -1,6 +1,11 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i python3 -p python3 python3Packages.i3ipc
 
+import time
+
+# ensure that sway has initialized
+time.sleep(5)
+
 import i3ipc
 import signal
 import sys
