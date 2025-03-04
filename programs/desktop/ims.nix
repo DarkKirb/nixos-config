@@ -7,32 +7,34 @@
   ...
 }:
 let
-  withElectronAndTg = system == "x86_64-linux";
+  withElectron = system == "x86_64-linux";
 in
 {
   home.packages =
     with pkgs;
     lib.mkMerge [
-      (lib.mkIf withElectronAndTg [
-        telegram-desktop
+      [ telegram-desktop ]
+      (lib.mkIf withElectron [
         discord
         betterdiscordctl
         signal-desktop
       ])
     ];
   home.persistence.default.directories = lib.mkMerge [
-    (lib.mkIf withElectronAndTg [
+    [ ".local/share/TelegramDesktop" ]
+    (lib.mkIf withElectron [
       ".local/share/discord"
-      ".local/share/TelegramDesktop"
       ".local/share/Signal"
     ])
   ];
   systemd.user.tmpfiles.rules = lib.mkMerge [
-    (lib.mkIf withElectronAndTg [
+    [
       "d /persistent${config.xdg.cacheHome}/TelegramDesktop/cache - - - - -"
       "d /persistent${config.xdg.cacheHome}/TelegramDesktop/media_cache - - - - -"
       "L /persistent${config.xdg.dataHome}/TelegramDesktop/tdata/user_data/cache - - - - ${config.xdg.cacheHome}/TelegramDesktop/cache"
       "L /persistent${config.xdg.dataHome}/TelegramDesktop/tdata/user_data/media_cache - - - - ${config.xdg.cacheHome}/TelegramDesktop/media_cache"
+    ]
+    (lib.mkIf withElectron [
       "d /persistent${config.xdg.cacheHome}/discord - - - - -"
       "d /persistent${config.xdg.cacheHome}/discord/Cache - - - - -"
       "d /persistent${config.xdg.cacheHome}/discord/Code\\x20Cache - - - - -"
@@ -58,7 +60,7 @@ in
       "L /persistent${config.xdg.dataHome}/Signal/userDataCache.json - - - - ${config.xdg.cacheHome}/Signal/userDataCache.json"
       "L ${config.xdg.configHome}/Signal - - - - ${config.xdg.dataHome}/Signal"
     ])
-    (lib.mkIf (!systemConfig.isIntelGPU && withElectronAndTg) [
+    (lib.mkIf (!systemConfig.isIntelGPU && withElectron) [
       "d /persistent${config.xdg.cacheHome}/discord/DawnWebGPUCache - - - - -"
       "d /persistent${config.xdg.cacheHome}/discord/GPUCache - - - - -"
       "L /persistent${config.xdg.dataHome}/discord/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/discord/DawnWebGPUCache"
@@ -68,7 +70,7 @@ in
       "L /persistent${config.xdg.dataHome}/Signal/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/Signal/DawnWebGPUCache"
       "L /persistent${config.xdg.dataHome}/Signal/GPUCache - - - - ${config.xdg.cacheHome}/Signal/GPUCache"
     ])
-    (lib.mkIf (systemConfig.isIntelGPU && withElectronAndTg) [
+    (lib.mkIf (systemConfig.isIntelGPU && withElectron) [
       "d /tmp${config.xdg.cacheHome}/discord/DawnWebGPUCache - - - - -"
       "d /tmp${config.xdg.cacheHome}/discord/GPUCache - - - - -"
       "L /persistent${config.xdg.dataHome}/discord/DawnWebGPUCache - - - - /tmp${config.xdg.cacheHome}/discord/DawnWebGPUCache"
@@ -79,7 +81,7 @@ in
       "L /persistent${config.xdg.dataHome}/Signal/GPUCache - - - - /tmp${config.xdg.cacheHome}/Signal/GPUCache"
     ])
   ];
-  systemd.user.services.betterdiscord = lib.mkIf withElectronAndTg {
+  systemd.user.services.betterdiscord = lib.mkIf withElectron {
     Unit = {
       Description = "Patch discord";
       After = [ "graphical-session.target" ];
