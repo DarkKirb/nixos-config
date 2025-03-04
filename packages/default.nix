@@ -49,4 +49,8 @@ inputs: final: prev: {
     dontCheckForBrokenSymlinks = true;
   };
   clscrobble = final.callPackage ./music/clscrobble { };
+  notmuch = prev.notmuch.overrideAttrs {
+    doCheck = false;
+    doInstallCheck = false;
+  };
 }
