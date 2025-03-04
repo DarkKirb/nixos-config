@@ -9,7 +9,7 @@
     panels = [
       # Windows-like panel at the bottom
       {
-        location = if systemConfig.networking.hostname == "stinky-ssb" then "right" else "bottom";
+        location = if systemConfig.networking.hostName == "stinky-ssb" then "right" else "bottom";
         screen = "all";
         widgets = [
           "org.kde.plasma.kickoff"
