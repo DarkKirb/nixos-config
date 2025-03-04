@@ -84,6 +84,10 @@
       dtsFile = ./dts/cma-overlay.dts;
     }
     {
+      name = "devterm-fan";
+      dtsFile = ./dts/devterm-fan-overlay.dts;
+    }
+    {
       name = "vc4-kms-v3d-pi4";
       dtsFile = ./dts/vc4-kms-v3d-pi4-overlay.dts;
     }
