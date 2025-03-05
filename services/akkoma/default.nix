@@ -304,6 +304,15 @@ let
         };
       };
       ":web_push_encryption".":vapid_details".subject = "lotte@chir.rs";
+      ":mime".":types" = mkMap {
+        "application/activity+json" = [ "activity+json" ];
+        "application/jrd+json" = [ "jrd+json" ];
+        "application/ld+json" = [ "activity+json" ];
+        "application/xml" = [ "xml" ];
+        "application/xrd+xml" = [ "xrd+xml" ];
+        "image/apng" = [ "apng" ];
+      };
+
     }
   );
 in
