@@ -230,17 +230,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1739106522,
-        "narHash": "sha256-xNctUsmfD3snMeXLm3clh2ImQaSpX6Ejt5dFAJSPUp4=",
-        "ref": "refs/heads/main",
-        "rev": "a3816fb3dddd63b89401c28c6efc629f92c991d7",
-        "revCount": 63,
-        "type": "git",
-        "url": "https://git.chir.rs/darkkirb/chir.rs"
+        "lastModified": 1740729750,
+        "narHash": "sha256-E9Jakac/GPtA/5QiD3hK01DWi73zMZJrKlZmaZNQTI4=",
+        "owner": "DarkKirb",
+        "repo": "chir.rs",
+        "rev": "d16039d7e4fdd8f19ad52ea017edd552ded5a974",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://git.chir.rs/darkkirb/chir.rs"
+        "owner": "DarkKirb",
+        "repo": "chir.rs",
+        "type": "github"
       }
     },
     "crane": {

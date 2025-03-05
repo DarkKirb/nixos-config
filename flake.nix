@@ -38,7 +38,7 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
     chir-rs = {
-      url = "git+https://git.chir.rs/darkkirb/chir.rs";
+      url = "github:DarkKirb/chir.rs";
       inputs.cargo2nix.follows = "cargo2nix";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
