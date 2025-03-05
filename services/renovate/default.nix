@@ -46,6 +46,8 @@
       rustfmt
       mix2nix
       yarn2nix
+      elixir
+      pipenv
     ];
   };
 
