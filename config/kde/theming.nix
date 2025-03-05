@@ -1,4 +1,4 @@
-{ ... }:
+{ systemConfig, ... }:
 {
   programs.plasma = {
     hotkeys.commands."launch-konsole" = {
@@ -9,7 +9,7 @@
     panels = [
       # Windows-like panel at the bottom
       {
-        location = "bottom";
+        location = if systemConfig.networking.hostName == "stinky-ssb" then "right" else "bottom";
         screen = "all";
         widgets = [
           "org.kde.plasma.kickoff"
