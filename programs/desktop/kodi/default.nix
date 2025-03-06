@@ -7,7 +7,7 @@
   home.file.widevine-manifest.source = "${pkgs.widevine-cdm}/share/google/chrome/WidevineCdm/manifest.json";
   home.file.widevine-manifest.target = ".kodi/cdm/manifest.json";
   home.packages = [
-    (pkgs.kodi-wayland.withPackages (
+    (pkgs.kodi.withPackages (
       kodiPkgs: with kodiPkgs; [
         jellyfin
         jellycon
@@ -17,6 +17,7 @@
         sponsorblock
         visualization-starburst
         mediathekview
+        pvr-iptvsimple
       ]
     ))
   ];
