@@ -1,13 +1,13 @@
 {
-  nixos-config,
   pkgs,
   lib,
+  nixos-config,
   ...
 }:
 {
   imports = [
     ./configuration.nix
-    "${nixos-config}/config"
+    ../../config
   ];
 
   # Make it use predictable interface names starting with eth0
@@ -23,7 +23,7 @@
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "install-oracle-unattended" ''
       set -eux
-      exec ${lib.getExe' pkgs.disko "disko-install"} --flake "${nixos-config}#oracle" --disk main "${nixos-config.nixosConfigurations.thinkrac.config.disko.devices.disk.main.device}"
+      exec ${lib.getExe' pkgs.disko "disko-install"} --flake "${../..}#oracle" --disk main "${nixos-config.nixosConfigurations.thinkrac.config.disko.devices.disk.main.device}"
     '')
   ];
 

@@ -1,5 +1,4 @@
 {
-  nixos-config,
   config,
   pkgs,
   lib,
@@ -12,7 +11,7 @@
     ./kde
     ./documentation.nix
     ./graphical/fonts.nix
-    "${nixos-config}/services/security-key"
+    ../services/security-key
   ];
   home-manager.users.darkkirb.imports =
     if (config.system.wm == "sway") then

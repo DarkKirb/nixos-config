@@ -1,10 +1,9 @@
 {
-  nixos-config,
   ...
 }:
 {
   imports = [
-    "${nixos-config}/config/graphical.nix"
+    ../../config/graphical.nix
   ];
   home-manager.users.darkkirb = {
     # Turn off power management settings on AC power

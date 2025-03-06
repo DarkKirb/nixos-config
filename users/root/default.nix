@@ -1,5 +1,4 @@
 {
-  nixos-config,
   config,
   lib,
   ...
@@ -18,11 +17,11 @@
   };
   sops.secrets.".ssh/builder_id_ed25519" = {
     mode = "600";
-    sopsFile = "${nixos-config}/programs/ssh/shared-keys.yaml";
+    sopsFile = ../../programs/ssh/shared-keys.yaml;
   };
   sops.secrets.".ssh/id_ed25519_sk" = {
     mode = "600";
-    sopsFile = "${nixos-config}/programs/ssh/shared-keys.yaml";
+    sopsFile = ../../programs/ssh/shared-keys.yaml;
   };
   home-manager.users.root.sops.secrets = lib.mkForce { };
   environment.impermanence.users = [ "root" ];

@@ -1,5 +1,4 @@
 {
-  nixos-config,
   lib,
   config,
   ...
@@ -11,15 +10,15 @@
   environment.impermanence.enable = false;
 
   imports = [
-    "${nixos-config}/config"
+    ../../config
     ./hardware.nix
-    "${nixos-config}/services/named/submissive.nix"
-    "${nixos-config}/services/atticd"
+    ../../services/named/submissive.nix
+    ../../services/atticd
     ./postgresql.nix
-    "${nixos-config}/services/uptime-kuma.nix"
-    "${nixos-config}/services/reverse-proxy.nix"
-    "${nixos-config}/services/forgejo"
-    "${nixos-config}/services/chir-rs"
+    ../../services/uptime-kuma.nix
+    ../../services/reverse-proxy.nix
+    ../../services/forgejo
+    ../../services/chir-rs
   ];
 
   services.openssh = {

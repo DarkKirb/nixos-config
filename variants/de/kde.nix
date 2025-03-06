@@ -1,4 +1,4 @@
-{ nixos-config, ... }:
+{ ... }:
 {
-  imports = [ "${nixos-config}/config/graphical.nix" ];
+  imports = [ ../../config/graphical.nix ];
 }

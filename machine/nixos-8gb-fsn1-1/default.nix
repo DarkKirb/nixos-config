@@ -1,20 +1,20 @@
-{ nixos-config, lib, ... }:
+{ lib, ... }:
 {
   networking.hostName = "nixos-8gb-fsn1-1";
   networking.hostId = "73561e1f";
   environment.impermanence.enable = false;
 
   imports = [
-    "${nixos-config}/config"
+    ../../config
     ./hardware.nix
-    "${nixos-config}/services/named/dominant.nix"
-    "${nixos-config}/services/grafana.nix"
-    "${nixos-config}/services/reverse-proxy.nix"
-    "${nixos-config}/services/akkoma"
-    "${nixos-config}/services/peertube"
+    ../../services/named/dominant.nix
+    ../../services/grafana.nix
+    ../../services/reverse-proxy.nix
+    ../../services/akkoma
+    ../../services/peertube
     ./initrd-ssh.nix
     ./postgresql.nix
-    "${nixos-config}/services/chir-rs"
+    ../../services/chir-rs
   ];
 
   services.resolved.enable = false;

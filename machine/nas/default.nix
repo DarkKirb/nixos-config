@@ -1,22 +1,22 @@
-{ nixos-config, lib, ... }:
+{ lib, ... }:
 {
   networking.hostName = "nas";
   networking.hostId = "70af00ed";
   environment.impermanence.enable = false;
 
   imports = [
-    "${nixos-config}/config"
+    ../../config
     ./hardware.nix
-    "${nixos-config}/services/hydra"
+    ../../services/hydra
     ./syncthing.nix
-    "${nixos-config}/services/loki.nix"
-    "${nixos-config}/services/prometheus"
-    "${nixos-config}/services/yiffstash"
-    "${nixos-config}/services/reverse-proxy.nix"
-    "${nixos-config}/services/jellyfin.nix"
-    "${nixos-config}/services/forgejo-runner"
-    "${nixos-config}/services/renovate"
-    "${nixos-config}/services/chir-rs"
+    ../../services/loki.nix
+    ../../services/prometheus
+    ../../services/yiffstash
+    ../../services/reverse-proxy.nix
+    ../../services/jellyfin.nix
+    ../../services/forgejo-runner
+    ../../services/renovate
+    ../../services/chir-rs
     ./postgresql.nix
   ];
 

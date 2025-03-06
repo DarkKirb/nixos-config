@@ -8,9 +8,9 @@
 {
   imports = [
     nixos-config.nixosModules.default
-    "${nixos-config}/services"
-    "${nixos-config}/users"
-    "${nixos-config}/programs"
+    ../services
+    ../users
+    ../programs
     ./systemd-boot.nix
     ./i18n.nix
     ./overlays

@@ -1,12 +1,11 @@
 {
   pkgs,
   config,
-  nixos-config,
   ...
 }:
 {
   imports = [
-    "${nixos-config}/services/docker.nix"
+    ../docker.nix
   ];
   services.gitea-actions-runner = {
     package = pkgs.forgejo-actions-runner;

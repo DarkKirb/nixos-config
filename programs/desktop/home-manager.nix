@@ -1,6 +1,5 @@
 {
   pkgs,
-  nixos-config,
   systemConfig,
   system,
   ...
@@ -12,7 +11,7 @@
     ./syncthing
     ./games
     ./ims.nix
-    "${nixos-config}/services/desktop"
+    ../../services/desktop
     ./kodi
     ./pim
     ./development

@@ -1,17 +1,15 @@
 {
-  nixos-config,
-  lib,
   ...
 }:
 {
   networking.hostName = "thinkrac";
   imports = [
-    "${nixos-config}/config"
+    ../../config
     ./disko.nix
     ./hardware.nix
-    "${nixos-config}/config/networkmanager.nix"
-    "${nixos-config}/config/graphical.nix"
-    "${nixos-config}/config/graphical/plymouth.nix"
+    ../../config/networkmanager.nix
+    ../../config/graphical.nix
+    ../../config/graphical/plymouth.nix
   ];
   system.stateVersion = "24.11";
   nix.settings.system-features = [
