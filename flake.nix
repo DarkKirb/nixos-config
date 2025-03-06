@@ -219,7 +219,6 @@
             (_: _: {
               inputs = inputs';
             })
-            gomod2nix.overlays.default
             self.overlays.default
           ];
         };
@@ -390,7 +389,31 @@
           ];
         };
       formatter.x86_64-linux = (pkgsFor "x86_64-linux").nixfmt-rfc-style;
-      overlays.default = import ./packages inputs;
+      overlays = rec {
+        cross-packages = import ./overlays/crossPackages.nix inputs;
+        gomod2nix = inputs.gomod2nix.overlays.default;
+        jujutsu = inputs.jujutsu.overlays.default;
+        nix-gaming = inputs.nix-gaming.overlays.default;
+        nix-vscode-extensions = inputs.nix-vscode-extensions.overlays.default;
+        no-x-libs = import ./overlays/no-x-libs.nix;
+        packages = import ./overlays/packages.nix inputs;
+        rust-overlay = import inputs.rust-overlay;
+        workarounds = import ./overlays/workarounds.nix;
+        default = nixpkgs.lib.composeManyExtensions [
+          # gomod2nix is required by the packages overlay
+          gomod2nix
+          jujutsu
+          nix-gaming
+          nix-vscode-extensions
+          packages
+          rust-overlay
+          workarounds
+        ];
+        riscv64-linux = nixpkgs.lib.composeManyExtensions [
+          no-x-libs
+          cross-packages
+        ];
+      };
       packages = nixpkgs.lib.listToAttrs (
         map
           (name: {
