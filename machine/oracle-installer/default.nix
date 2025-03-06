@@ -14,7 +14,7 @@
   boot.kernelParams = [ "net.ifnames=0" ];
 
   networking.useDHCP = true;
-  isInstaller = true;
+  system.isInstaller = true;
 
   environment.impermanence.enable = false;
   boot.initrd.systemd.enable = lib.mkForce false;

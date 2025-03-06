@@ -65,7 +65,7 @@
     "remote.SSH.enableAgentForwarding" = false;
   };
   imports =
-    if !systemConfig.isSway then
+    if !(systemConfig.system.wm == "sway") then
       [
         {
           programs.plasma.configFile.kcminputrc."Libinput/2/7/SynPS\\/2 Synaptics TouchPad".DisableWhileTyping =

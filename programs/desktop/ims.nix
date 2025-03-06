@@ -74,7 +74,7 @@ in
       "L /persistent${config.xdg.dataHome}/teams-for-linux/userDataCache.json - - - - ${config.xdg.cacheHome}/teams-for-linux/userDataCache.json"
       "L ${config.xdg.configHome}/teams-for-linux - - - - ${config.xdg.dataHome}/teams-for-linux"
     ])
-    (lib.mkIf (!systemConfig.isIntelGPU && withElectron) [
+    (lib.mkIf (!systemConfig.system.isIntelGPU && withElectron) [
       "d /persistent${config.xdg.cacheHome}/discord/DawnWebGPUCache - - - - -"
       "d /persistent${config.xdg.cacheHome}/discord/GPUCache - - - - -"
       "L /persistent${config.xdg.dataHome}/discord/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/discord/DawnWebGPUCache"
@@ -88,7 +88,7 @@ in
       "L /persistent${config.xdg.dataHome}/teams-for-linux/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/teams-for-linux/DawnWebGPUCache"
       "L /persistent${config.xdg.dataHome}/teams-for-linux/GPUCache - - - - ${config.xdg.cacheHome}/teams-for-linux/GPUCache"
     ])
-    (lib.mkIf (systemConfig.isIntelGPU && withElectron) [
+    (lib.mkIf (systemConfig.system.isIntelGPU && withElectron) [
       "d /tmp${config.xdg.cacheHome}/discord/DawnWebGPUCache - - - - -"
       "d /tmp${config.xdg.cacheHome}/discord/GPUCache - - - - -"
       "L /persistent${config.xdg.dataHome}/discord/DawnWebGPUCache - - - - /tmp${config.xdg.cacheHome}/discord/DawnWebGPUCache"

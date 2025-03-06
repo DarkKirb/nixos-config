@@ -76,7 +76,7 @@ let
   hexToInt =
     s: lib.foldl (state: new: state * 16 + hexToIntList.${new}) 0 (lib.strings.stringToCharacters s);
   seed = hexToInt (self.shortRev or nixpkgs.shortRev);
-  bg = choose (if config.isNSFW then nsfw-bgs else sfw-bgs) seed;
+  bg = choose (if config.system.isNSFW then nsfw-bgs else sfw-bgs) seed;
   palette = pkgs.palettes.${bg}.${config.polarity};
   bgPng = palette.passthru.img;
 in
@@ -85,18 +85,18 @@ in
     stylix.nixosModules.stylix
     ./is-dark.nix
   ];
-  stylix.targets.qt.enable = lib.mkForce config.isGraphical;
+  stylix.targets.qt.enable = lib.mkForce config.system.isGraphical;
   home-manager.users.root.stylix.targets.kde.enable = lib.mkForce false;
   home-manager.users.root.stylix.targets.qt.enable = lib.mkForce false;
   home-manager.users.root.stylix.targets.gnome-text-editor.enable = lib.mkForce false;
   home-manager.users.darkkirb.imports = [
     {
-      stylix.targets.kde.enable = lib.mkForce (config.isGraphical && !config.isSway);
-      stylix.targets.qt.enable = lib.mkForce config.isGraphical;
+      stylix.targets.kde.enable = lib.mkForce (config.system.isGraphical && (config.system.wm == "kde"));
+      stylix.targets.qt.enable = lib.mkForce config.system.isGraphical;
       stylix.targets.gnome-text-editor.enable = false;
     }
     (
-      if config.isGraphical && !config.isSway then
+      if config.system.isGraphical && (config.system.wm == "kde") then
         { config, lib, ... }:
         {
           imports = [
@@ -139,24 +139,24 @@ in
     image = bgPng;
     inherit palette;
     cursor = {
-      package = if config.isGraphical then pkgs.kdePackages.breeze-icons else pkgs.emptyDirectory;
+      package = if config.system.isGraphical then pkgs.kdePackages.breeze-icons else pkgs.emptyDirectory;
       name = "Breeze";
     };
     fonts = {
       serif = {
-        package = if config.isGraphical then pkgs.noto-fonts else pkgs.emptyDirectory;
+        package = if config.system.isGraphical then pkgs.noto-fonts else pkgs.emptyDirectory;
         name = "Noto Serif";
       };
       sansSerif = {
-        package = if config.isGraphical then pkgs.noto-fonts else pkgs.emptyDirectory;
+        package = if config.system.isGraphical then pkgs.noto-fonts else pkgs.emptyDirectory;
         name = "Noto Sans";
       };
       monospace = {
-        package = if config.isGraphical then pkgs.nerd-fonts.fira-code else pkgs.emptyDirectory;
+        package = if config.system.isGraphical then pkgs.nerd-fonts.fira-code else pkgs.emptyDirectory;
         name = "FiraCode Nerd Font Mono";
       };
       emoji = {
-        package = if config.isGraphical then pkgs.noto-fonts-emoji else pkgs.emptyDirectory;
+        package = if config.system.isGraphical then pkgs.noto-fonts-emoji else pkgs.emptyDirectory;
         name = "Noto Color Emoji";
       };
     };
@@ -171,13 +171,13 @@ in
       }:
       {
         stylix.targets = {
-          kde.enable = systemConfig.isGraphical && !systemConfig.isSway;
-          xresources.enable = systemConfig.isGraphical;
+          kde.enable = systemConfig.system.isGraphical && (systemConfig.system.wm == "kde");
+          xresources.enable = systemConfig.system.isGraphical;
         };
       }
     )
     (
-      if config.isGraphical then
+      if config.system.isGraphical then
         { }
       else
         {

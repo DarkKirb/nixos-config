@@ -38,7 +38,7 @@
         [ ]
     )
     ++ (
-      if !systemConfig.isSway then
+      if systemConfig.system.wm == "kde" then
         with pkgs;
         [
           kdePackages.kalk

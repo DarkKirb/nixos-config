@@ -393,6 +393,7 @@
         cross-packages = import ./overlays/crossPackages.nix inputs;
         gomod2nix = inputs.gomod2nix.overlays.default;
         jujutsu = inputs.jujutsu.overlays.default;
+        lix = inputs.lix.overlays.default;
         nix-gaming = inputs.nix-gaming.overlays.default;
         nix-vscode-extensions = inputs.nix-vscode-extensions.overlays.default;
         no-x-libs = import ./overlays/no-x-libs.nix;
@@ -403,6 +404,7 @@
           # gomod2nix is required by the packages overlay
           gomod2nix
           jujutsu
+          lix
           nix-gaming
           nix-vscode-extensions
           packages

@@ -7,7 +7,7 @@
 }:
 {
   imports = [
-    "${nixos-config}/modules"
+    nixos-config.nixosModules.default
     "${nixos-config}/services"
     "${nixos-config}/users"
     "${nixos-config}/programs"
@@ -15,6 +15,7 @@
     ./i18n.nix
     ./overlays
   ];
+  system.standardConfig = true;
   boot.initrd.systemd.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   hardware.enableRedistributableFirmware = true;
@@ -23,5 +24,5 @@
     "d /var/lib/private 700 root root - -"
     "z /var/lib/private 700 root root - -"
   ];
-  security.pam.services.su.forwardXAuth = lib.mkForce config.isGraphical;
+  security.pam.services.su.forwardXAuth = lib.mkForce config.system.isGraphical;
 }

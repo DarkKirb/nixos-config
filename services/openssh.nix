@@ -7,9 +7,9 @@
     StreamLocalBindUnlink = "yes";
     GatewayPorts = "clientspecified";
     AcceptEnv = "WAYLAND_DISPLAY";
-    X11Forwarding = config.isGraphical;
+    X11Forwarding = config.system.isGraphical;
   };
-  programs.ssh.setXAuthLocation = config.isGraphical;
+  programs.ssh.setXAuthLocation = config.system.isGraphical;
   programs.ssh.knownHosts = {
     "git.chir.rs".publicKey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+GanuiV1I08OP8+nNy24+zagQN08rtJnCoU/ixiQNn";

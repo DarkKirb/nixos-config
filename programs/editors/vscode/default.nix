@@ -95,13 +95,13 @@ if system == "x86_64-linux" then
         "L ${config.xdg.configHome}/Code - - - - ${config.xdg.dataHome}/Code"
       ]
       # GPU Cache sometimes breaks for electron apps on intel, so only persist that on non-intel
-      (lib.mkIf (!systemConfig.isIntelGPU) [
+      (lib.mkIf (!systemConfig.system.isIntelGPU) [
         "d /persistent${config.xdg.cacheHome}/Code/DawnWebGPUCache - - - - -"
         "d /persistent${config.xdg.cacheHome}/Code/GPUCache - - - - -"
         "L /persistent${config.xdg.dataHome}/Code/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/Code/DawnWebGPUCache"
         "L /persistent${config.xdg.dataHome}/Code/GPUCache - - - - ${config.xdg.cacheHome}/Code/GPUCache"
       ])
-      (lib.mkIf (systemConfig.isIntelGPU) [
+      (lib.mkIf (systemConfig.system.isIntelGPU) [
         "d /tmp${config.xdg.cacheHome}/Code/DawnWebGPUCache - - - - -"
         "d /tmp${config.xdg.cacheHome}/Code/GPUCache - - - - -"
         "L /persistent${config.xdg.dataHome}/Code/DawnWebGPUCache - - - - /tmp${config.xdg.cacheHome}/Code/DawnWebGPUCache"

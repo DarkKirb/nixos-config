@@ -1,4 +1,4 @@
 { ... }:
 {
-  isNSFW = false;
+  system.isNSFW = false;
 }

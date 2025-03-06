@@ -63,7 +63,7 @@
   ];
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = config.isSway;
+  services.blueman.enable = (config.system.wm == "sway");
   services.joycond.enable = true;
   hardware.graphics.extraPackages = [ pkgs.amf ];
   services.udev.extraRules = ''

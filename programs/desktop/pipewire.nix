@@ -2,7 +2,7 @@
 {
   security.rtkit.enable = true;
   services.pipewire = {
-    enable = config.isGraphical;
+    enable = config.system.isGraphical;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;

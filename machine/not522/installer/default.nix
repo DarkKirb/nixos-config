@@ -22,5 +22,5 @@
       exec ${lib.getExe' pkgs.disko "disko-install"} --flake "${nixos-config}#not522" --disk main "${nixos-config.nixosConfigurations.not522.config.disko.devices.disk.main.device}"
     '')
   ];
-  isInstaller = true;
+  system.isInstaller = true;
 }

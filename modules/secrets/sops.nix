@@ -1,14 +1,10 @@
 {
-  sops-nix,
+  config,
+  lib,
   ...
 }:
 {
-  imports = [
-    "${sops-nix}/modules/sops"
+  sops.age.sshKeyPaths = lib.mkIf config.environment.impermanence.enable [
+    "/persistent/etc/ssh/ssh_host_ed25519_key"
   ];
-  sops.age = {
-    sshKeyPaths = [
-      "/persistent/etc/ssh/ssh_host_ed25519_key"
-    ];
-  };
 }
