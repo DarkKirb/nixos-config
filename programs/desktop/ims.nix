@@ -18,6 +18,7 @@ in
         discord
         betterdiscordctl
         signal-desktop
+        teams-for-linux
       ])
     ];
   home.persistence.default.directories = lib.mkMerge [
@@ -25,6 +26,7 @@ in
     (lib.mkIf withElectron [
       ".local/share/discord"
       ".local/share/Signal"
+      ".local/share/teams-for-linux"
     ])
   ];
   systemd.user.tmpfiles.rules = lib.mkMerge [
@@ -59,6 +61,18 @@ in
       "L /persistent${config.xdg.dataHome}/Signal/DawnGraphiteCache - - - - ${config.xdg.cacheHome}/Signal/DawnGraphiteCache"
       "L /persistent${config.xdg.dataHome}/Signal/userDataCache.json - - - - ${config.xdg.cacheHome}/Signal/userDataCache.json"
       "L ${config.xdg.configHome}/Signal - - - - ${config.xdg.dataHome}/Signal"
+      "d /persistent${config.xdg.cacheHome}/teams-for-linux - - - - -"
+      "d /persistent${config.xdg.cacheHome}/teams-for-linux/Cache - - - - -"
+      "d /persistent${config.xdg.cacheHome}/teams-for-linux/Code\\x20Cache - - - - -"
+      "d /persistent${config.xdg.cacheHome}/teams-for-linux/component_crx_cache - - - - -"
+      "d /persistent${config.xdg.cacheHome}/teams-for-linux/DawnGraphiteCache - - - - -"
+      "d /persistent${config.xdg.dataHome}/teams-for-linux - - - - -"
+      "L /persistent${config.xdg.dataHome}/teams-for-linux/Cache - - - - ${config.xdg.cacheHome}/teams-for-linux/Cache"
+      "L /persistent${config.xdg.dataHome}/teams-for-linux/Code\\x20Cache - - - - ${config.xdg.cacheHome}/teams-for-linux/Code\\x20Cache"
+      "L /persistent${config.xdg.dataHome}/teams-for-linux/component_crx_cache - - - - ${config.xdg.cacheHome}/teams-for-linux/component_crx_cache"
+      "L /persistent${config.xdg.dataHome}/teams-for-linux/DawnGraphiteCache - - - - ${config.xdg.cacheHome}/teams-for-linux/DawnGraphiteCache"
+      "L /persistent${config.xdg.dataHome}/teams-for-linux/userDataCache.json - - - - ${config.xdg.cacheHome}/teams-for-linux/userDataCache.json"
+      "L ${config.xdg.configHome}/teams-for-linux - - - - ${config.xdg.dataHome}/teams-for-linux"
     ])
     (lib.mkIf (!systemConfig.isIntelGPU && withElectron) [
       "d /persistent${config.xdg.cacheHome}/discord/DawnWebGPUCache - - - - -"
@@ -69,6 +83,10 @@ in
       "d /persistent${config.xdg.cacheHome}/Signal/GPUCache - - - - -"
       "L /persistent${config.xdg.dataHome}/Signal/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/Signal/DawnWebGPUCache"
       "L /persistent${config.xdg.dataHome}/Signal/GPUCache - - - - ${config.xdg.cacheHome}/Signal/GPUCache"
+      "d /persistent${config.xdg.cacheHome}/teams-for-linux/DawnWebGPUCache - - - - -"
+      "d /persistent${config.xdg.cacheHome}/teams-for-linux/GPUCache - - - - -"
+      "L /persistent${config.xdg.dataHome}/teams-for-linux/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/teams-for-linux/DawnWebGPUCache"
+      "L /persistent${config.xdg.dataHome}/teams-for-linux/GPUCache - - - - ${config.xdg.cacheHome}/teams-for-linux/GPUCache"
     ])
     (lib.mkIf (systemConfig.isIntelGPU && withElectron) [
       "d /tmp${config.xdg.cacheHome}/discord/DawnWebGPUCache - - - - -"
@@ -79,6 +97,10 @@ in
       "d /tmp${config.xdg.cacheHome}/Signal/GPUCache - - - - -"
       "L /persistent${config.xdg.dataHome}/Signal/DawnWebGPUCache - - - - /tmp${config.xdg.cacheHome}/Signal/DawnWebGPUCache"
       "L /persistent${config.xdg.dataHome}/Signal/GPUCache - - - - /tmp${config.xdg.cacheHome}/Signal/GPUCache"
+      "d /tmp${config.xdg.cacheHome}/teams-for-linux/DawnWebGPUCache - - - - -"
+      "d /tmp${config.xdg.cacheHome}/teams-for-linux/GPUCache - - - - -"
+      "L /persistent${config.xdg.dataHome}/teams-for-linux/DawnWebGPUCache - - - - /tmp${config.xdg.cacheHome}/teams-for-linux/DawnWebGPUCache"
+      "L /persistent${config.xdg.dataHome}/teams-for-linux/GPUCache - - - - /tmp${config.xdg.cacheHome}/teams-for-linux/GPUCache"
     ])
   ];
   systemd.user.services.betterdiscord = lib.mkIf withElectron {
