@@ -40,4 +40,15 @@
     wayland.compositor = if (config.system.wm == "sway") then "weston" else "kwin";
   };
   programs.sway.enable = (config.system.wm == "sway");
+  # Mount /media
+  fileSystems."/media" = {
+    device = "jellyfin@nas.int.chir.rs:/media";
+    fsType = "sshfs";
+    options = [
+      "nodev"
+      "noatime"
+      "allow_other"
+      "IdentityFile=${config.sops.secrets.".ssh/builder_id_ed25519".path}"
+    ];
+  };
 }

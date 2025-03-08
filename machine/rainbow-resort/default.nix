@@ -10,6 +10,7 @@
     ../../services/chir-rs
     ../../services/ollama.nix
     ../../services/forgejo-runner
+    ../../services/jellyfin.nix
   ];
   system.stateVersion = "24.11";
   home-manager.users.darkkirb.imports = [ ./home-manager.nix ];
