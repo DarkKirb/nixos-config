@@ -7,7 +7,9 @@
 let
   # Taken from https://github.com/gytis-ivaskevicius/flake-utils-plus/blob/master/lib/options.nix
   inherit (lib) filterAttrs mapAttrs';
-  flakes = filterAttrs (name: value: (value ? outputs) && (name != "self")) pureInputs;
+  flakes = filterAttrs (name: value: (value ? outputs)) pureInputs // {
+    nixos-config = pureInputs.self;
+  };
   nixRegistry = builtins.mapAttrs (name: v: { flake = v; }) flakes;
   cfg = config.nix.autoRegistry;
 in
