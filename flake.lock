@@ -197,16 +197,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1740473782,
-        "narHash": "sha256-yXr3RzUUpB7tP2hK3J5B3HgoaFs3J5WPjVQnoyaX77Y=",
-        "owner": "DarkKirb",
+        "lastModified": 1741416365,
+        "narHash": "sha256-czxmjyyXS0+jml2NqWHuxherArntpjmMmIGDsyPsUiA=",
+        "owner": "cargo2nix",
         "repo": "cargo2nix",
-        "rev": "f05926c2a91997615dbaa51dcc5a4a433fb682c5",
+        "rev": "a0fba953c13af372bc1b4517a4e7bbc3db7192ec",
         "type": "github"
       },
       "original": {
-        "owner": "DarkKirb",
-        "ref": "master",
+        "owner": "cargo2nix",
+        "ref": "main",
         "repo": "cargo2nix",
         "type": "github"
       }
