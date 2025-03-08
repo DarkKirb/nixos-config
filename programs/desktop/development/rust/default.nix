@@ -16,7 +16,7 @@
   };
   home.sessionVariables =
     (
-      if systemConfig.isNSFW then
+      if systemConfig.system.isNSFW then
         {
           CARGO_MOMMYS_MOODS = "chill/thirsty/yikes";
           CARGO_MOMMYS_LITTLE = "racc/plush";

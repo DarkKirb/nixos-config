@@ -1,6 +1,5 @@
 {
   pkgs,
-  nixos-config,
   systemConfig,
   system,
   ...
@@ -12,7 +11,7 @@
     ./syncthing
     ./games
     ./ims.nix
-    "${nixos-config}/services/desktop"
+    ../../services/desktop
     ./kodi
     ./pim
     ./development
@@ -38,7 +37,7 @@
         [ ]
     )
     ++ (
-      if !systemConfig.isSway then
+      if systemConfig.system.wm == "kde" then
         with pkgs;
         [
           kdePackages.kalk

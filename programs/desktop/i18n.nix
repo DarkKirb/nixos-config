@@ -2,7 +2,7 @@
 {
   imports = [
     (
-      if !systemConfig.isSway then
+      if (systemConfig.system.wm == "kde") then
         {
           programs.plasma.configFile.kwinrc.Wayland."InputMethod[$e]" =
             "${systemConfig.i18n.inputMethod.package}/share/applications/fcitx5-wayland-launcher.desktop";

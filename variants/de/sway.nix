@@ -1,5 +1,5 @@
-{ nixos-config, ... }:
+{ ... }:
 {
-  imports = [ "${nixos-config}/config/graphical.nix" ];
-  isSway = true;
+  imports = [ ../../config/graphical.nix ];
+  system.wm = "sway";
 }

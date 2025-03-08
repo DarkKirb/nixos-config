@@ -1,11 +1,8 @@
 {
-  pkgs,
   nixos-hardware,
-  config,
   lib,
   nixpkgs,
-  lix,
-  self,
+  nixos-config,
   ...
 }:
 {
@@ -56,31 +53,7 @@
     );
   };
 
-  nixpkgs.overlays =
-    let
-      pkgs_x86_64 = import nixpkgs {
-        system = "x86_64-linux";
-        crossSystem.system = "riscv64-linux";
-        overlays = [
-          lix.overlays.default
-          self.overlays.default
-        ];
-        config.allowUnfree = true;
-      };
-      pkgs_x86_64_native = import nixpkgs {
-        system = "x86_64-linux";
-        overlays = [
-          lix.overlays.default
-          self.overlays.default
-        ];
-        config.allowUnfree = true;
-      };
-    in
-    lib.mkAfter [
-      (import ./overlay/overlay.nix)
-      (_: _: {
-        inherit (pkgs_x86_64) lix palette-generator;
-        inherit (pkgs_x86_64_native) palettes;
-      })
-    ];
+  nixpkgs.overlays = [
+    nixos-config.overlays.riscv64-linux
+  ];
 }

@@ -1,6 +1,5 @@
 {
   modulesPath,
-  nixos-config,
   lib,
   ...
 }:
@@ -8,7 +7,7 @@
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     ./grub.nix
-    "${nixos-config}/config/zfs.nix"
+    ../../config/zfs.nix
   ];
   boot.initrd.availableKernelModules = [
     "ata_piix"

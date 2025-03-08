@@ -1,7 +1,7 @@
 { config, ... }:
 {
   services.avahi = {
-    enable = config.isGraphical;
+    enable = config.system.isGraphical;
     allowPointToPoint = true;
   };
 }

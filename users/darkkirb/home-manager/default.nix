@@ -3,7 +3,7 @@
   imports =
     [ ./sops.nix ]
     ++ (
-      if systemConfig.isGraphical then
+      if systemConfig.system.isGraphical then
         [
           ./git.nix
           ./jujutsu.nix
@@ -11,7 +11,7 @@
       else
         [ ]
     );
-  home.file.".face.icon".enable = systemConfig.isGraphical;
+  home.file.".face.icon".enable = systemConfig.system.isGraphical;
   home.file.".face.icon".source =
     let
       pfp = pkgs.stdenvNoCC.mkDerivation {

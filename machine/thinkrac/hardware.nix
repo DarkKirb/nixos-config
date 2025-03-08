@@ -29,7 +29,7 @@
     "usb_storage"
     "sd_mod"
   ];
-  isIntelGPU = true;
+  system.isIntelGPU = true;
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];

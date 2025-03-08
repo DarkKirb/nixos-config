@@ -8,8 +8,7 @@
 with lib;
 {
   imports = [
-    "${impermanence}/nixos.nix"
-    ./user-impermanence.nix
+    impermanence.nixosModules.default
   ];
   options = {
     environment.impermanence.enable = mkEnableOption "Enables impermanence";
@@ -17,7 +16,7 @@ with lib;
 
   config = mkMerge [
     {
-      environment.impermanence.enable = mkDefault (!config.boot.isContainer && !inTester);
+      environment.impermanence.enable = mkDefault (config.system.standardConfig && !inTester);
       environment.persistence."/persistent".enable = config.environment.impermanence.enable;
     }
     (mkIf config.environment.impermanence.enable {
@@ -81,6 +80,10 @@ with lib;
             else
               false;
           message = "rootfs must mount subvolume root";
+        }
+        {
+          assertion = !config.boot.isContainer;
+          message = "impermanence is not supported in containers";
         }
       ];
       fileSystems."/persistent" = {

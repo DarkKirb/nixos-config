@@ -81,7 +81,7 @@ with lib;
     };
   };
 
-  config.nix.auto-update.enable = mkDefault config.nix.enable;
+  config.nix.auto-update.enable = mkDefault config.nix.defaultSettings.enable;
   config.nix.auto-update.reboot = mkDefault true;
   config.environment.systemPackages = mkIf config.nix.enable [
     switch-variant

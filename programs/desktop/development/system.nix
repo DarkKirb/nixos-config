@@ -1,6 +1,6 @@
 { config, lib, ... }:
 {
-  services.postgresql = lib.mkIf (config.isGraphical && !config.isInstaller) {
+  services.postgresql = lib.mkIf (config.system.isGraphical && !config.system.isInstaller) {
     enable = true;
     extensions = ps: [ ps.postgis ];
     ensureUsers = [
@@ -11,7 +11,9 @@
     ];
     ensureDatabases = [ "darkkirb" ];
   };
-  services.pgbouncer.settings.databases = lib.mkIf (config.isGraphical && !config.isInstaller) {
-    darkkirb = "host=127.0.0.1 port=5432 auth_user=darkkirb dbname=darkkirb";
-  };
+  services.pgbouncer.settings.databases =
+    lib.mkIf (config.system.isGraphical && !config.system.isInstaller)
+      {
+        darkkirb = "host=127.0.0.1 port=5432 auth_user=darkkirb dbname=darkkirb";
+      };
 }

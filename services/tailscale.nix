@@ -5,7 +5,7 @@
 }:
 with lib;
 {
-  config = mkIf (!config.isInstaller) {
+  config = mkIf (!config.system.isInstaller) {
     services.tailscale = {
       enable = true;
       authKeyFile = config.sops.secrets."services/tailscale/authKey".path;

@@ -1,5 +1,4 @@
 {
-  nixos-config,
   system,
   attic,
   lib,
@@ -197,14 +196,14 @@ in
     owner = "hydra";
     key = ".ssh/builder_id_ed25519";
     path = "/var/lib/hydra/.ssh/builder_id_ed25519";
-    sopsFile = "${nixos-config}/programs/ssh/shared-keys.yaml";
+    sopsFile = ../../programs/ssh/shared-keys.yaml;
   };
   sops.secrets."hydra/.ssh/builder_id_ed25519" = {
     mode = "600";
     owner = "hydra-queue-runner";
     key = ".ssh/builder_id_ed25519";
     path = "/var/lib/hydra/queue-runner/.ssh/builder_id_ed25519";
-    sopsFile = "${nixos-config}/programs/ssh/shared-keys.yaml";
+    sopsFile = ../../programs/ssh/shared-keys.yaml;
   };
 
   system.activationScripts.setupHydraSshConfig = lib.stringAfter [ "var" ] ''

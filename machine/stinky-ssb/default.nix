@@ -1,13 +1,13 @@
-{ lib, nixos-config, ... }:
+{ lib, ... }:
 {
   networking.hostName = "stinky-ssb";
   imports = [
-    "${nixos-config}/config"
+    ../../config
     ./disko.nix
     ./hardware.nix
-    "${nixos-config}/config/graphical.nix"
-    #"${nixos-config}/config/graphical/plymouth.nix"
-    "${nixos-config}/config/networkmanager.nix"
+    ../../config/graphical.nix
+    #../../config/graphical/plymouth.nix
+    ../../config/networkmanager.nix
   ];
   system.stateVersion = "24.11";
   home-manager.users.darkkirb.imports = [ ./home-manager.nix ];

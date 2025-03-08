@@ -1,12 +1,6 @@
 inputs: final: prev: {
   github-updater = final.callPackage ./updaters/github.nix { };
   art-lotte = final.callPackage ./art/lotte { };
-  inherit (final.kdePackages) fcitx5-configtool;
-  fcitx5-table-extra = prev.fcitx5-table-extra.overrideAttrs (super: {
-    patches = super.patches or [ ] ++ [
-      ./i18n/fcitx-table-extra.patch
-    ];
-  });
   kodi-joyn = final.kodiPackages.callPackage ./kodi/joyn { };
   package-updater = final.callPackage ./updater.nix { };
   palette-generator = final.callPackage "${inputs.stylix}/palette-generator" { };
@@ -45,12 +39,5 @@ inputs: final: prev: {
   emoji-volpeon-wvrn = final.callPackage ./art/emoji/volpeon/wvrn.nix { };
   emoji-rosaflags = final.callPackage ./art/emoji/rosaflags.nix { };
   emoji-neopossum = final.callPackage ./art/emoji/neopossum.nix { };
-  renovate = prev.renovate.overrideAttrs {
-    dontCheckForBrokenSymlinks = true;
-  };
   clscrobble = final.callPackage ./music/clscrobble { };
-  notmuch = prev.notmuch.overrideAttrs {
-    doCheck = false;
-    doInstallCheck = false;
-  };
 }

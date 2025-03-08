@@ -1,4 +1,4 @@
-{ nixos-config, ... }:
+{ ... }:
 {
-  imports = [ "${nixos-config}/config/graphical/plymouth.nix" ];
+  imports = [ ../../config/graphical/plymouth.nix ];
 }

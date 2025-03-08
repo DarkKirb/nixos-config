@@ -1,6 +1,6 @@
-{ lib, nixos-config, ... }:
+{ lib, ... }:
 {
-  imports = [ "${nixos-config}/services/desktop/plover.nix" ];
+  imports = [ ../../services/desktop/plover.nix ];
   xdg.configFile."kwinoutputconfig.json".text = lib.strings.toJSON [
     {
       data = [

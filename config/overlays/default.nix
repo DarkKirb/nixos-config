@@ -1,47 +1,13 @@
 {
-  inTester,
-  system,
-  self,
-  rust-overlay,
-  nix-vscode-extensions,
-  nix-gaming,
-  jujutsu,
-  gomod2nix,
+  config,
+  nixos-config,
   ...
 }:
 {
-  imports =
-    if !inTester then
-      (
-        [
-          ./inputs-overlay.nix
-          ./staging-workarounds.nix
-        ]
-        ++ (
-          if system == "riscv64-linux" then
-            [
-              ./riscv.nix
-              ./riscv-cross-packages.nix
-            ]
-          else
-            [ ]
-        )
-      )
-    else
-      [ ];
+  nixpkgs.overlays = [
+    nixos-config.overlays.default
+  ];
+  environment.etc."nix/inputs/nixpkgs-overlays/default.nix".text = ''
+    (import <nixpkgs/lib>).composeManyExtensions (import <nixos-config>).outputs.nixosConfigurations.${config.networking.hostName}.pkgs.overlays
+  '';
 }
-// (
-  if !inTester then
-    {
-      nixpkgs.overlays = [
-        gomod2nix.overlays.default
-        self.overlays.default
-        (import rust-overlay)
-        nix-vscode-extensions.overlays.default
-        nix-gaming.overlays.default
-        jujutsu.overlays.default
-      ];
-    }
-  else
-    { }
-)

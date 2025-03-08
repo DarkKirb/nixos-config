@@ -34,7 +34,7 @@ let
 in
 {
   imports = [
-    "${nixos-config}/services/acme"
+    ../acme
   ];
   security.acme.enable = true;
   systemd.services.chir-rs = {

@@ -1,12 +1,11 @@
 {
-  nixos-config,
   nixpkgs,
   ...
 }:
 {
   networking.hostName = "not522";
   imports = [
-    "${nixos-config}/config"
+    ../../config
     ./disko.nix
     ./hardware.nix
     "${nixpkgs}/nixos/modules/profiles/minimal.nix"
