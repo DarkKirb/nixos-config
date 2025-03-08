@@ -31,7 +31,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     cargo2nix = {
-      url = "github:DarkKirb/cargo2nix/master";
+      url = "github:cargo2nix/cargo2nix/main";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
