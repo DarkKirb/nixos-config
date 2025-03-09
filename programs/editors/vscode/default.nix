@@ -9,6 +9,7 @@
 }:
 if system == "x86_64-linux" then
   {
+    stylix.targets.vscode.profileNames = [ "default" ];
     imports = [
       "${vscode-server}/modules/vscode-server/home.nix"
     ];
