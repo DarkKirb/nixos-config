@@ -20,4 +20,7 @@
       }
     '';
   };
+  environment.persistence."/persistent".directories = [
+    "/var/lib/jellyfin"
+  ];
 }
