@@ -1,0 +1,6 @@
+{ ... }:
+{
+  imports = [
+    ./synapse.nix
+  ];
+}

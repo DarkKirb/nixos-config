@@ -18,6 +18,7 @@
     ../../services/chir-rs
     ./postgresql.nix
     ./youtube-update.nix
+    ../../services/matrix
   ];
 
   nix.settings.substituters = lib.mkForce [

@@ -193,3 +193,8 @@ creation_rules:
       - age:
         - *base
         - *darkkirb
+  - path_regex: services/matrix/secrets\.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *nas
