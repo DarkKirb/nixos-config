@@ -13,11 +13,11 @@
     ../../services/prometheus
     ../../services/yiffstash
     ../../services/reverse-proxy.nix
-    ../../services/jellyfin.nix
     ../../services/forgejo-runner
     ../../services/renovate
     ../../services/chir-rs
     ./postgresql.nix
+    ./youtube-update.nix
   ];
 
   nix.settings.substituters = lib.mkForce [
