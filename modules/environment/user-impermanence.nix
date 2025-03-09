@@ -87,6 +87,7 @@ in
                     conflicts = [
                       "home-darkkirb-.mozilla.mount"
                       "home-darkkirb-.thunderbird.mount"
+                      "home-darkkirb-.config-Code.mount"
                     ];
                     serviceConfig.Type = "oneshot";
                     script = ''
@@ -122,6 +123,7 @@ in
                     wants = [
                       "home-darkkirb-.mozilla.mount"
                       "home-darkkirb-.thunderbird.mount"
+                      "home-darkkirb-.config-Code.mount"
                     ];
                     wantedBy = [
                       "user@${toString cfg.uid}.service"
@@ -130,6 +132,7 @@ in
                       "cleanup-home-${name}.service"
                       "home-darkkirb-.mozilla.mount"
                       "home-darkkirb-.thunderbird.mount"
+                      "home-darkkirb-.config-Code.mount"
                     ];
                     before = [
                       "user@${toString cfg.uid}.service"
