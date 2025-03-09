@@ -21,6 +21,7 @@ if system == "x86_64-linux" then
         extensions =
           (with pkgs.vscode-extensions; [
             fill-labs.dependi
+            github.vscode-pull-request-github
             james-yu.latex-workshop
             jnoortheen.nix-ide
             leonardssh.vscord
