@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./caddy.nix
+  ];
   services.jellyfin.enable = true;
   environment.systemPackages = [
     pkgs.jellyfin
