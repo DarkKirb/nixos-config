@@ -3,6 +3,7 @@
   imports = [
     ./caddy.nix
   ];
+  services.caddy.enable = true;
   services.jellyfin.enable = true;
   environment.systemPackages = [
     pkgs.jellyfin
