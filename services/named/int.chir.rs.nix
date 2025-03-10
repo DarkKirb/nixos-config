@@ -19,7 +19,7 @@ in
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 41;
+    serial = 42;
   };
   NS = [
     "ns1.chir.rs."
@@ -239,6 +239,7 @@ in
     backup.CNAME = [ (ttl zoneTTL (cname "nas")) ];
     hydra.CNAME = [ (ttl zoneTTL (cname "nas")) ];
     moa.CNAME = [ (ttl zoneTTL (cname "nas")) ];
+    matrix.CNAME = [ (ttl zoneTTL (cname "nas")) ];
     jellyfin.CNAME = [ (ttl zoneTTL (cname "rainbow-resort")) ];
     _acme-challenge = delegateTo [
       "ns1.chir.rs."
