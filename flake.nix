@@ -447,6 +447,7 @@
                   gomod2nix
                   clscrobble
                   tulir-telethon
+                  mautrix-python
                   ;
               }
               // (

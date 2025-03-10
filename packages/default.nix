@@ -41,4 +41,5 @@ inputs: final: prev: {
   emoji-neopossum = final.callPackage ./art/emoji/neopossum.nix { };
   clscrobble = final.callPackage ./music/clscrobble { };
   tulir-telethon = final.python3Packages.callPackage ./matrix/tulir-telethon { };
+  mautrix-python = final.python3Packages.callPackage ./matrix/mautrix-python { };
 }
