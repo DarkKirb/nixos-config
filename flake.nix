@@ -215,6 +215,7 @@
             else
               null;
           config.allowUnfree = true;
+          config.permittedInsecurePackages = [ "olm-3.2.16" ];
           overlays = [
             (_: _: {
               inputs = inputs';
@@ -448,6 +449,7 @@
                   clscrobble
                   tulir-telethon
                   mautrix-python
+                  mautrix-telegram
                   ;
               }
               // (
