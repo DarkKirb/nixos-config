@@ -10,6 +10,7 @@
     extraConfigFiles = [
       config.sops.secrets."services/matrix-synapse/extraConfigFile".path
     ];
+    configureRedisLocally = true;
     settings = {
       app_service_config_files = [
         /*
