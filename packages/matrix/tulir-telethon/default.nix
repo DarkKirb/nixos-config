@@ -1,23 +1,19 @@
 {
   lib,
   buildPythonPackage,
-  fetchFromGitHub,
+  fetchPypi,
   openssl,
   rsa,
   pyaes,
   pythonOlder,
 }:
-let
-  source = builtins.fromJSON (builtins.readFile ./source.json);
-in
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "tulir-telethon";
-  version = source.date;
+  version = "1.37.0a1";
 
-  src = fetchFromGitHub {
-    owner = "tulir";
-    repo = "Telethon";
-    inherit (source) rev sha256;
+  src = fetchPypi {
+    inherit pname version;
+    sha256 = "sha256-FckMHqGaBsqvFbrEnDWqJAQG8j/euY2NooesnxV6Kcc=";
   };
 
   patchPhase = ''
