@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/mautrix/python",
+  "rev": "8eac9db01e2b5fd9a30620bcbc8ebbaa36c71ecb",
+  "date": "2025-01-15T18:54:14+02:00",
+  "path": "/nix/store/zn5g8cq8vf6pf631cdnh1zs8lmssfx7q-python",
+  "sha256": "1kxixbbsayncp2fd00i4bawn6lzv3pjwyy282gmzcgpyxrjhrg3r",
+  "hash": "sha256-ebwMZe7+PvbrE0h4z+Ud+1NjuVokAtCcuMx6pdfqsc8=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}
