@@ -40,4 +40,5 @@ inputs: final: prev: {
   emoji-rosaflags = final.callPackage ./art/emoji/rosaflags.nix { };
   emoji-neopossum = final.callPackage ./art/emoji/neopossum.nix { };
   clscrobble = final.callPackage ./music/clscrobble { };
+  tulir-telethon = final.python3Packages.callPackage ./matrix/tulir-telethon { };
 }

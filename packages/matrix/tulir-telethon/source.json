@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/tulir/Telethon",
+  "rev": "5c0af4deef57bcd1ad3d6ead16aeb056a0018679",
+  "date": "2025-03-09T13:03:52+02:00",
+  "path": "/nix/store/l1mrmrznhaa102fin851vs362939cd16-Telethon",
+  "sha256": "1y6bx5q6pdvn5r3vx7g1l818g1p0gr08mcz533ar1m51qj5l60pb",
+  "hash": "sha256-6wJDi8Sh1JDVGOWzikB+4IaHAqLhnb5HLna3a3Dpy/g=",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

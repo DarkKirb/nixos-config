@@ -446,6 +446,7 @@
                   emoji-neopossum
                   gomod2nix
                   clscrobble
+                  tulir-telethon
                   ;
               }
               // (
