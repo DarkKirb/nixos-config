@@ -45,4 +45,5 @@ inputs: final: prev: {
   mautrix-python = final.python3Packages.callPackage ./matrix/mautrix-python { };
   mautrix-telegram = final.python3Packages.callPackage ./matrix/mautrix-telegram { };
   mautrix-discord = final.callPackage ./matrix/mautrix-discord { };
+  mautrix-slack = final.callPackage ./matrix/mautrix-slack { };
 }

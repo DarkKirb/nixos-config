@@ -451,6 +451,7 @@
                   mautrix-python
                   mautrix-telegram
                   mautrix-discord
+                  mautrix-slack
                   ;
               }
               // (
