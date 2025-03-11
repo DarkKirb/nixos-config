@@ -9,6 +9,7 @@
 }:
 if system == "x86_64-linux" then
   {
+    stylix.targets.vscode.profileNames = [ "default" ];
     imports = [
       "${vscode-server}/modules/vscode-server/home.nix"
     ];
@@ -21,6 +22,7 @@ if system == "x86_64-linux" then
         extensions =
           (with pkgs.vscode-extensions; [
             fill-labs.dependi
+            github.vscode-pull-request-github
             james-yu.latex-workshop
             jnoortheen.nix-ide
             leonardssh.vscord
@@ -86,30 +88,26 @@ if system == "x86_64-linux" then
         "d /persistent${config.xdg.cacheHome}/Code/CachedProfilesData - - - - -"
         "d /persistent${config.xdg.cacheHome}/Code/Code\\x20Cache - - - - -"
         "d /persistent${config.xdg.cacheHome}/Code/DawnGraphiteCache - - - - -"
-        "d /persistent${config.xdg.dataHome}/Code - - - - -"
-        "L /persistent${config.xdg.dataHome}/Code/Cache - - - - ${config.xdg.cacheHome}/Code/Cache"
-        "L /persistent${config.xdg.dataHome}/Code/CachedData - - - - ${config.xdg.cacheHome}/Code/CachedData"
-        "L /persistent${config.xdg.dataHome}/Code/CachedProfilesData - - - - ${config.xdg.cacheHome}/Code/CachedProfilesData"
-        "L /persistent${config.xdg.dataHome}/Code/Code\\x20Cache - - - - ${config.xdg.cacheHome}/Code/Code\\x20Cache"
-        "L /persistent${config.xdg.dataHome}/Code/DawnGraphiteCache - - - - ${config.xdg.cacheHome}/Code/DawnGraphiteCache"
-        "L ${config.xdg.configHome}/Code - - - - ${config.xdg.dataHome}/Code"
+        "d /persistent${config.xdg.configHome}/Code - - - - -"
+        "L /persistent${config.xdg.configHome}/Code/Cache - - - - ${config.xdg.cacheHome}/Code/Cache"
+        "L /persistent${config.xdg.configHome}/Code/CachedData - - - - ${config.xdg.cacheHome}/Code/CachedData"
+        "L /persistent${config.xdg.configHome}/Code/CachedProfilesData - - - - ${config.xdg.cacheHome}/Code/CachedProfilesData"
+        "L /persistent${config.xdg.configHome}/Code/Code\\x20Cache - - - - ${config.xdg.cacheHome}/Code/Code\\x20Cache"
+        "L /persistent${config.xdg.configHome}/Code/DawnGraphiteCache - - - - ${config.xdg.cacheHome}/Code/DawnGraphiteCache"
       ]
       # GPU Cache sometimes breaks for electron apps on intel, so only persist that on non-intel
       (lib.mkIf (!systemConfig.system.isIntelGPU) [
         "d /persistent${config.xdg.cacheHome}/Code/DawnWebGPUCache - - - - -"
         "d /persistent${config.xdg.cacheHome}/Code/GPUCache - - - - -"
-        "L /persistent${config.xdg.dataHome}/Code/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/Code/DawnWebGPUCache"
-        "L /persistent${config.xdg.dataHome}/Code/GPUCache - - - - ${config.xdg.cacheHome}/Code/GPUCache"
+        "L /persistent${config.xdg.configHome}/Code/DawnWebGPUCache - - - - ${config.xdg.cacheHome}/Code/DawnWebGPUCache"
+        "L /persistent${config.xdg.configHome}/Code/GPUCache - - - - ${config.xdg.cacheHome}/Code/GPUCache"
       ])
       (lib.mkIf (systemConfig.system.isIntelGPU) [
         "d /tmp${config.xdg.cacheHome}/Code/DawnWebGPUCache - - - - -"
         "d /tmp${config.xdg.cacheHome}/Code/GPUCache - - - - -"
-        "L /persistent${config.xdg.dataHome}/Code/DawnWebGPUCache - - - - /tmp${config.xdg.cacheHome}/Code/DawnWebGPUCache"
-        "L /persistent${config.xdg.dataHome}/Code/GPUCache - - - - /tmp${config.xdg.cacheHome}/Code/GPUCache"
+        "L /persistent${config.xdg.configHome}/Code/DawnWebGPUCache - - - - /tmp${config.xdg.cacheHome}/Code/DawnWebGPUCache"
+        "L /persistent${config.xdg.configHome}/Code/GPUCache - - - - /tmp${config.xdg.cacheHome}/Code/GPUCache"
       ])
-    ];
-    home.persistence.default.directories = [
-      ".local/share/Code"
     ];
     home.file.".vscode-server/extensions".source = config.home.file.".vscode/extensions".source;
   }
