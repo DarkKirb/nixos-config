@@ -452,6 +452,7 @@
                   mautrix-telegram
                   mautrix-discord
                   mautrix-slack
+                  mautrix-whatsapp
                   ;
               }
               // (
