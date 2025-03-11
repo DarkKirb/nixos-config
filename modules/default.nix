@@ -14,6 +14,7 @@
     ./environment
     ./hydra/build-server.nix
     ./secrets/sops.nix
+    ./matrix
   ];
 
   options = {

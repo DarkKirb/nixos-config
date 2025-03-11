@@ -215,6 +215,7 @@
             else
               null;
           config.allowUnfree = true;
+          config.permittedInsecurePackages = [ "olm-3.2.16" ];
           overlays = [
             (_: _: {
               inputs = inputs';
@@ -446,6 +447,12 @@
                   emoji-neopossum
                   gomod2nix
                   clscrobble
+                  tulir-telethon
+                  mautrix-python
+                  mautrix-telegram
+                  mautrix-discord
+                  mautrix-slack
+                  mautrix-whatsapp
                   ;
               }
               // (

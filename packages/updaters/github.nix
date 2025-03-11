@@ -10,6 +10,7 @@
   repo,
   source,
   sourceFileName,
+  afterUpdate ? "",
 }:
 let
   srcInfo = lib.importJSON source;
@@ -21,6 +22,8 @@ in
   if [ $CURRENT_COMMIT != $KNOWN_COMMIT ]; then
     echo "${name}: Updating from $KNOWN_COMMIT to $CURRENT_COMMIT"
     ${lib.getExe' nix-prefetch-git "nix-prefetch-git"} https://github.com/${owner}/${repo} | ${lib.getExe jq} > ${sourceFileName}
+    NEW_PATH=$(cat ${sourceFileName} | ${lib.getExe jq} -r .path)
+    ${afterUpdate}
   fi
   echo "${name}: Done"
 ''

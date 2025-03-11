@@ -1,5 +1,6 @@
 inputs: final: prev: {
   github-updater = final.callPackage ./updaters/github.nix { };
+  go-updater = final.callPackage ./updaters/go.nix { };
   art-lotte = final.callPackage ./art/lotte { };
   kodi-joyn = final.kodiPackages.callPackage ./kodi/joyn { };
   package-updater = final.callPackage ./updater.nix { };
@@ -40,4 +41,10 @@ inputs: final: prev: {
   emoji-rosaflags = final.callPackage ./art/emoji/rosaflags.nix { };
   emoji-neopossum = final.callPackage ./art/emoji/neopossum.nix { };
   clscrobble = final.callPackage ./music/clscrobble { };
+  tulir-telethon = final.python3Packages.callPackage ./matrix/tulir-telethon { };
+  mautrix-python = final.python3Packages.callPackage ./matrix/mautrix-python { };
+  mautrix-telegram = final.python3Packages.callPackage ./matrix/mautrix-telegram { };
+  mautrix-discord = final.callPackage ./matrix/mautrix-discord { };
+  mautrix-slack = final.callPackage ./matrix/mautrix-slack { };
+  mautrix-whatsapp = final.callPackage ./matrix/mautrix-whatsapp { };
 }
