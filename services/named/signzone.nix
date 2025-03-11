@@ -17,9 +17,10 @@ let
   zoneFile = writeZone zonename zone;
 in
 {
+  systemd.services.bind.bindsTo = [ "zonesign@${zonename}.service" ];
+
   systemd.services."zonesign@${zonename}" = {
     description = "Signing the DNS zone '${zonename}'";
-    wantedBy = [ "bind.service" ];
     before = [ "bind.service" ];
     serviceConfig = {
       Type = "oneshot";
@@ -33,7 +34,6 @@ in
 
       # Sign the zone and write it to /var/lib/named
       ${lib.getExe' pkgs.bind "dnssec-signzone"} -N unixtime -o ${zonename} -k /run/secrets/${ksk} -a -3 $(${lib.getExe' pkgs.coreutils "head"} -c 16 /dev/urandom | ${lib.getExe' pkgs.coreutils "sha256sum"} | ${lib.getExe' pkgs.coreutils "cut"} -b 1-32) -f /var/lib/named/${zonename} ${zoneFile} /run/secrets/${zsk}
-      ${lib.getExe' pkgs.systemd "systemctl"} restart bind || true
     '';
     restartIfChanged = true;
   };
