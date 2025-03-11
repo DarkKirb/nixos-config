@@ -1,7 +1,8 @@
 { ... }:
 {
   imports = [
-    ./synapse.nix
+    ./mautrix-discord.nix
     ./mautrix-telegram.nix
+    ./synapse.nix
   ];
 }
