@@ -725,11 +725,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741682127,
-        "narHash": "sha256-KnEVVbmIURr3FFFZm2fAUX8qe4BC67LnIDTpHwyb4YU=",
+        "lastModified": 1741715732,
+        "narHash": "sha256-RJwj7tsuJRdS0PkZsyBPKRhuK8eJ7UEY5pUezEMjWqk=",
         "owner": "jj-vcs",
         "repo": "jj",
-        "rev": "d37a5b1b74db3641da755dc8d5be4e95fa461bdb",
+        "rev": "fe846d69d4845ceaaca0b52059db2a4e817ad17e",
         "type": "github"
       },
       "original": {
@@ -1155,11 +1155,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1741673832,
-        "narHash": "sha256-1qhTe8DDJvaFzkkt3JKs0liEBbX5kmxl0KImqkKt3SA=",
+        "lastModified": 1741715747,
+        "narHash": "sha256-2QQBQF0TH3uipLf5B38+R57zwp8w5mVSjPn/XKi2Uu0=",
         "owner": "darkkirb",
         "repo": "nixpkgs",
-        "rev": "a7f678d9f2f913efa5a703b09a35b6e7e4ef9d1c",
+        "rev": "661091731ec71cd932987e9a1fee9fb1f4bea8ae",
         "type": "github"
       },
       "original": {
@@ -1354,11 +1354,11 @@
     "rycee-nur-expressions": {
       "flake": false,
       "locked": {
-        "lastModified": 1741665811,
-        "narHash": "sha256-yQwFid0LSC2syNBTXCSJTZ1EX1OQjBoGk0fSIaaiC+Q=",
+        "lastModified": 1741703094,
+        "narHash": "sha256-rM6zVLFGv2BqPPATh2zyDZaBlzbwe5l0RVw04qL8rtQ=",
         "ref": "refs/heads/master",
-        "rev": "ba7a019fc6c9ee63e3e1a425e0bbf8dd697f7b16",
-        "revCount": 4173,
+        "rev": "f086e15336227c65af733b221159739c04132a8a",
+        "revCount": 4175,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       },
