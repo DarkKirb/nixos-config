@@ -3,10 +3,6 @@
   ...
 }:
 {
-  imports = [
-    ../../modules/matrix/mautrix-slack.nix
-  ];
-
   services.mautrix-slack = {
     enable = true;
     environmentFile = config.sops.secrets."services/mautrix/shared_secret".path;
