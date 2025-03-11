@@ -3,7 +3,7 @@
   ...
 }:
 {
-  services.mautrix-signal = {
+  services.mautrix-whatsapp = {
     enable = true;
     environmentFile = config.sops.secrets."services/mautrix/shared_secret".path;
     settings = {
@@ -17,11 +17,11 @@
       };
       metrics = {
         enabled = true;
-        listen = "[::]:29329";
+        listen = "[::]:29319";
       };
       database = {
         type = "postgres";
-        uri = "postgres:///mautrix_signal?sslmode=disable&host=/run/postgresql";
+        uri = "postgres:///mautrix_whatsapp?sslmode=disable&host=/run/postgresql";
       };
       bridge = {
         relay.enabled = true;
@@ -43,7 +43,6 @@
         default = false;
         appservice = true;
         allow_key_sharing = true;
-        pickle_key = "generate";
       };
       double_puppet = {
         secrets = {
@@ -54,6 +53,10 @@
   };
   sops.secrets."services/mautrix/shared_secret".sopsFile = ./secrets.yaml;
   services.postgresql.ensureDatabases = [
-    "mautrix_signal"
+    "mautrix_whatsapp"
   ];
+  sops.secrets."services/mautrix/whatsapp.yaml" = {
+    sopsFile = ./secrets.yaml;
+    owner = "mautrix-whatsapp";
+  };
 }
