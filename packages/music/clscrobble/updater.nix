@@ -1,6 +1,6 @@
 {
   nix-prefetch-git,
-  gomod2nix,
+  go-updater,
   curl,
   jq,
   lib,
@@ -15,8 +15,11 @@ in
   if [ $CURRENT_COMMIT != $KNOWN_COMMIT ]; then
     echo "clscrobble: Updating from $KNOWN_COMMIT to $CURRENT_COMMIT"
     ${lib.getExe' nix-prefetch-git "nix-prefetch-git"} https://codeberg.org/punkscience/clscrobble.git | ${lib.getExe jq} > packages/music/clscrobble/source.json
-    NEW_PATH=$(cat packages/music/clscrobble/source.json | jq -r .path)
-    ${lib.getExe' gomod2nix "gomod2nix"} generate --dir $NEW_PATH --outdir packages/music/clscrobble
+    NEW_PATH=$(cat packages/music/clscrobble/source.json | ${lib.getExe jq} -r .path)
+    ${go-updater {
+      sourcePath = "$NEW_PATH";
+      targetDir = "packages/music/clscrobble";
+    }}
   fi
-  echo "gomod2nix: Done"
+  echo "clscrobble: Done"
 ''

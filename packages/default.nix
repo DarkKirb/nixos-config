@@ -1,5 +1,6 @@
 inputs: final: prev: {
   github-updater = final.callPackage ./updaters/github.nix { };
+  go-updater = final.callPackage ./updaters/go.nix { };
   art-lotte = final.callPackage ./art/lotte { };
   kodi-joyn = final.kodiPackages.callPackage ./kodi/joyn { };
   package-updater = final.callPackage ./updater.nix { };
@@ -43,4 +44,5 @@ inputs: final: prev: {
   tulir-telethon = final.python3Packages.callPackage ./matrix/tulir-telethon { };
   mautrix-python = final.python3Packages.callPackage ./matrix/mautrix-python { };
   mautrix-telegram = final.python3Packages.callPackage ./matrix/mautrix-telegram { };
+  mautrix-discord = final.callPackage ./matrix/mautrix-discord { };
 }

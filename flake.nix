@@ -450,6 +450,7 @@
                   tulir-telethon
                   mautrix-python
                   mautrix-telegram
+                  mautrix-discord
                   ;
               }
               // (
