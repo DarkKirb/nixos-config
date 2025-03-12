@@ -480,6 +480,14 @@
                   }
                 else
                   { }
+              )
+              // (
+                if name == "aarch64-linux" then
+                  {
+                    inherit (pkgs) ubootRaspberryPi4_64bit;
+                  }
+                else
+                  { }
               );
           })
           [
