@@ -35,4 +35,11 @@ final: prev: {
       ./fcitx-table-extra/sitelen-pona.patch
     ];
   });
+  ubootRaspberryPi4_64bit = prev.ubootRaspberryPi4_64bit.override (super: {
+    extraConfig =
+      super.extraConfig or ""
+      + ''
+        CONFIG_EFI_HAVE_RUNTIME_RESET=n
+      '';
+  });
 }
