@@ -71,4 +71,6 @@
     ACTION=="add", SUBSYSTEM=="hidraw*", ATTRS{idVendor}=="e621", ATTRS{idProduct}=="0000", TAG+="uaccess"
   '';
   users.users.darkkirb.extraGroups = [ "dialout" ];
+  # Workaround for https://gitlab.freedesktop.org/mesa/mesa/-/issues/12801
+  hardware.graphics.package = pkgs.mesa_24_2_8.drivers;
 }
