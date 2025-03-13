@@ -197,6 +197,37 @@
         ]
       },
       "locked": {
+        "lastModified": 1741675966,
+        "narHash": "sha256-8qUYrAOJzw5dDwKcqUqwcF8xyhH7gnZX6+Sc/hynhEs=",
+        "owner": "cargo2nix",
+        "repo": "cargo2nix",
+        "rev": "4ffe1b8c0223c826cf6ddb5a45aa4feb22c29306",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cargo2nix",
+        "ref": "main",
+        "repo": "cargo2nix",
+        "type": "github"
+      }
+    },
+    "cargo2nix_2": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "flake-utils": [
+          "chir-rs",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "chir-rs",
+          "nixpkgs"
+        ],
+        "rust-overlay": [
+          "chir-rs",
+          "rust-overlay"
+        ]
+      },
+      "locked": {
         "lastModified": 1740473782,
         "narHash": "sha256-yXr3RzUUpB7tP2hK3J5B3HgoaFs3J5WPjVQnoyaX77Y=",
         "owner": "DarkKirb",
@@ -213,9 +244,7 @@
     },
     "chir-rs": {
       "inputs": {
-        "cargo2nix": [
-          "cargo2nix"
-        ],
+        "cargo2nix": "cargo2nix_2",
         "flake-compat": [
           "flake-compat"
         ],
@@ -225,9 +254,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": [
-          "rust-overlay"
-        ]
+        "rust-overlay": "rust-overlay"
       },
       "locked": {
         "lastModified": 1741176937,
@@ -370,11 +397,11 @@
     "flake-compat_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1696426674,
-        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
+        "lastModified": 1733328505,
+        "narHash": "sha256-NeCCThCEP3eCl2l/+27kNNK7QrwZB1IJCrXfrbv5oqU=",
         "owner": "edolstra",
         "repo": "flake-compat",
-        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "rev": "ff81ac966bb2cae68946d5ed5fc4994f96d0ffec",
         "type": "github"
       },
       "original": {
@@ -400,6 +427,22 @@
       }
     },
     "flake-compat_4": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696426674,
+        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-compat_5": {
       "locked": {
         "lastModified": 1733328505,
         "narHash": "sha256-NeCCThCEP3eCl2l/+27kNNK7QrwZB1IJCrXfrbv5oqU=",
@@ -740,7 +783,7 @@
     },
     "lix": {
       "inputs": {
-        "flake-compat": "flake-compat_2",
+        "flake-compat": "flake-compat_3",
         "nix2container": "nix2container",
         "nixpkgs": [
           "hydra",
@@ -820,7 +863,7 @@
     },
     "lix_3": {
       "inputs": {
-        "flake-compat": "flake-compat_3",
+        "flake-compat": "flake-compat_4",
         "nix2container": "nix2container_2",
         "nixpkgs": [
           "nix-eval-jobs",
@@ -1302,7 +1345,7 @@
         "devshell": "devshell",
         "disko": "disko",
         "dns": "dns",
-        "flake-compat": "flake-compat",
+        "flake-compat": "flake-compat_2",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "flakey-profile": "flakey-profile",
@@ -1323,7 +1366,7 @@
         "plasma-manager": "plasma-manager",
         "pre-commit-hooks": "pre-commit-hooks_3",
         "riscv-overlay": "riscv-overlay",
-        "rust-overlay": "rust-overlay",
+        "rust-overlay": "rust-overlay_2",
         "rycee-nur-expressions": "rycee-nur-expressions",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
@@ -1332,6 +1375,27 @@
       }
     },
     "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "chir-rs",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1741833135,
+        "narHash": "sha256-HUtFcF4NLwvu7CAowWgqCHXVkNj0EOc/W6Ism4biV6I=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "f3cd1e0feb994188fe3ad9a5c3ab021ed433b8c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_2": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
@@ -1394,7 +1458,7 @@
         "base16-helix": "base16-helix",
         "base16-vim": "base16-vim",
         "firefox-gnome-theme": "firefox-gnome-theme",
-        "flake-compat": "flake-compat_4",
+        "flake-compat": "flake-compat_5",
         "flake-utils": "flake-utils_2",
         "git-hooks": "git-hooks",
         "gnome-shell": "gnome-shell",
