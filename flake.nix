@@ -31,7 +31,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     cargo2nix = {
-      url = "github:DarkKirb/cargo2nix/master";
+      url = "github:cargo2nix/cargo2nix/main";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,11 +39,11 @@
     };
     chir-rs = {
       url = "github:DarkKirb/chir.rs";
-      inputs.cargo2nix.follows = "cargo2nix";
+      #inputs.cargo2nix.follows = "cargo2nix";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
+      #inputs.rust-overlay.follows = "rust-overlay";
     };
     crane = {
       url = "github:DarkKirb/crane";
