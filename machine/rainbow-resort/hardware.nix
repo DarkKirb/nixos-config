@@ -72,5 +72,4 @@
   '';
   users.users.darkkirb.extraGroups = [ "dialout" ];
   # Workaround for https://gitlab.freedesktop.org/mesa/mesa/-/issues/12801
-  hardware.graphics.package = pkgs.mesa_unstable.drivers;
 }
