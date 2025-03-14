@@ -101,11 +101,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1741468387,
-        "narHash": "sha256-32fw7hIuUjqUBK2Xs0Kvh/HAuk61/d0y3KGzlTkOqHA=",
+        "lastModified": 1741985001,
+        "narHash": "sha256-3HUg9YJ9lJrEbrp3Gv2dF0LSEcvPjJ+ggMtjcVe7gRc=",
         "owner": "DarkKirb",
         "repo": "attic",
-        "rev": "a62abf3c4ae12c2ebf74780743b6eef8dbcb188e",
+        "rev": "e66ddb7bd9977973a060ca960b3e916665a53d70",
         "type": "github"
       },
       "original": {
