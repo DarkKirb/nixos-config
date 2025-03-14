@@ -122,7 +122,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-eval-jobs = {
-      url = "git+https://git.lix.systems/lix-project/nix-eval-jobs.git";
+      url = "github:nix-community/nix-eval-jobs";
       #inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
