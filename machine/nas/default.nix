@@ -13,7 +13,6 @@
     ../../services/prometheus
     ../../services/yiffstash
     ../../services/reverse-proxy.nix
-    ../../services/forgejo-runner
     ../../services/renovate
     ../../services/chir-rs
     ./postgresql.nix

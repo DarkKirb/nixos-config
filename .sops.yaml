@@ -153,12 +153,6 @@ creation_rules:
       - age:
         - *base
         - *nas
-  - path_regex: services/forgejo-runner/secrets.yaml
-    key_groups:
-      - age:
-        - *base
-        - *nas
-        - *rainbow-resort
   - path_regex: services/renovate/secrets.yaml
     key_groups:
       - age:
