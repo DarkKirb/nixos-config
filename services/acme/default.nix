@@ -39,5 +39,8 @@ in
       owner = "acme";
       sopsFile = ./secrets.yaml;
     };
+    environment.persistence."/persistent".directories = [
+      "/var/lib/acme"
+    ];
   };
 }
