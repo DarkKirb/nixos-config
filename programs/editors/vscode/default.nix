@@ -39,6 +39,8 @@ if system == "x86_64-linux" then
             ex3ndr.llama-coder
             janisdd.vscode-edit-csv
             jscearcy.rust-doc-viewer
+            theqtcompany.qt-core
+            theqtcompany.qt-qml
           ]);
         userSettings = {
           "editor.fontLigatures" = true;
