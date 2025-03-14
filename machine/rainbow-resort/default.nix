@@ -9,7 +9,6 @@
     ./hardware.nix
     ../../services/chir-rs
     ../../services/ollama.nix
-    ../../services/forgejo-runner
     ../../services/jellyfin.nix
   ];
   system.stateVersion = "24.11";
