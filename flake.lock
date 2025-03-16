@@ -670,11 +670,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741932920,
-        "narHash": "sha256-OX8k/mHcODABl0nY9um+9stgVkBX32l1HLdCm9pNABE=",
+        "lastModified": 1742019314,
+        "narHash": "sha256-PurFL1Yehc09z18ZVUvrcHb94HhKBt6fSiVJn0NEIXE=",
         "owner": "DarkKirb",
         "repo": "home-manager",
-        "rev": "f16b57cb6a9f235cc07eca4c92a78276a97cd466",
+        "rev": "b054fffdbb567d449e1681d1a9278a82d9018fee",
         "type": "github"
       },
       "original": {
@@ -752,11 +752,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741984338,
-        "narHash": "sha256-8A+AFQVs1meQzKlBhjLHR7EKLnPWhP1Pr8iUFNKGU30=",
+        "lastModified": 1742081799,
+        "narHash": "sha256-ZgT4PoaCbKkEEHFbT8JbvKHeGJ1unLhTMAz6qrG9tqc=",
         "owner": "jj-vcs",
         "repo": "jj",
-        "rev": "9b76f05d65d03317479ccd1ad4513e284b1b222c",
+        "rev": "07d392ccf2f3aa16be633eb22d0841447c615a7e",
         "type": "github"
       },
       "original": {
@@ -878,11 +878,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741916615,
-        "narHash": "sha256-SU6Q/IBGJ9a7u6WrVjZ+ShoIjK3To/lD3U37DgfX1Tw=",
+        "lastModified": 1742045780,
+        "narHash": "sha256-+DTq6s9QFutsc0NCKGARH3+J5MBkz91goh7/WHXI9Wo=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "b2a32ef80ad0cc7f3dee928771791625ff9494c1",
+        "rev": "0894bfe2c7f48091c1f5100f39bdfa0e19d08ab4",
         "type": "github"
       },
       "original": {
@@ -1212,11 +1212,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741379162,
-        "narHash": "sha256-srpAbmJapkaqGRE3ytf3bj4XshspVR5964OX5LfjDWc=",
+        "lastModified": 1742058297,
+        "narHash": "sha256-b4SZc6TkKw8WQQssbN5O2DaCEzmFfvSTPYHlx/SFW9Y=",
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "rev": "b5a62751225b2f62ff3147d0a334055ebadcd5cc",
+        "rev": "59f17850021620cd348ad2e9c0c64f4e6325ce2a",
         "type": "github"
       },
       "original": {
@@ -1314,11 +1314,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741919466,
-        "narHash": "sha256-xto0Oq+WItjDZvafo6ZVI4TZa6/2oxJHb0tkcSGVUJI=",
+        "lastModified": 1742005800,
+        "narHash": "sha256-6wuOGWkyW6R4A6Th9NMi6WK2jjddvZt7V2+rLPk6L3o=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "8b137260b776525542d47d3a4dbac753df478a42",
+        "rev": "028cd247a6375f83b94adc33d83676480fc9c294",
         "type": "github"
       },
       "original": {
@@ -1330,11 +1330,11 @@
     "rycee-nur-expressions": {
       "flake": false,
       "locked": {
-        "lastModified": 1741957870,
-        "narHash": "sha256-5ahYCLPnBcZX7vlmXzn+m0LDRgYiMDglU6UnH/HngPo=",
+        "lastModified": 1742025179,
+        "narHash": "sha256-gxfMDCQeGZk3wZjqdl2boaGGm+yiAkaNFNp3x5vhuYg=",
         "ref": "refs/heads/master",
-        "rev": "4021f5dad2a46ff78c1bf82ee45c1656e12164f2",
-        "revCount": 4185,
+        "rev": "9b8d2f4a1e3a199878d1eb14d7e0f176052a8038",
+        "revCount": 4187,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       },
