@@ -141,6 +141,7 @@ in
     cursor = {
       package = if config.system.isGraphical then pkgs.kdePackages.breeze-icons else pkgs.emptyDirectory;
       name = "Breeze";
+      size = 32;
     };
     fonts = {
       serif = {
