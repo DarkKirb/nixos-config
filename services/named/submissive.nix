@@ -31,7 +31,7 @@ in
         100.0.0.0/8;
       };
       recursion yes;
-      dnssec-validation yes;
+      dnssec-validation auto;
       allow-notify { 130.162.60.127; 2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49; 138.201.155.128; 2a01:4f8:1c17:d953:b4e1:8ff:e658:6f49; fd0d:a262:1fa6:e621:b4e1:8ff:e658:6f49; 100.119.226.33; fd7a:115c:a1e0:ab12:4843:cd96:6277:e221; };
     '';
   };
