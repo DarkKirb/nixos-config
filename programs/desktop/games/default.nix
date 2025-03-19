@@ -19,6 +19,7 @@
       ]
       (lib.mkIf (system == "x86_64-linux") [
         wineWowPackages.waylandFull
+        winetricks
         factorio
       ])
     ];
