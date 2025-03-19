@@ -18,7 +18,7 @@
         prismlauncher
       ]
       (lib.mkIf (system == "x86_64-linux") [
-        wineWowPackages.waylandFull
+        wineWowPackages.stagingFull
         winetricks
         factorio
       ])
