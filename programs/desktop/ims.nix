@@ -16,6 +16,7 @@ in
       [
         telegram-desktop
         nheko
+        tokodon
       ]
       (lib.mkIf withElectron [
         discord
@@ -30,6 +31,7 @@ in
       ".local/share/TelegramDesktop"
       ".config/nheko"
       ".local/share/nheko"
+      ".local/share/KDE/tokodon"
     ]
     (lib.mkIf withElectron [
       ".local/share/discord"
