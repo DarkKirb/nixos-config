@@ -43,11 +43,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1742375960,
-        "narHash": "sha256-+axfmY3APOR44ju4/9UYq9Vhn5fASXFiS15pilhTb7A=",
+        "lastModified": 1742476151,
+        "narHash": "sha256-eLbS16xVnriAxYF400BC/561B4n4szDiZ0Lq8dwPEGg=",
         "owner": "DarkKirb",
         "repo": "akkoma",
-        "rev": "44e90175c76b4a94fb27bd9c2c041e2921d4643a",
+        "rev": "f3ced79a02d166382329ae0aca2a2252edba99c5",
         "type": "github"
       },
       "original": {
@@ -70,11 +70,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1741987230,
-        "narHash": "sha256-zIoKiC6W5sIzyE+PveOL/WKUHQ6Q/YJqRqiBv3sfkuA=",
+        "lastModified": 1742485518,
+        "narHash": "sha256-C1+lnlnyXlgg7+ZbKXuspVU5OmreIgr23o4DA4YzwVY=",
         "owner": "DarkKirb",
         "repo": "akkoma-fe",
-        "rev": "1239e3a66b6f7d5ff89f650048ea2e188e2a3008",
+        "rev": "3b1def71a1ebe273b31a5de38a6c179edbe6987a",
         "type": "github"
       },
       "original": {
@@ -752,11 +752,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1742362346,
-        "narHash": "sha256-Lf8wDWNsQkiw4MqD3dOmxmLm7AnW1oMf2Prfx9hT2V4=",
+        "lastModified": 1742424394,
+        "narHash": "sha256-EImpIAujod2B/6NF6oWOAq6Q9RxQJHeuBacovcjQgoo=",
         "owner": "jj-vcs",
         "repo": "jj",
-        "rev": "f37f927bc2f0be1cedce8888701d401e04c66844",
+        "rev": "d1242635c6c3e2dc870c6e02cf901c732a2a35f4",
         "type": "github"
       },
       "original": {
@@ -1126,11 +1126,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1742365034,
-        "narHash": "sha256-/x4rPL/aXXszvjMBc00xv0O2vt4k55a1qwgjcOTab0g=",
+        "lastModified": 1742451433,
+        "narHash": "sha256-UidZU4fDHwOQOGWyH4nNLctEGDMomoZLEwlZqP2yTqA=",
         "owner": "darkkirb",
         "repo": "nixpkgs",
-        "rev": "1940c98e9d6466885c7575d79aa22cfca32e6eff",
+        "rev": "45f2b761ab70e3a66d1530a804d267ec6edfa07e",
         "type": "github"
       },
       "original": {
@@ -1314,11 +1314,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1742351546,
-        "narHash": "sha256-GPubFcOXyi8TVm1xpltHYPcfGr+iO+if2u/EtzFVnHQ=",
+        "lastModified": 1742437918,
+        "narHash": "sha256-Vflb6KJVDikFcM9E231mRN88uk4+jo7BWtaaQMifthI=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "b0a7450168c62a46f87d204280e6d9d1c0292671",
+        "rev": "f03085549609e49c7bcbbee86a1949057d087199",
         "type": "github"
       },
       "original": {
@@ -1330,11 +1330,11 @@
     "rycee-nur-expressions": {
       "flake": false,
       "locked": {
-        "lastModified": 1742327995,
-        "narHash": "sha256-cvqCqT7op8uRCIPUYK8CPJbRRmKytFtOzHqomMyO7u8=",
+        "lastModified": 1742449434,
+        "narHash": "sha256-UVz7NhPzbEWey6mMJU3Jwjqfbp0xH0iKZDuoRjhZEN0=",
         "ref": "refs/heads/master",
-        "rev": "d91a2ea080804c3a9213d6e460e8cff68cfacf8d",
-        "revCount": 4196,
+        "rev": "1b0b14b56353040142e0ef5b0ab37743bbbf4ab4",
+        "revCount": 4202,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       },
@@ -1350,11 +1350,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1742239755,
-        "narHash": "sha256-ptn8dR4Uat3UUadGYNnB7CIH9SQm8mK69D2A/twBUXQ=",
+        "lastModified": 1742406979,
+        "narHash": "sha256-r0aq70/3bmfjTP+JZs4+XV5SgmCtk1BLU4CQPWGtA7o=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "787afce414bcce803b605c510b60bf43c11f4b55",
+        "rev": "1770be8ad89e41f1ed5a60ce628dd10877cb3609",
         "type": "github"
       },
       "original": {
@@ -1389,11 +1389,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1742365044,
-        "narHash": "sha256-UDF113FlaqsxJo+JTY7z9CVeOm9E34TxZFA8terVlMo=",
+        "lastModified": 1742451445,
+        "narHash": "sha256-i0TaS2lMtREsftq1gFr7TbzdvkiOYhEufUYJhTz421Q=",
         "owner": "DarkKirb",
         "repo": "stylix",
-        "rev": "14eb872d59ff6d917dced74d2d24dd11dde4d205",
+        "rev": "967c18625fe707703e0f6ee9e9781da6d1a4b57f",
         "type": "github"
       },
       "original": {
