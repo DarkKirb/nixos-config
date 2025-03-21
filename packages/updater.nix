@@ -7,6 +7,7 @@
 }:
 let
   script = lib.concatMapStringsSep "\n" (f: callPackage "${f}/updater.nix" { }) [
+    ./anubis
     ./art
     ./kodi
     ./matrix

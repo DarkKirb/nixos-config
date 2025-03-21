@@ -427,6 +427,7 @@
               in
               {
                 inherit (pkgs)
+                  anubis
                   art-lotte
                   package-updater
                   yiffstash
