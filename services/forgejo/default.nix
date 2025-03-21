@@ -14,8 +14,8 @@
     serviceConfig.Restart = "always";
     serviceConfig.ExecStart = lib.getExe' pkgs.anubis "anubis";
     environment = {
-      BIND = "60927";
-      METRICS_BIND = "29397";
+      BIND = ":60927";
+      METRICS_BIND = ":29397";
       TARGET = "http://${config.services.forgejo.settings.server.HTTP_ADDR}:${toString config.services.forgejo.settings.server.HTTP_PORT}";
     };
   };
@@ -114,7 +114,7 @@
         file_server
       }
 
-      reverse_proxy http://localhost:${config.systemd.services.anubis-forgejo.environment.BIND} {
+      reverse_proxy http://localhost${config.systemd.services.anubis-forgejo.environment.BIND} {
         header_up X-Real-Ip {remote_host}
       }
     '';
