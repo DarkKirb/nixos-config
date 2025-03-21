@@ -5,6 +5,20 @@
   ...
 }:
 {
+  systemd.services.anubis-forgejo = {
+    description = "scrape protection for forgejo";
+    requires = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
+    serviceConfig.Restart = "always";
+    serviceConfig.ExecStart = lib.getExe' pkgs.anubis "anubis";
+    environment = {
+      BIND = "60927";
+      METRICS_BIND = "29397";
+      TARGET = "http://${config.services.forgejo.settings.server.HTTP_ADDR}:${toString config.services.forgejo.settings.server.HTTP_PORT}";
+    };
+  };
   services.forgejo = {
     enable = true;
     package = pkgs.forgejo;
@@ -52,6 +66,7 @@
       git = {
         HOME_PATH = config.services.forgejo.stateDir;
       };
+      security.REVERSE_PROXY_TRUSTED_PROXIES = "127.0.0.0/8,::1/128";
     };
   };
   services.postgresql = {
@@ -93,23 +108,15 @@
     extraConfig = ''
       import baseConfig
 
-      @badbots {
-        header 'User-Agent' *Bytespider*
-        header 'User-Agent' *meta-externalagent*
-        header 'User-Agent' *claudebot*
-        header 'User-Agent' *imagesift*
-        header 'User-Agent' *amazon*
-      }
-
-      respond @badbots 403
-
       handle_path /robots.txt {
         root ${./static}
         try_files /robots.txt =404
         file_server
       }
 
-      reverse_proxy http://${config.services.forgejo.settings.server.HTTP_ADDR}:${toString config.services.forgejo.settings.server.HTTP_PORT}
+      reverse_proxy http://localhost:${config.systemd.services.anubis-forgejo.environment.BIND} {
+        header_up X-Real-Ip {remote_host}
+      }
     '';
   };
 
