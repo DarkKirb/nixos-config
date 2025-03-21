@@ -200,3 +200,8 @@ creation_rules:
           - *instance-20221213-1915
           - *rainbow-resort
           - *base
+  - path_regex: programs/desktop/development/secrets\.yaml$
+    key_groups:
+      - age:
+          - *base
+          - *darkkirb
