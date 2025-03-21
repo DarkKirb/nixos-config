@@ -19,6 +19,7 @@
     ../../services/reverse-proxy.nix
     ../../services/forgejo
     ../../services/chir-rs
+    ../../services/kubernetes
   ];
 
   services.openssh = {

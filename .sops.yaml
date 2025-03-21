@@ -192,3 +192,11 @@ creation_rules:
       - age:
           - *base
           - *nas
+  - path_regex: services/kubernetes/secrets\.yaml$
+    key_groups:
+      - age:
+          - *nixos-8gb-fsn1-1
+          - *nas
+          - *instance-20221213-1915
+          - *rainbow-resort
+          - *base
