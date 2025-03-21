@@ -12,6 +12,7 @@ let
   };
 in
 {
+  imports = [ ../docker.nix ];
   sops.secrets."k3s/token" = {
     sopsFile = ./secrets.yaml;
   };
@@ -68,4 +69,12 @@ in
   };
   boot.supportedFilesystems = [ "nfs" ];
   services.rpcbind.enable = true;
+  environment.persistence."/persistent".directories = [
+    "/etc/rancher"
+    "/var/lib/rancher"
+    "/var/lib/kubelet"
+    "/var/lib/longhorn"
+    "/var/lib/etcd"
+    "/var/lib/cni"
+  ];
 }
