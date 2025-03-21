@@ -12,6 +12,7 @@ let
   };
 in
 {
+  imports = [ ../docker.nix ];
   sops.secrets."k3s/token" = {
     sopsFile = ./secrets.yaml;
   };
