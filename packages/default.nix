@@ -48,4 +48,5 @@ inputs: final: prev: {
   mautrix-signal = final.callPackage ./matrix/mautrix-signal { };
   mautrix-slack = final.callPackage ./matrix/mautrix-slack { };
   mautrix-whatsapp = final.callPackage ./matrix/mautrix-whatsapp { };
+  anubis = final.callPackage ./anubis { };
 }
