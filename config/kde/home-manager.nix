@@ -3,6 +3,7 @@
   programs.plasma.enable = true;
   programs.plasma.configFile.baloofilerc."Basic Settings"."Indexing-Enabled" = false;
   programs.plasma.configFile.kwalletrc."org.freedesktop.secrets".apiEnabled = false;
+  programs.plasma.configFile.kwalletrc.Wallet.Enabled = false;
   imports = [
     plasma-manager.homeManagerModules.plasma-manager
     ./theming.nix
