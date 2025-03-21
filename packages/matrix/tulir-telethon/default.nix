@@ -8,12 +8,12 @@
   pythonOlder,
 }:
 buildPythonPackage rec {
-  pname = "tulir-telethon";
-  version = "1.37.0a1";
+  pname = "tulir_telethon";
+  version = "1.99.0a2";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-FckMHqGaBsqvFbrEnDWqJAQG8j/euY2NooesnxV6Kcc=";
+    sha256 = "sha256-wjRsTR7voq2Nx8snzIqJ2JH0xfW6lacMRX+b+CEV2vw=";
   };
 
   patchPhase = ''
