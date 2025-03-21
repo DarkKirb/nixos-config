@@ -50,10 +50,7 @@
         MINIO_BUCKET = "git-chir-rs";
         MINIO_USE_SSL = "true";
       };
-      openid = {
-        ENABLE_OPENID_SIGNIN = true;
-        ENABLE_OPENID_SIGNUP = true;
-      };
+      service.DISABLE_REGISTRATION = true;
       server.DOMAIN = "git.chir.rs";
       server.ROOT_URL = "https://git.chir.rs/";
       session.COOKIE_SECURE = true;
