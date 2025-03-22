@@ -21,6 +21,7 @@ if system == "x86_64-linux" then
         enableUpdateCheck = false;
         extensions =
           (with pkgs.vscode-extensions; [
+            elixir-lsp.vscode-elixir-ls
             fill-labs.dependi
             github.vscode-pull-request-github
             james-yu.latex-workshop
