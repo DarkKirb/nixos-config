@@ -12,5 +12,6 @@
     };
     GUI.ApplicationTheme = "classic";
     FdoSecrets.Enabled = true;
+    SSHAgent.Enabled = true;
   };
 }
