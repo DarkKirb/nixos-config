@@ -43,11 +43,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1742476151,
-        "narHash": "sha256-eLbS16xVnriAxYF400BC/561B4n4szDiZ0Lq8dwPEGg=",
+        "lastModified": 1742668238,
+        "narHash": "sha256-nNRzITgHvwAbn5hohBVAgFGYIpqwOgSCNw0s8DocD4s=",
         "owner": "DarkKirb",
         "repo": "akkoma",
-        "rev": "f3ced79a02d166382329ae0aca2a2252edba99c5",
+        "rev": "d4edcf351e49c105fd06da86cd8ca7fcf2fc3f70",
         "type": "github"
       },
       "original": {
