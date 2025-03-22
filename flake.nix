@@ -111,7 +111,7 @@
       url = "https://git.lix.systems/lix-project/lix/archive/2.92.0.tar.gz";
       inputs.flake-compat.follows = "flake-compat";
       inputs.nix2container.follows = "nix2container";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
       inputs.pre-commit-hooks.follows = "pre-commit-hooks";
     };
     lix-module = {
@@ -119,7 +119,7 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.flakey-profile.follows = "flakey-profile";
       inputs.lix.follows = "lix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-eval-jobs = {
       url = "github:nix-community/nix-eval-jobs";

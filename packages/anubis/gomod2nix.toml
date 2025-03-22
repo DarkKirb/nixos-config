@@ -50,8 +50,8 @@ schema = 3
     version = "v1.7.0"
     hash = "sha256-MdT2rQyQHspPJcx6n9ozkLbsktIOJutOqDuKpNAtoZY="
   [mod."github.com/golang-jwt/jwt/v5"]
-    version = "v5.2.1"
-    hash = "sha256-3AMtL0kAD5L2/3eHf/Q6+hqga8mEaeEs+Hcdlx65go4="
+    version = "v5.2.2"
+    hash = "sha256-C0MhDguxWR6dQUrNVQ5xaFUReSV6CVEBAijG3b4wnX4="
   [mod."github.com/klauspost/compress"]
     version = "v1.17.11"
     hash = "sha256-LFSIWy0C4VbiuPve0eKHr7Q7s4XtaGzsZ3qpO+6bEgc="
@@ -82,6 +82,12 @@ schema = 3
   [mod."github.com/prometheus/procfs"]
     version = "v0.15.1"
     hash = "sha256-H+WXJemFFwdoglmD6p7JRjrJJZmIVAmJwYmLbZ8Q9sw="
+  [mod."github.com/sebest/xff"]
+    version = "v0.0.0-20210106013422-671bd2870b3a"
+    hash = "sha256-t7Gdp7S71Koej5Njg3jOo5vwyj02tJCbJjrq/vZGOho="
+  [mod."github.com/yl2chen/cidranger"]
+    version = "v1.0.2"
+    hash = "sha256-rPZApwakcZ1D3lmZnFds79+TFr9IlYkovTA7o52N9h0="
   [mod."golang.org/x/mod"]
     version = "v0.24.0"
     hash = "sha256-Lrl4RzOO0J/S5E+AQ7Y6yh8B9yygvZ2W0fsKEtBSYNU="

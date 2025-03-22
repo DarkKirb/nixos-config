@@ -801,9 +801,7 @@
         "lix": [
           "lix"
         ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1737237494,
@@ -825,9 +823,7 @@
         "nix2container": [
           "nix2container"
         ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-regression": "nixpkgs-regression_2",
         "pre-commit-hooks": [
           "pre-commit-hooks"
@@ -851,7 +847,7 @@
           "flake-parts"
         ],
         "nix-github-actions": "nix-github-actions_2",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_6",
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
@@ -1110,6 +1106,38 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1742562948,
+        "narHash": "sha256-QUnzAW7CW0sCkFN1Kez/8UVq8EbBGNKOfHZHIZON0XQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e7a04ccc42104e0554f0a2325930fe98db9a5325",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.11-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1742422364,
+        "narHash": "sha256-mNqIplmEohk5jRkqYqG19GA8MbQ/D4gQSK0Mu4LvfRQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a84ebe20c6bc2ecbcfb000a50776219f48d134cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1739451785,
         "narHash": "sha256-3ebRdThRic9bHMuNi2IAA/ek9b32bsy8F5R4SvGTIog=",
         "owner": "NixOS",
@@ -1124,7 +1152,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1742451433,
         "narHash": "sha256-UidZU4fDHwOQOGWyH4nNLctEGDMomoZLEwlZqP2yTqA=",
@@ -1274,7 +1302,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nix2container": "nix2container_2",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_7",
         "plasma-manager": "plasma-manager",
         "pre-commit-hooks": "pre-commit-hooks_2",
         "riscv-overlay": "riscv-overlay",
