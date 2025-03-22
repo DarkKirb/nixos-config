@@ -1,12 +1,12 @@
 {
-    "url": "https://git.chir.rs/CarolineHusky/Caroline_Yiffstash_bot.git",
-    "rev": "d1553380be462502918eebbccdc86ee345d2cc6e",
-    "date": "2024-03-18T21:42:10+01:00",
-    "path": "/nix/store/9gmmvjqag8l2pkzkdk4rf0a78nml3cfm-Caroline_Yiffstash_bot",
-    "sha256": "0lzjm3cvr7fdw6prgrxvc1dvm9xhxx4nrzdsmp58xxi3cpwsmbpr",
-    "hash": "sha256-+a6q+WUj9o7Krbr9bEnvsKe6W2C755ev4c2dvNmo8lM=",
-    "fetchLFS": true,
-    "fetchSubmodules": false,
-    "deepClone": false,
-    "leaveDotGit": false
+  "url": "https://git.chir.rs/darkkirb/Yiffstash",
+  "rev": "bc8f1662492563bdb5e46352fe04a363ecc0d489",
+  "date": "2025-03-22T13:55:04+01:00",
+  "path": "/nix/store/8hgp6ifj2ykb7hrcj985dijw3scxqnnb-Yiffstash",
+  "sha256": "1nnrziazw1qj12jlbibyhfhd051dpp13vr6kblh25gf4iclssdmi",
+  "hash": "sha256-sTatKYvEvSIgXdPkPcK9LRTQoIN+xUWlCBIH/lX82do=",
+  "fetchLFS": true,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
 }
