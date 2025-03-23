@@ -95,8 +95,8 @@
     };
     hydra = {
       url = "git+https://git.lix.systems/lix-project/hydra";
-      #inputs.lix.follows = "lix";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
       url = "github:DarkKirb/impermanence/change-default-link-type";
@@ -108,18 +108,18 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
     lix = {
-      url = "https://git.lix.systems/lix-project/lix/archive/2.92.0.tar.gz";
+      url = "git+https://git.lix.systems/lix-project/lix";
       inputs.flake-compat.follows = "flake-compat";
       inputs.nix2container.follows = "nix2container";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.pre-commit-hooks.follows = "pre-commit-hooks";
     };
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
       inputs.flake-utils.follows = "flake-utils";
       inputs.flakey-profile.follows = "flakey-profile";
       inputs.lix.follows = "lix";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-eval-jobs = {
       url = "github:nix-community/nix-eval-jobs";
