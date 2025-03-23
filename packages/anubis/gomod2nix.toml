@@ -31,6 +31,9 @@ schema = 3
   [mod."github.com/davecgh/go-spew"]
     version = "v1.1.2-0.20180830191138-d8f796af33cc"
     hash = "sha256-fV9oI51xjHdOmEx6+dlq7Ku2Ag+m/bmbzPo6A4Y74qc="
+  [mod."github.com/deckarep/golang-set/v2"]
+    version = "v2.6.0"
+    hash = "sha256-ni1XK75Q8iBBmxgoyZTedP4RmrUPzFC4978xB4HKdfs="
   [mod."github.com/facebookgo/ensure"]
     version = "v0.0.0-20160127193407-b4ab57deab51"
     hash = "sha256-jdCvva9KDH6KTTAtW0fBNw67xd0DhxLQbxU8PdhWLKY="
@@ -49,6 +52,12 @@ schema = 3
   [mod."github.com/fsnotify/fsnotify"]
     version = "v1.7.0"
     hash = "sha256-MdT2rQyQHspPJcx6n9ozkLbsktIOJutOqDuKpNAtoZY="
+  [mod."github.com/go-jose/go-jose/v3"]
+    version = "v3.0.4"
+    hash = "sha256-RrLHCu9l6k0XVobdZQJ9Sx/VTQcWjrdLR5BEG7yXTEQ="
+  [mod."github.com/go-stack/stack"]
+    version = "v1.8.1"
+    hash = "sha256-ixcJ2RrK1ZH3YWGQZF9QFBo02NOuLeSp9wJ7gniipgY="
   [mod."github.com/golang-jwt/jwt/v5"]
     version = "v5.2.2"
     hash = "sha256-C0MhDguxWR6dQUrNVQ5xaFUReSV6CVEBAijG3b4wnX4="
@@ -67,6 +76,9 @@ schema = 3
   [mod."github.com/natefinch/atomic"]
     version = "v1.0.1"
     hash = "sha256-fbOVHCwRNI8PFjC4o0YXpKZO0JU2aWTfH5c7WXXKMHg="
+  [mod."github.com/playwright-community/playwright-go"]
+    version = "v0.5001.0"
+    hash = "sha256-XhiMqxy/5Y+fQx99CYPxhOere0HrbdABC19RxzpV87I="
   [mod."github.com/pmezard/go-difflib"]
     version = "v1.0.1-0.20181226105442-5d4384ee4fb2"
     hash = "sha256-XA4Oj1gdmdV/F/+8kMI+DBxKPthZ768hbKsO3d9Gx90="
