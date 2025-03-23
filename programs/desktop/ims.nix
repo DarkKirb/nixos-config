@@ -16,7 +16,7 @@ in
       [
         telegram-desktop
         nheko
-        tokodon
+        kdePackages.tokodon
       ]
       (lib.mkIf withElectron [
         discord
