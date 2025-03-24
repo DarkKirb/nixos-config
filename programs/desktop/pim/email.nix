@@ -41,7 +41,34 @@ in
       extraConfig.auth = "plain";
     };
     neomutt.enable = true;
-    notmuch.enable = true;
+    notmuch = {
+      enable = true;
+      neomutt = {
+        enable = true;
+        virtualMailboxes = [
+          {
+            name = "My INBOX";
+            query = "tag:inbox";
+          }
+          {
+            name = "To Do";
+            query = "tag:todo";
+          }
+          {
+            name = "To Read";
+            query = "tag:toread";
+          }
+          {
+            name = "Blocked";
+            query = "tag:blocked";
+          }
+          {
+            name = "Archive";
+            query = "tag:archive";
+          }
+        ];
+      };
+    };
     passwordCommand = [
       "${lib.getExe' pkgs.coreutils "cat"}"
       config.sops.secrets."accounts/email/accounts/lotte/password".path
@@ -133,16 +160,13 @@ in
       }
     ];
     extraConfig = ''
-      virtual-mailboxes "To Do" "notmuch://?query=tag:todo"
-      virtual-mailboxes "To Read" "notmuch://?query=tag:toread"
-      virtual-mailboxes "Blocked" "notmuch://?query=tag:blocked"
-      virtual-mailboxes "Archive" "notmuch://?query=tag:archive"
       macro index,pager A "<modify-labels-then-hide>+archive -unread -inbox\n"
       bind index,pager y modify-labels
       set mailcap_path = ${mailcap}
       set send_charset="utf-8"
       set edit_headers=yes
       set use_8bit_mime=yes
+      set virtual_spoolfile=yes
     '';
     sidebar.enable = true;
   };
