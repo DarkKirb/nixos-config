@@ -81,6 +81,8 @@
   home.persistence.default.directories = [ "Maildir" ];
   services.muchsync.remotes.nas = {
     remote.host = "nas.int.chir.rs";
-    sshCommand = "ssh -CTaxq  -i ${config.sops.secrets."accounts/email/accounts/darkkirb/sshKey".path}";
+    sshCommand = "${lib.getExe pkgs.openssh} -CTaxq  -i ${
+      config.sops.secrets."accounts/email/accounts/darkkirb/sshKey".path
+    }";
   };
 }
