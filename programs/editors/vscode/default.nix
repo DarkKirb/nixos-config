@@ -10,6 +10,7 @@
 if system == "x86_64-linux" then
   {
     stylix.targets.vscode.profileNames = [ "default" ];
+    stylix.targets.firefox.profileNames = [ "default" ];
     imports = [
       "${vscode-server}/modules/vscode-server/home.nix"
     ];
