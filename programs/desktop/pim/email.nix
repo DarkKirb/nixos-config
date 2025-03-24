@@ -60,7 +60,7 @@
     userName = "lotte@chir.rs";
     primary = true;
   };
-  accounts.email.maildirBasePath = "Data/Maildir";
+  accounts.email.maildirBasePath = "Maildir";
   sops.secrets."accounts/email/accounts/lotte/password".sopsFile = ./secrets.yaml;
   services.imapnotify.enable = true;
   programs.mbsync.enable = true;
@@ -77,4 +77,5 @@
     Wants = [ "sops-nix.service" ];
     After = [ "sops-nix.service" ];
   };
+  home.persistence.default.directories = [ "Maildir" ];
 }
