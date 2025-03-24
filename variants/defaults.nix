@@ -1,5 +1,5 @@
 {
   bg = "nsfw";
   boot = "plymouth";
-  de = "sway";
+  de = "kde";
 }
