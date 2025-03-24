@@ -62,6 +62,7 @@
   };
   accounts.email.maildirBasePath = "Maildir";
   sops.secrets."accounts/email/accounts/lotte/password".sopsFile = ./secrets.yaml;
+  sops.secrets."accounts/email/accounts/darkkirb/sshKey".sopsFile = ./secrets.yaml;
   services.imapnotify.enable = true;
   programs.mbsync.enable = true;
   programs.notmuch.enable = true;
@@ -78,4 +79,8 @@
     After = [ "sops-nix.service" ];
   };
   home.persistence.default.directories = [ "Maildir" ];
+  services.muchsync.remotes.nas = {
+    remote.host = "nas.int.chir.rs";
+    sshCommand = "ssh -CTaxq  -i ${config.sops.secrets."accounts/email/accounts/darkkirb/sshKey".path}";
+  };
 }
