@@ -108,12 +108,6 @@
       dtsFile = ./dts/audremap-overlay.dts;
     }
   ];
-  services.xserver.xkb.variant = lib.mkForce "us";
-  console.keyMap = lib.mkForce "us";
-  home-manager.users.darkkirb.wayland.windowManager.sway.config.input."*" = lib.mkForce {
-    xkb_layout = "us";
-    xkb_variant = "altgr-intl";
-  };
   services.displayManager = {
     autoLogin = {
       enable = true;
