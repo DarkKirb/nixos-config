@@ -17,7 +17,7 @@
       BIND = ":60927";
       METRICS_BIND = ":29397";
       TARGET = "http://${config.services.forgejo.settings.server.HTTP_ADDR}:${toString config.services.forgejo.settings.server.HTTP_PORT}";
-      POLICY_FNAME = "${pkgs.anubis.src}/cmd/anubis/botPolicies.json";
+      POLICY_FNAME = "${pkgs.anubis.src}/data/botPolicies.json";
     };
   };
   services.forgejo = {
