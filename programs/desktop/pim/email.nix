@@ -29,8 +29,8 @@ in
     };
     mbsync = {
       enable = true;
-      create = "both";
-      expunge = "both";
+      create = "near";
+      expunge = "near";
       extraConfig.account = {
         AuthMechs = "plain";
         PipelineDepth = 128;
