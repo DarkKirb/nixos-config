@@ -43,15 +43,4 @@
   sops.age.sshKeyPaths = lib.mkForce [ "/etc/ssh/ssh_host_ed25519_key" ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
-  users.users.darkkirb.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGTq4eR0czz1yk1oJoT75GvIHNtLoBX5Gx/wL34P2Qq1 darkkirb@rainbow-resort"
-  ];
-  home-manager.users.darkkirb.imports = [
-    {
-      home.packages = [
-        pkgs.notmuch
-        pkgs.muchsync
-      ];
-    }
-  ];
 }
