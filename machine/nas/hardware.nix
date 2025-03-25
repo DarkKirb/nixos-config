@@ -23,9 +23,6 @@
   ];
   boot.initrd.kernelModules = [ "igb" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [
-    config.boot.kernelPackages.zenpower
-  ];
   hardware.nvidia.open = false;
   fileSystems."/" = {
     device = "/dev/bcache0";
