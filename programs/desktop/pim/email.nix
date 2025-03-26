@@ -30,4 +30,12 @@
     primary = true;
   };
   sops.secrets."accounts/email/accounts/lotte/password".sopsFile = ./secrets.yaml;
+  programs.thunderbird = {
+    enable = true;
+    package = pkgs.thunderbird-latest;
+    profiles.default = {
+      isDefault = true;
+      withExternalGnupg = true;
+    };
+  };
 }
