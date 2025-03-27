@@ -20,12 +20,13 @@
         try_files /favicon.ico =404
         file_server
       }
-      handle_path /static {
+      handle_path /static/* {
         root ${config.services.weblate.package.static}
         file_server
       }
-      handle_path /media {
+      handle_path /media/* {
         root /var/lib/weblate/media/
+        file_server
       }
 
       reverse_proxy unix//run/weblate.socket {
