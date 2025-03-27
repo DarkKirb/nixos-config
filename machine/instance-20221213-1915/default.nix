@@ -20,6 +20,7 @@
     ../../services/forgejo
     ../../services/chir-rs
     ../../services/kubernetes
+    ../../services/weblate
   ];
 
   services.openssh = {

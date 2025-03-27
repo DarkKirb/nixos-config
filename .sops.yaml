@@ -205,3 +205,8 @@ creation_rules:
       - age:
           - *base
           - *darkkirb
+  - path_regex: services/weblate/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *instance-20221213-1915

@@ -166,7 +166,7 @@ let
     SOA = {
       nameServer = "ns1.chir.rs.";
       adminEmail = "lotte@chir.rs";
-      serial = 60;
+      serial = 61;
     };
     NS = [
       "ns1.chir.rs."
@@ -220,6 +220,7 @@ let
       ns3 = createZone oracleBase;
       ns4 = createZone oracleBase;
       hydra = createZone { };
+      weblate = createZone oracleBase;
       mastodon-assets.CNAME = [
         "assets-chir-rs.b-cdn.net."
       ];
@@ -237,7 +238,7 @@ let
         (ttl zoneTTL (txt "did=did:plc:wtxdmo7634gs4lxfrlptey3v"))
       ];
       status = createZone oracleBase;
-      matrix = createFullZone {};
+      matrix = createFullZone { };
 
       int =
         delegateTo [
