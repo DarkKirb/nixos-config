@@ -33,4 +33,7 @@
       }
     '';
   };
+
+  users.groups.weblate.members = [ "caddy" ];
+  services.nginx.enable = lib.mkForce false;
 }
