@@ -26,6 +26,10 @@ qt5.mkDerivationWith buildPythonPackage {
     inherit (source) rev sha256;
   };
 
+  patches = [
+    ./rac-ortho-rule.patch
+  ];
+
   # I'm not sure why we don't find PyQt5 here but there's a similar
   # sed on many of the platforms Plover builds for
   postPatch = "sed -i /PyQt5/d setup.cfg";

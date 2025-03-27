@@ -11,6 +11,7 @@ let
         builtins.toJSON {
           "SROR" = "vore";
           "SROR/KWREU" = "vorny";
+          "RA*BG" = "{rac^}";
         }
       );
     }

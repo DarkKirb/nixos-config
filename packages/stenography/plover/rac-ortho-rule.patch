@@ -1,0 +1,45 @@
+diff --git a/plover/formatting.py b/plover/formatting.py
+index b3f22a6..7669773 100644
+--- a/plover/formatting.py
++++ b/plover/formatting.py
+@@ -485,7 +485,12 @@ class TextFormatter:
+                 self.appended_text = self.appended_text[:-replaced]
+         if not action.prev_attach:
+             self.appended_text += action.space_char
+-        self.appended_text += action.text
++        if action.prev_attach:
++            if action.attached_to == "rac":
++                if action.text.startswith("ac"):
++                    action.text = action.text[2:]
++        
++        self.appended_text += action.text      
+         if self.spaces_after and not action.next_attach:
+             self.appended_text += action.space_char
+             self.trailing_space = action.space_char
+@@ -653,6 +658,7 @@ class _Action:
+         self.text = text
+         self.combo = combo
+         self.command = command
++        self.attached_to = ""
+ 
+     def copy_state(self):
+         """Clone this action but only clone the state variables."""
+@@ -669,7 +675,7 @@ class _Action:
+         )
+ 
+     def new_state(self):
+-        return _Action(
++        new_action = _Action(
+             # Previous.
+             prev_attach=self.next_attach,
+             # Current.
+@@ -677,6 +683,9 @@ class _Action:
+             trailing_space=self.trailing_space,
+             # Next.
+         )
++        if self.next_attach:
++            new_action.attached_to = self.text
++        return new_action
+ 
+     def __eq__(self, other):
+         return self.__dict__ == other.__dict__
