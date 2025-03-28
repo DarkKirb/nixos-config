@@ -210,3 +210,14 @@ creation_rules:
       - age:
         - *base
         - *instance-20221213-1915
+  - path_regex: config/lanzaboote/secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *rainbow-resort
+        - *nas
+        - *thinkrac
+        - *instance-20221213-1915
+        - *not522
+        - *pc-installer
+        - *stinky-ssb

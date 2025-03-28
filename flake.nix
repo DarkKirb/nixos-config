@@ -107,6 +107,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     lix = {
       url = "git+https://git.lix.systems/lix-project/lix";
       inputs.flake-compat.follows = "flake-compat";
