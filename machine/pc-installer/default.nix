@@ -9,10 +9,10 @@
   imports = [
     ../../config
     ./disko.nix
-    ./grub.nix
     ./hardware.nix
     ../../config/networkmanager.nix
   ];
+  boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
   system.stateVersion = "24.11";
   system.isInstaller = true;
   environment.systemPackages = [
