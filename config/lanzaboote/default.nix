@@ -13,12 +13,12 @@
     pkgs.sbctl
   ];
 
-  boot.loader.systemd-boot.enable = lib.mkIf (pkgs.targetPlatform.system != "riscv64-linux") (
+  boot.loader.systemd-boot.enable = lib.mkIf (pkgs.targetPlatform.system == "x86_64-linux") (
     lib.mkForce false
   );
 
   boot.lanzaboote = {
-    enable = pkgs.targetPlatform.system != "riscv64-linux";
+    enable = pkgs.targetPlatform.system == "x86_64-linux";
     pkiBundle = "/run/secrets/var/lib/sbctl";
   };
 
