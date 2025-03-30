@@ -58,6 +58,7 @@
   security.pam.u2f = {
     enable = true;
     settings = {
+      origin = "pam://chir.rs";
       interactive = true;
       cue = true;
       authfile = config.sops.secrets."etc/u2f_mappings".path;
