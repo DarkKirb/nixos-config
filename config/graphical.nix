@@ -51,4 +51,8 @@
       "IdentityFile=${config.sops.secrets.".ssh/builder_id_ed25519".path}"
     ];
   };
+  security.pam.services.login = {
+    u2fAuth = true;
+    unixAuth = lib.mkForce false;
+  };
 }
