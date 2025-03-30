@@ -221,3 +221,11 @@ creation_rules:
         - *not522
         - *pc-installer
         - *stinky-ssb
+  - path_regex: config/graphical-secrets.yaml
+    key_groups:
+      - age:
+        - *base
+        - *rainbow-resort
+        - *thinkrac
+        - *not522
+        - *pc-installer

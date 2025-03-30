@@ -35,8 +35,4 @@
     in
     "${pfp}";
 
-  sops.secrets.".config/Yubico/u2f_keys" = {
-    sopsFile = ./keys.yaml;
-    path = "${config.home.homeDirectory}/.config/Yubico/u2f_keys";
-  };
 }
