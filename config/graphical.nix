@@ -55,4 +55,13 @@
     u2fAuth = true;
     unixAuth = lib.mkForce false;
   };
+  security.pam.u2f = {
+    enable = true;
+    settings = {
+      interactive = true;
+      cue = true;
+      authfile = config.sops.secrets."etc/u2f_mappings".path;
+    };
+  };
+  sops.secrets."etc/u2f_mappings".sopsFile = ./graphical-secrets.yaml;
 }
