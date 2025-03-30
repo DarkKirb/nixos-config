@@ -2,6 +2,8 @@
     sops:
         age:
             keys.txt: ENC[AES256_GCM,data:kp5zlL9GSm7cmV7g0gv45HFsyVTxqxyhk0VtOKUiVgxB5VDPsd249ZsHcBTIFv3IlzepZUa6KJPVY/ICJC9Y2GvwsHBHUg7zNo3/pgBcoyZ1GjdeORF392j43xoK8VPdY2Tok8HMrjUhLycwp6YlWIrAQbiLXGkoLDLhal/6Id/+6VnKZunH/kq93eNqLYmOuFGd/7nnmN8rYCbznoOYvnG9fqLGS11n2mjmlY9kXZ2BbytuMF9xa60fSqUhtFiXmjKrHpv1uAojVE5D47plN/QPmjfNRZJYxt1/jOCDpsN3DBE3QKnNTM4fEtshuw0rG4o1XZARt8Q1oVyyQVr9zZ2cK63teLH506nkCVsb31pS7R/3fAdtNTAAXSvzSrXzBL+EKCYPDXncBfCx32OAr/z0M2fwYc+HVLmJGJUeCxCckxMtJehHKjaPGlSdrLID67KwcmNmUt+61mq5Fh6V19Y4O7pgB+MuTXWb1TRtz4sGEA6AGRfwRZm9pW6DIRZGupCCZ1m+WJds8Sefw9GMqp+AbvLH560jlnKJvLiod4UC4RAMKkEBDi5eHAefXBhcBOBdEa4iPzk844KQWkeXhIbyKbn0rHmnrJ4/Yeaz+/CNpExwc2U+SluotMbqRe2pP6aNpiXhEXw4cg==,iv:p2Z7ym1g+JFbWSeCysURKcH/9ow6KzPf6WPa19Wf4FU=,tag:lhTalpb2GOV6tRYOatchjw==,type:str]
+    Yubico:
+        u2f_keys: ENC[AES256_GCM,data:y6agRw/53yW7Gz/47ZLhnsOMaPIGqChHz6aX6X/gQD++4mWUlZFpLdxkk3gyAJnHrvraXXxmv5onR6M0EnLSnjBLLFcSSgfVBymtuzLqT9rGEDyAJln15mb+3Qk6XXqe3ka5uhx3pz8Aj4hwrynD6Feuy+EsmypKW47QDSF0u+ahRe4451XFPIkBZoHE9Xw+3t0PYWRm7aiG+T67ht4+NOSclpN4jNVkDwajFA/yjiN0fb23oXAtwWRLlRZohAYrOTsoKZ9Rstc47/g5c/k=,iv:AG0pIOize8meo1cioHU5d0e1ljQ1KYRF40gJbIP5zGI=,tag:W1Y88zWVdIuU78sXmT1luw==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -26,8 +28,8 @@ sops:
             MTZ4VWZ0MEFaQjZzOSt1VzBDWC9aU0UKHwylHC9EZI2QMb+B+qCxaikRL5MRHBfd
             UGr6njNSWIVcg6tpNneXp+bC6k6HLLPTg2b4Lupt+WRnaTFLY8yADQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-11-11T07:45:30Z"
-    mac: ENC[AES256_GCM,data:XG46XbOQ7hGb8t93WDmr4zCr92KOJTCJnOV9fxGOl0nvD1vnqoVX8oFXwCwq0oBF8bGdecWzmeetVTbYjgn0y4e2nhZt8aULL+5MAV9zmVbfBDzdPtyV4yOdDfMX/0Vaf/nlXJgw0pNK+wqLCRXe1UG23wq1IttYlhWPHaEW2AA=,iv:tGJ8u9BSxyBVx620NC5M1znHur2K2V6I5/qsrtnxxs4=,tag:hPKudVRE/n5Lb5Zg4kFtVg==,type:str]
+    lastmodified: "2025-03-30T13:58:36Z"
+    mac: ENC[AES256_GCM,data:r7OCG/QA2TnSj4MmcYZitqjT8MC8E2iY2vD5AJoF4esymp7Nhm1mTsJ5RdZ++XC0pHCjUGYZn7Mdklwmx1NSB8YHMzlRRI/FRfoJNk4DVb0bytVbj+PCAT+Rv7hIqyGQacPL8pevX2Ym7/Ao2v2Z3yrEG9ypmwS2mJDVQLCiuWk=,iv:dECXDduf7XkePUYJZeRx6pNQTKoGi2vT9VRxrIJp2bo=,tag:dN10wLWB0hQA/dN1++NmYA==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
-    version: 3.9.1
+    version: 3.9.4
