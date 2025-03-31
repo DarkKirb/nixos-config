@@ -6,6 +6,7 @@ keys:
   - &nixos-8gb-fsn1-1 age1273ps5thcy70ckdt0270s2nysqgu48t38pq3wq975v3y7mf4eavsw38wsl
   - &not522 age1nvgqlpqe026czej7erz5a7ptulzzhh7tht3gjzy5s3m2dp5fgy2slkajdx
   - &pc-installer age18jqsxdwhrwgsum8wefgt8jl2sj2277dzaj2yhwlj2vvfjqm9hazsmuvx7w
+  - &pinebook age10mukztj2s6s0r57dg30694gry4k4cxslhrey9wwx9jz5ehn7y9nslvy3p8
   - &rainbow-resort age19vzypddhexvvsf8xylstxc9znnkd8rxmamhjlt7elvz4j3zaf5tqqura6f
   - &stinky-ssb age1gpdv8pq5f4efwkzchkxjyygr0g6tzzluqtepu6x0jzax5wnqeffq6ekyns
   - &thinkrac age1p400545a482fma40yfgytu40p6wr5a75v4f8yeudvgf7eh5erufqxhgynr
@@ -18,6 +19,7 @@ creation_rules:
           - *nas
           - *nixos-8gb-fsn1-1
           - *not522
+          - *pinebook
           - *rainbow-resort
           - *stinky-ssb
           - *thinkrac
@@ -29,6 +31,7 @@ creation_rules:
           - *nas
           - *nixos-8gb-fsn1-1
           - *not522
+          - *pinebook
           - *pc-installer
           - *rainbow-resort
           - *stinky-ssb
@@ -41,6 +44,7 @@ creation_rules:
           - *nas
           - *nixos-8gb-fsn1-1
           - *not522
+          - *pinebook
           - *pc-installer
           - *rainbow-resort
           - *stinky-ssb
@@ -53,6 +57,7 @@ creation_rules:
           - *nas
           - *nixos-8gb-fsn1-1
           - *not522
+          - *pinebook
           - *pc-installer
           - *rainbow-resort
           - *stinky-ssb
@@ -77,6 +82,7 @@ creation_rules:
           - *nixos-8gb-fsn1-1
           - *not522
           - *pc-installer
+          - *pinebook
           - *rainbow-resort
           - *stinky-ssb
           - *thinkrac
@@ -229,3 +235,4 @@ creation_rules:
         - *thinkrac
         - *not522
         - *pc-installer
+        - *pinebook
