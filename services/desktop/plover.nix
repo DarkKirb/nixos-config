@@ -11,6 +11,10 @@ let
         builtins.toJSON {
           "SROR" = "vore";
           "SROR/KWREU" = "vorny";
+          "WO*" = "owo";
+          "WO*P" = "OwO";
+          "W*U" = "uwu";
+          "W*UP" = "UwU";
           "RA*BG" = "{rac^}";
         }
       );
