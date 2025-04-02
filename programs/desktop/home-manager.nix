@@ -17,7 +17,7 @@
     ./development
     ./music
     ./i18n.nix
-  ] ++ (if system == "x86_64-linux" then [ ./texlive.nix ] else [ ]);
+  ];
   home.packages =
     with pkgs;
     [
