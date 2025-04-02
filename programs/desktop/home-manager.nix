@@ -23,14 +23,13 @@
     [
       gimp
       ffmpeg-full
-      darktable
-      digikam
     ]
     ++ (
       if system == "x86_64-linux" then
         [
           obsidian
-          qgis
+          darktable
+          digikam
           nicotine-plus
         ]
       else
