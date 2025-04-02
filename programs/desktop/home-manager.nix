@@ -32,6 +32,7 @@
           obsidian
           qgis
           nicotine-plus
+          ausweisapp
         ]
       else
         [ ]
