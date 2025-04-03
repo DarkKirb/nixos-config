@@ -31,6 +31,7 @@
           darktable
           digikam
           nicotine-plus
+          ausweisapp
         ]
       else
         [ ]
