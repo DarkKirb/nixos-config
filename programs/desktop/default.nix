@@ -11,11 +11,13 @@
     ./firefox/system.nix
     ./development/system.nix
     ./ollama-ui.nix
+    ./flatpak/system.nix
   ];
   home-manager.users.darkkirb.imports =
     if config.system.isGraphical then
       [
         ./home-manager.nix
+        ./flatpak
       ]
     else
       [ ];
