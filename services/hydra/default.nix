@@ -90,7 +90,6 @@ in
         ./0005-only-list-open-prs.patch
         ./0006-status-state.patch
         ./0007-hydra-server-findLog-fix-issue-with-ca-derivations-e.patch
-        ./fix-build.patch
       ];
       postPatch =
         super.postPatch or ""
