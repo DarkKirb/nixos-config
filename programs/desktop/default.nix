@@ -27,7 +27,11 @@
     kate
   ];
 
-  networking.firewall.allowedTCPPorts = [ 2234 ];
+  networking.firewall.allowedTCPPorts = [
+    2234
+    24727
+  ];
+  networking.firewall.allowedUDPPorts = [ 24727 ];
   networking.firewall.allowedTCPPortRanges = [
     {
       from = 1714;
