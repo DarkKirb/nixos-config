@@ -24,6 +24,7 @@ in
         signal-desktop
         teams-for-linux
         element-desktop
+        cinny-desktop
       ])
     ];
   home.persistence.default.directories = lib.mkMerge [
@@ -37,6 +38,7 @@ in
       ".local/share/discord"
       ".local/share/Signal"
       ".local/share/teams-for-linux"
+      ".local/share/cinny"
     ])
   ];
   systemd.user.tmpfiles.rules = lib.mkMerge [

@@ -11,4 +11,9 @@ final: prev: {
         CONFIG_EFI_HAVE_RUNTIME_RESET=n
       '';
   });
+  cinny = prev.cinny.overrideAttrs (super: {
+    patches = super.patches or [ ] ++ [
+      ./cinny/cinny-msc4144.patch
+    ];
+  });
 }
