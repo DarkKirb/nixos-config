@@ -295,6 +295,15 @@
                 "bg"
               ];
             };
+            pinebook = {
+              config = ./machine/pinebook;
+              system = "aarch64-linux";
+              variants = [
+                "bg"
+                "boot"
+                "de"
+              ];
+            };
             pc-installer = {
               config = ./machine/pc-installer;
               system = "x86_64-linux";
