@@ -39,6 +39,7 @@ in
       ".local/share/Signal"
       ".local/share/teams-for-linux"
       ".local/share/cinny"
+      ".local/share/in.cinny.app"
     ])
   ];
   systemd.user.tmpfiles.rules = lib.mkMerge [
