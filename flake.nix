@@ -469,6 +469,7 @@
                   mautrix-signal
                   mautrix-slack
                   mautrix-whatsapp
+                  cinny
                   ;
               }
               // (
