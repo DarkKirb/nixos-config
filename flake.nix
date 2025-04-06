@@ -95,8 +95,8 @@
     };
     hydra = {
       url = "git+https://git.lix.systems/lix-project/hydra";
-      inputs.lix.follows = "lix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.lix.follows = "lix";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
       url = "github:DarkKirb/impermanence/change-default-link-type";
