@@ -26,5 +26,8 @@
     '')
   ];
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "olm-3.2.16"
+    "openssl-1.1.1w"
+  ];
 }
