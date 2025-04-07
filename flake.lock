@@ -743,11 +743,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1743833712,
-        "narHash": "sha256-ph5AWev+j5PKa5upRPRKflz/i2yEgm2eiON8CDzaVbk=",
+        "lastModified": 1743920124,
+        "narHash": "sha256-jIDzjXfTb6AmiHg0iwLx0kvkgrJX78vihcHyC+lHCao=",
         "owner": "DarkKirb",
         "repo": "home-manager",
-        "rev": "45a95ac1c8dfa284ef6e367dcaf0f1d1345c09fc",
+        "rev": "dbde1809cf7ffb8dba3758e4cf41681754b94ca0",
         "type": "github"
       },
       "original": {
@@ -784,11 +784,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1743591328,
-        "narHash": "sha256-aSD3+jSwh6Lqz0o5Jwd4zPolcRgl/maqtLXnahnXXMA=",
+        "lastModified": 1743962800,
+        "narHash": "sha256-RhOlJw+NDGIiXFGZ5W4I4YZPr+kQUMnILbVaEZdHSN4=",
         "ref": "refs/heads/main",
-        "rev": "9a33e45800c3ea19a816cfe7630c97107c40bd62",
-        "revCount": 4250,
+        "rev": "53557fde75ae37f9ae48dc6cef0d5279637e78e5",
+        "revCount": 4252,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/hydra"
       },
@@ -826,11 +826,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1743875619,
-        "narHash": "sha256-3LrC4VvaorlcdzPNBLKzw59cAcrAcZcu2EZsi/yKnYo=",
+        "lastModified": 1743937180,
+        "narHash": "sha256-3pG9QZRRniaFQHtW+DnOFs7htU2X2zNfz6S2viaWuWI=",
         "owner": "jj-vcs",
         "repo": "jj",
-        "rev": "75bad02aecf669322cd7e5594647c4e5d93ee703",
+        "rev": "30134e523b70b7373a4664fb19f056dc05d2ddce",
         "type": "github"
       },
       "original": {
@@ -879,11 +879,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1743274305,
-        "narHash": "sha256-gsPA3AAGi3pucRpzJbhWWyyOBv2/2OjAjU/SlcSE8Vc=",
+        "lastModified": 1743065774,
+        "narHash": "sha256-aC1lwnqwHbYRsPfx+lRi32fHRcln0xhIzf0Q7/Lg+vQ=",
         "ref": "refs/heads/main",
-        "rev": "d169c092fc28838a253be136d17fe7de1292c728",
-        "revCount": 17746,
+        "rev": "b918f1c307b314daa44407bac60046630f13ed48",
+        "revCount": 17742,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix"
       },
@@ -938,11 +938,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1743883065,
-        "narHash": "sha256-8OWGVml2lYuhBCKEq4WXciv9dAwGd77HnxBu6z1ZfbQ=",
+        "lastModified": 1743964165,
+        "narHash": "sha256-5vXjK5W+RIveud/Qn4OyVqrZi4pUDefKZsny33dDj+s=",
         "ref": "refs/heads/main",
-        "rev": "949a5615405d24294abab4d3dfb05958d87c32d6",
-        "revCount": 17760,
+        "rev": "2ef4b69760af183792a740f425eb371a6aeb0009",
+        "revCount": 17767,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix"
       },
@@ -999,11 +999,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1743644846,
-        "narHash": "sha256-I217zRnDlSdWzoZi4sHaRKdY+x60tLOo8TyRshkyUBM=",
+        "lastModified": 1743904111,
+        "narHash": "sha256-TuH6MkwWOmuPrR0IPQee2z/RB7c+fczFkoEM26zRLgk=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "a6fac721ece856f5dd4690b41b92e7ba3a71d033",
+        "rev": "2fff10cf0e09d4a0d2b5c9379cc47accba3d3f1c",
         "type": "github"
       },
       "original": {
@@ -1215,11 +1215,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1743703532,
-        "narHash": "sha256-s1KLDALEeqy+ttrvqV3jx9mBZEvmthQErTVOAzbjHZs=",
+        "lastModified": 1742937945,
+        "narHash": "sha256-lWc+79eZRyvHp/SqMhHTMzZVhpxkRvthsP1Qx6UCq0E=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "bdb91860de2f719b57eef819b5617762f7120c70",
+        "rev": "d02d88f8de5b882ccdde0465d8fa2db3aa1169f7",
         "type": "github"
       },
       "original": {
@@ -1481,11 +1481,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1743820323,
-        "narHash": "sha256-UXxJogXhPhBFaX4uxmMudcD/x3sEGFtoSc4busTcftY=",
+        "lastModified": 1743906877,
+        "narHash": "sha256-Thah1oU8Vy0gs9bh5QhNcQh1iuQiowMnZPbrkURonZA=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "b4734ce867252f92cdc7d25f8cc3b7cef153e703",
+        "rev": "9d00c6b69408dd40d067603012938d9fbe95cfcd",
         "type": "github"
       },
       "original": {
@@ -1497,11 +1497,11 @@
     "rycee-nur-expressions": {
       "flake": false,
       "locked": {
-        "lastModified": 1743861198,
-        "narHash": "sha256-PzbPHoSI5U1juWd01Spf3ST7ylR9mQ84v5p7NksBplY=",
+        "lastModified": 1743975924,
+        "narHash": "sha256-+R845qZsNpRdPFmfz5IZXtZshD1grfzOqZhx/VaiZ8E=",
         "ref": "refs/heads/master",
-        "rev": "7408ed5bbc9009741094f4dd4cc1abec79e79e7e",
-        "revCount": 4224,
+        "rev": "db66ac060b4f526c3a7441bfd02980d5bc50c419",
+        "revCount": 4229,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       },
@@ -1517,11 +1517,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1743756170,
-        "narHash": "sha256-2b11EYa08oqDmF3zEBLkG1AoNn9rB1k39ew/T/mSvbU=",
+        "lastModified": 1743910657,
+        "narHash": "sha256-zr2jmWeWyhCD8WmO2aWov2g0WPPuZfcJDKzMJZYGq3Y=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "cff8437c5fe8c68fc3a840a21bf1f4dc801da40d",
+        "rev": "523f58a4faff6c67f5f685bed33a7721e984c304",
         "type": "github"
       },
       "original": {
