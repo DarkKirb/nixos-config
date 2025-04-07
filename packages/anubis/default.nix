@@ -18,6 +18,9 @@ buildGoApplication {
   modules = ./gomod2nix.toml;
   CGO_ENABLED = "1";
   DONT_USE_NETWORK = "1";
+  postPatch = ''
+    substituteInPlace go.mod --replace-fail 1.24.2 ${go_1_24.version}
+  '';
   meta = {
     description = "ai crawler protection";
   };
