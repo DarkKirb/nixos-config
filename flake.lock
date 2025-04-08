@@ -1246,11 +1246,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1744093302,
-        "narHash": "sha256-PFaArpG9YW/gPJt8x74oYFs/c7Fmk0xHp+e6KTxNDsA=",
+        "lastModified": 1744108673,
+        "narHash": "sha256-Gkv6BP6VV/XZidbNeR/3FVCUPH71gmzsWOLnZz+G/9k=",
         "owner": "darkkirb",
         "repo": "nixpkgs",
-        "rev": "3528d5931afe99acd0eb8607124f171fd02fbdff",
+        "rev": "7edd4e279f0cf0e0d992b5d1b2edb5036802c962",
         "type": "github"
       },
       "original": {

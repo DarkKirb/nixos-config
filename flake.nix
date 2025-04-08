@@ -211,14 +211,7 @@
           };
         in
         import nixpkgs {
-          system = if system == "riscv64-linux" then "x86_64-linux" else system;
-          crossSystem =
-            if system == "riscv64-linux" then
-              {
-                inherit system;
-              }
-            else
-              null;
+          system = system;
           config.allowUnfree = true;
           config.permittedInsecurePackages = [ "olm-3.2.16" ];
           overlays = [
