@@ -1,17 +1,37 @@
 {
   lib,
-  python3,
+  python,
   fetchFromGitHub,
   mautrix-python,
   tulir-telethon,
+  buildPythonPackage,
+  ruamel-yaml,
+  python-magic,
+  CommonMark,
+  aiohttp,
+  yarl,
+  asyncpg,
+  Mako,
+  cryptg,
+  aiodns,
+  brotli,
+  pillow,
+  qrcode,
+  phonenumbers,
+  prometheus-client,
+  aiosqlite,
+  python-olm,
+  pycryptodome,
+  unpaddedbase64,
+  setuptools,
 }:
 let
   source = builtins.fromJSON (builtins.readFile ./source.json);
 in
-python3.pkgs.buildPythonPackage {
+buildPythonPackage {
   pname = "mautrix-telegram";
   version = source.date;
-  disabled = python3.pythonOlder "3.8";
+  disabled = python.pythonOlder "3.8";
 
   src = fetchFromGitHub {
     owner = "mautrix";
@@ -29,7 +49,7 @@ python3.pkgs.buildPythonPackage {
       --replace "asyncpg>=0.20,<0.27" "asyncpg>=0.20"
   '';
 
-  propagatedBuildInputs = with python3.pkgs; [
+  propagatedBuildInputs = [
     ruamel-yaml
     python-magic
     CommonMark
@@ -61,6 +81,5 @@ python3.pkgs.buildPythonPackage {
     homepage = "https://github.com/mautrix/telegram";
     description = "A Matrix-Telegram hybrid puppeting/relaybot bridge";
     platforms = platforms.linux;
-    broken = !(python3.pkgs ? cryptg);
   };
 }
