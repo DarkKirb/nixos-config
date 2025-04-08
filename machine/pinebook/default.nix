@@ -11,6 +11,4 @@
   ];
   system.stateVersion = "24.11";
   services.postgresql.enable = lib.mkForce false;
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
 }

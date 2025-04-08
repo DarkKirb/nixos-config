@@ -25,9 +25,4 @@
       exec ${lib.getExe' pkgs.disko "disko-install"} --flake "${../..}#rainbow-resort" --disk main "${nixos-config.nixosConfigurations.rainbow-resort.config.disko.devices.disk.main.device}"
     '')
   ];
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "olm-3.2.16"
-    "openssl-1.1.1w"
-  ];
 }

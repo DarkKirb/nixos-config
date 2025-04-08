@@ -41,6 +41,4 @@
   ];
   services.caddy.enable = true;
   sops.age.sshKeyPaths = lib.mkForce [ "/etc/ssh/ssh_host_ed25519_key" ];
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
 }

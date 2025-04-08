@@ -1,15 +1,24 @@
 {
   lib,
   fetchFromGitHub,
-  python3Packages,
+  buildPythonPackage,
+  pytest,
+  mock,
   plover_stroke,
   rtf_tokenize,
+  appdirs,
+  pyqt5,
+  babel,
+  xlib,
+  pyserial,
+  wcwidth,
+  setuptools,
   qt5,
+  stdenv,
 }:
 let
   source = builtins.fromJSON (builtins.readFile ./source.json);
 in
-with python3Packages;
 qt5.mkDerivationWith buildPythonPackage {
   pname = "plover";
   version = source.date;
