@@ -23,6 +23,7 @@
     [
       gimp
       ffmpeg-full
+      anki
     ]
     ++ (
       if system == "x86_64-linux" then
@@ -57,5 +58,6 @@
     ".config/nicotine"
     ".config/MusicBrainz"
     "Unload"
+    ".local/share/anki"
   ];
 }
