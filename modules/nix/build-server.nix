@@ -19,8 +19,6 @@
             hostName = "build-aarch64";
             systems = [
               "aarch64-linux"
-              "riscv32-linux"
-              "riscv64-linux"
             ];
             maxJobs = 4;
             speedFactor = 1;
@@ -46,8 +44,6 @@
               "powerpc64-linux"
               "powerpc64le-linux"
               "wasm32-wasi"
-              "riscv32-linux"
-              "riscv64-linux"
             ];
             maxJobs = 12;
             speedFactor = 1;
@@ -73,8 +69,6 @@
               "powerpc64-linux"
               "powerpc64le-linux"
               "wasm32-wasi"
-              "riscv32-linux"
-              "riscv64-linux"
             ];
             maxJobs = 16;
             speedFactor = 3;
