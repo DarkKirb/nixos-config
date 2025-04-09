@@ -58,6 +58,6 @@
     ".config/nicotine"
     ".config/MusicBrainz"
     "Unload"
-    ".local/share/anki"
+    ".local/share/Anki2"
   ];
 }
