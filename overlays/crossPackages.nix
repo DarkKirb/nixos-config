@@ -1,4 +1,4 @@
-inputs: _: _:
+inputs: final: prev:
 let
   pkgs_x86_64 = import inputs.nixpkgs {
     system = "x86_64-linux";
@@ -14,5 +14,7 @@ let
 in
 {
   inherit (pkgs_x86_64) palettes;
-  inherit (cross_pkgs_x86_64) pandoc;
+  pandoc = final.writeShellScriptBin "pandoc" ''
+    exec ${cross_pkgs_x86_64.qemu}/bin/qemu-x86_64 ${pkgs_x86_64.pandoc}/bin/pandoc "$@"
+  '';
 }
