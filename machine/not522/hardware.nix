@@ -17,8 +17,17 @@
   ];
   hardware.deviceTree.name = "starfive/jh7110-starfive-visionfive-2-v1.3b.dtb";
   boot.initrd.kernelModules = [
+    "dw_mmc-starfive"
+    "motorcomm"
+    "dwmac-starfive"
+    "cdns3-starfive"
+    "jh7110-trng"
+    "phy-jh7110-usb"
     "clk-starfive-jh7110-aon"
     "clk-starfive-jh7110-stg"
+    "clk-starfive-jh7110-vout"
+    "clk-starfive-jh7110-isp"
+    "clk-starfive-jh7100-audio"
     "phy-jh7110-pcie"
     "pcie-starfive"
     "nvme"

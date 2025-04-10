@@ -267,16 +267,14 @@
             };
             not522 = {
               config = ./machine/not522;
-              system = "x86_64-linux";
-              targetSystem = "riscv64-linx";
+              system = "riscv64-linux";
               variants = [
                 "bg"
               ];
             };
             not522-installer = {
               config = ./machine/not522/installer;
-              system = "x86_64-linux";
-              targetSystem = "riscv64-linx";
+              system = "riscv64-linux";
               variants = [
                 "bg"
               ];
@@ -433,42 +431,40 @@
                 pkgs = pkgsFor name;
               in
               {
-                inherit (pkgs)
-                  anubis
-                  art-lotte
-                  package-updater
-                  yiffstash
-                  emoji-caro
-                  emoji-lotte
-                  emoji-volpeon-blobfox
-                  emoji-volpeon-bunhd
-                  emoji-volpeon-drgn
-                  emoji-volpeon-floof
-                  emoji-volpeon-fox
-                  emoji-volpeon-gphn
-                  emoji-volpeon-neocat
-                  emoji-volpeon-neofox
-                  emoji-volpeon-raccoon
-                  emoji-volpeon-vlpn
-                  emoji-volpeon-wvrn
-                  emoji-rosaflags
-                  emoji-neopossum
-                  gomod2nix
-                  clscrobble
-                  tulir-telethon
-                  mautrix-python
-                  mautrix-telegram
-                  mautrix-discord
-                  mautrix-signal
-                  mautrix-slack
-                  mautrix-whatsapp
-                  cinny
-                  ;
               }
               // (
                 if name != "riscv64-linux" then
                   {
                     inherit (pkgs)
+                      anubis
+                      art-lotte
+                      package-updater
+                      yiffstash
+                      emoji-caro
+                      emoji-lotte
+                      emoji-volpeon-blobfox
+                      emoji-volpeon-bunhd
+                      emoji-volpeon-drgn
+                      emoji-volpeon-floof
+                      emoji-volpeon-fox
+                      emoji-volpeon-gphn
+                      emoji-volpeon-neocat
+                      emoji-volpeon-neofox
+                      emoji-volpeon-raccoon
+                      emoji-volpeon-vlpn
+                      emoji-volpeon-wvrn
+                      emoji-rosaflags
+                      emoji-neopossum
+                      gomod2nix
+                      clscrobble
+                      tulir-telethon
+                      mautrix-python
+                      mautrix-telegram
+                      mautrix-discord
+                      mautrix-signal
+                      mautrix-slack
+                      mautrix-whatsapp
+                      cinny
                       fcitx5-configtool
                       fcitx5-table-extra
                       kodi-joyn
