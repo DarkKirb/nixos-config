@@ -43,11 +43,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744272045,
-        "narHash": "sha256-7HIIywzrw+ryYXK/y2xlhdjakANQcbyJmEJWVdC0GvY=",
+        "lastModified": 1744350139,
+        "narHash": "sha256-HElPhBj6c4d4weKCPKARBns8hQu75F/X9SJn/S9HEvQ=",
         "owner": "DarkKirb",
         "repo": "akkoma",
-        "rev": "abf91ffb8b8a2cb269c4cb115dd9b9f9262bbf1a",
+        "rev": "f384e5925e46e517a14dcb6664dd68c8fb892993",
         "type": "github"
       },
       "original": {
@@ -255,11 +255,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1744299997,
-        "narHash": "sha256-yvFq9o66ihJipfuMQXJwadPK81E7rCPI4RKxBfvXiew=",
+        "lastModified": 1744405810,
+        "narHash": "sha256-CVxTtV+YgFUqgg/6z06pMRYLmiHazwOMfIdU3lX0RV8=",
         "owner": "DarkKirb",
         "repo": "chir.rs",
-        "rev": "dce7a3aa9ca3784d6cc37e72e8ea612cc1346e17",
+        "rev": "2e281735621b1b1657f05fe946427b404a7fc069",
         "type": "github"
       },
       "original": {
@@ -824,11 +824,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744326408,
-        "narHash": "sha256-fiwxL8o1TOTOu0g9fHc2gSokLeIp6Cdf20gbTw7OmQQ=",
+        "lastModified": 1744335307,
+        "narHash": "sha256-4TLi4GqaP/9Cv0Ll2jAlmpJ/fbR8sjg+vHrofCNtgRE=",
         "owner": "jj-vcs",
         "repo": "jj",
-        "rev": "8eb4eb74d6b7501723961a60cc987e43ef946e96",
+        "rev": "3efb59426f7ecdc5d2e29a89b8227e6706dcd10f",
         "type": "github"
       },
       "original": {
@@ -959,11 +959,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1744018595,
-        "narHash": "sha256-v5n6t49X7MOpqS9j0FtI6TWOXvxuZMmGsp2OfUK5QfA=",
+        "lastModified": 1744371964,
+        "narHash": "sha256-QuSt8PsB1huFQVXeSASfbXX0r5hmEFLNgYX4dpKewWs=",
         "owner": "nix-community",
         "repo": "nix-eval-jobs",
-        "rev": "cba718bafe5dc1607c2b6761ecf53c641a6f3b21",
+        "rev": "e376e07271dd405d5427e2dd4a29864fb5347f34",
         "type": "github"
       },
       "original": {
@@ -1120,11 +1120,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1743420942,
-        "narHash": "sha256-b/exDDQSLmENZZgbAEI3qi9yHkuXAXCPbormD8CSJXo=",
+        "lastModified": 1744366945,
+        "narHash": "sha256-OuLhysErPHl53BBifhesrRumJNhrlSgQDfYOTXfgIMg=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "de6fc5551121c59c01e2a3d45b277a6d05077bc4",
+        "rev": "1fe3cc2bc5d2dc9c81cb4e63d2f67c1543340df1",
         "type": "github"
       },
       "original": {
@@ -1260,11 +1260,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1744265841,
-        "narHash": "sha256-O/09GiduGcFGTkStWdF8qN59o04kntOB/RFt7ifTNtU=",
+        "lastModified": 1744352240,
+        "narHash": "sha256-0j9aDbwmwn9icN+oXCeQ8o4MPOXQkSSGPtYX5FOcwEA=",
         "owner": "darkkirb",
         "repo": "nixpkgs",
-        "rev": "ba085dbb81193d87f7641adc5ebdb7974d3a8cda",
+        "rev": "863dac1872e9d4ffa2e6f0101c52b3e53838aca4",
         "type": "github"
       },
       "original": {
@@ -1497,11 +1497,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744252416,
-        "narHash": "sha256-Vrs2GxaL0tLi9GCIUrutHgPSr+g7GYCetu7argsNrB4=",
+        "lastModified": 1744338850,
+        "narHash": "sha256-pwMIVmsb8fjjT92n5XFDqCsplcX70qVMMT7NulumPXs=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "2af83121f9d2c5281796e60e2b048906a84b9fac",
+        "rev": "5e64aecc018e6f775572609e7d7485fdba6985a7",
         "type": "github"
       },
       "original": {
@@ -1513,11 +1513,11 @@
     "rycee-nur-expressions": {
       "flake": false,
       "locked": {
-        "lastModified": 1744317997,
-        "narHash": "sha256-y29WbcPCA7xgHeacjei869oNStY2BSCa81uZ76DZPTU=",
+        "lastModified": 1744400795,
+        "narHash": "sha256-6kU2f0lPMJd9+yTwGMryM/Aa6CMPJYAOMY1xO5E6gaM=",
         "ref": "refs/heads/master",
-        "rev": "d6c909b010352a06f206e4c83acef0753566f343",
-        "revCount": 4239,
+        "rev": "12dc8c22e3b0ac99cefb274b825f85b003417ae7",
+        "revCount": 4248,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       },
