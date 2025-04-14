@@ -18,7 +18,6 @@
     ./postgresql.nix
     ./youtube-update.nix
     ../../services/matrix
-    ../../services/kubernetes
   ];
 
   nix.settings.substituters = lib.mkForce [

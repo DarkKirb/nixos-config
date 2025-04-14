@@ -6,7 +6,6 @@
 {
   imports = [
     ./steam
-    ./kodi/system-config.nix
     ./pipewire.nix
     ./firefox/system.nix
     ./development/system.nix

@@ -12,7 +12,6 @@
     ./games
     ./ims.nix
     ../../services/desktop
-    ./kodi
     ./pim
     ./development
     ./music
@@ -29,8 +28,6 @@
       if system == "x86_64-linux" then
         [
           obsidian
-          darktable
-          digikam
           nicotine-plus
           ausweisapp
         ]
@@ -53,8 +50,6 @@
     );
   home.persistence.default.directories = [
     ".local/share/kwalletd"
-    ".local/share/darktable"
-    ".local/share/digikam"
     ".config/nicotine"
     ".config/MusicBrainz"
     "Unload"
