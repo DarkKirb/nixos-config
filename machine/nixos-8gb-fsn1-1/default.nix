@@ -15,7 +15,6 @@
     ./initrd-ssh.nix
     ./postgresql.nix
     ../../services/chir-rs
-    ../../services/kubernetes
   ];
 
   services.resolved.enable = false;
