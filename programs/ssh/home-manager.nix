@@ -14,7 +14,6 @@
     matchBlocks."*" =
       lib.hm.dag.entryAfter
         [
-          "build-nas"
           "build-rainbow-resort"
           "build-aarch64"
           "build-riscv"

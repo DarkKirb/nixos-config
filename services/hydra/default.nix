@@ -22,12 +22,6 @@ let
         User remote-build
         HostName instance-20221213-1915.int.chir.rs
         IdentityFile ${home}/.ssh/builder_id_ed25519
-      Host build-nas
-        Port 22
-        IdentitiesOnly yes
-        User remote-build
-        HostName nas.int.chir.rs
-        IdentityFile ${home}/.ssh/builder_id_ed25519
       Host build-rainbow-resort
         Port 22
         IdentitiesOnly yes
