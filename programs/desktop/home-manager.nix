@@ -12,7 +12,6 @@
     ./games
     ./ims.nix
     ../../services/desktop
-    ./kodi
     ./pim
     ./development
     ./music
