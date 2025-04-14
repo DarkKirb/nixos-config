@@ -33,31 +33,6 @@
             ];
           }
         ])
-        (lib.mkIf (config.networking.hostName != "nas") [
-          {
-            hostName = "build-nas";
-            systems = [
-              "i686-linux"
-              "x86_64-linux"
-              "armv7l-linux"
-              "powerpc-linux"
-              "powerpc64-linux"
-              "powerpc64le-linux"
-              "wasm32-wasi"
-            ];
-            maxJobs = 12;
-            speedFactor = 1;
-            supportedFeatures = [
-              "kvm"
-              "nixos-test"
-              "big-parallel"
-              "benchmark"
-              "gccarch-znver1"
-              "gccarch-skylake"
-              "ca-derivations"
-            ];
-          }
-        ])
         (lib.mkIf (config.networking.hostName != "rainbow-resort") [
           {
             hostName = "build-rainbow-resort";
