@@ -21,9 +21,7 @@
         wineWowPackages.full
         winetricks
         factorio
-        (bolt-launcher.override {
-          enableRS3 = true;
-        })
+        bolt-launcher
       ])
     ];
   home.persistence.default.directories = lib.mkMerge [
