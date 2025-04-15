@@ -55,6 +55,14 @@
     u2fAuth = true;
     unixAuth = lib.mkForce false;
   };
+  security.pam.services.kde = {
+    u2fAuth = true;
+    unixAuth = lib.mkForce false;
+  };
+  security.pam.services.swaylock = {
+    u2fAuth = true;
+    unixAuth = lib.mkForce false;
+  };
   security.pam.u2f = {
     enable = true;
     settings = {
