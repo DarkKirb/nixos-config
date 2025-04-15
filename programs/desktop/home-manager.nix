@@ -12,26 +12,24 @@
     ./games
     ./ims.nix
     ../../services/desktop
-    ./kodi
     ./pim
     ./development
     ./music
     ./i18n.nix
-  ] ++ (if system == "x86_64-linux" then [ ./texlive.nix ] else [ ]);
+  ];
   home.packages =
     with pkgs;
     [
       gimp
       ffmpeg-full
-      darktable
-      digikam
+      anki
     ]
     ++ (
       if system == "x86_64-linux" then
         [
           obsidian
-          qgis
           nicotine-plus
+          ausweisapp
         ]
       else
         [ ]
@@ -52,10 +50,9 @@
     );
   home.persistence.default.directories = [
     ".local/share/kwalletd"
-    ".local/share/darktable"
-    ".local/share/digikam"
     ".config/nicotine"
     ".config/MusicBrainz"
     "Unload"
+    ".local/share/Anki2"
   ];
 }

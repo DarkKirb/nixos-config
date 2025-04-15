@@ -28,7 +28,7 @@
       inputs.crane.follows = "crane";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     cargo2nix = {
       url = "github:cargo2nix/cargo2nix/main";
@@ -95,8 +95,8 @@
     };
     hydra = {
       url = "git+https://git.lix.systems/lix-project/hydra";
-      inputs.lix.follows = "lix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.lix.follows = "lix";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
       url = "github:DarkKirb/impermanence/change-default-link-type";
@@ -130,6 +130,7 @@
       #inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -210,14 +211,7 @@
           };
         in
         import nixpkgs {
-          system = if system == "riscv64-linux" then "x86_64-linux" else system;
-          crossSystem =
-            if system == "riscv64-linux" then
-              {
-                inherit system;
-              }
-            else
-              null;
+          system = system;
           config.allowUnfree = true;
           config.permittedInsecurePackages = [ "olm-3.2.16" ];
           overlays = [
@@ -273,16 +267,14 @@
             };
             not522 = {
               config = ./machine/not522;
-              system = "x86_64-linux";
-              targetSystem = "riscv64-linx";
+              system = "riscv64-linux";
               variants = [
                 "bg"
               ];
             };
             not522-installer = {
               config = ./machine/not522/installer;
-              system = "x86_64-linux";
-              targetSystem = "riscv64-linx";
+              system = "riscv64-linux";
               variants = [
                 "bg"
               ];
@@ -292,6 +284,15 @@
               system = "aarch64-linux";
               variants = [
                 "bg"
+              ];
+            };
+            pinebook = {
+              config = ./machine/pinebook;
+              system = "aarch64-linux";
+              variants = [
+                "bg"
+                "boot"
+                "de"
               ];
             };
             pc-installer = {
@@ -430,41 +431,40 @@
                 pkgs = pkgsFor name;
               in
               {
-                inherit (pkgs)
-                  anubis
-                  art-lotte
-                  package-updater
-                  yiffstash
-                  emoji-caro
-                  emoji-lotte
-                  emoji-volpeon-blobfox
-                  emoji-volpeon-bunhd
-                  emoji-volpeon-drgn
-                  emoji-volpeon-floof
-                  emoji-volpeon-fox
-                  emoji-volpeon-gphn
-                  emoji-volpeon-neocat
-                  emoji-volpeon-neofox
-                  emoji-volpeon-raccoon
-                  emoji-volpeon-vlpn
-                  emoji-volpeon-wvrn
-                  emoji-rosaflags
-                  emoji-neopossum
-                  gomod2nix
-                  clscrobble
-                  tulir-telethon
-                  mautrix-python
-                  mautrix-telegram
-                  mautrix-discord
-                  mautrix-signal
-                  mautrix-slack
-                  mautrix-whatsapp
-                  ;
               }
               // (
                 if name != "riscv64-linux" then
                   {
                     inherit (pkgs)
+                      anubis
+                      art-lotte
+                      package-updater
+                      yiffstash
+                      emoji-caro
+                      emoji-lotte
+                      emoji-volpeon-blobfox
+                      emoji-volpeon-bunhd
+                      emoji-volpeon-drgn
+                      emoji-volpeon-floof
+                      emoji-volpeon-fox
+                      emoji-volpeon-gphn
+                      emoji-volpeon-neocat
+                      emoji-volpeon-neofox
+                      emoji-volpeon-raccoon
+                      emoji-volpeon-vlpn
+                      emoji-volpeon-wvrn
+                      emoji-rosaflags
+                      emoji-neopossum
+                      gomod2nix
+                      clscrobble
+                      tulir-telethon
+                      mautrix-python
+                      mautrix-telegram
+                      mautrix-discord
+                      mautrix-signal
+                      mautrix-slack
+                      mautrix-whatsapp
+                      cinny
                       fcitx5-configtool
                       fcitx5-table-extra
                       kodi-joyn

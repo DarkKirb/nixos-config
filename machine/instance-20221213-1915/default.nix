@@ -19,8 +19,7 @@
     ../../services/reverse-proxy.nix
     ../../services/forgejo
     ../../services/chir-rs
-    ../../services/kubernetes
-    ../../services/weblate
+    #../../services/weblate
   ];
 
   services.openssh = {
@@ -75,6 +74,4 @@
     "/var/tmp"
   ];
   services.caddy.enable = true;
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
 }

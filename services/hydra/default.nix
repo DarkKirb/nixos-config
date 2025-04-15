@@ -22,12 +22,6 @@ let
         User remote-build
         HostName instance-20221213-1915.int.chir.rs
         IdentityFile ${home}/.ssh/builder_id_ed25519
-      Host build-nas
-        Port 22
-        IdentitiesOnly yes
-        User remote-build
-        HostName nas.int.chir.rs
-        IdentityFile ${home}/.ssh/builder_id_ed25519
       Host build-rainbow-resort
         Port 22
         IdentitiesOnly yes
@@ -90,7 +84,6 @@ in
         ./0005-only-list-open-prs.patch
         ./0006-status-state.patch
         ./0007-hydra-server-findLog-fix-issue-with-ca-derivations-e.patch
-        ./fix-build.patch
       ];
       postPatch =
         super.postPatch or ""

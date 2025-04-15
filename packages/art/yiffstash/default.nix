@@ -1,13 +1,11 @@
 {
   fetchgit,
-  python3,
+  python,
   writeScript,
-  curl,
-  jq,
 }:
 let
   source = builtins.fromJSON (builtins.readFile ./source.json);
-  python = python3.withPackages (pkgs: with pkgs; [ requests ]);
+  python' = python.withPackages (pkgs: with pkgs; [ requests ]);
   src = fetchgit {
     inherit (source)
       url
@@ -17,4 +15,4 @@ let
       ;
   };
 in
-writeScript "yiffstash" "cd ${src}; ${python}/bin/python ${src}/tumblrbot.py"
+writeScript "yiffstash" "cd ${src}; ${python'}/bin/python ${src}/tumblrbot.py"

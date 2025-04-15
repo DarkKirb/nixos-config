@@ -38,20 +38,6 @@
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
   boot.initrd.systemd.tpm2.enable = lib.mkForce false;
   systemd.tpm2.enable = lib.mkForce false;
-  nixpkgs = {
-    buildPlatform.config = "x86_64-linux";
-    hostPlatform.config = "riscv64-linux";
-    pkgs = lib.mkForce (
-      import nixpkgs {
-        system = "x86_64-linux";
-        crossSystem = "riscv64-linux";
-        config = {
-          allowUnfree = true;
-          allowUnsupportedSystem = true;
-        };
-      }
-    );
-  };
 
   nixpkgs.overlays = [
     nixos-config.overlays.riscv64-linux

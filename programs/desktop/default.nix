@@ -6,16 +6,17 @@
 {
   imports = [
     ./steam
-    ./kodi/system-config.nix
     ./pipewire.nix
     ./firefox/system.nix
     ./development/system.nix
     ./ollama-ui.nix
+    ./flatpak/system.nix
   ];
   home-manager.users.darkkirb.imports =
     if config.system.isGraphical then
       [
         ./home-manager.nix
+        ./flatpak
       ]
     else
       [ ];
@@ -25,7 +26,11 @@
     kate
   ];
 
-  networking.firewall.allowedTCPPorts = [ 2234 ];
+  networking.firewall.allowedTCPPorts = [
+    2234
+    24727
+  ];
+  networking.firewall.allowedUDPPorts = [ 24727 ];
   networking.firewall.allowedTCPPortRanges = [
     {
       from = 1714;

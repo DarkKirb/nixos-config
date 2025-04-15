@@ -15,13 +15,6 @@ in
   programs.ssh = {
     enable = true;
     matchBlocks = {
-      "build-nas" = {
-        hostname = "nas.int.chir.rs";
-        identitiesOnly = true;
-        inherit identityFile;
-        port = 22;
-        user = "remote-build";
-      };
       "build-rainbow-resort" = {
         hostname = "rainbow-resort.int.chir.rs";
         identitiesOnly = true;

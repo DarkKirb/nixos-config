@@ -15,7 +15,6 @@
     ./initrd-ssh.nix
     ./postgresql.nix
     ../../services/chir-rs
-    ../../services/kubernetes
   ];
 
   services.resolved.enable = false;
@@ -40,6 +39,4 @@
   services.caddy.enable = true;
   sops.age.sshKeyPaths = lib.mkForce [ "/etc/ssh/ssh_host_ed25519_key" ];
   nix.auto-update.reboot = false;
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
 }

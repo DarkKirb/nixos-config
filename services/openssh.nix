@@ -18,7 +18,7 @@
     "nas.int.chir.rs".publicKey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDhao1I1Kd1gK5bERUdjMxP9yHDrSHYZsTN2TcSk0K/U";
     "not522.tailbab65.ts.net".publicKey =
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILpOcmvVODaja3wDdnocb/k6MK7vsh5uH8gpeHR9+/rY";
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHEqMwY6ngq5DB8t8qFsqMR6GvCf5lHdMmHkgGJhyjzw";
     "rainbow-resort.int.chir.rs".publicKey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII9MczPuvEh9XaT6e3emfC+WyMYEpyRu2jDUkt3bBk8W";
     "github.com".publicKey =

@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  networking.hostName = "stinky-ssb";
+  networking.hostName = "pinebook";
   imports = [
     ../../config
     ./disko.nix
@@ -10,6 +10,5 @@
     ../../config/networkmanager.nix
   ];
   system.stateVersion = "24.11";
-  home-manager.users.darkkirb.imports = [ ./home-manager.nix ];
   services.postgresql.enable = lib.mkForce false;
 }

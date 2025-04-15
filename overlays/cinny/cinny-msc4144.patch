@@ -1,0 +1,87 @@
+diff --git a/src/app/features/room/message/Message.tsx b/src/app/features/room/message/Message.tsx
+index ae971ab..a0e889e 100644
+--- a/src/app/features/room/message/Message.tsx
++++ b/src/app/features/room/message/Message.tsx
+@@ -711,18 +711,36 @@ export const Message = as<'div', MessageProps>(
+     },
+     ref
+   ) => {
++    const rawEvent = mEvent.getEffectiveEvent();
+     const mx = useMatrixClient();
+     const useAuthentication = useMediaAuthentication();
+-    const senderId = mEvent.getSender() ?? '';
++    let senderId = mEvent.getSender() ?? '';
++    const originalSenderId = senderId;
+     const [hover, setHover] = useState(false);
+     const { hoverProps } = useHover({ onHoverChange: setHover });
+     const { focusWithinProps } = useFocusWithin({ onFocusWithinChange: setHover });
+     const [menuAnchor, setMenuAnchor] = useState<RectCords>();
+     const [emojiBoardAnchor, setEmojiBoardAnchor] = useState<RectCords>();
+ 
+-    const senderDisplayName =
++    let senderDisplayName =
+       getMemberDisplayName(room, senderId) ?? getMxIdLocalPart(senderId) ?? senderId;
+-    const senderAvatarMxc = getMemberAvatarMxc(room, senderId);
++    const originalSenderDisplayName = senderDisplayName;
++    let senderAvatarMxc = getMemberAvatarMxc(room, senderId);
++    const pmp = rawEvent.content["com.beeper.per_message_profile"];
++    const fakeOnClick = () => undefined;
++
++    if(pmp) {
++      if(!pmp.id) {
++        pmp.id = `msc4144+${room.name || room.roomId}+${pmp.displayName || senderDisplayName}+${originalSenderId}`;
++      }
++      if(pmp.displayname && typeof pmp.displayname === 'string') {
++        senderDisplayName = pmp.displayname;
++      }
++      if(pmp.avatar_url && typeof pmp.avatar_url === 'string') {
++        senderAvatarMxc = `${pmp.avatar_url}`;
++      }
++      senderId = pmp.id;
++    }
+ 
+     const tagColor = powerLevelTag?.color
+       ? accessibleTagColors?.get(powerLevelTag.color)
+@@ -732,6 +750,7 @@ export const Message = as<'div', MessageProps>(
+       : undefined;
+ 
+     const usernameColor = legacyUsernameColor ? colorMXID(senderId) : tagColor;
++    const originalUsernameColor = legacyUsernameColor ? colorMXID(originalSenderId) : tagColor;
+ 
+     const headerJSX = !collapse && (
+       <Box
+@@ -743,11 +762,11 @@ export const Message = as<'div', MessageProps>(
+       >
+         <Box alignItems="Center" gap="200">
+           <Username
+-            as="button"
++            as={pmp ? "span" : "button"}
+             style={{ color: usernameColor }}
+             data-user-id={senderId}
+-            onContextMenu={onUserClick}
+-            onClick={onUsernameClick}
++            onContextMenu={pmp ? fakeOnClick : onUserClick}
++            onClick={pmp ? fakeOnClick : onUserClick}
+           >
+             <Text
+               as="span"
+@@ -756,6 +775,19 @@ export const Message = as<'div', MessageProps>(
+             >
+               <UsernameBold>{senderDisplayName}</UsernameBold>
+             </Text>
++            {
++            pmp && <Text as="span" size='T200'>
++                  &nbsp;via <Username
++                  as="button"
++                  style={{ color: originalUsernameColor }}
++                  data-user-id={originalSenderId}
++                  onContextMenu={onUserClick}
++                  onClick={onUsernameClick}
++              >
++                  <UsernameBold>{originalSenderDisplayName}</UsernameBold>
++              </Username>
++              </Text>
++            }
+           </Username>
+           {tagIconSrc && <PowerIcon size="100" iconSrc={tagIconSrc} />}
+         </Box>
