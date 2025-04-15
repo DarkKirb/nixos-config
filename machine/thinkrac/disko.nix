@@ -20,42 +20,39 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
-            root = {
-              end = "-24G";
-              content = {
-                type = "btrfs";
-                extraArgs = [ "-f" ]; # Override existing partition
-                # Subvolumes must set a mountpoint in order to be mounted,
-                # unless their parent is mounted
-                subvolumes = {
-                  # Subvolume name is different from mountpoint
-                  "/root" = {
-                    mountOptions = [ "compress=zstd" ];
-                    mountpoint = "/";
-                  };
-                  # Subvolume name is the same as the mountpoint
-                  "/persistent" = {
-                    mountOptions = [ "compress=zstd" ];
-                    mountpoint = "/persistent";
-                  };
-                  # Parent is not mounted so the mountpoint must be set
-                  "/nix" = {
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                    mountpoint = "/nix";
-                  };
-                };
-                mountpoint = "/partition-root";
-              };
-            };
-            swap = {
+            luks = {
               size = "100%";
               content = {
-                type = "swap";
-                discardPolicy = "both";
-                resumeDevice = true; # resume from hiberation from this device
+                type = "luks";
+                name = "main-root";
+                settings.allowDiscards = true;
+                content = {
+                  type = "btrfs";
+                  extraArgs = [ "-f" ]; # Override existing partition
+                  # Subvolumes must set a mountpoint in order to be mounted,
+                  # unless their parent is mounted
+                  subvolumes = {
+                    # Subvolume name is different from mountpoint
+                    "/root" = {
+                      mountOptions = [ "compress=zstd" ];
+                      mountpoint = "/";
+                    };
+                    # Subvolume name is the same as the mountpoint
+                    "/persistent" = {
+                      mountOptions = [ "compress=zstd" ];
+                      mountpoint = "/persistent";
+                    };
+                    # Parent is not mounted so the mountpoint must be set
+                    "/nix" = {
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                      mountpoint = "/nix";
+                    };
+                  };
+                  mountpoint = "/partition-root";
+                };
               };
             };
           };
