@@ -19,7 +19,7 @@
     ../../services/reverse-proxy.nix
     ../../services/forgejo
     ../../services/chir-rs
-    ../../services/weblate
+    #../../services/weblate
   ];
 
   services.openssh = {
