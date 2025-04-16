@@ -72,5 +72,9 @@
       authfile = config.sops.secrets."etc/u2f_mappings".path;
     };
   };
-  sops.secrets."etc/u2f_mappings".sopsFile = ./graphical-secrets.yaml;
+  sops.secrets."etc/u2f_mappings" = {
+    sopsFile = ./graphical-secrets.yaml;
+    mode = "0440";
+    group = "users";
+  };
 }
