@@ -5,7 +5,7 @@
   esbuild,
   gzip,
   zstd,
-  brotli
+  brotli,
 }:
 let
   source = builtins.fromJSON (builtins.readFile ./source.json);
