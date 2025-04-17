@@ -110,6 +110,10 @@ in
     };
     systemd.services.mautrix-telegram = {
       description = "mautrix-telegram";
+      path = with pkgs; [
+        ffmpeg
+        lottieconverter
+      ];
       wantedBy = [ "multi-user.target" ];
       wants = [ "mautrix-telegram-genregistration.service" ];
       after = [ "mautrix-telegram-genregistration.service" ];
