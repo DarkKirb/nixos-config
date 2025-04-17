@@ -45,7 +45,7 @@
   environment.etc."rclone-mnt.conf".text = ''
     [jellyfin]
     type = sftp
-    ssh = ssh jellyfin@nas.int.chir.rs
+    ssh = ${lib.getExe pkgs.openssh} jellyfin@nas.int.chir.rs
     shell_type = unix
     key_file = ${config.sops.secrets.".ssh/builder_id_ed25519".path}
   '';
