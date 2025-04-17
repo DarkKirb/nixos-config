@@ -29,11 +29,11 @@ schema = 3
     version = "v0.0.20"
     hash = "sha256-qhw9hWtU5wnyFyuMbKx+7RB8ckQaFQ8D+8GKPkN3HHQ="
   [mod."github.com/mattn/go-sqlite3"]
-    version = "v1.14.24"
-    hash = "sha256-taGKFZFQlR5++5b2oZ1dYS3RERKv6yh1gniNWhb4egg="
+    version = "v1.14.27"
+    hash = "sha256-ie6YxA/tn7/7qfrEUSuFSCYItzuQ67B5SMaMynaQjFM="
   [mod."github.com/petermattis/goid"]
-    version = "v0.0.0-20250303134427-723919f7f203"
-    hash = "sha256-lgkvZBKaH6m+BqdUO+yqFAOSJC+NotMPX3tKSSWymF4="
+    version = "v0.0.0-20250319124200-ccd6737f222a"
+    hash = "sha256-QsWOl5+dlVpDsalE9b/U2eMVEP93uWEhOGdD6gJBTiQ="
   [mod."github.com/rogpeppe/go-internal"]
     version = "v1.10.0"
     hash = "sha256-vR7+d0aoKTuKeTYSgZxsGhH9e5Zvxix3Zrq9SPm5+NQ="
@@ -59,8 +59,8 @@ schema = 3
     version = "v1.2.5"
     hash = "sha256-OYGNolkmL7E1Qs2qrQ3IVpQp5gkcHNU/AB/z2O+Myps="
   [mod."github.com/yuin/goldmark"]
-    version = "v1.7.8"
-    hash = "sha256-SNJMPPiXkRDLVOldrHN0ErC3bUB2VoWaLDkd9zmMATw="
+    version = "v1.7.10"
+    hash = "sha256-hzdjwsUa7KuAjLgFdRGf8phx1CNMwhs36G9UTNI12es="
   [mod."go.mau.fi/libsignal"]
     version = "v0.1.2"
     hash = "sha256-+dPEIe5cnVKuxE8IiPp9NY8cFDMncPeWLbkd9WWcot0="
@@ -71,8 +71,8 @@ schema = 3
     version = "v0.2.0"
     hash = "sha256-gh+jHQrwIIE90jB7Hl5RvHrxpqdJ3jgWIDxB6jPTTzA="
   [mod."go.mau.fi/whatsmeow"]
-    version = "v0.0.0-20250411192951-5ab78fadbf91"
-    hash = "sha256-9Jk6mIud2ebncwU/ijkc7OZnwJLxek8ORSYHezSkodE="
+    version = "v0.0.0-20250416223844-bc839c5a1270"
+    hash = "sha256-ySKOfM11RJfwi2mofZulPHFOVmXIrmf3dX0MjoCSvzE="
   [mod."go.mau.fi/zeroconfig"]
     version = "v0.1.3"
     hash = "sha256-TPwXOQql1MV8pXn6ZPxtkBUHzBCwIngNjrfqTfOSJX4="
@@ -80,8 +80,8 @@ schema = 3
     version = "v0.37.0"
     hash = "sha256-9NwDEcii1e2JYM/+3y1yNzWnt/ChMm27e9OtfuF39OM="
   [mod."golang.org/x/exp"]
-    version = "v0.0.0-20250305212735-054e65f0b394"
-    hash = "sha256-Vgt/CNx/xJYxiKKu0PI7ZSiL/SOfXI4di3Mcyge3aw4="
+    version = "v0.0.0-20250408133849-7e4ce0ab07d0"
+    hash = "sha256-Lw/WupSM8gcq0JzPSAaBqj9l1uZ68ANhaIaQzPhRpy8="
   [mod."golang.org/x/image"]
     version = "v0.26.0"
     hash = "sha256-FvTyOdJQ0aqDiiEGAsvF8Kt7QG6gG8/YfAtPm3wArSQ="
@@ -113,5 +113,5 @@ schema = 3
     version = "v1.0.0"
     hash = "sha256-fYc/WwqE0ev0dvnu5qGmHJsYiSTuWeOTiAVzmQIKWyY="
   [mod."maunium.net/go/mautrix"]
-    version = "v0.23.3-0.20250415114347-7cb13f8fd3df"
-    hash = "sha256-GArywTWci4Qnnx7BgCHSbtOzHKgMGeWHC7OHaMsHgQY="
+    version = "v0.23.3"
+    hash = "sha256-sWdttv2DhvpAPLOEb54c0gi0u0FbU278Ll8ceUuEysY="
