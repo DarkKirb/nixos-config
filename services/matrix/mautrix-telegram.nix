@@ -34,6 +34,9 @@
         sync_with_custom_puppets = true;
         sync_direct_chat_list = true;
         invite_link_resolve = true;
+        animated_sticker = {
+          target = "webp";
+        };
         encryption = {
           allow = true;
           default = false;
