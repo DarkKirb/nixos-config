@@ -36,6 +36,7 @@
         invite_link_resolve = true;
         animated_sticker = {
           target = "webp";
+          convert_from_webm = true;
         };
         encryption = {
           allow = true;
