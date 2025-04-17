@@ -255,11 +255,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1744405810,
-        "narHash": "sha256-CVxTtV+YgFUqgg/6z06pMRYLmiHazwOMfIdU3lX0RV8=",
+        "lastModified": 1744783808,
+        "narHash": "sha256-9fS49oIWg3DqZg6Ra2C9Xpe/qUt9NhWaDN5LJbdivq4=",
         "owner": "DarkKirb",
         "repo": "chir.rs",
-        "rev": "2e281735621b1b1657f05fe946427b404a7fc069",
+        "rev": "8b3353a21f3fd4d4806cd0ddfde21c4205897b8b",
         "type": "github"
       },
       "original": {
@@ -824,11 +824,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744750737,
-        "narHash": "sha256-oa6c7+5fq31S1LPFZNA/fI09JGmcDwTJUXOuWZvyUYM=",
+        "lastModified": 1744838184,
+        "narHash": "sha256-2SzVI9l6S1OVTubOAaf6cmmnyBfdvcJTmHq3Mf7Lprs=",
         "owner": "jj-vcs",
         "repo": "jj",
-        "rev": "bb4d0b9ac2e7d75c7742fd4c1e09c70727e9ab45",
+        "rev": "b1576c5c4e172c5576d2533bf3d8180d35dff8b8",
         "type": "github"
       },
       "original": {
@@ -1260,11 +1260,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1744697837,
-        "narHash": "sha256-Muks/ZJo9FDSSSlILjyPQ54YzTpCfJSRrt9yPRyNFYE=",
+        "lastModified": 1744784241,
+        "narHash": "sha256-hCpOkOZldQo1nPdyCzz2HFlTeQoI6vAXJugyI13FX3I=",
         "owner": "darkkirb",
         "repo": "nixpkgs",
-        "rev": "65658207de38c6a3784166f95e3a99026eb98570",
+        "rev": "1ad5636fc471d39a2744dca9d35c7b857c31bb4d",
         "type": "github"
       },
       "original": {
@@ -1497,11 +1497,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744684506,
-        "narHash": "sha256-pDPDMT1rdkTWi8MIoZ67gT3L817R7P0Jo+PP+BrnyJI=",
+        "lastModified": 1744803954,
+        "narHash": "sha256-f+gE6JtLhPzyDWOCEHbN/S30GEGHMtXEt41+Va7wzEU=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "47beae969336c05e892e1e4a9dbaac9593de34ab",
+        "rev": "c564fb830c7d5b3e4fde5ea829a62f0e41e43a20",
         "type": "github"
       },
       "original": {
@@ -1513,11 +1513,11 @@
     "rycee-nur-expressions": {
       "flake": false,
       "locked": {
-        "lastModified": 1744744943,
-        "narHash": "sha256-5jYYAd8jDNlL3kfo5QyoNBvG/HOtGZkrJdAmWfE+qcM=",
+        "lastModified": 1744834821,
+        "narHash": "sha256-FqC0CLpEawcxyxzcvchb8zUf/PQWhHkuQwewtrA+HwE=",
         "ref": "refs/heads/master",
-        "rev": "fc673ded2d1d636206912bc4a08c5fea32a8a98a",
-        "revCount": 4261,
+        "rev": "5cfddd195269d99cb863a4d3cd521569ad85844e",
+        "revCount": 4266,
         "type": "git",
         "url": "https://gitlab.com/rycee/nur-expressions"
       },
