@@ -41,14 +41,25 @@
   };
   programs.sway.enable = (config.system.wm == "sway");
   # Mount /media
+  environment.systemPackages = [ pkgs.rclone ];
+  environment.etc."rclone-mnt.conf".text = ''
+    [jellyfin]
+    type = sftp
+    ssh = ssh jellyfin@nas.int.chir.rs
+    shell_type = unix
+    key_file = ${config.sops.secrets.".ssh/builder_id_ed25519".path}
+  '';
   fileSystems."/media" = {
-    device = "jellyfin@nas.int.chir.rs:/media";
-    fsType = "sshfs";
+    device = "jellyfin:/media";
+    fsType = "rclone";
     options = [
       "nodev"
-      "noatime"
+      "nofail"
       "allow_other"
-      "IdentityFile=${config.sops.secrets.".ssh/builder_id_ed25519".path}"
+      "args2env"
+      "config=/etc/rclone-mnt.conf"
+      "vfs-cache-mode=full"
+      "cache-dir=/var/cache/media-mnt"
     ];
   };
   security.pam.services.login = {
