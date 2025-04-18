@@ -45,9 +45,12 @@
   environment.etc."rclone-mnt.conf".text = ''
     [jellyfin]
     type = sftp
-    ssh = ${lib.getExe pkgs.openssh} jellyfin@nas.int.chir.rs
     shell_type = unix
     key_file = ${config.sops.secrets.".ssh/builder_id_ed25519".path}
+    host = nas.int.chir.rs
+    user = jellyfin
+    md5sum_command = md5sum
+    sha1sum_command = sha1sum
   '';
   fileSystems."/media" = {
     device = "jellyfin:/media";
