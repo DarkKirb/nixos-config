@@ -255,11 +255,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1744910299,
-        "narHash": "sha256-3HLI2QRQIPnNv46zci6l59nXKIcxWV6C2InADxdwDTg=",
+        "lastModified": 1745000715,
+        "narHash": "sha256-H8Uous6sWzS+cA9k6NyBqLPM/O4G+Sx0gl3p9v/o+ug=",
         "owner": "DarkKirb",
         "repo": "chir.rs",
-        "rev": "568e61564cfb8b917fa89ec2758f48c5e41f80bc",
+        "rev": "b931958a0b733f989baba0e9a5e926c13fe29c66",
         "type": "github"
       },
       "original": {

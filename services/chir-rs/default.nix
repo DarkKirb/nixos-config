@@ -4,13 +4,13 @@
   config,
   chir-rs,
   system,
-  nixos-config,
   ...
 }:
 let
   configFile = (pkgs.formats.toml { }).generate "config.toml" {
     cache_max_size = 16000000;
     paseto_secret_key_file = config.sops.secrets."services/chir-rs/paseto-secret-key".path;
+    static_dir = chir-rs.packages.x86_64-linux.chir-rs-fe;
     logging = {
       sentry_dsn = "https://c9d12e36a24cf7cd7addfff060884d0d@o253952.ingest.us.sentry.io/4508341406793728";
     };
