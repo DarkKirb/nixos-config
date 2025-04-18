@@ -61,9 +61,6 @@
   programs.vscode.extensions = with pkgs.vscode-extensions; [
     ms-vscode-remote.remote-ssh
   ];
-  programs.vscode.userSettings = {
-    "remote.SSH.enableAgentForwarding" = false;
-  };
   imports =
     if !(systemConfig.system.wm == "sway") then
       [
