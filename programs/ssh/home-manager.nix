@@ -9,8 +9,6 @@
     ./builders.nix
   ];
   programs.ssh = {
-    controlMaster = "auto";
-    controlPersist = "10m";
     matchBlocks."*" =
       lib.hm.dag.entryAfter
         [
