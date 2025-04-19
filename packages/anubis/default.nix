@@ -29,7 +29,6 @@ buildGoApplication {
     brotli
   ];
   postPatch = ''
-    substituteInPlace go.mod --replace-fail 1.24.2 ${go_1_24.version}
     patchShebangs web/build.sh
   '';
   preBuild = ''
