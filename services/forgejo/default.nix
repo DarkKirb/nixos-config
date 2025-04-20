@@ -11,7 +11,7 @@ let
       {
         name = "renovate";
         user_agent_regex = "RenovateBot";
-        action = "allow";
+        action = "ALLOW";
       }
     ] ++ botsOrig.bots;
     inherit (botsOrig) dnsbl;
