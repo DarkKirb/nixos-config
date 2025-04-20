@@ -2,7 +2,7 @@ services:
     pgbouncer:
         settings:
             pgbouncer:
-                auth: ENC[AES256_GCM,data:FcZ/iC8FSFTNas3Gj8OS44voNn0vt8oXW+AzjMsg4huBFfEOAVTEGaaTWk6AhOkjXCB9g3bUb7gKeWF7DrtlDL4EkwPcxY5OyVpiEmkjJHwkM4mqfYWQ0FTdsxqTmpOCWNhi,iv:+YsiSV9UYFugfUM9Prbyg98xousY9X0Ps1LUshRDtGA=,tag:p0GRW2ND/zmledBQFCaJJQ==,type:str]
+                auth: ENC[AES256_GCM,data:1hTc4SjEx5k+ljjs28n0cgwCL5lNQVrC3nD8M1/L0ZQIbVThtTggAEMooN0vahX0PntP9UGdvrZiL0Kq+9yK6qbXsJT2wOTQyS0elU2/tYxvq+iIYOdcQD25YNwF7pLO/4PUCLIJCVyna5Qa5KDsnL1J7b+HdeWagluiJ8hFmM2K2BxJseLUQicRgxneEjJUb2wQsiIP1uD/Ae0F3TWZbtFyVklkJ0tCEXiw0/RmY0r/peuPd2ZnR+uPRsblk1os29USWyFY,iv:E6KiNLHPaQ+Z2s5V7OOn24XFUzmcNNpHyHXJTX9vkyU=,tag:SQLR6H/gfc5pcSxmHbS0EQ==,type:str]
     prometheus:
         exporters:
             pgbouncer:
@@ -10,12 +10,8 @@ services:
 systemd:
     services:
         postgresql:
-            postStart: ENC[AES256_GCM,data:lV6TqulkmeMC6g8nb8GWJmrDX73Iq/bjX/095SbzBm3D2QZBfawmL02xJPJolkhOwIWPblYkVzZ9dYKk/Wvo1fZ3iFbpZfnywzM7Ae5sxQA6tfGS2WBQXUQS,iv:20s45n3tIhE1sni8FNCIBbdTnoAYXG1vh0wP+ILTXy0=,tag:3isJ2+AgREO6nesvqJDfjw==,type:str]
+            postStart: ENC[AES256_GCM,data:llK8gwcYVNifE5Ixh6xKGVKSBgCA96JvynnNfPunYp3KSd0/adDYz0bIodoqAWcKtVtsCPhVJWxuv0bj1l/OstyQDALjsKk2atDM/V82TSYLBWd08JnlZ5MYSj+zmLGqsCh/R5rRHdgeqJwMQZpL77V98PknfUT5dTZOQSkicAj+t9Jx3mtN/txY8TWvFBE/czXkCVl+LcqePHKdbgr1d4t50e4wPpqtWBWFQ1DzOavBuJXnnA==,iv:oCuE6+HKH/KWdsKAP6wEG1SrXOnsZzElXECLnnAU2PA=,tag:lV04oXp0pqm/rizXbkwm6A==,type:str]
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
     age:
         - recipient: age1tltjgexkp5fz3rum4j0k66ty5q4u8ptvkgkepumd20zal24g2qfs5xgw76
           enc: |
@@ -35,8 +31,7 @@ sops:
             REUxUC81alBKVGljZlZYNnc5Vld2NlUKCUZ7HYxWABHCX5eCoigdtGz8Hd331mpz
             jigXLmqmUY1syDSpyxKjaYtUBPKPO4+PeSKjGwIEOlgcxc7oCEDeFw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-01-17T09:04:41Z"
-    mac: ENC[AES256_GCM,data:kGfeB0sgJ4yZfOhi0uKtf5ccDg4lmoa/aY83989WpErRnFwDWMbDESO5z/iQNXnYo7q7jnH8cxJ/0/9WMw+f+z669PhV74NwdjoONNMP2zBcIipC1WbCq00TDAmcU2cF6S0MH3VGkZ0iPYt52vv5mxoswLORW+avHcW/3c6/r2Q=,iv:obnU8fkvRDLhXggwHFIeWfdRYKLLRs7SogTS98AT5Gk=,tag:I4wF0gQtWia6VXR8KUveMA==,type:str]
-    pgp: []
+    lastmodified: "2025-04-20T11:37:07Z"
+    mac: ENC[AES256_GCM,data:miu/fCcvd+tQZb4xspFyB5WX/xdzOrmsJbz2SXljCBoCPs3Azx89CML0HNtWMr1ZPZHF3NAKAqDWPsupgT9L0/SbO7FaxrnZwcchIXA2jgNC/geo0PGsnfVSOSWsOVFvmbw0BqCuED7HjauMisxdB5IfKqFccy4MbDaSwdWqXgw=,iv:xzRwnWgzLO2GQu46amqaZrRwtV83udcx5i85tqBYa1c=,tag:jrZLkOj7kukOMiPi67TtLA==,type:str]
     unencrypted_suffix: _unencrypted
-    version: 3.9.3
+    version: 3.10.2
