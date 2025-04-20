@@ -10,6 +10,7 @@
 }:
 let
   machines = pkgs.writeText "machines" ''
+    localhost armv7l-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,wasm32-wasi,x86_64-linux,i686-linux - 16 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver4,gccarch-znver3,gccarch-znver2,gccarch-znver1,gccarch-skylake,gccarch-skylake-avx512,ca-derivations  -
     build-aarch64 aarch64-linux - 4 1 nixos-test,benchmark,ca-derivations,gccarch-armv8-a,gccarch-armv8.1-a,gccarch-armv8.2-a,big-parallel  -
     build-riscv riscv64-linux,riscv32-linux - 4 2 nixos-test,benchmark,ca-derivations,gccarch-rv64gc_zba_zbb,gccarch-rv64gc_zba,gccarch-rv64gc_zbb,ccarch-rv64gc,gccarch-rv32gc_zba_zbb,gccarch-rv32gc_zba,gccarch-rv32gc_zbb,gccarch-rv32gc,big-parallel,native-riscv  -
   '';
@@ -85,11 +86,6 @@ in
         ./0006-status-state.patch
         ./0007-hydra-server-findLog-fix-issue-with-ca-derivations-e.patch
       ];
-      postPatch =
-        super.postPatch or ""
-        + ''
-          substituteInPlace src/script/hydra-eval-jobset --replace-fail nix-eval-jobs ${nix-eval-jobs-script}
-        '';
     });
     hydraURL = "https://hydra.chir.rs/";
     notificationSender = "hydra@chir.rs";
@@ -159,29 +155,6 @@ in
     path = "/var/lib/hydra/queue-runner/.aws/credentials";
     restartUnits = [ "hydra-notify.service" ];
     sopsFile = ./secrets.yaml;
-  };
-  systemd.services.update-hydra-hosts = {
-    description = "Update hydra hosts";
-    serviceConfig = {
-      Type = "oneshot";
-    };
-    script = ''
-      if ${pkgs.iputils}/bin/ping -c 1 rainbow-resort.int.chir.rs; then
-        echo "build-rainbow-resort armv7l-linux,powerpc-linux,powerpc64-linux,powerpc64le-linux,wasm32-wasi,x86_64-linux,i686-linux - 16 1 kvm,nixos-test,big-parallel,benchmark,gccarch-znver4,gccarch-znver3,gccarch-znver2,gccarch-znver1,gccarch-skylake,gccarch-skylake-avx512,ca-derivations  -" > /run/hydra-machines
-      else
-        rm -f /run/hydra-machines
-      fi
-    '';
-  };
-  systemd.timers.update-hydra-hosts = {
-    enable = true;
-    description = "Update hydra hosts";
-    requires = [ "update-hydra-hosts.service" ];
-    wantedBy = [ "multi-user.target" ];
-    timerConfig = {
-      OnBootSec = 300;
-      OnUnitActiveSec = 300;
-    };
   };
   nix.settings.trusted-users = [ "@hydra" ];
   sops.secrets."hydra-evaluator/.ssh/builder_id_ed25519" = {

@@ -19,7 +19,7 @@ in
   SOA = {
     nameServer = "ns1.chir.rs.";
     adminEmail = "lotte@chir.rs";
-    serial = 42;
+    serial = 44;
   };
   NS = [
     "ns1.chir.rs."
@@ -237,7 +237,7 @@ in
     minio.CNAME = [ (ttl zoneTTL (cname "nixos-8gb-fsn1-1")) ];
     minio-console.CNAME = [ (ttl zoneTTL (cname "nixos-8gb-fsn1-1")) ];
     backup.CNAME = [ (ttl zoneTTL (cname "nas")) ];
-    hydra.CNAME = [ (ttl zoneTTL (cname "nas")) ];
+    hydra.CNAME = [ (ttl zoneTTL (cname "rainbow-resort")) ];
     moa.CNAME = [ (ttl zoneTTL (cname "nas")) ];
     matrix.CNAME = [ (ttl zoneTTL (cname "nas")) ];
     jellyfin.CNAME = [ (ttl zoneTTL (cname "rainbow-resort")) ];
