@@ -4,6 +4,19 @@
   lib,
   ...
 }:
+let
+  botsOrig = builtins.fromJSON (builtins.readFile "${pkgs.anubis.src}/data/botPolicies.json");
+  bots = {
+    bots = [
+      {
+        name = "renovate";
+        user_agent_regex = "RenovateBot";
+        action = "allow";
+      }
+    ] ++ botsOrig;
+    inherit (botsOrig) dnsbl;
+  };
+in
 {
   systemd.services.anubis-forgejo = {
     description = "scrape protection for forgejo";
@@ -17,7 +30,7 @@
       BIND = ":60927";
       METRICS_BIND = ":29397";
       TARGET = "http://${config.services.forgejo.settings.server.HTTP_ADDR}:${toString config.services.forgejo.settings.server.HTTP_PORT}";
-      POLICY_FNAME = "${pkgs.anubis.src}/data/botPolicies.json";
+      POLICY_FNAME = builtins.toFile "policy.json" (builtins.toJSON bots);
     };
   };
   services.forgejo = {

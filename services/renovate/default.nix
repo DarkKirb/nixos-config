@@ -31,6 +31,7 @@
     };
     credentials = {
       RENOVATE_TOKEN = config.sops.secrets."services/renovate/credentials/RENOVATE_TOKEN".path;
+      GITHUB_COM_TOKEN = config.sops.secrets."services/renovate/credentials/GITHUB_COM_TOKEN".path;
     };
     runtimePackages = with pkgs; [
       config.nix.package
@@ -52,4 +53,5 @@
   };
 
   sops.secrets."services/renovate/credentials/RENOVATE_TOKEN".sopsFile = ./secrets.yaml;
+  sops.secrets."services/renovate/credentials/GITHUB_COM_TOKEN".sopsFile = ./secrets.yaml;
 }
