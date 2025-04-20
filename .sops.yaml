@@ -149,6 +149,7 @@ creation_rules:
       - age:
         - *base
         - *nas
+        - *rainbow-resort
   - path_regex: services/prometheus/secrets.yaml
     key_groups:
       - age:
@@ -159,11 +160,13 @@ creation_rules:
       - age:
         - *base
         - *nas
+        - *rainbow-resort
   - path_regex: services/renovate/secrets.yaml
     key_groups:
       - age:
         - *base
         - *nas
+        - *rainbow-resort
   - path_regex: services/chir-rs/secrets.yaml
     key_groups:
       - age:
