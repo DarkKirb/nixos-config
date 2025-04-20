@@ -36,10 +36,12 @@
       Environment = "GNUPGHOME=${config.programs.gpg.homedir}";
       ExecStart = pkgs.writeScript "import-gpg-privkey" ''
         #!${lib.getExe pkgs.bash}
-        ${lib.getExe config.programs.gpg.package} --import ${
-          config.sops.secrets."pgp/0xB4E3D4801C49EC5E.asc".path
-        }
-        ${lib.getExe config.programs.gpg.package} --card-status
+        if [ -z $SSH_CONNECTION ]; then
+          ${lib.getExe config.programs.gpg.package} --import ${
+            config.sops.secrets."pgp/0xB4E3D4801C49EC5E.asc".path
+          }
+          ${lib.getExe config.programs.gpg.package} --card-status
+        fi
       '';
     };
     Install.WantedBy = [ "graphical-session-pre.target" ];
