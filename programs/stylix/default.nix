@@ -128,6 +128,8 @@ in
       else
         { }
     )
+    #./telegram-desktop.nix
+    #./discord.nix
   ];
 
   stylix = {
