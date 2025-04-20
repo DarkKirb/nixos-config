@@ -23,6 +23,9 @@ in
       tornado = pyprev.tornado.overrideAttrs {
         doInstallCheck = false;
       };
+      pytest-timeout = pyprev.pytest-timeout.overrideAttrs {
+        doInstallCheck = false;
+      };
     };
   };
   python3Packages = final.python3.pkgs;
