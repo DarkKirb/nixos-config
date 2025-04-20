@@ -8,6 +8,7 @@
 {
   home.packages = with pkgs; [
     cargo-mommy
+    cargo-crev
     clang
   ];
   home.shellAliases = {
@@ -53,4 +54,8 @@
       token = "${config.sops.placeholder.".local/share/cargo/credentials/procyos"}"
     '';
   };
+  home.persistence.default.directories = [
+    ".local/share/crev"
+    ".config/crev"
+  ];
 }
