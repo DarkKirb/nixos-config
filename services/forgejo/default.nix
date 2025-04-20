@@ -13,7 +13,7 @@ let
         user_agent_regex = "RenovateBot";
         action = "allow";
       }
-    ] ++ botsOrig;
+    ] ++ botsOrig.bots;
     inherit (botsOrig) dnsbl;
   };
 in
