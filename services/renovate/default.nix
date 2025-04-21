@@ -26,7 +26,7 @@
         "^updater$"
         "^mix2nix > mix.nix$"
         "^yarn2nix > yarn.nix$"
-        "^(cd web; yarn2nix > yarn.nix)$"
+        "^\\(cd web; yarn2nix > yarn\\.nix\\)$"
       ];
       allowCustomCrateRegistries = true;
     };
